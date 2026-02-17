@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Is a Subnet Mask? Explained Simply (CompTIA A+ Guide)</title>
+
+<meta name="description" content="What is a subnet mask? Learn what a subnet mask does, common subnet masks like 255.255.255.0, how it relates to IP addresses and gateways, and A+ troubleshooting examples.">
+<meta name="keywords" content="What is a subnet mask, subnet mask explained, 255.255.255.0, CompTIA A+ networking, IP address subnet mask, default gateway">
+
+<style>
+:root{
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --muted: #5a6676;
+  --border: #e6e8ec;
+  --accent: #0b3d91;
+  --link: #0073e6;
+  --codebg: #f1f1f1;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.65;
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  max-width: 980px;
+  margin: 28px auto;
+  padding: 22px;
+}
+
+.shell {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 26px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.06);
+}
+
+.breadcrumb {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.breadcrumb a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: 30px;
+  letter-spacing: -0.3px;
+  margin: 0 0 10px 0;
+  color: var(--accent);
+}
+
+h2 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-size: 20px;
+}
+
+p { margin: 10px 0; }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 24px 0;
+}
+
+ul, ol { padding-left: 22px; }
+li { margin: 6px 0; }
+
+code {
+  background: var(--codebg);
+  padding: 3px 6px;
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95em;
+}
+
+pre {
+  background: var(--codebg);
+  padding: 12px 14px;
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #e7e7e7;
+  margin: 10px 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95em;
+}
+
+.callout {
+  background: #f1f5ff;
+  border: 1px solid #d6e3ff;
+  border-radius: 12px;
+  padding: 14px;
+  margin: 18px 0;
+}
+
+.callout p {
+  margin: 6px 0;
+  color: var(--muted);
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  background: var(--link);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,115,230,.18);
+}
+
+.button:hover {
+  text-decoration: none;
+  filter: brightness(0.95);
+}
+
+.footer {
+  margin-top: 34px;
+  font-size: 13px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <div class="shell">
+
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> &gt; Networking Fundamentals &gt; What Is a Subnet Mask?
+    </div>
+
+    <h1>What Is a Subnet Mask? (Explained Simply)</h1>
+
+    <p>If an <strong>IP address</strong> identifies your device on a network, the <strong>subnet mask</strong> tells the device:</p>
+    <p><em>“Which part of this IP address is the network, and which part is the device?”</em></p>
+
+    <p>This is a high-yield concept for the <strong>CompTIA A+</strong> exam and real troubleshooting.</p>
+
+    <hr>
+
+    <h2>What Does a Subnet Mask Do?</h2>
+
+    <p>A subnet mask is a number that works with an IP address to determine:</p>
+    <ul>
+      <li>Which devices are on the <strong>same local network</strong></li>
+      <li>Whether traffic should go <strong>directly</strong> to another device OR to the <strong>default gateway</strong> (router)</li>
+    </ul>
+
+    <div class="callout">
+      <p><strong>Simple version:</strong> A subnet mask draws the “local neighborhood boundary” for your IP address.</p>
+    </div>
+
+    <hr>
+
+    <h2>Most Common Subnet Mask (Home Networks)</h2>
+
+    <p>The most common subnet mask you’ll see is:</p>
+
+    <pre>255.255.255.0</pre>
+
+    <p>Example IP configuration:</p>
+
+    <pre>IP Address:   192.168.1.50
+Subnet Mask:  255.255.255.0
+Gateway:      192.168.1.1</pre>
+
+    <p>On a /24 network (255.255.255.0), devices on the same local network usually share the first three numbers:</p>
+
+    <pre>192.168.1.X</pre>
+
+    <hr>
+
+    <h2>How Subnet Masks Help Your PC Decide Where to Send Traffic</h2>
+
+    <p>If your computer wants to talk to another device:</p>
+
+    <ul>
+      <li>If the device is on the <strong>same subnet</strong>, it sends traffic directly on the LAN.</li>
+      <li>If the device is on a <strong>different subnet</strong>, it sends traffic to the <strong>default gateway</strong> (router).</li>
+    </ul>
+
+    <div class="callout">
+      <p><strong>Exam idea:</strong> Wrong subnet mask can cause “local works, internet fails” or “internet works, local devices missing.”</p>
+    </div>
+
+    <hr>
+
+    <h2>How to View Your Subnet Mask in Windows</h2>
+
+    <p>Open Command Prompt and run:</p>
+
+    <pre>ipconfig</pre>
+
+    <p>Or for more detail:</p>
+
+    <pre>ipconfig /all</pre>
+
+    <p>Look for the line labeled <strong>Subnet Mask</strong>.</p>
+
+    <hr>
+
+    <h2>Common Subnet Masks to Recognize (A+ Level)</h2>
+
+    <ul>
+      <li><strong>255.255.255.0</strong> → very common home/office LANs</li>
+      <li><strong>255.255.0.0</strong> → larger internal networks</li>
+      <li><strong>255.0.0.0</strong> → very large networks (less common in small environments)</li>
+    </ul>
+
+    <div class="callout">
+      <p><strong>Quick mental shortcut:</strong></p>
+      <p>More 255s at the start = a “bigger network portion.” More zeros at the end = “more device addresses available.”</p>
+    </div>
+
+    <hr>
+
+    <h2>Real-World Troubleshooting Example</h2>
+
+    <p>A student laptop can’t print to a network printer, but internet works fine.</p>
+
+    <p>You check the IP settings and find:</p>
+
+    <pre>IP Address:   192.168.1.55
+Subnet Mask:  255.255.0.0</pre>
+
+    <p>But all other devices are using:</p>
+
+    <pre>Subnet Mask:  255.255.255.0</pre>
+
+    <div class="callout">
+      <p><strong>Result:</strong> The laptop may treat more addresses as “local,” causing routing/ARP issues and weird connectivity problems.</p>
+      <p><strong>Fix:</strong> Set the correct subnet mask (usually via DHCP).</p>
+    </div>
+
+    <hr>
+
+    <h2>Subnet Mask vs Default Gateway</h2>
+
+    <ul>
+      <li><strong>Subnet mask</strong> tells your device what is “local.”</li>
+      <li><strong>Default gateway</strong> is where traffic goes when it’s <em>not</em> local (router).</li>
+    </ul>
+
+    <p>If either is wrong, you can get:</p>
+    <ul>
+      <li>No internet</li>
+      <li>Can’t reach printers/servers</li>
+      <li>Intermittent network weirdness</li>
+    </ul>
+
+    <hr>
+
+    <h2>Related Networking Articles</h2>
+
+    <div class="callout">
+      <p><a href="dhcp.html">What Is DHCP?</a></p>
+      <p><a href="dns.html">What Is DNS?</a></p>
+      <p><a href="ports.html">Common Port Numbers for the CompTIA A+ Exam</a></p>
+      <p><a href="apipa.html">What Is APIPA?</a></p>
+    </div>
+
+    <hr>
+
+    <h2>Recommended A+ Study Tools</h2>
+
+    <div class="callout">
+      <p>Subnet masks show up often in “why can’t this device communicate?” questions. Practice exams help make it automatic.</p>
+
+      <div class="button-row">
+        <a href="https://www.examcompass.com/comptia/a-plus-certification/free-a-plus-practice-tests"
+           class="button" target="_blank" rel="nofollow sponsored">
+          Take FREE Practice Exams
+        </a>
+
+        <a href="https://amzn.to/3OMI8uo"
+           class="button" target="_blank" rel="nofollow sponsored">
+          Bestselling CompTIA A+ Study Guide
+        </a>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Final Summary</h2>
+
+    <ul>
+      <li>A subnet mask defines what your device considers “local.”</li>
+      <li>The most common mask is <strong>255.255.255.0</strong>.</li>
+      <li>Wrong subnet masks can cause confusing connectivity problems.</li>
+      <li>Subnet mask works alongside the default gateway and DHCP.</li>
+    </ul>
+
+    <div class="footer">
+      <p>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</p>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
