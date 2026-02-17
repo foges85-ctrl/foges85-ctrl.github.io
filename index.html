@@ -152,27 +152,49 @@ a:hover{ text-decoration: underline; }
   .grid{ grid-template-columns: 1fr 1fr; }
 }
 
-.article-card{
-  border: 1px solid var(--border);
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.article-card {
+  background: #ffffff;
+  border: 1px solid #e6e8ec;
   border-radius: 14px;
-  padding: 16px;
-  background: #fff;
-  transition: transform .12s ease, box-shadow .12s ease;
-}
-.article-card:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 10px 26px rgba(0,0,0,.07);
-}
-
-.article-card h3{
-  margin: 0 0 6px 0;
-  font-size: 17px;
+  padding: 22px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.05);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.article-card p{
+.article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+}
+
+.article-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+}
+
+.article-card a {
+  text-decoration: none;
+  color: #0b3d91;
+}
+
+.article-card a:hover {
+  text-decoration: underline;
+}
+
+.article-card p {
   margin: 0;
-  color: var(--muted);
+  color: #5a6676;
+  font-size: 14px;
 }
+
 
 .footer{
   margin-top: 28px;
@@ -226,27 +248,35 @@ a:hover{ text-decoration: underline; }
 
     <h2>Networking Fundamentals</h2>
 
-    <div class="article-card">
-  <h3><a href="ports.html">Common Port Numbers for the CompTIA A+ Exam</a></h3>
-  <p>Memorize the most important port numbers like 80, 443, 53, 22, and 3389 with simple memory tricks and troubleshooting examples.</p>
+<div class="articles-grid">
+
+  <div class="article-card">
+    <h3><a href="ports.html">Common Port Numbers for the CompTIA A+ Exam</a></h3>
+    <p>Memorize the most important ports like 80, 443, 53, 22, and 3389 with simple memory tricks.</p>
+  </div>
+
+  <div class="article-card">
+    <h3><a href="subnet-mask.html">What Is a Subnet Mask?</a></h3>
+    <p>Understand common masks like 255.255.255.0 and how they affect local vs internet traffic.</p>
+  </div>
+
+  <div class="article-card">
+    <h3><a href="apipa.html">What Is APIPA?</a></h3>
+    <p>Learn why 169.254 addresses appear and how to troubleshoot DHCP failures.</p>
+  </div>
+
+  <div class="article-card">
+    <h3><a href="dhcp.html">What Is DHCP?</a></h3>
+    <p>See how devices automatically receive IP addresses and how leases work.</p>
+  </div>
+
+  <div class="article-card">
+    <h3><a href="dns.html">What Is DNS?</a></h3>
+    <p>Understand how domain names translate to IP addresses and DNS troubleshooting.</p>
+  </div>
+
 </div>
 
-    <div class="article-card">
-  <h3><a href="subnet-mask.html">What Is a Subnet Mask? (Explained Simply)</a></h3>
-  <p>Understand what subnet masks do, common masks like 255.255.255.0, and how they impact local vs internet connectivity.</p>
-</div>
-
-    <div class="grid">
-      <div class="article-card">
-        <h3><a href="apipa.html">What Is APIPA? (Automatic Private IP Addressing Explained)</a></h3>
-        <p>Learn why 169.254 addresses appear, what they mean, and how to troubleshoot DHCP failures.</p>
-      </div>
-
-      <div class="article-card">
-        <h3><a href="dhcp.html">What Is DHCP? (Dynamic Host Configuration Protocol Explained)</a></h3>
-        <p>Understand how devices automatically receive IP addresses and how DHCP troubleshooting works for the CompTIA A+ exam.</p>
-      </div>
-    </div>
 
     <div class="article-card">
         <h3><a href="dns.html">What Is DNS? (Domain Name System Explained Simply)</a></h3>
