@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -14,129 +15,232 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>IT Study Hub | CompTIA A+ Guides & Home Lab Tutorials</title>
-
 <meta name="description" content="Clear, practical CompTIA A+ networking guides, troubleshooting walkthroughs, and budget home lab tutorials.">
 
 <!-- Google Analytics (keep yours here if already installed) -->
 <!-- Paste your GA4 script here if it’s not already in this file -->
 
 <style>
-body {
+:root{
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --muted: #5a6676;
+  --border: #e6e8ec;
+  --accent: #0b3d91;
+  --link: #0073e6;
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin:0;
   font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.6;
+  line-height:1.6;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container{
+  max-width: 980px;
+  margin: 28px auto;
+  padding: 22px;
+}
+
+.shell{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 26px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.06);
+}
+
+.breadcrumb{
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.breadcrumb a{
+  color: var(--link);
+  text-decoration: none;
+}
+.breadcrumb a:hover{ text-decoration: underline; }
+
+.hero{
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+h1{
+  margin: 0 0 6px 0;
+  color: var(--accent);
+  font-size: 30px;
+  letter-spacing: -0.3px;
+}
+
+.subhead{
   margin: 0;
-  background-color: #f4f6f8;
-  color: #1a1a1a;
+  color: var(--muted);
+  max-width: 66ch;
 }
 
-.container {
-  max-width: 900px;
-  margin: auto;
-  padding: 25px;
-  background: white;
+hr{
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 26px 0;
 }
 
-.breadcrumb {
-  font-size: 14px;
-  margin-bottom: 20px;
+h2{
+  margin: 0 0 14px 0;
+  color: var(--accent);
+  font-size: 20px;
 }
 
-.breadcrumb a {
-  color: #0073e6;
+a{
+  color: var(--link);
   text-decoration: none;
 }
+a:hover{ text-decoration: underline; }
 
-.breadcrumb a:hover {
-  text-decoration: underline;
-}
-
-h1 { color: #0b3d91; }
-h2 { margin-top: 35px; color: #0b3d91; }
-
-.article { margin-bottom: 25px; }
-
-a {
-  text-decoration: none;
-  color: #0073e6;
-}
-a:hover { text-decoration: underline; }
-
-.resource-box {
+.resource-box{
   background: #f1f5ff;
   border: 1px solid #d6e3ff;
-  border-radius: 8px;
-  padding: 16px;
-  margin: 22px 0 30px 0;
+  border-radius: 12px;
+  padding: 16px 16px 14px 16px;
+  margin: 18px 0 6px 0;
 }
 
-.resource-box p {
-  margin-top: 0;
+.resource-box p{
+  margin: 6px 0 10px 0;
+  color: var(--muted);
 }
 
-.button {
-  display: inline-block;
+.button-row{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.button{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 10px 14px;
-  background: #0073e6;
+  background: var(--link);
   color: white;
+  border-radius: 10px;
   text-decoration: none;
-  border-radius: 5px;
-  margin: 8px 10px 0 0;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,115,230,.18);
+}
+.button:hover{
+  text-decoration:none;
+  filter: brightness(0.95);
 }
 
-.footer {
-  margin-top: 60px;
+.grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+@media (min-width: 860px){
+  .grid{ grid-template-columns: 1fr 1fr; }
+}
+
+.article-card{
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  background: #fff;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.article-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0,0,0,.07);
+}
+
+.article-card h3{
+  margin: 0 0 6px 0;
+  font-size: 17px;
+}
+
+.article-card p{
+  margin: 0;
+  color: var(--muted);
+}
+
+.footer{
+  margin-top: 28px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
   font-size: 13px;
-  color: #555;
-  border-top: 1px solid #ddd;
-  padding-top: 15px;
+  color: var(--muted);
 }
 </style>
 </head>
 
 <body>
 <div class="container">
+  <div class="shell">
 
-<div class="breadcrumb">Home</div>
+    <div class="breadcrumb">Home</div>
 
-<h1>IT Study & Home Lab Hub</h1>
+    <div class="hero">
+      <div>
+        <h1>IT Study & Home Lab Hub</h1>
+        <p class="subhead">
+          Clear, practical networking explanations and CompTIA A+ study guides designed for real-world troubleshooting and exam success.
+        </p>
+      </div>
+    </div>
 
-<p>Clear, practical networking explanations and CompTIA A+ study guides designed for real-world troubleshooting and exam success.</p>
+    <!-- Recommended Resources (same functionality) -->
+    <div class="resource-box">
+      <h2 style="margin-bottom:6px;">Recommended Resources</h2>
+      <p>If you’re studying for CompTIA A+, these are two helpful starting points that pair well with the articles on this site.</p>
 
-<!-- Recommended Resources (natural integration) -->
-<div class="resource-box">
-  <h2 style="margin-top:0;">Recommended Resources</h2>
-  <p>If you’re studying for CompTIA A+, these are two helpful starting points that pair well with the articles on this site.</p>
+      <div class="button-row">
+        <a href="PASTE_YOUR_PRACTICE_EXAMS_LINK_HERE"
+           class="button" target="_blank" rel="nofollow sponsored">
+          View Practice Exams
+        </a>
 
-  <a href="https://www.examcompass.com/comptia/a-plus-certification/free-a-plus-practice-tests"
-     class="button" target="_blank" rel="nofollow sponsored">
-    Take FREE Practice Exams
-  </a>
+        <a href="PASTE_YOUR_STUDY_BOOK_LINK_HERE"
+           class="button" target="_blank" rel="nofollow sponsored">
+          Check Study Book
+        </a>
+      </div>
+    </div>
 
-  <a href="https://amzn.to/4aAhnRr"
-     class="button" target="_blank" rel="nofollow sponsored">
-    Bestselling CompTIA A+ Study Guide
-  </a>
-</div>
+    <hr>
 
-<hr>
+    <h2>Networking Fundamentals</h2>
 
-<h2>Networking Fundamentals</h2>
+    <div class="grid">
+      <div class="article-card">
+        <h3><a href="apipa.html">What Is APIPA? (Automatic Private IP Addressing Explained)</a></h3>
+        <p>Learn why 169.254 addresses appear, what they mean, and how to troubleshoot DHCP failures.</p>
+      </div>
 
-<div class="article">
-  <h3><a href="apipa.html">What Is APIPA? (Automatic Private IP Addressing Explained)</a></h3>
-  <p>Learn why 169.254 addresses appear, what they mean, and how to troubleshoot DHCP failures.</p>
-</div>
+      <div class="article-card">
+        <h3><a href="dhcp.html">What Is DHCP? (Dynamic Host Configuration Protocol Explained)</a></h3>
+        <p>Understand how devices automatically receive IP addresses and how DHCP troubleshooting works for the CompTIA A+ exam.</p>
+      </div>
+    </div>
 
-<div class="article">
-  <h3><a href="dhcp.html">What Is DHCP? (Dynamic Host Configuration Protocol Explained)</a></h3>
-  <p>Understand how devices automatically receive IP addresses and how DHCP troubleshooting works for the CompTIA A+ exam.</p>
-</div>
+    <div class="footer">
+      <div>IT Study Hub – Practical CompTIA A+ Networking Resources</div>
+      <div style="margin-top:6px;">
+        Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.
+      </div>
+    </div>
 
-<div class="footer">
-  <p>IT Study Hub – Practical CompTIA A+ Networking Resources</p>
-  <p>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</p>
-</div>
-
+  </div>
 </div>
 </body>
 </html>
