@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Common Port Numbers for the CompTIA A+ Exam (Easy Reference Guide)</title>
+
+<meta name="description" content="Learn the most important port numbers for the CompTIA A+ exam including HTTP, HTTPS, FTP, SSH, RDP, SMTP, DNS, and more. Includes memory tips and troubleshooting examples.">
+
+<meta name="keywords" content="Common port numbers, CompTIA A+ ports, Port 80, Port 443, Port 3389, Networking ports explained, A+ exam networking">
+
+<style>
+:root{
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --muted: #5a6676;
+  --border: #e6e8ec;
+  --accent: #0b3d91;
+  --link: #0073e6;
+  --codebg: #f1f1f1;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.65;
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  max-width: 980px;
+  margin: 28px auto;
+  padding: 22px;
+}
+
+.shell {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 26px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.06);
+}
+
+.breadcrumb {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.breadcrumb a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: 30px;
+  margin: 0 0 10px 0;
+  color: var(--accent);
+}
+
+h2 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-size: 20px;
+}
+
+p { margin: 10px 0; }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 24px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid var(--border);
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background: #f1f5ff;
+}
+
+.callout {
+  background: #f1f5ff;
+  border: 1px solid #d6e3ff;
+  border-radius: 12px;
+  padding: 14px;
+  margin: 18px 0;
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  background: var(--link);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,115,230,.18);
+}
+
+.footer {
+  margin-top: 34px;
+  font-size: 13px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+<div class="shell">
+
+<div class="breadcrumb">
+<a href="index.html">Home</a> &gt; Networking Fundamentals &gt; Common Port Numbers
+</div>
+
+<h1>Common Port Numbers for the CompTIA A+ Exam</h1>
+
+<p>Port numbers are one of the most tested networking topics on the CompTIA A+ exam.</p>
+
+<p>You don’t need to memorize every port — but you MUST know the common ones.</p>
+
+<hr>
+
+<h2>What Is a Port Number?</h2>
+
+<p>A port number is a logical communication endpoint used by network services.</p>
+
+<p>Think of an IP address as an apartment building, and the port number as the apartment number.</p>
+
+<div class="callout">
+<strong>IP address</strong> = the building  
+<strong>Port number</strong> = the specific service inside the building  
+</div>
+
+<hr>
+
+<h2>Most Important A+ Port Numbers</h2>
+
+<table>
+<tr>
+<th>Port</th>
+<th>Protocol</th>
+<th>Service</th>
+</tr>
+
+<tr><td>20 / 21</td><td>TCP</td><td>FTP (File Transfer Protocol)</td></tr>
+<tr><td>22</td><td>TCP</td><td>SSH (Secure Shell)</td></tr>
+<tr><td>23</td><td>TCP</td><td>Telnet</td></tr>
+<tr><td>25</td><td>TCP</td><td>SMTP (Email Sending)</td></tr>
+<tr><td>53</td><td>UDP / TCP</td><td>DNS</td></tr>
+<tr><td>80</td><td>TCP</td><td>HTTP</td></tr>
+<tr><td>110</td><td>TCP</td><td>POP3</td></tr>
+<tr><td>143</td><td>TCP</td><td>IMAP</td></tr>
+<tr><td>443</td><td>TCP</td><td>HTTPS</td></tr>
+<tr><td>3389</td><td>TCP</td><td>RDP (Remote Desktop)</td></tr>
+</table>
+
+<hr>
+
+<h2>Memory Tricks</h2>
+
+<ul>
+<li><strong>80</strong> → Web (HTTP)</li>
+<li><strong>443</strong> → Secure Web (HTTPS)</li>
+<li><strong>22</strong> → SSH (two 2’s = secure)</li>
+<li><strong>3389</strong> → Remote Desktop</li>
+<li><strong>53</strong> → DNS (short number = fast lookup)</li>
+</ul>
+
+<div class="callout">
+If you see a question mentioning secure web traffic, think: <strong>Port 443</strong>.
+</div>
+
+<hr>
+
+<h2>Why Port Numbers Matter on the A+ Exam</h2>
+
+<p>You may see questions like:</p>
+
+<ul>
+<li>“A user cannot access a website using HTTPS. Which port should be checked?”</li>
+<li>“Which port does RDP use?”</li>
+<li>“Which protocol uses port 53?”</li>
+</ul>
+
+These are straightforward points if you memorize the common ports.</p>
+
+<hr>
+
+<h2>Troubleshooting Example</h2>
+
+<p>A user can access HTTP websites but not HTTPS websites.</p>
+
+<p>What should you check?</p>
+
+<div class="callout">
+Check if <strong>port 443</strong> is blocked by the firewall.
+</div>
+
+<hr>
+
+<h2>Related Networking Articles</h2>
+
+<div class="callout">
+<p><a href="dns.html">What Is DNS?</a></p>
+<p><a href="dhcp.html">What Is DHCP?</a></p>
+<p><a href="apipa.html">What Is APIPA?</a></p>
+</div>
+
+<hr>
+
+<h2>Recommended A+ Study Tools</h2>
+
+<div class="callout">
+<p>Lock in these port numbers with practice exams and structured review:</p>
+
+<div class="button-row">
+<a href="https://www.examcompass.com/comptia/a-plus-certification/free-a-plus-practice-tests"
+class="button" target="_blank" rel="nofollow sponsored">
+Take FREE Practice Exams
+</a>
+
+<a href="https://amzn.to/3OMI8uo"
+class="button" target="_blank" rel="nofollow sponsored">
+Bestselling CompTIA A+ Study Guide
+</a>
+</div>
+</div>
+
+<hr>
+
+<h2>Final Summary</h2>
+
+<ul>
+<li>Port numbers identify specific services</li>
+<li>HTTP = 80</li>
+<li>HTTPS = 443</li>
+<li>DNS = 53</li>
+<li>RDP = 3389</li>
+<li>These are high-yield exam topics</li>
+</ul>
+
+<div class="footer">
+<p>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</p>
+</div>
+
+</div>
+</div>
+</body>
+</html>
