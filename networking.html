@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Networking Master Guide for CompTIA A+ (Study Hub + Articles)</title>
+
+<meta name="description" content="A simple, organized networking hub for CompTIA A+. Start here to learn DHCP, DNS, APIPA, subnet masks, and common port numbers with clear study order and links.">
+<meta name="keywords" content="CompTIA A+ networking hub, networking master guide, DHCP DNS APIPA subnet mask ports, A+ networking study guide">
+
+<style>
+:root{
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --muted: #5a6676;
+  --border: #e6e8ec;
+  --accent: #0b3d91;
+  --link: #0073e6;
+  --codebg: #f1f1f1;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.65;
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  max-width: 1020px;
+  margin: 28px auto;
+  padding: 22px;
+}
+
+.shell {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 26px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.06);
+}
+
+.breadcrumb {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.breadcrumb a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: 30px;
+  letter-spacing: -0.3px;
+  margin: 0 0 10px 0;
+  color: var(--accent);
+}
+
+h2 {
+  margin-top: 26px;
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-size: 20px;
+}
+
+p { margin: 10px 0; }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 24px 0;
+}
+
+.callout {
+  background: #f1f5ff;
+  border: 1px solid #d6e3ff;
+  border-radius: 12px;
+  padding: 14px;
+  margin: 18px 0;
+}
+
+.callout p {
+  margin: 6px 0;
+  color: var(--muted);
+}
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 0 0;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--muted);
+  background: #fff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+  margin-top: 12px;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.05);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+}
+
+.card h3 {
+  margin: 0 0 6px 0;
+  font-size: 18px;
+  color: var(--accent);
+}
+
+.card p {
+  margin: 0 0 10px 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.card a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+.small {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  background: var(--link);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,115,230,.18);
+}
+
+.button:hover {
+  filter: brightness(0.95);
+}
+
+.footer {
+  margin-top: 34px;
+  font-size: 13px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <div class="shell">
+
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> &gt; Networking Master Guide
+    </div>
+
+    <h1>Networking Master Guide (CompTIA A+ Study Hub)</h1>
+
+    <p>This page organizes the networking topics on this site into a simple study path. If you're new to networking, start at the top and work down.</p>
+
+    <div class="callout">
+      <p><strong>Recommended order:</strong> Subnet Mask → DHCP → DNS → APIPA → Common Ports</p>
+      <div class="badge-row">
+        <span class="badge">Beginner-friendly</span>
+        <span class="badge">A+ focused</span>
+        <span class="badge">Troubleshooting-first</span>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Start Here: Core Concepts</h2>
+
+    <div class="grid">
+      <div class="card">
+        <div>
+          <h3><a href="subnet-mask.html">Subnet Mask</a></h3>
+          <p>Learn what “local vs remote” means and why the subnet mask affects routing and connectivity.</p>
+        </div>
+        <div class="small">Best first topic — makes everything else easier.</div>
+      </div>
+
+      <div class="card">
+        <div>
+          <h3><a href="dhcp.html">DHCP</a></h3>
+          <p>Understand how devices automatically receive IP addresses, gateways, and DNS settings.</p>
+        </div>
+        <div class="small">Know DORA and what a lease is.</div>
+      </div>
+
+      <div class="card">
+        <div>
+          <h3><a href="dns.html">DNS</a></h3>
+          <p>See how domain names translate to IP addresses and why DNS causes “internet feels broken” issues.</p>
+        </div>
+        <div class="small">Key troubleshooting clue: IP works, names don’t.</div>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Troubleshooting Essentials</h2>
+
+    <div class="grid">
+      <div class="card">
+        <div>
+          <h3><a href="apipa.html">APIPA (169.254.x.x)</a></h3>
+          <p>Learn why 169.254 appears and what it tells you about DHCP and connectivity problems.</p>
+        </div>
+        <div class="small">If you see 169.254, think: DHCP failed.</div>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Must-Memorize Exam Topic</h2>
+
+    <div class="grid">
+      <div class="card">
+        <div>
+          <h3><a href="ports.html">Common Port Numbers</a></h3>
+          <p>Quick reference for high-yield ports like 80, 443, 53, 22, and 3389 with memory tips.</p>
+        </div>
+        <div class="small">Easy points if you memorize the core list.</div>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Recommended A+ Study Tools</h2>
+
+    <div class="callout">
+      <p>If you're studying consistently, practice tests + a structured guide will speed everything up.</p>
+
+      <div class="button-row">
+        <a href="https://www.examcompass.com/comptia/a-plus-certification/free-a-plus-practice-tests"
+           class="button" target="_blank" rel="nofollow sponsored">
+          Take FREE Practice Exams
+        </a>
+
+        <a href="https://amzn.to/3OMI8uo"
+           class="button" target="_blank" rel="nofollow sponsored">
+          Bestselling CompTIA A+ Study Guide
+        </a>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Quick Troubleshooting Cheat Sheet</h2>
+
+    <div class="callout">
+      <p><strong>169.254.x.x</strong> → DHCP not reachable → check cable/Wi-Fi/router → try <code>ipconfig /renew</code></p>
+      <p><strong>IP works but websites don’t</strong> → DNS issue → try different DNS (8.8.8.8) → <code>ipconfig /flushdns</code></p>
+      <p><strong>HTTP works, HTTPS fails</strong> → check port <strong>443</strong> / firewall rules</p>
+    </div>
+
+    <div class="footer">
+      <p>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</p>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
