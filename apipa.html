@@ -10,82 +10,58 @@
 
   gtag('config', 'G-MS0H78HR74');
 </script>
-  
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>What Is APIPA? Automatic Private IP Addressing Explained (CompTIA A+ Guide)</title>
 
 <meta name="description" content="What is APIPA? Learn how Automatic Private IP Addressing works, why 169.254.x.x appears, and how to troubleshoot DHCP issues for the CompTIA A+ exam.">
-
 <meta name="keywords" content="What is APIPA, APIPA explained, 169.254 address, CompTIA A+ networking, DHCP troubleshooting, ipconfig APIPA">
 
 <style>
+:root{
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --muted: #5a6676;
+  --border: #e6e8ec;
+  --accent: #0b3d91;
+  --link: #0073e6;
+  --codebg: #f1f1f1;
+}
+
+* { box-sizing: border-box; }
+
 body {
   font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.6;
+  line-height: 1.65;
   margin: 0;
-  background-color: #f4f6f8;
-  color: #1a1a1a;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 .container {
-  max-width: 850px;
-  margin: auto;
-  padding: 25px;
-  background: white;
+  max-width: 980px;
+  margin: 28px auto;
+  padding: 22px;
 }
 
-h1 {
-  font-size: 28px;
-  margin-bottom: 10px;
-}
-
-h2 {
-  margin-top: 35px;
-  color: #0b3d91;
-}
-
-code {
-  background: #f1f1f1;
-  padding: 4px 6px;
-  border-radius: 4px;
-}
-
-pre {
-  background: #f1f1f1;
-  padding: 12px;
-  overflow-x: auto;
-}
-
-.button {
-  display: inline-block;
-  padding: 10px 15px;
-  background: #0073e6;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-top: 10px;
-}
-
-.section {
-  margin-bottom: 35px;
-}
-
-.footer {
-  margin-top: 50px;
-  font-size: 13px;
-  color: #555;
-  border-top: 1px solid #ddd;
-  padding-top: 15px;
+.shell {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 26px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.06);
 }
 
 .breadcrumb {
-  font-size: 14px;
-  margin-bottom: 20px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
 }
 
 .breadcrumb a {
-  color: #0073e6;
+  color: var(--link);
   text-decoration: none;
 }
 
@@ -93,137 +69,232 @@ pre {
   text-decoration: underline;
 }
 
+h1 {
+  font-size: 30px;
+  letter-spacing: -0.3px;
+  margin: 0 0 10px 0;
+  color: var(--accent);
+}
+
+h2 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-size: 20px;
+}
+
+p { margin: 10px 0; }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 24px 0;
+}
+
+ul, ol { padding-left: 22px; }
+
+li { margin: 6px 0; }
+
+code {
+  background: var(--codebg);
+  padding: 3px 6px;
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95em;
+}
+
+pre {
+  background: var(--codebg);
+  padding: 12px 14px;
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #e7e7e7;
+  margin: 10px 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95em;
+}
+
+.callout {
+  background: #f1f5ff;
+  border: 1px solid #d6e3ff;
+  border-radius: 12px;
+  padding: 14px 14px 12px 14px;
+  margin: 18px 0;
+}
+
+.callout p {
+  margin: 6px 0;
+  color: var(--muted);
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  background: var(--link);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,115,230,.18);
+}
+
+.button:hover {
+  text-decoration: none;
+  filter: brightness(0.95);
+}
+
+.footer {
+  margin-top: 34px;
+  font-size: 13px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
 </style>
 </head>
 
 <body>
 <div class="container">
-<div class="breadcrumb">
-<a href="index.html">Home</a> &gt; Networking Fundamentals &gt; What Is APIPA?
-</div>
+  <div class="shell">
 
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> &gt; Networking Fundamentals &gt; What Is APIPA?
+    </div>
 
-<h1>What Is APIPA? (Automatic Private IP Addressing Explained Simply)</h1>
+    <h1>What Is APIPA? (Automatic Private IP Addressing Explained Simply)</h1>
 
-<p>If you're studying for the CompTIA A+ exam, you've likely seen the term <strong>APIPA</strong> and wondered:</p>
+    <p>If you're studying for the CompTIA A+ exam, you've likely seen the term <strong>APIPA</strong> and wondered:</p>
 
-<p><em>“Why does my computer show a 169.254 address?”</em></p>
+    <p><em>“Why does my computer show a 169.254 address?”</em></p>
 
-<p>Let’s break it down clearly and practically.</p>
+    <p>Let’s break it down clearly and practically.</p>
 
-<hr>
+    <hr>
 
-<h2>What Does APIPA Stand For?</h2>
+    <h2>What Does APIPA Stand For?</h2>
 
-<p>APIPA stands for <strong>Automatic Private IP Addressing</strong>.</p>
+    <p>APIPA stands for <strong>Automatic Private IP Addressing</strong>.</p>
 
-<p>It is a Windows feature that automatically assigns an IP address when a <strong>DHCP server cannot be reached</strong>.</p>
+    <p>It is a Windows feature that automatically assigns an IP address when a <strong>DHCP server cannot be reached</strong>.</p>
 
-<p>Instead of leaving the device without an IP address, Windows assigns one temporarily.</p>
+    <p>Instead of leaving the device without an IP address, Windows assigns one temporarily.</p>
 
-<hr>
+    <hr>
 
-<h2>When Does APIPA Happen?</h2>
+    <h2>When Does APIPA Happen?</h2>
 
-<p>APIPA activates when:</p>
+    <p>APIPA activates when:</p>
 
-<ul>
-<li>Your computer is set to obtain an IP automatically.</li>
-<li>It sends a DHCP request.</li>
-<li>No DHCP server responds.</li>
-</ul>
+    <ul>
+      <li>Your computer is set to obtain an IP automatically.</li>
+      <li>It sends a DHCP request.</li>
+      <li>No DHCP server responds.</li>
+    </ul>
 
-<p>This usually indicates a <strong>network connectivity problem</strong>.</p>
+    <p>This usually indicates a <strong>network connectivity problem</strong>.</p>
 
-<hr>
+    <hr>
 
-<h2>What Does an APIPA Address Look Like?</h2>
+    <h2>What Does an APIPA Address Look Like?</h2>
 
-<p>APIPA addresses always fall within:</p>
+    <p>APIPA addresses always fall within:</p>
 
-<pre>169.254.x.x</pre>
+    <pre>169.254.x.x</pre>
 
-<p>Example:</p>
+    <p>Example:</p>
 
-<pre>169.254.12.45</pre>
+    <pre>169.254.12.45</pre>
 
-<p>If you run:</p>
+    <p>If you run:</p>
 
-<pre>ipconfig</pre>
+    <pre>ipconfig</pre>
 
-<p>and see a 169.254 address, your system failed to contact a DHCP server.</p>
+    <p>and see a 169.254 address, your system failed to contact a DHCP server.</p>
 
-<hr>
+    <hr>
 
-<h2>Why Is This Important for the CompTIA A+ Exam?</h2>
+    <h2>Why Is This Important for the CompTIA A+ Exam?</h2>
 
-<p>On the A+ exam, APIPA usually signals:</p>
+    <p>On the A+ exam, APIPA usually signals:</p>
 
-<ul>
-<li>DHCP failure</li>
-<li>Router issue</li>
-<li>Disconnected Ethernet cable</li>
-<li>Disabled DHCP service</li>
-<li>Network adapter issue</li>
-</ul>
+    <ul>
+      <li>DHCP failure</li>
+      <li>Router issue</li>
+      <li>Disconnected Ethernet cable</li>
+      <li>Disabled DHCP service</li>
+      <li>Network adapter issue</li>
+    </ul>
 
-<p><strong>Memory Trick:</strong></p>
-<p>APIPA = “Automatic Problem IP Address.”</p>
+    <div class="callout">
+      <p><strong>Memory Trick:</strong></p>
+      <p>APIPA = “Automatic Problem IP Address.”</p>
+      <p>If you see 169.254, think: <strong>DHCP problem.</strong></p>
+    </div>
 
-<p>If you see 169.254, think: <strong>DHCP problem.</strong></p>
+    <hr>
 
-<hr>
+    <h2>How to Fix an APIPA Address (Troubleshooting Steps)</h2>
 
-<h2>How to Fix an APIPA Address (Troubleshooting Steps)</h2>
-
-<ol>
-<li>Restart the router.</li>
-<li>Check the Ethernet cable.</li>
-<li>Disable and re-enable the network adapter.</li>
-<li>Run:
-<pre>ipconfig /release
+    <ol>
+      <li>Restart the router.</li>
+      <li>Check the Ethernet cable.</li>
+      <li>Disable and re-enable the network adapter.</li>
+      <li>Run:
+        <pre>ipconfig /release
 ipconfig /renew</pre>
-</li>
-<li>Verify DHCP is enabled on the router.</li>
-</ol>
+      </li>
+      <li>Verify DHCP is enabled on the router.</li>
+    </ol>
 
-<p>This troubleshooting flow is common on the CompTIA A+ exam.</p>
+    <p>This troubleshooting flow is common on the CompTIA A+ exam.</p>
 
-<hr>
+    <hr>
 
-<h2>Why Does Windows Use 169.254?</h2>
+    <h2>Why Does Windows Use 169.254?</h2>
 
-<p>The 169.254.0.0 range is reserved for <strong>link-local addressing</strong>.</p>
+    <p>The 169.254.0.0 range is reserved for <strong>link-local addressing</strong>.</p>
 
-<p>It allows devices on the same local network to communicate, but they cannot access the internet.</p>
+    <p>It allows devices on the same local network to communicate, but they cannot access the internet.</p>
 
-<p>APIPA is a fallback safety mechanism.</p>
+    <p>APIPA is a fallback safety mechanism.</p>
 
-<hr>
+    <hr>
 
-<h2>Real-World Example</h2>
+    <h2>Real-World Example</h2>
 
-<p>You power on a classroom PC. Students say:</p>
+    <p>You power on a classroom PC. Students say:</p>
 
-<p><em>“The internet isn’t working.”</em></p>
+    <p><em>“The internet isn’t working.”</em></p>
 
-<p>You run:</p>
+    <p>You run:</p>
 
-<pre>ipconfig</pre>
+    <pre>ipconfig</pre>
 
-<p>It shows:</p>
+    <p>It shows:</p>
 
-<pre>169.254.88.12</pre>
+    <pre>169.254.88.12</pre>
 
-<p>You now know: the router isn’t assigning IP addresses.</p>
+    <p>You now know: the router isn’t assigning IP addresses.</p>
 
-<p>That’s real troubleshooting — and exam-ready thinking.</p>
+    <p>That’s real troubleshooting — and exam-ready thinking.</p>
 
-<hr>
+    <hr>
 
-<h2>Recommended A+ Study Tools</h2>
+    <h2>Recommended A+ Study Tools</h2>
 
-<div class="button-row">
+    <div class="callout">
+      <p>Want to drill this topic quickly? Use the practice exams, then come back and re-read the troubleshooting section.</p>
+      <div class="button-row">
         <a href="https://www.examcompass.com/comptia/a-plus-certification/free-a-plus-practice-tests"
            class="button" target="_blank" rel="nofollow sponsored">
           Take FREE Practice Exams
@@ -236,24 +307,25 @@ ipconfig /renew</pre>
       </div>
     </div>
 
-<hr>
+    <hr>
 
-<h2>Final Summary</h2>
+    <h2>Final Summary</h2>
 
-<ul>
-<li>APIPA stands for Automatic Private IP Addressing</li>
-<li>It activates when DHCP fails</li>
-<li>It assigns 169.254.x.x</li>
-<li>It signals a network troubleshooting issue</li>
-<li>It frequently appears on CompTIA A+</li>
-</ul>
+    <ul>
+      <li>APIPA stands for Automatic Private IP Addressing</li>
+      <li>It activates when DHCP fails</li>
+      <li>It assigns 169.254.x.x</li>
+      <li>It signals a network troubleshooting issue</li>
+      <li>It frequently appears on CompTIA A+</li>
+    </ul>
 
-<p>If you see 169.254 — think DHCP.</p>
+    <p>If you see 169.254 — think DHCP.</p>
 
-<div class="footer">
-<p>Disclosure: Some links may be affiliate links.</p>
-</div>
+    <div class="footer">
+      <p>Disclosure: Some links may be affiliate links.</p>
+    </div>
 
+  </div>
 </div>
 </body>
 </html>
