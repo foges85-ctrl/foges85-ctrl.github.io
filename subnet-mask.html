@@ -45,13 +45,81 @@ body {
   padding: 22px;
 }
 
-.navbar {
-  background: #ffffff;
-  border-bottom: 1px solid #e6e8ec;
+/* ===== Top Navbar ===== */
+.navbar{
   position: sticky;
   top: 0;
   z-index: 1000;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e6e8ec;
 }
+
+.nav-inner{
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 12px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.nav-logo a{
+  color: #0b3d91;
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  font-size: 16px;
+}
+
+.nav-links{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav-links a{
+  text-decoration: none;
+  color: #1a1a1a;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+.nav-links a:hover{
+  color: #0073e6;
+  background: #f1f5ff;
+  border-color: #d6e3ff;
+}
+
+/* Optional: highlight the "money page" link */
+.nav-links a.cta{
+  background: #0073e6;
+  color: #fff !important;
+  border-color: #0073e6;
+  box-shadow: 0 6px 16px rgba(0,115,230,.18);
+}
+
+.nav-links a.cta:hover{
+  filter: brightness(.95);
+}
+
+/* Mobile stacking */
+@media (max-width: 560px){
+  .nav-inner{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-links{
+    width: 100%;
+  }
+}
+
 
 .shell {
   background: var(--card);
@@ -176,13 +244,15 @@ pre {
     <div class="nav-logo">
       <a href="index.html">IT Study Hub</a>
     </div>
+
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="networking.html">Networking Guide</a>
-      <a href="best-a-plus.html">Best Study Resources</a>
+      <a class="cta" href="best-a-plus.html">Best Study Resources</a>
     </div>
   </div>
 </nav>
+
 
 <div class="container">
 <div class="container">
