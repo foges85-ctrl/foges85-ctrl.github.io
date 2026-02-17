@@ -10,38 +10,58 @@
 
   gtag('config', 'G-MS0H78HR74');
 </script>
-  
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>What Is DHCP? Dynamic Host Configuration Protocol Explained (CompTIA A+ Guide)</title>
 
 <meta name="description" content="What is DHCP? Learn how Dynamic Host Configuration Protocol works, what a DHCP lease is, common DHCP issues, and troubleshooting steps for the CompTIA A+ exam.">
-
 <meta name="keywords" content="What is DHCP, DHCP explained, DHCP lease, DHCP server, CompTIA A+ networking, DHCP troubleshooting, ipconfig renew">
 
 <style>
+:root{
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --muted: #5a6676;
+  --border: #e6e8ec;
+  --accent: #0b3d91;
+  --link: #0073e6;
+  --codebg: #f1f1f1;
+}
+
+* { box-sizing: border-box; }
+
 body {
   font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.6;
+  line-height: 1.65;
   margin: 0;
-  background-color: #f4f6f8;
-  color: #1a1a1a;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 .container {
-  max-width: 850px;
-  margin: auto;
-  padding: 25px;
-  background: white;
+  max-width: 980px;
+  margin: 28px auto;
+  padding: 22px;
+}
+
+.shell {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 26px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.06);
 }
 
 .breadcrumb {
-  font-size: 14px;
-  margin-bottom: 20px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
 }
 
 .breadcrumb a {
-  color: #0073e6;
+  color: var(--link);
   text-decoration: none;
 }
 
@@ -50,191 +70,250 @@ body {
 }
 
 h1 {
-  font-size: 28px;
-  margin-bottom: 10px;
+  font-size: 30px;
+  letter-spacing: -0.3px;
+  margin: 0 0 10px 0;
+  color: var(--accent);
 }
 
 h2 {
-  margin-top: 35px;
-  color: #0b3d91;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-size: 20px;
 }
 
+p { margin: 10px 0; }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 24px 0;
+}
+
+ul, ol { padding-left: 22px; }
+li { margin: 6px 0; }
+
 code {
-  background: #f1f1f1;
-  padding: 4px 6px;
-  border-radius: 4px;
+  background: var(--codebg);
+  padding: 3px 6px;
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95em;
 }
 
 pre {
-  background: #f1f1f1;
-  padding: 12px;
+  background: var(--codebg);
+  padding: 12px 14px;
   overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #e7e7e7;
+  margin: 10px 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95em;
 }
 
-.button {
-  display: inline-block;
-  padding: 10px 15px;
-  background: #0073e6;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
+.callout {
+  background: #f1f5ff;
+  border: 1px solid #d6e3ff;
+  border-radius: 12px;
+  padding: 14px 14px 12px 14px;
+  margin: 18px 0;
+}
+
+.callout p {
+  margin: 6px 0;
+  color: var(--muted);
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
   margin-top: 10px;
 }
 
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  background: var(--link);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,115,230,.18);
+}
+
+.button:hover {
+  text-decoration: none;
+  filter: brightness(0.95);
+}
+
 .footer {
-  margin-top: 50px;
+  margin-top: 34px;
   font-size: 13px;
-  color: #555;
-  border-top: 1px solid #ddd;
-  padding-top: 15px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
 }
 </style>
 </head>
 
 <body>
 <div class="container">
+  <div class="shell">
 
-<div class="breadcrumb">
-<a href="index.html">Home</a> &gt; Networking Fundamentals &gt; What Is DHCP?
-</div>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> &gt; Networking Fundamentals &gt; What Is DHCP?
+    </div>
 
-<h1>What Is DHCP? (Dynamic Host Configuration Protocol Explained Simply)</h1>
+    <h1>What Is DHCP? (Dynamic Host Configuration Protocol Explained Simply)</h1>
 
-<p>If APIPA (169.254.x.x) is the sign that something went wrong, <strong>DHCP</strong> is the system that normally prevents that problem in the first place.</p>
+    <p>If APIPA (169.254.x.x) is the sign that something went wrong, <strong>DHCP</strong> is the system that normally prevents that problem in the first place.</p>
 
-<p>DHCP is one of the most important networking concepts on the <strong>CompTIA A+</strong> exam because it explains how most devices automatically get online.</p>
+    <p>DHCP is one of the most important networking concepts on the <strong>CompTIA A+</strong> exam because it explains how most devices automatically get online.</p>
 
-<hr>
+    <hr>
 
-<h2>What Does DHCP Stand For?</h2>
+    <h2>What Does DHCP Stand For?</h2>
 
-<p>DHCP stands for <strong>Dynamic Host Configuration Protocol</strong>.</p>
+    <p>DHCP stands for <strong>Dynamic Host Configuration Protocol</strong>.</p>
 
-<p>DHCP automatically assigns network settings to devices so they can communicate on a network and access the internet.</p>
+    <p>DHCP automatically assigns network settings to devices so they can communicate on a network and access the internet.</p>
 
-<p>Instead of manually typing an IP address, subnet mask, gateway, and DNS servers, DHCP delivers them automatically.</p>
+    <p>Instead of manually typing an IP address, subnet mask, gateway, and DNS servers, DHCP delivers them automatically.</p>
 
-<hr>
+    <hr>
 
-<h2>What Does DHCP Assign?</h2>
+    <h2>What Does DHCP Assign?</h2>
 
-<p>A DHCP server typically assigns:</p>
+    <p>A DHCP server typically assigns:</p>
 
-<ul>
-  <li><strong>IP address</strong> (example: 192.168.1.50)</li>
-  <li><strong>Subnet mask</strong> (example: 255.255.255.0)</li>
-  <li><strong>Default gateway</strong> (example: 192.168.1.1)</li>
-  <li><strong>DNS servers</strong> (example: 8.8.8.8 or your ISP/router DNS)</li>
-</ul>
+    <ul>
+      <li><strong>IP address</strong> (example: 192.168.1.50)</li>
+      <li><strong>Subnet mask</strong> (example: 255.255.255.0)</li>
+      <li><strong>Default gateway</strong> (example: 192.168.1.1)</li>
+      <li><strong>DNS servers</strong> (example: 8.8.8.8 or your ISP/router DNS)</li>
+    </ul>
 
-<p>On most home networks, the <strong>router</strong> is the DHCP server.</p>
+    <p>On most home networks, the <strong>router</strong> is the DHCP server.</p>
 
-<hr>
+    <hr>
 
-<h2>How Does DHCP Work? (The Simple Flow)</h2>
+    <h2>How Does DHCP Work? (The Simple Flow)</h2>
 
-<p>You’ll often see this described as a 4-step process (good to recognize for exams):</p>
+    <p>You’ll often see this described as a 4-step process (good to recognize for exams):</p>
 
-<ol>
-  <li><strong>Discover</strong> — Device broadcasts “Is there a DHCP server?”</li>
-  <li><strong>Offer</strong> — DHCP server offers an IP address</li>
-  <li><strong>Request</strong> — Device requests that offered IP</li>
-  <li><strong>Acknowledge</strong> — DHCP server confirms and leases the IP</li>
-</ol>
+    <ol>
+      <li><strong>Discover</strong> — Device broadcasts “Is there a DHCP server?”</li>
+      <li><strong>Offer</strong> — DHCP server offers an IP address</li>
+      <li><strong>Request</strong> — Device requests that offered IP</li>
+      <li><strong>Acknowledge</strong> — DHCP server confirms and leases the IP</li>
+    </ol>
 
-<p>You don’t have to memorize every packet detail for A+, but you should understand the overall idea: DHCP is an automated “handshake” that assigns network settings.</p>
+    <p>You don’t have to memorize every packet detail for A+, but you should understand the overall idea: DHCP is an automated “handshake” that assigns network settings.</p>
 
-<hr>
+    <hr>
 
-<h2>What Is a DHCP Lease?</h2>
+    <h2>What Is a DHCP Lease?</h2>
 
-<p>A DHCP lease is a <strong>temporary rental</strong> of an IP address.</p>
+    <p>A DHCP lease is a <strong>temporary rental</strong> of an IP address.</p>
 
-<ul>
-  <li>The server assigns an IP address for a certain time period (hours or days).</li>
-  <li>Before it expires, the device attempts to renew it automatically.</li>
-  <li>This prevents two devices from accidentally using the same IP address.</li>
-</ul>
+    <ul>
+      <li>The server assigns an IP address for a certain time period (hours or days).</li>
+      <li>Before it expires, the device attempts to renew it automatically.</li>
+      <li>This prevents two devices from accidentally using the same IP address.</li>
+    </ul>
 
-<p><strong>Memory trick:</strong> Lease = “you don’t own the IP forever.”</p>
+    <div class="callout">
+      <p><strong>Memory trick:</strong> Lease = “you don’t own the IP forever.”</p>
+    </div>
 
-<hr>
+    <hr>
 
-<h2>How to Check DHCP on Windows</h2>
+    <h2>How to Check DHCP on Windows</h2>
 
-<p>Open Command Prompt and run:</p>
+    <p>Open Command Prompt and run:</p>
 
-<pre>ipconfig /all</pre>
+    <pre>ipconfig /all</pre>
 
-<p>Look for:</p>
+    <p>Look for:</p>
 
-<ul>
-  <li><strong>DHCP Enabled</strong>: Yes/No</li>
-  <li><strong>DHCP Server</strong>: the IP that assigned the lease (often your router)</li>
-  <li><strong>Lease Obtained / Lease Expires</strong>: lease timing</li>
-</ul>
+    <ul>
+      <li><strong>DHCP Enabled</strong>: Yes/No</li>
+      <li><strong>DHCP Server</strong>: the IP that assigned the lease (often your router)</li>
+      <li><strong>Lease Obtained / Lease Expires</strong>: lease timing</li>
+    </ul>
 
-<hr>
+    <hr>
 
-<h2>Common DHCP Problems (A+ Exam Clues)</h2>
+    <h2>Common DHCP Problems (A+ Exam Clues)</h2>
 
-<p>If DHCP fails, you might see:</p>
+    <p>If DHCP fails, you might see:</p>
 
-<ul>
-  <li><strong>APIPA address</strong> (169.254.x.x)</li>
-  <li>No internet access</li>
-  <li>“Limited connectivity” warnings</li>
-</ul>
+    <ul>
+      <li><strong>APIPA address</strong> (169.254.x.x)</li>
+      <li>No internet access</li>
+      <li>“Limited connectivity” warnings</li>
+    </ul>
 
-<p><strong>Common causes:</strong></p>
+    <p><strong>Common causes:</strong></p>
 
-<ul>
-  <li>Bad or unplugged Ethernet cable</li>
-  <li>Wi-Fi authentication issues</li>
-  <li>Router is offline / DHCP service disabled</li>
-  <li>DHCP scope exhausted (no more IPs available)</li>
-  <li>Network adapter driver issues</li>
-</ul>
+    <ul>
+      <li>Bad or unplugged Ethernet cable</li>
+      <li>Wi-Fi authentication issues</li>
+      <li>Router is offline / DHCP service disabled</li>
+      <li>DHCP scope exhausted (no more IPs available)</li>
+      <li>Network adapter driver issues</li>
+    </ul>
 
-<hr>
+    <hr>
 
-<h2>How to Troubleshoot DHCP Issues</h2>
+    <h2>How to Troubleshoot DHCP Issues</h2>
 
-<ol>
-  <li>Confirm physical connection (Ethernet / Wi-Fi)</li>
-  <li>Restart the device and router</li>
-  <li>Disable and re-enable the network adapter</li>
-  <li>Run:</li>
-</ol>
+    <ol>
+      <li>Confirm physical connection (Ethernet / Wi-Fi)</li>
+      <li>Restart the device and router</li>
+      <li>Disable and re-enable the network adapter</li>
+      <li>Run:</li>
+    </ol>
 
-<pre>ipconfig /release
+    <pre>ipconfig /release
 ipconfig /renew</pre>
 
-<p>If you still get a 169.254 address, focus on the path to the DHCP server (router/switch/cable/Wi-Fi authentication).</p>
+    <p>If you still get a 169.254 address, focus on the path to the DHCP server (router/switch/cable/Wi-Fi authentication).</p>
 
-<hr>
+    <hr>
 
-<h2>DHCP vs Static IP (When Would You Use Each?)</h2>
+    <h2>DHCP vs Static IP (When Would You Use Each?)</h2>
 
-<ul>
-  <li><strong>DHCP</strong>: best for most devices (laptops, phones, classrooms) because it’s automatic and scalable.</li>
-  <li><strong>Static IP</strong>: used when a device must stay at a fixed address (servers, printers, network gear).</li>
-</ul>
+    <ul>
+      <li><strong>DHCP</strong>: best for most devices (laptops, phones, classrooms) because it’s automatic and scalable.</li>
+      <li><strong>Static IP</strong>: used when a device must stay at a fixed address (servers, printers, network gear).</li>
+    </ul>
 
-<p>In the real world, printers and servers often use static IPs (or DHCP reservations) so they’re always reachable at the same address.</p>
+    <p>In the real world, printers and servers often use static IPs (or DHCP reservations) so they’re always reachable at the same address.</p>
 
-<hr>
+    <hr>
 
-<h2>Related Article</h2>
+    <h2>Related Article</h2>
 
-<p>If you’re seeing 169.254 addresses, read this next:</p>
-<p><a href="apipa.html">What Is APIPA? (Automatic Private IP Addressing Explained)</a></p>
+    <div class="callout">
+      <p>If you’re seeing 169.254 addresses, read this next:</p>
+      <p><a href="apipa.html">What Is APIPA? (Automatic Private IP Addressing Explained)</a></p>
+    </div>
 
-<hr>
+    <hr>
 
-<h2>Recommended A+ Study Tools</h2>
+    <h2>Recommended A+ Study Tools</h2>
 
-<div class="button-row">
+    <div class="callout">
+      <p>Want to lock in DHCP quickly? Take the practice exams, then come back and review the troubleshooting section.</p>
+
+      <div class="button-row">
         <a href="https://www.examcompass.com/comptia/a-plus-certification/free-a-plus-practice-tests"
            class="button" target="_blank" rel="nofollow sponsored">
           Take FREE Practice Exams
@@ -247,22 +326,23 @@ ipconfig /renew</pre>
       </div>
     </div>
 
-<hr>
+    <hr>
 
-<h2>Final Summary</h2>
+    <h2>Final Summary</h2>
 
-<ul>
-  <li>DHCP automatically assigns IP settings to devices</li>
-  <li>Most home networks use the router as the DHCP server</li>
-  <li>DHCP uses a short “handshake” to offer and lease an IP</li>
-  <li>A DHCP lease is temporary and renews automatically</li>
-  <li>If DHCP fails, devices may fall back to APIPA (169.254.x.x)</li>
-</ul>
+    <ul>
+      <li>DHCP automatically assigns IP settings to devices</li>
+      <li>Most home networks use the router as the DHCP server</li>
+      <li>DHCP uses a short “handshake” to offer and lease an IP</li>
+      <li>A DHCP lease is temporary and renews automatically</li>
+      <li>If DHCP fails, devices may fall back to APIPA (169.254.x.x)</li>
+    </ul>
 
-<div class="footer">
-<p>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</p>
-</div>
+    <div class="footer">
+      <p>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</p>
+    </div>
 
+  </div>
 </div>
 </body>
 </html>
