@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>OSI Model Explained Simply (All 7 Layers for CompTIA A+)</title>
+
+<meta name="description" content="Learn the OSI Model and all 7 layers explained simply for the CompTIA A+ exam. Includes memory tricks, troubleshooting examples, and real-world explanations.">
+
+<style>
+:root{
+  --bg:#f4f6f8;
+  --card:#ffffff;
+  --text:#1a1a1a;
+  --muted:#5a6676;
+  --border:#e6e8ec;
+  --accent:#0b3d91;
+  --link:#0073e6;
+}
+body{font-family:Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.65;}
+.container{max-width:1000px;margin:28px auto;padding:22px;}
+.shell{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px;box-shadow:0 6px 22px rgba(0,0,0,.06);}
+h1{color:var(--accent);margin-top:0;}
+h2{color:var(--accent);margin-top:28px;}
+ul{padding-left:20px;}
+.callout{background:#f1f5ff;border:1px solid #d6e3ff;border-radius:12px;padding:14px;margin:18px 0;}
+.button{display:inline-block;padding:10px 14px;background:var(--link);color:#fff;text-decoration:none;border-radius:10px;font-weight:700;margin-top:10px;}
+.button:hover{filter:brightness(.95);}
+.footer{margin-top:34px;font-size:13px;color:var(--muted);border-top:1px solid var(--border);padding-top:14px;}
+
+/* Navbar */
+.navbar{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e6e8ec;
+}
+.nav-inner{
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 12px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo a{
+  color: #0b3d91;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 16px;
+}
+.nav-links a{
+  text-decoration: none;
+  color: #1a1a1a;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+.nav-links a:hover{
+  color: #0073e6;
+  background: #f1f5ff;
+}
+.nav-links a.cta{
+  background: #0073e6;
+  color: #fff !important;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <a href="index.html">IT Study Hub</a>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking.html">Networking Guide</a>
+      <a class="cta" href="best-a-plus.html">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+<div class="shell">
+
+<h1>OSI Model Explained Simply (All 7 Layers for CompTIA A+)</h1>
+
+<p>The OSI Model is one of the most important networking concepts on the CompTIA A+ exam.</p>
+
+<p>It breaks networking into 7 layers so we can understand how data moves from one device to another.</p>
+
+<hr>
+
+<h2>The 7 Layers of the OSI Model</h2>
+
+<ul>
+<li><strong>7 – Application</strong></li>
+<li><strong>6 – Presentation</strong></li>
+<li><strong>5 – Session</strong></li>
+<li><strong>4 – Transport</strong></li>
+<li><strong>3 – Network</strong></li>
+<li><strong>2 – Data Link</strong></li>
+<li><strong>1 – Physical</strong></li>
+</ul>
+
+<div class="callout">
+<p><strong>Memory Trick:</strong></p>
+<p><em>All People Seem To Need Data Processing</em></p>
+</div>
+
+<hr>
+
+<h2>Layer 1 – Physical</h2>
+<p>Cables, signals, voltage, connectors.</p>
+<p>Example: Ethernet cables, fiber, Wi-Fi signals.</p>
+
+<h2>Layer 2 – Data Link</h2>
+<p>MAC addresses and switching.</p>
+<p>Devices: Switches.</p>
+
+<h2>Layer 3 – Network</h2>
+<p>IP addresses and routing.</p>
+<p>Devices: Routers.</p>
+
+<h2>Layer 4 – Transport</h2>
+<p>TCP and UDP live here.</p>
+<p>Controls reliability and port numbers.</p>
+
+<h2>Layer 5 – Session</h2>
+<p>Opens, manages, and closes connections.</p>
+
+<h2>Layer 6 – Presentation</h2>
+<p>Encryption, formatting, compression.</p>
+
+<h2>Layer 7 – Application</h2>
+<p>User-facing protocols like HTTP, FTP, SMTP.</p>
+
+<hr>
+
+<h2>How It Appears on the A+ Exam</h2>
+
+<ul>
+<li>Port numbers → Layer 4</li>
+<li>IP addresses → Layer 3</li>
+<li>MAC addresses → Layer 2</li>
+<li>Cables → Layer 1</li>
+</ul>
+
+<hr>
+
+<h2>Real Troubleshooting Example</h2>
+
+<p>No link light? → Layer 1 problem.</p>
+<p>169.254 address? → Layer 3 (DHCP issue).</p>
+<p>Website not loading but ping works? → Layer 7 (DNS issue).</p>
+
+<hr>
+
+<h2>Related Networking Articles</h2>
+
+<div class="callout">
+  <p><a href="tcp-vs-udp.html">TCP vs UDP Explained</a></p>
+  <p><a href="subnet.html">What Is a Subnet Mask?</a></p>
+  <p><a href="dhcp.html">What Is DHCP?</a></p>
+  <p><a href="dns.html">What Is DNS?</a></p>
+  <p><a href="ports.html">Common Port Numbers</a></p>
+  <p><a href="apipa.html">What Is APIPA?</a></p>
+</div>
+
+<hr>
+
+<h2>Preparing for the A+ Exam?</h2>
+
+<a href="best-a-plus.html" class="button">
+See the Best CompTIA A+ Study Resources →
+</a>
+
+<div class="footer">
+<p>Disclosure: Some links may be affiliate links.</p>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>
