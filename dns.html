@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Is DNS? Domain Name System Explained Simply (CompTIA A+ Guide)</title>
+
+<meta name="description" content="What is DNS? Learn how the Domain Name System works, what DNS servers do, common DNS issues, and troubleshooting steps for the CompTIA A+ exam.">
+
+<meta name="keywords" content="What is DNS, DNS explained, Domain Name System, DNS server, CompTIA A+ networking, DNS troubleshooting, ipconfig flushdns">
+
+<style>
+:root{
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --muted: #5a6676;
+  --border: #e6e8ec;
+  --accent: #0b3d91;
+  --link: #0073e6;
+  --codebg: #f1f1f1;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.65;
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  max-width: 980px;
+  margin: 28px auto;
+  padding: 22px;
+}
+
+.shell {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 26px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.06);
+}
+
+.breadcrumb {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.breadcrumb a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: 30px;
+  letter-spacing: -0.3px;
+  margin: 0 0 10px 0;
+  color: var(--accent);
+}
+
+h2 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-size: 20px;
+}
+
+p { margin: 10px 0; }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 24px 0;
+}
+
+ul, ol { padding-left: 22px; }
+li { margin: 6px 0; }
+
+code {
+  background: var(--codebg);
+  padding: 3px 6px;
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.95em;
+}
+
+pre {
+  background: var(--codebg);
+  padding: 12px 14px;
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #e7e7e7;
+  margin: 10px 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.95em;
+}
+
+.callout {
+  background: #f1f5ff;
+  border: 1px solid #d6e3ff;
+  border-radius: 12px;
+  padding: 14px;
+  margin: 18px 0;
+}
+
+.callout p {
+  margin: 6px 0;
+  color: var(--muted);
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  background: var(--link);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,115,230,.18);
+}
+
+.button:hover {
+  text-decoration: none;
+  filter: brightness(0.95);
+}
+
+.footer {
+  margin-top: 34px;
+  font-size: 13px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+<div class="shell">
+
+<div class="breadcrumb">
+<a href="index.html">Home</a> &gt; Networking Fundamentals &gt; What Is DNS?
+</div>
+
+<h1>What Is DNS? (Domain Name System Explained Simply)</h1>
+
+<p>Have you ever typed a website like <strong>google.com</strong> into your browser and wondered how your computer knows where to go?</p>
+
+<p>The answer is <strong>DNS</strong>.</p>
+
+<hr>
+
+<h2>What Does DNS Stand For?</h2>
+
+<p>DNS stands for <strong>Domain Name System</strong>.</p>
+
+<p>It translates human-friendly domain names into IP addresses that computers use to communicate.</p>
+
+<div class="callout">
+<p><strong>Simple Definition:</strong> DNS is the internet’s phonebook.</p>
+</div>
+
+<hr>
+
+<h2>Why Do We Need DNS?</h2>
+
+<p>Computers communicate using IP addresses like:</p>
+
+<pre>142.250.72.14</pre>
+
+<p>But humans prefer names like:</p>
+
+<pre>google.com</pre>
+
+<p>DNS connects the two.</p>
+
+<hr>
+
+<h2>How Does DNS Work? (Step-by-Step)</h2>
+
+<ol>
+<li>You type <strong>google.com</strong> into your browser.</li>
+<li>Your computer asks a DNS server: “What is the IP for google.com?”</li>
+<li>The DNS server responds with the correct IP address.</li>
+<li>Your browser connects to that IP.</li>
+</ol>
+
+<p>This entire process usually happens in milliseconds.</p>
+
+<hr>
+
+<h2>What Is a DNS Server?</h2>
+
+<p>A DNS server is a system that stores and provides IP address mappings.</p>
+
+<p>Common public DNS servers include:</p>
+
+<ul>
+<li><strong>8.8.8.8</strong> (Google DNS)</li>
+<li><strong>1.1.1.1</strong> (Cloudflare DNS)</li>
+</ul>
+
+<p>Most home routers automatically assign a DNS server via DHCP.</p>
+
+<hr>
+
+<h2>Common DNS Problems (A+ Exam Clues)</h2>
+
+<p>If DNS fails, you might notice:</p>
+
+<ul>
+<li>You can ping an IP address but not a website name.</li>
+<li>Websites won’t load, but internet connection appears active.</li>
+<li>“DNS server not responding” errors.</li>
+</ul>
+
+<div class="callout">
+<p><strong>Exam Tip:</strong> If you can ping 8.8.8.8 but not google.com, it’s likely a DNS issue.</p>
+</div>
+
+<hr>
+
+<h2>How to Troubleshoot DNS Issues</h2>
+
+<ol>
+<li>Run:</li>
+</ol>
+
+<pre>ipconfig /flushdns</pre>
+
+<ol start="2">
+<li>Try a different DNS server (like 8.8.8.8).</li>
+<li>Restart your router.</li>
+<li>Check DHCP settings.</li>
+</ol>
+
+<hr>
+
+<h2>DNS and DHCP (How They Work Together)</h2>
+
+<p>DHCP assigns IP addresses.</p>
+<p>DNS translates domain names.</p>
+
+<p>Without DHCP, your device may not get an IP.</p>
+<p>Without DNS, your device can’t resolve website names.</p>
+
+<hr>
+
+<h2>Related Articles</h2>
+
+<div class="callout">
+<p><a href="dhcp.html">What Is DHCP? (Dynamic Host Configuration Protocol Explained)</a></p>
+<p><a href="apipa.html">What Is APIPA? (Automatic Private IP Addressing Explained)</a></p>
+</div>
+
+<hr>
+
+<h2>Recommended A+ Study Tools</h2>
+
+<div class="callout">
+<p>Want to test your networking knowledge? Try practice exams and structured review materials:</p>
+
+<div class="button-row">
+<a href="https://www.examcompass.com/comptia/a-plus-certification/free-a-plus-practice-tests"
+class="button" target="_blank" rel="nofollow sponsored">
+Take FREE Practice Exams
+</a>
+
+<a href="https://amzn.to/3OMI8uo"
+class="button" target="_blank" rel="nofollow sponsored">
+Bestselling CompTIA A+ Study Guide
+</a>
+</div>
+</div>
+
+<hr>
+
+<h2>Final Summary</h2>
+
+<ul>
+<li>DNS stands for Domain Name System</li>
+<li>It translates domain names into IP addresses</li>
+<li>DNS servers store these mappings</li>
+<li>If DNS fails, websites won’t resolve</li>
+<li>DNS issues are common troubleshooting scenarios on CompTIA A+</li>
+</ul>
+
+<div class="footer">
+<p>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</p>
+</div>
+
+</div>
+</div>
+</body>
+</html>
