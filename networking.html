@@ -341,6 +341,57 @@ a:hover{ text-decoration: underline; }
   font-size: 13px;
   color: var(--muted);
 }
+/* ===== Article cards + grid ===== */
+.articles-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  margin-top: 12px;
+}
+
+@media (min-width: 860px){
+  .articles-grid{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.article-card{
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.05);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.article-card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+}
+
+.article-card h3{
+  margin: 0 0 8px 0;
+  color: var(--accent);
+  font-size: 18px;
+}
+
+.article-card p{
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.article-card a{
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.article-card a:hover{
+  text-decoration: underline;
+}
+
+
 </style>
 
 </head>
