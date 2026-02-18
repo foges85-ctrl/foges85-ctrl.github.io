@@ -342,6 +342,55 @@ a:hover{ text-decoration: underline; }
   font-size: 13px;
   color: var(--muted);
 }
+  /* ===== Tables (clean + mobile friendly) ===== */
+.table-wrapper{
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 12px 0 18px 0;
+  border-radius: 12px;
+}
+
+.pretty-table{
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px; /* ports table is a bit wider; this prevents squish on phones */
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.pretty-table th,
+.pretty-table td{
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  white-space: nowrap; /* keeps Port/Protocol tight */
+}
+
+.pretty-table td:nth-child(3),
+.pretty-table th:nth-child(3){
+  white-space: normal; /* allow Service column to wrap */
+}
+
+.pretty-table thead th{
+  background: #f1f5ff;
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.pretty-table tbody tr:last-child td{
+  border-bottom: none;
+}
+
+@media (hover:hover){
+  .pretty-table tbody tr:hover{
+    background: #fafcff;
+  }
+}
+
 </style>
 
 </head>
@@ -401,24 +450,70 @@ a:hover{ text-decoration: underline; }
 
 <h2>Most Important A+ Port Numbers</h2>
 
-<table>
-<tr>
-<th>Port</th>
-<th>Protocol</th>
-<th>Service</th>
-</tr>
+<div class="table-wrapper">
+  <table class="pretty-table">
+    <thead>
+      <tr>
+        <th>Port</th>
+        <th>Protocol</th>
+        <th>Service</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>20 / 21</td>
+        <td>TCP</td>
+        <td>FTP (File Transfer Protocol)</td>
+      </tr>
+      <tr>
+        <td>22</td>
+        <td>TCP</td>
+        <td>SSH (Secure Shell)</td>
+      </tr>
+      <tr>
+        <td>23</td>
+        <td>TCP</td>
+        <td>Telnet</td>
+      </tr>
+      <tr>
+        <td>25</td>
+        <td>TCP</td>
+        <td>SMTP (Email Sending)</td>
+      </tr>
+      <tr>
+        <td>53</td>
+        <td>UDP / TCP</td>
+        <td>DNS</td>
+      </tr>
+      <tr>
+        <td>80</td>
+        <td>TCP</td>
+        <td>HTTP</td>
+      </tr>
+      <tr>
+        <td>110</td>
+        <td>TCP</td>
+        <td>POP3</td>
+      </tr>
+      <tr>
+        <td>143</td>
+        <td>TCP</td>
+        <td>IMAP</td>
+      </tr>
+      <tr>
+        <td>443</td>
+        <td>TCP</td>
+        <td>HTTPS</td>
+      </tr>
+      <tr>
+        <td>3389</td>
+        <td>TCP</td>
+        <td>RDP (Remote Desktop)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-<tr><td>20 / 21</td><td>TCP</td><td>FTP (File Transfer Protocol)</td></tr>
-<tr><td>22</td><td>TCP</td><td>SSH (Secure Shell)</td></tr>
-<tr><td>23</td><td>TCP</td><td>Telnet</td></tr>
-<tr><td>25</td><td>TCP</td><td>SMTP (Email Sending)</td></tr>
-<tr><td>53</td><td>UDP / TCP</td><td>DNS</td></tr>
-<tr><td>80</td><td>TCP</td><td>HTTP</td></tr>
-<tr><td>110</td><td>TCP</td><td>POP3</td></tr>
-<tr><td>143</td><td>TCP</td><td>IMAP</td></tr>
-<tr><td>443</td><td>TCP</td><td>HTTPS</td></tr>
-<tr><td>3389</td><td>TCP</td><td>RDP (Remote Desktop)</td></tr>
-</table>
 
 <hr>
 
