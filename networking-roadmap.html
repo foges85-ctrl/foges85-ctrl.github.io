@@ -14,610 +14,786 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Favicon -->
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
-
 <title>Networking Roadmap (CompTIA A+ & Network+ Study Guide Path)</title>
-
 <meta name="description" content="Follow this structured networking roadmap to master CompTIA A+ and Network+ topics step-by-step, from IP addressing to routing and troubleshooting.">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
 <style>
-:root{
-  --bg: #f4f6f8;
-  --card: #ffffff;
-  --text: #1a1a1a;
-  --muted: #5a6676;
-  --border: #e6e8ec;
-  --accent: #0b3d91;
-  --link: #0073e6;
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+  --card-shadow-hover: 0 12px 40px rgba(10,22,40,.14);
 }
 
-*{ box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-body{
-  margin:0;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height:1.6;
-  background: var(--bg);
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter);
   color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
-.container{
-  max-width: 980px;
-  margin: 28px auto;
-  padding: 22px;
-}
+a { color: inherit; text-decoration: none; }
 
-/* ===== Top Navbar ===== */
-.navbar{
+/* ── NAVBAR ── */
+.navbar {
   position: sticky;
   top: 0;
-  z-index: 1000;
-  background: rgba(255,255,255,.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
 
-.nav-inner{
-  max-width: 1020px;
+.nav-inner {
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 12px 22px;
+  padding: 0 28px;
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: 16px;
 }
 
-.nav-logo a{
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 800;
-  letter-spacing: -0.2px;
-  font-size: 16px;
-}
-
-/* Logo link w/ image */
-.logo-link{
+.logo-link {
   display: flex;
   align-items: center;
   gap: 10px;
-  text-decoration: none;
+  font-family: 'Syne', sans-serif;
   font-weight: 800;
-  color: var(--accent);
+  font-size: 17px;
+  color: var(--navy);
+  letter-spacing: -0.3px;
+  flex-shrink: 0;
 }
 
-.logo-img{
-  height: 62px;   /* your chosen size */
-  width: auto;
-  display: block;
-}
+.logo-img { height: 40px; width: auto; }
 
-.nav-logo a:hover{ opacity: 0.9; }
-
-.nav-links{
+.nav-links {
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 4px;
 }
 
-.nav-links a{
-  text-decoration: none;
-  color: var(--text);
+.nav-links a {
   font-size: 14px;
-  font-weight: 700;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid transparent;
-}
-
-.nav-links a:hover{
-  color: var(--link);
-  background: #f1f5ff;
-  border-color: #d6e3ff;
-}
-
-.nav-links a.active{
-  background: var(--accent);
-  color: #ffffff !important;
-  border-radius: 10px;
-}
-
-/* CTA */
-.nav-links a.cta{
-  background: var(--link);
-  color: #fff !important;
-  border-color: var(--link);
-  box-shadow: 0 6px 16px rgba(0,115,230,.18);
-}
-
-.nav-links a.cta:hover{
-  filter: brightness(.95);
-}
-
-/* ===== Mobile: compact navbar + horizontal scroll links (NOT stacked) ===== */
-@media (max-width: 768px){
-
-  .container{
-    padding: 16px;
-    margin: 16px auto;
-  }
-
-  .nav-inner{
-    padding: 10px 14px;
-    gap: 10px;
-  }
-
-  /* Slightly smaller logo on phones to reduce navbar height */
-  .logo-img{
-    height: 48px;
-  }
-
-  /* Keep links in one line and allow horizontal scroll */
-  .nav-links{
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 8px;
-    padding-bottom: 6px;
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .nav-links a{
-    white-space: nowrap;
-    flex: 0 0 auto;
-  }
-}
-
-/* ===== Page Shell ===== */
-.shell{
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 26px;
-  box-shadow: 0 6px 22px rgba(0,0,0,.06);
-}
-
-/* Breadcrumb */
-.breadcrumb{
-  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
   color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+}
+
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.active { color: var(--navy); background: var(--light); }
+
+.nav-links a.nav-cta {
+  background: var(--navy);
+  color: var(--white) !important;
+  padding: 8px 18px;
+  border-radius: 8px;
+  margin-left: 6px;
+  transition: background 0.15s, transform 0.1s;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 34px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+  padding: 60px 28px 70px;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(0,194,168,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.page-hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 20px;
+  font-family: 'DM Mono', monospace;
+}
+
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+
+.page-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(0,194,168,0.15);
+  border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 18px;
+}
+
+.page-hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.15;
+  letter-spacing: -0.8px;
   margin-bottom: 14px;
 }
-.breadcrumb a{
-  color: var(--link);
-  text-decoration: none;
-}
-.breadcrumb a:hover{ text-decoration: underline; }
 
-.hero{
+.page-hero h1 span { color: var(--teal); }
+
+.page-hero-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.6);
+  max-width: 580px;
+  line-height: 1.7;
+}
+
+/* ── MAIN ── */
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 28px 80px;
+}
+
+@media (max-width: 768px) { .main { padding: 36px 16px 60px; } }
+
+/* ── STAGE SECTIONS ── */
+.stage {
+  margin-bottom: 52px;
+}
+
+.stage-header {
   display: flex;
-  gap: 18px;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
 }
 
-h1{
-  margin: 0 0 6px 0;
-  color: var(--accent);
-  font-size: 30px;
+.stage-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--navy);
+  color: var(--teal);
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.stage-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy);
   letter-spacing: -0.3px;
 }
 
-.subhead{
-  margin: 0;
-  color: var(--muted);
-  max-width: 66ch;
-}
+.stage-title span { color: var(--teal2); }
 
-hr{
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 26px 0;
-}
-
-h2{
-  margin: 0 0 14px 0;
-  color: var(--accent);
-  font-size: 20px;
-}
-
-a{
-  color: var(--link);
-  text-decoration: none;
-}
-a:hover{ text-decoration: underline; }
-
-.resource-box{
-  background: #f1f5ff;
-  border: 1px solid #d6e3ff;
-  border-radius: 12px;
-  padding: 16px 16px 14px 16px;
-  margin: 18px 0 6px 0;
-}
-
-.resource-box p{
-  margin: 6px 0 10px 0;
-  color: var(--muted);
-}
-
-.button-row{
-  display:flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.button{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 14px;
-  background: var(--link);
-  color: white;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  box-shadow: 0 4px 12px rgba(0,115,230,.18);
-}
-.button:hover{
-  text-decoration:none;
-  filter: brightness(0.95);
-}
-
-/* ===== Grids ===== */
-.grid{
+/* ── CARDS GRID ── */
+.cards-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 14px;
 }
 
-@media (min-width: 860px){
-  .grid{ grid-template-columns: 1fr 1fr; }
-}
+@media (min-width: 600px) { .cards-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 900px) { .cards-grid { grid-template-columns: 1fr 1fr 1fr; } }
 
-/* Article cards grid (homepage) */
-.articles-grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
-
-/* 2 columns only when there is room */
-@media (min-width: 860px){
-  .articles-grid{
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.article-card{
-  background: #ffffff;
+.card {
+  background: var(--white);
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 22px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.05);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
 }
 
-.article-card:hover{
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--blue));
+  opacity: 0;
+  transition: opacity 0.18s;
+}
+
+.card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+  box-shadow: var(--card-shadow-hover);
+  border-color: rgba(0,194,168,0.25);
 }
 
-.article-card h3{
-  margin: 0 0 8px 0;
-  font-size: 18px;
+.card:hover::before { opacity: 1; }
+
+/* coming soon cards */
+.card.coming-soon {
+  background: var(--light);
+  border-style: dashed;
+  opacity: 0.75;
 }
 
-.article-card a{
-  text-decoration: none;
-  color: var(--accent);
+.card.coming-soon:hover {
+  transform: none;
+  box-shadow: var(--card-shadow);
+  border-color: var(--border);
+  cursor: default;
 }
 
-.article-card a:hover{
-  text-decoration: underline;
+.card.coming-soon::before { display: none; }
+
+.card-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--teal2);
+  font-family: 'DM Mono', monospace;
 }
 
-.article-card p{
-  margin: 0;
+.card.coming-soon .card-tag { color: var(--slate); }
+
+.card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.35;
+}
+
+.card h3 a { color: inherit; transition: color 0.15s; }
+.card h3 a:hover { color: var(--teal2); }
+
+.card p {
+  font-size: 13.5px;
   color: var(--muted);
-  font-size: 14px;
+  line-height: 1.6;
+  flex: 1;
 }
 
-.footer{
-  margin-top: 28px;
-  padding-top: 14px;
+.card-hint {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--teal2);
+  font-family: 'DM Mono', monospace;
+  padding-top: 4px;
   border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+
+.card.coming-soon .card-hint { color: var(--slate); }
+
+.card-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   font-size: 13px;
-  color: var(--muted);
+  font-weight: 600;
+  color: var(--teal2);
+  margin-top: 4px;
+  transition: gap 0.15s;
 }
 
-  /* ===== Article cards + grid ===== */
-.articles-grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 18px;
-  margin-top: 12px;
+.card:hover .card-arrow { gap: 9px; }
+
+/* ── DIVIDER ── */
+.stage-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0 0 52px 0;
 }
 
-@media (min-width: 860px){
-  .articles-grid{
-    grid-template-columns: 1fr 1fr;
-  }
+/* ── CERT PATH ── */
+.cert-path {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px;
+  padding: 36px;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
 }
 
-.article-card{
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 18px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.05);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+.cert-path::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, rgba(0,194,168,0.12) 0%, transparent 70%);
+  pointer-events: none;
 }
 
-.article-card:hover{
-  transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgba(0,0,0,.08);
-}
-
-.article-card h3{
-  margin: 0 0 8px 0;
-  color: var(--accent);
-  font-size: 18px;
-}
-
-.article-card p{
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.article-card a{
-  color: var(--accent);
-  text-decoration: none;
+.cert-path h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
   font-weight: 800;
+  color: var(--white);
+  margin-bottom: 24px;
+  letter-spacing: -0.3px;
 }
 
-.article-card a:hover{
-  text-decoration: underline;
+.cert-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-  /* ===== Article Card Grid (Roadmap + Homepage) ===== */
-.grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  margin: 18px 0 32px 0;
+.cert-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
 }
 
-@media (min-width: 860px){
-  .grid{
-    grid-template-columns: 1fr 1fr;
-  }
+.step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0,194,168,0.2);
+  border: 1px solid rgba(0,194,168,0.35);
+  color: var(--teal);
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
-.card{
-  background: #ffffff;
+.step-text {
+  font-size: 15px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+}
+
+.step-text strong { color: var(--white); }
+
+/* ── CTA BOX ── */
+.cta-box {
+  background: var(--white);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 22px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.05);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  padding: 32px;
+  box-shadow: var(--card-shadow);
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 
-.card:hover{
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+.cta-box-text h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 6px;
 }
 
-.card h3{
-  margin: 0 0 8px 0;
-  font-size: 18px;
-  color: var(--accent);
-}
-
-.card h3 a{
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.card h3 a:hover{
-  text-decoration: underline;
-}
-
-.card p{
-  margin: 0 0 10px 0;
-  color: var(--muted);
+.cta-box-text p {
   font-size: 14px;
-}
-
-.small{
-  font-size: 13px;
   color: var(--muted);
 }
 
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 13px 24px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
 
+.btn:hover { transform: translateY(-2px); }
+
+.btn-primary {
+  background: var(--navy);
+  color: var(--white);
+  box-shadow: 0 6px 20px rgba(10,22,40,0.2);
+}
+
+.btn-primary:hover { box-shadow: 0 10px 28px rgba(10,22,40,0.28); }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.5);
+  padding: 40px 28px;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+
+.footer-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--white);
+}
+
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+
+.footer-links-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 4px;
+}
+
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+.footer-links a:hover { color: var(--teal); }
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 28px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .footer { padding: 36px 16px; }
+  .footer-bottom { flex-direction: column; }
+  .cta-box { flex-direction: column; align-items: flex-start; }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page-hero-inner { animation: fadeUp 0.6s ease both; }
 </style>
-
 </head>
 
 <body>
 
- <nav class="navbar">
+<!-- NAVBAR -->
+<nav class="navbar">
   <div class="nav-inner">
-    
-    <div class="nav-logo">
-      <a href="index.html" class="logo-link">
-        <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
-        <span>IT Study Hub</span>
-      </a>
-    </div>
-
+    <a href="index.html" class="logo-link">
+      <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <a class="active" href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking-roadmap.html" class="active">Networking Roadmap</a>
       <a href="networking.html">Networking Guide</a>
-      <a class="cta" href="best-a-plus.html">Best Study Resources</a>
+      <a href="best-a-plus.html" class="nav-cta">Best Study Resources</a>
     </div>
-
   </div>
 </nav>
 
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span>Networking Roadmap</span>
+    </nav>
+    <div class="page-hero-badge">Structured Learning Path</div>
+    <h1>Networking Mastery <span>Roadmap</span></h1>
+    <p class="page-hero-sub">
+      A step-by-step path through the essential networking concepts required for <strong style="color:rgba(255,255,255,0.85)">CompTIA A+</strong> and <strong style="color:rgba(255,255,255,0.85)">Network+</strong> — and real-world IT troubleshooting.
+    </p>
+  </div>
+</section>
 
-<div class="container">
+<!-- MAIN -->
+<main class="main">
 
-<h1>Networking Mastery Roadmap</h1>
-
-<p>This roadmap walks you step-by-step through the essential networking concepts required for the <strong>CompTIA A+</strong> and <strong>Network+</strong> exams — and real-world IT troubleshooting.</p>
-
-<hr>
-
-<h2>Stage 1: Networking Fundamentals</h2>
-<div class="grid">
-  <div class="card">
-    <div>
-      <h3><a href="osi-model.html">What Is the OSI Model?</a></h3>
-      <p>Learn all 7 layers + memory tricks and troubleshooting examples.</p>
+  <!-- STAGE 1 -->
+  <div class="stage">
+    <div class="stage-header">
+      <div class="stage-num">01</div>
+      <div class="stage-title">Networking <span>Fundamentals</span></div>
     </div>
-    <div class="small">Foundation model for everything networking.</div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-tag">Core Model</div>
+        <h3><a href="osi-model.html">What Is the OSI Model?</a></h3>
+        <p>Learn all 7 layers with memory tricks and troubleshooting examples.</p>
+        <div class="card-hint">📌 Foundation for everything networking</div>
+        <a href="osi-model.html" class="card-arrow">Read Guide →</a>
+      </div>
+      <div class="card">
+        <div class="card-tag">Protocols</div>
+        <h3><a href="tcp-vs-udp.html">TCP vs UDP Explained</a></h3>
+        <p>Reliability vs speed and where each protocol is used in practice.</p>
+        <div class="card-hint">📌 Huge exam favorite</div>
+        <a href="tcp-vs-udp.html" class="card-arrow">Read Guide →</a>
+      </div>
+      <div class="card">
+        <div class="card-tag">Ports & Services</div>
+        <h3><a href="ports.html">Common Port Numbers</a></h3>
+        <p>Memorize key ports like 80, 443, 53, 22, and 3389 with simple tricks.</p>
+        <div class="card-hint">📌 Fast points if you know these</div>
+        <a href="ports.html" class="card-arrow">Read Guide →</a>
+      </div>
+    </div>
   </div>
 
-  <div class="card">
-    <div>
-      <h3><a href="tcp-vs-udp.html">TCP vs UDP Explained</a></h3>
-      <p>Reliability vs speed and where each protocol is used.</p>
+  <hr class="stage-divider">
+
+  <!-- STAGE 2 -->
+  <div class="stage">
+    <div class="stage-header">
+      <div class="stage-num">02</div>
+      <div class="stage-title">IP Addressing <span>& Configuration</span></div>
     </div>
-    <div class="small">Huge exam favorite.</div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-tag">IP Addressing</div>
+        <h3><a href="subnet-mask.html">What Is a Subnet Mask?</a></h3>
+        <p>Understand local vs remote traffic and why masks affect routing decisions.</p>
+        <div class="card-hint">📌 Makes everything else easier</div>
+        <a href="subnet-mask.html" class="card-arrow">Read Guide →</a>
+      </div>
+      <div class="card">
+        <div class="card-tag">Configuration</div>
+        <h3><a href="dhcp.html">What Is DHCP?</a></h3>
+        <p>How devices automatically receive IP settings and how leases work.</p>
+        <div class="card-hint">📌 Know DORA + leases</div>
+        <a href="dhcp.html" class="card-arrow">Read Guide →</a>
+      </div>
+      <div class="card">
+        <div class="card-tag">Troubleshooting</div>
+        <h3><a href="apipa.html">What Is APIPA?</a></h3>
+        <p>Why 169.254 addresses appear and what they mean for DHCP troubleshooting.</p>
+        <div class="card-hint">📌 Instant DHCP-failure clue</div>
+        <a href="apipa.html" class="card-arrow">Read Guide →</a>
+      </div>
+      <div class="card">
+        <div class="card-tag">DNS</div>
+        <h3><a href="dns.html">What Is DNS?</a></h3>
+        <p>How names resolve to IPs and what breaks when DNS fails on the exam.</p>
+        <div class="card-hint">📌 "IP works, names don't"</div>
+        <a href="dns.html" class="card-arrow">Read Guide →</a>
+      </div>
+    </div>
   </div>
 
-  <div class="card">
-    <div>
-      <h3><a href="ports.html">Common Port Numbers</a></h3>
-      <p>Memorize key ports like 80, 443, 53, 22, 3389.</p>
-    </div>
-    <div class="small">Fast points if you know these.</div>
-  </div>
-</div>
+  <hr class="stage-divider">
 
-<h2>Stage 2: IP Addressing & Configuration</h2>
-<div class="grid">
-  <div class="card">
-    <div>
-      <h3><a href="subnet-mask.html">What Is a Subnet Mask?</a></h3>
-      <p>Understand local vs remote and why masks affect routing.</p>
+  <!-- STAGE 3 -->
+  <div class="stage">
+    <div class="stage-header">
+      <div class="stage-num">03</div>
+      <div class="stage-title">Traffic Flow <span>& Routing</span></div>
     </div>
-    <div class="small">Makes everything else easier.</div>
-  </div>
-
-  <div class="card">
-    <div>
-      <h3><a href="dhcp.html">What Is DHCP?</a></h3>
-      <p>How devices automatically receive IP settings and leases.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-tag">Routing</div>
+        <h3><a href="default-gateway.html">What Is a Default Gateway?</a></h3>
+        <p>How devices reach other networks and the internet through a gateway.</p>
+        <div class="card-hint">📌 Critical routing concept</div>
+        <a href="default-gateway.html" class="card-arrow">Read Guide →</a>
+      </div>
+      <div class="card">
+        <div class="card-tag">Networking</div>
+        <h3><a href="nat-explained.html">What Is NAT?</a></h3>
+        <p>How one public IP supports many private devices on a home or office network.</p>
+        <div class="card-hint">📌 Home-network essential</div>
+        <a href="nat-explained.html" class="card-arrow">Read Guide →</a>
+      </div>
+      <div class="card coming-soon">
+        <div class="card-tag">Coming Soon</div>
+        <h3>Router vs Switch</h3>
+        <p>Layer roles, forwarding vs switching, and real-world use cases.</p>
+        <div class="card-hint">🕐 In progress</div>
+      </div>
     </div>
-    <div class="small">Know DORA + leases.</div>
-  </div>
-
-  <div class="card">
-    <div>
-      <h3><a href="apipa.html">What Is APIPA?</a></h3>
-      <p>Why 169.254 appears and what it means for troubleshooting.</p>
-    </div>
-    <div class="small">Instant DHCP-failure clue.</div>
   </div>
 
-  <div class="card">
-    <div>
-      <h3><a href="dns.html">What Is DNS?</a></h3>
-      <p>How names resolve to IPs and what breaks when DNS fails.</p>
-    </div>
-    <div class="small">“IP works, names don’t.”</div>
-  </div>
-</div>
+  <hr class="stage-divider">
 
-<h2>Stage 3: Traffic Flow & Routing</h2>
-<div class="grid">
-  <div class="card">
-    <div>
-      <h3><a href="default-gateway.html">What Is a Default Gateway?</a></h3>
-      <p>How devices reach other networks and the internet.</p>
+  <!-- STAGE 4 -->
+  <div class="stage">
+    <div class="stage-header">
+      <div class="stage-num">04</div>
+      <div class="stage-title">Troubleshooting <span>& Security</span></div>
     </div>
-    <div class="small">Critical routing concept.</div>
-  </div>
-
-  <div class="card">
-    <div>
-      <h3><a href="nat.html">What Is NAT?</a></h3>
-      <p>How one public IP supports many private devices.</p>
+    <div class="cards-grid">
+      <div class="card coming-soon">
+        <div class="card-tag">Coming Soon</div>
+        <h3>Firewall Basics</h3>
+        <p>Allow/deny rules, ports, and common firewall configurations for the exam.</p>
+        <div class="card-hint">🕐 In progress</div>
+      </div>
+      <div class="card coming-soon">
+        <div class="card-tag">Coming Soon</div>
+        <h3>Common Network Attacks</h3>
+        <p>Basic threats you'll see on A+ and Network+ — phishing, MITM, DDoS, and more.</p>
+        <div class="card-hint">🕐 In progress</div>
+      </div>
+      <div class="card coming-soon">
+        <div class="card-tag">Coming Soon</div>
+        <h3>Troubleshooting Methodology</h3>
+        <p>A step-by-step approach to diagnosing and resolving network issues.</p>
+        <div class="card-hint">🕐 In progress</div>
+      </div>
     </div>
-    <div class="small">Home-network essential.</div>
-  </div>
-
-  <div class="card">
-    <div>
-      <h3><a href="#" onclick="return false;">Router vs Switch (Coming Soon)</a></h3>
-      <p>Layer roles, forwarding vs switching, and real-world use.</p>
-    </div>
-    <div class="small">Coming soon.</div>
-  </div>
-</div>
-
-<h2>Stage 4: Troubleshooting & Security</h2>
-<div class="grid">
-  <div class="card">
-    <div>
-      <h3><a href="#" onclick="return false;">Firewall Basics (Coming Soon)</a></h3>
-      <p>Allow/deny rules, ports, and common configurations.</p>
-    </div>
-    <div class="small">Coming soon.</div>
   </div>
 
-  <div class="card">
-    <div>
-      <h3><a href="#" onclick="return false;">Common Network Attacks (Coming Soon)</a></h3>
-      <p>Basic threats you’ll see on A+ and Network+.</p>
+  <hr class="stage-divider">
+
+  <!-- CERT PATH -->
+  <div class="cert-path">
+    <h2>🎓 Your Certification Path</h2>
+    <div class="cert-steps">
+      <div class="cert-step">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>Master the fundamentals above</strong> — OSI, TCP/UDP, IP addressing, DHCP, DNS (A+ Level)</div>
+      </div>
+      <div class="cert-step">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>Expand into advanced topics</strong> — routing, VLANs, and network security (Network+ Level)</div>
+      </div>
+      <div class="cert-step">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>Build hands-on labs</strong> using virtualization or home lab equipment to reinforce everything</div>
+      </div>
     </div>
-    <div class="small">Coming soon.</div>
   </div>
 
-  <div class="card">
-    <div>
-      <h3><a href="#" onclick="return false;">Troubleshooting Methodology (Coming Soon)</a></h3>
-      <p>A step-by-step approach to diagnosing network issues.</p>
+  <!-- CTA -->
+  <div class="cta-box">
+    <div class="cta-box-text">
+      <h3>Ready to Start Studying?</h3>
+      <p>Compare the best CompTIA A+ study resources and free practice exams.</p>
     </div>
-    <div class="small">Coming soon.</div>
+    <a href="best-a-plus.html" class="btn btn-primary">View Best Study Resources →</a>
   </div>
-</div>
 
+</main>
 
-<h2>Certification Path</h2>
-
-<div class="stage">
-  <p><strong>Step 1:</strong> Master the fundamentals above (A+ Level)</p>
-  <p><strong>Step 2:</strong> Expand into advanced routing, VLANs, and network security (Network+ Level)</p>
-  <p><strong>Step 3:</strong> Build hands-on labs using virtualization or home lab equipment</p>
-</div>
-
-<div class="cta-box">
-  <h3>Ready to Start Studying?</h3>
-  <p>Compare the best CompTIA A+ study resources and practice exams.</p>
-  <a href="best-a-plus.html">View Best Study Resources</a>
-</div>
-
-</div>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Pages</div>
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="best-a-plus.html">Best Study Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="dhcp.html">DHCP</a>
+      <a href="dns.html">DNS</a>
+      <a href="ports.html">Port Numbers</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</span>
+  </div>
+</footer>
 
 </body>
 </html>
