@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>What Is a Default Gateway? (Explained Simply for CompTIA A+)</title>
+
+<meta name="description" content="Learn what a default gateway is, how it works, and how it appears on the CompTIA A+ exam. Includes troubleshooting examples and real-world explanations.">
+
+<style>
+:root{
+  --bg:#f4f6f8;
+  --card:#ffffff;
+  --text:#1a1a1a;
+  --muted:#5a6676;
+  --border:#e6e8ec;
+  --accent:#0b3d91;
+  --link:#0073e6;
+}
+body{font-family:Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.65;}
+.container{max-width:1000px;margin:28px auto;padding:22px;}
+.shell{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px;box-shadow:0 6px 22px rgba(0,0,0,.06);}
+h1{color:var(--accent);margin-top:0;}
+h2{color:var(--accent);margin-top:28px;}
+ul{padding-left:20px;}
+.callout{background:#f1f5ff;border:1px solid #d6e3ff;border-radius:12px;padding:14px;margin:18px 0;}
+.button{display:inline-block;padding:10px 14px;background:var(--link);color:#fff;text-decoration:none;border-radius:10px;font-weight:700;margin-top:10px;}
+.button:hover{filter:brightness(.95);}
+.footer{margin-top:34px;font-size:13px;color:var(--muted);border-top:1px solid var(--border);padding-top:14px;}
+
+/* Navbar */
+.navbar{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e6e8ec;
+}
+.nav-inner{
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 12px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo a{
+  color: #0b3d91;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 16px;
+}
+.nav-links a{
+  text-decoration: none;
+  color: #1a1a1a;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+.nav-links a:hover{
+  color: #0073e6;
+  background: #f1f5ff;
+}
+.nav-links a.cta{
+  background: #0073e6;
+  color: #fff !important;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <a href="index.html">IT Study Hub</a>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a class="cta" href="best-a-plus.html">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+<div class="shell">
+
+<h1>What Is a Default Gateway? (Explained Simply)</h1>
+
+<p>The default gateway is one of the most important networking concepts on the CompTIA A+ exam.</p>
+
+<p>It is the device that allows your computer to communicate outside its local network.</p>
+
+<hr>
+
+<h2>Simple Definition</h2>
+
+<p>A <strong>default gateway</strong> is the router your device sends traffic to when it needs to reach another network (like the internet).</p>
+
+<div class="callout">
+<p>Think of it as the “exit door” of your network.</p>
+</div>
+
+<hr>
+
+<h2>Example</h2>
+
+<p>Your computer:</p>
+<ul>
+<li>IP Address: 192.168.1.25</li>
+<li>Subnet Mask: 255.255.255.0</li>
+<li>Default Gateway: 192.168.1.1</li>
+</ul>
+
+<p>If you try to visit Google, your computer sends the request to <strong>192.168.1.1</strong> (your router).</p>
+
+<p>The router then forwards the request to the internet.</p>
+
+<hr>
+
+<h2>When Is the Default Gateway Used?</h2>
+
+<ul>
+<li>When communicating outside your subnet</li>
+<li>When accessing the internet</li>
+<li>When reaching another network</li>
+</ul>
+
+If traffic is within your local network, the gateway is not needed.
+
+<hr>
+
+<h2>How It Appears on the A+ Exam</h2>
+
+<p>Exam questions may ask:</p>
+
+<ul>
+<li>Why can a device reach local computers but not the internet?</li>
+<li>What setting is missing if internet access fails?</li>
+</ul>
+
+<p>The answer is often:</p>
+
+<div class="callout">
+<strong>Incorrect or missing default gateway.</strong>
+</div>
+
+<hr>
+
+<h2>Troubleshooting Example</h2>
+
+<p>If you run:</p>
+
+<pre>ipconfig</pre>
+
+<p>And the Default Gateway field is blank — your device cannot access the internet.</p>
+
+<p>This often indicates:</p>
+
+<ul>
+<li>DHCP failure</li>
+<li>Incorrect static configuration</li>
+<li>Router issue</li>
+</ul>
+
+<hr>
+
+<h2>Related Networking Articles</h2>
+
+<div class="callout">
+  <p><a href="subnet-mask.html">What Is a Subnet Mask?</a></p>
+  <p><a href="dhcp.html">What Is DHCP?</a></p>
+  <p><a href="dns.html">What Is DNS?</a></p>
+  <p><a href="apipa.html">What Is APIPA?</a></p>
+  <p><a href="tcp-vs-udp.html">TCP vs UDP Explained</a></p>
+</div>
+
+<hr>
+
+<h2>Preparing for the A+ Exam?</h2>
+
+<a href="best-a-plus.html" class="button">
+See the Best CompTIA A+ Study Resources →
+</a>
+
+<div class="footer">
+<p>Disclosure: Some links on this site may be affiliate links.</p>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>
