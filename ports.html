@@ -13,601 +13,1049 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Favicon -->
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
 <title>Common Port Numbers for the CompTIA A+ Exam (Easy Reference Guide)</title>
-
 <meta name="description" content="Learn the most important port numbers for the CompTIA A+ exam including HTTP, HTTPS, FTP, SSH, RDP, SMTP, DNS, and more. Includes memory tips and troubleshooting examples.">
 
-<meta name="keywords" content="Common port numbers, CompTIA A+ ports, Port 80, Port 443, Port 3389, Networking ports explained, A+ exam networking">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg: #f4f6f8;
-  --card: #ffffff;
-  --text: #1a1a1a;
-  --muted: #5a6676;
-  --border: #e6e8ec;
-  --accent: #0b3d91;
-  --link: #0073e6;
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
 }
 
-*{ box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-body{
-  margin:0;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height:1.6;
-  background: var(--bg);
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter);
   color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
-.container{
-  max-width: 980px;
-  margin: 28px auto;
-  padding: 22px;
-}
+a { color: var(--teal2); text-decoration: none; }
+a:hover { text-decoration: underline; }
 
-/* ===== Top Navbar ===== */
-.navbar{
+/* ── NAVBAR ── */
+.navbar {
   position: sticky;
   top: 0;
-  z-index: 1000;
-  background: rgba(255,255,255,.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
 
-.nav-inner{
-  max-width: 1020px;
+.nav-inner {
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 12px 22px;
+  padding: 0 28px;
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: 16px;
 }
 
-.nav-logo a{
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 800;
-  letter-spacing: -0.2px;
-  font-size: 16px;
-}
-
-/* Logo link w/ image */
-.logo-link{
+.logo-link {
   display: flex;
   align-items: center;
   gap: 10px;
-  text-decoration: none;
+  font-family: 'Outfit', sans-serif;
   font-weight: 800;
-  color: var(--accent);
-}
-
-.logo-img{
-  height: 62px;   /* your chosen size */
-  width: auto;
-  display: block;
-}
-
-.nav-logo a:hover{ opacity: 0.9; }
-
-.nav-links{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.nav-links a{
-  text-decoration: none;
-  color: var(--text);
-  font-size: 14px;
-  font-weight: 700;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid transparent;
-}
-
-.nav-links a:hover{
-  color: var(--link);
-  background: #f1f5ff;
-  border-color: #d6e3ff;
-}
-
-.nav-links a.active{
-  background: var(--accent);
-  color: #ffffff !important;
-  border-radius: 10px;
-}
-
-/* CTA */
-.nav-links a.cta{
-  background: var(--link);
-  color: #fff !important;
-  border-color: var(--link);
-  box-shadow: 0 6px 16px rgba(0,115,230,.18);
-}
-
-.nav-links a.cta:hover{
-  filter: brightness(.95);
-}
-
-/* ===== Mobile: compact navbar + horizontal scroll links (NOT stacked) ===== */
-@media (max-width: 768px){
-
-  .container{
-    padding: 16px;
-    margin: 16px auto;
-  }
-
-  .nav-inner{
-    padding: 10px 14px;
-    gap: 10px;
-  }
-
-  /* Slightly smaller logo on phones to reduce navbar height */
-  .logo-img{
-    height: 48px;
-  }
-
-  /* Keep links in one line and allow horizontal scroll */
-  .nav-links{
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 8px;
-    padding-bottom: 6px;
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .nav-links a{
-    white-space: nowrap;
-    flex: 0 0 auto;
-  }
-}
-
-/* ===== Page Shell ===== */
-.shell{
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 26px;
-  box-shadow: 0 6px 22px rgba(0,0,0,.06);
-}
-
-/* Breadcrumb */
-.breadcrumb{
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 14px;
-}
-.breadcrumb a{
-  color: var(--link);
-  text-decoration: none;
-}
-.breadcrumb a:hover{ text-decoration: underline; }
-
-.hero{
-  display: flex;
-  gap: 18px;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-h1{
-  margin: 0 0 6px 0;
-  color: var(--accent);
-  font-size: 30px;
+  font-size: 17px;
+  color: var(--navy);
   letter-spacing: -0.3px;
-}
-
-.subhead{
-  margin: 0;
-  color: var(--muted);
-  max-width: 66ch;
-}
-
-hr{
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 26px 0;
-}
-
-h2{
-  margin: 0 0 14px 0;
-  color: var(--accent);
-  font-size: 20px;
-}
-
-a{
-  color: var(--link);
+  flex-shrink: 0;
   text-decoration: none;
 }
-a:hover{ text-decoration: underline; }
 
-.resource-box{
-  background: #f1f5ff;
-  border: 1px solid #d6e3ff;
-  border-radius: 12px;
-  padding: 16px 16px 14px 16px;
-  margin: 18px 0 6px 0;
-}
+.logo-img { height: 40px; width: auto; }
 
-.resource-box p{
-  margin: 6px 0 10px 0;
+.nav-links { display: flex; align-items: center; gap: 4px; }
+
+.nav-links a {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
   color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+  text-decoration: none;
 }
 
-.button-row{
-  display:flex;
-  gap: 10px;
-  flex-wrap: wrap;
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.active { color: var(--navy); background: var(--light); }
+
+.nav-links a.nav-cta {
+  background: var(--navy);
+  color: var(--white) !important;
+  padding: 8px 18px;
+  border-radius: 8px;
+  margin-left: 6px;
+  transition: background 0.15s, transform 0.1s;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 34px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
 }
 
-.button{
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+  padding: 52px 28px 60px;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(0,194,168,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.page-hero-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 18px;
+  font-family: 'DM Mono', monospace;
+}
+
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; text-decoration: none; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+
+.page-hero-badge {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 10px 14px;
-  background: var(--link);
-  color: white;
-  border-radius: 10px;
-  text-decoration: none;
+  gap: 7px;
+  background: rgba(0,194,168,0.15);
+  border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal);
+  font-size: 12px;
   font-weight: 600;
-  font-size: 14px;
-  box-shadow: 0 4px 12px rgba(0,115,230,.18);
-}
-.button:hover{
-  text-decoration:none;
-  filter: brightness(0.95);
-}
-
-/* ===== Grids ===== */
-.grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 16px;
 }
 
-@media (min-width: 860px){
-  .grid{ grid-template-columns: 1fr 1fr; }
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(24px, 4vw, 38px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.18;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
 }
 
-/* Article cards grid (homepage) */
-.articles-grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
+.page-hero h1 span { color: var(--teal); }
+
+.page-hero-sub {
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  max-width: 560px;
+  line-height: 1.7;
 }
 
-/* 2 columns only when there is room */
-@media (min-width: 860px){
-  .articles-grid{
-    grid-template-columns: 1fr 1fr;
-  }
+/* ── ARTICLE LAYOUT ── */
+.article-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 52px 28px 80px;
 }
 
-.article-card{
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 22px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.05);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+@media (max-width: 768px) { .article-wrap { padding: 32px 16px 60px; } }
+
+.article-body h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.3px;
+  margin: 40px 0 16px;
+}
+
+.article-body h2:first-child { margin-top: 0; }
+
+.article-body p {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.75;
+  margin-bottom: 14px;
+}
+
+.article-body strong { color: var(--navy); font-weight: 700; }
+
+.divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+/* ── ANALOGY BOX ── */
+.analogy-box {
+  background: linear-gradient(135deg, #f0faf8, #e8f4ff);
+  border: 1px solid rgba(0,194,168,0.2);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 4px 0 28px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.article-card:hover{
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+.analogy-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 180px;
 }
 
-.article-card h3{
-  margin: 0 0 8px 0;
-  font-size: 18px;
+.analogy-icon {
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
-.article-card a{
-  text-decoration: none;
-  color: var(--accent);
+.analogy-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: var(--slate);
+  font-family: 'DM Mono', monospace;
+  margin-bottom: 2px;
 }
 
-.article-card a:hover{
-  text-decoration: underline;
+.analogy-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
 }
 
-.article-card p{
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
+.analogy-divider {
+  font-size: 22px;
+  color: var(--border);
+  font-weight: 300;
 }
 
-.footer{
-  margin-top: 28px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border);
-  font-size: 13px;
-  color: var(--muted);
-}
-  /* ===== Tables (clean + mobile friendly) ===== */
-.table-wrapper{
-  width: 100%;
+/* ── PORT TABLE ── */
+.table-wrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  margin: 12px 0 18px 0;
-  border-radius: 12px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+  margin-bottom: 28px;
 }
 
-.pretty-table{
+table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 640px; /* ports table is a bit wider; this prevents squish on phones */
-  background: #fff;
+  background: var(--white);
+  min-width: 500px;
+}
+
+thead th {
+  background: var(--navy);
+  color: rgba(255,255,255,0.6);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 13px 18px;
+  text-align: left;
+  font-family: 'DM Mono', monospace;
+}
+
+thead th:first-child { color: var(--white); }
+
+tbody td {
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text);
+  vertical-align: middle;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #f6f9ff; }
+
+.port-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--navy);
+}
+
+.proto-badge {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.proto-tcp { background: rgba(26,108,255,0.1); color: #1a4cc0; }
+.proto-udp { background: rgba(0,194,168,0.1); color: var(--teal2); }
+.proto-both { background: rgba(138,155,181,0.15); color: var(--slate); }
+
+.service-name { font-weight: 600; color: var(--navy); }
+.service-desc { font-size: 12px; color: var(--muted); margin-top: 1px; }
+
+/* ── MEMORY TRICK CARDS ── */
+.memory-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 560px) { .memory-grid { grid-template-columns: 1fr; } }
+
+.memory-card {
+  background: var(--white);
   border: 1px solid var(--border);
   border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.memory-card:hover {
+  border-color: rgba(0,194,168,0.3);
+  transform: translateY(-2px);
+}
+
+.memory-port {
+  font-family: 'DM Mono', monospace;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--navy);
+  min-width: 52px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.memory-info { flex: 1; }
+
+.memory-service {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 2px;
+}
+
+.memory-hint {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ── EXAM SCENARIOS ── */
+.scenario-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.scenario-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-size: 14px;
+  color: var(--text);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.scenario-item::before {
+  content: '?';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: rgba(26,108,255,0.1);
+  color: var(--blue);
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── TROUBLESHOOTING BOX ── */
+.trouble-box {
+  background: linear-gradient(135deg, #fff8f0, #fff3eb);
+  border: 1px solid #fdd0a0;
+  border-left: 4px solid #f97316;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 4px 0 28px;
+}
+
+.trouble-box-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #c2540a;
+  margin-bottom: 10px;
+}
+
+.trouble-box p {
+  font-size: 14px;
+  color: #7c3a00;
+  line-height: 1.65;
+  margin-bottom: 8px;
+}
+
+.trouble-box p:last-child { margin-bottom: 0; }
+.trouble-box strong { color: #5c2a00; }
+
+/* ── EXAM TIP ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060;
+  border-left: 4px solid #f0c000;
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin: 4px 0 28px;
+}
+
+.exam-tip-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #b08000;
+  margin-bottom: 10px;
+}
+
+.exam-tip p {
+  font-size: 14px;
+  color: #5a4000;
+  margin-bottom: 8px;
+  line-height: 1.65;
+}
+
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #3a2800; }
+
+/* ── SUMMARY PILLS ── */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.summary-pill {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  text-align: center;
+  box-shadow: var(--card-shadow);
+}
+
+.summary-pill-port {
+  font-family: 'DM Mono', monospace;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--navy);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.summary-pill-service {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--teal2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── AFFILIATE BOX ── */
+.affiliate-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 36px;
+  position: relative;
   overflow: hidden;
 }
 
-.pretty-table th,
-.pretty-table td{
-  padding: 14px 16px;
-  text-align: left;
-  border-bottom: 1px solid var(--border);
-  vertical-align: top;
-  white-space: nowrap; /* keeps Port/Protocol tight */
+.affiliate-box::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
 }
 
-.pretty-table td:nth-child(3),
-.pretty-table th:nth-child(3){
-  white-space: normal; /* allow Service column to wrap */
+.affiliate-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 8px;
 }
 
-.pretty-table thead th{
-  background: #f1f5ff;
-  color: var(--accent);
+.affiliate-box h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.affiliate-box p {
+  color: rgba(255,255,255,0.6);
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.affiliate-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.aff-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.15s, filter 0.15s;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.aff-btn:hover { transform: translateY(-2px); filter: brightness(1.05); text-decoration: none; }
+.aff-btn-primary { background: var(--teal); color: var(--navy); }
+.aff-btn-secondary { background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.15); }
+
+/* ── RELATED ARTICLES ── */
+.related-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+@media (max-width: 560px) { .related-grid { grid-template-columns: 1fr; } }
+
+.related-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s, color 0.15s;
+  box-shadow: var(--card-shadow);
+}
+
+.related-link:hover {
+  border-color: rgba(0,194,168,0.3);
+  color: var(--teal2);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.related-link::before { content: '→'; color: var(--teal2); font-size: 13px; flex-shrink: 0; }
+
+/* ── CTA BOX ── */
+.cta-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-box-text h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
   font-weight: 800;
+  color: var(--white);
+  margin-bottom: 4px;
 }
 
-.pretty-table tbody tr:last-child td{
-  border-bottom: none;
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-decoration: none;
 }
 
-@media (hover:hover){
-  .pretty-table tbody tr:hover{
-    background: #fafcff;
-  }
+.btn:hover { transform: translateY(-2px); text-decoration: none; }
+
+.btn-teal {
+  background: var(--teal);
+  color: var(--navy);
+  box-shadow: 0 6px 20px rgba(0,194,168,0.3);
+}
+.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.5);
+  padding: 40px 28px;
 }
 
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; text-decoration: none; }
+.footer-links a:hover { color: var(--teal); }
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 28px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .footer { padding: 36px 16px; }
+  .footer-bottom { flex-direction: column; }
+  .cta-box { flex-direction: column; align-items: flex-start; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-hero-inner { animation: fadeUp 0.6s ease both; }
 </style>
-
 </head>
 
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="nav-inner">
-    
-    <div class="nav-logo">
-      <a href="index.html" class="logo-link">
-        <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
-        <span>IT Study Hub</span>
-      </a>
-    </div>
-
+    <a href="index.html" class="logo-link">
+      <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
     <div class="nav-links">
-      <a class="active" href="index.html">Home</a>
+      <a href="index.html">Home</a>
       <a href="networking-roadmap.html">Networking Roadmap</a>
       <a href="networking.html">Networking Guide</a>
-      <a class="cta" href="best-a-plus.html">Best Study Resources</a>
+      <a href="best-a-plus.html" class="nav-cta">Best Study Resources</a>
     </div>
-
   </div>
 </nav>
 
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <span>›</span>
+      <span>Common Port Numbers</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · High Yield</div>
+    <h1>Common Port Numbers <span>for the A+ Exam</span></h1>
+    <p class="page-hero-sub">
+      Port numbers are one of the most tested networking topics on the CompTIA A+ exam. You don't need to memorize every port — but you MUST know the common ones.
+    </p>
+  </div>
+</section>
 
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
 
-<div class="container">
-<div class="container">
-<div class="shell">
+    <h2>What Is a Port Number?</h2>
+    <p>A port number is a logical communication endpoint used by network services. Think of an IP address as an apartment building — the port number is the specific apartment inside.</p>
 
-<div class="breadcrumb">
-<a href="index.html">Home</a> &gt; Networking Fundamentals &gt; Common Port Numbers
+    <div class="analogy-box">
+      <div class="analogy-item">
+        <div class="analogy-icon">🏢</div>
+        <div>
+          <div class="analogy-label">IP Address</div>
+          <div class="analogy-value">The building</div>
+        </div>
+      </div>
+      <div class="analogy-divider">+</div>
+      <div class="analogy-item">
+        <div class="analogy-icon">🚪</div>
+        <div>
+          <div class="analogy-label">Port Number</div>
+          <div class="analogy-value">The specific apartment</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Most Important A+ Port Numbers</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Port</th>
+            <th>Protocol</th>
+            <th>Service</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="port-num">20 / 21</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">FTP</div><div class="service-desc">File Transfer Protocol</div></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">22</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">SSH</div><div class="service-desc">Secure Shell — encrypted remote access</div></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">23</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">Telnet</div><div class="service-desc">Unencrypted remote access (legacy)</div></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">25</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">SMTP</div><div class="service-desc">Email sending</div></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">53</span></td>
+            <td><span class="proto-badge proto-both">UDP / TCP</span></td>
+            <td><div class="service-name">DNS</div><div class="service-desc">Domain Name System lookups</div></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">80</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">HTTP</div><div class="service-desc">Unencrypted web traffic</div></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">110</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">POP3</div><div class="service-desc">Email retrieval (downloads to device)</div></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">143</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">IMAP</div><div class="service-desc">Email retrieval (synced to server)</div></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">443</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">HTTPS</div><div class="service-desc">Encrypted web traffic (SSL/TLS)</div></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">3389</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">RDP</div><div class="service-desc">Remote Desktop Protocol</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Memory Tricks</h2>
+
+    <div class="memory-grid">
+      <div class="memory-card">
+        <div class="memory-port">80</div>
+        <div class="memory-info">
+          <div class="memory-service">HTTP — Web</div>
+          <div class="memory-hint">The standard, unencrypted web</div>
+        </div>
+      </div>
+      <div class="memory-card">
+        <div class="memory-port">443</div>
+        <div class="memory-info">
+          <div class="memory-service">HTTPS — Secure Web</div>
+          <div class="memory-hint">Secure web traffic = think: padlock</div>
+        </div>
+      </div>
+      <div class="memory-card">
+        <div class="memory-port">22</div>
+        <div class="memory-info">
+          <div class="memory-service">SSH — Secure Shell</div>
+          <div class="memory-hint">Two 2's = doubly secure</div>
+        </div>
+      </div>
+      <div class="memory-card">
+        <div class="memory-port">3389</div>
+        <div class="memory-info">
+          <div class="memory-service">RDP — Remote Desktop</div>
+          <div class="memory-hint">Big number = big screen sharing</div>
+        </div>
+      </div>
+      <div class="memory-card">
+        <div class="memory-port">53</div>
+        <div class="memory-info">
+          <div class="memory-service">DNS — Name Lookup</div>
+          <div class="memory-hint">Short number = fast lookup</div>
+        </div>
+      </div>
+      <div class="memory-card">
+        <div class="memory-port">25</div>
+        <div class="memory-info">
+          <div class="memory-service">SMTP — Email Sending</div>
+          <div class="memory-hint">25 letters in the alphabet — sends mail</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ CompTIA A+ Exam Tip</div>
+      <p><strong>If a question mentions secure web traffic</strong> → think Port 443 (HTTPS).</p>
+      <p><strong>If a question mentions remote desktop access</strong> → think Port 3389 (RDP).</p>
+      <p><strong>If DNS is failing</strong> → Port 53 may be blocked by the firewall.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Why Port Numbers Matter on the A+ Exam</h2>
+    <p>You may see scenario-based questions like these — and they're easy points if you've memorized the common ports:</p>
+
+    <div class="scenario-list">
+      <div class="scenario-item">"A user cannot access a website using HTTPS. Which port should be checked?"</div>
+      <div class="scenario-item">"Which port does RDP use?"</div>
+      <div class="scenario-item">"Which protocol uses port 53?"</div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Troubleshooting Example</h2>
+
+    <div class="trouble-box">
+      <div class="trouble-box-label">🔧 Real-World Scenario</div>
+      <p><strong>Scenario:</strong> A user can access HTTP websites but not HTTPS websites.</p>
+      <p><strong>What should you check?</strong> Verify that <strong>port 443</strong> is not being blocked by a firewall rule. HTTP (port 80) working while HTTPS fails is a classic port-blocking symptom.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Quick Reference Summary</h2>
+
+    <div class="summary-grid">
+      <div class="summary-pill">
+        <span class="summary-pill-port">20/21</span>
+        <span class="summary-pill-service">FTP</span>
+      </div>
+      <div class="summary-pill">
+        <span class="summary-pill-port">22</span>
+        <span class="summary-pill-service">SSH</span>
+      </div>
+      <div class="summary-pill">
+        <span class="summary-pill-port">25</span>
+        <span class="summary-pill-service">SMTP</span>
+      </div>
+      <div class="summary-pill">
+        <span class="summary-pill-port">53</span>
+        <span class="summary-pill-service">DNS</span>
+      </div>
+      <div class="summary-pill">
+        <span class="summary-pill-port">80</span>
+        <span class="summary-pill-service">HTTP</span>
+      </div>
+      <div class="summary-pill">
+        <span class="summary-pill-port">443</span>
+        <span class="summary-pill-service">HTTPS</span>
+      </div>
+      <div class="summary-pill">
+        <span class="summary-pill-port">3389</span>
+        <span class="summary-pill-service">RDP</span>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- AFFILIATE BOX -->
+    <div class="affiliate-box">
+      <div class="affiliate-tag">📚 Recommended Study Tools</div>
+      <h2>Lock In These Port Numbers</h2>
+      <p>Practice exams and structured review are the fastest way to make these stick.</p>
+      <div class="affiliate-buttons">
+        <a href="https://www.examcompass.com/comptia/a-plus-certification/free-a-plus-practice-tests"
+           class="aff-btn aff-btn-primary" target="_blank" rel="nofollow sponsored">
+          🧪 Take FREE Practice Exams
+        </a>
+        <a href="https://amzn.to/3OMI8uo"
+           class="aff-btn aff-btn-secondary" target="_blank" rel="nofollow sponsored">
+          📖 Bestselling A+ Study Guide
+        </a>
+      </div>
+    </div>
+
+    <h2>Related Networking Articles</h2>
+
+    <div class="related-grid">
+      <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
+      <a href="subnet-mask.html" class="related-link">What Is a Subnet Mask?</a>
+      <a href="dhcp.html" class="related-link">What Is DHCP?</a>
+      <a href="dns.html" class="related-link">What Is DNS?</a>
+      <a href="apipa.html" class="related-link">What Is APIPA?</a>
+      <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP Explained</a>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Preparing for the A+ Exam?</h3>
+        <p>See the books, practice exams, and free resources that actually work.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn btn-teal">See Best Study Resources →</a>
+    </div>
+
+  </div>
 </div>
 
-<h1>Common Port Numbers for the CompTIA A+ Exam</h1>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Pages</div>
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="best-a-plus.html">Best Study Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="dhcp.html">DHCP</a>
+      <a href="dns.html">DNS</a>
+      <a href="ports.html">Port Numbers</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</span>
+  </div>
+</footer>
 
-<p>Port numbers are one of the most tested networking topics on the CompTIA A+ exam.</p>
-
-<p>You don’t need to memorize every port — but you MUST know the common ones.</p>
-
-<hr>
-
-<h2>What Is a Port Number?</h2>
-
-<p>A port number is a logical communication endpoint used by network services.</p>
-
-<p>Think of an IP address as an apartment building, and the port number as the apartment number.</p>
-
-<div class="callout">
-<strong>IP address</strong> = the building  
-<strong>Port number</strong> = the specific service inside the building  
-</div>
-
-<hr>
-
-<h2>Most Important A+ Port Numbers</h2>
-
-<div class="table-wrapper">
-  <table class="pretty-table">
-    <thead>
-      <tr>
-        <th>Port</th>
-        <th>Protocol</th>
-        <th>Service</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>20 / 21</td>
-        <td>TCP</td>
-        <td>FTP (File Transfer Protocol)</td>
-      </tr>
-      <tr>
-        <td>22</td>
-        <td>TCP</td>
-        <td>SSH (Secure Shell)</td>
-      </tr>
-      <tr>
-        <td>23</td>
-        <td>TCP</td>
-        <td>Telnet</td>
-      </tr>
-      <tr>
-        <td>25</td>
-        <td>TCP</td>
-        <td>SMTP (Email Sending)</td>
-      </tr>
-      <tr>
-        <td>53</td>
-        <td>UDP / TCP</td>
-        <td>DNS</td>
-      </tr>
-      <tr>
-        <td>80</td>
-        <td>TCP</td>
-        <td>HTTP</td>
-      </tr>
-      <tr>
-        <td>110</td>
-        <td>TCP</td>
-        <td>POP3</td>
-      </tr>
-      <tr>
-        <td>143</td>
-        <td>TCP</td>
-        <td>IMAP</td>
-      </tr>
-      <tr>
-        <td>443</td>
-        <td>TCP</td>
-        <td>HTTPS</td>
-      </tr>
-      <tr>
-        <td>3389</td>
-        <td>TCP</td>
-        <td>RDP (Remote Desktop)</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-
-<hr>
-
-<h2>Memory Tricks</h2>
-
-<ul>
-<li><strong>80</strong> → Web (HTTP)</li>
-<li><strong>443</strong> → Secure Web (HTTPS)</li>
-<li><strong>22</strong> → SSH (two 2’s = secure)</li>
-<li><strong>3389</strong> → Remote Desktop</li>
-<li><strong>53</strong> → DNS (short number = fast lookup)</li>
-</ul>
-
-<div class="callout">
-If you see a question mentioning secure web traffic, think: <strong>Port 443</strong>.
-</div>
-
-<hr>
-
-<h2>Why Port Numbers Matter on the A+ Exam</h2>
-
-<p>You may see questions like:</p>
-
-<ul>
-<li>“A user cannot access a website using HTTPS. Which port should be checked?”</li>
-<li>“Which port does RDP use?”</li>
-<li>“Which protocol uses port 53?”</li>
-</ul>
-
-These are straightforward points if you memorize the common ports.</p>
-
-<hr>
-
-<h2>Troubleshooting Example</h2>
-
-<p>A user can access HTTP websites but not HTTPS websites.</p>
-
-<p>What should you check?</p>
-
-<div class="callout">
-Check if <strong>port 443</strong> is blocked by the firewall.
-</div>
-
-<hr>
-
-<h2>Related Networking Articles</h2>
-
-<div class="callout">
-  <p><a href="best-a-plus.html">Preparing for A+? See the Best Study Resources</a></p>
-  <p><a href="subnet.html">What Is a Subnet Mask?</a></p>
-  <p><a href="dhcp.html">What Is DHCP?</a></p>
-  <p><a href="dns.html">What Is DNS?</a></p>
-  <p><a href="apipa.html">What Is APIPA?</a></p>
-</div>
-
-
-<hr>
-
-<h2>Recommended A+ Study Tools</h2>
-
-<div class="callout">
-<p>Lock in these port numbers with practice exams and structured review:</p>
-
-<div class="button-row">
-<a href="https://www.examcompass.com/comptia/a-plus-certification/free-a-plus-practice-tests"
-class="button" target="_blank" rel="nofollow sponsored">
-Take FREE Practice Exams
-</a>
-
-<a href="https://amzn.to/3OMI8uo"
-class="button" target="_blank" rel="nofollow sponsored">
-Bestselling CompTIA A+ Study Guide
-</a>
-</div>
-</div>
-
-<hr>
-
-<h2>Final Summary</h2>
-
-<ul>
-<li>Port numbers identify specific services</li>
-<li>HTTP = 80</li>
-<li>HTTPS = 443</li>
-<li>DNS = 53</li>
-<li>RDP = 3389</li>
-<li>These are high-yield exam topics</li>
-</ul>
-
-<div class="footer">
-<p>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</p>
-</div>
-
-</div>
-</div>
 </body>
 </html>
