@@ -13,620 +13,900 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Favicon -->
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
 <title>Networking Master Guide for CompTIA A+ (Study Hub + Articles)</title>
-
 <meta name="description" content="A simple, organized networking hub for CompTIA A+. Start here to learn DHCP, DNS, APIPA, subnet masks, and common port numbers with clear study order and links.">
-<meta name="keywords" content="CompTIA A+ networking hub, networking master guide, DHCP DNS APIPA subnet mask ports, A+ networking study guide">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg: #f4f6f8;
-  --card: #ffffff;
-  --text: #1a1a1a;
-  --muted: #5a6676;
-  --border: #e6e8ec;
-  --accent: #0b3d91;
-  --link: #0073e6;
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+  --card-shadow-hover: 0 12px 40px rgba(10,22,40,.14);
 }
 
-*{ box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-body{
-  margin:0;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height:1.6;
-  background: var(--bg);
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter);
   color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
-.container{
-  max-width: 980px;
-  margin: 28px auto;
-  padding: 22px;
-}
+a { color: var(--teal2); text-decoration: none; }
+a:hover { text-decoration: underline; }
 
-/* ===== Top Navbar ===== */
-.navbar{
+/* ── NAVBAR ── */
+.navbar {
   position: sticky;
   top: 0;
-  z-index: 1000;
-  background: rgba(255,255,255,.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
 
-.nav-inner{
-  max-width: 1020px;
+.nav-inner {
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 12px 22px;
+  padding: 0 28px;
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: 16px;
 }
 
-.nav-logo a{
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 800;
-  letter-spacing: -0.2px;
-  font-size: 16px;
-}
-
-/* Logo link w/ image */
-.logo-link{
+.logo-link {
   display: flex;
   align-items: center;
   gap: 10px;
-  text-decoration: none;
+  font-family: 'Outfit', sans-serif;
   font-weight: 800;
-  color: var(--accent);
-}
-
-.logo-img{
-  height: 62px;   /* your chosen size */
-  width: auto;
-  display: block;
-}
-
-.nav-logo a:hover{ opacity: 0.9; }
-
-.nav-links{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.nav-links a{
+  font-size: 17px;
+  color: var(--navy);
+  letter-spacing: -0.3px;
+  flex-shrink: 0;
   text-decoration: none;
-  color: var(--text);
+}
+
+.logo-img { height: 40px; width: auto; }
+
+.nav-links { display: flex; align-items: center; gap: 4px; }
+
+.nav-links a {
   font-size: 14px;
-  font-weight: 700;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid transparent;
-}
-
-.nav-links a:hover{
-  color: var(--link);
-  background: #f1f5ff;
-  border-color: #d6e3ff;
-}
-
-.nav-links a.active{
-  background: var(--accent);
-  color: #ffffff !important;
-  border-radius: 10px;
-}
-
-/* CTA */
-.nav-links a.cta{
-  background: var(--link);
-  color: #fff !important;
-  border-color: var(--link);
-  box-shadow: 0 6px 16px rgba(0,115,230,.18);
-}
-
-.nav-links a.cta:hover{
-  filter: brightness(.95);
-}
-
-/* ===== Mobile: compact navbar + horizontal scroll links (NOT stacked) ===== */
-@media (max-width: 768px){
-
-  .container{
-    padding: 16px;
-    margin: 16px auto;
-  }
-
-  .nav-inner{
-    padding: 10px 14px;
-    gap: 10px;
-  }
-
-  /* Slightly smaller logo on phones to reduce navbar height */
-  .logo-img{
-    height: 48px;
-  }
-
-  /* Keep links in one line and allow horizontal scroll */
-  .nav-links{
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 8px;
-    padding-bottom: 6px;
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .nav-links a{
-    white-space: nowrap;
-    flex: 0 0 auto;
-  }
-}
-
-/* ===== Page Shell ===== */
-.shell{
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 26px;
-  box-shadow: 0 6px 22px rgba(0,0,0,.06);
-}
-
-/* Breadcrumb */
-.breadcrumb{
-  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
   color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+  text-decoration: none;
+}
+
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.active { color: var(--navy); background: var(--light); }
+
+.nav-links a.nav-cta {
+  background: var(--navy);
+  color: var(--white) !important;
+  padding: 8px 18px;
+  border-radius: 8px;
+  margin-left: 6px;
+  transition: background 0.15s, transform 0.1s;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 34px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+  padding: 52px 28px 60px;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(0,194,168,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.page-hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 18px;
+  font-family: 'DM Mono', monospace;
+}
+
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; text-decoration: none; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+
+.page-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(0,194,168,0.15);
+  border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(26px, 4vw, 42px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
   margin-bottom: 14px;
 }
-.breadcrumb a{
-  color: var(--link);
-  text-decoration: none;
-}
-.breadcrumb a:hover{ text-decoration: underline; }
 
-.hero{
+.page-hero h1 span { color: var(--teal); }
+
+.page-hero-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.6);
+  max-width: 580px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+/* study order strip */
+.study-order {
   display: flex;
-  gap: 18px;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.study-order-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: rgba(255,255,255,0.45);
+  font-family: 'DM Mono', monospace;
+  flex-shrink: 0;
+}
+
+.study-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.8);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 100px;
+}
+
+.study-arrow {
+  color: rgba(255,255,255,0.3);
+  font-size: 14px;
+}
+
+.hero-badges {
+  display: flex;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
-h1{
-  margin: 0 0 6px 0;
-  color: var(--accent);
-  font-size: 30px;
+.hero-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0,194,168,0.12);
+  border: 1px solid rgba(0,194,168,0.25);
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-family: 'DM Mono', monospace;
+}
+
+/* ── MAIN ── */
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 28px 80px;
+}
+
+@media (max-width: 768px) { .main { padding: 36px 16px 60px; } }
+
+/* ── SECTION HEADERS ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.section-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--navy);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 21px;
+  font-weight: 800;
+  color: var(--navy);
   letter-spacing: -0.3px;
 }
 
-.subhead{
-  margin: 0;
-  color: var(--muted);
-  max-width: 66ch;
+.section-title span { color: var(--teal2); }
+
+/* ── CARDS GRID ── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-bottom: 48px;
 }
 
-hr{
-  border: none;
+@media (min-width: 600px) { .cards-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 900px) { .cards-grid { grid-template-columns: 1fr 1fr 1fr; } }
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--blue));
+  opacity: 0;
+  transition: opacity 0.18s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: rgba(0,194,168,0.25);
+}
+
+.card:hover::before { opacity: 1; }
+
+.card-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--teal2);
+  font-family: 'DM Mono', monospace;
+}
+
+.card h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.3;
+}
+
+.card h3 a { color: inherit; transition: color 0.15s; text-decoration: none; }
+.card h3 a:hover { color: var(--teal2); text-decoration: none; }
+
+.card p {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.card-hint {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--teal2);
+  font-family: 'DM Mono', monospace;
+  padding-top: 8px;
   border-top: 1px solid var(--border);
-  margin: 26px 0;
+  margin-top: 4px;
 }
 
-h2{
-  margin: 0 0 14px 0;
-  color: var(--accent);
+.card-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--teal2);
+  transition: gap 0.15s;
+}
+
+.card:hover .card-arrow { gap: 9px; }
+
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 48px 0; }
+
+/* ── AFFILIATE BOX ── */
+.affiliate-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.affiliate-box::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.affiliate-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-family: 'DM Mono', monospace;
+  margin-bottom: 8px;
+}
+
+.affiliate-box h2 {
+  font-family: 'Outfit', sans-serif;
   font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
 }
 
-a{
-  color: var(--link);
-  text-decoration: none;
-}
-a:hover{ text-decoration: underline; }
-
-.resource-box{
-  background: #f1f5ff;
-  border: 1px solid #d6e3ff;
-  border-radius: 12px;
-  padding: 16px 16px 14px 16px;
-  margin: 18px 0 6px 0;
+.affiliate-box p {
+  color: rgba(255,255,255,0.6);
+  font-size: 14px;
+  margin-bottom: 20px;
+  max-width: 500px;
 }
 
-.resource-box p{
-  margin: 6px 0 10px 0;
-  color: var(--muted);
-}
-
-.button-row{
-  display:flex;
+.affiliate-buttons {
+  display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
 
-.button{
+.aff-btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 10px 14px;
-  background: var(--link);
-  color: white;
-  border-radius: 10px;
-  text-decoration: none;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 9px;
+  font-size: 14px;
   font-weight: 600;
+  transition: transform 0.15s, filter 0.15s;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.aff-btn:hover { transform: translateY(-2px); filter: brightness(1.05); text-decoration: none; }
+.aff-btn-primary { background: var(--teal); color: var(--navy); }
+.aff-btn-secondary { background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.15); }
+
+/* ── CHEAT SHEET ── */
+.cheat-sheet {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 48px;
+}
+
+.cheat-sheet-header {
+  background: var(--navy);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cheat-sheet-header h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.cheat-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  gap: 16px;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cheat-row:last-child { border-bottom: none; }
+
+.cheat-symptom {
   font-size: 14px;
-  box-shadow: 0 4px 12px rgba(0,115,230,.18);
-}
-.button:hover{
-  text-decoration:none;
-  filter: brightness(0.95);
+  font-weight: 700;
+  color: var(--navy);
+  white-space: nowrap;
 }
 
-/* ===== Grids ===== */
-.grid{
+.cheat-steps {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.cheat-steps code {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  background: var(--light);
+  color: var(--navy);
+  padding: 2px 7px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+}
+
+.cheat-arrow { color: var(--slate); font-size: 16px; padding-top: 2px; }
+
+@media (max-width: 600px) {
+  .cheat-row { grid-template-columns: 1fr; gap: 8px; }
+  .cheat-arrow { display: none; }
+}
+
+/* ── RELATED ARTICLES ── */
+.related-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 36px;
 }
 
-@media (min-width: 860px){
-  .grid{ grid-template-columns: 1fr 1fr; }
+@media (max-width: 560px) { .related-grid { grid-template-columns: 1fr; } }
+
+.related-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s, color 0.15s;
+  box-shadow: var(--card-shadow);
 }
 
-/* Article cards grid (homepage) */
-.articles-grid{
-  display: grid;
-  grid-template-columns: 1fr;
+.related-link:hover {
+  border-color: rgba(0,194,168,0.3);
+  color: var(--teal2);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.related-link::before { content: '→'; color: var(--teal2); font-size: 13px; flex-shrink: 0; }
+
+/* ── CTA BOX ── */
+.cta-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 20px;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
 }
 
-/* 2 columns only when there is room */
-@media (min-width: 860px){
-  .articles-grid{
-    grid-template-columns: 1fr 1fr;
-  }
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
 }
 
-.article-card{
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 22px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.05);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.article-card:hover{
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(0,0,0,.08);
-}
-
-.article-card h3{
-  margin: 0 0 8px 0;
+.cta-box-text h3 {
+  font-family: 'Outfit', sans-serif;
   font-size: 18px;
-}
-
-.article-card a{
-  text-decoration: none;
-  color: var(--accent);
-}
-
-.article-card a:hover{
-  text-decoration: underline;
-}
-
-.article-card p{
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.footer{
-  margin-top: 28px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border);
-  font-size: 13px;
-  color: var(--muted);
-}
-/* ===== Article cards + grid ===== */
-.articles-grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 18px;
-  margin-top: 12px;
-}
-
-@media (min-width: 860px){
-  .articles-grid{
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.article-card{
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 18px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.05);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.article-card:hover{
-  transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgba(0,0,0,.08);
-}
-
-.article-card h3{
-  margin: 0 0 8px 0;
-  color: var(--accent);
-  font-size: 18px;
-}
-
-.article-card p{
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.article-card a{
-  color: var(--accent);
-  text-decoration: none;
   font-weight: 800;
+  color: var(--white);
+  margin-bottom: 4px;
 }
 
-.article-card a:hover{
-  text-decoration: underline;
-}
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
 
-  /* ===== Card Grid (restores the “portal” look) ===== */
-.grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 18px;
-  margin-top: 12px;
-}
-
-@media (min-width: 860px){
-  .grid{
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.card{
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 18px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.05);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 160px; /* helps cards look even */
-}
-
-.card:hover{
-  transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgba(0,0,0,.08);
-}
-
-.card h3{
-  margin: 0 0 6px 0;
-  font-size: 18px;
-  color: var(--accent);
-}
-
-.card p{
-  margin: 0 0 10px 0;
-  color: var(--muted);
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 10px;
   font-size: 14px;
-  line-height: 1.55;
-}
-
-.card a{
-  color: var(--accent);
+  font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
   text-decoration: none;
-  font-weight: 800;
 }
 
-.card a:hover{
-  text-decoration: underline;
+.btn:hover { transform: translateY(-2px); text-decoration: none; }
+
+.btn-teal {
+  background: var(--teal);
+  color: var(--navy);
+  box-shadow: 0 6px 20px rgba(0,194,168,0.3);
+}
+.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.5);
+  padding: 40px 28px;
 }
 
-.small{
-  font-size: 13px;
-  color: var(--muted);
-  margin-top: 10px;
-}
-
-  /* ===== Feature Badges (Pill Bubbles) ===== */
-.badge-row{
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
   display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; text-decoration: none; }
+.footer-links a:hover { color: var(--teal); }
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 28px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 12px 0 18px 0;
 }
 
-.badge{
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
-  background: #f1f5ff;
-  border: 1px solid #d6e3ff;
-  color: #0b3d91;
+@media (max-width: 600px) {
+  .footer { padding: 36px 16px; }
+  .footer-bottom { flex-direction: column; }
+  .cta-box { flex-direction: column; align-items: flex-start; }
 }
 
-
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-hero-inner { animation: fadeUp 0.6s ease both; }
 </style>
-
 </head>
 
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="nav-inner">
-    
-    <div class="nav-logo">
-      <a href="index.html" class="logo-link">
-        <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
-        <span>IT Study Hub</span>
-      </a>
-    </div>
-
+    <a href="index.html" class="logo-link">
+      <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="networking-roadmap.html">Networking Roadmap</a>
-      <a class="active" href="networking.html">Networking Guide</a>
-      <a class="cta" href="best-a-plus.html">Best Study Resources</a>
+      <a href="networking.html" class="active">Networking Guide</a>
+      <a href="best-a-plus.html" class="nav-cta">Best Study Resources</a>
     </div>
-
   </div>
 </nav>
 
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span>Networking Master Guide</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ Study Hub</div>
+    <h1>Networking <span>Master Guide</span></h1>
+    <p class="page-hero-sub">
+      All the networking topics on this site organized into a simple study path. If you're new to networking, start at the top and work down.
+    </p>
 
-
-<div class="container">
-
-<div class="container">
-  <div class="shell">
-
-    <div class="breadcrumb">
-      <a href="index.html">Home</a> &gt; Networking Master Guide
+    <div class="study-order">
+      <span class="study-order-label">Recommended order</span>
+      <span class="study-step">Subnet Mask</span>
+      <span class="study-arrow">→</span>
+      <span class="study-step">DHCP</span>
+      <span class="study-arrow">→</span>
+      <span class="study-step">DNS</span>
+      <span class="study-arrow">→</span>
+      <span class="study-step">APIPA</span>
+      <span class="study-arrow">→</span>
+      <span class="study-step">Common Ports</span>
     </div>
 
-    <h1>Networking Master Guide (CompTIA A+ Study Hub)</h1>
-
-    <p>This page organizes the networking topics on this site into a simple study path. If you're new to networking, start at the top and work down.</p>
-
-    <div class="callout">
-      <p><strong>Recommended order:</strong> Subnet Mask → DHCP → DNS → APIPA → Common Ports</p>
-      <div class="badge-row">
-        <span class="badge">Beginner-friendly</span>
-        <span class="badge">A+ focused</span>
-        <span class="badge">Troubleshooting-first</span>
-      </div>
+    <div class="hero-badges">
+      <span class="hero-badge-pill">Beginner-friendly</span>
+      <span class="hero-badge-pill">A+ focused</span>
+      <span class="hero-badge-pill">Troubleshooting-first</span>
     </div>
-
-    <hr>
-
-    <h2>Start Here: Core Concepts</h2>
-
-    <div class="grid">
-      <div class="card">
-        <div>
-          <h3><a href="subnet-mask.html">Subnet Mask</a></h3>
-          <p>Learn what “local vs remote” means and why the subnet mask affects routing and connectivity.</p>
-        </div>
-        <div class="small">Best first topic — makes everything else easier.</div>
-      </div>
-
-      <div class="card">
-        <div>
-          <h3><a href="dhcp.html">DHCP</a></h3>
-          <p>Understand how devices automatically receive IP addresses, gateways, and DNS settings.</p>
-        </div>
-        <div class="small">Know DORA and what a lease is.</div>
-      </div>
-
-      <div class="card">
-        <div>
-          <h3><a href="dns.html">DNS</a></h3>
-          <p>See how domain names translate to IP addresses and why DNS causes “internet feels broken” issues.</p>
-        </div>
-        <div class="small">Key troubleshooting clue: IP works, names don’t.</div>
-      </div>
-    </div>
-
-    <hr>
-
-    <h2>Troubleshooting Essentials</h2>
-
-    <div class="grid">
-      <div class="card">
-        <div>
-          <h3><a href="apipa.html">APIPA (169.254.x.x)</a></h3>
-          <p>Learn why 169.254 appears and what it tells you about DHCP and connectivity problems.</p>
-        </div>
-        <div class="small">If you see 169.254, think: DHCP failed.</div>
-      </div>
-    </div>
-
-    <hr>
-
-    <h2>Must-Memorize Exam Topic</h2>
-
-    <div class="grid">
-      <div class="card">
-        <div>
-          <h3><a href="ports.html">Common Port Numbers</a></h3>
-          <p>Quick reference for high-yield ports like 80, 443, 53, 22, and 3389 with memory tips.</p>
-        </div>
-        <div class="small">Easy points if you memorize the core list.</div>
-      </div>
-    </div>
-
-  <hr>
-    
-    <h2>Related Networking Articles</h2>
-
-<div class="callout">
-  <p><a href="best-a-plus.html">Preparing for A+? See the Best Study Resources</a></p>
-  <p><a href="subnet.html">What Is a Subnet Mask?</a></p>
-  <p><a href="dhcp.html">What Is DHCP?</a></p>
-  <p><a href="dns.html">What Is DNS?</a></p>
-  <p><a href="apipa.html">What Is APIPA?</a></p>
-</div>
-    
-    <hr>
-
-    <h2>Recommended A+ Study Tools</h2>
-
-    <div class="callout">
-      <p>If you're studying consistently, practice tests + a structured guide will speed everything up.</p>
-
-      <div class="button-row">
-        <a href="https://www.examcompass.com/comptia/a-plus-certification/free-a-plus-practice-tests"
-           class="button" target="_blank" rel="nofollow sponsored">
-          Take FREE Practice Exams
-        </a>
-
-        <a href="https://amzn.to/3OMI8uo"
-           class="button" target="_blank" rel="nofollow sponsored">
-          Bestselling CompTIA A+ Study Guide
-        </a>
-      </div>
-    </div>
-
-    <hr>
-
-    <h2>Quick Troubleshooting Cheat Sheet</h2>
-
-    <div class="callout">
-      <p><strong>169.254.x.x</strong> → DHCP not reachable → check cable/Wi-Fi/router → try <code>ipconfig /renew</code></p>
-      <p><strong>IP works but websites don’t</strong> → DNS issue → try different DNS (8.8.8.8) → <code>ipconfig /flushdns</code></p>
-      <p><strong>HTTP works, HTTPS fails</strong> → check port <strong>443</strong> / firewall rules</p>
-    </div>
-
-    <div class="footer">
-      <p>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</p>
-    </div>
-
   </div>
-</div>
+</section>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- CORE CONCEPTS -->
+  <div class="section-header">
+    <div class="section-icon">🧠</div>
+    <div class="section-title">Start Here: <span>Core Concepts</span></div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-tag">Step 1</div>
+      <h3><a href="subnet-mask.html">Subnet Mask</a></h3>
+      <p>Learn what "local vs remote" means and why the subnet mask affects routing and connectivity.</p>
+      <div class="card-hint">📌 Best first topic — makes everything else easier</div>
+      <a href="subnet-mask.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+    <div class="card">
+      <div class="card-tag">Step 2</div>
+      <h3><a href="dhcp.html">DHCP</a></h3>
+      <p>Understand how devices automatically receive IP addresses, gateways, and DNS settings.</p>
+      <div class="card-hint">📌 Know DORA and what a lease is</div>
+      <a href="dhcp.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+    <div class="card">
+      <div class="card-tag">Step 3</div>
+      <h3><a href="dns.html">DNS</a></h3>
+      <p>See how domain names translate to IP addresses and why DNS causes "internet feels broken" issues.</p>
+      <div class="card-hint">📌 Key clue: IP works, names don't</div>
+      <a href="dns.html" class="card-arrow">Read Guide →</a>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- TROUBLESHOOTING -->
+  <div class="section-header">
+    <div class="section-icon">🔧</div>
+    <div class="section-title">Troubleshooting <span>Essentials</span></div>
+  </div>
+
+  <div class="cards-grid" style="grid-template-columns: 1fr 1fr; max-width: 680px;">
+    <div class="card">
+      <div class="card-tag">Troubleshooting</div>
+      <h3><a href="apipa.html">APIPA (169.254.x.x)</a></h3>
+      <p>Learn why 169.254 appears and what it tells you about DHCP and connectivity problems.</p>
+      <div class="card-hint">📌 If you see 169.254, think: DHCP failed</div>
+      <a href="apipa.html" class="card-arrow">Read Guide →</a>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- MUST MEMORIZE -->
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <div class="section-title">Must-Memorize <span>Exam Topic</span></div>
+  </div>
+
+  <div class="cards-grid" style="grid-template-columns: 1fr 1fr; max-width: 680px;">
+    <div class="card">
+      <div class="card-tag">High Yield</div>
+      <h3><a href="ports.html">Common Port Numbers</a></h3>
+      <p>Quick reference for high-yield ports like 80, 443, 53, 22, and 3389 with memory tips.</p>
+      <div class="card-hint">📌 Easy points if you memorize the core list</div>
+      <a href="ports.html" class="card-arrow">Read Guide →</a>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- AFFILIATE BOX -->
+  <div class="affiliate-box">
+    <div class="affiliate-tag">📚 Recommended Study Tools</div>
+    <h2>Speed Up Your Exam Prep</h2>
+    <p>If you're studying consistently, practice tests + a structured guide will get you to passing faster.</p>
+    <div class="affiliate-buttons">
+      <a href="https://www.examcompass.com/comptia/a-plus-certification/free-a-plus-practice-tests"
+         class="aff-btn aff-btn-primary" target="_blank" rel="nofollow sponsored">
+        🧪 Take FREE Practice Exams
+      </a>
+      <a href="https://amzn.to/3OMI8uo"
+         class="aff-btn aff-btn-secondary" target="_blank" rel="nofollow sponsored">
+        📖 Bestselling A+ Study Guide
+      </a>
+    </div>
+  </div>
+
+  <!-- CHEAT SHEET -->
+  <div class="section-header">
+    <div class="section-icon">📋</div>
+    <div class="section-title">Quick Troubleshooting <span>Cheat Sheet</span></div>
+  </div>
+
+  <div class="cheat-sheet">
+    <div class="cheat-sheet-header">
+      <h2>Common A+ Networking Scenarios</h2>
+    </div>
+    <div class="cheat-row">
+      <div class="cheat-symptom">169.254.x.x address</div>
+      <div class="cheat-steps">DHCP not reachable → check cable / Wi-Fi / router → try <code>ipconfig /renew</code></div>
+      <div class="cheat-arrow">→</div>
+    </div>
+    <div class="cheat-row">
+      <div class="cheat-symptom">IP works, websites don't</div>
+      <div class="cheat-steps">DNS issue → try alternate DNS (8.8.8.8) → run <code>ipconfig /flushdns</code></div>
+      <div class="cheat-arrow">→</div>
+    </div>
+    <div class="cheat-row">
+      <div class="cheat-symptom">HTTP works, HTTPS fails</div>
+      <div class="cheat-steps">Check port <code>443</code> is open / not blocked by firewall rules</div>
+      <div class="cheat-arrow">→</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- RELATED ARTICLES -->
+  <div class="section-header">
+    <div class="section-icon">🔗</div>
+    <div class="section-title">Related <span>Networking Articles</span></div>
+  </div>
+
+  <div class="related-grid">
+    <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
+    <a href="subnet-mask.html" class="related-link">What Is a Subnet Mask?</a>
+    <a href="dhcp.html" class="related-link">What Is DHCP?</a>
+    <a href="dns.html" class="related-link">What Is DNS?</a>
+    <a href="apipa.html" class="related-link">What Is APIPA?</a>
+    <a href="ports.html" class="related-link">Common Port Numbers</a>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <div class="cta-box-text">
+      <h3>Ready to Start Studying?</h3>
+      <p>Compare the best CompTIA A+ resources and free practice exams.</p>
+    </div>
+    <a href="best-a-plus.html" class="btn btn-teal">See Best Study Resources →</a>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Pages</div>
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="best-a-plus.html">Best Study Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="dhcp.html">DHCP</a>
+      <a href="dns.html">DNS</a>
+      <a href="ports.html">Port Numbers</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</span>
+  </div>
+</footer>
+
 </body>
 </html>
