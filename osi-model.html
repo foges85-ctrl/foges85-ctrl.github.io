@@ -14,462 +14,886 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Favicon -->
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
-
 <title>OSI Model Explained Simply (All 7 Layers for CompTIA A+)</title>
-
 <meta name="description" content="Learn the OSI Model and all 7 layers explained simply for the CompTIA A+ exam. Includes memory tricks, troubleshooting examples, and real-world explanations.">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
 <style>
-:root{
-  --bg: #f4f6f8;
-  --card: #ffffff;
-  --text: #1a1a1a;
-  --muted: #5a6676;
-  --border: #e6e8ec;
-  --accent: #0b3d91;
-  --link: #0073e6;
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
 }
 
-*{ box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-body{
-  margin:0;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height:1.6;
-  background: var(--bg);
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter);
   color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
-.container{
-  max-width: 980px;
-  margin: 28px auto;
-  padding: 22px;
-}
+a { color: var(--teal2); text-decoration: none; }
+a:hover { text-decoration: underline; }
 
-/* ===== Top Navbar ===== */
-.navbar{
+/* ── NAVBAR ── */
+.navbar {
   position: sticky;
   top: 0;
-  z-index: 1000;
-  background: rgba(255,255,255,.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
 
-.nav-inner{
-  max-width: 1020px;
+.nav-inner {
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 12px 22px;
+  padding: 0 28px;
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: 16px;
 }
 
-.nav-logo a{
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 800;
-  letter-spacing: -0.2px;
-  font-size: 16px;
-}
-
-/* Logo link w/ image */
-.logo-link{
+.logo-link {
   display: flex;
   align-items: center;
   gap: 10px;
-  text-decoration: none;
+  font-family: 'Syne', sans-serif;
   font-weight: 800;
-  color: var(--accent);
-}
-
-.logo-img{
-  height: 62px;   /* your chosen size */
-  width: auto;
-  display: block;
-}
-
-.nav-logo a:hover{ opacity: 0.9; }
-
-.nav-links{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.nav-links a{
-  text-decoration: none;
-  color: var(--text);
-  font-size: 14px;
-  font-weight: 700;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid transparent;
-}
-
-.nav-links a:hover{
-  color: var(--link);
-  background: #f1f5ff;
-  border-color: #d6e3ff;
-}
-
-.nav-links a.active{
-  background: var(--accent);
-  color: #ffffff !important;
-  border-radius: 10px;
-}
-
-/* CTA */
-.nav-links a.cta{
-  background: var(--link);
-  color: #fff !important;
-  border-color: var(--link);
-  box-shadow: 0 6px 16px rgba(0,115,230,.18);
-}
-
-.nav-links a.cta:hover{
-  filter: brightness(.95);
-}
-
-/* ===== Mobile: compact navbar + horizontal scroll links (NOT stacked) ===== */
-@media (max-width: 768px){
-
-  .container{
-    padding: 16px;
-    margin: 16px auto;
-  }
-
-  .nav-inner{
-    padding: 10px 14px;
-    gap: 10px;
-  }
-
-  /* Slightly smaller logo on phones to reduce navbar height */
-  .logo-img{
-    height: 48px;
-  }
-
-  /* Keep links in one line and allow horizontal scroll */
-  .nav-links{
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 8px;
-    padding-bottom: 6px;
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .nav-links a{
-    white-space: nowrap;
-    flex: 0 0 auto;
-  }
-}
-
-/* ===== Page Shell ===== */
-.shell{
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 26px;
-  box-shadow: 0 6px 22px rgba(0,0,0,.06);
-}
-
-/* Breadcrumb */
-.breadcrumb{
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 14px;
-}
-.breadcrumb a{
-  color: var(--link);
-  text-decoration: none;
-}
-.breadcrumb a:hover{ text-decoration: underline; }
-
-.hero{
-  display: flex;
-  gap: 18px;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-h1{
-  margin: 0 0 6px 0;
-  color: var(--accent);
-  font-size: 30px;
+  font-size: 17px;
+  color: var(--navy);
   letter-spacing: -0.3px;
-}
-
-.subhead{
-  margin: 0;
-  color: var(--muted);
-  max-width: 66ch;
-}
-
-hr{
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 26px 0;
-}
-
-h2{
-  margin: 0 0 14px 0;
-  color: var(--accent);
-  font-size: 20px;
-}
-
-a{
-  color: var(--link);
+  flex-shrink: 0;
   text-decoration: none;
 }
-a:hover{ text-decoration: underline; }
 
-.resource-box{
-  background: #f1f5ff;
-  border: 1px solid #d6e3ff;
-  border-radius: 12px;
-  padding: 16px 16px 14px 16px;
-  margin: 18px 0 6px 0;
-}
+.logo-img { height: 40px; width: auto; }
 
-.resource-box p{
-  margin: 6px 0 10px 0;
+.nav-links { display: flex; align-items: center; gap: 4px; }
+
+.nav-links a {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
   color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+  text-decoration: none;
 }
 
-.button-row{
-  display:flex;
-  gap: 10px;
-  flex-wrap: wrap;
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.active { color: var(--navy); background: var(--light); }
+
+.nav-links a.nav-cta {
+  background: var(--navy);
+  color: var(--white) !important;
+  padding: 8px 18px;
+  border-radius: 8px;
+  margin-left: 6px;
+  transition: background 0.15s, transform 0.1s;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 34px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
 }
 
-.button{
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+  padding: 52px 28px 60px;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(0,194,168,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.page-hero-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 18px;
+  font-family: 'DM Mono', monospace;
+}
+
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; text-decoration: none; }
+.breadcrumb a:hover { color: var(--teal); text-decoration: none; }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+
+.page-hero-badge {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 10px 14px;
-  background: var(--link);
-  color: white;
-  border-radius: 10px;
-  text-decoration: none;
+  gap: 7px;
+  background: rgba(0,194,168,0.15);
+  border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal);
+  font-size: 12px;
   font-weight: 600;
-  font-size: 14px;
-  box-shadow: 0 4px 12px rgba(0,115,230,.18);
-}
-.button:hover{
-  text-decoration:none;
-  filter: brightness(0.95);
-}
-
-/* ===== Grids ===== */
-.grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 16px;
 }
 
-@media (min-width: 860px){
-  .grid{ grid-template-columns: 1fr 1fr; }
+.page-hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(24px, 4vw, 38px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.18;
+  letter-spacing: -0.6px;
+  margin-bottom: 12px;
 }
 
-/* Article cards grid (homepage) */
-.articles-grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
+.page-hero h1 span { color: var(--teal); }
+
+.page-hero-sub {
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  max-width: 560px;
+  line-height: 1.7;
 }
 
-/* 2 columns only when there is room */
-@media (min-width: 860px){
-  .articles-grid{
-    grid-template-columns: 1fr 1fr;
-  }
+/* ── ARTICLE LAYOUT ── */
+.article-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 52px 28px 80px;
 }
 
-.article-card{
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 22px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.05);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
+@media (max-width: 768px) { .article-wrap { padding: 32px 16px 60px; } }
+
+.article-body h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.3px;
+  margin: 40px 0 16px;
 }
 
-.article-card:hover{
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+.article-body h2:first-child { margin-top: 0; }
+
+.article-body p {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.75;
+  margin-bottom: 14px;
 }
 
-.article-card h3{
-  margin: 0 0 8px 0;
-  font-size: 18px;
-}
+.article-body strong { color: var(--navy); font-weight: 700; }
 
-.article-card a{
-  text-decoration: none;
-  color: var(--accent);
-}
-
-.article-card a:hover{
-  text-decoration: underline;
-}
-
-.article-card p{
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.footer{
-  margin-top: 28px;
-  padding-top: 14px;
+.divider {
+  border: none;
   border-top: 1px solid var(--border);
+  margin: 36px 0;
+}
+
+/* ── MEMORY TRICK BOX ── */
+.memory-trick {
+  background: linear-gradient(135deg, #f0faf8, #e8f4ff);
+  border: 1px solid rgba(0,194,168,0.25);
+  border-left: 4px solid var(--teal);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 20px 0 32px;
+}
+
+.memory-trick-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--teal2);
+  margin-bottom: 8px;
+}
+
+.memory-trick-phrase {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.2px;
+}
+
+.memory-trick-sub {
   font-size: 13px;
   color: var(--muted);
+  margin-top: 6px;
+  font-family: 'DM Mono', monospace;
 }
-</style>
 
+/* ── OSI LAYER STACK ── */
+.osi-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 4px 0 32px;
+}
+
+/* Layer color palette — top (7) to bottom (1) */
+.layer-card {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  border-radius: 12px;
+  padding: 16px 20px;
+  border: 1px solid transparent;
+  transition: transform 0.15s, box-shadow 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+
+.layer-card:hover {
+  transform: translateX(4px);
+  box-shadow: var(--card-shadow);
+}
+
+/* Layer colors */
+.layer-7 { background: #f0f4ff; border-color: #c7d5ff; }
+.layer-6 { background: #f3f0ff; border-color: #d4c8ff; }
+.layer-5 { background: #f7f0ff; border-color: #e0c8ff; }
+.layer-4 { background: #fff3f0; border-color: #ffd4c8; }
+.layer-3 { background: #fff8f0; border-color: #ffddb0; }
+.layer-2 { background: #f0faf8; border-color: #b8eedf; }
+.layer-1 { background: #f0f9ff; border-color: #b8e0f7; }
+
+.layer-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: 16px;
+  font-weight: 500;
+  flex-shrink: 0;
+  color: var(--white);
+}
+
+.layer-7 .layer-num { background: #4f6ef7; }
+.layer-6 .layer-num { background: #7b5cf0; }
+.layer-5 .layer-num { background: #a855f7; }
+.layer-4 .layer-num { background: #f97316; }
+.layer-3 .layer-num { background: #f59e0b; }
+.layer-2 .layer-num { background: #10b981; }
+.layer-1 .layer-num { background: #0ea5e9; }
+
+.layer-info { flex: 1; }
+
+.layer-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 2px;
+}
+
+.layer-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.layer-device {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--slate);
+  white-space: nowrap;
+  background: rgba(255,255,255,0.7);
+  padding: 4px 10px;
+  border-radius: 100px;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+/* ── EXAM MAPPING TABLE ── */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+  margin-bottom: 28px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  min-width: 380px;
+}
+
+thead th {
+  background: var(--navy);
+  color: rgba(255,255,255,0.7);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  padding: 13px 18px;
+  text-align: left;
+  font-family: 'DM Mono', monospace;
+}
+
+thead th:first-child { color: var(--white); }
+
+tbody td {
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text);
+  vertical-align: middle;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #f6f9ff; }
+
+.td-concept { font-weight: 600; color: var(--navy); }
+
+.layer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.badge-l4 { background: rgba(249,115,22,0.1); color: #c2540a; }
+.badge-l3 { background: rgba(245,158,11,0.1); color: #b45309; }
+.badge-l2 { background: rgba(16,185,129,0.1); color: #047857; }
+.badge-l1 { background: rgba(14,165,233,0.1); color: #0369a1; }
+
+/* ── TROUBLESHOOTING CARDS ── */
+.trouble-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.trouble-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: var(--card-shadow);
+}
+
+.trouble-symptom {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.trouble-arrow {
+  color: var(--slate);
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.trouble-diagnosis {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.diag-l1 { background: rgba(14,165,233,0.1); color: #0369a1; }
+.diag-l3 { background: rgba(245,158,11,0.1); color: #b45309; }
+.diag-l7 { background: rgba(79,110,247,0.1); color: #3730a3; }
+
+/* ── EXAM TIP ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060;
+  border-left: 4px solid #f0c000;
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin: 4px 0 28px;
+}
+
+.exam-tip-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #b08000;
+  margin-bottom: 10px;
+}
+
+.exam-tip p {
+  font-size: 14px;
+  color: #5a4000;
+  margin-bottom: 8px;
+  line-height: 1.65;
+}
+
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #3a2800; }
+
+/* ── RELATED ARTICLES ── */
+.related-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+@media (max-width: 560px) { .related-grid { grid-template-columns: 1fr; } }
+
+.related-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s, color 0.15s;
+  box-shadow: var(--card-shadow);
+}
+
+.related-link:hover {
+  border-color: rgba(0,194,168,0.3);
+  color: var(--teal2);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.related-link::before {
+  content: '→';
+  color: var(--teal2);
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+/* ── CTA BOX ── */
+.cta-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-box-text h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.btn:hover { transform: translateY(-2px); text-decoration: none; }
+
+.btn-teal {
+  background: var(--teal);
+  color: var(--navy);
+  box-shadow: 0 6px 20px rgba(0,194,168,0.3);
+}
+.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.5);
+  padding: 40px 28px;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; text-decoration: none; }
+.footer-links a:hover { color: var(--teal); }
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 28px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .footer { padding: 36px 16px; }
+  .footer-bottom { flex-direction: column; }
+  .cta-box { flex-direction: column; align-items: flex-start; }
+  .layer-card { grid-template-columns: 40px 1fr; }
+  .layer-device { display: none; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-hero-inner { animation: fadeUp 0.6s ease both; }
+</style>
 </head>
 
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="nav-inner">
-    
-    <div class="nav-logo">
-      <a href="index.html" class="logo-link">
-        <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
-        <span>IT Study Hub</span>
-      </a>
-    </div>
-
+    <a href="index.html" class="logo-link">
+      <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
     <div class="nav-links">
-      <a class="active" href="index.html">Home</a>
+      <a href="index.html">Home</a>
       <a href="networking-roadmap.html">Networking Roadmap</a>
       <a href="networking.html">Networking Guide</a>
-      <a class="cta" href="best-a-plus.html">Best Study Resources</a>
+      <a href="best-a-plus.html" class="nav-cta">Best Study Resources</a>
     </div>
-
   </div>
 </nav>
 
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <span>›</span>
+      <span>OSI Model</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · Core Concept</div>
+    <h1>OSI Model <span>Explained Simply</span></h1>
+    <p class="page-hero-sub">
+      All 7 layers of the OSI model broken down with memory tricks, real-world examples, and troubleshooting scenarios for the CompTIA A+ exam.
+    </p>
+  </div>
+</section>
 
-<div class="container">
-<div class="shell">
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
 
-<h1>OSI Model Explained Simply (All 7 Layers for CompTIA A+)</h1>
+    <p>The OSI Model is one of the most important networking concepts on the CompTIA A+ exam. It breaks networking into 7 layers so we can understand how data moves from one device to another — and how to diagnose what went wrong when it doesn't.</p>
 
-<p>The OSI Model is one of the most important networking concepts on the CompTIA A+ exam.</p>
+    <hr class="divider">
 
-<p>It breaks networking into 7 layers so we can understand how data moves from one device to another.</p>
+    <h2>The 7 Layers at a Glance</h2>
 
-<hr>
+    <div class="memory-trick">
+      <div class="memory-trick-label">🧠 Memory Trick (top → bottom)</div>
+      <div class="memory-trick-phrase">All People Seem To Need Data Processing</div>
+      <div class="memory-trick-sub">Application · Presentation · Session · Transport · Network · Data Link · Physical</div>
+    </div>
 
-<h2>The 7 Layers of the OSI Model</h2>
+    <!-- OSI LAYER STACK -->
+    <div class="osi-stack">
 
-<ul>
-<li><strong>7 – Application</strong></li>
-<li><strong>6 – Presentation</strong></li>
-<li><strong>5 – Session</strong></li>
-<li><strong>4 – Transport</strong></li>
-<li><strong>3 – Network</strong></li>
-<li><strong>2 – Data Link</strong></li>
-<li><strong>1 – Physical</strong></li>
-</ul>
+      <div class="layer-card layer-7">
+        <div class="layer-num">7</div>
+        <div class="layer-info">
+          <div class="layer-name">Application</div>
+          <div class="layer-desc">User-facing protocols — HTTP, FTP, SMTP, DNS</div>
+        </div>
+        <div class="layer-device">User Interface</div>
+      </div>
 
-<div class="callout">
-<p><strong>Memory Trick:</strong></p>
-<p><em>All People Seem To Need Data Processing</em></p>
+      <div class="layer-card layer-6">
+        <div class="layer-num">6</div>
+        <div class="layer-info">
+          <div class="layer-name">Presentation</div>
+          <div class="layer-desc">Encryption, formatting, compression</div>
+        </div>
+        <div class="layer-device">SSL / TLS</div>
+      </div>
+
+      <div class="layer-card layer-5">
+        <div class="layer-num">5</div>
+        <div class="layer-info">
+          <div class="layer-name">Session</div>
+          <div class="layer-desc">Opens, manages, and closes connections</div>
+        </div>
+        <div class="layer-device">Sessions</div>
+      </div>
+
+      <div class="layer-card layer-4">
+        <div class="layer-num">4</div>
+        <div class="layer-info">
+          <div class="layer-name">Transport</div>
+          <div class="layer-desc">TCP and UDP live here — reliability and port numbers</div>
+        </div>
+        <div class="layer-device">TCP · UDP</div>
+      </div>
+
+      <div class="layer-card layer-3">
+        <div class="layer-num">3</div>
+        <div class="layer-info">
+          <div class="layer-name">Network</div>
+          <div class="layer-desc">IP addresses and routing between networks</div>
+        </div>
+        <div class="layer-device">Routers</div>
+      </div>
+
+      <div class="layer-card layer-2">
+        <div class="layer-num">2</div>
+        <div class="layer-info">
+          <div class="layer-name">Data Link</div>
+          <div class="layer-desc">MAC addresses and switching within a network</div>
+        </div>
+        <div class="layer-device">Switches</div>
+      </div>
+
+      <div class="layer-card layer-1">
+        <div class="layer-num">1</div>
+        <div class="layer-info">
+          <div class="layer-name">Physical</div>
+          <div class="layer-desc">Cables, signals, voltage, connectors — Ethernet, fiber, Wi-Fi</div>
+        </div>
+        <div class="layer-device">Cables · NICs</div>
+      </div>
+
+    </div>
+
+    <hr class="divider">
+
+    <h2>How It Appears on the A+ Exam</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Concept</th>
+            <th>OSI Layer</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-concept">Port numbers</td>
+            <td><span class="layer-badge badge-l4">Layer 4 — Transport</span></td>
+            <td>TCP/UDP operate here</td>
+          </tr>
+          <tr>
+            <td class="td-concept">IP addresses</td>
+            <td><span class="layer-badge badge-l3">Layer 3 — Network</span></td>
+            <td>Routing between networks</td>
+          </tr>
+          <tr>
+            <td class="td-concept">MAC addresses</td>
+            <td><span class="layer-badge badge-l2">Layer 2 — Data Link</span></td>
+            <td>Switching within a network</td>
+          </tr>
+          <tr>
+            <td class="td-concept">Cables / signals</td>
+            <td><span class="layer-badge badge-l1">Layer 1 — Physical</span></td>
+            <td>Hardware-level transmission</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Real Troubleshooting Examples</h2>
+
+    <div class="trouble-grid">
+      <div class="trouble-card">
+        <div class="trouble-symptom">🔴 No link light on NIC or switch port</div>
+        <div class="trouble-arrow">→</div>
+        <div class="trouble-diagnosis diag-l1">Layer 1 — Physical</div>
+      </div>
+      <div class="trouble-card">
+        <div class="trouble-symptom">🟡 169.254.x.x APIPA address assigned</div>
+        <div class="trouble-arrow">→</div>
+        <div class="trouble-diagnosis diag-l3">Layer 3 — Network</div>
+      </div>
+      <div class="trouble-card">
+        <div class="trouble-symptom">🔵 Ping works but website won't load</div>
+        <div class="trouble-arrow">→</div>
+        <div class="trouble-diagnosis diag-l7">Layer 7 — Application</div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ CompTIA A+ Exam Tip</div>
+      <p><strong>The exam loves asking you to identify which layer a problem or component belongs to.</strong> Memorize: cables = Layer 1, MAC = Layer 2, IP = Layer 3, TCP/UDP = Layer 4, and HTTP/DNS = Layer 7.</p>
+      <p>When in doubt, work bottom-up — start at Layer 1 (is it plugged in?) and work your way up.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Related Networking Articles</h2>
+
+    <div class="related-grid">
+      <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP Explained</a>
+      <a href="subnet-mask.html" class="related-link">What Is a Subnet Mask?</a>
+      <a href="dhcp.html" class="related-link">What Is DHCP?</a>
+      <a href="dns.html" class="related-link">What Is DNS?</a>
+      <a href="ports.html" class="related-link">Common Port Numbers</a>
+      <a href="apipa.html" class="related-link">What Is APIPA?</a>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Preparing for the A+ Exam?</h3>
+        <p>See the books, practice exams, and free resources that actually work.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn btn-teal">See Best Study Resources →</a>
+    </div>
+
+  </div>
 </div>
 
-<hr>
-
-<h2>Layer 1 – Physical</h2>
-<p>Cables, signals, voltage, connectors.</p>
-<p>Example: Ethernet cables, fiber, Wi-Fi signals.</p>
-
-<h2>Layer 2 – Data Link</h2>
-<p>MAC addresses and switching.</p>
-<p>Devices: Switches.</p>
-
-<h2>Layer 3 – Network</h2>
-<p>IP addresses and routing.</p>
-<p>Devices: Routers.</p>
-
-<h2>Layer 4 – Transport</h2>
-<p>TCP and UDP live here.</p>
-<p>Controls reliability and port numbers.</p>
-
-<h2>Layer 5 – Session</h2>
-<p>Opens, manages, and closes connections.</p>
-
-<h2>Layer 6 – Presentation</h2>
-<p>Encryption, formatting, compression.</p>
-
-<h2>Layer 7 – Application</h2>
-<p>User-facing protocols like HTTP, FTP, SMTP.</p>
-
-<hr>
-
-<h2>How It Appears on the A+ Exam</h2>
-
-<ul>
-<li>Port numbers → Layer 4</li>
-<li>IP addresses → Layer 3</li>
-<li>MAC addresses → Layer 2</li>
-<li>Cables → Layer 1</li>
-</ul>
-
-<hr>
-
-<h2>Real Troubleshooting Example</h2>
-
-<p>No link light? → Layer 1 problem.</p>
-<p>169.254 address? → Layer 3 (DHCP issue).</p>
-<p>Website not loading but ping works? → Layer 7 (DNS issue).</p>
-
-<hr>
-
-<h2>Related Networking Articles</h2>
-
-<div class="callout">
-  <p><a href="tcp-vs-udp.html">TCP vs UDP Explained</a></p>
-  <p><a href="subnet.html">What Is a Subnet Mask?</a></p>
-  <p><a href="dhcp.html">What Is DHCP?</a></p>
-  <p><a href="dns.html">What Is DNS?</a></p>
-  <p><a href="ports.html">Common Port Numbers</a></p>
-  <p><a href="apipa.html">What Is APIPA?</a></p>
-</div>
-
-<hr>
-
-<h2>Preparing for the A+ Exam?</h2>
-
-<a href="best-a-plus.html" class="button">
-See the Best CompTIA A+ Study Resources →
-</a>
-
-<div class="footer">
-<p>Disclosure: Some links may be affiliate links.</p>
-</div>
-
-</div>
-</div>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Pages</div>
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="best-a-plus.html">Best Study Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="dhcp.html">DHCP</a>
+      <a href="dns.html">DNS</a>
+      <a href="ports.html">Port Numbers</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</span>
+  </div>
+</footer>
 
 </body>
 </html>
