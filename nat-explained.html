@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>What Is NAT? (Network Address Translation Explained Simply)</title>
+
+<meta name="description" content="Learn what NAT is, how Network Address Translation works, and why routers use NAT for internet access. Includes CompTIA A+ exam tips and troubleshooting examples.">
+
+<style>
+:root{
+  --bg:#f4f6f8;
+  --card:#ffffff;
+  --text:#1a1a1a;
+  --muted:#5a6676;
+  --border:#e6e8ec;
+  --accent:#0b3d91;
+  --link:#0073e6;
+}
+body{font-family:Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.65;}
+.container{max-width:1000px;margin:28px auto;padding:22px;}
+.shell{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px;box-shadow:0 6px 22px rgba(0,0,0,.06);}
+h1{color:var(--accent);margin-top:0;}
+h2{color:var(--accent);margin-top:28px;}
+ul{padding-left:20px;}
+.callout{background:#f1f5ff;border:1px solid #d6e3ff;border-radius:12px;padding:14px;margin:18px 0;}
+.button{display:inline-block;padding:10px 14px;background:var(--link);color:#fff;text-decoration:none;border-radius:10px;font-weight:700;margin-top:10px;}
+.button:hover{filter:brightness(.95);}
+.footer{margin-top:34px;font-size:13px;color:var(--muted);border-top:1px solid var(--border);padding-top:14px;}
+
+/* Navbar */
+.navbar{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e6e8ec;
+}
+.nav-inner{
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 12px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo a{
+  color: #0b3d91;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 16px;
+}
+.nav-links a{
+  text-decoration: none;
+  color: #1a1a1a;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+.nav-links a:hover{
+  color: #0073e6;
+  background: #f1f5ff;
+}
+.nav-links a.cta{
+  background: #0073e6;
+  color: #fff !important;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <a href="index.html">IT Study Hub</a>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a class="cta" href="best-a-plus.html">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+<div class="shell">
+
+<h1>What Is NAT? (Network Address Translation Explained Simply)</h1>
+
+<p>NAT (Network Address Translation) is one of the most important concepts in modern networking.</p>
+
+<p>It allows multiple devices on a private network to share one public IP address when accessing the internet.</p>
+
+<hr>
+
+<h2>Why NAT Exists</h2>
+
+<p>There are not enough public IPv4 addresses for every device in the world.</p>
+
+<p>NAT solves this by allowing private IP addresses (like 192.168.x.x) to be translated into a single public IP address.</p>
+
+<div class="callout">
+Think of NAT as a receptionist at an office building — it sends outgoing requests and remembers who asked.
+</div>
+
+<hr>
+
+<h2>How NAT Works</h2>
+
+<p>Example:</p>
+
+<ul>
+<li>Your computer: 192.168.1.25</li>
+<li>Router (Default Gateway): 192.168.1.1</li>
+<li>Public IP: 73.45.88.200</li>
+</ul>
+
+<p>When you visit a website:</p>
+
+1. Your computer sends traffic to the router.  
+2. The router replaces your private IP with its public IP.  
+3. The website responds to the public IP.  
+4. The router sends the response back to your computer.
+
+<hr>
+
+<h2>Types of NAT</h2>
+
+<ul>
+<li><strong>Static NAT</strong> – One private IP maps to one public IP</li>
+<li><strong>Dynamic NAT</strong> – Pool of public IPs</li>
+<li><strong>PAT (Port Address Translation)</strong> – Most common; multiple devices share one public IP</li>
+</ul>
+
+PAT is what most home routers use.
+
+<hr>
+
+<h2>How NAT Appears on the A+ Exam</h2>
+
+Questions may ask:
+
+- Why can multiple devices use one public IP?
+- What allows private IP addresses to access the internet?
+- What device performs NAT?
+
+Correct answer:
+
+<div class="callout">
+The router performs NAT.
+</div>
+
+<hr>
+
+<h2>Troubleshooting Example</h2>
+
+If devices have:
+
+- Valid IP address
+- Valid subnet mask
+- Valid default gateway
+
+But still no internet…
+
+The router’s NAT function may be misconfigured.
+
+<hr>
+
+<h2>Related Networking Articles</h2>
+
+<div class="callout">
+  <p><a href="default-gateway.html">What Is a Default Gateway?</a></p>
+  <p><a href="subnet-mask.html">What Is a Subnet Mask?</a></p>
+  <p><a href="dhcp.html">What Is DHCP?</a></p>
+  <p><a href="dns.html">What Is DNS?</a></p>
+  <p><a href="osi-model.html">OSI Model Explained</a></p>
+</div>
+
+<hr>
+
+<h2>Preparing for the A+ Exam?</h2>
+
+<a href="best-a-plus.html" class="button">
+See the Best CompTIA A+ Study Resources →
+</a>
+
+<div class="footer">
+<p>Disclosure: Some links may be affiliate links.</p>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>
