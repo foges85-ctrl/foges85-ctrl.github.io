@@ -292,6 +292,26 @@ a:hover{ text-decoration: underline; }
   color: #ffffff !important;
   border-radius: 8px;
 }
+  
+  .logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 18px;
+  color: #1a1a1a;
+}
+
+.logo-img {
+  height: 38px;   /* visual size in navbar */
+  width: auto;
+}
+
+.nav-logo a:hover {
+  opacity: 0.85;
+}
+
 </style>
 </head>
 
@@ -299,8 +319,12 @@ a:hover{ text-decoration: underline; }
 
 <nav class="navbar">
   <div class="nav-inner">
+    
     <div class="nav-logo">
-      <a href="index.html">IT Study Hub</a>
+      <a href="index.html" class="logo-link">
+        <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
+        <span>IT Study Hub</span>
+      </a>
     </div>
 
     <div class="nav-links">
@@ -309,8 +333,10 @@ a:hover{ text-decoration: underline; }
       <a href="networking.html">Networking Guide</a>
       <a class="cta" href="best-a-plus.html">Best Study Resources</a>
     </div>
+
   </div>
 </nav>
+
 
 
 
