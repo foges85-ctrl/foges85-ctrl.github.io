@@ -393,6 +393,64 @@ a:hover{ text-decoration: underline; }
   text-decoration: underline;
 }
 
+  /* ===== Article Card Grid (Roadmap + Homepage) ===== */
+.grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin: 18px 0 32px 0;
+}
+
+@media (min-width: 860px){
+  .grid{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.card{
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.05);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+}
+
+.card h3{
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: var(--accent);
+}
+
+.card h3 a{
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.card h3 a:hover{
+  text-decoration: underline;
+}
+
+.card p{
+  margin: 0 0 10px 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.small{
+  font-size: 13px;
+  color: var(--muted);
+}
+
+
 </style>
 
 </head>
@@ -429,37 +487,121 @@ a:hover{ text-decoration: underline; }
 <hr>
 
 <h2>Stage 1: Networking Fundamentals</h2>
+<div class="grid">
+  <div class="card">
+    <div>
+      <h3><a href="osi-model.html">What Is the OSI Model?</a></h3>
+      <p>Learn all 7 layers + memory tricks and troubleshooting examples.</p>
+    </div>
+    <div class="small">Foundation model for everything networking.</div>
+  </div>
 
-<div class="stage">
-  <a href="osi-model.html">What Is the OSI Model?</a>
-  <a href="tcp-vs-udp.html">TCP vs UDP Explained</a>
-  <a href="ports.html">Common Port Numbers</a>
+  <div class="card">
+    <div>
+      <h3><a href="tcp-vs-udp.html">TCP vs UDP Explained</a></h3>
+      <p>Reliability vs speed and where each protocol is used.</p>
+    </div>
+    <div class="small">Huge exam favorite.</div>
+  </div>
+
+  <div class="card">
+    <div>
+      <h3><a href="ports.html">Common Port Numbers</a></h3>
+      <p>Memorize key ports like 80, 443, 53, 22, 3389.</p>
+    </div>
+    <div class="small">Fast points if you know these.</div>
+  </div>
 </div>
 
 <h2>Stage 2: IP Addressing & Configuration</h2>
+<div class="grid">
+  <div class="card">
+    <div>
+      <h3><a href="subnet-mask.html">What Is a Subnet Mask?</a></h3>
+      <p>Understand local vs remote and why masks affect routing.</p>
+    </div>
+    <div class="small">Makes everything else easier.</div>
+  </div>
 
-<div class="stage">
-  <a href="subnet-mask.html">What Is a Subnet Mask?</a>
-  <a href="dhcp.html">What Is DHCP?</a>
-  <a href="apipa.html">What Is APIPA?</a>
-  <a href="dns.html">What Is DNS?</a>
+  <div class="card">
+    <div>
+      <h3><a href="dhcp.html">What Is DHCP?</a></h3>
+      <p>How devices automatically receive IP settings and leases.</p>
+    </div>
+    <div class="small">Know DORA + leases.</div>
+  </div>
+
+  <div class="card">
+    <div>
+      <h3><a href="apipa.html">What Is APIPA?</a></h3>
+      <p>Why 169.254 appears and what it means for troubleshooting.</p>
+    </div>
+    <div class="small">Instant DHCP-failure clue.</div>
+  </div>
+
+  <div class="card">
+    <div>
+      <h3><a href="dns.html">What Is DNS?</a></h3>
+      <p>How names resolve to IPs and what breaks when DNS fails.</p>
+    </div>
+    <div class="small">“IP works, names don’t.”</div>
+  </div>
 </div>
 
 <h2>Stage 3: Traffic Flow & Routing</h2>
+<div class="grid">
+  <div class="card">
+    <div>
+      <h3><a href="default-gateway.html">What Is a Default Gateway?</a></h3>
+      <p>How devices reach other networks and the internet.</p>
+    </div>
+    <div class="small">Critical routing concept.</div>
+  </div>
 
-<div class="stage">
-  <a href="#">What Is a Default Gateway? (Coming Soon)</a>
-  <a href="#">What Is NAT? (Coming Soon)</a>
-  <a href="#">Router vs Switch (Coming Soon)</a>
+  <div class="card">
+    <div>
+      <h3><a href="nat.html">What Is NAT?</a></h3>
+      <p>How one public IP supports many private devices.</p>
+    </div>
+    <div class="small">Home-network essential.</div>
+  </div>
+
+  <div class="card">
+    <div>
+      <h3><a href="#" onclick="return false;">Router vs Switch (Coming Soon)</a></h3>
+      <p>Layer roles, forwarding vs switching, and real-world use.</p>
+    </div>
+    <div class="small">Coming soon.</div>
+  </div>
 </div>
 
 <h2>Stage 4: Troubleshooting & Security</h2>
+<div class="grid">
+  <div class="card">
+    <div>
+      <h3><a href="#" onclick="return false;">Firewall Basics (Coming Soon)</a></h3>
+      <p>Allow/deny rules, ports, and common configurations.</p>
+    </div>
+    <div class="small">Coming soon.</div>
+  </div>
 
-<div class="stage">
-  <a href="#">Firewall Basics (Coming Soon)</a>
-  <a href="#">Common Network Attacks (Coming Soon)</a>
-  <a href="#">Network Troubleshooting Methodology</a>
+  <div class="card">
+    <div>
+      <h3><a href="#" onclick="return false;">Common Network Attacks (Coming Soon)</a></h3>
+      <p>Basic threats you’ll see on A+ and Network+.</p>
+    </div>
+    <div class="small">Coming soon.</div>
+  </div>
+
+  <div class="card">
+    <div>
+      <h3><a href="#" onclick="return false;">Troubleshooting Methodology (Coming Soon)</a></h3>
+      <p>A step-by-step approach to diagnosing network issues.</p>
+    </div>
+    <div class="small">Coming soon.</div>
+  </div>
 </div>
+
 
 <h2>Certification Path</h2>
 
