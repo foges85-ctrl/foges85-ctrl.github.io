@@ -379,6 +379,15 @@ tbody tr:hover{
   border-radius: 12px;
 }
 
+/* ===== Mobile Table Fix ===== */
+.table-wrapper{
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-wrapper table{
+  min-width: 600px;
+}
 
 </style>
 
@@ -422,7 +431,8 @@ tbody tr:hover{
 
 <h2>Quick Comparison</h2>
 
-<table>
+<div class="table-wrapper">
+  <table>
 <tr>
 <th>Resource</th>
 <th>Best For</th>
@@ -451,6 +461,7 @@ tbody tr:hover{
 <td>Medium</td>
 </tr>
 </table>
+  </div>
 
 <hr>
 
