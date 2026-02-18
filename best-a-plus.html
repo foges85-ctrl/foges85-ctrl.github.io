@@ -340,6 +340,46 @@ a:hover{ text-decoration: underline; }
   font-size: 13px;
   color: var(--muted);
 }
+/* ===== Tables (bring back lines + nicer look) ===== */
+table{
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;              /* makes the rounded corners work */
+}
+
+th, td{
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+thead th{
+  background: #f1f5ff;
+  color: var(--accent);
+  font-weight: 800;
+  border-bottom: 1px solid #d6e3ff;
+}
+
+tbody tr:nth-child(even){
+  background: #fafbfd;
+}
+
+tbody tr:hover{
+  background: #f6f9ff;
+}
+
+/* Mobile: allow horizontal scroll if table is wide */
+.table-wrap{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+}
+
+
 </style>
 
 </head>
