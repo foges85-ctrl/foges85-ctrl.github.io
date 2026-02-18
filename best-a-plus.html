@@ -13,529 +13,843 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Favicon -->
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
 <title>Best CompTIA A+ Study Resources (2026 Comparison Guide)</title>
-
 <meta name="description" content="Compare the best CompTIA A+ study books, practice exams, and free resources for 2026. Find the best option based on your learning style and budget.">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
 <style>
-:root{
-  --bg: #f4f6f8;
-  --card: #ffffff;
-  --text: #1a1a1a;
-  --muted: #5a6676;
-  --border: #e6e8ec;
-  --accent: #0b3d91;
-  --link: #0073e6;
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+  --card-shadow-hover: 0 12px 40px rgba(10,22,40,.14);
 }
 
-*{ box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-body{
-  margin:0;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height:1.6;
-  background: var(--bg);
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter);
   color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
-.container{
-  max-width: 980px;
-  margin: 28px auto;
-  padding: 22px;
-}
+a { color: inherit; text-decoration: none; }
 
-/* ===== Top Navbar ===== */
-.navbar{
+/* ── NAVBAR ── */
+.navbar {
   position: sticky;
   top: 0;
-  z-index: 1000;
-  background: rgba(255,255,255,.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
 
-.nav-inner{
-  max-width: 1020px;
+.nav-inner {
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 12px 22px;
+  padding: 0 28px;
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: 16px;
 }
 
-.nav-logo a{
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 800;
-  letter-spacing: -0.2px;
-  font-size: 16px;
-}
-
-/* Logo link w/ image */
-.logo-link{
+.logo-link {
   display: flex;
   align-items: center;
   gap: 10px;
-  text-decoration: none;
+  font-family: 'Syne', sans-serif;
   font-weight: 800;
-  color: var(--accent);
+  font-size: 17px;
+  color: var(--navy);
+  letter-spacing: -0.3px;
+  flex-shrink: 0;
 }
 
-.logo-img{
-  height: 62px;   /* your chosen size */
-  width: auto;
-  display: block;
-}
+.logo-img { height: 40px; width: auto; }
 
-.nav-logo a:hover{ opacity: 0.9; }
-
-.nav-links{
+.nav-links {
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 4px;
 }
 
-.nav-links a{
-  text-decoration: none;
-  color: var(--text);
+.nav-links a {
   font-size: 14px;
-  font-weight: 700;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid transparent;
-}
-
-.nav-links a:hover{
-  color: var(--link);
-  background: #f1f5ff;
-  border-color: #d6e3ff;
-}
-
-.nav-links a.active{
-  background: var(--accent);
-  color: #ffffff !important;
-  border-radius: 10px;
-}
-
-/* CTA */
-.nav-links a.cta{
-  background: var(--link);
-  color: #fff !important;
-  border-color: var(--link);
-  box-shadow: 0 6px 16px rgba(0,115,230,.18);
-}
-
-.nav-links a.cta:hover{
-  filter: brightness(.95);
-}
-
-/* ===== Mobile: compact navbar + horizontal scroll links (NOT stacked) ===== */
-@media (max-width: 768px){
-
-  .container{
-    padding: 16px;
-    margin: 16px auto;
-  }
-
-  .nav-inner{
-    padding: 10px 14px;
-    gap: 10px;
-  }
-
-  /* Slightly smaller logo on phones to reduce navbar height */
-  .logo-img{
-    height: 48px;
-  }
-
-  /* Keep links in one line and allow horizontal scroll */
-  .nav-links{
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 8px;
-    padding-bottom: 6px;
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .nav-links a{
-    white-space: nowrap;
-    flex: 0 0 auto;
-  }
-}
-
-/* ===== Page Shell ===== */
-.shell{
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 26px;
-  box-shadow: 0 6px 22px rgba(0,0,0,.06);
-}
-
-/* Breadcrumb */
-.breadcrumb{
-  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
   color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+}
+
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.active { color: var(--navy); background: var(--light); }
+
+.nav-links a.nav-cta {
+  background: var(--navy);
+  color: var(--white) !important;
+  padding: 8px 18px;
+  border-radius: 8px;
+  margin-left: 6px;
+  transition: background 0.15s, transform 0.1s;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+.nav-links a.nav-cta.active { background: var(--teal2); }
+
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 34px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+  padding: 60px 28px 70px;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(0,194,168,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.page-hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 20px;
+  font-family: 'DM Mono', monospace;
+}
+
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+
+.page-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(0,194,168,0.15);
+  border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 18px;
+}
+
+.page-hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(26px, 4vw, 42px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.15;
+  letter-spacing: -0.8px;
   margin-bottom: 14px;
 }
-.breadcrumb a{
-  color: var(--link);
-  text-decoration: none;
-}
-.breadcrumb a:hover{ text-decoration: underline; }
 
-.hero{
+.page-hero h1 span { color: var(--teal); }
+
+.page-hero-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.6);
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+/* ── MAIN ── */
+.main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 56px 28px 80px;
+}
+
+@media (max-width: 768px) { .main { padding: 36px 16px 60px; } }
+
+/* ── COMPARISON TABLE ── */
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.3px;
+  margin-bottom: 16px;
+}
+
+.section-title span { color: var(--teal2); }
+
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+  margin-bottom: 52px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  min-width: 500px;
+}
+
+thead th {
+  background: var(--navy);
+  color: rgba(255,255,255,0.7);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  padding: 14px 18px;
+  text-align: left;
+  font-family: 'DM Mono', monospace;
+}
+
+thead th:first-child { color: var(--white); }
+
+tbody td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text);
+  vertical-align: middle;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+
+tbody tr:hover td { background: #f6f9ff; }
+
+.td-resource {
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'DM Mono', monospace;
+}
+
+.badge-teal { background: rgba(0,194,168,0.12); color: var(--teal2); }
+.badge-blue { background: rgba(26,108,255,0.1); color: var(--blue); }
+.badge-slate { background: rgba(138,155,181,0.15); color: var(--slate); }
+
+/* ── RESOURCE CARDS ── */
+.resource-section {
+  margin-bottom: 32px;
+}
+
+.resource-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 52px;
+}
+
+.resource-card-header {
+  padding: 24px 28px 20px;
+  border-bottom: 1px solid var(--border);
   display: flex;
-  gap: 18px;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
-h1{
-  margin: 0 0 6px 0;
-  color: var(--accent);
-  font-size: 30px;
+.resource-card-header-left { flex: 1; }
+
+.resource-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--teal2);
+  font-family: 'DM Mono', monospace;
+  margin-bottom: 8px;
+}
+
+.resource-card-header h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 4px;
   letter-spacing: -0.3px;
 }
 
-.subhead{
-  margin: 0;
-  color: var(--muted);
-  max-width: 66ch;
-}
-
-hr{
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 26px 0;
-}
-
-h2{
-  margin: 0 0 14px 0;
-  color: var(--accent);
-  font-size: 20px;
-}
-
-a{
-  color: var(--link);
-  text-decoration: none;
-}
-a:hover{ text-decoration: underline; }
-
-.resource-box{
-  background: #f1f5ff;
-  border: 1px solid #d6e3ff;
-  border-radius: 12px;
-  padding: 16px 16px 14px 16px;
-  margin: 18px 0 6px 0;
-}
-
-.resource-box p{
-  margin: 6px 0 10px 0;
+.resource-card-header p {
+  font-size: 14px;
   color: var(--muted);
 }
 
-.button-row{
-  display:flex;
+.winner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border: 1px solid #f59e0b;
+  color: #92400e;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.resource-card-body {
+  padding: 24px 28px;
+}
+
+.feature-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
+  margin-bottom: 24px;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.feature-list li::before {
+  content: '✓';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: rgba(0,194,168,0.12);
+  color: var(--teal2);
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.resource-card-footer {
+  padding: 0 28px 24px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+  cursor: pointer;
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.btn-primary {
+  background: var(--navy);
+  color: var(--white);
+  box-shadow: 0 6px 20px rgba(10,22,40,0.2);
+}
+.btn-primary:hover { box-shadow: 0 10px 28px rgba(10,22,40,0.28); }
+
+.btn-teal {
+  background: var(--teal);
+  color: var(--navy);
+  box-shadow: 0 6px 20px rgba(0,194,168,0.3);
+}
+.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
+
+.btn-outline {
+  background: var(--white);
+  color: var(--navy);
+  border: 2px solid var(--border);
+}
+.btn-outline:hover { border-color: var(--teal2); color: var(--teal2); }
+
+/* ── DECISION GUIDE ── */
+.decision-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 52px;
+}
+
+@media (min-width: 600px) { .decision-grid { grid-template-columns: 1fr 1fr; } }
+
+.decision-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.decision-card:hover {
+  border-color: rgba(0,194,168,0.3);
+  transform: translateY(-2px);
+}
+
+.decision-icon {
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.decision-if {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--slate);
+  font-family: 'DM Mono', monospace;
+  margin-bottom: 4px;
+}
+
+.decision-then {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.4;
+}
+
+/* ── FINAL REC ── */
+.final-rec {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px;
+  padding: 36px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.final-rec::before {
+  content: '';
+  position: absolute;
+  top: -60px; left: 50%;
+  transform: translateX(-50%);
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(0,194,168,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.final-rec h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.final-rec p {
+  color: rgba(255,255,255,0.6);
+  font-size: 15px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.final-formula {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 16px 28px;
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.formula-item {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--white);
+}
+
+.formula-plus {
+  font-size: 20px;
+  color: var(--teal);
+  font-weight: 700;
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.5);
+  padding: 40px 28px;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
   flex-wrap: wrap;
 }
 
-.button{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 14px;
-  background: var(--link);
-  color: white;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  box-shadow: 0 4px 12px rgba(0,115,230,.18);
-}
-.button:hover{
-  text-decoration:none;
-  filter: brightness(0.95);
-}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
 
-/* ===== Grids ===== */
-.grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-}
-
-@media (min-width: 860px){
-  .grid{ grid-template-columns: 1fr 1fr; }
-}
-
-/* Article cards grid (homepage) */
-.articles-grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
-
-/* 2 columns only when there is room */
-@media (min-width: 860px){
-  .articles-grid{
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.article-card{
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 22px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.05);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.article-card:hover{
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(0,0,0,.08);
-}
-
-.article-card h3{
-  margin: 0 0 8px 0;
-  font-size: 18px;
-}
-
-.article-card a{
-  text-decoration: none;
-  color: var(--accent);
-}
-
-.article-card a:hover{
-  text-decoration: underline;
-}
-
-.article-card p{
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.footer{
-  margin-top: 28px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border);
-  font-size: 13px;
-  color: var(--muted);
-}
-/* ===== Tables (bring back lines + nicer look) ===== */
-table{
-  width: 100%;
-  border-collapse: collapse;
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;              /* makes the rounded corners work */
-}
-
-th, td{
-  padding: 12px 14px;
-  border-bottom: 1px solid var(--border);
-  text-align: left;
-  vertical-align: top;
-}
-
-thead th{
-  background: #f1f5ff;
-  color: var(--accent);
+.footer-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
   font-weight: 800;
-  border-bottom: 1px solid #d6e3ff;
+  color: var(--white);
 }
 
-tbody tr:nth-child(even){
-  background: #fafbfd;
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+
+.footer-links-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 4px;
 }
 
-tbody tr:hover{
-  background: #f6f9ff;
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+.footer-links a:hover { color: var(--teal); }
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 28px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-/* Mobile: allow horizontal scroll if table is wide */
-.table-wrap{
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 12px;
+@media (max-width: 600px) {
+  .footer { padding: 36px 16px; }
+  .footer-bottom { flex-direction: column; }
 }
 
-/* ===== Mobile Table Fix ===== */
-.table-wrapper{
-  width: 100%;
-  overflow-x: auto;
+/* ── DIVIDER ── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0 0 52px 0;
 }
 
-.table-wrapper table{
-  min-width: 600px;
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
+.page-hero-inner { animation: fadeUp 0.6s ease both; }
 </style>
-
 </head>
 
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="nav-inner">
-    
-    <div class="nav-logo">
-      <a href="index.html" class="logo-link">
-        <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
-        <span>IT Study Hub</span>
-      </a>
-    </div>
-
+    <a href="index.html" class="logo-link">
+      <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="networking-roadmap.html">Networking Roadmap</a>
       <a href="networking.html">Networking Guide</a>
-      <a class="active" class="cta" href="best-a-plus.html">Best Study Resources</a>
+      <a href="best-a-plus.html" class="nav-cta active">Best Study Resources</a>
     </div>
-
   </div>
 </nav>
 
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span>Best Study Resources</span>
+    </nav>
+    <div class="page-hero-badge">2026 Comparison Guide</div>
+    <h1>Best CompTIA A+ <span>Study Resources</span></h1>
+    <p class="page-hero-sub">
+      Choosing the right study materials can save you weeks of frustration — and potentially hundreds of dollars in retake fees. Here's what actually works.
+    </p>
+  </div>
+</section>
 
-<div class="container">
+<!-- MAIN -->
+<main class="main">
 
-<div class="container">
-<div class="shell">
-
-<h1>Best CompTIA A+ Study Resources (2026 Comparison Guide)</h1>
-
-<p>If you're preparing for the CompTIA A+ exam, choosing the right study materials can save you weeks of frustration — and potentially hundreds of dollars in retake fees.</p>
-
-<p>This guide compares the most recommended books, practice exams, and free resources so you can choose the best fit for your learning style.</p>
-
-<hr>
-
-<h2>Quick Comparison</h2>
-
-<div class="table-wrapper">
-  <table>
-<tr>
-<th>Resource</th>
-<th>Best For</th>
-<th>Format</th>
-<th>Difficulty</th>
-</tr>
-
-<tr>
-<td>CompTIA A+ All-in-One</td>
-<td>Beginners</td>
-<td>Book</td>
-<td>Medium</td>
-</tr>
-
-<tr>
-<td>Dion Training Practice Exams</td>
-<td>Practice Focused</td>
-<td>Online Exams</td>
-<td>High</td>
-</tr>
-
-<tr>
-<td>Professor Messer</td>
-<td>Budget Learners</td>
-<td>Free Video</td>
-<td>Medium</td>
-</tr>
-</table>
+  <!-- COMPARISON TABLE -->
+  <h2 class="section-title">Quick <span>Comparison</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Resource</th>
+          <th>Best For</th>
+          <th>Format</th>
+          <th>Difficulty</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-resource">CompTIA A+ All-in-One</td>
+          <td><span class="badge badge-teal">Beginners</span></td>
+          <td>Book</td>
+          <td>Medium</td>
+        </tr>
+        <tr>
+          <td class="td-resource">Dion Training Practice Exams</td>
+          <td><span class="badge badge-blue">Practice Focused</span></td>
+          <td>Online Exams</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td class="td-resource">Professor Messer</td>
+          <td><span class="badge badge-slate">Budget Learners</span></td>
+          <td>Free Video</td>
+          <td>Medium</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
-<hr>
+  <!-- RESOURCE 1: STUDY GUIDE -->
+  <div class="resource-card">
+    <div class="resource-card-header">
+      <div class="resource-card-header-left">
+        <div class="resource-label">📘 Best Overall Study Guide</div>
+        <h2>CompTIA A+ All-in-One Exam Guide</h2>
+        <p>by Walker Bridge — Best for first-time learners who want detailed explanations and structured learning.</p>
+      </div>
+      <div class="winner-badge">⭐ Top Pick</div>
+    </div>
+    <div class="resource-card-body">
+      <ul class="feature-list">
+        <li>Clear, thorough explanations written for beginners</li>
+        <li>Covers both Core 1 (1101) and Core 2 (1102)</li>
+        <li>Ranked as a best-seller and rated 4.7 stars on Amazon</li>
+      </ul>
+    </div>
+    <div class="resource-card-footer">
+      <a href="https://amzn.to/4aF0y7U" class="btn btn-teal" target="_blank" rel="nofollow sponsored">
+        See Why This Is the Best-Selling A+ Book →
+      </a>
+    </div>
+  </div>
 
-<h2>📘 Best Overall Study Guide</h2>
+  <!-- RESOURCE 2: PRACTICE EXAMS -->
+  <div class="resource-card">
+    <div class="resource-card-header">
+      <div class="resource-card-header-left">
+        <div class="resource-label">🧪 Best Practice Exams</div>
+        <h2>Dion Training A+ Practice Exams</h2>
+        <p>Best for students who want exam-style questions and realistic simulations before test day.</p>
+      </div>
+    </div>
+    <div class="resource-card-body">
+      <ul class="feature-list">
+        <li>Closest wording to what you'll see on the real exam</li>
+        <li>Great for identifying weak areas before test day</li>
+        <li>High exam alignment across all domains</li>
+      </ul>
+    </div>
+    <div class="resource-card-footer">
+      <a href="https://www.diontraining.com?sca_ref=10655873.Dd2aexbSGx&sca_crp=MjMzMDIz" class="btn btn-primary" target="_blank" rel="nofollow sponsored">
+        View Most Realistic A+ Practice Exams →
+      </a>
+    </div>
+  </div>
 
-<p><strong>CompTIA A+ All-in-One Exam Guide (by Walker Bridge)</strong></p>
+  <!-- RESOURCE 3: FREE OPTION -->
+  <div class="resource-card">
+    <div class="resource-card-header">
+      <div class="resource-card-header-left">
+        <div class="resource-label">🎥 Best Free Option</div>
+        <h2>Professor Messer Free A+ Course</h2>
+        <p>Best for students on a tight budget or who prefer video-based learning over reading.</p>
+      </div>
+      <div class="winner-badge" style="background: linear-gradient(135deg,#d1fae5,#a7f3d0); border-color: #10b981; color: #065f46;">✓ Free</div>
+    </div>
+    <div class="resource-card-body">
+      <ul class="feature-list">
+        <li>Completely free — no paywall or subscription required</li>
+        <li>Video format makes complex topics easier to absorb</li>
+        <li>Covers the full A+ exam objectives</li>
+      </ul>
+    </div>
+    <div class="resource-card-footer">
+      <a href="https://www.professormesser.com/free-a-plus-training/a-plus-videos/professor-messers-free-comptia-a-certification-training-course/" class="btn btn-outline" target="_blank" rel="nofollow">
+        Access Free A+ Video Course →
+      </a>
+    </div>
+  </div>
 
-<p>Best for first-time learners who want detailed explanations and structured learning.</p>
+  <hr class="divider">
 
-<ul>
-<li>Clear explanations</li>
-<li>Covers Core 1 & Core 2</li>
-<li>Ranked as best-seller and rated 4.7 stars on Amazon</li>
-</ul>
+  <!-- DECISION GUIDE -->
+  <h2 class="section-title">How to <span>Choose the Right Option</span></h2>
+  <div class="decision-grid">
+    <div class="decision-card">
+      <div class="decision-icon">🆕</div>
+      <div>
+        <div class="decision-if">If you're new to IT</div>
+        <div class="decision-then">Start with the CompTIA A+ All-in-One book</div>
+      </div>
+    </div>
+    <div class="decision-card">
+      <div class="decision-icon">📚</div>
+      <div>
+        <div class="decision-if">If you know the basics</div>
+        <div class="decision-then">Focus on Dion Training practice exams</div>
+      </div>
+    </div>
+    <div class="decision-card">
+      <div class="decision-icon">🎥</div>
+      <div>
+        <div class="decision-if">If you prefer video</div>
+        <div class="decision-then">Use Professor Messer as your primary resource</div>
+      </div>
+    </div>
+    <div class="decision-card">
+      <div class="decision-icon">❌</div>
+      <div>
+        <div class="decision-if">If you failed once</div>
+        <div class="decision-then">Add heavy practice exam repetition with Dion</div>
+      </div>
+    </div>
+  </div>
 
-<a href="https://amzn.to/4aF0y7U" class="button" target="_blank" rel="nofollow sponsored">
-See Why This Is the Best-Selling A+ Book →
-</a>
+  <!-- FINAL RECOMMENDATION -->
+  <div class="final-rec">
+    <h2>Final Recommendation</h2>
+    <p>For most students, the best strategy combines both:</p>
+    <div class="final-formula">
+      <span class="formula-item">1 Study Guide</span>
+      <span class="formula-plus">+</span>
+      <span class="formula-item">1 Practice Exam Provider</span>
+    </div>
+  </div>
 
-<hr>
+</main>
 
-<h2>🧪 Best Practice Exams</h2>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Pages</div>
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="best-a-plus.html">Best Study Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="dhcp.html">DHCP</a>
+      <a href="dns.html">DNS</a>
+      <a href="ports.html">Port Numbers</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span>Disclosure: Some links may be affiliate links. I may earn a commission at no extra cost to you.</span>
+  </div>
+</footer>
 
-<p><strong>Dion Training A+ Practice Exams</strong></p>
-
-<p>Best for students who want exam-style questions and realistic simulations.</p>
-
-<ul>
-<li>Closest to real test wording</li>
-<li>Great for identifying weak areas</li>
-<li>High exam alignment</li>
-</ul>
-
-<a href="https://www.diontraining.com?sca_ref=10655873.Dd2aexbSGx&sca_crp=MjMzMDIz" class="button" target="_blank" rel="nofollow sponsored">
-View Most Realistic A+ Practice Exams →
-</a>
-
-<hr>
-
-<h2>🎥 Best Free Option</h2>
-
-<p><strong>Professor Messer Free A+ Course</strong></p>
-
-<p>Best for students on a tight budget or who prefer video learning.</p>
-
-<a href="https://www.professormesser.com/free-a-plus-training/a-plus-videos/professor-messers-free-comptia-a-certification-training-course/?gad_source=1&gad_campaignid=23484742308&gbraid=0AAAAAD8fi6v4KIXx-QS7-N5_o7yse3hx5&gclid=CjwKCAiAwNDMBhBfEiwAd7ti1D1rhvN3tDFkT3vzJhpVIikNE9xjpaB6PJmriqz4vD8RuTFDFq3FURoCW_sQAvD_BwE#google_vignette" class="button" target="_blank" rel="nofollow">
-Access Free A+ Video Course →
-</a>
-
-<hr>
-
-<h2>How to Choose the Right Option</h2>
-
-<ul>
-<li>If you're new to IT → Start with the CompTIA A+ book.</li>
-<li>If you already understand basics → Focus on practice exams.</li>
-<li>If you prefer video → Use Professor Messer as primary.</li>
-<li>If you failed once → Add heavy practice exam repetition.</li>
-</ul>
-
-<hr>
-
-<h2>Final Recommendation</h2>
-
-<div class="callout">
-<p>For most students, the best strategy is:</p>
-<p><strong>1 Study Guide + 1 Practice Exam Provider</strong></p>
-</div>
-
-<div class="footer">
-<p>Disclosure: Some links may be affiliate links. I may earn a commission at no extra cost to you.</p>
-</div>
-
-</div>
-</div>
 </body>
 </html>
