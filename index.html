@@ -7,490 +7,884 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-MS0H78HR74');
 </script>
-  
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Favicon -->
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
-
 <title>IT Study Hub | CompTIA A+ Guides & Home Lab Tutorials</title>
 <meta name="description" content="Clear, practical CompTIA A+ networking guides, troubleshooting walkthroughs, and budget home lab tutorials.">
 
-<!-- Google Analytics (keep yours here if already installed) -->
-<!-- Paste your GA4 script here if it’s not already in this file -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg: #f4f6f8;
-  --card: #ffffff;
-  --text: #1a1a1a;
-  --muted: #5a6676;
-  --border: #e6e8ec;
-  --accent: #0b3d91;
-  --link: #0073e6;
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --blue2:   #0f52cc;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+  --card-shadow-hover: 0 12px 40px rgba(10,22,40,.14);
 }
 
-*{ box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-body{
-  margin:0;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height:1.6;
-  background: var(--bg);
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter);
   color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
-.container{
-  max-width: 980px;
-  margin: 28px auto;
-  padding: 22px;
-}
+a { color: inherit; text-decoration: none; }
 
-/* ===== Top Navbar ===== */
-.navbar{
+/* ── NAVBAR ── */
+.navbar {
   position: sticky;
   top: 0;
-  z-index: 1000;
-  background: rgba(255,255,255,.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
 
-.nav-inner{
-  max-width: 1020px;
+.nav-inner {
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 12px 22px;
+  padding: 0 28px;
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: 16px;
 }
 
-.nav-logo a{
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 800;
-  letter-spacing: -0.2px;
-  font-size: 16px;
-}
-
-/* Logo link w/ image */
-.logo-link{
+.logo-link {
   display: flex;
   align-items: center;
   gap: 10px;
-  text-decoration: none;
+  font-family: 'Syne', sans-serif;
   font-weight: 800;
-  color: var(--accent);
+  font-size: 17px;
+  color: var(--navy);
+  letter-spacing: -0.3px;
+  flex-shrink: 0;
 }
 
-.logo-img{
-  height: 62px;   /* your chosen size */
+.logo-img {
+  height: 40px;
   width: auto;
-  display: block;
 }
 
-.nav-logo a:hover{ opacity: 0.9; }
-
-.nav-links{
+.nav-links {
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 4px;
 }
 
-.nav-links a{
-  text-decoration: none;
-  color: var(--text);
+.nav-links a {
   font-size: 14px;
-  font-weight: 700;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid transparent;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  color: var(--muted);
+  transition: color 0.15s, background 0.15s;
 }
 
-.nav-links a:hover{
-  color: var(--link);
-  background: #f1f5ff;
-  border-color: #d6e3ff;
+.nav-links a:hover {
+  color: var(--navy);
+  background: var(--light);
 }
 
-.nav-links a.active{
-  background: var(--accent);
-  color: #ffffff !important;
-  border-radius: 10px;
+.nav-links a.active {
+  color: var(--navy);
+  background: var(--light);
 }
 
-/* CTA */
-.nav-links a.cta{
-  background: var(--link);
-  color: #fff !important;
-  border-color: var(--link);
-  box-shadow: 0 6px 16px rgba(0,115,230,.18);
+.nav-links a.nav-cta {
+  background: var(--navy);
+  color: var(--white) !important;
+  padding: 8px 18px;
+  border-radius: 8px;
+  margin-left: 6px;
+  transition: background 0.15s, transform 0.1s;
 }
 
-.nav-links a.cta:hover{
-  filter: brightness(.95);
+.nav-links a.nav-cta:hover {
+  background: var(--navy2);
+  transform: translateY(-1px);
 }
 
-/* ===== Mobile: compact navbar + horizontal scroll links (NOT stacked) ===== */
-@media (max-width: 768px){
-
-  .container{
-    padding: 16px;
-    margin: 16px auto;
-  }
-
-  .nav-inner{
-    padding: 10px 14px;
-    gap: 10px;
-  }
-
-  /* Slightly smaller logo on phones to reduce navbar height */
-  .logo-img{
-    height: 48px;
-  }
-
-  /* Keep links in one line and allow horizontal scroll */
-  .nav-links{
-    flex-wrap: nowrap;
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 34px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    gap: 8px;
-    padding-bottom: 6px;
-    width: 100%;
-    justify-content: flex-start;
+    flex-wrap: nowrap;
+    padding-bottom: 2px;
   }
-
-  .nav-links a{
-    white-space: nowrap;
-    flex: 0 0 auto;
-  }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
 }
 
-/* ===== Page Shell ===== */
-.shell{
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 26px;
-  box-shadow: 0 6px 22px rgba(0,0,0,.06);
+/* ── HERO ── */
+.hero {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+  padding: 80px 28px 90px;
 }
 
-/* Breadcrumb */
-.breadcrumb{
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 14px;
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(0,194,168,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(26,108,255,0.15) 0%, transparent 60%);
+  pointer-events: none;
 }
-.breadcrumb a{
-  color: var(--link);
-  text-decoration: none;
-}
-.breadcrumb a:hover{ text-decoration: underline; }
 
-.hero{
+/* subtle grid pattern */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
   display: flex;
-  gap: 18px;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
+  gap: 40px;
   flex-wrap: wrap;
 }
 
-h1{
-  margin: 0 0 6px 0;
-  color: var(--accent);
-  font-size: 30px;
+.hero-text { max-width: 600px; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(0,194,168,0.15);
+  border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--teal);
+  border-radius: 50%;
+}
+
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.12;
+  letter-spacing: -1px;
+  margin-bottom: 18px;
+}
+
+.hero h1 span {
+  color: var(--teal);
+}
+
+.hero-sub {
+  font-size: 17px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 32px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 13px 24px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+  cursor: pointer;
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.btn-primary {
+  background: var(--teal);
+  color: var(--navy);
+  box-shadow: 0 6px 24px rgba(0,194,168,0.35);
+}
+.btn-primary:hover { box-shadow: 0 10px 32px rgba(0,194,168,0.45); }
+
+.btn-outline {
+  background: rgba(255,255,255,0.08);
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+}
+.btn-outline:hover { background: rgba(255,255,255,0.14); }
+
+/* hero stats */
+.hero-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.stat-pill {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 200px;
+  backdrop-filter: blur(8px);
+}
+
+.stat-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 56px 20px 64px; }
+  .hero-stats { flex-direction: row; flex-wrap: wrap; }
+  .stat-pill { min-width: 0; flex: 1 1 140px; padding: 12px 14px; }
+}
+
+/* ── MAIN LAYOUT ── */
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 28px 80px;
+}
+
+@media (max-width: 768px) {
+  .main { padding: 36px 16px 60px; }
+}
+
+/* ── AFFILIATE BOX ── */
+.affiliate-box {
+  background: linear-gradient(135deg, #0f2040 0%, #0a1628 100%);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+.affiliate-box::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.affiliate-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.affiliate-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--teal);
+  background: rgba(0,194,168,0.12);
+  border: 1px solid rgba(0,194,168,0.25);
+  padding: 4px 10px;
+  border-radius: 100px;
+  flex-shrink: 0;
+}
+
+.affiliate-box h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.affiliate-box p {
+  color: rgba(255,255,255,0.6);
+  font-size: 14px;
+  margin-bottom: 22px;
+  max-width: 540px;
+}
+
+.affiliate-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.aff-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.15s, filter 0.15s;
+  white-space: nowrap;
+}
+
+.aff-btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
+
+.aff-btn-primary {
+  background: var(--teal);
+  color: var(--navy);
+}
+
+.aff-btn-secondary {
+  background: rgba(255,255,255,0.1);
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ── SECTION HEADERS ── */
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--navy);
   letter-spacing: -0.3px;
 }
 
-.subhead{
-  margin: 0;
+.section-title span {
+  color: var(--teal2);
+}
+
+.section-count {
+  font-size: 13px;
+  font-weight: 600;
   color: var(--muted);
-  max-width: 66ch;
+  font-family: 'DM Mono', monospace;
 }
 
-hr{
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 26px 0;
+/* ── ARTICLE CARDS ── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
 }
 
-h2{
-  margin: 0 0 14px 0;
-  color: var(--accent);
-  font-size: 20px;
+@media (min-width: 680px) {
+  .cards-grid { grid-template-columns: 1fr 1fr; }
 }
 
-a{
-  color: var(--link);
-  text-decoration: none;
-}
-a:hover{ text-decoration: underline; }
-
-.resource-box{
-  background: #f1f5ff;
-  border: 1px solid #d6e3ff;
-  border-radius: 12px;
-  padding: 16px 16px 14px 16px;
-  margin: 18px 0 6px 0;
+@media (min-width: 960px) {
+  .cards-grid { grid-template-columns: 1fr 1fr 1fr; }
 }
 
-.resource-box p{
-  margin: 6px 0 10px 0;
-  color: var(--muted);
-}
-
-.button-row{
-  display:flex;
+.article-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
-  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
 }
 
-.button{
+.article-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--blue));
+  opacity: 0;
+  transition: opacity 0.18s;
+}
+
+.article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: rgba(0,194,168,0.25);
+}
+
+.article-card:hover::before { opacity: 1; }
+
+.card-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--teal2);
+  font-family: 'DM Mono', monospace;
+}
+
+.article-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--navy);
+}
+
+.article-card h3 a {
+  color: inherit;
+  transition: color 0.15s;
+}
+
+.article-card h3 a:hover { color: var(--teal2); }
+
+.article-card p {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.card-arrow {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 10px 14px;
-  background: var(--link);
-  color: white;
-  border-radius: 10px;
-  text-decoration: none;
+  gap: 5px;
+  font-size: 13px;
   font-weight: 600;
-  font-size: 14px;
-  box-shadow: 0 4px 12px rgba(0,115,230,.18);
-}
-.button:hover{
-  text-decoration:none;
-  filter: brightness(0.95);
+  color: var(--teal2);
+  margin-top: 4px;
+  transition: gap 0.15s;
 }
 
-/* ===== Grids ===== */
-.grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
+.article-card:hover .card-arrow { gap: 9px; }
+
+/* featured card (first one) */
+.article-card.featured {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  align-items: center;
+  gap: 28px;
+  background: linear-gradient(135deg, #f0faf8 0%, #e8f4ff 100%);
+  border-color: rgba(0,194,168,0.2);
+  padding: 28px 32px;
 }
 
-@media (min-width: 860px){
-  .grid{ grid-template-columns: 1fr 1fr; }
+.article-card.featured::before { opacity: 1; }
+
+.featured-icon {
+  font-size: 48px;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
-/* Article cards grid (homepage) */
-.articles-grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
+.featured-content { flex: 1; }
+
+.featured-content h3 {
+  font-size: 20px;
+  margin-bottom: 6px;
 }
 
-/* 2 columns only when there is room */
-@media (min-width: 860px){
-  .articles-grid{
-    grid-template-columns: 1fr 1fr;
+.featured-content p { font-size: 14px; }
+
+@media (max-width: 680px) {
+  .article-card.featured {
+    flex-direction: column;
+    align-items: flex-start;
+    grid-column: auto;
   }
 }
 
-.article-card{
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 22px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.05);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+/* ── FOOTER ── */
+.footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.5);
+  padding: 40px 28px;
+  margin-top: 0;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.footer-brand {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
+  gap: 8px;
 }
 
-.article-card:hover{
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+.footer-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--white);
 }
 
-.article-card h3{
-  margin: 0 0 8px 0;
-  font-size: 18px;
-}
-
-.article-card a{
-  text-decoration: none;
-  color: var(--accent);
-}
-
-.article-card a:hover{
-  text-decoration: underline;
-}
-
-.article-card p{
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.footer{
-  margin-top: 28px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border);
+.footer-tagline {
   font-size: 13px;
-  color: var(--muted);
+  max-width: 280px;
+  line-height: 1.6;
 }
-</style>
 
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-links-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 4px;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  transition: color 0.15s;
+}
+
+.footer-links a:hover { color: var(--teal); }
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 28px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .footer { padding: 36px 16px; }
+  .footer-bottom { flex-direction: column; }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-text { animation: fadeUp 0.6s ease both; }
+.hero-stats { animation: fadeUp 0.6s 0.15s ease both; }
+.affiliate-box { animation: fadeUp 0.5s 0.1s ease both; }
+
+</style>
 </head>
 
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="nav-inner">
-    
-    <div class="nav-logo">
-      <a href="index.html" class="logo-link">
-        <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
-        <span>IT Study Hub</span>
-      </a>
-    </div>
-
+    <a href="index.html" class="logo-link">
+      <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
     <div class="nav-links">
-      <a class="active" href="index.html">Home</a>
+      <a href="index.html" class="active">Home</a>
       <a href="networking-roadmap.html">Networking Roadmap</a>
       <a href="networking.html">Networking Guide</a>
-      <a class="cta" href="best-a-plus.html">Best Study Resources</a>
+      <a href="best-a-plus.html" class="nav-cta">Best Study Resources</a>
     </div>
-
   </div>
 </nav>
 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">Free IT Study Resources</div>
+      <h1>Pass Your CompTIA Exam<br><span>Without the Confusion</span></h1>
+      <p class="hero-sub">
+        Practical, clear guides for CompTIA A+ and Networking fundamentals — built for real-world troubleshooting and exam success.
+      </p>
+      <div class="hero-actions">
+        <a href="networking-roadmap.html" class="btn btn-primary">
+          Start Learning →
+        </a>
+        <a href="best-a-plus.html" class="btn btn-outline">
+          Best Study Resources
+        </a>
+      </div>
+    </div>
 
+    <div class="hero-stats">
+      <div class="stat-pill">
+        <div class="stat-icon">📚</div>
+        <div>
+          <div class="stat-label">Guides</div>
+          <div class="stat-val">10+ Articles</div>
+        </div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-icon">🎯</div>
+        <div>
+          <div class="stat-label">Coverage</div>
+          <div class="stat-val">A+ · Network+</div>
+        </div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-icon">⚡</div>
+        <div>
+          <div class="stat-label">Cost</div>
+          <div class="stat-val">Always Free</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- MAIN CONTENT -->
+<main class="main">
 
-<div class="container">
-
-<div class="container">
-  <div class="shell">
-
-    <div class="breadcrumb">Home</div>
-
-    <div class="hero">
+  <!-- AFFILIATE / RESOURCES BOX -->
+  <div class="affiliate-box">
+    <div class="affiliate-header">
       <div>
-        <h1>IT Study & Home Lab Hub</h1>
-        <p class="subhead">
-          Clear, practical networking explanations and CompTIA A+ study guides designed for real-world troubleshooting and exam success.
-        </p>
+        <h2>Recommended Study Resources</h2>
+        <p>Pair these with the guides on this site for the best chance at passing your exam on the first try.</p>
+      </div>
+      <span class="affiliate-tag">Editor's Picks</span>
+    </div>
+    <div class="affiliate-buttons">
+      <a href="https://www.examcompass.com/comptia/a-plus-certification/free-a-plus-practice-tests"
+         class="aff-btn aff-btn-primary" target="_blank" rel="nofollow sponsored">
+        🧪 Free Practice Exams
+      </a>
+      <a href="https://amzn.to/3OMI8uo"
+         class="aff-btn aff-btn-secondary" target="_blank" rel="nofollow sponsored">
+        📖 CompTIA A+ Study Guide
+      </a>
+      <a href="https://amzn.to/4rV6wsj"
+         class="aff-btn aff-btn-secondary" target="_blank" rel="nofollow sponsored">
+        📖 CompTIA Network+ Study Guide
+      </a>
+    </div>
+  </div>
+
+  <!-- ARTICLES SECTION -->
+  <div class="section-header">
+    <h2 class="section-title">Networking <span>Fundamentals</span></h2>
+    <span class="section-count">12 guides</span>
+  </div>
+
+  <div class="cards-grid">
+
+    <!-- Featured card -->
+    <div class="article-card featured">
+      <div class="featured-icon">🗺️</div>
+      <div class="featured-content">
+        <div class="card-tag">Start Here</div>
+        <h3><a href="networking-roadmap.html">Networking Mastery Roadmap (A+ → Network+)</a></h3>
+        <p>Follow a structured learning path covering OSI, TCP/UDP, IP addressing, DHCP, DNS, and advanced networking topics. The best place to begin your exam prep journey.</p>
+        <a href="networking-roadmap.html" class="card-arrow">View Roadmap →</a>
       </div>
     </div>
-
-    <!-- Recommended Resources (same functionality) -->
-    <div class="resource-box">
-      <h2 style="margin-bottom:6px;">Recommended Resources</h2>
-      <p>If you’re studying for CompTIA exams, these are two helpful starting points that pair well with the articles on this site.</p>
-
-      <div class="button-row">
-        <a href="https://www.examcompass.com/comptia/a-plus-certification/free-a-plus-practice-tests"
-           class="button" target="_blank" rel="nofollow sponsored">
-          Take FREE Practice Exams
-        </a>
-
-        <a href="https://amzn.to/3OMI8uo"
-           class="button" target="_blank" rel="nofollow sponsored">
-          Bestselling CompTIA A+ Study Guide
-        </a>
-
-        <a href="https://amzn.to/4rV6wsj"
-           class="button" target="_blank" rel="nofollow sponsored">
-          Bestselling CompTIA Network+ Study Guide
-        </a>
-      </div>
-    </div>
-
-    <hr>
-
- 
-
-    
-    <h2>Networking Fundamentals</h2>
-
-<div class="articles-grid">
-
-  <div class="card">
-  <h3><a href="networking-roadmap.html">Networking Mastery Roadmap (A+ → Network+)</a></h3>
-  <p>Follow a structured learning path covering OSI, TCP/UDP, IP addressing, DHCP, DNS, and advanced networking topics.</p>
-</div>
-
-
-   <div class="article-card">
-  <h3><a href="best-a-plus.html">Preparing for A+? See the Best Study Resources</a></h3>
-  <p>If you're preparing for the CompTIA A+ exam, choosing the right study material can save you weeks of frustration — and hundreds of dollars in retake fees.</p>
-</div>
-
-  <div class="article-card">
-  <h3><a href="tcp-vs-udp.html">TCP vs UDP Explained Simply</a></h3>
-  <p>Understand reliability vs speed and when to use each protocol for the CompTIA A+ exam.</p>
-</div>
-
-<div class="article-card">
-  <h3><a href="osi-model.html">OSI Model Explained (All 7 Layers)</a></h3>
-  <p>Learn all 7 OSI layers with memory tricks and troubleshooting examples for the CompTIA A+ exam.</p>
-</div>
-  
-   <div class="article-card">
-  <h3><a href="networking.html">Networking Master Guide </a></h3>
-  <p>A structured study hub that organizes DHCP, DNS, APIPA, subnet masks, and common ports into the best learning order.</p>
-</div>
-  
-  <div class="article-card">
-    <h3><a href="ports.html">Common Port Numbers for the CompTIA A+ Exam</a></h3>
-    <p>Memorize the most important ports like 80, 443, 53, 22, and 3389 with simple memory tricks.</p>
-  </div>
-
-  <div class="article-card">
-    <h3><a href="subnet-mask.html">What Is a Subnet Mask?</a></h3>
-    <p>Understand common masks like 255.255.255.0 and how they affect local vs internet traffic.</p>
-  </div>
-
-  <div class="article-card">
-    <h3><a href="apipa.html">What Is APIPA?</a></h3>
-    <p>Learn why 169.254 addresses appear and how to troubleshoot DHCP failures.</p>
-  </div>
-
-  <div class="article-card">
-    <h3><a href="dhcp.html">What Is DHCP?</a></h3>
-    <p>See how devices automatically receive IP addresses and how leases work.</p>
-  </div>
-
 
     <div class="article-card">
-        <h3><a href="dns.html">What Is DNS? (Domain Name System Explained Simply)</a></h3>
-        <p>Learn how DNS translates domain names into IP addresses and how to troubleshoot DNS issues for the CompTIA A+ exam.</p>
+      <div class="card-tag">Exam Prep</div>
+      <h3><a href="best-a-plus.html">Preparing for A+? See the Best Study Resources</a></h3>
+      <p>Choosing the right study material can save you weeks of frustration — and hundreds of dollars in retake fees.</p>
+      <a href="best-a-plus.html" class="card-arrow">Read Guide →</a>
     </div>
 
-  <div class="article-card">
-  <h3><a href="default-gateway.html">What Is a Default Gateway?</a></h3>
-  <p>Learn how the default gateway allows devices to reach the internet and how it appears on the CompTIA A+ exam.</p>
-</div>
+    <div class="article-card">
+      <div class="card-tag">Protocols</div>
+      <h3><a href="tcp-vs-udp.html">TCP vs UDP Explained Simply</a></h3>
+      <p>Understand reliability vs speed and when to use each protocol for the CompTIA A+ exam.</p>
+      <a href="tcp-vs-udp.html" class="card-arrow">Read Guide →</a>
+    </div>
 
-  <div class="article-card">
-  <h3><a href="nat-explained.html">What Is NAT? (Network Address Translation)</a></h3>
-  <p>Understand how routers translate private IP addresses to public ones and how NAT appears on the CompTIA A+ exam.</p>
-</div>
+    <div class="article-card">
+      <div class="card-tag">Core Concept</div>
+      <h3><a href="osi-model.html">OSI Model Explained (All 7 Layers)</a></h3>
+      <p>Learn all 7 OSI layers with memory tricks and troubleshooting examples for the CompTIA A+ exam.</p>
+      <a href="osi-model.html" class="card-arrow">Read Guide →</a>
+    </div>
 
-    <div class="footer">
-      <div>IT Study Hub – Practical CompTIA Networking Resources</div>
-      <div style="margin-top:6px;">
-        Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.
-      </div>
+    <div class="article-card">
+      <div class="card-tag">Master Guide</div>
+      <h3><a href="networking.html">Networking Master Guide</a></h3>
+      <p>A structured study hub that organizes DHCP, DNS, APIPA, subnet masks, and common ports into the best learning order.</p>
+      <a href="networking.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="card-tag">Ports & Services</div>
+      <h3><a href="ports.html">Common Port Numbers for the CompTIA A+ Exam</a></h3>
+      <p>Memorize the most important ports like 80, 443, 53, 22, and 3389 with simple memory tricks.</p>
+      <a href="ports.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="card-tag">IP Addressing</div>
+      <h3><a href="subnet-mask.html">What Is a Subnet Mask?</a></h3>
+      <p>Understand common masks like 255.255.255.0 and how they affect local vs internet traffic.</p>
+      <a href="subnet-mask.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="card-tag">Troubleshooting</div>
+      <h3><a href="apipa.html">What Is APIPA?</a></h3>
+      <p>Learn why 169.254 addresses appear and how to troubleshoot DHCP failures on the exam.</p>
+      <a href="apipa.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="card-tag">Core Concept</div>
+      <h3><a href="dhcp.html">What Is DHCP?</a></h3>
+      <p>See how devices automatically receive IP addresses and how leases work in real networks.</p>
+      <a href="dhcp.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="card-tag">DNS</div>
+      <h3><a href="dns.html">What Is DNS? (Domain Name System Explained Simply)</a></h3>
+      <p>Learn how DNS translates domain names into IP addresses and how to troubleshoot DNS issues.</p>
+      <a href="dns.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="card-tag">Core Concept</div>
+      <h3><a href="default-gateway.html">What Is a Default Gateway?</a></h3>
+      <p>Learn how the default gateway allows devices to reach the internet and how it appears on the exam.</p>
+      <a href="default-gateway.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="card-tag">Networking</div>
+      <h3><a href="nat-explained.html">What Is NAT? (Network Address Translation)</a></h3>
+      <p>Understand how routers translate private IP addresses to public ones and how NAT appears on the exam.</p>
+      <a href="nat-explained.html" class="card-arrow">Read Guide →</a>
     </div>
 
   </div>
-</div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+    </div>
+
+    <div class="footer-links">
+      <div class="footer-links-title">Pages</div>
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="best-a-plus.html">Best Study Resources</a>
+    </div>
+
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="dhcp.html">DHCP</a>
+      <a href="dns.html">DNS</a>
+      <a href="ports.html">Port Numbers</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</span>
+  </div>
+</footer>
+
 </body>
 </html>
