@@ -13,525 +13,779 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Favicon -->
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
 <title>What Is DNS? Domain Name System Explained Simply (CompTIA A+ Guide)</title>
+<meta name="description" content="What is DNS? Learn how the Domain Name System translates domain names into IP addresses, how DNS servers work, and how to troubleshoot DNS failures for the CompTIA A+ exam.">
 
-<meta name="description" content="What is DNS? Learn how the Domain Name System works, what DNS servers do, common DNS issues, and troubleshooting steps for the CompTIA A+ exam.">
-
-<meta name="keywords" content="What is DNS, DNS explained, Domain Name System, DNS server, CompTIA A+ networking, DNS troubleshooting, ipconfig flushdns">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg: #f4f6f8;
-  --card: #ffffff;
-  --text: #1a1a1a;
-  --muted: #5a6676;
-  --border: #e6e8ec;
-  --accent: #0b3d91;
-  --link: #0073e6;
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
 }
 
-*{ box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-body{
-  margin:0;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height:1.6;
-  background: var(--bg);
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter);
   color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
-.container{
-  max-width: 980px;
-  margin: 28px auto;
-  padding: 22px;
-}
+a { color: var(--teal2); text-decoration: none; }
+a:hover { text-decoration: underline; }
 
-/* ===== Top Navbar ===== */
-.navbar{
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: rgba(255,255,255,.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 28px;
+  height: 68px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+}
+.logo-link {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 17px; color: var(--navy); letter-spacing: -0.3px;
+  flex-shrink: 0; text-decoration: none;
+}
+.logo-img { height: 40px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px; font-weight: 600; padding: 8px 14px;
+  border-radius: 8px; color: var(--muted);
+  transition: color 0.15s, background 0.15s; text-decoration: none;
+}
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta {
+  background: var(--navy); color: var(--white) !important;
+  padding: 8px 18px; border-radius: 8px; margin-left: 6px;
+  transition: background 0.15s, transform 0.1s;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
 
-.nav-inner{
-  max-width: 1020px;
-  margin: 0 auto;
-  padding: 12px 22px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 34px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
 }
 
-.nav-logo a{
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 800;
-  letter-spacing: -0.2px;
-  font-size: 16px;
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy); position: relative;
+  overflow: hidden; padding: 52px 28px 60px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(0,194,168,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.page-hero-inner {
+  max-width: 860px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  margin-bottom: 18px; font-family: 'DM Mono', monospace;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; text-decoration: none; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge {
+  display: inline-flex; align-items: center;
+  background: rgba(0,194,168,0.15); border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 16px;
+}
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(24px, 4vw, 38px); font-weight: 800;
+  color: var(--white); line-height: 1.18;
+  letter-spacing: -0.5px; margin-bottom: 12px;
+}
+.page-hero h1 span { color: var(--teal); }
+.page-hero-sub {
+  font-size: 15px; color: rgba(255,255,255,0.6);
+  max-width: 560px; line-height: 1.7;
 }
 
-/* Logo link w/ image */
-.logo-link{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  font-weight: 800;
-  color: var(--accent);
+/* ── ARTICLE LAYOUT ── */
+.article-wrap {
+  max-width: 860px; margin: 0 auto;
+  padding: 52px 28px 80px;
 }
+@media (max-width: 768px) { .article-wrap { padding: 32px 16px 60px; } }
 
-.logo-img{
-  height: 62px;   /* your chosen size */
-  width: auto;
-  display: block;
+.article-body h2 {
+  font-family: 'Outfit', sans-serif; font-size: 20px;
+  font-weight: 800; color: var(--navy); letter-spacing: -0.3px;
+  margin: 40px 0 14px;
 }
-
-.nav-logo a:hover{ opacity: 0.9; }
-
-.nav-links{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+.article-body h2:first-child { margin-top: 0; }
+.article-body p {
+  font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 14px;
 }
+.article-body strong { color: var(--navy); font-weight: 700; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
 
-.nav-links a{
-  text-decoration: none;
-  color: var(--text);
-  font-size: 14px;
-  font-weight: 700;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid transparent;
-}
-
-.nav-links a:hover{
-  color: var(--link);
-  background: #f1f5ff;
-  border-color: #d6e3ff;
-}
-
-.nav-links a.active{
-  background: var(--accent);
-  color: #ffffff !important;
-  border-radius: 10px;
-}
-
-/* CTA */
-.nav-links a.cta{
-  background: var(--link);
-  color: #fff !important;
-  border-color: var(--link);
-  box-shadow: 0 6px 16px rgba(0,115,230,.18);
-}
-
-.nav-links a.cta:hover{
-  filter: brightness(.95);
-}
-
-/* ===== Mobile: compact navbar + horizontal scroll links (NOT stacked) ===== */
-@media (max-width: 768px){
-
-  .container{
-    padding: 16px;
-    margin: 16px auto;
-  }
-
-  .nav-inner{
-    padding: 10px 14px;
-    gap: 10px;
-  }
-
-  /* Slightly smaller logo on phones to reduce navbar height */
-  .logo-img{
-    height: 48px;
-  }
-
-  /* Keep links in one line and allow horizontal scroll */
-  .nav-links{
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 8px;
-    padding-bottom: 6px;
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .nav-links a{
-    white-space: nowrap;
-    flex: 0 0 auto;
-  }
-}
-
-/* ===== Page Shell ===== */
-.shell{
-  background: var(--card);
-  border: 1px solid var(--border);
+/* ── PHONEBOOK ANALOGY ── */
+.phonebook-box {
+  background: var(--navy);
   border-radius: 14px;
-  padding: 26px;
-  box-shadow: 0 6px 22px rgba(0,0,0,.06);
-}
-
-/* Breadcrumb */
-.breadcrumb{
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 14px;
-}
-.breadcrumb a{
-  color: var(--link);
-  text-decoration: none;
-}
-.breadcrumb a:hover{ text-decoration: underline; }
-
-.hero{
+  padding: 22px 26px;
+  margin-bottom: 28px;
   display: flex;
-  gap: 18px;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-h1{
-  margin: 0 0 6px 0;
-  color: var(--accent);
-  font-size: 30px;
-  letter-spacing: -0.3px;
-}
-
-.subhead{
-  margin: 0;
-  color: var(--muted);
-  max-width: 66ch;
-}
-
-hr{
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 26px 0;
-}
-
-h2{
-  margin: 0 0 14px 0;
-  color: var(--accent);
-  font-size: 20px;
-}
-
-a{
-  color: var(--link);
-  text-decoration: none;
-}
-a:hover{ text-decoration: underline; }
-
-.resource-box{
-  background: #f1f5ff;
-  border: 1px solid #d6e3ff;
-  border-radius: 12px;
-  padding: 16px 16px 14px 16px;
-  margin: 18px 0 6px 0;
-}
-
-.resource-box p{
-  margin: 6px 0 10px 0;
-  color: var(--muted);
-}
-
-.button-row{
-  display:flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.button{
-  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 10px 14px;
-  background: var(--link);
-  color: white;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  box-shadow: 0 4px 12px rgba(0,115,230,.18);
+  gap: 22px;
+  position: relative;
+  overflow: hidden;
 }
-.button:hover{
-  text-decoration:none;
-  filter: brightness(0.95);
+.phonebook-box::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 100% 50%, rgba(0,194,168,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.phonebook-sides {
+  display: flex; align-items: center; gap: 16px; flex: 1; flex-wrap: wrap;
+}
+.phonebook-side {
+  flex: 1; min-width: 120px;
+}
+.phonebook-side-label {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); margin-bottom: 4px;
+}
+.phonebook-side-value {
+  font-family: 'DM Mono', monospace;
+  font-size: 16px; font-weight: 500;
+}
+.phonebook-side-value.human { color: var(--white); }
+.phonebook-side-value.machine { color: var(--teal); }
+
+.phonebook-arrow {
+  font-size: 20px; color: rgba(255,255,255,0.2); flex-shrink: 0;
+}
+.phonebook-label {
+  font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.4);
+  font-style: italic; flex-shrink: 0; min-width: 70px; text-align: right;
 }
 
-/* ===== Grids ===== */
-.grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-}
-
-@media (min-width: 860px){
-  .grid{ grid-template-columns: 1fr 1fr; }
-}
-
-/* Article cards grid (homepage) */
-.articles-grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
-
-/* 2 columns only when there is room */
-@media (min-width: 860px){
-  .articles-grid{
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.article-card{
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 22px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.05);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+/* ── DNS RESOLUTION FLOW ── */
+.dns-flow {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 24px;
+}
+.dns-step {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 15px 20px; background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+.dns-step:last-child { border-bottom: none; }
+.dns-step-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--navy); color: var(--white);
+  font-family: 'DM Mono', monospace; font-size: 12px;
+  font-weight: 500; flex-shrink: 0; margin-top: 2px;
+}
+.dns-step-content { flex: 1; }
+.dns-step-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.dns-step-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.dns-step-desc code {
+  font-family: 'DM Mono', monospace; font-size: 12px;
+  background: var(--light); color: var(--navy);
+  padding: 1px 6px; border-radius: 4px; border: 1px solid var(--border);
 }
 
-.article-card:hover{
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+/* ── DNS SERVER CARDS ── */
+.dns-servers {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; margin-bottom: 24px;
+}
+@media (max-width: 560px) { .dns-servers { grid-template-columns: 1fr; } }
+
+.dns-server-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 16px 18px;
+  box-shadow: var(--card-shadow);
+  display: flex; align-items: center; gap: 14px;
+}
+.dns-server-ip {
+  font-family: 'DM Mono', monospace; font-size: 18px;
+  font-weight: 500; color: var(--navy); flex-shrink: 0; min-width: 70px;
+}
+.dns-server-info { flex: 1; }
+.dns-server-name { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.dns-server-desc { font-size: 12px; color: var(--muted); }
+
+/* ── SYMPTOM CARDS ── */
+.symptom-list {
+  display: flex; flex-direction: column; gap: 10px;
+  margin-bottom: 24px;
+}
+.symptom-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px;
+  box-shadow: var(--card-shadow);
+}
+.symptom-item::before {
+  content: '⚠';
+  color: #f97316; font-size: 13px; flex-shrink: 0; margin-top: 2px;
+}
+.symptom-item-text { flex: 1; font-size: 14px; color: var(--text); line-height: 1.55; }
+.symptom-item-text strong { color: var(--navy); }
+
+/* ── FIX STEPS ── */
+.fix-steps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.fix-step {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 16px 18px; box-shadow: var(--card-shadow);
+}
+.fix-step-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--teal); color: var(--navy);
+  font-family: 'DM Mono', monospace; font-size: 13px;
+  font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+.fix-step-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+.fix-step-detail { font-size: 13px; color: var(--muted); line-height: 1.55; }
+.fix-step-detail code {
+  font-family: 'DM Mono', monospace; font-size: 12px;
+  background: var(--light); color: var(--navy);
+  padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border);
 }
 
-.article-card h3{
-  margin: 0 0 8px 0;
-  font-size: 18px;
+/* ── EXAM TIP ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060; border-left: 4px solid #f0c000;
+  border-radius: 12px; padding: 20px 22px; margin: 4px 0 28px;
+}
+.exam-tip-label {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
+  color: #b08000; margin-bottom: 10px;
+}
+.exam-tip p { font-size: 14px; color: #5a4000; margin-bottom: 8px; line-height: 1.65; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #3a2800; }
+
+/* ── DNS + DHCP TOGETHER ── */
+.together-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 14px; margin-bottom: 28px;
+}
+@media (max-width: 560px) { .together-grid { grid-template-columns: 1fr; } }
+
+.together-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px 20px; box-shadow: var(--card-shadow);
+}
+.together-card.dhcp { border-top: 3px solid var(--teal); }
+.together-card.dns  { border-top: 3px solid var(--blue); }
+.together-label {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.together-card.dhcp .together-label { color: var(--teal2); }
+.together-card.dns  .together-label { color: var(--blue); }
+.together-title {
+  font-family: 'Outfit', sans-serif; font-size: 15px;
+  font-weight: 700; color: var(--navy); margin-bottom: 6px;
+}
+.together-card p { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+
+/* ── SUMMARY LIST ── */
+.summary-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.summary-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px;
+  font-size: 14px; color: var(--text); box-shadow: var(--card-shadow);
+}
+.summary-item::before {
+  content: '✓';
+  display: flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px;
+  background: rgba(0,194,168,0.12); color: var(--teal2);
+  border-radius: 50%; font-size: 11px; font-weight: 700;
+  flex-shrink: 0; margin-top: 1px;
 }
 
-.article-card a{
-  text-decoration: none;
-  color: var(--accent);
+/* ── AFFILIATE BOX ── */
+.affiliate-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px; padding: 28px 32px;
+  margin-bottom: 36px; position: relative; overflow: hidden;
+}
+.affiliate-box::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.affiliate-tag {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 8px;
+}
+.affiliate-box h2 {
+  font-family: 'Outfit', sans-serif; font-size: 18px;
+  font-weight: 700; color: var(--white); margin-bottom: 6px;
+}
+.affiliate-box p { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 18px; }
+.affiliate-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+.aff-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 18px; border-radius: 9px; font-size: 14px;
+  font-weight: 600; transition: transform 0.15s, filter 0.15s;
+  white-space: nowrap; text-decoration: none;
+}
+.aff-btn:hover { transform: translateY(-2px); filter: brightness(1.05); text-decoration: none; }
+.aff-btn-primary { background: var(--teal); color: var(--navy); }
+.aff-btn-secondary { background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.15); }
+
+/* ── RELATED ARTICLES ── */
+.related-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 36px;
+}
+@media (max-width: 560px) { .related-grid { grid-template-columns: 1fr; } }
+
+.related-link {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px; font-size: 14px;
+  font-weight: 600; color: var(--navy); text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s, color 0.15s;
+  box-shadow: var(--card-shadow);
+}
+.related-link:hover {
+  border-color: rgba(0,194,168,0.3); color: var(--teal2);
+  transform: translateY(-2px); text-decoration: none;
+}
+.related-link::before { content: '→'; color: var(--teal2); font-size: 13px; flex-shrink: 0; }
+
+/* ── CTA BOX ── */
+.cta-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px; padding: 32px;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 20px;
+  flex-wrap: wrap; position: relative; overflow: hidden;
+}
+.cta-box::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-box-text h3 {
+  font-family: 'Outfit', sans-serif; font-size: 18px;
+  font-weight: 800; color: var(--white); margin-bottom: 4px;
+}
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 10px; font-size: 14px;
+  font-weight: 600; transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap; flex-shrink: 0; text-decoration: none;
+}
+.btn:hover { transform: translateY(-2px); text-decoration: none; }
+.btn-teal { background: var(--teal); color: var(--navy); box-shadow: 0 6px 20px rgba(0,194,168,0.3); }
+.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; text-decoration: none; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  max-width: 1100px; margin: 28px auto 0;
+  padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px; display: flex;
+  justify-content: space-between; flex-wrap: wrap; gap: 8px;
 }
 
-.article-card a:hover{
-  text-decoration: underline;
+@media (max-width: 600px) {
+  .footer { padding: 36px 16px; }
+  .footer-bottom { flex-direction: column; }
+  .cta-box { flex-direction: column; align-items: flex-start; }
+  .phonebook-box { flex-direction: column; }
 }
 
-.article-card p{
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-
-.footer{
-  margin-top: 28px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border);
-  font-size: 13px;
-  color: var(--muted);
-}
+.page-hero-inner { animation: fadeUp 0.6s ease both; }
 </style>
-
 </head>
 
 <body>
+
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="nav-inner">
-    
-    <div class="nav-logo">
-      <a href="index.html" class="logo-link">
-        <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
-        <span>IT Study Hub</span>
-      </a>
-    </div>
-
+    <a href="index.html" class="logo-link">
+      <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
     <div class="nav-links">
-      <a class="active" href="index.html">Home</a>
+      <a href="index.html">Home</a>
       <a href="networking-roadmap.html">Networking Roadmap</a>
       <a href="networking.html">Networking Guide</a>
-      <a class="cta" href="best-a-plus.html">Best Study Resources</a>
+      <a href="best-a-plus.html" class="nav-cta">Best Study Resources</a>
     </div>
-
   </div>
 </nav>
 
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <span>›</span>
+      <span>DNS</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · Core Concept</div>
+    <h1>What Is <span>DNS?</span></h1>
+    <p class="page-hero-sub">
+      You type google.com — your computer connects in milliseconds. DNS is the invisible system that makes that happen, and it's a high-yield topic on the CompTIA A+ exam.
+    </p>
+  </div>
+</section>
 
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
 
-<div class="container">
+    <p><strong>DNS</strong> stands for <strong>Domain Name System</strong>. It translates human-friendly domain names into the IP addresses that computers use to communicate. Without DNS, you'd need to memorize a number like <code style="font-family:'DM Mono',monospace;font-size:13px;background:var(--light);padding:2px 7px;border-radius:5px;border:1px solid var(--border)">142.250.72.14</code> just to visit Google.</p>
 
-<div class="container">
-<div class="shell">
+    <p><strong>Simple definition: DNS is the internet's phonebook.</strong></p>
 
-<div class="breadcrumb">
-<a href="index.html">Home</a> &gt; Networking Fundamentals &gt; What Is DNS?
+    <!-- PHONEBOOK ANALOGY -->
+    <div class="phonebook-box">
+      <div class="phonebook-sides">
+        <div class="phonebook-side">
+          <div class="phonebook-side-label">You type</div>
+          <div class="phonebook-side-value human">google.com</div>
+        </div>
+        <div class="phonebook-arrow">→</div>
+        <div class="phonebook-side">
+          <div class="phonebook-side-label">DNS finds</div>
+          <div class="phonebook-side-value machine">142.250.72.14</div>
+        </div>
+        <div class="phonebook-arrow">→</div>
+        <div class="phonebook-side">
+          <div class="phonebook-side-label">Browser connects to</div>
+          <div class="phonebook-side-value machine">Google's server</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>How Does DNS Work? (Step-by-Step)</h2>
+    <p>This entire process typically happens in milliseconds:</p>
+
+    <div class="dns-flow">
+      <div class="dns-step">
+        <div class="dns-step-num">1</div>
+        <div class="dns-step-content">
+          <div class="dns-step-title">You type a domain name</div>
+          <div class="dns-step-desc">You enter <code>google.com</code> into your browser</div>
+        </div>
+      </div>
+      <div class="dns-step">
+        <div class="dns-step-num">2</div>
+        <div class="dns-step-content">
+          <div class="dns-step-title">Your computer checks its DNS cache</div>
+          <div class="dns-step-desc">If it's visited this site recently, the answer may already be stored locally — no lookup needed</div>
+        </div>
+      </div>
+      <div class="dns-step">
+        <div class="dns-step-num">3</div>
+        <div class="dns-step-content">
+          <div class="dns-step-title">Your computer asks a DNS server</div>
+          <div class="dns-step-desc">It queries your configured DNS server (usually your router or ISP): <code>"What is the IP for google.com?"</code></div>
+        </div>
+      </div>
+      <div class="dns-step">
+        <div class="dns-step-num">4</div>
+        <div class="dns-step-content">
+          <div class="dns-step-title">The DNS server responds with the IP</div>
+          <div class="dns-step-desc">The server returns the IP address: <code>142.250.72.14</code></div>
+        </div>
+      </div>
+      <div class="dns-step">
+        <div class="dns-step-num">5</div>
+        <div class="dns-step-content">
+          <div class="dns-step-title">Your browser connects to that IP</div>
+          <div class="dns-step-desc">The connection is made — Google loads in your browser</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>What Is a DNS Server?</h2>
+    <p>A DNS server is a system that stores and provides domain name → IP address mappings. Most home routers automatically assign a DNS server via DHCP. Common public DNS servers you'll see on the A+ exam:</p>
+
+    <div class="dns-servers">
+      <div class="dns-server-card">
+        <div class="dns-server-ip">8.8.8.8</div>
+        <div class="dns-server-info">
+          <div class="dns-server-name">Google DNS</div>
+          <div class="dns-server-desc">Fast, reliable, globally available</div>
+        </div>
+      </div>
+      <div class="dns-server-card">
+        <div class="dns-server-ip">8.8.4.4</div>
+        <div class="dns-server-info">
+          <div class="dns-server-name">Google DNS (Secondary)</div>
+          <div class="dns-server-desc">Backup DNS server from Google</div>
+        </div>
+      </div>
+      <div class="dns-server-card">
+        <div class="dns-server-ip">1.1.1.1</div>
+        <div class="dns-server-info">
+          <div class="dns-server-name">Cloudflare DNS</div>
+          <div class="dns-server-desc">Privacy-focused, one of the fastest</div>
+        </div>
+      </div>
+      <div class="dns-server-card">
+        <div class="dns-server-ip">1.0.0.1</div>
+        <div class="dns-server-info">
+          <div class="dns-server-name">Cloudflare DNS (Secondary)</div>
+          <div class="dns-server-desc">Backup DNS server from Cloudflare</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Common DNS Problems (A+ Exam Clues)</h2>
+    <p>DNS failures produce a specific, recognizable pattern — websites fail even though the connection itself works:</p>
+
+    <div class="symptom-list">
+      <div class="symptom-item">
+        <div class="symptom-item-text"><strong>You can ping an IP address but not a website name</strong> — the connection works, but name resolution is broken</div>
+      </div>
+      <div class="symptom-item">
+        <div class="symptom-item-text"><strong>Websites won't load, but internet appears active</strong> — you have a working IP address but names don't resolve</div>
+      </div>
+      <div class="symptom-item">
+        <div class="symptom-item-text"><strong>"DNS server not responding" errors</strong> — your configured DNS server is unreachable or offline</div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ CompTIA A+ Exam Tip — The Classic DNS Test</div>
+      <p><strong>If you can ping <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(90,64,0,0.1);padding:2px 6px;border-radius:4px;">8.8.8.8</code> but NOT <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(90,64,0,0.1);padding:2px 6px;border-radius:4px;">google.com</code> — it's a DNS problem.</strong></p>
+      <p>The internet connection itself works (you can reach an IP), but name resolution is broken. This specific scenario appears frequently in A+ troubleshooting questions.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>How to Troubleshoot DNS Issues</h2>
+
+    <div class="fix-steps">
+      <div class="fix-step">
+        <div class="fix-step-num">1</div>
+        <div>
+          <div class="fix-step-title">Flush the DNS cache</div>
+          <div class="fix-step-detail">Clears stale or corrupted cached entries: <code>ipconfig /flushdns</code></div>
+        </div>
+      </div>
+      <div class="fix-step">
+        <div class="fix-step-num">2</div>
+        <div>
+          <div class="fix-step-title">Try a different DNS server</div>
+          <div class="fix-step-detail">Manually set DNS to <code>8.8.8.8</code> (Google) to bypass a broken ISP or router DNS</div>
+        </div>
+      </div>
+      <div class="fix-step">
+        <div class="fix-step-num">3</div>
+        <div>
+          <div class="fix-step-title">Restart your router</div>
+          <div class="fix-step-detail">Your router may be acting as a DNS forwarder — restarting it often clears DNS issues</div>
+        </div>
+      </div>
+      <div class="fix-step">
+        <div class="fix-step-num">4</div>
+        <div>
+          <div class="fix-step-title">Check DHCP settings</div>
+          <div class="fix-step-detail">DHCP assigns DNS servers automatically — if DHCP is misconfigured, DNS settings may be wrong or missing</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>DNS and DHCP — How They Work Together</h2>
+    <p>These two protocols are closely linked and are often tested together on the A+ exam:</p>
+
+    <div class="together-grid">
+      <div class="together-card dhcp">
+        <div class="together-label">DHCP</div>
+        <div class="together-title">Assigns your IP address</div>
+        <p>Gives your device an IP address, subnet mask, gateway, and DNS server — automatically.</p>
+      </div>
+      <div class="together-card dns">
+        <div class="together-label">DNS</div>
+        <div class="together-title">Resolves website names</div>
+        <p>Translates domain names into IP addresses so your browser knows where to connect.</p>
+      </div>
+    </div>
+
+    <p>Without DHCP, your device may not get an IP. Without DNS, your device can't resolve website names. Both need to work for normal internet access.</p>
+
+    <hr class="divider">
+
+    <h2>Final Summary</h2>
+
+    <div class="summary-list">
+      <div class="summary-item">DNS stands for <strong>Domain Name System</strong> — the internet's phonebook</div>
+      <div class="summary-item">It translates domain names like <strong>google.com</strong> into IP addresses computers can use</div>
+      <div class="summary-item">Common public DNS servers: <strong>8.8.8.8</strong> (Google) and <strong>1.1.1.1</strong> (Cloudflare)</div>
+      <div class="summary-item">If DNS fails: websites won't load but you can still ping IP addresses directly</div>
+      <div class="summary-item">Fix with <strong>ipconfig /flushdns</strong> or manually set DNS to <strong>8.8.8.8</strong></div>
+      <div class="summary-item">DNS issues are among the most common troubleshooting scenarios on <strong>CompTIA A+</strong></div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- AFFILIATE BOX -->
+    <div class="affiliate-box">
+      <div class="affiliate-tag">📚 Recommended Study Tools</div>
+      <h2>Test Your Networking Knowledge</h2>
+      <p>Practice exams and structured review make DNS troubleshooting scenarios automatic.</p>
+      <div class="affiliate-buttons">
+        <a href="https://www.examcompass.com/comptia/a-plus-certification/free-a-plus-practice-tests"
+           class="aff-btn aff-btn-primary" target="_blank" rel="nofollow sponsored">
+          🧪 Take FREE Practice Exams
+        </a>
+        <a href="https://amzn.to/3OMI8uo"
+           class="aff-btn aff-btn-secondary" target="_blank" rel="nofollow sponsored">
+          📖 Bestselling A+ Study Guide
+        </a>
+      </div>
+    </div>
+
+    <h2>Related Networking Articles</h2>
+
+    <div class="related-grid">
+      <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
+      <a href="subnet-mask.html" class="related-link">What Is a Subnet Mask?</a>
+      <a href="dhcp.html" class="related-link">What Is DHCP?</a>
+      <a href="ports.html" class="related-link">Common Port Numbers</a>
+      <a href="apipa.html" class="related-link">What Is APIPA?</a>
+      <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP Explained</a>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Preparing for the A+ Exam?</h3>
+        <p>See the books, practice exams, and free resources that actually work.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn btn-teal">See Best Study Resources →</a>
+    </div>
+
+  </div>
 </div>
 
-<h1>What Is DNS? (Domain Name System Explained Simply)</h1>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Pages</div>
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="best-a-plus.html">Best Study Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="dhcp.html">DHCP</a>
+      <a href="dns.html">DNS</a>
+      <a href="ports.html">Port Numbers</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</span>
+  </div>
+</footer>
 
-<p>Have you ever typed a website like <strong>google.com</strong> into your browser and wondered how your computer knows where to go?</p>
-
-<p>The answer is <strong>DNS</strong>.</p>
-
-<hr>
-
-<h2>What Does DNS Stand For?</h2>
-
-<p>DNS stands for <strong>Domain Name System</strong>.</p>
-
-<p>It translates human-friendly domain names into IP addresses that computers use to communicate.</p>
-
-<div class="callout">
-<p><strong>Simple Definition:</strong> DNS is the internet’s phonebook.</p>
-</div>
-
-<hr>
-
-<h2>Why Do We Need DNS?</h2>
-
-<p>Computers communicate using IP addresses like:</p>
-
-<pre>142.250.72.14</pre>
-
-<p>But humans prefer names like:</p>
-
-<pre>google.com</pre>
-
-<p>DNS connects the two.</p>
-
-<hr>
-
-<h2>How Does DNS Work? (Step-by-Step)</h2>
-
-<ol>
-<li>You type <strong>google.com</strong> into your browser.</li>
-<li>Your computer asks a DNS server: “What is the IP for google.com?”</li>
-<li>The DNS server responds with the correct IP address.</li>
-<li>Your browser connects to that IP.</li>
-</ol>
-
-<p>This entire process usually happens in milliseconds.</p>
-
-<hr>
-
-<h2>What Is a DNS Server?</h2>
-
-<p>A DNS server is a system that stores and provides IP address mappings.</p>
-
-<p>Common public DNS servers include:</p>
-
-<ul>
-<li><strong>8.8.8.8</strong> (Google DNS)</li>
-<li><strong>1.1.1.1</strong> (Cloudflare DNS)</li>
-</ul>
-
-<p>Most home routers automatically assign a DNS server via DHCP.</p>
-
-<hr>
-
-<h2>Common DNS Problems (A+ Exam Clues)</h2>
-
-<p>If DNS fails, you might notice:</p>
-
-<ul>
-<li>You can ping an IP address but not a website name.</li>
-<li>Websites won’t load, but internet connection appears active.</li>
-<li>“DNS server not responding” errors.</li>
-</ul>
-
-<div class="callout">
-<p><strong>Exam Tip:</strong> If you can ping 8.8.8.8 but not google.com, it’s likely a DNS issue.</p>
-</div>
-
-<hr>
-
-<h2>How to Troubleshoot DNS Issues</h2>
-
-<ol>
-<li>Run:</li>
-</ol>
-
-<pre>ipconfig /flushdns</pre>
-
-<ol start="2">
-<li>Try a different DNS server (like 8.8.8.8).</li>
-<li>Restart your router.</li>
-<li>Check DHCP settings.</li>
-</ol>
-
-<hr>
-
-<h2>DNS and DHCP (How They Work Together)</h2>
-
-<p>DHCP assigns IP addresses.</p>
-<p>DNS translates domain names.</p>
-
-<p>Without DHCP, your device may not get an IP.</p>
-<p>Without DNS, your device can’t resolve website names.</p>
-
-<hr>
-
-<hr>
-
-<h2>Related Networking Articles</h2>
-
-<div class="callout">
-  <p><a href="best-a-plus.html">Preparing for A+? See the Best Study Resources</a></p>
-  <p><a href="subnet.html">What Is a Subnet Mask?</a></p>
-  <p><a href="dhcp.html">What Is DHCP?</a></p>
-  <p><a href="ports.html">Common Port Numbers for the CompTIA A+ Exam</a></p>
-  <p><a href="apipa.html">What Is APIPA?</a></p>
-</div>
-
-
-<hr>
-
-<h2>Recommended A+ Study Tools</h2>
-
-<div class="callout">
-<p>Want to test your networking knowledge? Try practice exams and structured review materials:</p>
-
-<div class="button-row">
-<a href="https://www.examcompass.com/comptia/a-plus-certification/free-a-plus-practice-tests"
-class="button" target="_blank" rel="nofollow sponsored">
-Take FREE Practice Exams
-</a>
-
-<a href="https://amzn.to/3OMI8uo"
-class="button" target="_blank" rel="nofollow sponsored">
-Bestselling CompTIA A+ Study Guide
-</a>
-</div>
-</div>
-
-<hr>
-
-<h2>Final Summary</h2>
-
-<ul>
-<li>DNS stands for Domain Name System</li>
-<li>It translates domain names into IP addresses</li>
-<li>DNS servers store these mappings</li>
-<li>If DNS fails, websites won’t resolve</li>
-<li>DNS issues are common troubleshooting scenarios on CompTIA A+</li>
-</ul>
-
-<div class="footer">
-<p>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</p>
-</div>
-
-</div>
-</div>
 </body>
 </html>
