@@ -7,553 +7,926 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-MS0H78HR74');
 </script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Favicon -->
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
-<title>What Is DHCP? Dynamic Host Configuration Protocol Explained (CompTIA A+ Guide)</title>
+<title>What Is DHCP? Dynamic Host Configuration Protocol Explained Simply</title>
+<meta name="description" content="What is DHCP? Learn how Dynamic Host Configuration Protocol automatically assigns IP addresses, how the DORA process works, and how to troubleshoot DHCP failures for the CompTIA A+ exam.">
 
-<meta name="description" content="What is DHCP? Learn how Dynamic Host Configuration Protocol works, what a DHCP lease is, common DHCP issues, and troubleshooting steps for the CompTIA A+ exam.">
-<meta name="keywords" content="What is DHCP, DHCP explained, DHCP lease, DHCP server, CompTIA A+ networking, DHCP troubleshooting, ipconfig renew">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg: #f4f6f8;
-  --card: #ffffff;
-  --text: #1a1a1a;
-  --muted: #5a6676;
-  --border: #e6e8ec;
-  --accent: #0b3d91;
-  --link: #0073e6;
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
 }
 
-*{ box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-body{
-  margin:0;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height:1.6;
-  background: var(--bg);
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter);
   color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
-.container{
-  max-width: 980px;
-  margin: 28px auto;
-  padding: 22px;
-}
+a { color: var(--teal2); text-decoration: none; }
+a:hover { text-decoration: underline; }
 
-/* ===== Top Navbar ===== */
-.navbar{
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: rgba(255,255,255,.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
 
-.nav-inner{
-  max-width: 1020px;
-  margin: 0 auto;
-  padding: 12px 22px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 28px;
+  height: 68px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
 }
 
-.nav-logo a{
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 800;
-  letter-spacing: -0.2px;
-  font-size: 16px;
+.logo-link {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 17px; color: var(--navy); letter-spacing: -0.3px;
+  flex-shrink: 0; text-decoration: none;
+}
+.logo-img { height: 40px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+
+.nav-links a {
+  font-size: 14px; font-weight: 600; padding: 8px 14px;
+  border-radius: 8px; color: var(--muted);
+  transition: color 0.15s, background 0.15s; text-decoration: none;
+}
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+
+.nav-links a.nav-cta {
+  background: var(--navy); color: var(--white) !important;
+  padding: 8px 18px; border-radius: 8px; margin-left: 6px;
+  transition: background 0.15s, transform 0.1s;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 34px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
 }
 
-/* Logo link w/ image */
-.logo-link{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  font-weight: 800;
-  color: var(--accent);
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy); position: relative;
+  overflow: hidden; padding: 52px 28px 60px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(0,194,168,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.page-hero-inner {
+  max-width: 860px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  margin-bottom: 18px; font-family: 'DM Mono', monospace;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; text-decoration: none; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+
+.page-hero-badge {
+  display: inline-flex; align-items: center;
+  background: rgba(0,194,168,0.15);
+  border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 16px;
+}
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(24px, 4vw, 38px); font-weight: 800;
+  color: var(--white); line-height: 1.18;
+  letter-spacing: -0.5px; margin-bottom: 12px;
+}
+.page-hero h1 span { color: var(--teal); }
+.page-hero-sub {
+  font-size: 15px; color: rgba(255,255,255,0.6);
+  max-width: 560px; line-height: 1.7;
 }
 
-.logo-img{
-  height: 62px;   /* your chosen size */
-  width: auto;
-  display: block;
+/* ── ARTICLE LAYOUT ── */
+.article-wrap {
+  max-width: 860px; margin: 0 auto;
+  padding: 52px 28px 80px;
 }
+@media (max-width: 768px) { .article-wrap { padding: 32px 16px 60px; } }
 
-.nav-logo a:hover{ opacity: 0.9; }
-
-.nav-links{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+.article-body h2 {
+  font-family: 'Outfit', sans-serif; font-size: 20px;
+  font-weight: 800; color: var(--navy); letter-spacing: -0.3px;
+  margin: 40px 0 14px;
 }
+.article-body h2:first-child { margin-top: 0; }
 
-.nav-links a{
-  text-decoration: none;
-  color: var(--text);
-  font-size: 14px;
-  font-weight: 700;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid transparent;
+.article-body p {
+  font-size: 15px; color: var(--text);
+  line-height: 1.75; margin-bottom: 14px;
 }
+.article-body strong { color: var(--navy); font-weight: 700; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
 
-.nav-links a:hover{
-  color: var(--link);
-  background: #f1f5ff;
-  border-color: #d6e3ff;
+/* ── DHCP ASSIGNS CARDS ── */
+.assigns-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
 }
+@media (max-width: 560px) { .assigns-grid { grid-template-columns: 1fr; } }
 
-.nav-links a.active{
-  background: var(--accent);
-  color: #ffffff !important;
-  border-radius: 10px;
-}
-
-/* CTA */
-.nav-links a.cta{
-  background: var(--link);
-  color: #fff !important;
-  border-color: var(--link);
-  box-shadow: 0 6px 16px rgba(0,115,230,.18);
-}
-
-.nav-links a.cta:hover{
-  filter: brightness(.95);
-}
-
-/* ===== Mobile: compact navbar + horizontal scroll links (NOT stacked) ===== */
-@media (max-width: 768px){
-
-  .container{
-    padding: 16px;
-    margin: 16px auto;
-  }
-
-  .nav-inner{
-    padding: 10px 14px;
-    gap: 10px;
-  }
-
-  /* Slightly smaller logo on phones to reduce navbar height */
-  .logo-img{
-    height: 48px;
-  }
-
-  /* Keep links in one line and allow horizontal scroll */
-  .nav-links{
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 8px;
-    padding-bottom: 6px;
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .nav-links a{
-    white-space: nowrap;
-    flex: 0 0 auto;
-  }
-}
-
-/* ===== Page Shell ===== */
-.shell{
-  background: var(--card);
+.assign-card {
+  background: var(--white);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 26px;
-  box-shadow: 0 6px 22px rgba(0,0,0,.06);
-}
-
-/* Breadcrumb */
-.breadcrumb{
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 14px;
-}
-.breadcrumb a{
-  color: var(--link);
-  text-decoration: none;
-}
-.breadcrumb a:hover{ text-decoration: underline; }
-
-.hero{
-  display: flex;
-  gap: 18px;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-h1{
-  margin: 0 0 6px 0;
-  color: var(--accent);
-  font-size: 30px;
-  letter-spacing: -0.3px;
-}
-
-.subhead{
-  margin: 0;
-  color: var(--muted);
-  max-width: 66ch;
-}
-
-hr{
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 26px 0;
-}
-
-h2{
-  margin: 0 0 14px 0;
-  color: var(--accent);
-  font-size: 20px;
-}
-
-a{
-  color: var(--link);
-  text-decoration: none;
-}
-a:hover{ text-decoration: underline; }
-
-.resource-box{
-  background: #f1f5ff;
-  border: 1px solid #d6e3ff;
   border-radius: 12px;
-  padding: 16px 16px 14px 16px;
-  margin: 18px 0 6px 0;
-}
-
-.resource-box p{
-  margin: 6px 0 10px 0;
-  color: var(--muted);
-}
-
-.button-row{
-  display:flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.button{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 14px;
-  background: var(--link);
-  color: white;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  box-shadow: 0 4px 12px rgba(0,115,230,.18);
-}
-.button:hover{
-  text-decoration:none;
-  filter: brightness(0.95);
-}
-
-/* ===== Grids ===== */
-.grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-}
-
-@media (min-width: 860px){
-  .grid{ grid-template-columns: 1fr 1fr; }
-}
-
-/* Article cards grid (homepage) */
-.articles-grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
-
-/* 2 columns only when there is room */
-@media (min-width: 860px){
-  .articles-grid{
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.article-card{
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 22px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.05);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  padding: 16px 18px;
+  box-shadow: var(--card-shadow);
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
+  align-items: flex-start;
+  gap: 12px;
 }
 
-.article-card:hover{
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+.assign-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 2px;
 }
 
-.article-card h3{
-  margin: 0 0 8px 0;
-  font-size: 18px;
+.assign-label {
+  font-size: 12px;
+  font-family: 'DM Mono', monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--teal2);
+  margin-bottom: 3px;
 }
 
-.article-card a{
-  text-decoration: none;
-  color: var(--accent);
+.assign-value {
+  font-size: 13.5px;
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  color: var(--navy);
 }
 
-.article-card a:hover{
-  text-decoration: underline;
+/* ── DORA FLOW ── */
+.dora-flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-bottom: 28px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
 }
 
-.article-card p{
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
+@media (max-width: 600px) {
+  .dora-flow { grid-template-columns: 1fr 1fr; }
 }
 
-.footer{
-  margin-top: 28px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border);
+.dora-step {
+  padding: 18px 16px;
+  background: var(--white);
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.dora-step:last-child { border-right: none; }
+
+.dora-letter {
+  font-family: 'Outfit', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--teal);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.dora-word {
   font-size: 13px;
-  color: var(--muted);
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 4px;
 }
-</style>
+.dora-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
 
+/* Mobile: 2x2 grid — add bottom borders */
+@media (max-width: 600px) {
+  .dora-step:nth-child(1),
+  .dora-step:nth-child(2) { border-bottom: 1px solid var(--border); }
+  .dora-step:nth-child(2),
+  .dora-step:nth-child(4) { border-right: none; }
+}
+
+/* ── LEASE BOX ── */
+.lease-box {
+  background: linear-gradient(135deg, #f0faf8, #e8f4ff);
+  border: 1px solid rgba(0,194,168,0.2);
+  border-left: 4px solid var(--teal);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 4px 0 28px;
+}
+.lease-box-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px; font-weight: 700; color: var(--navy);
+  margin-bottom: 6px;
+}
+.lease-box p { font-size: 14px; color: var(--text); line-height: 1.65; margin-bottom: 6px; }
+.lease-box p:last-child { margin-bottom: 0; }
+.lease-box strong { color: var(--navy); }
+
+/* ── CODE BLOCK ── */
+.code-block {
+  background: var(--navy); border-radius: 12px;
+  padding: 18px 22px; margin: 4px 0 20px; overflow-x: auto;
+}
+.code-block pre {
+  font-family: 'DM Mono', monospace; font-size: 13.5px;
+  color: rgba(255,255,255,0.85); line-height: 1.7; margin: 0;
+}
+.code-block .code-label {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 10px; display: block;
+}
+.code-highlight { color: var(--teal); }
+
+/* ── IPCONFIG OUTPUT ANNOTATIONS ── */
+.ipconfig-annotated {
+  background: var(--navy);
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+.ipconfig-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.ipconfig-row:last-child { border-bottom: none; }
+.ipconfig-key {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  min-width: 200px;
+  flex-shrink: 0;
+}
+.ipconfig-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  color: var(--teal);
+  flex: 1;
+}
+.ipconfig-note {
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+  font-style: italic;
+  flex-shrink: 0;
+}
+
+/* ── PROBLEM SYMPTOMS ── */
+.symptoms-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+@media (max-width: 560px) { .symptoms-grid { grid-template-columns: 1fr; } }
+
+.symptom-tag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 11px 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--navy);
+  box-shadow: var(--card-shadow);
+}
+.symptom-tag::before {
+  content: '⚠';
+  color: #f97316;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+/* ── FIX STEPS ── */
+.fix-steps {
+  display: flex; flex-direction: column;
+  gap: 10px; margin-bottom: 28px;
+}
+.fix-step {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 16px 18px;
+  box-shadow: var(--card-shadow);
+}
+.fix-step-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--teal); color: var(--navy);
+  font-family: 'DM Mono', monospace; font-size: 13px;
+  font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+.fix-step-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+.fix-step-detail { font-size: 13px; color: var(--muted); line-height: 1.55; }
+.fix-step-detail code {
+  font-family: 'DM Mono', monospace; font-size: 12px;
+  background: var(--light); color: var(--navy);
+  padding: 2px 6px; border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+/* ── VS COMPARISON ── */
+.vs-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 14px; margin-bottom: 28px;
+}
+@media (max-width: 560px) { .vs-grid { grid-template-columns: 1fr; } }
+
+.vs-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px 20px;
+  box-shadow: var(--card-shadow);
+}
+.vs-card.dhcp { border-top: 3px solid var(--teal); }
+.vs-card.static { border-top: 3px solid var(--blue); }
+
+.vs-card-label {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.vs-card.dhcp .vs-card-label { color: var(--teal2); }
+.vs-card.static .vs-card-label { color: var(--blue); }
+
+.vs-card-title {
+  font-family: 'Outfit', sans-serif; font-size: 16px;
+  font-weight: 700; color: var(--navy); margin-bottom: 8px;
+}
+.vs-card p { font-size: 13.5px; color: var(--muted); line-height: 1.6; margin-bottom: 6px; }
+.vs-card p:last-child { margin-bottom: 0; }
+.vs-card strong { color: var(--navy); }
+
+/* ── EXAM TIP ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060;
+  border-left: 4px solid #f0c000;
+  border-radius: 12px; padding: 20px 22px;
+  margin: 4px 0 28px;
+}
+.exam-tip-label {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
+  color: #b08000; margin-bottom: 10px;
+}
+.exam-tip p { font-size: 14px; color: #5a4000; margin-bottom: 8px; line-height: 1.65; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #3a2800; }
+
+/* ── SUMMARY LIST ── */
+.summary-list {
+  display: flex; flex-direction: column;
+  gap: 10px; margin-bottom: 28px;
+}
+.summary-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px;
+  font-size: 14px; color: var(--text);
+  box-shadow: var(--card-shadow);
+}
+.summary-item::before {
+  content: '✓';
+  display: flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px;
+  background: rgba(0,194,168,0.12); color: var(--teal2);
+  border-radius: 50%; font-size: 11px; font-weight: 700;
+  flex-shrink: 0; margin-top: 1px;
+}
+
+/* ── AFFILIATE BOX ── */
+.affiliate-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px; padding: 28px 32px;
+  margin-bottom: 36px; position: relative; overflow: hidden;
+}
+.affiliate-box::before {
+  content: ''; position: absolute;
+  top: -40px; right: -40px; width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.affiliate-tag {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 8px;
+}
+.affiliate-box h2 {
+  font-family: 'Outfit', sans-serif; font-size: 18px;
+  font-weight: 700; color: var(--white); margin-bottom: 6px;
+}
+.affiliate-box p { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 18px; }
+.affiliate-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.aff-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 18px; border-radius: 9px; font-size: 14px;
+  font-weight: 600; transition: transform 0.15s, filter 0.15s;
+  white-space: nowrap; text-decoration: none;
+}
+.aff-btn:hover { transform: translateY(-2px); filter: brightness(1.05); text-decoration: none; }
+.aff-btn-primary { background: var(--teal); color: var(--navy); }
+.aff-btn-secondary { background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.15); }
+
+/* ── RELATED ARTICLES ── */
+.related-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 36px;
+}
+@media (max-width: 560px) { .related-grid { grid-template-columns: 1fr; } }
+
+.related-link {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px; font-size: 14px;
+  font-weight: 600; color: var(--navy); text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s, color 0.15s;
+  box-shadow: var(--card-shadow);
+}
+.related-link:hover {
+  border-color: rgba(0,194,168,0.3); color: var(--teal2);
+  transform: translateY(-2px); text-decoration: none;
+}
+.related-link::before { content: '→'; color: var(--teal2); font-size: 13px; flex-shrink: 0; }
+
+/* ── CTA BOX ── */
+.cta-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px; padding: 32px;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 20px;
+  flex-wrap: wrap; position: relative; overflow: hidden;
+}
+.cta-box::before {
+  content: ''; position: absolute;
+  top: -40px; right: -40px; width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-box-text h3 {
+  font-family: 'Outfit', sans-serif; font-size: 18px;
+  font-weight: 800; color: var(--white); margin-bottom: 4px;
+}
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 10px; font-size: 14px;
+  font-weight: 600; transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap; flex-shrink: 0; text-decoration: none;
+}
+.btn:hover { transform: translateY(-2px); text-decoration: none; }
+.btn-teal { background: var(--teal); color: var(--navy); box-shadow: 0 6px 20px rgba(0,194,168,0.3); }
+.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; text-decoration: none; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  max-width: 1100px; margin: 28px auto 0;
+  padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px; display: flex;
+  justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .footer { padding: 36px 16px; }
+  .footer-bottom { flex-direction: column; }
+  .cta-box { flex-direction: column; align-items: flex-start; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-hero-inner { animation: fadeUp 0.6s ease both; }
+</style>
 </head>
 
 <body>
+
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="nav-inner">
-    
-    <div class="nav-logo">
-      <a href="index.html" class="logo-link">
-        <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
-        <span>IT Study Hub</span>
-      </a>
-    </div>
-
+    <a href="index.html" class="logo-link">
+      <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
     <div class="nav-links">
-      <a class="active" href="index.html">Home</a>
+      <a href="index.html">Home</a>
       <a href="networking-roadmap.html">Networking Roadmap</a>
       <a href="networking.html">Networking Guide</a>
-      <a class="cta" href="best-a-plus.html">Best Study Resources</a>
+      <a href="best-a-plus.html" class="nav-cta">Best Study Resources</a>
     </div>
-
   </div>
 </nav>
 
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <span>›</span>
+      <span>DHCP</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · Core Concept</div>
+    <h1>What Is <span>DHCP?</span></h1>
+    <p class="page-hero-sub">
+      If APIPA (169.254.x.x) is the sign that something went wrong, DHCP is the system that normally prevents it. Understanding DHCP is essential for the CompTIA A+ exam.
+    </p>
+  </div>
+</section>
 
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
 
-<div class="container">
+    <p><strong>DHCP</strong> stands for <strong>Dynamic Host Configuration Protocol</strong>. It automatically assigns network settings to devices so they can communicate on a network and access the internet — without you having to manually type an IP address, subnet mask, gateway, or DNS server.</p>
 
-<div class="container">
-  <div class="shell">
+    <p>On most home networks, your <strong>router</strong> is the DHCP server.</p>
 
-    <div class="breadcrumb">
-      <a href="index.html">Home</a> &gt; Networking Fundamentals &gt; What Is DHCP?
-    </div>
-
-    <h1>What Is DHCP? (Dynamic Host Configuration Protocol Explained Simply)</h1>
-
-    <p>If APIPA (169.254.x.x) is the sign that something went wrong, <strong>DHCP</strong> is the system that normally prevents that problem in the first place.</p>
-
-    <p>DHCP is one of the most important networking concepts on the <strong>CompTIA A+</strong> exam because it explains how most devices automatically get online.</p>
-
-    <hr>
-
-    <h2>What Does DHCP Stand For?</h2>
-
-    <p>DHCP stands for <strong>Dynamic Host Configuration Protocol</strong>.</p>
-
-    <p>DHCP automatically assigns network settings to devices so they can communicate on a network and access the internet.</p>
-
-    <p>Instead of manually typing an IP address, subnet mask, gateway, and DNS servers, DHCP delivers them automatically.</p>
-
-    <hr>
+    <hr class="divider">
 
     <h2>What Does DHCP Assign?</h2>
+    <p>When a device connects, DHCP hands it everything it needs to communicate:</p>
 
-    <p>A DHCP server typically assigns:</p>
+    <div class="assigns-grid">
+      <div class="assign-card">
+        <div class="assign-icon">🖥️</div>
+        <div>
+          <div class="assign-label">IP Address</div>
+          <div class="assign-value">192.168.1.50</div>
+        </div>
+      </div>
+      <div class="assign-card">
+        <div class="assign-icon">🔲</div>
+        <div>
+          <div class="assign-label">Subnet Mask</div>
+          <div class="assign-value">255.255.255.0</div>
+        </div>
+      </div>
+      <div class="assign-card">
+        <div class="assign-icon">🚪</div>
+        <div>
+          <div class="assign-label">Default Gateway</div>
+          <div class="assign-value">192.168.1.1</div>
+        </div>
+      </div>
+      <div class="assign-card">
+        <div class="assign-icon">🌐</div>
+        <div>
+          <div class="assign-label">DNS Servers</div>
+          <div class="assign-value">8.8.8.8</div>
+        </div>
+      </div>
+    </div>
 
-    <ul>
-      <li><strong>IP address</strong> (example: 192.168.1.50)</li>
-      <li><strong>Subnet mask</strong> (example: 255.255.255.0)</li>
-      <li><strong>Default gateway</strong> (example: 192.168.1.1)</li>
-      <li><strong>DNS servers</strong> (example: 8.8.8.8 or your ISP/router DNS)</li>
-    </ul>
+    <hr class="divider">
 
-    <p>On most home networks, the <strong>router</strong> is the DHCP server.</p>
+    <h2>How Does DHCP Work? (The DORA Process)</h2>
+    <p>DHCP uses a 4-step handshake called <strong>DORA</strong> — good to recognize for the A+ exam:</p>
 
-    <hr>
+    <div class="dora-flow">
+      <div class="dora-step">
+        <div class="dora-letter">D</div>
+        <div class="dora-word">Discover</div>
+        <div class="dora-desc">Device broadcasts: "Is there a DHCP server out there?"</div>
+      </div>
+      <div class="dora-step">
+        <div class="dora-letter">O</div>
+        <div class="dora-word">Offer</div>
+        <div class="dora-desc">DHCP server responds: "I have an IP for you!"</div>
+      </div>
+      <div class="dora-step">
+        <div class="dora-letter">R</div>
+        <div class="dora-word">Request</div>
+        <div class="dora-desc">Device replies: "Yes, I'll take that IP address."</div>
+      </div>
+      <div class="dora-step">
+        <div class="dora-letter">A</div>
+        <div class="dora-word">Acknowledge</div>
+        <div class="dora-desc">Server confirms: "Done — the lease is yours."</div>
+      </div>
+    </div>
 
-    <h2>How Does DHCP Work? (The Simple Flow)</h2>
+    <p>You don't need to memorize every packet detail for A+, but understanding the overall idea — DHCP is an automated "handshake" that assigns network settings — is exactly what the exam tests.</p>
 
-    <p>You’ll often see this described as a 4-step process (good to recognize for exams):</p>
-
-    <ol>
-      <li><strong>Discover</strong> — Device broadcasts “Is there a DHCP server?”</li>
-      <li><strong>Offer</strong> — DHCP server offers an IP address</li>
-      <li><strong>Request</strong> — Device requests that offered IP</li>
-      <li><strong>Acknowledge</strong> — DHCP server confirms and leases the IP</li>
-    </ol>
-
-    <p>You don’t have to memorize every packet detail for A+, but you should understand the overall idea: DHCP is an automated “handshake” that assigns network settings.</p>
-
-    <hr>
+    <hr class="divider">
 
     <h2>What Is a DHCP Lease?</h2>
 
-    <p>A DHCP lease is a <strong>temporary rental</strong> of an IP address.</p>
-
-    <ul>
-      <li>The server assigns an IP address for a certain time period (hours or days).</li>
-      <li>Before it expires, the device attempts to renew it automatically.</li>
-      <li>This prevents two devices from accidentally using the same IP address.</li>
-    </ul>
-
-    <div class="callout">
-      <p><strong>Memory trick:</strong> Lease = “you don’t own the IP forever.”</p>
+    <div class="lease-box">
+      <div class="lease-box-title">🏠 A DHCP lease is a temporary rental of an IP address</div>
+      <p>The server assigns an IP address for a set time period (hours or days). Before it expires, the device tries to renew it automatically. This prevents two devices from accidentally sharing the same IP.</p>
+      <p><strong>Memory trick:</strong> Lease = "you don't own the IP forever."</p>
     </div>
 
-    <hr>
+    <hr class="divider">
 
     <h2>How to Check DHCP on Windows</h2>
+    <p>Open Command Prompt and run <code style="font-family:'DM Mono',monospace;font-size:13px;background:var(--light);padding:2px 7px;border-radius:5px;border:1px solid var(--border)">ipconfig /all</code> to see full DHCP details. Look for these key lines:</p>
 
-    <p>Open Command Prompt and run:</p>
+    <div class="ipconfig-annotated">
+      <div class="ipconfig-row">
+        <span class="ipconfig-key">DHCP Enabled. . . . . .</span>
+        <span class="ipconfig-val">Yes</span>
+        <span class="ipconfig-note">confirms auto IP</span>
+      </div>
+      <div class="ipconfig-row">
+        <span class="ipconfig-key">DHCP Server . . . . . .</span>
+        <span class="ipconfig-val">192.168.1.1</span>
+        <span class="ipconfig-note">usually your router</span>
+      </div>
+      <div class="ipconfig-row">
+        <span class="ipconfig-key">Lease Obtained. . . . .</span>
+        <span class="ipconfig-val">Wednesday, Feb 18, 2026</span>
+        <span class="ipconfig-note">when lease started</span>
+      </div>
+      <div class="ipconfig-row">
+        <span class="ipconfig-key">Lease Expires . . . . .</span>
+        <span class="ipconfig-val">Friday, Feb 20, 2026</span>
+        <span class="ipconfig-note">when it will renew</span>
+      </div>
+      <div class="ipconfig-row">
+        <span class="ipconfig-key">IPv4 Address. . . . . .</span>
+        <span class="ipconfig-val">192.168.1.55</span>
+        <span class="ipconfig-note">your assigned IP</span>
+      </div>
+    </div>
 
-    <pre>ipconfig /all</pre>
-
-    <p>Look for:</p>
-
-    <ul>
-      <li><strong>DHCP Enabled</strong>: Yes/No</li>
-      <li><strong>DHCP Server</strong>: the IP that assigned the lease (often your router)</li>
-      <li><strong>Lease Obtained / Lease Expires</strong>: lease timing</li>
-    </ul>
-
-    <hr>
+    <hr class="divider">
 
     <h2>Common DHCP Problems (A+ Exam Clues)</h2>
+    <p>If DHCP fails, watch for these symptoms — these appear regularly in A+ scenario questions:</p>
 
-    <p>If DHCP fails, you might see:</p>
-
-    <ul>
-      <li><strong>APIPA address</strong> (169.254.x.x)</li>
-      <li>No internet access</li>
-      <li>“Limited connectivity” warnings</li>
-    </ul>
+    <div class="symptoms-grid">
+      <div class="symptom-tag">APIPA address (169.254.x.x)</div>
+      <div class="symptom-tag">No internet access</div>
+      <div class="symptom-tag">"Limited connectivity" warning</div>
+      <div class="symptom-tag">IP conflict error</div>
+    </div>
 
     <p><strong>Common causes:</strong></p>
 
-    <ul>
-      <li>Bad or unplugged Ethernet cable</li>
-      <li>Wi-Fi authentication issues</li>
-      <li>Router is offline / DHCP service disabled</li>
-      <li>DHCP scope exhausted (no more IPs available)</li>
-      <li>Network adapter driver issues</li>
-    </ul>
+    <div class="fix-steps" style="margin-bottom:0;">
+      <div class="fix-step" style="background:var(--lighter);">
+        <div class="fix-step-num" style="background:rgba(249,115,22,0.15);color:#f97316;">!</div>
+        <div>
+          <div class="fix-step-title">Bad or unplugged Ethernet cable</div>
+          <div class="fix-step-detail">Physical connection issues prevent DHCP Discover from reaching the server</div>
+        </div>
+      </div>
+      <div class="fix-step" style="background:var(--lighter);">
+        <div class="fix-step-num" style="background:rgba(249,115,22,0.15);color:#f97316;">!</div>
+        <div>
+          <div class="fix-step-title">Router is offline / DHCP service disabled</div>
+          <div class="fix-step-detail">No server = no Offer response = APIPA assigned as fallback</div>
+        </div>
+      </div>
+      <div class="fix-step" style="background:var(--lighter);">
+        <div class="fix-step-num" style="background:rgba(249,115,22,0.15);color:#f97316;">!</div>
+        <div>
+          <div class="fix-step-title">DHCP scope exhausted</div>
+          <div class="fix-step-detail">All available IP addresses in the pool are already leased — no more IPs to give</div>
+        </div>
+      </div>
+      <div class="fix-step" style="background:var(--lighter);">
+        <div class="fix-step-num" style="background:rgba(249,115,22,0.15);color:#f97316;">!</div>
+        <div>
+          <div class="fix-step-title">Wi-Fi authentication issues / Network adapter driver</div>
+          <div class="fix-step-detail">Can't join the network at all, so DHCP request never reaches the server</div>
+        </div>
+      </div>
+    </div>
 
-    <hr>
+    <hr class="divider">
 
     <h2>How to Troubleshoot DHCP Issues</h2>
 
-    <ol>
-      <li>Confirm physical connection (Ethernet / Wi-Fi)</li>
-      <li>Restart the device and router</li>
-      <li>Disable and re-enable the network adapter</li>
-      <li>Run:</li>
-    </ol>
+    <div class="fix-steps">
+      <div class="fix-step">
+        <div class="fix-step-num">1</div>
+        <div>
+          <div class="fix-step-title">Confirm physical connection</div>
+          <div class="fix-step-detail">Check Ethernet cable is seated or Wi-Fi is connected</div>
+        </div>
+      </div>
+      <div class="fix-step">
+        <div class="fix-step-num">2</div>
+        <div>
+          <div class="fix-step-title">Restart the device and router</div>
+          <div class="fix-step-detail">Power-cycling often clears stale DHCP state on both ends</div>
+        </div>
+      </div>
+      <div class="fix-step">
+        <div class="fix-step-num">3</div>
+        <div>
+          <div class="fix-step-title">Disable and re-enable the network adapter</div>
+          <div class="fix-step-detail">Forces a fresh DHCP Discover broadcast from Device Manager</div>
+        </div>
+      </div>
+      <div class="fix-step">
+        <div class="fix-step-num">4</div>
+        <div>
+          <div class="fix-step-title">Release and renew the IP address</div>
+          <div class="fix-step-detail">Run: <code>ipconfig /release</code> then <code>ipconfig /renew</code></div>
+        </div>
+      </div>
+    </div>
 
-    <pre>ipconfig /release
-ipconfig /renew</pre>
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ CompTIA A+ Exam Tip</div>
+      <p>If you still get a 169.254 address after running /release and /renew, focus troubleshooting on the <strong>path to the DHCP server</strong>: router → switch → cable → Wi-Fi authentication.</p>
+      <p>The device is trying — the network path is blocked.</p>
+    </div>
 
-    <p>If you still get a 169.254 address, focus on the path to the DHCP server (router/switch/cable/Wi-Fi authentication).</p>
+    <hr class="divider">
 
-    <hr>
+    <h2>DHCP vs Static IP</h2>
 
-    <h2>DHCP vs Static IP (When Would You Use Each?)</h2>
+    <div class="vs-grid">
+      <div class="vs-card dhcp">
+        <div class="vs-card-label">DHCP</div>
+        <div class="vs-card-title">Dynamic — Auto-assigned</div>
+        <p><strong>Best for:</strong> Laptops, phones, classroom PCs — anything that moves or doesn't need a fixed address.</p>
+        <p>Automatic and scalable. No manual configuration needed.</p>
+      </div>
+      <div class="vs-card static">
+        <div class="vs-card-label">Static IP</div>
+        <div class="vs-card-title">Fixed — Manually set</div>
+        <p><strong>Best for:</strong> Servers, printers, network gear — devices that must always be reachable at the same address.</p>
+        <p>Or use a <strong>DHCP reservation</strong> to give a dynamic device a permanent address.</p>
+      </div>
+    </div>
 
-    <ul>
-      <li><strong>DHCP</strong>: best for most devices (laptops, phones, classrooms) because it’s automatic and scalable.</li>
-      <li><strong>Static IP</strong>: used when a device must stay at a fixed address (servers, printers, network gear).</li>
-    </ul>
+    <hr class="divider">
 
-    <p>In the real world, printers and servers often use static IPs (or DHCP reservations) so they’re always reachable at the same address.</p>
+    <h2>Final Summary</h2>
 
-        <hr>
+    <div class="summary-list">
+      <div class="summary-item">DHCP automatically assigns IP address, subnet mask, gateway, and DNS to devices</div>
+      <div class="summary-item">On most home networks, the <strong>router is the DHCP server</strong></div>
+      <div class="summary-item">DHCP uses the 4-step <strong>DORA</strong> process: Discover → Offer → Request → Acknowledge</div>
+      <div class="summary-item">A DHCP lease is <strong>temporary</strong> — the device renews it automatically before expiry</div>
+      <div class="summary-item">If DHCP fails, the device falls back to <strong>APIPA (169.254.x.x)</strong> with no internet</div>
+    </div>
 
-<h2>Related Networking Articles</h2>
+    <hr class="divider">
 
-<div class="callout">
-  <p><a href="best-a-plus.html">Preparing for A+? See the Best Study Resources</a></p>
-  <p><a href="subnet.html">What Is a Subnet Mask?</a></p>
-  <p><a href="dns.html">What Is DNS?</a></p>
-  <p><a href="ports.html">Common Port Numbers for the CompTIA A+ Exam</a></p>
-  <p><a href="apipa.html">What Is APIPA?</a></p>
-</div>
-
-    <hr>
-
-    <h2>Recommended A+ Study Tools</h2>
-
-    <div class="callout">
-      <p>Want to lock in DHCP quickly? Take the practice exams, then come back and review the troubleshooting section.</p>
-
-      <div class="button-row">
+    <!-- AFFILIATE BOX -->
+    <div class="affiliate-box">
+      <div class="affiliate-tag">📚 Recommended Study Tools</div>
+      <h2>Lock In DHCP Quickly</h2>
+      <p>Take the practice exams, then come back and review the troubleshooting section.</p>
+      <div class="affiliate-buttons">
         <a href="https://www.examcompass.com/comptia/a-plus-certification/free-a-plus-practice-tests"
-           class="button" target="_blank" rel="nofollow sponsored">
-          Take FREE Practice Exams
+           class="aff-btn aff-btn-primary" target="_blank" rel="nofollow sponsored">
+          🧪 Take FREE Practice Exams
         </a>
-
         <a href="https://amzn.to/3OMI8uo"
-           class="button" target="_blank" rel="nofollow sponsored">
-          Bestselling CompTIA A+ Study Guide
+           class="aff-btn aff-btn-secondary" target="_blank" rel="nofollow sponsored">
+          📖 Bestselling A+ Study Guide
         </a>
       </div>
     </div>
 
-    <hr>
+    <h2>Related Networking Articles</h2>
 
-    <h2>Final Summary</h2>
+    <div class="related-grid">
+      <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
+      <a href="subnet-mask.html" class="related-link">What Is a Subnet Mask?</a>
+      <a href="dns.html" class="related-link">What Is DNS?</a>
+      <a href="ports.html" class="related-link">Common Port Numbers</a>
+      <a href="apipa.html" class="related-link">What Is APIPA?</a>
+      <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP Explained</a>
+    </div>
 
-    <ul>
-      <li>DHCP automatically assigns IP settings to devices</li>
-      <li>Most home networks use the router as the DHCP server</li>
-      <li>DHCP uses a short “handshake” to offer and lease an IP</li>
-      <li>A DHCP lease is temporary and renews automatically</li>
-      <li>If DHCP fails, devices may fall back to APIPA (169.254.x.x)</li>
-    </ul>
-
-    <div class="footer">
-      <p>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</p>
+    <!-- CTA -->
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Preparing for the A+ Exam?</h3>
+        <p>See the books, practice exams, and free resources that actually work.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn btn-teal">See Best Study Resources →</a>
     </div>
 
   </div>
 </div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Pages</div>
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="best-a-plus.html">Best Study Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="dhcp.html">DHCP</a>
+      <a href="dns.html">DNS</a>
+      <a href="ports.html">Port Numbers</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</span>
+  </div>
+</footer>
+
 </body>
 </html>
