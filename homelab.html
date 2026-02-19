@@ -1,97 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Home Lab Guide | itstudyhub.org</title>
-    <meta name="description" content="Explore my IT home lab setup, hardware recommendations, and real-world networking troubleshooting projects.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<title>Home Lab & Projects | IT Study Hub</title>
+<meta name="description" content="Inside my IT home lab: Cross-platform Mac management, networking projects, and recommended hardware for CompTIA A+ students.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* Using your exact color palette and variables */
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --blue2:   #0f52cc;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+  --card-shadow-hover: 0 12px 40px rgba(10,22,40,.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* NAVBAR */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--navy);
+}
+.logo-img { height: 40px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  color: var(--muted);
+  transition: all 0.15s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta {
+  background: var(--navy);
+  color: var(--white) !important;
+  margin-left: 6px;
+}
+
+/* HERO */
+.hero {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+  padding: 80px 28px 90px;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(0,194,168,0.12) 0%, transparent 70%);
+}
+.hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(0,194,168,0.15);
+  border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.12;
+  margin-bottom: 18px;
+}
+.hero h1 span { color: var(--teal); }
+.hero-sub {
+  font-size: 17px;
+  color: rgba(255,255,255,0.65);
+  max-width: 600px;
+}
+
+/* MAIN CONTENT */
+.main { max-width: 1100px; margin: 0 auto; padding: 60px 28px 80px; }
+
+/* PROJECT CASE STUDY BOX */
+.project-spotlight {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 56px;
+  box-shadow: var(--card-shadow);
+}
+.project-tag {
+  color: var(--blue);
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: block;
+}
+.project-spotlight h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 28px;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+.troubleshooting-note {
+  background: var(--light);
+  border-left: 4px solid var(--blue);
+  padding: 20px;
+  margin: 24px 0;
+  font-size: 15px;
+  color: var(--text);
+}
+
+/* GEAR GRID */
+.section-header { margin-bottom: 24px; }
+.section-title { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 800; }
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+.gear-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  transition: all 0.2s;
+}
+.gear-card:hover { transform: translateY(-4px); box-shadow: var(--card-shadow-hover); }
+.gear-card h3 { font-family: 'Outfit', sans-serif; font-size: 18px; margin-bottom: 10px; }
+.gear-link {
+  display: inline-block;
+  margin-top: 15px;
+  font-weight: 600;
+  color: var(--blue);
+  font-size: 14px;
+}
+
+/* FOOTER (from your code) */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 32px; }
+.footer-bottom { max-width: 1100px; margin: 28px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; }
+
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; }
+  .hero { padding: 60px 20px; }
+  .project-spotlight { padding: 24px; }
+}
+</style>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans">
 
-    <nav class="bg-white shadow-md p-4 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-blue-600">IT Study Hub</a>
-            <div class="space-x-6">
-                <a href="index.html" class="hover:text-blue-600 transition">Study Guides</a>
-                <a href="homelab.html" class="font-bold text-blue-600">Home Lab</a>
-                <a href="#" class="hover:text-blue-600 transition">Resources</a>
-            </div>
-        </div>
-    </nav>
+<body>
 
-    <header class="bg-blue-600 text-white py-16 px-4">
-        <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">The Home Lab</h1>
-            <p class="text-xl opacity-90">Where theory meets the wire. My personal setup for testing, troubleshooting, and breaking things (so they don't break in production).</p>
-        </div>
-    </header>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="logo-128.png" alt="Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Roadmap</a>
+      <a href="homelab.html" class="active">Home Lab</a>
+      <a href="best-a-plus.html" class="nav-cta">Study Resources</a>
+    </div>
+  </div>
+</nav>
 
-    <main class="max-w-6xl mx-auto p-6 lg:p-12">
-        
-        <section class="mb-16">
-            <div class="flex items-center space-x-3 mb-6">
-                <i class="fa-solid fa-microchip text-3xl text-blue-600"></i>
-                <h2 class="text-3xl font-bold">Project Spotlight: Hybrid Architecture Management</h2>
-            </div>
-            <div class="bg-white border-l-4 border-blue-600 shadow-lg rounded-r-lg p-8">
-                <h3 class="text-2xl font-semibold mb-4 text-gray-800">The Intel to Silicon Connection Challenge</h3>
-                <p class="mb-4 leading-relaxed text-gray-700">
-                    One of the most interesting challenges in my lab was managing a legacy **Intel-based Mac** from a newer **Apple Silicon (M-series) Mac**. While macOS Screen Sharing and SSH are usually seamless, architecture differences can lead to unexpected handshake failures.
-                </p>
-                <div class="bg-blue-50 p-4 rounded-md mb-6 border border-blue-100">
-                    <p class="text-sm font-mono text-blue-800">
-                        <strong>Troubleshooting Insight:</strong> I initially encountered persistent "Connection Timed Out" errors. Through packet inspection, I realized the Mac's built-in Application Layer Firewall was dropping packets during the management handshake. Disabling the firewall temporarily resolved the issue, confirming the bottleneck—the next step is configuring granular port exceptions (TCP 5900, 22) for a secure, permanent fix.
-                    </p>
-                </div>
-                <p class="text-gray-600 italic">This project taught me that even within the same ecosystem, security settings can behave differently across different hardware architectures.</p>
-            </div>
-        </section>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Hands-On Experience</div>
+    <h1>The IT Home Lab<span> Projects</span></h1>
+    <p class="hero-sub">Where I apply CompTIA concepts to real-world hardware. Exploring networking, security, and cross-platform systems management.</p>
+  </div>
+</section>
 
-        <hr class="mb-16">
+<main class="main">
 
-        <section class="mb-16">
-            <h2 class="text-3xl font-bold mb-8 text-center">Home Lab Gear & Recommendations</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition border border-gray-100 text-center">
-                    <i class="fa-solid fa-server text-4xl text-blue-500 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Main Server</h3>
-                    <p class="text-gray-600 mb-4 text-sm">Intel Mac Mini / Apple Silicon MacBook Pro used for virtualization and management testing.</p>
-                    <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="inline-block bg-gray-100 hover:bg-blue-100 text-blue-600 px-4 py-2 rounded-full font-semibold transition">View on Amazon</a>
-                </div>
+  <section class="project-spotlight">
+    <span class="project-tag">Case Study #01</span>
+    <h2>Solving the Intel-to-Silicon Mac Management Gap</h2>
+    <p>Managing legacy Intel hardware from an M-series Mac presented a unique networking challenge. While trying to establish a remote management link, I hit a persistent timeout issue that couldn't be solved by simple rebooting.</p>
+    
+    <div class="troubleshooting-note">
+      <strong>Troubleshooting Insight:</strong> 
+      The issue was rooted in the macOS Application Firewall. Because the two systems utilize different architectures, the default handshake for screen sharing was being flagged as a security risk. Rather than leaving the firewall permanently off, I identified the specific services (TCP 5900/22) and created granular exceptions to restore connectivity without compromising security.
+    </div>
+    
+    <p style="color: var(--muted); font-size: 14px;">Skills demonstrated: Network Troubleshooting, Firewall Configuration, Multi-Architecture Support.</p>
+  </section>
 
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition border border-gray-100 text-center">
-                    <i class="fa-solid fa-network-wired text-4xl text-blue-500 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Networking Gear</h3>
-                    <p class="text-gray-600 mb-4 text-sm">Managed switches and Raspberry Pi units for DNS/DHCP (Pi-Hole) experiments.</p>
-                    <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="inline-block bg-gray-100 hover:bg-blue-100 text-blue-600 px-4 py-2 rounded-full font-semibold transition">Top Lab Picks</a>
-                </div>
+  <div class="section-header">
+    <h2 class="section-title">Lab <span>Infrastructure</span></h2>
+  </div>
 
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition border border-gray-100 text-center">
-                    <i class="fa-solid fa-database text-4xl text-blue-500 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Storage (NAS)</h3>
-                    <p class="text-gray-600 mb-4 text-sm">External SSDs for fast VM booting and network-attached storage for backups.</p>
-                    <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="inline-block bg-gray-100 hover:bg-blue-100 text-blue-600 px-4 py-2 rounded-full font-semibold transition">Best SSD Deals</a>
-                </div>
+  <div class="cards-grid">
+    <div class="gear-card">
+      <div style="font-size: 32px; margin-bottom: 12px;">💻</div>
+      <h3>Management & Host Gear</h3>
+      <p style="font-size: 14px; color: var(--muted);">My primary setup includes a mix of Apple Silicon for daily work and Intel hosts for legacy testing and virtualization.</p>
+      <a href="#" class="gear-link">View Hardware Picks →</a>
+    </div>
 
-            </div>
-        </section>
+    <div class="gear-card">
+      <div style="font-size: 32px; margin-bottom: 12px;">🔌</div>
+      <h3>Networking Essentials</h3>
+      <p style="font-size: 14px; color: var(--muted);">The routers, managed switches, and Cat6 cabling that form the backbone of my study environment.</p>
+      <a href="#" class="gear-link">Networking Gear →</a>
+    </div>
 
-        <section class="bg-gray-900 text-white rounded-2xl p-8 text-center">
-            <h2 class="text-2xl font-bold mb-4">Build Your Own Lab</h2>
-            <p class="mb-6 opacity-80">Don't just read about networking. Build it. Grab my free "Home Lab Starter Checklist" to get started with the gear you already have.</p>
-            <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-bold transition">Download Checklist (Free)</a>
-        </section>
+    <div class="gear-card">
+      <div style="font-size: 32px; margin-bottom: 12px;">🛠️</div>
+      <h3>IT Toolkit</h3>
+      <p style="font-size: 14px; color: var(--muted);">From anti-static mats to cable testers—the physical tools every A+ student should have in their bag.</p>
+      <a href="#" class="gear-link">Explore Toolkit →</a>
+    </div>
+  </div>
 
-    </main>
+</main>
 
-    <footer class="bg-white border-t mt-20 py-8">
-        <div class="max-w-6xl mx-auto px-4 text-center text-gray-500 text-sm">
-            <p>&copy; 2026 IT Study Hub. Some links may be affiliate links. Using them supports my lab at no cost to you.</p>
-        </div>
-    </footer>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Building a technical portfolio through practical IT education.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Lab Pages</div>
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Roadmap</a>
+      <a href="best-a-plus.html">Study Resources</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 IT Study Hub — itstudyhub.org</span>
+    <span>Affiliate Disclosure: Supporting this site helps keep the lab running.</span>
+  </div>
+</footer>
 
 </body>
 </html>
