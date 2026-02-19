@@ -350,6 +350,42 @@ a:hover { text-decoration: underline; }
 .product-btn-arrow { font-size: 14px; transition: transform 0.15s; }
 .product-card:hover .product-btn-arrow { transform: translateX(3px); }
 
+/* ── BEGINNER GUIDE CALLOUT ── */
+.guide-callout {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap;
+  background: linear-gradient(135deg, #f0faf8, #e8f4ff);
+  border: 1px solid rgba(0,194,168,0.3);
+  border-left: 4px solid var(--teal);
+  border-radius: 14px; padding: 20px 24px;
+  margin-bottom: 40px; text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+  box-shadow: var(--card-shadow);
+}
+.guide-callout:hover {
+  transform: translateY(-2px); box-shadow: var(--card-shadow-hover);
+  border-color: rgba(0,194,168,0.5); text-decoration: none;
+}
+.guide-callout-left { flex: 1; min-width: 200px; }
+.guide-callout-tag {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.7px; text-transform: uppercase;
+  color: var(--teal2); margin-bottom: 5px;
+}
+.guide-callout-title {
+  font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800;
+  color: var(--navy); margin-bottom: 4px;
+}
+.guide-callout-sub { font-size: 13px; color: var(--muted); line-height: 1.55; }
+.guide-callout-cta {
+  background: var(--navy); color: var(--white);
+  font-size: 13.5px; font-weight: 700;
+  padding: 10px 18px; border-radius: 9px;
+  white-space: nowrap; flex-shrink: 0;
+  transition: background 0.15s;
+}
+.guide-callout:hover .guide-callout-cta { background: var(--navy2); }
+
 /* ── CABLE WORKFLOW BANNER ── */
 .cable-workflow {
   background: var(--navy); border-radius: 12px;
@@ -548,6 +584,16 @@ a:hover { text-decoration: underline; }
 <!-- MAIN -->
 <main class="main">
 
+  <!-- BEGINNER GUIDE CALLOUT -->
+  <a href="home-lab-setup-guide.html" class="guide-callout">
+    <div class="guide-callout-left">
+      <div class="guide-callout-tag">📖 New to home labs?</div>
+      <div class="guide-callout-title">Read the Beginner Setup Guide first</div>
+      <div class="guide-callout-sub">Learn how to start with VMs on a laptop you already own — before spending anything on gear.</div>
+    </div>
+    <div class="guide-callout-cta">Read the Guide →</div>
+  </a>
+
   <!-- WHY A HOME LAB -->
   <div class="why-box">
     <div class="why-box-tag">💡 Why This Matters</div>
@@ -740,7 +786,7 @@ a:hover { text-decoration: underline; }
         <span class="spec-pill">10-pack</span>
         <span class="spec-pill">Multiple lengths</span>
       </div>
-      <a href="https://amzn.to/4c4tFnn" class="product-btn" target="_blank" rel="nofollow sponsored">
+      <a href="https://amzn.to/YOUR_MONOPRICE_LINK" class="product-btn" target="_blank" rel="nofollow sponsored">
         View on Amazon <span class="product-btn-arrow">→</span>
       </a>
     </div>
@@ -758,7 +804,7 @@ a:hover { text-decoration: underline; }
         <span class="spec-pill">T568A/B compatible</span>
         <span class="spec-pill">Cat5e/6</span>
       </div>
-      <a href="https://amzn.to/4rY8ic3" class="product-btn" target="_blank" rel="nofollow sponsored">
+      <a href="https://amzn.to/YOUR_CRIMP_LINK" class="product-btn" target="_blank" rel="nofollow sponsored">
         View on Amazon <span class="product-btn-arrow">→</span>
       </a>
     </div>
@@ -776,7 +822,7 @@ a:hover { text-decoration: underline; }
         <span class="spec-pill">Multiple widths</span>
         <span class="spec-pill">Color options</span>
       </div>
-      <a href="https://amzn.to/4kHfwyK" class="product-btn" target="_blank" rel="nofollow sponsored">
+      <a href="https://amzn.to/YOUR_VELCRO_LINK" class="product-btn" target="_blank" rel="nofollow sponsored">
         View on Amazon <span class="product-btn-arrow">→</span>
       </a>
     </div>
