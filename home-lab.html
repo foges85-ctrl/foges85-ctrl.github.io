@@ -315,6 +315,7 @@ a:hover { text-decoration: underline; }
 .badge-pick { background: rgba(0,194,168,0.1); color: var(--teal2); border: 1px solid rgba(0,194,168,0.25); }
 .badge-value { background: rgba(245,158,11,0.1); color: #b45309; border: 1px solid rgba(245,158,11,0.25); }
 .badge-popular { background: rgba(26,108,255,0.1); color: var(--blue); border: 1px solid rgba(26,108,255,0.25); }
+.badge-exam { background: rgba(139,92,246,0.1); color: #6d28d9; border: 1px solid rgba(139,92,246,0.25); }
 
 .product-card h3 {
   font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800;
@@ -348,6 +349,34 @@ a:hover { text-decoration: underline; }
 }
 .product-btn-arrow { font-size: 14px; transition: transform 0.15s; }
 .product-card:hover .product-btn-arrow { transform: translateX(3px); }
+
+/* ── CABLE WORKFLOW BANNER ── */
+.cable-workflow {
+  background: var(--navy); border-radius: 12px;
+  padding: 16px 22px; margin-bottom: 24px;
+  display: flex; align-items: center; gap: 16px;
+  flex-wrap: wrap; position: relative; overflow: hidden;
+}
+.cable-workflow::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 100% 50%, rgba(0,194,168,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.workflow-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.7px; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); flex-shrink: 0;
+}
+.workflow-steps {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.workflow-step {
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px; padding: 7px 13px;
+  font-size: 13px; font-weight: 600; color: var(--white);
+}
+.workflow-step span { color: var(--teal); margin-right: 5px; font-size: 12px; }
+.workflow-arrow { color: rgba(255,255,255,0.25); font-size: 14px; flex-shrink: 0; }
 
 /* ── WHY THESE ITEMS BOX ── */
 .why-box {
@@ -436,6 +465,7 @@ a:hover { text-decoration: underline; }
   .footer { padding: 36px 16px; }
   .footer-bottom { flex-direction: column; }
   .cta-box { flex-direction: column; align-items: flex-start; }
+  .cable-workflow { flex-direction: column; align-items: flex-start; gap: 10px; }
 }
 
 @keyframes fadeUp {
@@ -486,14 +516,14 @@ a:hover { text-decoration: underline; }
         <div class="stat-icon">🧰</div>
         <div>
           <div class="stat-label">Categories</div>
-          <div class="stat-val">3 Sections</div>
+          <div class="stat-val">4 Sections</div>
         </div>
       </div>
       <div class="stat-pill">
         <div class="stat-icon">🔗</div>
         <div>
           <div class="stat-label">Products</div>
-          <div class="stat-val">6 Picks</div>
+          <div class="stat-val">10 Picks</div>
         </div>
       </div>
       <div class="stat-pill">
@@ -560,7 +590,6 @@ a:hover { text-decoration: underline; }
       <div class="toolkit-card-tag">Pro Pick</div>
       <h3>iFixit Pro Tech Toolkit</h3>
       <p class="toolkit-card-pitch">The industry standard for IT technicians. Every bit you'll ever need for laptops, desktops, and servers — plus the ESD wrist strap that protects expensive hardware. Built to last a career.</p>
-
       <div class="spec-list">
         <div class="spec-row">
           <span class="spec-label">Best for</span>
@@ -583,7 +612,6 @@ a:hover { text-decoration: underline; }
           <span class="spec-value">Lifetime guarantee</span>
         </div>
       </div>
-
       <a href="https://amzn.to/40jyL85" class="toolkit-btn" target="_blank" rel="nofollow sponsored">
         View on Amazon →
       </a>
@@ -594,7 +622,6 @@ a:hover { text-decoration: underline; }
       <div class="toolkit-card-tag">Budget Pick</div>
       <h3>STREBITO 142-Piece Set</h3>
       <p class="toolkit-card-pitch">If you're just getting started and want maximum bit variety without the premium price, this is the pick. Highest bit count for the money — great for hobbyists building their first PC or tackling basic repairs.</p>
-
       <div class="spec-list">
         <div class="spec-row">
           <span class="spec-label">Best for</span>
@@ -617,7 +644,6 @@ a:hover { text-decoration: underline; }
           <span class="spec-value">Standard warranty</span>
         </div>
       </div>
-
       <a href="https://amzn.to/46b4USU" class="toolkit-btn" target="_blank" rel="nofollow sponsored">
         View on Amazon →
       </a>
@@ -632,7 +658,7 @@ a:hover { text-decoration: underline; }
     <div class="section-icon">📡</div>
     <div>
       <div class="section-title">Networking <span>Gear</span></div>
-      <div class="section-sub">Tools for cabling, diagnostics, and network practice</div>
+      <div class="section-sub">Tools for diagnostics and network practice</div>
     </div>
   </div>
 
@@ -670,6 +696,87 @@ a:hover { text-decoration: underline; }
         <span class="spec-pill">Web managed</span>
       </div>
       <a href="https://amzn.to/3ZLrsGc" class="product-btn" target="_blank" rel="nofollow sponsored">
+        View on Amazon <span class="product-btn-arrow">→</span>
+      </a>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- CABLES & WIRING -->
+  <div class="section-header">
+    <div class="section-icon">🔌</div>
+    <div>
+      <div class="section-title">Cables <span>&amp; Wiring</span></div>
+      <div class="section-sub">Make it, run it, test it — the full cabling workflow</div>
+    </div>
+  </div>
+
+  <!-- Workflow strip -->
+  <div class="cable-workflow">
+    <div class="workflow-label">Lab Workflow</div>
+    <div class="workflow-steps">
+      <div class="workflow-step"><span>①</span> Crimp your own cables</div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step"><span>②</span> Run &amp; bundle them cleanly</div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step"><span>③</span> Test every connection</div>
+    </div>
+  </div>
+
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-card-header">
+        <div class="product-tag">Patch Cables</div>
+        <span class="product-badge badge-value">Best Value</span>
+      </div>
+      <h3>Monoprice Cat6 Patch Cables (10-pack)</h3>
+      <p class="product-card-why">Every home lab needs a bundle of ready-made patch cables for connecting switches, routers, and test machines. Monoprice is the trusted budget brand — solid build quality at a fraction of name-brand prices.</p>
+      <div class="spec-pills">
+        <span class="spec-pill">Cat6</span>
+        <span class="spec-pill">550MHz</span>
+        <span class="spec-pill">10-pack</span>
+        <span class="spec-pill">Multiple lengths</span>
+      </div>
+      <a href="https://amzn.to/YOUR_MONOPRICE_LINK" class="product-btn" target="_blank" rel="nofollow sponsored">
+        View on Amazon <span class="product-btn-arrow">→</span>
+      </a>
+    </div>
+
+    <div class="product-card">
+      <div class="product-card-header">
+        <div class="product-tag">Crimp Tool + Connectors</div>
+        <span class="product-badge badge-exam">A+ Exam Skill</span>
+      </div>
+      <h3>Platinum Tools EZ-RJ45 Crimp Kit</h3>
+      <p class="product-card-why">Making your own patch cables is a real A+ exam topic — T568A and T568B wiring standards are tested directly. This kit lets you practice the full crimp process from scratch, pairing perfectly with the Klein tester above.</p>
+      <div class="spec-pills">
+        <span class="spec-pill">Pass-through design</span>
+        <span class="spec-pill">RJ45 connectors</span>
+        <span class="spec-pill">T568A/B compatible</span>
+        <span class="spec-pill">Cat5e/6</span>
+      </div>
+      <a href="https://amzn.to/YOUR_CRIMP_LINK" class="product-btn" target="_blank" rel="nofollow sponsored">
+        View on Amazon <span class="product-btn-arrow">→</span>
+      </a>
+    </div>
+
+    <div class="product-card">
+      <div class="product-card-header">
+        <div class="product-tag">Cable Management</div>
+        <span class="product-badge badge-popular">Lab Staple</span>
+      </div>
+      <h3>Velcro One-Wrap Cable Ties (100-pack)</h3>
+      <p class="product-card-why">A messy lab is a slow lab. Cable ties keep your runs organized and easy to trace — which matters when you're troubleshooting a fault. Reusable and repositionable, unlike zip ties.</p>
+      <div class="spec-pills">
+        <span class="spec-pill">Reusable</span>
+        <span class="spec-pill">100-pack</span>
+        <span class="spec-pill">Multiple widths</span>
+        <span class="spec-pill">Color options</span>
+      </div>
+      <a href="https://amzn.to/YOUR_VELCRO_LINK" class="product-btn" target="_blank" rel="nofollow sponsored">
         View on Amazon <span class="product-btn-arrow">→</span>
       </a>
     </div>
