@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<title>Network Troubleshooting Commands | CompTIA A+ Guide (ipconfig, ping, tracert & more)</title>
+<meta name="description" content="Master the essential network troubleshooting commands for the CompTIA A+ exam — ipconfig, ping, tracert, nslookup, netstat, and more with real examples and when to use each one.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+  --card-shadow-hover: 0 12px 40px rgba(10,22,40,.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--teal2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 28px;
+  height: 68px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+}
+.logo-link {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 17px; color: var(--navy); letter-spacing: -0.3px;
+  flex-shrink: 0; text-decoration: none;
+}
+.logo-img { height: 40px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px; font-weight: 600; padding: 8px 14px;
+  border-radius: 8px; color: var(--muted);
+  transition: color 0.15s, background 0.15s; text-decoration: none;
+}
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta {
+  background: var(--navy); color: var(--white) !important;
+  padding: 8px 18px; border-radius: 8px; margin-left: 6px;
+  transition: background 0.15s, transform 0.1s;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 34px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy); position: relative;
+  overflow: hidden; padding: 52px 28px 60px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(0,194,168,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.page-hero-inner {
+  max-width: 860px; margin: 0 auto; position: relative; z-index: 1;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  margin-bottom: 18px; font-family: 'DM Mono', monospace;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; text-decoration: none; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge {
+  display: inline-flex; align-items: center;
+  background: rgba(0,194,168,0.15); border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 16px;
+}
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(24px, 4vw, 38px); font-weight: 800;
+  color: var(--white); line-height: 1.18; letter-spacing: -0.5px; margin-bottom: 12px;
+}
+.page-hero h1 span { color: var(--teal); }
+.page-hero-sub {
+  font-size: 15px; color: rgba(255,255,255,0.6); max-width: 560px; line-height: 1.7;
+}
+
+/* ── COMMAND QUICK-NAV ── */
+.cmd-nav {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-top: 22px;
+}
+.cmd-nav a {
+  font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.75); padding: 5px 12px; border-radius: 6px;
+  transition: background 0.15s, color 0.15s; text-decoration: none;
+}
+.cmd-nav a:hover { background: rgba(0,194,168,0.2); color: var(--teal); text-decoration: none; }
+
+/* ── ARTICLE LAYOUT ── */
+.article-wrap { max-width: 860px; margin: 0 auto; padding: 52px 28px 80px; }
+@media (max-width: 768px) { .article-wrap { padding: 32px 16px 60px; } }
+
+.article-body h2 {
+  font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.3px; margin: 48px 0 14px;
+}
+.article-body h2:first-child { margin-top: 0; }
+.article-body p { font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 14px; }
+.article-body strong { color: var(--navy); font-weight: 700; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+/* ── COMMAND BLOCK ── */
+.cmd-block {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: var(--card-shadow); margin-bottom: 28px;
+}
+.cmd-block-header {
+  background: var(--navy); padding: 12px 20px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.cmd-block-name {
+  font-family: 'DM Mono', monospace; font-size: 16px; font-weight: 500;
+  color: var(--teal); letter-spacing: 0.3px;
+}
+.cmd-block-tag {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.7px; text-transform: uppercase;
+  background: rgba(0,194,168,0.15); border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal); padding: 3px 10px; border-radius: 100px;
+}
+.cmd-block-body { padding: 20px 22px; }
+.cmd-block-desc {
+  font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 16px;
+}
+
+/* syntax line */
+.cmd-syntax {
+  background: var(--navy); border-radius: 8px;
+  padding: 12px 16px; margin-bottom: 16px;
+  font-family: 'DM Mono', monospace; font-size: 13px;
+  color: rgba(255,255,255,0.85); overflow-x: auto;
+}
+.cmd-syntax .cmd-prompt { color: var(--teal); margin-right: 8px; }
+.cmd-syntax .cmd-flag { color: #93c5fd; }
+.cmd-syntax .cmd-comment { color: rgba(255,255,255,0.35); font-size: 11px; margin-left: 12px; }
+
+/* output example */
+.cmd-output {
+  background: #0d1f0d; border-radius: 8px;
+  padding: 14px 16px; margin-bottom: 16px;
+  font-family: 'DM Mono', monospace; font-size: 12px;
+  color: #86efac; line-height: 1.7; overflow-x: auto;
+}
+.cmd-output .out-label {
+  color: rgba(255,255,255,0.3); font-size: 10px;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  display: block; margin-bottom: 8px;
+}
+.cmd-output .out-highlight { color: #fde68a; }
+.cmd-output .out-muted { color: rgba(134,239,172,0.45); }
+
+/* use-when row */
+.cmd-usewhen {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: linear-gradient(135deg, #f0faf8, #edfaf7);
+  border: 1px solid rgba(0,194,168,0.2);
+  border-radius: 8px; padding: 12px 14px;
+  font-size: 13.5px; color: var(--text); line-height: 1.6;
+}
+.cmd-usewhen::before {
+  content: '✓'; color: var(--teal2); font-weight: 700;
+  flex-shrink: 0; margin-top: 1px;
+}
+
+/* common flags table */
+.flags-table {
+  width: 100%; border-collapse: collapse; margin-bottom: 16px;
+  font-size: 13.5px;
+}
+.flags-table th {
+  background: var(--light); color: var(--navy);
+  font-weight: 700; padding: 8px 12px; text-align: left;
+  border-bottom: 2px solid var(--border);
+  font-family: 'DM Mono', monospace; font-size: 12px;
+  letter-spacing: 0.5px; text-transform: uppercase;
+}
+.flags-table td {
+  padding: 9px 12px; border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.flags-table tr:last-child td { border-bottom: none; }
+.flags-table td:first-child {
+  font-family: 'DM Mono', monospace; font-size: 12.5px;
+  color: var(--blue); font-weight: 500; white-space: nowrap;
+}
+.flags-table td:last-child { color: var(--muted); }
+
+/* ── EXAM TIP BOX ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060; border-left: 4px solid #f0c000;
+  border-radius: 12px; padding: 20px 22px; margin: 4px 0 28px;
+}
+.exam-tip-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px;
+}
+.exam-tip p { font-size: 14px; color: #5a4000; margin-bottom: 8px; line-height: 1.65; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #3a2800; }
+
+/* ── TROUBLESHOOTING FLOWCHART ── */
+.flow-box {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: var(--card-shadow); margin-bottom: 28px;
+}
+.flow-header {
+  background: var(--navy); padding: 12px 20px;
+  font-family: 'Outfit', sans-serif; font-size: 15px;
+  font-weight: 700; color: var(--white);
+}
+.flow-step {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 14px 20px; border-bottom: 1px solid var(--border);
+}
+.flow-step:last-child { border-bottom: none; }
+.flow-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--navy); color: var(--white);
+  font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500;
+  flex-shrink: 0; margin-top: 1px;
+}
+.flow-cmd {
+  font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500;
+  color: var(--teal2); margin-bottom: 3px;
+}
+.flow-desc { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+
+/* ── CHEAT SHEET ── */
+.cheat-sheet {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: var(--card-shadow); margin-bottom: 28px;
+}
+.cheat-header {
+  background: var(--navy); padding: 12px 20px;
+  font-family: 'Outfit', sans-serif; font-size: 15px;
+  font-weight: 700; color: var(--white);
+}
+.cheat-row {
+  display: grid; grid-template-columns: 180px 1fr;
+  gap: 16px; padding: 12px 20px; border-bottom: 1px solid var(--border);
+  align-items: center; font-size: 13.5px;
+}
+.cheat-row:last-child { border-bottom: none; }
+.cheat-cmd {
+  font-family: 'DM Mono', monospace; font-size: 12.5px;
+  font-weight: 500; color: var(--navy);
+}
+.cheat-use { color: var(--muted); line-height: 1.5; }
+@media (max-width: 560px) {
+  .cheat-row { grid-template-columns: 1fr; gap: 4px; }
+}
+
+/* ── SUMMARY LIST ── */
+.summary-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.summary-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px;
+  font-size: 14px; color: var(--text); box-shadow: var(--card-shadow);
+}
+.summary-item::before {
+  content: '✓';
+  display: flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px;
+  background: rgba(0,194,168,0.12); color: var(--teal2);
+  border-radius: 50%; font-size: 11px; font-weight: 700;
+  flex-shrink: 0; margin-top: 1px;
+}
+
+/* ── AFFILIATE BOX ── */
+.affiliate-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px; padding: 28px 32px; margin-bottom: 36px;
+  position: relative; overflow: hidden;
+}
+.affiliate-box::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.affiliate-tag {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase; color: var(--teal); margin-bottom: 8px;
+}
+.affiliate-box h2 {
+  font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700;
+  color: var(--white); margin-bottom: 6px;
+}
+.affiliate-box p { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 18px; }
+.affiliate-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+.aff-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 18px; border-radius: 9px; font-size: 14px; font-weight: 600;
+  transition: transform 0.15s, filter 0.15s; white-space: nowrap; text-decoration: none;
+}
+.aff-btn:hover { transform: translateY(-2px); filter: brightness(1.05); text-decoration: none; }
+.aff-btn-primary { background: var(--teal); color: var(--navy); }
+.aff-btn-secondary { background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.15); }
+
+/* ── RELATED + CTA ── */
+.related-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px;
+}
+@media (max-width: 560px) { .related-grid { grid-template-columns: 1fr; } }
+.related-link {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px; font-size: 14px;
+  font-weight: 600; color: var(--navy); text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s, color 0.15s;
+  box-shadow: var(--card-shadow);
+}
+.related-link:hover { border-color: rgba(0,194,168,0.3); color: var(--teal2); transform: translateY(-2px); text-decoration: none; }
+.related-link::before { content: '→'; color: var(--teal2); font-size: 13px; flex-shrink: 0; }
+
+.cta-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px; padding: 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap; position: relative; overflow: hidden;
+}
+.cta-box::before {
+  content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%); pointer-events: none;
+}
+.cta-box-text h3 { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
+  border-radius: 10px; font-size: 14px; font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap; flex-shrink: 0; text-decoration: none;
+}
+.btn:hover { transform: translateY(-2px); text-decoration: none; }
+.btn-teal { background: var(--teal); color: var(--navy); box-shadow: 0 6px 20px rgba(0,194,168,0.3); }
+.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; text-decoration: none; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  max-width: 1100px; margin: 28px auto 0; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+@media (max-width: 600px) {
+  .footer { padding: 36px 16px; }
+  .footer-bottom { flex-direction: column; }
+  .cta-box { flex-direction: column; align-items: flex-start; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-hero-inner { animation: fadeUp 0.6s ease both; }
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-a-plus.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <span>›</span>
+      <span>Troubleshooting Commands</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · Troubleshooting</div>
+    <h1>Network Troubleshooting <span>Commands</span></h1>
+    <p class="page-hero-sub">
+      The six commands every IT technician uses daily — ipconfig, ping, tracert, nslookup, netstat, and nbtstat. What each one does, when to use it, and exactly how it appears on the A+ exam.
+    </p>
+    <nav class="cmd-nav">
+      <a href="#ipconfig">ipconfig</a>
+      <a href="#ping">ping</a>
+      <a href="#tracert">tracert</a>
+      <a href="#nslookup">nslookup</a>
+      <a href="#netstat">netstat</a>
+      <a href="#nbtstat">nbtstat</a>
+      <a href="#cheatsheet">Cheat Sheet</a>
+    </nav>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <p>When a network stops working, you don't guess — you run commands and read the output. These six tools are the core of Windows network troubleshooting, and all of them appear on the CompTIA A+ exam. Learning them in order is the fastest way to build a real diagnostic workflow.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ How to study this page</div>
+      <p>Don't just read — open a Command Prompt and run each command as you go. The output will look exactly like the exam scenarios. Type <strong>cmd</strong> in the Windows search bar to open it.</p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- IPCONFIG -->
+    <h2 id="ipconfig">ipconfig — Check Your IP Configuration</h2>
+
+    <div class="cmd-block">
+      <div class="cmd-block-header">
+        <span class="cmd-block-name">ipconfig</span>
+        <span class="cmd-block-tag">Start Here</span>
+      </div>
+      <div class="cmd-block-body">
+        <p class="cmd-block-desc"><strong>ipconfig</strong> shows your computer's current IP address, subnet mask, and default gateway. It's almost always the first command you run when diagnosing a network problem — it tells you immediately whether you have a valid IP address or an APIPA address (169.254.x.x).</p>
+
+        <div class="cmd-syntax">
+          <span class="cmd-prompt">C:\&gt;</span>ipconfig<br>
+          <span class="cmd-prompt">C:\&gt;</span>ipconfig <span class="cmd-flag">/all</span><span class="cmd-comment">— full details including DNS and MAC address</span><br>
+          <span class="cmd-prompt">C:\&gt;</span>ipconfig <span class="cmd-flag">/release</span><span class="cmd-comment">— release current DHCP lease</span><br>
+          <span class="cmd-prompt">C:\&gt;</span>ipconfig <span class="cmd-flag">/renew</span><span class="cmd-comment">— request a new IP from DHCP</span><br>
+          <span class="cmd-prompt">C:\&gt;</span>ipconfig <span class="cmd-flag">/flushdns</span><span class="cmd-comment">— clear the local DNS cache</span>
+        </div>
+
+        <div class="cmd-output">
+          <span class="out-label">Sample output — ipconfig</span>
+          Ethernet adapter Ethernet:<br>
+          <span class="out-muted">&nbsp;&nbsp; Connection-specific DNS Suffix:</span><br>
+          &nbsp;&nbsp; IPv4 Address. . . . . . : <span class="out-highlight">192.168.1.25</span><br>
+          &nbsp;&nbsp; Subnet Mask . . . . . . : <span class="out-highlight">255.255.255.0</span><br>
+          &nbsp;&nbsp; Default Gateway . . . . : <span class="out-highlight">192.168.1.1</span>
+        </div>
+
+        <div class="cmd-usewhen">Device has no internet — run ipconfig first to confirm whether the IP is valid or 169.254.x.x (APIPA). A blank Default Gateway means the device can't route traffic off the local network.</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- PING -->
+    <h2 id="ping">ping — Test Connectivity</h2>
+
+    <div class="cmd-block">
+      <div class="cmd-block-header">
+        <span class="cmd-block-name">ping</span>
+        <span class="cmd-block-tag">Most Used</span>
+      </div>
+      <div class="cmd-block-body">
+        <p class="cmd-block-desc"><strong>ping</strong> sends test packets to a destination and measures the response. It tells you whether a device is reachable and how long packets take to get there. The sequence matters — ping loopback first, then your own IP, then the gateway, then an external IP, then a domain name. Each step isolates a different layer of the problem.</p>
+
+        <div class="cmd-syntax">
+          <span class="cmd-prompt">C:\&gt;</span>ping <span class="cmd-flag">127.0.0.1</span><span class="cmd-comment">— loopback: tests the NIC itself</span><br>
+          <span class="cmd-prompt">C:\&gt;</span>ping <span class="cmd-flag">192.168.1.25</span><span class="cmd-comment">— your own IP: confirms TCP/IP stack</span><br>
+          <span class="cmd-prompt">C:\&gt;</span>ping <span class="cmd-flag">192.168.1.1</span><span class="cmd-comment">— default gateway: tests local routing</span><br>
+          <span class="cmd-prompt">C:\&gt;</span>ping <span class="cmd-flag">8.8.8.8</span><span class="cmd-comment">— external IP: tests internet (bypasses DNS)</span><br>
+          <span class="cmd-prompt">C:\&gt;</span>ping <span class="cmd-flag">google.com</span><span class="cmd-comment">— domain name: tests DNS resolution</span>
+        </div>
+
+        <div class="cmd-output">
+          <span class="out-label">Sample output — ping 8.8.8.8</span>
+          Pinging 8.8.8.8 with 32 bytes of data:<br>
+          Reply from 8.8.8.8: bytes=32 time=<span class="out-highlight">14ms</span> TTL=117<br>
+          Reply from 8.8.8.8: bytes=32 time=<span class="out-highlight">13ms</span> TTL=117<br><br>
+          Ping statistics for 8.8.8.8:<br>
+          &nbsp;&nbsp; Packets: Sent = 4, Received = <span class="out-highlight">4</span>, Lost = <span class="out-highlight">0</span> (0% loss)
+        </div>
+
+        <div class="cmd-usewhen">Ping 8.8.8.8 succeeds but ping google.com fails — this is a classic DNS problem. The internet connection works, but DNS resolution is broken. This exact scenario appears frequently on the A+ exam.</div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ The Most Important Ping Test on the A+ Exam</div>
+      <p><strong>ping 8.8.8.8 works → ping google.com fails = DNS problem.</strong></p>
+      <p>If an IP address works but a domain name doesn't, the internet connection is fine — DNS resolution is broken. Fix: try <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:4px">ipconfig /flushdns</code> or change the DNS server to 8.8.8.8.</p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- TRACERT -->
+    <h2 id="tracert">tracert — Trace the Route</h2>
+
+    <div class="cmd-block">
+      <div class="cmd-block-header">
+        <span class="cmd-block-name">tracert</span>
+        <span class="cmd-block-tag">Path Diagnosis</span>
+      </div>
+      <div class="cmd-block-body">
+        <p class="cmd-block-desc"><strong>tracert</strong> (Trace Route) shows every hop a packet takes on its way to a destination. Where ping just tells you if something is reachable, tracert tells you <em>where</em> along the path things are breaking down. Each line is one router the packet passed through, with response times.</p>
+
+        <div class="cmd-syntax">
+          <span class="cmd-prompt">C:\&gt;</span>tracert <span class="cmd-flag">google.com</span><br>
+          <span class="cmd-prompt">C:\&gt;</span>tracert <span class="cmd-flag">8.8.8.8</span>
+        </div>
+
+        <div class="cmd-output">
+          <span class="out-label">Sample output — tracert google.com</span>
+          Tracing route to google.com [142.250.72.14]:<br><br>
+          &nbsp;1 &nbsp; 1ms &nbsp; 1ms &nbsp; 1ms &nbsp; <span class="out-highlight">192.168.1.1</span> <span class="out-muted">(your router)</span><br>
+          &nbsp;2 &nbsp; 8ms &nbsp; 9ms &nbsp; 8ms &nbsp; <span class="out-highlight">10.0.0.1</span> <span class="out-muted">(ISP hop)</span><br>
+          &nbsp;3 &nbsp;12ms &nbsp;11ms &nbsp;13ms &nbsp; <span class="out-highlight">72.14.232.1</span><br>
+          &nbsp;4 &nbsp;14ms &nbsp;13ms &nbsp;14ms &nbsp; <span class="out-highlight">142.250.72.14</span> <span class="out-muted">(destination)</span>
+        </div>
+
+        <div class="cmd-usewhen">Ping fails but you don't know where the problem is. Tracert shows you exactly which hop times out — if hop 1 (your gateway) fails, the problem is local. If it fails at hop 3, the problem is upstream with your ISP.</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- NSLOOKUP -->
+    <h2 id="nslookup">nslookup — Query DNS</h2>
+
+    <div class="cmd-block">
+      <div class="cmd-block-header">
+        <span class="cmd-block-name">nslookup</span>
+        <span class="cmd-block-tag">DNS Diagnosis</span>
+      </div>
+      <div class="cmd-block-body">
+        <p class="cmd-block-desc"><strong>nslookup</strong> (Name Server Lookup) queries DNS servers directly and shows what IP address a domain resolves to. It's the go-to tool when you suspect a DNS problem — you can query your default DNS server or specify a different one to compare results.</p>
+
+        <div class="cmd-syntax">
+          <span class="cmd-prompt">C:\&gt;</span>nslookup <span class="cmd-flag">google.com</span><span class="cmd-comment">— query default DNS server</span><br>
+          <span class="cmd-prompt">C:\&gt;</span>nslookup <span class="cmd-flag">google.com 8.8.8.8</span><span class="cmd-comment">— query a specific DNS server</span>
+        </div>
+
+        <div class="cmd-output">
+          <span class="out-label">Sample output — nslookup google.com</span>
+          Server: &nbsp; dns.google<br>
+          Address: &nbsp;<span class="out-highlight">8.8.8.8</span><br><br>
+          Non-authoritative answer:<br>
+          Name: &nbsp;&nbsp; <span class="out-highlight">google.com</span><br>
+          Addresses: <span class="out-highlight">142.250.72.14</span>
+        </div>
+
+        <div class="cmd-usewhen">Websites won't load but ping 8.8.8.8 works. Run nslookup to confirm whether your DNS server is resolving names correctly. If nslookup fails, DNS is definitely the issue.</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- NETSTAT -->
+    <h2 id="netstat">netstat — View Active Connections</h2>
+
+    <div class="cmd-block">
+      <div class="cmd-block-header">
+        <span class="cmd-block-name">netstat</span>
+        <span class="cmd-block-tag">Connections</span>
+      </div>
+      <div class="cmd-block-body">
+        <p class="cmd-block-desc"><strong>netstat</strong> (Network Statistics) shows all active TCP connections and listening ports on your machine. It's useful for seeing what your computer is currently connected to, identifying unusual connections, and confirming which ports are open.</p>
+
+        <div class="cmd-syntax">
+          <span class="cmd-prompt">C:\&gt;</span>netstat<span class="cmd-comment">— active connections</span><br>
+          <span class="cmd-prompt">C:\&gt;</span>netstat <span class="cmd-flag">-a</span><span class="cmd-comment">— all connections and listening ports</span><br>
+          <span class="cmd-prompt">C:\&gt;</span>netstat <span class="cmd-flag">-n</span><span class="cmd-comment">— show IP addresses instead of hostnames</span><br>
+          <span class="cmd-prompt">C:\&gt;</span>netstat <span class="cmd-flag">-b</span><span class="cmd-comment">— show which program owns each connection</span>
+        </div>
+
+        <div class="cmd-output">
+          <span class="out-label">Sample output — netstat -n</span>
+          Proto &nbsp;Local Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Foreign Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;State<br>
+          TCP &nbsp;&nbsp; 192.168.1.25:<span class="out-highlight">443</span> &nbsp; 142.250.72.14:443 &nbsp;&nbsp; <span class="out-highlight">ESTABLISHED</span><br>
+          TCP &nbsp;&nbsp; 192.168.1.25:<span class="out-highlight">80</span> &nbsp;&nbsp; 151.101.1.140:80 &nbsp;&nbsp;&nbsp; <span class="out-highlight">ESTABLISHED</span><br>
+          TCP &nbsp;&nbsp; 0.0.0.0:<span class="out-highlight">3389</span> &nbsp;&nbsp;&nbsp; 0.0.0.0:0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="out-highlight">LISTENING</span>
+        </div>
+
+        <div class="cmd-usewhen">You suspect a security issue, want to confirm which ports are open, or need to verify that a service is actually listening on the expected port number.</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- NBTSTAT -->
+    <h2 id="nbtstat">nbtstat — NetBIOS Name Resolution</h2>
+
+    <div class="cmd-block">
+      <div class="cmd-block-header">
+        <span class="cmd-block-name">nbtstat</span>
+        <span class="cmd-block-tag">NetBIOS / Windows Names</span>
+      </div>
+      <div class="cmd-block-body">
+        <p class="cmd-block-desc"><strong>nbtstat</strong> displays NetBIOS over TCP/IP statistics and name tables. It's used in Windows environments to troubleshoot name resolution issues when devices can't find each other by computer name on a local network. Less common than the others but it does appear on the A+ exam.</p>
+
+        <div class="cmd-syntax">
+          <span class="cmd-prompt">C:\&gt;</span>nbtstat <span class="cmd-flag">-n</span><span class="cmd-comment">— local NetBIOS name table</span><br>
+          <span class="cmd-prompt">C:\&gt;</span>nbtstat <span class="cmd-flag">-c</span><span class="cmd-comment">— NetBIOS name cache</span><br>
+          <span class="cmd-prompt">C:\&gt;</span>nbtstat <span class="cmd-flag">-R</span><span class="cmd-comment">— reload the LMHOSTS file / purge cache</span>
+        </div>
+
+        <div class="cmd-usewhen">Devices on a local Windows network can't find each other by computer name, even though IP connectivity works fine. nbtstat -n shows the local machine's registered NetBIOS names.</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- TROUBLESHOOTING FLOW -->
+    <h2>The Diagnostic Workflow — What Order to Run Them</h2>
+
+    <p>On the exam (and in real life), commands are most useful when run in a logical order. Each step confirms one layer is working before moving to the next:</p>
+
+    <div class="flow-box">
+      <div class="flow-header">🔧 Standard Network Troubleshooting Sequence</div>
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div>
+          <div class="flow-cmd">ipconfig</div>
+          <div class="flow-desc">Confirm you have a valid IP address. If you see 169.254.x.x, stop here — DHCP failed. Run ipconfig /release then /renew.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div>
+          <div class="flow-cmd">ping 127.0.0.1</div>
+          <div class="flow-desc">Test the loopback address. If this fails, your network stack has a serious problem — reinstall TCP/IP.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div>
+          <div class="flow-cmd">ping [your default gateway]</div>
+          <div class="flow-desc">Test local network connectivity. If this fails, you can't reach your router — check the cable or Wi-Fi connection.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div>
+          <div class="flow-cmd">ping 8.8.8.8</div>
+          <div class="flow-desc">Test internet connectivity by IP. If this fails but step 3 works, the problem is your router or ISP — not your computer.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <div>
+          <div class="flow-cmd">ping google.com</div>
+          <div class="flow-desc">Test DNS resolution. If step 4 works but this fails, DNS is broken. Run ipconfig /flushdns or change your DNS server.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">6</div>
+        <div>
+          <div class="flow-cmd">tracert / nslookup</div>
+          <div class="flow-desc">If you still can't isolate the problem, use tracert to find which hop fails, or nslookup to query DNS servers directly.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- CHEAT SHEET -->
+    <h2 id="cheatsheet">Quick Reference Cheat Sheet</h2>
+
+    <div class="cheat-sheet">
+      <div class="cheat-header">📋 Command Quick Reference</div>
+      <div class="cheat-row">
+        <div class="cheat-cmd">ipconfig</div>
+        <div class="cheat-use">Show IP address, subnet mask, default gateway</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-cmd">ipconfig /all</div>
+        <div class="cheat-use">Full details — DNS servers, MAC address, DHCP info</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-cmd">ipconfig /release</div>
+        <div class="cheat-use">Release current DHCP lease</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-cmd">ipconfig /renew</div>
+        <div class="cheat-use">Request a new IP from DHCP server</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-cmd">ipconfig /flushdns</div>
+        <div class="cheat-use">Clear the local DNS cache</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-cmd">ping 127.0.0.1</div>
+        <div class="cheat-use">Test loopback — confirms NIC and TCP/IP stack work</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-cmd">ping [gateway]</div>
+        <div class="cheat-use">Test local network connectivity to router</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-cmd">ping 8.8.8.8</div>
+        <div class="cheat-use">Test internet by IP — bypasses DNS entirely</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-cmd">ping google.com</div>
+        <div class="cheat-use">Test DNS resolution — if this fails but 8.8.8.8 works, DNS is broken</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-cmd">tracert [destination]</div>
+        <div class="cheat-use">Show every hop to destination — find where packets stop</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-cmd">nslookup [domain]</div>
+        <div class="cheat-use">Query DNS server directly — confirm name resolution</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-cmd">netstat -a</div>
+        <div class="cheat-use">Show all active connections and listening ports</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-cmd">nbtstat -n</div>
+        <div class="cheat-use">Show local NetBIOS name table</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Key Takeaways</h2>
+
+    <div class="summary-list">
+      <div class="summary-item"><strong>ipconfig</strong> is always step one — check if you have a valid IP before anything else</div>
+      <div class="summary-item"><strong>ping 8.8.8.8 works + ping google.com fails</strong> = DNS problem, not internet problem</div>
+      <div class="summary-item"><strong>tracert</strong> shows you exactly which hop in the route is failing</div>
+      <div class="summary-item"><strong>nslookup</strong> queries DNS directly — use it to confirm DNS is resolving correctly</div>
+      <div class="summary-item"><strong>netstat -a</strong> shows open ports and active connections on your machine</div>
+      <div class="summary-item"><strong>ipconfig /release → /renew</strong> is the fix when you have an APIPA (169.254.x.x) address</div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- AFFILIATE BOX -->
+    <div class="affiliate-box">
+      <div class="affiliate-tag">📚 Recommended Study Tools</div>
+      <h2>Ready to practice these commands?</h2>
+      <p>Set up a free VM lab on your laptop and run every command in a real Windows environment.</p>
+      <div class="affiliate-buttons">
+        <a href="home-lab-setup-guide.html" class="aff-btn aff-btn-primary">
+          🖥️ Read the Home Lab Setup Guide
+        </a>
+        <a href="https://amzn.to/3OMI8uo" class="aff-btn aff-btn-secondary" target="_blank" rel="nofollow sponsored">
+          📖 Bestselling A+ Study Guide
+        </a>
+      </div>
+    </div>
+
+    <h2>Related Articles</h2>
+
+    <div class="related-grid">
+      <a href="dns.html" class="related-link">What Is DNS?</a>
+      <a href="dhcp.html" class="related-link">What Is DHCP?</a>
+      <a href="apipa.html" class="related-link">What Is APIPA?</a>
+      <a href="default-gateway.html" class="related-link">What Is a Default Gateway?</a>
+      <a href="subnet-mask.html" class="related-link">What Is a Subnet Mask?</a>
+      <a href="nat-explained.html" class="related-link">What Is NAT?</a>
+      <a href="ports.html" class="related-link">Common Port Numbers</a>
+      <a href="networking.html" class="related-link">Networking Master Guide</a>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Preparing for the A+ exam?</h3>
+        <p>See the books and practice exams that make the most difference.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn btn-teal">See Best Study Resources →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Pages</div>
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-a-plus.html">Best Study Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="dhcp.html">DHCP</a>
+      <a href="dns.html">DNS</a>
+      <a href="default-gateway.html">Default Gateway</a>
+      <a href="nat-explained.html">NAT</a>
+      <a href="ports.html">Port Numbers</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>
