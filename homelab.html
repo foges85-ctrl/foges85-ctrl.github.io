@@ -243,45 +243,66 @@ a { color: inherit; text-decoration: none; }
 
 <main class="main">
 
-  <section class="project-spotlight">
-    <span class="project-tag">Case Study #01</span>
-    <h2>Solving the Intel-to-Silicon Mac Management Gap</h2>
-    <p>Managing legacy Intel hardware from an M-series Mac presented a unique networking challenge. While trying to establish a remote management link, I hit a persistent timeout issue that couldn't be solved by simple rebooting.</p>
+  <div class="section-header">
+    <h2 class="section-title">Essential <span>Home Lab Gear</span> (2026)</h2>
+    <span class="section-count">Recommended Hardware</span>
+  </div>
+
+  <div class="cards-grid" style="margin-bottom: 60px;">
     
-    <div class="troubleshooting-note">
-      <strong>Troubleshooting Insight:</strong> 
-      The issue was rooted in the macOS Application Firewall. Because the two systems utilize different architectures, the default handshake for screen sharing was being flagged as a security risk. Rather than leaving the firewall permanently off, I identified the specific services (TCP 5900/22) and created granular exceptions to restore connectivity without compromising security.
+    <div class="gear-card" style="border: 2px solid var(--border); position: relative;">
+      <span style="position: absolute; top: -12px; right: 12px; background: var(--teal); color: var(--navy); font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">Best for Virtualization</span>
+      <div style="font-size: 40px; margin-bottom: 12px;">🖥️</div>
+      <h3>Home Lab Mini PC</h3>
+      <p style="font-size: 14px; color: var(--muted); min-height: 60px;">Perfect for running Proxmox or Windows Server VMs. Low power, high performance for A+ and Network+ labs.</p>
+      <a href="YOUR_AMAZON_LINK_HERE" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 15px; font-size: 14px;">
+        View on Amazon →
+      </a>
     </div>
-    
-    <p style="color: var(--muted); font-size: 14px;">Skills demonstrated: Network Troubleshooting, Firewall Configuration, Multi-Architecture Support.</p>
-  </section>
+
+    <div class="gear-card" style="border: 2px solid var(--border);">
+      <div style="font-size: 40px; margin-bottom: 12px;">🔌</div>
+      <h3>Managed Network Switch</h3>
+      <p style="font-size: 14px; color: var(--muted); min-height: 60px;">Essential for learning VLANs and Subnetting. This is the exact model I recommend for hands-on networking practice.</p>
+      <a href="YOUR_AMAZON_LINK_HERE" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 15px; font-size: 14px;">
+        View on Amazon →
+      </a>
+    </div>
+
+    <div class="gear-card" style="border: 2px solid var(--border);">
+      <div style="font-size: 40px; margin-bottom: 12px;">🛠️</div>
+      <h3>IT Technician Toolkit</h3>
+      <p style="font-size: 14px; color: var(--muted); min-height: 60px;">The industry-standard kit for PC repair. Includes every bit you need for the CompTIA A+ hardware objectives.</p>
+      <a href="YOUR_AMAZON_LINK_HERE" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 15px; font-size: 14px;">
+        View on Amazon →
+      </a>
+    </div>
+
+    <div class="gear-card" style="border: 2px solid var(--border);">
+      <div style="font-size: 40px; margin-bottom: 12px;">🍓</div>
+      <h3>Raspberry Pi 5</h3>
+      <p style="font-size: 14px; color: var(--muted); min-height: 60px;">The best "Swiss Army Knife" for labs. Use it for Pi-Hole (DNS), VPNs, or a lightweight Linux server.</p>
+      <a href="YOUR_AMAZON_LINK_HERE" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 15px; font-size: 14px;">
+        View on Amazon →
+      </a>
+    </div>
+  </div>
 
   <div class="section-header">
-    <h2 class="section-title">Lab <span>Infrastructure</span></h2>
+    <h2 class="section-title">Lab <span>Case Studies</span></h2>
   </div>
 
-  <div class="cards-grid">
-    <div class="gear-card">
-      <div style="font-size: 32px; margin-bottom: 12px;">💻</div>
-      <h3>Management & Host Gear</h3>
-      <p style="font-size: 14px; color: var(--muted);">My primary setup includes a mix of Apple Silicon for daily work and Intel hosts for legacy testing and virtualization.</p>
-      <a href="#" class="gear-link">View Hardware Picks →</a>
+  <section class="project-spotlight" style="background: var(--lighter); border-style: dashed;">
+    <span class="project-tag">Technical Documentation</span>
+    <h2>Resolving Firewall Bottlenecks: Intel & Silicon Mac</h2>
+    <p>Beyond the hardware, a lab is about solving real configuration hurdles. In this project, I documented the process of managing legacy Intel hardware from an Apple Silicon host while maintaining a strict security posture.</p>
+    
+    <div class="troubleshooting-note" style="background: var(--white);">
+      <strong>The Fix:</strong> 
+      Rather than disabling the firewall, I configured service-specific exceptions for <strong>TCP 5900 (VNC)</strong> and <strong>TCP 22 (SSH)</strong>. This ensured that management traffic could pass between architectures without leaving the systems vulnerable.
     </div>
-
-    <div class="gear-card">
-      <div style="font-size: 32px; margin-bottom: 12px;">🔌</div>
-      <h3>Networking Essentials</h3>
-      <p style="font-size: 14px; color: var(--muted);">The routers, managed switches, and Cat6 cabling that form the backbone of my study environment.</p>
-      <a href="#" class="gear-link">Networking Gear →</a>
-    </div>
-
-    <div class="gear-card">
-      <div style="font-size: 32px; margin-bottom: 12px;">🛠️</div>
-      <h3>IT Toolkit</h3>
-      <p style="font-size: 14px; color: var(--muted);">From anti-static mats to cable testers—the physical tools every A+ student should have in their bag.</p>
-      <a href="#" class="gear-link">Explore Toolkit →</a>
-    </div>
-  </div>
+    <a href="#" style="color: var(--blue); font-weight: 700; font-size: 14px;">Read the full technical breakdown →</a>
+  </section>
 
 </main>
 
