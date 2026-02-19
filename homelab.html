@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Home Lab Guide | itstudyhub.org</title>
+    <meta name="description" content="Explore my IT home lab setup, hardware recommendations, and real-world networking troubleshooting projects.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+    <nav class="bg-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-blue-600">IT Study Hub</a>
+            <div class="space-x-6">
+                <a href="index.html" class="hover:text-blue-600 transition">Study Guides</a>
+                <a href="homelab.html" class="font-bold text-blue-600">Home Lab</a>
+                <a href="#" class="hover:text-blue-600 transition">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-blue-600 text-white py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">The Home Lab</h1>
+            <p class="text-xl opacity-90">Where theory meets the wire. My personal setup for testing, troubleshooting, and breaking things (so they don't break in production).</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto p-6 lg:p-12">
+        
+        <section class="mb-16">
+            <div class="flex items-center space-x-3 mb-6">
+                <i class="fa-solid fa-microchip text-3xl text-blue-600"></i>
+                <h2 class="text-3xl font-bold">Project Spotlight: Hybrid Architecture Management</h2>
+            </div>
+            <div class="bg-white border-l-4 border-blue-600 shadow-lg rounded-r-lg p-8">
+                <h3 class="text-2xl font-semibold mb-4 text-gray-800">The Intel to Silicon Connection Challenge</h3>
+                <p class="mb-4 leading-relaxed text-gray-700">
+                    One of the most interesting challenges in my lab was managing a legacy **Intel-based Mac** from a newer **Apple Silicon (M-series) Mac**. While macOS Screen Sharing and SSH are usually seamless, architecture differences can lead to unexpected handshake failures.
+                </p>
+                <div class="bg-blue-50 p-4 rounded-md mb-6 border border-blue-100">
+                    <p class="text-sm font-mono text-blue-800">
+                        <strong>Troubleshooting Insight:</strong> I initially encountered persistent "Connection Timed Out" errors. Through packet inspection, I realized the Mac's built-in Application Layer Firewall was dropping packets during the management handshake. Disabling the firewall temporarily resolved the issue, confirming the bottleneck—the next step is configuring granular port exceptions (TCP 5900, 22) for a secure, permanent fix.
+                    </p>
+                </div>
+                <p class="text-gray-600 italic">This project taught me that even within the same ecosystem, security settings can behave differently across different hardware architectures.</p>
+            </div>
+        </section>
+
+        <hr class="mb-16">
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center">Home Lab Gear & Recommendations</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition border border-gray-100 text-center">
+                    <i class="fa-solid fa-server text-4xl text-blue-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Main Server</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Intel Mac Mini / Apple Silicon MacBook Pro used for virtualization and management testing.</p>
+                    <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="inline-block bg-gray-100 hover:bg-blue-100 text-blue-600 px-4 py-2 rounded-full font-semibold transition">View on Amazon</a>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition border border-gray-100 text-center">
+                    <i class="fa-solid fa-network-wired text-4xl text-blue-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Networking Gear</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Managed switches and Raspberry Pi units for DNS/DHCP (Pi-Hole) experiments.</p>
+                    <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="inline-block bg-gray-100 hover:bg-blue-100 text-blue-600 px-4 py-2 rounded-full font-semibold transition">Top Lab Picks</a>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition border border-gray-100 text-center">
+                    <i class="fa-solid fa-database text-4xl text-blue-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Storage (NAS)</h3>
+                    <p class="text-gray-600 mb-4 text-sm">External SSDs for fast VM booting and network-attached storage for backups.</p>
+                    <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="inline-block bg-gray-100 hover:bg-blue-100 text-blue-600 px-4 py-2 rounded-full font-semibold transition">Best SSD Deals</a>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="bg-gray-900 text-white rounded-2xl p-8 text-center">
+            <h2 class="text-2xl font-bold mb-4">Build Your Own Lab</h2>
+            <p class="mb-6 opacity-80">Don't just read about networking. Build it. Grab my free "Home Lab Starter Checklist" to get started with the gear you already have.</p>
+            <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-bold transition">Download Checklist (Free)</a>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t mt-20 py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>&copy; 2026 IT Study Hub. Some links may be affiliate links. Using them supports my lab at no cost to you.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
