@@ -574,6 +574,78 @@ a { color: inherit; text-decoration: none; }
   }
 }
 
+/* ── HOME LAB BANNER ── */
+.homelab-banner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap;
+  background: linear-gradient(135deg, var(--navy) 0%, #0d1e38 60%, #0a2a1e 100%);
+  border: 1px solid rgba(0,194,168,0.25);
+  border-radius: 16px; padding: 28px 32px; margin-bottom: 40px;
+  position: relative; overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+  box-shadow: 0 4px 24px rgba(0,194,168,0.1);
+}
+.homelab-banner::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 50% 120% at 100% 50%, rgba(0,194,168,0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+.homelab-banner::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 32px 32px; pointer-events: none;
+}
+.homelab-banner:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,194,168,0.2);
+  border-color: rgba(0,194,168,0.5);
+  text-decoration: none;
+}
+.homelab-banner-left { position: relative; z-index: 1; flex: 1; min-width: 200px; }
+.homelab-banner-tag {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 8px;
+}
+.homelab-banner-title {
+  font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800;
+  color: var(--white); letter-spacing: -0.3px; margin-bottom: 7px; line-height: 1.2;
+}
+.homelab-banner-sub {
+  font-size: 13.5px; color: rgba(255,255,255,0.55); line-height: 1.65; max-width: 480px;
+}
+.homelab-banner-right {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 14px;
+  flex-shrink: 0;
+}
+.homelab-banner-items {
+  display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end;
+}
+.homelab-banner-items span {
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.7); font-size: 12.5px; font-weight: 600;
+  padding: 5px 12px; border-radius: 100px;
+}
+.homelab-banner-cta {
+  background: var(--teal); color: var(--navy);
+  font-size: 14px; font-weight: 700;
+  padding: 10px 20px; border-radius: 9px;
+  transition: background 0.15s, transform 0.15s;
+  box-shadow: 0 4px 14px rgba(0,194,168,0.3);
+}
+.homelab-banner:hover .homelab-banner-cta {
+  background: var(--teal2); transform: translateX(2px);
+}
+@media (max-width: 640px) {
+  .homelab-banner { padding: 22px 20px; }
+  .homelab-banner-right { align-items: flex-start; }
+  .homelab-banner-items { justify-content: flex-start; }
+}
+
 /* ── FOOTER ── */
 .footer {
   background: var(--navy);
@@ -754,6 +826,23 @@ a { color: inherit; text-decoration: none; }
       </a>
     </div>
   </div>
+
+  <!-- HOME LAB BANNER -->
+  <a href="home-lab.html" class="homelab-banner">
+    <div class="homelab-banner-left">
+      <div class="homelab-banner-tag">🧰 New Section</div>
+      <div class="homelab-banner-title">Build Your IT Home Lab</div>
+      <div class="homelab-banner-sub">Curated gear picks for hands-on A+ practice — screwdriver kits, cable testers, managed switches, and safety essentials with direct Amazon links.</div>
+    </div>
+    <div class="homelab-banner-right">
+      <div class="homelab-banner-items">
+        <span>🔧 Toolkits</span>
+        <span>📡 Networking</span>
+        <span>🛡️ Safety Gear</span>
+      </div>
+      <div class="homelab-banner-cta">Browse Gear →</div>
+    </div>
+  </a>
 
   <!-- ARTICLES SECTION -->
   <div class="section-header">
