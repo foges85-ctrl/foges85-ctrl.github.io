@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<title>IPv4 vs IPv6 Explained | CompTIA A+ Guide (IT Study Hub)</title>
+<meta name="description" content="IPv4 vs IPv6 explained simply for CompTIA A+ students — address formats, why IPv6 exists, key differences, and exactly what the exam tests on both protocols.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --blue2:   #1558d6;
+  --orange:  #f97316;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+  --card-shadow-hover: 0 12px 40px rgba(10,22,40,.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--teal2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 28px;
+  height: 68px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+}
+.logo-link {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 17px; color: var(--navy); letter-spacing: -0.3px;
+  flex-shrink: 0; text-decoration: none;
+}
+.logo-img { height: 40px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px; font-weight: 600; padding: 8px 14px;
+  border-radius: 8px; color: var(--muted);
+  transition: color 0.15s, background 0.15s; text-decoration: none;
+}
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta {
+  background: var(--navy); color: var(--white) !important;
+  padding: 8px 18px; border-radius: 8px; margin-left: 6px;
+  transition: background 0.15s, transform 0.1s;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 34px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy); position: relative;
+  overflow: hidden; padding: 52px 28px 60px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 40% 80% at 15% 50%, rgba(0,194,168,0.1) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 80% at 85% 50%, rgba(26,108,255,0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.page-hero-inner {
+  max-width: 860px; margin: 0 auto; position: relative; z-index: 1;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  margin-bottom: 18px; font-family: 'DM Mono', monospace;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; text-decoration: none; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge {
+  display: inline-flex; align-items: center;
+  background: rgba(0,194,168,0.15); border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 16px;
+}
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(26px, 4vw, 40px); font-weight: 800;
+  color: var(--white); line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 14px;
+}
+.page-hero h1 .v4 { color: var(--teal); }
+.page-hero h1 .v6 { color: #93c5fd; }
+.page-hero-sub {
+  font-size: 15px; color: rgba(255,255,255,0.6); max-width: 580px; line-height: 1.7;
+}
+
+/* ── ARTICLE LAYOUT ── */
+.article-wrap { max-width: 860px; margin: 0 auto; padding: 52px 28px 80px; }
+@media (max-width: 768px) { .article-wrap { padding: 32px 16px 60px; } }
+
+.article-body h2 {
+  font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.3px; margin: 48px 0 14px;
+}
+.article-body h2:first-child { margin-top: 0; }
+.article-body p { font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 14px; }
+.article-body strong { color: var(--navy); font-weight: 700; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+/* ── ADDRESS FORMAT DISPLAYS ── */
+.address-duel {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px;
+}
+@media (max-width: 580px) { .address-duel { grid-template-columns: 1fr; } }
+
+.address-card {
+  border-radius: 14px; padding: 24px 22px; position: relative; overflow: hidden;
+}
+.address-card.v4 {
+  background: linear-gradient(135deg, #0a1628, #0d1e3a);
+  border: 1px solid rgba(0,194,168,0.25);
+}
+.address-card.v6 {
+  background: linear-gradient(135deg, #0a1628, #0d1628);
+  border: 1px solid rgba(26,108,255,0.25);
+}
+.address-card::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+}
+.address-card.v4::before {
+  background: radial-gradient(ellipse at 100% 0%, rgba(0,194,168,0.12) 0%, transparent 60%);
+}
+.address-card.v6::before {
+  background: radial-gradient(ellipse at 100% 0%, rgba(26,108,255,0.15) 0%, transparent 60%);
+}
+.address-version {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px;
+}
+.v4 .address-version { color: var(--teal); }
+.v6 .address-version { color: #93c5fd; }
+.address-example {
+  font-family: 'DM Mono', monospace; font-size: clamp(16px, 3vw, 22px);
+  font-weight: 500; color: var(--white); letter-spacing: 1px;
+  margin-bottom: 16px; line-height: 1.4; word-break: break-all;
+}
+.address-meta {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.address-meta-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12.5px; padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.address-meta-row:last-child { border-bottom: none; }
+.address-meta-label { color: rgba(255,255,255,0.4); font-weight: 600; }
+.address-meta-val { font-family: 'DM Mono', monospace; font-weight: 500; }
+.v4 .address-meta-val { color: var(--teal); }
+.v6 .address-meta-val { color: #93c5fd; }
+
+/* ── WHY IPv6 EXISTS — EXHAUSTION BOX ── */
+.exhaustion-box {
+  background: linear-gradient(135deg, #1a0a00, #200e00);
+  border: 1px solid rgba(249,115,22,0.3);
+  border-left: 4px solid var(--orange);
+  border-radius: 14px; padding: 24px 26px; margin-bottom: 28px;
+  position: relative; overflow: hidden;
+}
+.exhaustion-box::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 100% 0%, rgba(249,115,22,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.exhaustion-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  color: var(--orange); margin-bottom: 10px;
+}
+.exhaustion-box h3 {
+  font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 800;
+  color: var(--white); margin-bottom: 10px;
+}
+.exhaustion-box p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 0; }
+.exhaustion-box strong { color: rgba(255,255,255,0.9); }
+.exhaustion-stat {
+  display: flex; align-items: baseline; gap: 12px; margin: 14px 0;
+}
+.exhaustion-num {
+  font-family: 'DM Mono', monospace; font-size: 28px; font-weight: 500;
+  color: var(--orange); line-height: 1;
+}
+.exhaustion-desc { font-size: 13px; color: rgba(255,255,255,0.5); }
+
+/* ── COMPARISON TABLE ── */
+.compare-wrap {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: var(--card-shadow); margin-bottom: 28px;
+}
+.compare-table {
+  width: 100%; border-collapse: collapse; font-size: 14px;
+}
+.compare-table th {
+  padding: 14px 18px; text-align: left;
+  font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 700;
+}
+.compare-table th:first-child { background: var(--navy); color: var(--white); width: 28%; }
+.compare-table th.v4-head { background: rgba(0,194,168,0.08); color: var(--teal2); border-bottom: 2px solid var(--teal); }
+.compare-table th.v6-head { background: rgba(26,108,255,0.08); color: var(--blue); border-bottom: 2px solid var(--blue); }
+.compare-table td {
+  padding: 12px 18px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.6;
+}
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table td:first-child {
+  font-weight: 700; color: var(--navy); background: var(--light); font-size: 13px;
+}
+.compare-table td.v4-col {
+  color: var(--text); background: rgba(0,194,168,0.02);
+  font-family: 'DM Mono', monospace; font-size: 13px;
+}
+.compare-table td.v6-col {
+  color: var(--text); background: rgba(26,108,255,0.02);
+  font-family: 'DM Mono', monospace; font-size: 13px;
+}
+
+/* ── ADDRESS TYPE CARDS ── */
+.addr-types {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px;
+}
+@media (max-width: 560px) { .addr-types { grid-template-columns: 1fr; } }
+.addr-type-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 11px; padding: 16px 18px;
+  box-shadow: var(--card-shadow);
+}
+.addr-type-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.7px; text-transform: uppercase; margin-bottom: 6px;
+}
+.addr-type-card.v4-card .addr-type-label { color: var(--teal2); }
+.addr-type-card.v6-card .addr-type-label { color: var(--blue); }
+.addr-type-name { font-weight: 700; color: var(--navy); font-size: 14px; margin-bottom: 3px; }
+.addr-type-example {
+  font-family: 'DM Mono', monospace; font-size: 12px;
+  color: var(--muted); margin-bottom: 5px;
+}
+.addr-type-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+/* ── EXAM TIP BOX ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060; border-left: 4px solid #f0c000;
+  border-radius: 12px; padding: 20px 22px; margin: 4px 0 28px;
+}
+.exam-tip-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px;
+}
+.exam-tip p { font-size: 14px; color: #5a4000; margin-bottom: 8px; line-height: 1.65; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #3a2800; }
+
+/* ── LOOPBACK / SPECIAL ADDRESSES BOX ── */
+.special-addrs {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: var(--card-shadow); margin-bottom: 28px;
+}
+.special-addrs-header {
+  background: var(--navy); padding: 12px 20px;
+  font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 700; color: var(--white);
+}
+.special-addr-row {
+  display: grid; grid-template-columns: 200px 1fr; gap: 16px;
+  padding: 13px 20px; border-bottom: 1px solid var(--border); align-items: center;
+}
+.special-addr-row:last-child { border-bottom: none; }
+.special-addr-addr {
+  font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; color: var(--navy);
+}
+.special-addr-desc { font-size: 13.5px; color: var(--muted); line-height: 1.5; }
+.special-addr-badge {
+  display: inline-block; font-size: 10px; font-weight: 700;
+  padding: 2px 7px; border-radius: 4px; margin-left: 6px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-v4 { background: rgba(0,194,168,0.1); color: var(--teal2); }
+.badge-v6 { background: rgba(26,108,255,0.1); color: var(--blue); }
+@media (max-width: 500px) { .special-addr-row { grid-template-columns: 1fr; gap: 4px; } }
+
+/* ── SUMMARY LIST ── */
+.summary-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.summary-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px;
+  font-size: 14px; box-shadow: var(--card-shadow);
+}
+.summary-item::before {
+  content: '✓';
+  display: flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; min-width: 20px;
+  background: rgba(0,194,168,0.12); color: var(--teal2);
+  border-radius: 50%; font-size: 11px; font-weight: 700;
+  margin-top: 1px;
+}
+
+/* ── RELATED + CTA ── */
+.related-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px;
+}
+@media (max-width: 560px) { .related-grid { grid-template-columns: 1fr; } }
+.related-link {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px; font-size: 14px;
+  font-weight: 600; color: var(--navy); text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s, color 0.15s;
+  box-shadow: var(--card-shadow);
+}
+.related-link:hover { border-color: rgba(0,194,168,0.3); color: var(--teal2); transform: translateY(-2px); text-decoration: none; }
+.related-link::before { content: '→'; color: var(--teal2); font-size: 13px; flex-shrink: 0; }
+
+.cta-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px; padding: 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap; position: relative; overflow: hidden;
+}
+.cta-box::before {
+  content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%); pointer-events: none;
+}
+.cta-box-text h3 { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
+  border-radius: 10px; font-size: 14px; font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap; flex-shrink: 0; text-decoration: none;
+}
+.btn:hover { transform: translateY(-2px); text-decoration: none; }
+.btn-teal { background: var(--teal); color: var(--navy); box-shadow: 0 6px 20px rgba(0,194,168,0.3); }
+.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; text-decoration: none; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  max-width: 1100px; margin: 28px auto 0; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+@media (max-width: 600px) {
+  .footer { padding: 36px 16px; }
+  .footer-bottom { flex-direction: column; }
+  .cta-box { flex-direction: column; align-items: flex-start; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-hero-inner { animation: fadeUp 0.6s ease both; }
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-a-plus.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking.html">Networking Guide</a>
+      <span>›</span>
+      <span>IPv4 vs IPv6</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · IP Addressing</div>
+    <h1><span class="v4">IPv4</span> vs <span class="v6">IPv6</span> Explained</h1>
+    <p class="page-hero-sub">
+      The internet ran out of IPv4 addresses in 2011. IPv6 was built to replace it — but both versions are still used today and both appear on the CompTIA A+ exam. Here's everything you need to know.
+    </p>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <h2>What is an IP address?</h2>
+
+    <p>An <strong>IP address</strong> (Internet Protocol address) is a numerical label assigned to every device on a network. It's how devices find and communicate with each other — similar to a postal address, but for network traffic. Without an IP address, a device has no logical identity on the network.</p>
+
+    <p>There are currently two versions of IP in use: <strong>IPv4</strong>, the original standard that most people are familiar with, and <strong>IPv6</strong>, the newer version designed to solve IPv4's biggest limitation — it's running out of addresses.</p>
+
+    <hr class="divider">
+
+    <h2>What the addresses look like</h2>
+
+    <p>The most immediately obvious difference between IPv4 and IPv6 is the format. IPv4 addresses are short and familiar. IPv6 addresses are long, written in hexadecimal, and look intimidating at first — but the format has a clear logic to it.</p>
+
+    <div class="address-duel">
+
+      <div class="address-card v4">
+        <div class="address-version">IPv4</div>
+        <div class="address-example">192.168.1.25</div>
+        <div class="address-meta">
+          <div class="address-meta-row">
+            <span class="address-meta-label">Format</span>
+            <span class="address-meta-val">4 octets, decimal</span>
+          </div>
+          <div class="address-meta-row">
+            <span class="address-meta-label">Bit length</span>
+            <span class="address-meta-val">32 bits</span>
+          </div>
+          <div class="address-meta-row">
+            <span class="address-meta-label">Separator</span>
+            <span class="address-meta-val">Dot ( . )</span>
+          </div>
+          <div class="address-meta-row">
+            <span class="address-meta-label">Total addresses</span>
+            <span class="address-meta-val">~4.3 billion</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="address-card v6">
+        <div class="address-version">IPv6</div>
+        <div class="address-example">2001:0db8:85a3::8a2e:0370:7334</div>
+        <div class="address-meta">
+          <div class="address-meta-row">
+            <span class="address-meta-label">Format</span>
+            <span class="address-meta-val">8 groups, hexadecimal</span>
+          </div>
+          <div class="address-meta-row">
+            <span class="address-meta-label">Bit length</span>
+            <span class="address-meta-val">128 bits</span>
+          </div>
+          <div class="address-meta-row">
+            <span class="address-meta-label">Separator</span>
+            <span class="address-meta-val">Colon ( : )</span>
+          </div>
+          <div class="address-meta-row">
+            <span class="address-meta-label">Total addresses</span>
+            <span class="address-meta-val">340 undecillion</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p>IPv4 uses <strong>32 bits</strong> split into four groups of 8 bits (octets), each written as a decimal number from 0–255. IPv6 uses <strong>128 bits</strong> split into eight groups of 16 bits, each written as four hexadecimal characters separated by colons.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Reading IPv6 Addresses — Shorthand Rules</div>
+      <p>IPv6 addresses can be shortened using two rules the exam tests:</p>
+      <p><strong>Rule 1 — Drop leading zeros:</strong> <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(0,0,0,0.06);padding:1px 6px;border-radius:4px;">0db8</code> becomes <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(0,0,0,0.06);padding:1px 6px;border-radius:4px;">db8</code> — leading zeros in any group can be omitted.</p>
+      <p><strong>Rule 2 — Collapse consecutive all-zero groups with "::":</strong> A sequence of groups that are all zeros can be replaced with <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(0,0,0,0.06);padding:1px 6px;border-radius:4px;">::</code> — but only once per address. That's why <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(0,0,0,0.06);padding:1px 6px;border-radius:4px;">2001:0db8:0000:0000:0000:0000:0370:7334</code> can be written as <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(0,0,0,0.06);padding:1px 6px;border-radius:4px;">2001:db8::370:7334</code>.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Why IPv6 exists — the address exhaustion problem</h2>
+
+    <p>IPv4 was designed in 1981, when the internet was a small research network. Nobody anticipated that billions of phones, laptops, servers, smart TVs, and IoT devices would eventually need unique addresses.</p>
+
+    <div class="exhaustion-box">
+      <div class="exhaustion-label">⚠️ The Problem with IPv4</div>
+      <h3>IPv4 has ~4.3 billion possible addresses. We used them all.</h3>
+      <div class="exhaustion-stat">
+        <div class="exhaustion-num">2011</div>
+        <div class="exhaustion-desc">Year IANA (the global IP authority) officially exhausted the last IPv4 address blocks</div>
+      </div>
+      <p>To cope, the industry deployed workarounds like <strong>NAT (Network Address Translation)</strong> — which lets many devices share a single public IPv4 address. NAT bought time, but it added complexity and broke certain applications. IPv6 solves the problem at the root by providing an astronomically larger address space.</p>
+    </div>
+
+    <p>IPv6's 128-bit address space provides approximately <strong>340 undecillion</strong> unique addresses — that's 340 followed by 36 zeros. There are enough IPv6 addresses to assign trillions of addresses to every grain of sand on Earth. Running out is not a realistic concern.</p>
+
+    <hr class="divider">
+
+    <h2>IPv4 vs IPv6 — full comparison</h2>
+
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="v4-head">IPv4</th>
+            <th class="v6-head">IPv6</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Address length</td>
+            <td class="v4-col">32 bits</td>
+            <td class="v6-col">128 bits</td>
+          </tr>
+          <tr>
+            <td>Format</td>
+            <td class="v4-col">192.168.1.1 (decimal)</td>
+            <td class="v6-col">2001:db8::1 (hex)</td>
+          </tr>
+          <tr>
+            <td>Total addresses</td>
+            <td class="v4-col">~4.3 billion</td>
+            <td class="v6-col">340 undecillion</td>
+          </tr>
+          <tr>
+            <td>Address config</td>
+            <td class="v4-col">Manual or DHCP</td>
+            <td class="v6-col">Manual, DHCPv6, or SLAAC*</td>
+          </tr>
+          <tr>
+            <td>NAT required?</td>
+            <td class="v4-col">Yes (address shortage)</td>
+            <td class="v6-col">No — every device gets a public address</td>
+          </tr>
+          <tr>
+            <td>Header complexity</td>
+            <td class="v4-col">Variable (options field)</td>
+            <td class="v6-col">Simplified fixed header</td>
+          </tr>
+          <tr>
+            <td>Broadcast?</td>
+            <td class="v4-col">Yes (255.255.255.255)</td>
+            <td class="v6-col">No — uses multicast instead</td>
+          </tr>
+          <tr>
+            <td>Loopback address</td>
+            <td class="v4-col">127.0.0.1</td>
+            <td class="v6-col">::1</td>
+          </tr>
+          <tr>
+            <td>Introduced</td>
+            <td class="v4-col">1981</td>
+            <td class="v6-col">1998</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:13px;color:var(--muted);margin-top:-14px;margin-bottom:28px;">* SLAAC (Stateless Address Autoconfiguration) lets IPv6 devices configure their own address without a DHCP server, using the network prefix and their own MAC address.</p>
+
+    <hr class="divider">
+
+    <h2>Important IPv4 address ranges to know</h2>
+
+    <p>Not all IPv4 addresses are used the same way. The exam tests several reserved ranges you need to recognize on sight.</p>
+
+    <div class="addr-types">
+      <div class="addr-type-card v4-card">
+        <div class="addr-type-label">IPv4 — Private</div>
+        <div class="addr-type-name">Private ranges (RFC 1918)</div>
+        <div class="addr-type-example">10.0.0.0/8 &nbsp;·&nbsp; 172.16.0.0/12 &nbsp;·&nbsp; 192.168.0.0/16</div>
+        <div class="addr-type-desc">Not routable on the internet. Used inside homes and businesses. NAT translates these to a public IP at the router.</div>
+      </div>
+      <div class="addr-type-card v4-card">
+        <div class="addr-type-label">IPv4 — Loopback</div>
+        <div class="addr-type-name">Loopback address</div>
+        <div class="addr-type-example">127.0.0.1</div>
+        <div class="addr-type-desc">Always refers to the local machine. Used to test the TCP/IP stack with <code style="font-family:'DM Mono',monospace;font-size:11px;">ping 127.0.0.1</code>. Traffic never leaves the device.</div>
+      </div>
+      <div class="addr-type-card v4-card">
+        <div class="addr-type-label">IPv4 — APIPA</div>
+        <div class="addr-type-name">APIPA range</div>
+        <div class="addr-type-example">169.254.0.0/16</div>
+        <div class="addr-type-desc">Automatically assigned when DHCP fails. Seeing this means no DHCP server was reachable. Devices with APIPA addresses can only talk to other APIPA devices on the same segment.</div>
+      </div>
+      <div class="addr-type-card v4-card">
+        <div class="addr-type-label">IPv4 — Public</div>
+        <div class="addr-type-name">Public (routable) addresses</div>
+        <div class="addr-type-example">Everything else</div>
+        <div class="addr-type-desc">Assigned by ISPs and routable across the internet. Your home router has one public IP that all your devices share through NAT.</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Important IPv6 address types</h2>
+
+    <div class="addr-types">
+      <div class="addr-type-card v6-card">
+        <div class="addr-type-label">IPv6 — Loopback</div>
+        <div class="addr-type-name">Loopback</div>
+        <div class="addr-type-example">::1</div>
+        <div class="addr-type-desc">The IPv6 equivalent of 127.0.0.1. Refers to the local device. The full address is 0000:0000:0000:0000:0000:0000:0000:0001, compressed to ::1.</div>
+      </div>
+      <div class="addr-type-card v6-card">
+        <div class="addr-type-label">IPv6 — Link-local</div>
+        <div class="addr-type-name">Link-local address</div>
+        <div class="addr-type-example">fe80::/10</div>
+        <div class="addr-type-desc">Automatically configured on every IPv6 interface. Only valid on the local network segment — not routable. Similar role to APIPA in IPv4.</div>
+      </div>
+      <div class="addr-type-card v6-card">
+        <div class="addr-type-label">IPv6 — Global</div>
+        <div class="addr-type-name">Global unicast</div>
+        <div class="addr-type-example">2000::/3</div>
+        <div class="addr-type-desc">The equivalent of public IPv4 addresses — globally routable on the internet. Addresses starting with 2 or 3 are global unicast.</div>
+      </div>
+      <div class="addr-type-card v6-card">
+        <div class="addr-type-label">IPv6 — Unique local</div>
+        <div class="addr-type-name">Unique local</div>
+        <div class="addr-type-example">fc00::/7</div>
+        <div class="addr-type-desc">The rough equivalent of private IPv4 ranges (RFC 1918). Not routable on the internet — used within organizations. Starts with fc or fd.</div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ The Most Tested IPv6 Addresses on the A+ Exam</div>
+      <p><strong>::1</strong> — IPv6 loopback. The compressed form of all zeros with a final 1. Equivalent to 127.0.0.1.</p>
+      <p><strong>fe80::/10</strong> — Link-local. Every IPv6 interface gets one automatically. Not routable. Starts with fe80.</p>
+      <p><strong>Addresses starting with 2 or 3</strong> — Global unicast (public). Routable on the internet.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Special addresses cheat sheet</h2>
+
+    <div class="special-addrs">
+      <div class="special-addrs-header">📋 Must-Know Special Addresses</div>
+      <div class="special-addr-row">
+        <div class="special-addr-addr">127.0.0.1 <span class="special-addr-badge badge-v4">v4</span></div>
+        <div class="special-addr-desc">Loopback — tests the local TCP/IP stack. Never leaves the machine.</div>
+      </div>
+      <div class="special-addr-row">
+        <div class="special-addr-addr">169.254.x.x <span class="special-addr-badge badge-v4">v4</span></div>
+        <div class="special-addr-desc">APIPA — assigned when DHCP fails. Device can only reach other APIPA devices on same segment.</div>
+      </div>
+      <div class="special-addr-row">
+        <div class="special-addr-addr">192.168.x.x <span class="special-addr-badge badge-v4">v4</span></div>
+        <div class="special-addr-desc">Private range — used in most home and small office networks. Not routable on the internet.</div>
+      </div>
+      <div class="special-addr-row">
+        <div class="special-addr-addr">10.x.x.x <span class="special-addr-badge badge-v4">v4</span></div>
+        <div class="special-addr-desc">Private range — commonly used in larger enterprise networks. Not routable on the internet.</div>
+      </div>
+      <div class="special-addr-row">
+        <div class="special-addr-addr">::1 <span class="special-addr-badge badge-v6">v6</span></div>
+        <div class="special-addr-desc">IPv6 loopback — equivalent of 127.0.0.1. Compressed from 0000:...:0001.</div>
+      </div>
+      <div class="special-addr-row">
+        <div class="special-addr-addr">fe80::/10 <span class="special-addr-badge badge-v6">v6</span></div>
+        <div class="special-addr-desc">Link-local — auto-configured on every IPv6 interface. Not routable. Equivalent to APIPA scope.</div>
+      </div>
+      <div class="special-addr-row">
+        <div class="special-addr-addr">fc00::/7 <span class="special-addr-badge badge-v6">v6</span></div>
+        <div class="special-addr-desc">Unique local — IPv6 equivalent of private ranges (RFC 1918). Starts with fc or fd.</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Do both versions run at the same time?</h2>
+
+    <p>Yes — most networks today run <strong>dual-stack</strong>, meaning devices have both an IPv4 and an IPv6 address simultaneously. Your Windows machine almost certainly has both right now. Run <code style="font-family:'DM Mono',monospace;font-size:13px;background:rgba(0,0,0,0.06);padding:2px 7px;border-radius:4px;">ipconfig /all</code> and you'll see both listed under each adapter — an IPv4 address in the familiar 192.168.x.x format and an IPv6 address starting with fe80 (link-local) or a longer global address.</p>
+
+    <p>The transition from IPv4 to IPv6 has been gradual and is still ongoing. IPv4 won't disappear overnight — the exam reflects this by testing both, and real-world networks will run dual-stack for years to come.</p>
+
+    <hr class="divider">
+
+    <h2>Key Takeaways</h2>
+
+    <div class="summary-list">
+      <div class="summary-item"><strong>IPv4</strong> uses 32-bit addresses in decimal (192.168.1.1) — about 4.3 billion total addresses, now exhausted</div>
+      <div class="summary-item"><strong>IPv6</strong> uses 128-bit addresses in hexadecimal (2001:db8::1) — 340 undecillion addresses, solves the shortage</div>
+      <div class="summary-item">IPv6 addresses can be shortened: drop leading zeros and collapse consecutive zero groups with <strong>::</strong> (only once per address)</div>
+      <div class="summary-item"><strong>127.0.0.1</strong> (IPv4) and <strong>::1</strong> (IPv6) are both loopback addresses — they refer to the local machine</div>
+      <div class="summary-item"><strong>169.254.x.x</strong> = APIPA (IPv4) &nbsp;·&nbsp; <strong>fe80::/10</strong> = link-local (IPv6) — both are auto-assigned fallback addresses</div>
+      <div class="summary-item">Private IPv4 ranges: <strong>10.x.x.x</strong>, <strong>172.16–31.x.x</strong>, <strong>192.168.x.x</strong> — not routable on the internet</div>
+      <div class="summary-item">IPv6 eliminated the need for NAT — every device gets its own globally unique public address</div>
+      <div class="summary-item">Most networks today run <strong>dual-stack</strong> — devices have both IPv4 and IPv6 addresses at the same time</div>
+    </div>
+
+    <h2>Related Articles</h2>
+
+    <div class="related-grid">
+      <a href="subnet-mask.html" class="related-link">What Is a Subnet Mask?</a>
+      <a href="nat-explained.html" class="related-link">What Is NAT?</a>
+      <a href="dhcp.html" class="related-link">What Is DHCP?</a>
+      <a href="apipa.html" class="related-link">What Is APIPA?</a>
+      <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
+      <a href="default-gateway.html" class="related-link">What Is a Default Gateway?</a>
+      <a href="mac-address.html" class="related-link">What Is a MAC Address?</a>
+      <a href="networking.html" class="related-link">Networking Master Guide</a>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Preparing for the A+ exam?</h3>
+        <p>See the books and practice exams that make the most difference.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn btn-teal">See Best Study Resources →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Pages</div>
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-a-plus.html">Best Study Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="subnet-mask.html">Subnet Mask</a>
+      <a href="dhcp.html">DHCP</a>
+      <a href="dns.html">DNS</a>
+      <a href="nat-explained.html">NAT</a>
+      <a href="apipa.html">APIPA</a>
+      <a href="mac-address.html">MAC Address</a>
+      <a href="ipv4-vs-ipv6.html">IPv4 vs IPv6</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>
