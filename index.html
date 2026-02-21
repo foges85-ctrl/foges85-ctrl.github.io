@@ -18,8 +18,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
-<title>IT Study Hub | CompTIA A+ Guides & Home Lab Tutorials</title>
-<meta name="description" content="Clear, practical CompTIA A+ networking guides, troubleshooting walkthroughs, and budget home lab tutorials.">
+<title>IT Study Hub — Free CompTIA A+ Networking Guides & Exam Prep</title>
+<meta name="description" content="Free CompTIA A+ study guides covering networking fundamentals — OSI model, TCP/UDP, DHCP, DNS, subnetting, firewalls, and more. Written clearly for beginners preparing for the 220-1201 and 220-1202 exams.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -574,6 +574,49 @@ a { color: inherit; text-decoration: none; }
   }
 }
 
+/* ── START HERE ORIENTATION ── */
+.start-here {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 16px; padding: 32px;
+  box-shadow: var(--card-shadow); margin-bottom: 24px;
+}
+.start-here-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center;
+}
+@media (max-width: 680px) { .start-here-inner { grid-template-columns: 1fr; gap: 20px; } }
+.start-here-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: var(--teal2); margin-bottom: 8px;
+}
+.start-here-title {
+  font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 800;
+  color: var(--navy); margin-bottom: 10px; letter-spacing: -0.2px;
+}
+.start-here-body { font-size: 14px; color: var(--muted); line-height: 1.7; }
+.start-here-right { display: flex; flex-direction: column; gap: 8px; }
+.start-here-card {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--lighter); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 16px; text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s, background 0.15s;
+}
+.start-here-card:hover {
+  border-color: rgba(0,194,168,0.35); background: var(--white);
+  transform: translateX(3px); text-decoration: none;
+}
+.start-here-card-icon { font-size: 20px; flex-shrink: 0; }
+.start-here-card-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.start-here-card-desc { font-size: 12px; color: var(--muted); }
+.start-here-card-arrow { margin-left: auto; color: var(--teal2); font-weight: 700; font-size: 14px; flex-shrink: 0; }
+
+/* ── STAGE LABELS ── */
+.stage-label {
+  font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 800;
+  color: var(--navy); letter-spacing: 0.2px;
+  border-left: 3px solid var(--teal); padding-left: 12px;
+  margin: 28px 0 14px;
+}
+
 /* ── HOME LAB BANNER ── */
 .homelab-banner {
   display: flex; align-items: center; justify-content: space-between;
@@ -759,14 +802,14 @@ a { color: inherit; text-decoration: none; }
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-badge">Free IT Study Resources</div>
-      <h1>Pass Your CompTIA Exam<br><span>Without the Confusion</span></h1>
+      <div class="hero-badge">Free CompTIA A+ Study Resources</div>
+      <h1>Learn Networking.<br><span>Pass Your A+ Exam.</span></h1>
       <p class="hero-sub">
-        Practical, clear guides for CompTIA A+ and Networking fundamentals — built for real-world troubleshooting and exam success.
+        Free, practical guides covering every networking topic on the CompTIA A+ exam — written for beginners, built for people who actually want to understand how networks work, not just memorize answers.
       </p>
       <div class="hero-actions">
         <a href="networking-roadmap.html" class="btn btn-primary">
-          Start Learning →
+          Start the Roadmap →
         </a>
         <a href="best-a-plus.html" class="btn btn-outline">
           Best Study Resources
@@ -778,22 +821,22 @@ a { color: inherit; text-decoration: none; }
       <div class="stat-pill">
         <div class="stat-icon">📚</div>
         <div>
-          <div class="stat-label">Guides</div>
-          <div class="stat-val">10+ Articles</div>
+          <div class="stat-label">Free Guides</div>
+          <div class="stat-val">18 Articles</div>
         </div>
       </div>
       <div class="stat-pill">
         <div class="stat-icon">🎯</div>
         <div>
-          <div class="stat-label">Coverage</div>
-          <div class="stat-val">A+ · Network+</div>
+          <div class="stat-label">Exam Coverage</div>
+          <div class="stat-val">A+ 220-1201/1202</div>
         </div>
       </div>
       <div class="stat-pill">
         <div class="stat-icon">⚡</div>
         <div>
-          <div class="stat-label">Resources</div>
-          <div class="stat-val">Free &amp; Paid</div>
+          <div class="stat-label">Cost</div>
+          <div class="stat-val">100% Free</div>
         </div>
       </div>
     </div>
@@ -803,7 +846,227 @@ a { color: inherit; text-decoration: none; }
 <!-- MAIN CONTENT -->
 <main class="main">
 
-  <!-- AFFILIATE / RESOURCES BOX -->
+  <!-- START HERE ORIENTATION -->
+  <div class="start-here">
+    <div class="start-here-inner">
+      <div class="start-here-left">
+        <div class="start-here-label">👋 New here?</div>
+        <h2 class="start-here-title">Where to begin</h2>
+        <p class="start-here-body">If you're studying for the CompTIA A+ exam, start with the Networking Roadmap — it organizes every topic in the right learning order so nothing gets missed. If you already know what you're looking for, use the guides below.</p>
+      </div>
+      <div class="start-here-right">
+        <a href="networking-roadmap.html" class="start-here-card">
+          <div class="start-here-card-icon">🗺️</div>
+          <div>
+            <div class="start-here-card-title">Networking Roadmap</div>
+            <div class="start-here-card-desc">Structured A+ → Network+ learning path</div>
+          </div>
+          <div class="start-here-card-arrow">→</div>
+        </a>
+        <a href="networking.html" class="start-here-card">
+          <div class="start-here-card-icon">📡</div>
+          <div>
+            <div class="start-here-card-title">Networking Master Guide</div>
+            <div class="start-here-card-desc">All networking topics in one organized hub</div>
+          </div>
+          <div class="start-here-card-arrow">→</div>
+        </a>
+        <a href="best-a-plus.html" class="start-here-card">
+          <div class="start-here-card-icon">📘</div>
+          <div>
+            <div class="start-here-card-title">Best Study Resources</div>
+            <div class="start-here-card-desc">Books and practice exams worth buying</div>
+          </div>
+          <div class="start-here-card-arrow">→</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOME LAB BANNER -->
+  <a href="home-lab.html" class="homelab-banner">
+    <div class="homelab-banner-left">
+      <div class="homelab-banner-tag">🧰 Hands-On Practice</div>
+      <div class="homelab-banner-title">Build Your IT Home Lab</div>
+      <div class="homelab-banner-sub">Curated gear picks for hands-on A+ practice — screwdriver kits, cable testers, managed switches, and safety essentials with direct Amazon links.</div>
+    </div>
+    <div class="homelab-banner-right">
+      <div class="homelab-banner-items">
+        <span>🔧 Toolkits</span>
+        <span>📡 Networking</span>
+        <span>🛡️ Safety Gear</span>
+      </div>
+      <div class="homelab-banner-cta">Browse Gear →</div>
+    </div>
+  </a>
+
+  <!-- ARTICLES SECTION -->
+  <div class="section-header">
+    <h2 class="section-title">All <span>Guides</span></h2>
+    <span class="section-count">18 guides</span>
+  </div>
+
+  <!-- STAGE: CORE CONCEPTS -->
+  <div class="stage-label">📐 Core Concepts</div>
+  <div class="cards-grid">
+
+    <div class="article-card">
+      <div class="card-tag">Core Model</div>
+      <h3><a href="osi-model.html">OSI Model Explained (All 7 Layers)</a></h3>
+      <p>Learn all 7 OSI layers with memory tricks and troubleshooting examples for the CompTIA A+ exam.</p>
+      <a href="osi-model.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="card-tag">Protocols</div>
+      <h3><a href="tcp-vs-udp.html">TCP vs UDP Explained Simply</a></h3>
+      <p>Understand reliability vs speed and when to use each protocol for the CompTIA A+ exam.</p>
+      <a href="tcp-vs-udp.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="card-tag">Core Concept</div>
+      <h3><a href="mac-address.html">What Is a MAC Address?</a></h3>
+      <p>Every network device has a hardware address burned in at the factory. Learn how MACs differ from IPs, how switches use them, and how ARP connects the two.</p>
+      <a href="mac-address.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="card-tag">Ports & Services</div>
+      <h3><a href="ports.html">CompTIA A+ Port Numbers — Complete List</a></h3>
+      <p>Every port number tested on the A+ exam with exam priority ratings, memory tricks, and scenario questions.</p>
+      <a href="ports.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+  </div>
+
+  <!-- STAGE: IP ADDRESSING -->
+  <div class="stage-label">🌐 IP Addressing & Configuration</div>
+  <div class="cards-grid">
+
+    <div class="article-card">
+      <div class="card-tag">IP Addressing</div>
+      <h3><a href="subnet-mask.html">What Is a Subnet Mask?</a></h3>
+      <p>Understand common masks like 255.255.255.0 and how they affect local vs internet traffic.</p>
+      <a href="subnet-mask.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="card-tag">Core Concept</div>
+      <h3><a href="dhcp.html">What Is DHCP?</a></h3>
+      <p>See how devices automatically receive IP addresses and how leases work in real networks.</p>
+      <a href="dhcp.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="card-tag">DNS</div>
+      <h3><a href="dns.html">What Is DNS?</a></h3>
+      <p>Learn how DNS translates domain names into IP addresses and how to troubleshoot DNS issues on the exam.</p>
+      <a href="dns.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="card-tag">Troubleshooting</div>
+      <h3><a href="apipa.html">What Is APIPA?</a></h3>
+      <p>Learn why 169.254 addresses appear and how to troubleshoot DHCP failures on the exam.</p>
+      <a href="apipa.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="card-tag">IP Addressing</div>
+      <h3><a href="ipv4-vs-ipv6.html">IPv4 vs IPv6 Explained</a></h3>
+      <p>Why IPv6 exists, how address formats differ, and the special addresses the exam tests on both versions.</p>
+      <a href="ipv4-vs-ipv6.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+  </div>
+
+  <!-- STAGE: TRAFFIC & ROUTING -->
+  <div class="stage-label">🔀 Traffic Flow & Routing</div>
+  <div class="cards-grid">
+
+    <div class="article-card">
+      <div class="card-tag">Core Concept</div>
+      <h3><a href="default-gateway.html">What Is a Default Gateway?</a></h3>
+      <p>Learn how the default gateway allows devices to reach the internet and how it appears on the exam.</p>
+      <a href="default-gateway.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="card-tag">Networking</div>
+      <h3><a href="nat-explained.html">What Is NAT?</a></h3>
+      <p>Understand how routers translate private IP addresses to public ones and how NAT appears on the exam.</p>
+      <a href="nat-explained.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="card-tag">Networking Hardware</div>
+      <h3><a href="router-vs-switch.html">Router vs Switch — What's the Difference?</a></h3>
+      <p>Routers use IP at Layer 3, switches use MAC at Layer 2 — how they work together and how to troubleshoot each.</p>
+      <a href="router-vs-switch.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+  </div>
+
+  <!-- STAGE: TROUBLESHOOTING & SECURITY -->
+  <div class="stage-label">🔒 Troubleshooting & Security</div>
+  <div class="cards-grid">
+
+    <div class="article-card">
+      <div class="card-tag">Troubleshooting</div>
+      <h3><a href="network-troubleshooting-commands.html">Network Troubleshooting Commands</a></h3>
+      <p>Master ipconfig, ping, tracert, nslookup, netstat — the six commands every IT technician uses daily.</p>
+      <a href="network-troubleshooting-commands.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+    <div class="article-card">
+      <div class="card-tag">Network Security</div>
+      <h3><a href="firewall-basics.html">Firewall Basics Explained</a></h3>
+      <p>Allow/deny rules, implicit deny, stateful vs stateless, and Windows Defender Firewall profiles.</p>
+      <a href="firewall-basics.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+  </div>
+
+  <!-- STAGE: HOME LAB -->
+  <div class="stage-label">🧰 Home Lab</div>
+  <div class="cards-grid">
+
+    <div class="article-card">
+      <div class="card-tag">Home Lab</div>
+      <h3><a href="home-lab-setup-guide.html">Build Your First IT Home Lab on a Budget</a></h3>
+      <p>Start with what you already have — two laptops and free VMs. A complete beginner's setup guide.</p>
+      <a href="home-lab-setup-guide.html" class="card-arrow">Read Guide →</a>
+    </div>
+
+  </div>
+
+  <!-- AFFILIATE / RESOURCES BOX — after content, earns the placement -->
+  <div class="affiliate-box">
+    <div class="affiliate-header">
+      <div>
+        <h2>Ready to sit the exam?</h2>
+        <p>Pair these guides with a study book and practice exams for the highest chance of passing first try.</p>
+      </div>
+      <span class="affiliate-tag">Editor's Picks</span>
+    </div>
+    <div class="affiliate-buttons">
+      <a href="https://www.examcompass.com/comptia/a-plus-certification/free-a-plus-practice-tests"
+         class="aff-btn aff-btn-primary" target="_blank" rel="nofollow sponsored">
+        🧪 Free Practice Exams
+      </a>
+      <a href="https://amzn.to/4aF0y7U"
+         class="aff-btn aff-btn-secondary" target="_blank" rel="nofollow sponsored">
+        📘 #1 Bestselling A+ Study Guide
+      </a>
+      <a href="best-a-plus.html"
+         class="aff-btn aff-btn-secondary">
+        → See Full Comparison
+      </a>
+    </div>
+  </div>
+
+</main>
   <div class="affiliate-box">
     <div class="affiliate-header">
       <div>
