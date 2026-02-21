@@ -538,6 +538,71 @@ a:hover { text-decoration: underline; }
   .cheat-arrow { display: none; }
 }
 
+/* ── HOME LAB CALLOUT ── */
+.home-lab-callout {
+  background: linear-gradient(135deg, var(--navy) 0%, #0d1e3a 100%);
+  border-radius: 16px; padding: 36px 32px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 36px;
+  align-items: center; position: relative; overflow: hidden;
+  border: 1px solid rgba(0,194,168,0.15);
+}
+.home-lab-callout::before {
+  content: ''; position: absolute; top: -60px; right: -60px;
+  width: 240px; height: 240px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,194,168,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.home-lab-callout::after {
+  content: ''; position: absolute; bottom: -40px; left: -40px;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,108,255,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+@media (max-width: 680px) {
+  .home-lab-callout { grid-template-columns: 1fr; gap: 24px; padding: 28px 22px; }
+}
+.hlc-tag {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 14px;
+}
+.hlc-title {
+  font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 800;
+  color: var(--white); line-height: 1.3; margin-bottom: 14px; letter-spacing: -0.2px;
+}
+.hlc-body {
+  font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 10px;
+}
+.hlc-body:last-of-type { margin-bottom: 20px; }
+.hlc-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+.hlc-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 11px 18px; border-radius: 9px;
+  font-size: 14px; font-weight: 600; text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+}
+.hlc-btn:hover { transform: translateY(-2px); text-decoration: none; }
+.hlc-btn-primary {
+  background: var(--teal); color: var(--navy);
+  box-shadow: 0 4px 16px rgba(0,194,168,0.3);
+}
+.hlc-btn-primary:hover { box-shadow: 0 8px 24px rgba(0,194,168,0.4); }
+.hlc-btn-secondary {
+  background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.8);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.hlc-btn-secondary:hover { background: rgba(255,255,255,0.12); }
+.hlc-gear-list { display: flex; flex-direction: column; gap: 12px; position: relative; z-index: 1; }
+.hlc-gear-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px; padding: 12px 14px;
+}
+.hlc-gear-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.hlc-gear-name { font-size: 13.5px; font-weight: 700; color: var(--white); margin-bottom: 2px; }
+.hlc-gear-desc { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.4; }
+
 /* ── RELATED ARTICLES ── */
 .related-grid {
   display: grid;
@@ -962,6 +1027,54 @@ a:hover { text-decoration: underline; }
       <div class="cheat-symptom">Valid IP/mask/gateway, still no internet</div>
       <div class="cheat-steps">Suspect NAT misconfiguration on the router → check WAN/NAT settings on router admin page</div>
       <div class="cheat-arrow">→</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- HOME LAB CALLOUT -->
+  <div class="home-lab-callout">
+    <div class="hlc-left">
+      <div class="hlc-tag">🔧 Take It Further</div>
+      <h2 class="hlc-title">Reading about networking is one thing.<br>Doing it is how it actually sticks.</h2>
+      <p class="hlc-body">The fastest way to make concepts like subnetting, DHCP, and switching click is to run them on real hardware — or at minimum, a home lab VM. Once you've pinged a gateway you set up yourself, you won't forget what a default gateway does.</p>
+      <p class="hlc-body">I put together a guide to building your first lab on a tight budget, plus a list of the exact gear worth buying when you're ready to go physical.</p>
+      <div class="hlc-buttons">
+        <a href="home-lab-setup-guide.html" class="hlc-btn hlc-btn-primary">🖥️ Free VM Setup Guide</a>
+        <a href="home-lab.html" class="hlc-btn hlc-btn-secondary">🛒 Recommended Gear</a>
+      </div>
+    </div>
+    <div class="hlc-right">
+      <div class="hlc-gear-list">
+        <div class="hlc-gear-item">
+          <div class="hlc-gear-icon">🔌</div>
+          <div>
+            <div class="hlc-gear-name">Managed switch</div>
+            <div class="hlc-gear-desc">Practice VLANs &amp; MAC tables hands-on</div>
+          </div>
+        </div>
+        <div class="hlc-gear-item">
+          <div class="hlc-gear-icon">🔀</div>
+          <div>
+            <div class="hlc-gear-name">Home router</div>
+            <div class="hlc-gear-desc">Configure NAT, DHCP, and firewall rules</div>
+          </div>
+        </div>
+        <div class="hlc-gear-item">
+          <div class="hlc-gear-icon">🖥️</div>
+          <div>
+            <div class="hlc-gear-name">Two laptops + VirtualBox</div>
+            <div class="hlc-gear-desc">Free VM lab — no hardware needed to start</div>
+          </div>
+        </div>
+        <div class="hlc-gear-item">
+          <div class="hlc-gear-icon">🔧</div>
+          <div>
+            <div class="hlc-gear-name">Cable crimping kit</div>
+            <div class="hlc-gear-desc">Make your own patch cables for the A+ practical</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
