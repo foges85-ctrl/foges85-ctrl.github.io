@@ -18,8 +18,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
-<title>Common Port Numbers for the CompTIA A+ Exam (Easy Reference Guide)</title>
-<meta name="description" content="Learn the most important port numbers for the CompTIA A+ exam including HTTP, HTTPS, FTP, SSH, RDP, SMTP, DNS, and more. Includes memory tips and troubleshooting examples.">
+<title>CompTIA A+ Port Numbers — Complete List & Memory Guide (2026)</title>
+<meta name="description" content="Every port number tested on the CompTIA A+ exam — HTTP, HTTPS, FTP, SSH, RDP, DNS, SMTP, SNMP, SMB, LDAP and more. Includes exam scenarios, memory tricks, and a quick reference table.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -353,6 +353,14 @@ tbody tr:hover td { background: #f6f9ff; }
 .proto-tcp { background: rgba(26,108,255,0.1); color: #1a4cc0; }
 .proto-udp { background: rgba(0,194,168,0.1); color: var(--teal2); }
 .proto-both { background: rgba(138,155,181,0.15); color: var(--slate); }
+.priority-badge {
+  display: inline-block; font-family: 'DM Mono', monospace;
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.5px; padding: 3px 8px; border-radius: 4px;
+}
+.priority-high { background: rgba(239,68,68,0.1); color: #dc2626; }
+.priority-med  { background: rgba(245,158,11,0.1); color: #b45309; }
+.priority-low  { background: rgba(100,116,139,0.1); color: #475569; }
 
 .service-name { font-weight: 600; color: var(--navy); }
 .service-desc { font-size: 12px; color: var(--muted); margin-top: 1px; }
@@ -775,9 +783,9 @@ tbody tr:hover td { background: #f6f9ff; }
       <span>Common Port Numbers</span>
     </nav>
     <div class="page-hero-badge">CompTIA A+ · High Yield</div>
-    <h1>Common Port Numbers <span>for the A+ Exam</span></h1>
+    <h1>CompTIA A+ <span>Port Numbers</span> — Complete List</h1>
     <p class="page-hero-sub">
-      Port numbers are one of the most tested networking topics on the CompTIA A+ exam. You don't need to memorize every port — but you MUST know the common ones.
+      The complete list of port numbers tested on the CompTIA A+ exam — from the high-priority ones like 80, 443, and 3389 to the medium-priority ports like SNMP, SMB, and LDAP that catch students off guard. With exam scenarios and memory tricks.
     </p>
   </div>
 </section>
@@ -809,7 +817,7 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <hr class="divider">
 
-    <h2>Most Important A+ Port Numbers</h2>
+    <h2>Complete A+ Port Numbers List</h2>
 
     <div class="table-wrap">
       <table>
@@ -818,58 +826,129 @@ tbody tr:hover td { background: #f6f9ff; }
             <th>Port</th>
             <th>Protocol</th>
             <th>Service</th>
+            <th>Exam priority</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><span class="port-num">20 / 21</span></td>
             <td><span class="proto-badge proto-tcp">TCP</span></td>
-            <td><div class="service-name">FTP</div><div class="service-desc">File Transfer Protocol</div></td>
+            <td><div class="service-name">FTP</div><div class="service-desc">File Transfer Protocol — 20 = data, 21 = control</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
           </tr>
           <tr>
             <td><span class="port-num">22</span></td>
             <td><span class="proto-badge proto-tcp">TCP</span></td>
-            <td><div class="service-name">SSH</div><div class="service-desc">Secure Shell — encrypted remote access</div></td>
+            <td><div class="service-name">SSH / SFTP</div><div class="service-desc">Secure Shell + Secure File Transfer (SFTP runs over SSH)</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
           </tr>
           <tr>
             <td><span class="port-num">23</span></td>
             <td><span class="proto-badge proto-tcp">TCP</span></td>
-            <td><div class="service-name">Telnet</div><div class="service-desc">Unencrypted remote access (legacy)</div></td>
+            <td><div class="service-name">Telnet</div><div class="service-desc">Unencrypted remote access — replaced by SSH</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
           </tr>
           <tr>
             <td><span class="port-num">25</span></td>
             <td><span class="proto-badge proto-tcp">TCP</span></td>
-            <td><div class="service-name">SMTP</div><div class="service-desc">Email sending</div></td>
+            <td><div class="service-name">SMTP</div><div class="service-desc">Simple Mail Transfer Protocol — sends email between servers</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
           </tr>
           <tr>
             <td><span class="port-num">53</span></td>
             <td><span class="proto-badge proto-both">UDP / TCP</span></td>
-            <td><div class="service-name">DNS</div><div class="service-desc">Domain Name System lookups</div></td>
+            <td><div class="service-name">DNS</div><div class="service-desc">Domain Name System — resolves hostnames to IPs</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">67 / 68</span></td>
+            <td><span class="proto-badge proto-udp">UDP</span></td>
+            <td><div class="service-name">DHCP</div><div class="service-desc">67 = server, 68 = client — automatic IP assignment</div></td>
+            <td><span class="priority-badge priority-med">Medium</span></td>
           </tr>
           <tr>
             <td><span class="port-num">80</span></td>
             <td><span class="proto-badge proto-tcp">TCP</span></td>
             <td><div class="service-name">HTTP</div><div class="service-desc">Unencrypted web traffic</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
           </tr>
           <tr>
             <td><span class="port-num">110</span></td>
             <td><span class="proto-badge proto-tcp">TCP</span></td>
-            <td><div class="service-name">POP3</div><div class="service-desc">Email retrieval (downloads to device)</div></td>
+            <td><div class="service-name">POP3</div><div class="service-desc">Post Office Protocol — downloads email to device, deletes from server</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">137–139</span></td>
+            <td><span class="proto-badge proto-both">TCP/UDP</span></td>
+            <td><div class="service-name">NetBIOS</div><div class="service-desc">Windows name resolution and file sharing (legacy)</div></td>
+            <td><span class="priority-badge priority-med">Medium</span></td>
           </tr>
           <tr>
             <td><span class="port-num">143</span></td>
             <td><span class="proto-badge proto-tcp">TCP</span></td>
-            <td><div class="service-name">IMAP</div><div class="service-desc">Email retrieval (synced to server)</div></td>
+            <td><div class="service-name">IMAP</div><div class="service-desc">Internet Message Access Protocol — email stays on server, synced to devices</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">161 / 162</span></td>
+            <td><span class="proto-badge proto-udp">UDP</span></td>
+            <td><div class="service-name">SNMP</div><div class="service-desc">Simple Network Management Protocol — monitors network devices. 161 = queries, 162 = traps</div></td>
+            <td><span class="priority-badge priority-med">Medium</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">389</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">LDAP</div><div class="service-desc">Lightweight Directory Access Protocol — used with Active Directory</div></td>
+            <td><span class="priority-badge priority-med">Medium</span></td>
           </tr>
           <tr>
             <td><span class="port-num">443</span></td>
             <td><span class="proto-badge proto-tcp">TCP</span></td>
-            <td><div class="service-name">HTTPS</div><div class="service-desc">Encrypted web traffic (SSL/TLS)</div></td>
+            <td><div class="service-name">HTTPS</div><div class="service-desc">Encrypted web traffic — HTTP over SSL/TLS</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">445</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">SMB</div><div class="service-desc">Server Message Block — Windows file and printer sharing</div></td>
+            <td><span class="priority-badge priority-med">Medium</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">587</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">SMTP (Submission)</div><div class="service-desc">Authenticated email submission — modern replacement for port 25 for clients</div></td>
+            <td><span class="priority-badge priority-med">Medium</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">636</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">LDAPS</div><div class="service-desc">LDAP over SSL — encrypted directory access</div></td>
+            <td><span class="priority-badge priority-low">Know it</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">990</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">FTPS</div><div class="service-desc">FTP over SSL — encrypted file transfer (different from SFTP)</div></td>
+            <td><span class="priority-badge priority-low">Know it</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">993</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">IMAPS</div><div class="service-desc">IMAP over SSL — encrypted email retrieval</div></td>
+            <td><span class="priority-badge priority-med">Medium</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">995</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">POP3S</div><div class="service-desc">POP3 over SSL — encrypted email download</div></td>
+            <td><span class="priority-badge priority-med">Medium</span></td>
           </tr>
           <tr>
             <td><span class="port-num">3389</span></td>
             <td><span class="proto-badge proto-tcp">TCP</span></td>
-            <td><div class="service-name">RDP</div><div class="service-desc">Remote Desktop Protocol</div></td>
+            <td><div class="service-name">RDP</div><div class="service-desc">Remote Desktop Protocol — graphical remote access to Windows</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
           </tr>
         </tbody>
       </table>
@@ -933,13 +1012,20 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <hr class="divider">
 
-    <h2>Why Port Numbers Matter on the A+ Exam</h2>
-    <p>You may see scenario-based questions like these — and they're easy points if you've memorized the common ports:</p>
+    <h2>A+ Exam Scenarios — Port Questions</h2>
+    <p>The A+ exam tests ports through scenario questions. Here are the most common patterns and the answers:</p>
 
     <div class="scenario-list">
-      <div class="scenario-item">"A user cannot access a website using HTTPS. Which port should be checked?"</div>
-      <div class="scenario-item">"Which port does RDP use?"</div>
-      <div class="scenario-item">"Which protocol uses port 53?"</div>
+      <div class="scenario-item">💬 "A user cannot access HTTPS websites but HTTP works fine." → <strong>Port 443 is blocked by the firewall</strong></div>
+      <div class="scenario-item">💬 "Which port does Remote Desktop use?" → <strong>3389</strong></div>
+      <div class="scenario-item">💬 "Which protocol uses port 53?" → <strong>DNS</strong></div>
+      <div class="scenario-item">💬 "A user's email is not being received. Which port should be checked?" → <strong>25 (SMTP)</strong></div>
+      <div class="scenario-item">💬 "Which port is used for encrypted email retrieval that keeps mail on the server?" → <strong>993 (IMAPS)</strong></div>
+      <div class="scenario-item">💬 "A technician needs to securely transfer files to a Linux server. Which port?" → <strong>22 (SFTP/SSH)</strong></div>
+      <div class="scenario-item">💬 "Which port does DHCP use to communicate with clients?" → <strong>68</strong></div>
+      <div class="scenario-item">💬 "An administrator needs to monitor network devices remotely. Which protocol and port?" → <strong>SNMP, port 161</strong></div>
+      <div class="scenario-item">💬 "Which port is used for Windows file sharing?" → <strong>445 (SMB)</strong></div>
+      <div class="scenario-item">💬 "Telnet is a security risk because..." → <strong>It transmits data including passwords in plaintext — use SSH (22) instead</strong></div>
     </div>
 
     <hr class="divider">
@@ -954,37 +1040,28 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <hr class="divider">
 
-    <h2>Quick Reference Summary</h2>
+    <h2>Quick Reference — All A+ Ports</h2>
 
     <div class="summary-grid">
-      <div class="summary-pill">
-        <span class="summary-pill-port">20/21</span>
-        <span class="summary-pill-service">FTP</span>
-      </div>
-      <div class="summary-pill">
-        <span class="summary-pill-port">22</span>
-        <span class="summary-pill-service">SSH</span>
-      </div>
-      <div class="summary-pill">
-        <span class="summary-pill-port">25</span>
-        <span class="summary-pill-service">SMTP</span>
-      </div>
-      <div class="summary-pill">
-        <span class="summary-pill-port">53</span>
-        <span class="summary-pill-service">DNS</span>
-      </div>
-      <div class="summary-pill">
-        <span class="summary-pill-port">80</span>
-        <span class="summary-pill-service">HTTP</span>
-      </div>
-      <div class="summary-pill">
-        <span class="summary-pill-port">443</span>
-        <span class="summary-pill-service">HTTPS</span>
-      </div>
-      <div class="summary-pill">
-        <span class="summary-pill-port">3389</span>
-        <span class="summary-pill-service">RDP</span>
-      </div>
+      <div class="summary-pill"><span class="summary-pill-port">20/21</span><span class="summary-pill-service">FTP</span></div>
+      <div class="summary-pill"><span class="summary-pill-port">22</span><span class="summary-pill-service">SSH/SFTP</span></div>
+      <div class="summary-pill"><span class="summary-pill-port">23</span><span class="summary-pill-service">Telnet</span></div>
+      <div class="summary-pill"><span class="summary-pill-port">25</span><span class="summary-pill-service">SMTP</span></div>
+      <div class="summary-pill"><span class="summary-pill-port">53</span><span class="summary-pill-service">DNS</span></div>
+      <div class="summary-pill"><span class="summary-pill-port">67/68</span><span class="summary-pill-service">DHCP</span></div>
+      <div class="summary-pill"><span class="summary-pill-port">80</span><span class="summary-pill-service">HTTP</span></div>
+      <div class="summary-pill"><span class="summary-pill-port">110</span><span class="summary-pill-service">POP3</span></div>
+      <div class="summary-pill"><span class="summary-pill-port">137-139</span><span class="summary-pill-service">NetBIOS</span></div>
+      <div class="summary-pill"><span class="summary-pill-port">143</span><span class="summary-pill-service">IMAP</span></div>
+      <div class="summary-pill"><span class="summary-pill-port">161/162</span><span class="summary-pill-service">SNMP</span></div>
+      <div class="summary-pill"><span class="summary-pill-port">389</span><span class="summary-pill-service">LDAP</span></div>
+      <div class="summary-pill"><span class="summary-pill-port">443</span><span class="summary-pill-service">HTTPS</span></div>
+      <div class="summary-pill"><span class="summary-pill-port">445</span><span class="summary-pill-service">SMB</span></div>
+      <div class="summary-pill"><span class="summary-pill-port">587</span><span class="summary-pill-service">SMTP Auth</span></div>
+      <div class="summary-pill"><span class="summary-pill-port">990</span><span class="summary-pill-service">FTPS</span></div>
+      <div class="summary-pill"><span class="summary-pill-port">993</span><span class="summary-pill-service">IMAPS</span></div>
+      <div class="summary-pill"><span class="summary-pill-port">995</span><span class="summary-pill-service">POP3S</span></div>
+      <div class="summary-pill"><span class="summary-pill-port">3389</span><span class="summary-pill-service">RDP</span></div>
     </div>
 
     <hr class="divider">
@@ -1017,6 +1094,8 @@ tbody tr:hover td { background: #f6f9ff; }
       <a href="apipa.html" class="related-link">What Is APIPA?</a>
       <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP Explained</a>
       <a href="home-lab-setup-guide.html" class="related-link">Build Your First Home Lab</a>
+      <a href="firewall-basics.html" class="related-link">Firewall Basics</a>
+      <a href="router-vs-switch.html" class="related-link">Router vs Switch</a>
     </div>
 
     <!-- CTA -->
