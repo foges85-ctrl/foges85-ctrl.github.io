@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<title>Firewall Basics Explained | CompTIA A+ Guide (IT Study Hub)</title>
+<meta name="description" content="What is a firewall, how do allow/deny rules work, what types exist, and what does the CompTIA A+ exam test? Explained simply for beginners.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --red:     #ef4444;
+  --red2:    #dc2626;
+  --green:   #22c55e;
+  --green2:  #16a34a;
+  --amber:   #f59e0b;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--teal2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 28px;
+  height: 68px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+}
+.logo-link {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 17px; color: var(--navy); letter-spacing: -0.3px;
+  flex-shrink: 0; text-decoration: none;
+}
+.logo-img { height: 40px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px; font-weight: 600; padding: 8px 14px;
+  border-radius: 8px; color: var(--muted);
+  transition: color 0.15s, background 0.15s; text-decoration: none;
+}
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta {
+  background: var(--navy); color: var(--white) !important;
+  padding: 8px 18px; border-radius: 8px; margin-left: 6px;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); }
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 34px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy); position: relative;
+  overflow: hidden; padding: 52px 28px 60px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 95% 50%, rgba(239,68,68,0.1) 0%, transparent 65%),
+    radial-gradient(ellipse 30% 60% at 5% 80%, rgba(0,194,168,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.page-hero-inner {
+  max-width: 860px; margin: 0 auto; position: relative; z-index: 1;
+  animation: fadeUp 0.6s ease both;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  margin-bottom: 18px; font-family: 'DM Mono', monospace;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; text-decoration: none; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge {
+  display: inline-flex; align-items: center;
+  background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3);
+  color: #fca5a5; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 16px;
+}
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(26px, 4vw, 40px); font-weight: 800;
+  color: var(--white); line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 14px;
+}
+.page-hero h1 span { color: #fca5a5; }
+.page-hero-sub {
+  font-size: 15px; color: rgba(255,255,255,0.6); max-width: 580px; line-height: 1.7;
+}
+
+/* ── ARTICLE ── */
+.article-wrap { max-width: 860px; margin: 0 auto; padding: 52px 28px 80px; }
+@media (max-width: 768px) { .article-wrap { padding: 32px 16px 60px; } }
+
+.article-body h2 {
+  font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.3px; margin: 48px 0 14px;
+}
+.article-body h2:first-child { margin-top: 0; }
+.article-body p { font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 14px; }
+.article-body strong { color: var(--navy); font-weight: 700; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+/* ── TRAFFIC FLOW DIAGRAM ── */
+.traffic-diagram {
+  background: var(--navy); border-radius: 14px;
+  padding: 28px 24px; margin-bottom: 28px;
+  position: relative; overflow: hidden;
+}
+.traffic-diagram::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 100%, rgba(239,68,68,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.traffic-diagram-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); margin-bottom: 22px; text-align: center;
+}
+.traffic-flow {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; flex-wrap: wrap; row-gap: 16px;
+}
+.traffic-node {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  min-width: 80px;
+}
+.traffic-icon {
+  width: 52px; height: 52px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.traffic-icon.internet { background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.3); }
+.traffic-icon.firewall { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); }
+.traffic-icon.network  { background: rgba(0,194,168,0.15); border: 1px solid rgba(0,194,168,0.3); }
+.traffic-node-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600;
+  color: rgba(255,255,255,0.5); text-align: center; letter-spacing: 0.5px;
+}
+.traffic-arrow {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 4px; padding: 0 8px; flex-shrink: 0;
+}
+.traffic-arrow-line {
+  height: 2px; width: 40px; position: relative;
+}
+.traffic-arrow-line.allow { background: var(--green); }
+.traffic-arrow-line.block { background: var(--red); }
+.traffic-arrow-line::after {
+  content: '▶'; position: absolute; right: -6px; top: -6px; font-size: 9px;
+}
+.traffic-arrow-line.allow::after { color: var(--green); }
+.traffic-arrow-line.block::after { color: var(--red); }
+.traffic-arrow-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.5px; text-transform: uppercase;
+}
+.traffic-arrow-label.allow { color: var(--green); }
+.traffic-arrow-label.block { color: var(--red); }
+
+/* ── RULE TABLE ── */
+.rule-table-wrap {
+  background: var(--navy); border-radius: 14px;
+  overflow: hidden; margin-bottom: 28px;
+}
+.rule-table-header {
+  padding: 14px 20px; background: rgba(255,255,255,0.05);
+  font-family: 'Outfit', sans-serif; font-size: 15px;
+  font-weight: 700; color: var(--white);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.rule-table {
+  width: 100%; border-collapse: collapse; font-size: 13px;
+}
+.rule-table th {
+  padding: 10px 16px; text-align: left;
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.rule-table td {
+  padding: 11px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-family: 'DM Mono', monospace;
+  color: rgba(255,255,255,0.7);
+}
+.rule-table tr:last-child td { border-bottom: none; }
+.rule-action {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 700; padding: 3px 10px;
+  border-radius: 100px; letter-spacing: 0.5px; text-transform: uppercase;
+}
+.rule-action.allow { background: rgba(34,197,94,0.15); color: var(--green); border: 1px solid rgba(34,197,94,0.3); }
+.rule-action.deny  { background: rgba(239,68,68,0.15);  color: var(--red);   border: 1px solid rgba(239,68,68,0.3); }
+
+/* ── FIREWALL TYPES CARDS ── */
+.type-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px;
+}
+@media (max-width: 560px) { .type-cards { grid-template-columns: 1fr; } }
+.type-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px 20px;
+  box-shadow: var(--card-shadow);
+}
+.type-card-icon { font-size: 26px; margin-bottom: 10px; }
+.type-card-name {
+  font-family: 'Outfit', sans-serif; font-size: 15px;
+  font-weight: 800; color: var(--navy); margin-bottom: 4px;
+}
+.type-card-tag {
+  display: inline-block; font-family: 'DM Mono', monospace;
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.6px; padding: 2px 8px; border-radius: 4px;
+  margin-bottom: 10px;
+  background: var(--light); color: var(--muted);
+}
+.type-card-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+
+/* ── STATEFUL VS STATELESS COMPARISON ── */
+.state-compare {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px;
+}
+@media (max-width: 560px) { .state-compare { grid-template-columns: 1fr; } }
+.state-card {
+  border-radius: 12px; padding: 20px;
+  border: 1px solid transparent;
+}
+.state-card.stateless {
+  background: rgba(239,68,68,0.04);
+  border-color: rgba(239,68,68,0.2);
+}
+.state-card.stateful {
+  background: rgba(34,197,94,0.04);
+  border-color: rgba(34,197,94,0.2);
+}
+.state-card-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.7px; text-transform: uppercase; margin-bottom: 8px;
+}
+.stateless .state-card-label { color: var(--red2); }
+.stateful .state-card-label  { color: var(--green2); }
+.state-card-title {
+  font-family: 'Outfit', sans-serif; font-size: 16px;
+  font-weight: 800; color: var(--navy); margin-bottom: 10px;
+}
+.state-card-desc { font-size: 13.5px; color: var(--muted); line-height: 1.65; margin-bottom: 10px; }
+.state-card-example {
+  font-family: 'DM Mono', monospace; font-size: 12px;
+  background: var(--light); border-radius: 6px;
+  padding: 8px 12px; color: var(--navy);
+}
+
+/* ── EXAM TIP ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060; border-left: 4px solid #f0c000;
+  border-radius: 12px; padding: 20px 22px; margin: 4px 0 28px;
+}
+.exam-tip-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px;
+}
+.exam-tip p { font-size: 14px; color: #5a4000; margin-bottom: 8px; line-height: 1.65; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #3a2800; }
+
+/* ── PORT RULES BOX ── */
+.port-rules {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: var(--card-shadow); margin-bottom: 28px;
+}
+.port-rules-header {
+  background: var(--navy); padding: 12px 20px;
+  font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 700; color: var(--white);
+}
+.port-rule-row {
+  display: grid; grid-template-columns: 100px 120px 1fr 80px;
+  gap: 12px; padding: 11px 20px;
+  border-bottom: 1px solid var(--border); align-items: center;
+  font-size: 13.5px;
+}
+.port-rule-row.header {
+  background: var(--light);
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px;
+  color: var(--muted);
+}
+.port-rule-row:last-child { border-bottom: none; }
+.port-num { font-family: 'DM Mono', monospace; font-weight: 700; color: var(--navy); }
+.port-proto { font-family: 'DM Mono', monospace; color: var(--muted); }
+.port-service { color: var(--text); }
+.port-action { display: flex; justify-content: flex-end; }
+@media (max-width: 540px) {
+  .port-rule-row { grid-template-columns: 60px 70px 1fr 70px; gap: 6px; }
+}
+
+/* ── SUMMARY LIST ── */
+.summary-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.summary-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px;
+  font-size: 14px; box-shadow: var(--card-shadow);
+}
+.summary-item::before {
+  content: '✓';
+  display: flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; min-width: 20px;
+  background: rgba(0,194,168,0.12); color: var(--teal2);
+  border-radius: 50%; font-size: 11px; font-weight: 700;
+  margin-top: 1px;
+}
+
+/* ── RELATED + CTA ── */
+.related-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px;
+}
+@media (max-width: 560px) { .related-grid { grid-template-columns: 1fr; } }
+.related-link {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px; font-size: 14px;
+  font-weight: 600; color: var(--navy); text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s, color 0.15s;
+  box-shadow: var(--card-shadow);
+}
+.related-link:hover { border-color: rgba(0,194,168,0.3); color: var(--teal2); transform: translateY(-2px); text-decoration: none; }
+.related-link::before { content: '→'; color: var(--teal2); font-size: 13px; flex-shrink: 0; }
+
+.cta-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px; padding: 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap; position: relative; overflow: hidden;
+}
+.cta-box::before {
+  content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%); pointer-events: none;
+}
+.cta-box-text h3 { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
+  border-radius: 10px; font-size: 14px; font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap; flex-shrink: 0; text-decoration: none;
+}
+.btn:hover { transform: translateY(-2px); text-decoration: none; }
+.btn-teal { background: var(--teal); color: var(--navy); box-shadow: 0 6px 20px rgba(0,194,168,0.3); }
+.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; text-decoration: none; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  max-width: 1100px; margin: 28px auto 0; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+@media (max-width: 600px) {
+  .footer { padding: 36px 16px; }
+  .footer-bottom { flex-direction: column; }
+  .cta-box { flex-direction: column; align-items: flex-start; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-a-plus.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking.html">Networking Guide</a>
+      <span>›</span>
+      <span>Firewall Basics</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · Network Security</div>
+    <h1>Firewall <span>Basics</span> Explained</h1>
+    <p class="page-hero-sub">A firewall is the gatekeeper between your network and the rest of the internet — deciding which traffic gets through and which gets blocked. Here's how they work and what the A+ exam tests.</p>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <h2>What is a firewall?</h2>
+
+    <p>A <strong>firewall</strong> is a network security device — hardware, software, or both — that monitors incoming and outgoing network traffic and decides whether to allow or block it based on a set of rules. Think of it as a security checkpoint: every packet of data trying to enter or leave a network has to pass inspection first.</p>
+
+    <p>Firewalls sit at the boundary between networks — most commonly between your internal private network and the public internet. Without one, any device on the internet could attempt to connect directly to any device on your network.</p>
+
+    <div class="traffic-diagram">
+      <div class="traffic-diagram-label">🔥 Firewall Traffic Flow</div>
+      <div class="traffic-flow">
+        <div class="traffic-node">
+          <div class="traffic-icon internet">🌐</div>
+          <div class="traffic-node-label">Internet</div>
+        </div>
+        <div class="traffic-arrow">
+          <div class="traffic-arrow-line allow"></div>
+          <div class="traffic-arrow-label allow">Allowed</div>
+        </div>
+        <div class="traffic-node">
+          <div class="traffic-icon firewall">🔥</div>
+          <div class="traffic-node-label">Firewall</div>
+        </div>
+        <div class="traffic-arrow">
+          <div class="traffic-arrow-line block"></div>
+          <div class="traffic-arrow-label block">Blocked</div>
+        </div>
+        <div class="traffic-node">
+          <div class="traffic-icon network">🖥️</div>
+          <div class="traffic-node-label">Your Network</div>
+        </div>
+      </div>
+    </div>
+
+    <p>Firewalls evaluate traffic based on characteristics like <strong>source IP address</strong>, <strong>destination IP address</strong>, <strong>port number</strong>, and <strong>protocol</strong> (TCP or UDP). Rules are processed in order — the first rule that matches the traffic determines what happens to it.</p>
+
+    <hr class="divider">
+
+    <h2>How firewall rules work — allow and deny</h2>
+
+    <p>Every firewall operates on a ruleset — an ordered list of conditions and actions. When a packet arrives, the firewall walks through the rules from top to bottom. The first rule that matches wins. If no rule matches, the firewall falls back to a <strong>default policy</strong>, which is almost always <em>deny all</em>.</p>
+
+    <div class="rule-table-wrap">
+      <div class="rule-table-header">🔒 Example Firewall Ruleset</div>
+      <table class="rule-table">
+        <thead>
+          <tr>
+            <th>Rule #</th>
+            <th>Protocol</th>
+            <th>Port</th>
+            <th>Direction</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>TCP</td>
+            <td>443 (HTTPS)</td>
+            <td>Inbound</td>
+            <td><span class="rule-action allow">✓ Allow</span></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>TCP</td>
+            <td>80 (HTTP)</td>
+            <td>Inbound</td>
+            <td><span class="rule-action allow">✓ Allow</span></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>TCP</td>
+            <td>22 (SSH)</td>
+            <td>Inbound</td>
+            <td><span class="rule-action deny">✗ Deny</span></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>TCP</td>
+            <td>3389 (RDP)</td>
+            <td>Inbound</td>
+            <td><span class="rule-action deny">✗ Deny</span></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Any</td>
+            <td>Any</td>
+            <td>Any</td>
+            <td><span class="rule-action deny">✗ Deny (default)</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>This ruleset allows web traffic (ports 80 and 443) but blocks remote access attempts over SSH and RDP. Rule 5 — the <strong>implicit deny</strong> — blocks everything not explicitly permitted. This is the most important concept in firewall design: if you don't explicitly allow something, it gets blocked.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ A+ Exam — Implicit Deny</div>
+      <p><strong>Implicit deny</strong> means traffic is blocked by default unless a rule specifically allows it. This is the standard approach for firewalls and is a heavily tested concept. If traffic hits the bottom of the ruleset with no match, it is denied — even if there's no explicit deny rule written for it.</p>
+      <p>The opposite approach — <strong>implicit allow</strong> — would permit everything not specifically blocked. This is generally considered insecure and is rarely used.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Stateless vs stateful firewalls</h2>
+
+    <p>This is one of the most commonly tested distinctions on the A+ exam. The difference comes down to whether the firewall understands the <em>context</em> of a connection or just evaluates each packet in isolation.</p>
+
+    <div class="state-compare">
+      <div class="state-card stateless">
+        <div class="state-card-label">Older / Basic</div>
+        <div class="state-card-title">Stateless Firewall</div>
+        <div class="state-card-desc">Evaluates each packet individually against the ruleset, with no memory of previous packets. It doesn't know if a packet is part of an established connection or a new one — it just checks the rules and decides.</div>
+        <div class="state-card-example">Sees: TCP packet, port 80 → checks rule → Allow</div>
+      </div>
+      <div class="state-card stateful">
+        <div class="state-card-label">Modern / Standard</div>
+        <div class="state-card-title">Stateful Firewall</div>
+        <div class="state-card-desc">Tracks the state of active connections in a <strong>state table</strong>. It knows whether a packet is part of an established, related, or new connection. This makes it far better at detecting attacks that exploit the TCP handshake.</div>
+        <div class="state-card-example">Sees: packet → checks state table → part of established session → Allow</div>
+      </div>
+    </div>
+
+    <p>Most modern firewalls are stateful. The key advantage is that a stateful firewall can automatically allow return traffic for outbound connections without needing an explicit inbound rule — because it knows the connection was initiated internally.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ A+ Exam — Stateful vs Stateless</div>
+      <p><strong>Stateless</strong> = examines each packet independently, no connection memory, faster but less secure, used in simple ACLs on routers.</p>
+      <p><strong>Stateful</strong> = tracks connection state, understands context, blocks unsolicited inbound traffic automatically, used in most modern firewalls including Windows Defender Firewall.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Types of firewalls</h2>
+
+    <div class="type-cards">
+      <div class="type-card">
+        <div class="type-card-icon">🖥️</div>
+        <div class="type-card-name">Host-based Firewall</div>
+        <div class="type-card-tag">Software</div>
+        <div class="type-card-desc">Runs as software on an individual device. Protects only that specific machine. Windows Defender Firewall is a host-based firewall — it's built into every Windows PC and controls traffic in and out of that single computer.</div>
+      </div>
+      <div class="type-card">
+        <div class="type-card-icon">📦</div>
+        <div class="type-card-name">Network Firewall</div>
+        <div class="type-card-tag">Hardware / Appliance</div>
+        <div class="type-card-desc">A dedicated device sitting at the network perimeter — between the internet and your internal network. Protects all devices behind it. Your home router has a basic network firewall built in. Enterprise environments use dedicated appliances.</div>
+      </div>
+      <div class="type-card">
+        <div class="type-card-icon">🔍</div>
+        <div class="type-card-name">Packet Filtering Firewall</div>
+        <div class="type-card-tag">Layer 3–4</div>
+        <div class="type-card-desc">The most basic type — inspects packet headers only (IP addresses, ports, protocol). Fast and simple, but can't inspect the actual content of packets. Operates at Layers 3 and 4 of the OSI model.</div>
+      </div>
+      <div class="type-card">
+        <div class="type-card-icon">🧠</div>
+        <div class="type-card-name">Application-layer Firewall (WAF)</div>
+        <div class="type-card-tag">Layer 7</div>
+        <div class="type-card-desc">Inspects the actual content of traffic — HTTP requests, DNS queries, email contents. Can block specific applications, websites, or types of content. Operates at Layer 7 (Application) of the OSI model. More powerful but slower.</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Ports, protocols, and firewall rules</h2>
+
+    <p>Firewalls block and allow traffic by port number and protocol. Knowing which services run on which ports is essential for understanding firewall rules — and it's high-yield exam content. Here are the most important port-based rules to recognize:</p>
+
+    <div class="port-rules">
+      <div class="port-rules-header">🔒 Common Port-Based Firewall Rules</div>
+      <div class="port-rule-row header">
+        <span>Port</span>
+        <span>Protocol</span>
+        <span>Service</span>
+        <span>Typical rule</span>
+      </div>
+      <div class="port-rule-row">
+        <span class="port-num">80</span>
+        <span class="port-proto">TCP</span>
+        <span class="port-service">HTTP — unencrypted web</span>
+        <span class="port-action"><span class="rule-action allow">Allow</span></span>
+      </div>
+      <div class="port-rule-row">
+        <span class="port-num">443</span>
+        <span class="port-proto">TCP</span>
+        <span class="port-service">HTTPS — encrypted web</span>
+        <span class="port-action"><span class="rule-action allow">Allow</span></span>
+      </div>
+      <div class="port-rule-row">
+        <span class="port-num">53</span>
+        <span class="port-proto">TCP/UDP</span>
+        <span class="port-service">DNS — name resolution</span>
+        <span class="port-action"><span class="rule-action allow">Allow</span></span>
+      </div>
+      <div class="port-rule-row">
+        <span class="port-num">22</span>
+        <span class="port-proto">TCP</span>
+        <span class="port-service">SSH — encrypted remote access</span>
+        <span class="port-action"><span class="rule-action deny">Deny</span></span>
+      </div>
+      <div class="port-rule-row">
+        <span class="port-num">23</span>
+        <span class="port-proto">TCP</span>
+        <span class="port-service">Telnet — unencrypted remote access</span>
+        <span class="port-action"><span class="rule-action deny">Deny</span></span>
+      </div>
+      <div class="port-rule-row">
+        <span class="port-num">3389</span>
+        <span class="port-proto">TCP</span>
+        <span class="port-service">RDP — Windows Remote Desktop</span>
+        <span class="port-action"><span class="rule-action deny">Deny</span></span>
+      </div>
+      <div class="port-rule-row">
+        <span class="port-num">25</span>
+        <span class="port-proto">TCP</span>
+        <span class="port-service">SMTP — email sending</span>
+        <span class="port-action"><span class="rule-action deny">Deny</span></span>
+      </div>
+    </div>
+
+    <p>In practice, the "typical rule" depends on the network. A corporate mail server needs port 25 open. A web server only needs 80 and 443. The principle is to only open ports that the specific device or network actually needs — everything else stays closed.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ A+ Scenario — "Users can browse but can't use remote desktop"</div>
+      <p>This is a classic firewall scenario on the exam. If users can reach websites (port 80/443 open) but RDP connections fail (port 3389 blocked), the firewall ruleset is doing exactly what a secure configuration should do. The fix — if RDP is needed — is to add an explicit allow rule for port 3389, ideally restricted to specific IP addresses rather than open to everyone.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Windows Defender Firewall — what to know for the exam</h2>
+
+    <p>The A+ exam specifically tests your knowledge of <strong>Windows Defender Firewall</strong>, the built-in host-based firewall in Windows. Key things to know:</p>
+
+    <p>It has three profiles — <strong>Domain</strong> (when connected to a corporate domain), <strong>Private</strong> (home or trusted networks), and <strong>Public</strong> (coffee shops, airports, unknown networks). The Public profile is the most restrictive by default, blocking most inbound connections.</p>
+
+    <p>You access it through <strong>Control Panel → Windows Defender Firewall</strong> or by searching "firewall" in the Start menu. The advanced settings (Windows Defender Firewall with Advanced Security) let you create specific inbound and outbound rules by port, program, or IP address.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ A+ Exam — Three Firewall Profiles</div>
+      <p><strong>Domain profile</strong> — applies when the PC is connected to a corporate Active Directory domain. Usually configured by IT policy.</p>
+      <p><strong>Private profile</strong> — applies on trusted networks like home. More permissive than Public.</p>
+      <p><strong>Public profile</strong> — applies on unknown networks. Most restrictive — blocks most inbound connections to protect the device on untrusted networks.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Key Takeaways</h2>
+
+    <div class="summary-list">
+      <div class="summary-item">A firewall monitors network traffic and <strong>allows or blocks</strong> it based on rules involving IP addresses, ports, and protocols</div>
+      <div class="summary-item"><strong>Implicit deny</strong> — traffic not matching any allow rule is blocked by default. This is the foundational principle of firewall security.</div>
+      <div class="summary-item"><strong>Stateless</strong> firewalls evaluate each packet independently. <strong>Stateful</strong> firewalls track connection state and understand context — far more secure.</div>
+      <div class="summary-item"><strong>Host-based</strong> firewalls protect one device (e.g. Windows Defender Firewall). <strong>Network firewalls</strong> protect all devices behind them at the perimeter.</div>
+      <div class="summary-item">Rules are processed in order — the <strong>first matching rule wins</strong>. Order matters enormously.</div>
+      <div class="summary-item">Windows Defender Firewall has three profiles: <strong>Domain, Private, and Public</strong> — Public is the most restrictive</div>
+      <div class="summary-item">Block port 23 (Telnet) and use port 22 (SSH) instead — Telnet sends credentials in plaintext, SSH encrypts them</div>
+    </div>
+
+    <h2>Related Articles</h2>
+
+    <div class="related-grid">
+      <a href="ports.html" class="related-link">Common Port Numbers</a>
+      <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
+      <a href="osi-model.html" class="related-link">OSI Model — All 7 Layers</a>
+      <a href="nat-explained.html" class="related-link">What Is NAT?</a>
+      <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP Explained</a>
+      <a href="ipv4-vs-ipv6.html" class="related-link">IPv4 vs IPv6 Explained</a>
+      <a href="default-gateway.html" class="related-link">What Is a Default Gateway?</a>
+      <a href="networking.html" class="related-link">Networking Master Guide</a>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Preparing for the A+ exam?</h3>
+        <p>See the books and practice exams that make the most difference.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn btn-teal">See Best Study Resources →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Pages</div>
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-a-plus.html">Best Study Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="ports.html">Port Numbers</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="nat-explained.html">NAT</a>
+      <a href="firewall-basics.html">Firewall Basics</a>
+      <a href="ipv4-vs-ipv6.html">IPv4 vs IPv6</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>

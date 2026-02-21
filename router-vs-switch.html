@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<title>Router vs Switch — What's the Difference? | CompTIA A+ (IT Study Hub)</title>
+<meta name="description" content="Router vs switch explained simply — what each device does, which OSI layer they operate at, when to use each, and what the CompTIA A+ exam tests on both.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --violet:  #8b5cf6;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--teal2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 28px;
+  height: 68px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+}
+.logo-link {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 17px; color: var(--navy); letter-spacing: -0.3px;
+  flex-shrink: 0; text-decoration: none;
+}
+.logo-img { height: 40px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px; font-weight: 600; padding: 8px 14px;
+  border-radius: 8px; color: var(--muted);
+  transition: color 0.15s, background 0.15s; text-decoration: none;
+}
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta {
+  background: var(--navy); color: var(--white) !important;
+  padding: 8px 18px; border-radius: 8px; margin-left: 6px;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); }
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 34px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── HERO ── */
+.page-hero {
+  background: var(--navy); position: relative;
+  overflow: hidden; padding: 52px 28px 60px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 40% 80% at 10% 50%, rgba(0,194,168,0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 80% at 90% 50%, rgba(139,92,246,0.1) 0%, transparent 65%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.page-hero-inner {
+  max-width: 860px; margin: 0 auto; position: relative; z-index: 1;
+  animation: fadeUp 0.6s ease both;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  margin-bottom: 18px; font-family: 'DM Mono', monospace;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; text-decoration: none; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge {
+  display: inline-flex; align-items: center;
+  background: rgba(0,194,168,0.15); border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 16px;
+}
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(26px, 4vw, 40px); font-weight: 800;
+  color: var(--white); line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 14px;
+}
+.page-hero h1 .router { color: var(--teal); }
+.page-hero h1 .switch { color: #c4b5fd; }
+.page-hero-sub {
+  font-size: 15px; color: rgba(255,255,255,0.6); max-width: 580px; line-height: 1.7;
+}
+
+/* ── ARTICLE ── */
+.article-wrap { max-width: 860px; margin: 0 auto; padding: 52px 28px 80px; }
+@media (max-width: 768px) { .article-wrap { padding: 32px 16px 60px; } }
+
+.article-body h2 {
+  font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.3px; margin: 48px 0 14px;
+}
+.article-body h2:first-child { margin-top: 0; }
+.article-body p { font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 14px; }
+.article-body strong { color: var(--navy); font-weight: 700; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+/* ── DEVICE DUEL CARDS ── */
+.device-duel {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px;
+}
+@media (max-width: 560px) { .device-duel { grid-template-columns: 1fr; } }
+.device-card {
+  border-radius: 14px; padding: 26px 22px;
+  position: relative; overflow: hidden;
+}
+.device-card.router-card {
+  background: linear-gradient(145deg, #051220, #0a1e36);
+  border: 1px solid rgba(0,194,168,0.3);
+}
+.device-card.switch-card {
+  background: linear-gradient(145deg, #0d0a20, #16103a);
+  border: 1px solid rgba(139,92,246,0.3);
+}
+.device-card::before {
+  content: ''; position: absolute; top: 0; right: 0;
+  width: 120px; height: 120px; pointer-events: none;
+  border-radius: 50%;
+}
+.router-card::before { background: radial-gradient(circle, rgba(0,194,168,0.12) 0%, transparent 70%); }
+.switch-card::before { background: radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%); }
+.device-icon { font-size: 36px; margin-bottom: 14px; }
+.device-type {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 6px;
+}
+.router-card .device-type { color: var(--teal); }
+.switch-card .device-type { color: #c4b5fd; }
+.device-name {
+  font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800;
+  color: var(--white); margin-bottom: 10px;
+}
+.device-tagline {
+  font-size: 13.5px; color: rgba(255,255,255,0.5);
+  line-height: 1.6; margin-bottom: 16px;
+}
+.device-facts { display: flex; flex-direction: column; gap: 8px; }
+.device-fact {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12.5px; padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.device-fact:last-child { border-bottom: none; }
+.device-fact-label { color: rgba(255,255,255,0.35); font-weight: 600; }
+.device-fact-val { font-family: 'DM Mono', monospace; font-weight: 500; }
+.router-card .device-fact-val { color: var(--teal); }
+.switch-card .device-fact-val { color: #c4b5fd; }
+
+/* ── NETWORK DIAGRAM ── */
+.net-diagram {
+  background: var(--navy); border-radius: 14px;
+  padding: 28px 24px; margin-bottom: 28px;
+  position: relative; overflow: hidden;
+}
+.net-diagram::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(0,194,168,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.net-diagram-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); margin-bottom: 22px; text-align: center;
+}
+.net-diagram-layout {
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+}
+.net-row {
+  display: flex; align-items: center; justify-content: center; gap: 0;
+}
+.net-node {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.net-box {
+  width: 64px; height: 44px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+.net-box.internet  { background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.3); }
+.net-box.router    { background: rgba(0,194,168,0.15);  border: 1px solid rgba(0,194,168,0.4); }
+.net-box.switch    { background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.4); }
+.net-box.device    { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); }
+.net-node-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 600;
+  color: rgba(255,255,255,0.4); text-align: center; letter-spacing: 0.4px;
+}
+.net-vline {
+  width: 2px; height: 24px; margin: 0 auto;
+}
+.net-vline.wan  { background: linear-gradient(var(--teal), rgba(0,194,168,0.3)); }
+.net-vline.lan  { background: linear-gradient(rgba(139,92,246,0.5), rgba(139,92,246,0.2)); }
+.net-hline-group {
+  display: flex; align-items: flex-start; gap: 0;
+}
+.net-hline-wrap {
+  display: flex; flex-direction: column; align-items: center;
+}
+.net-hline {
+  height: 2px; background: rgba(139,92,246,0.4);
+}
+.net-hline.left  { width: 48px; border-radius: 2px 0 0 2px; }
+.net-hline.right { width: 48px; border-radius: 0 2px 2px 0; }
+.net-hline-vdown { width: 2px; height: 16px; background: rgba(139,92,246,0.4); }
+.net-hline-center { width: 2px; height: 18px; }
+.annotation {
+  display: flex; gap: 20px; margin-top: 18px; justify-content: center; flex-wrap: wrap;
+}
+.annotation-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; color: rgba(255,255,255,0.45);
+}
+.annotation-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+
+/* ── COMPARISON TABLE ── */
+.compare-wrap {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: var(--card-shadow); margin-bottom: 28px;
+}
+.compare-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.compare-table th {
+  padding: 14px 18px; text-align: left;
+  font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 700;
+}
+.compare-table th:first-child { background: var(--navy); color: var(--white); width: 30%; }
+.compare-table th.router-head { background: rgba(0,194,168,0.08); color: var(--teal2); border-bottom: 2px solid var(--teal); }
+.compare-table th.switch-head { background: rgba(139,92,246,0.08); color: var(--violet); border-bottom: 2px solid var(--violet); }
+.compare-table td {
+  padding: 12px 18px; border-bottom: 1px solid var(--border);
+  vertical-align: top; line-height: 1.6;
+}
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table td:first-child { font-weight: 700; color: var(--navy); background: var(--light); font-size: 13px; }
+.compare-table td.router-col { background: rgba(0,194,168,0.02); }
+.compare-table td.switch-col { background: rgba(139,92,246,0.02); }
+
+/* ── HUB VS SWITCH BOX ── */
+.hub-switch-box {
+  background: linear-gradient(135deg, #f0f4ff, #eaf0ff);
+  border: 1px solid rgba(26,108,255,0.2);
+  border-left: 4px solid var(--blue);
+  border-radius: 12px; padding: 20px 22px; margin-bottom: 28px;
+}
+.hub-switch-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
+}
+.hub-switch-box p { font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 8px; }
+.hub-switch-box p:last-child { margin-bottom: 0; }
+.hub-switch-box strong { color: var(--navy); }
+
+/* ── EXAM TIP ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060; border-left: 4px solid #f0c000;
+  border-radius: 12px; padding: 20px 22px; margin: 4px 0 28px;
+}
+.exam-tip-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px;
+}
+.exam-tip p { font-size: 14px; color: #5a4000; margin-bottom: 8px; line-height: 1.65; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #3a2800; }
+
+/* ── REAL-WORLD SCENARIOS ── */
+.scenarios { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+.scenario {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 16px 20px;
+  box-shadow: var(--card-shadow);
+  display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: flex-start;
+}
+.scenario-icon { font-size: 24px; margin-top: 2px; }
+.scenario-title { font-weight: 700; color: var(--navy); font-size: 14px; margin-bottom: 4px; }
+.scenario-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+.scenario-device {
+  display: inline-block; font-family: 'DM Mono', monospace;
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.5px; padding: 2px 8px; border-radius: 4px; margin-left: 6px;
+}
+.scenario-device.router { background: rgba(0,194,168,0.1); color: var(--teal2); }
+.scenario-device.switch { background: rgba(139,92,246,0.1); color: var(--violet); }
+.scenario-device.both   { background: rgba(26,108,255,0.1); color: var(--blue); }
+
+/* ── SUMMARY LIST ── */
+.summary-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.summary-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px;
+  font-size: 14px; box-shadow: var(--card-shadow);
+}
+.summary-item::before {
+  content: '✓';
+  display: flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; min-width: 20px;
+  background: rgba(0,194,168,0.12); color: var(--teal2);
+  border-radius: 50%; font-size: 11px; font-weight: 700;
+  margin-top: 1px;
+}
+
+/* ── RELATED + CTA ── */
+.related-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px;
+}
+@media (max-width: 560px) { .related-grid { grid-template-columns: 1fr; } }
+.related-link {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px; font-size: 14px;
+  font-weight: 600; color: var(--navy); text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s, color 0.15s;
+  box-shadow: var(--card-shadow);
+}
+.related-link:hover { border-color: rgba(0,194,168,0.3); color: var(--teal2); transform: translateY(-2px); text-decoration: none; }
+.related-link::before { content: '→'; color: var(--teal2); font-size: 13px; flex-shrink: 0; }
+
+.cta-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px; padding: 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap; position: relative; overflow: hidden;
+}
+.cta-box::before {
+  content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%); pointer-events: none;
+}
+.cta-box-text h3 { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
+  border-radius: 10px; font-size: 14px; font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap; flex-shrink: 0; text-decoration: none;
+}
+.btn:hover { transform: translateY(-2px); text-decoration: none; }
+.btn-teal { background: var(--teal); color: var(--navy); box-shadow: 0 6px 20px rgba(0,194,168,0.3); }
+.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; text-decoration: none; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  max-width: 1100px; margin: 28px auto 0; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+@media (max-width: 600px) {
+  .footer { padding: 36px 16px; }
+  .footer-bottom { flex-direction: column; }
+  .cta-box { flex-direction: column; align-items: flex-start; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-a-plus.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking.html">Networking Guide</a>
+      <span>›</span>
+      <span>Router vs Switch</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · Networking Hardware</div>
+    <h1><span class="router">Router</span> vs <span class="switch">Switch</span> — What's the Difference?</h1>
+    <p class="page-hero-sub">Both devices sit in your network rack and have cables plugging into them — but they do completely different jobs at completely different layers of the OSI model. Here's how to tell them apart for good.</p>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <h2>The one-sentence version</h2>
+
+    <p>A <strong>switch</strong> connects devices within the same network and forwards traffic using <strong>MAC addresses</strong>. A <strong>router</strong> connects separate networks together and forwards traffic using <strong>IP addresses</strong>. That distinction — MAC vs IP, same network vs different networks — is the core of what the A+ exam tests.</p>
+
+    <div class="device-duel">
+      <div class="device-card router-card">
+        <div class="device-icon">🔀</div>
+        <div class="device-type">Layer 3 device</div>
+        <div class="device-name">Router</div>
+        <div class="device-tagline">Connects different networks together. Decides the best path for traffic to travel between networks using IP addresses.</div>
+        <div class="device-facts">
+          <div class="device-fact">
+            <span class="device-fact-label">OSI Layer</span>
+            <span class="device-fact-val">Layer 3 — Network</span>
+          </div>
+          <div class="device-fact">
+            <span class="device-fact-label">Uses</span>
+            <span class="device-fact-val">IP addresses</span>
+          </div>
+          <div class="device-fact">
+            <span class="device-fact-label">Connects</span>
+            <span class="device-fact-val">Different networks</span>
+          </div>
+          <div class="device-fact">
+            <span class="device-fact-label">Traffic scope</span>
+            <span class="device-fact-val">WAN + LAN</span>
+          </div>
+        </div>
+      </div>
+      <div class="device-card switch-card">
+        <div class="device-icon">🔌</div>
+        <div class="device-type">Layer 2 device</div>
+        <div class="device-name">Switch</div>
+        <div class="device-tagline">Connects devices within the same network. Forwards frames efficiently to the right port using MAC addresses.</div>
+        <div class="device-facts">
+          <div class="device-fact">
+            <span class="device-fact-label">OSI Layer</span>
+            <span class="device-fact-val">Layer 2 — Data Link</span>
+          </div>
+          <div class="device-fact">
+            <span class="device-fact-label">Uses</span>
+            <span class="device-fact-val">MAC addresses</span>
+          </div>
+          <div class="device-fact">
+            <span class="device-fact-label">Connects</span>
+            <span class="device-fact-val">Same network devices</span>
+          </div>
+          <div class="device-fact">
+            <span class="device-fact-label">Traffic scope</span>
+            <span class="device-fact-val">LAN only</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>How they fit together in a real network</h2>
+
+    <p>Routers and switches aren't competitors — they're partners. In almost every real network, both are present and each handles a different job. The router sits at the edge, facing the internet. The switch sits inside, connecting everything on the local network.</p>
+
+    <div class="net-diagram">
+      <div class="net-diagram-label">🏠 Typical Home / Small Office Network Layout</div>
+      <div class="net-diagram-layout">
+        <div class="net-node">
+          <div class="net-box internet">🌐</div>
+          <div class="net-node-label">Internet (ISP)</div>
+        </div>
+        <div class="net-vline wan"></div>
+        <div class="net-node">
+          <div class="net-box router">🔀</div>
+          <div class="net-node-label">Router</div>
+        </div>
+        <div class="net-vline lan"></div>
+        <div class="net-node">
+          <div class="net-box switch">🔌</div>
+          <div class="net-node-label">Switch</div>
+        </div>
+        <div style="display:flex;gap:32px;margin-top:0;">
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <div style="width:2px;height:20px;background:rgba(139,92,246,0.35);"></div>
+            <div class="net-box device">💻</div>
+            <div class="net-node-label">PC</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <div style="width:2px;height:20px;background:rgba(139,92,246,0.35);"></div>
+            <div class="net-box device">🖨️</div>
+            <div class="net-node-label">Printer</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <div style="width:2px;height:20px;background:rgba(139,92,246,0.35);"></div>
+            <div class="net-box device">🖥️</div>
+            <div class="net-node-label">Server</div>
+          </div>
+        </div>
+      </div>
+      <div class="annotation">
+        <div class="annotation-item">
+          <div class="annotation-dot" style="background:var(--teal);"></div>
+          Router handles internet traffic (Layer 3 / IP)
+        </div>
+        <div class="annotation-item">
+          <div class="annotation-dot" style="background:#8b5cf6;"></div>
+          Switch handles local traffic (Layer 2 / MAC)
+        </div>
+      </div>
+    </div>
+
+    <p>When your PC wants to print to the office printer, that traffic never touches the router — the switch handles it entirely within the local network using MAC addresses. When your PC wants to reach a website, the traffic goes switch → router → internet, with the router handling the IP-level routing to the correct destination.</p>
+
+    <hr class="divider">
+
+    <h2>Routers vs switches — full comparison</h2>
+
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="router-head">Router</th>
+            <th class="switch-head">Switch</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>OSI Layer</td>
+            <td class="router-col">Layer 3 — Network</td>
+            <td class="switch-col">Layer 2 — Data Link</td>
+          </tr>
+          <tr>
+            <td>Addresses used</td>
+            <td class="router-col">IP addresses</td>
+            <td class="switch-col">MAC addresses</td>
+          </tr>
+          <tr>
+            <td>Primary job</td>
+            <td class="router-col">Route traffic between networks</td>
+            <td class="switch-col">Forward frames within a network</td>
+          </tr>
+          <tr>
+            <td>Connects</td>
+            <td class="router-col">LAN to WAN (internet)</td>
+            <td class="switch-col">Devices on same LAN</td>
+          </tr>
+          <tr>
+            <td>Traffic table</td>
+            <td class="router-col">Routing table (IP-based)</td>
+            <td class="switch-col">MAC address table (CAM table)</td>
+          </tr>
+          <tr>
+            <td>Broadcast domain</td>
+            <td class="router-col">Separates broadcast domains</td>
+            <td class="switch-col">All ports in one broadcast domain*</td>
+          </tr>
+          <tr>
+            <td>Default gateway?</td>
+            <td class="router-col">Yes — it IS the default gateway</td>
+            <td class="switch-col">No — transparent to IP routing</td>
+          </tr>
+          <tr>
+            <td>NAT?</td>
+            <td class="router-col">Yes — translates private to public IPs</td>
+            <td class="switch-col">No — doesn't touch IP addresses</td>
+          </tr>
+          <tr>
+            <td>Common location</td>
+            <td class="router-col">Network edge (ISP-facing)</td>
+            <td class="switch-col">Inside the LAN (closet/rack)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:13px;color:var(--muted);margin-top:-14px;margin-bottom:28px;">* Managed switches with VLANs can segment broadcast domains — but that's a Network+ topic.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ A+ Exam — The Key Memory Hook</div>
+      <p><strong>Switch = Layer 2 = MAC addresses = same network.</strong></p>
+      <p><strong>Router = Layer 3 = IP addresses = between networks.</strong></p>
+      <p>If the exam asks "what device separates broadcast domains?" — the answer is <strong>router</strong>. If it asks "what device uses a MAC address table?" — the answer is <strong>switch</strong>. If it asks "what is the default gateway?" — that's the <strong>router's IP address</strong> on the local network.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Hub vs switch — why it matters</h2>
+
+    <div class="hub-switch-box">
+      <div class="hub-switch-label">📡 Don't confuse switches with hubs</div>
+      <p>A <strong>hub</strong> is an older Layer 1 device that blindly sends every incoming frame out to every single port — it has no intelligence. Every device on a hub receives every frame, whether it's meant for them or not. This wastes bandwidth and creates collisions.</p>
+      <p>A <strong>switch</strong> is smarter — it learns which device is on which port (via the MAC address table) and sends frames only to the correct port. This is called <strong>unicast forwarding</strong> and it's why switches replaced hubs. On the A+ exam, hubs still appear as a concept — just remember: hub = Layer 1, broadcasts to all; switch = Layer 2, sends only to the destination.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Real-world scenarios</h2>
+
+    <div class="scenarios">
+      <div class="scenario">
+        <div class="scenario-icon">🏠</div>
+        <div>
+          <div class="scenario-title">Home network — internet not working<span class="scenario-device router">Router issue</span></div>
+          <div class="scenario-desc">If devices can reach each other (print, share files) but can't reach the internet, the problem is almost certainly the router — it's the device responsible for connecting the LAN to the WAN. Check the router's WAN connection, run <code style="font-family:'DM Mono',monospace;font-size:12px;">ping 8.8.8.8</code> to test internet connectivity.</div>
+        </div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-icon">🖨️</div>
+        <div>
+          <div class="scenario-title">Can't reach network printer<span class="scenario-device switch">Switch issue</span></div>
+          <div class="scenario-desc">If devices on the same network can't reach each other — say, a PC can't find the printer — the problem is likely in the switch layer. Check cables, check that the switch port is active, and run <code style="font-family:'DM Mono',monospace;font-size:12px;">ping [printer IP]</code> to verify local connectivity.</div>
+        </div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-icon">🏢</div>
+        <div>
+          <div class="scenario-title">Office with 40 devices<span class="scenario-device both">Both needed</span></div>
+          <div class="scenario-desc">A 24-port switch connects all 40 devices on the local network. A single router connects the switch (and therefore all devices) to the internet and acts as the default gateway. Both devices are essential — neither can replace the other.</div>
+        </div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-icon">🔀</div>
+        <div>
+          <div class="scenario-title">Layer 3 switch — when things overlap<span class="scenario-device both">Advanced</span></div>
+          <div class="scenario-desc">Some enterprise switches are "Layer 3 switches" — they can do basic IP routing in addition to MAC-based switching. These blur the line between routers and switches. On the A+ exam, assume a switch is Layer 2 unless specifically told otherwise.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Key Takeaways</h2>
+
+    <div class="summary-list">
+      <div class="summary-item"><strong>Router = Layer 3, IP addresses, connects different networks</strong> — it's the device that gets you to the internet</div>
+      <div class="summary-item"><strong>Switch = Layer 2, MAC addresses, connects devices on the same network</strong> — it's what your PC, printer, and server all plug into</div>
+      <div class="summary-item">The router IS the default gateway — when traffic needs to leave the local network, it goes to the router first</div>
+      <div class="summary-item">Switches use a <strong>MAC address table (CAM table)</strong> to forward frames only to the correct port — far more efficient than a hub</div>
+      <div class="summary-item"><strong>Hub = Layer 1</strong>, sends to all ports (dumb). <strong>Switch = Layer 2</strong>, sends only to destination (smart). Hubs are obsolete but still appear on the A+ exam.</div>
+      <div class="summary-item">Routers <strong>separate broadcast domains</strong> — switches do not (unless VLANs are configured)</div>
+      <div class="summary-item">In most networks, both devices work together: switch handles local traffic, router handles internet traffic</div>
+    </div>
+
+    <h2>Related Articles</h2>
+
+    <div class="related-grid">
+      <a href="osi-model.html" class="related-link">OSI Model — All 7 Layers</a>
+      <a href="mac-address.html" class="related-link">What Is a MAC Address?</a>
+      <a href="default-gateway.html" class="related-link">What Is a Default Gateway?</a>
+      <a href="nat-explained.html" class="related-link">What Is NAT?</a>
+      <a href="firewall-basics.html" class="related-link">Firewall Basics</a>
+      <a href="ipv4-vs-ipv6.html" class="related-link">IPv4 vs IPv6 Explained</a>
+      <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
+      <a href="networking.html" class="related-link">Networking Master Guide</a>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Preparing for the A+ exam?</h3>
+        <p>See the books and practice exams that make the most difference.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn btn-teal">See Best Study Resources →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Pages</div>
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-a-plus.html">Best Study Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="mac-address.html">MAC Address</a>
+      <a href="default-gateway.html">Default Gateway</a>
+      <a href="nat-explained.html">NAT</a>
+      <a href="firewall-basics.html">Firewall Basics</a>
+      <a href="router-vs-switch.html">Router vs Switch</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>
