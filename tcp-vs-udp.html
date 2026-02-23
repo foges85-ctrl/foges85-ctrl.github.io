@@ -19,8 +19,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
-<title>TCP vs UDP Explained Simply (CompTIA A+ Guide)</title>
-<meta name="description" content="Learn the difference between TCP and UDP for the CompTIA A+ exam. Understand reliability, speed, ports, and real-world troubleshooting examples.">
+<title>What Is TCP? TCP vs UDP Explained for CompTIA A+ (2026)</title>
+<meta name="description" content="What is TCP and how does it differ from UDP? Covers the three-way handshake, connection vs connectionless, which ports use each, and every exam scenario the CompTIA A+ tests.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -504,6 +504,86 @@ tbody tr:hover td { background: #f6f9ff; }
 
 .exam-tip strong { color: #3a2800; }
 
+/* ── THREE-WAY HANDSHAKE ── */
+.handshake-flow {
+  background: var(--navy); border-radius: 14px;
+  padding: 24px 22px; margin-bottom: 28px;
+  display: flex; flex-direction: column; gap: 0;
+}
+.handshake-step {
+  display: flex; align-items: flex-start; gap: 16px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px; padding: 16px 18px;
+}
+.handshake-num {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(0,194,168,0.2); border: 1px solid rgba(0,194,168,0.4);
+  color: var(--teal); font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 15px; display: flex; align-items: center; justify-content: center;
+}
+.handshake-title {
+  font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 700;
+  color: var(--white); margin-bottom: 6px;
+}
+.handshake-from {
+  font-size: 11px; color: rgba(255,255,255,0.35);
+  font-weight: 400; margin-left: 10px;
+}
+.handshake-desc { font-size: 13.5px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+.handshake-arrow {
+  text-align: center; color: rgba(0,194,168,0.4);
+  font-size: 16px; padding: 4px 0; line-height: 1;
+}
+
+/* ── USE CASE GRID ── */
+.use-case-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px;
+}
+@media (max-width: 560px) { .use-case-grid { grid-template-columns: 1fr; } }
+.use-case-card {
+  border-radius: 12px; padding: 18px 20px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.use-case-tcp {
+  background: rgba(26,108,255,0.04); border: 1px solid rgba(26,108,255,0.2);
+}
+.use-case-udp {
+  background: rgba(0,194,168,0.04); border: 1px solid rgba(0,194,168,0.2);
+}
+.use-case-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 4px;
+}
+.use-case-tcp .use-case-label { color: #1a4cc0; }
+.use-case-udp .use-case-label { color: var(--teal2); }
+.use-case-item { font-size: 13.5px; color: var(--text); line-height: 1.5; }
+
+/* ── SCENARIO LIST ── */
+.scenario-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.scenario-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px;
+  font-size: 14px; color: var(--text); line-height: 1.6;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.scenario-item strong { color: var(--navy); }
+
+/* ── SUMMARY LIST ── */
+.summary-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.summary-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px;
+  font-size: 14px; box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.summary-item::before {
+  content: '✓';
+  display: flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; min-width: 20px;
+  background: rgba(0,194,168,0.12); color: var(--teal2);
+  border-radius: 50%; font-size: 11px; font-weight: 700; margin-top: 1px;
+}
+
 /* ── RELATED ARTICLES ── */
 .related-grid {
   display: grid;
@@ -686,9 +766,9 @@ tbody tr:hover td { background: #f6f9ff; }
       <span>TCP vs UDP</span>
     </nav>
     <div class="page-hero-badge">CompTIA A+ · Protocols</div>
-    <h1>TCP vs UDP <span>Explained Simply</span></h1>
+    <h1>What Is TCP? <span>TCP vs UDP Explained</span></h1>
     <p class="page-hero-sub">
-      Two transport layer protocols with very different behaviors — understanding when to use each is a core CompTIA A+ exam skill.
+      TCP and UDP are the two transport layer protocols that carry almost all internet traffic. Understanding exactly how each works — and why the A+ exam cares — starts here.
     </p>
   </div>
 </section>
@@ -697,7 +777,7 @@ tbody tr:hover td { background: #f6f9ff; }
 <div class="article-wrap">
   <div class="article-body">
 
-    <p>One of the most important networking concepts on the CompTIA A+ exam is understanding the difference between <strong>TCP</strong> and <strong>UDP</strong>. Both are transport layer protocols, but they behave very differently.</p>
+    <p>Almost every piece of data traveling across a network uses one of two transport layer protocols: <strong>TCP</strong> (Transmission Control Protocol) or <strong>UDP</strong> (User Datagram Protocol). They both move data from one device to another, but they do it in fundamentally different ways — and knowing which protocol a service uses, and why, is core CompTIA A+ exam knowledge.</p>
 
     <hr class="divider">
 
@@ -707,30 +787,32 @@ tbody tr:hover td { background: #f6f9ff; }
         <div class="protocol-card-label">TCP</div>
         <h3>Transmission Control Protocol</h3>
         <ul>
-          <li>Guarantees delivery</li>
-          <li>Checks for errors</li>
-          <li>Re-sends lost data</li>
-          <li>Slower but reliable</li>
+          <li>Establishes a connection before sending data</li>
+          <li>Guarantees every packet arrives</li>
+          <li>Re-sends any lost or corrupted packets</li>
+          <li>Delivers data in the correct order</li>
+          <li>Slower — more overhead, more reliable</li>
         </ul>
-        <div class="protocol-analogy">📬 Like sending a certified letter — you get confirmation it arrived.</div>
+        <div class="protocol-analogy">📬 Like a certified letter — you get a confirmation it arrived, and if it didn't, it gets sent again.</div>
       </div>
 
       <div class="protocol-card udp">
         <div class="protocol-card-label">UDP</div>
         <h3>User Datagram Protocol</h3>
         <ul>
+          <li>No connection established — fire and forget</li>
           <li>No delivery guarantee</li>
-          <li>No error correction</li>
-          <li>Faster transmission</li>
-          <li>Lower overhead</li>
+          <li>No retransmission of lost packets</li>
+          <li>No ordering of packets</li>
+          <li>Faster — less overhead, less reliable</li>
         </ul>
-        <div class="protocol-analogy">📢 Like shouting across a room — fast, but no confirmation.</div>
+        <div class="protocol-analogy">📢 Like a radio broadcast — fast and reaches everyone, but no way to know if anyone actually received it.</div>
       </div>
     </div>
 
     <hr class="divider">
 
-    <h2>TCP vs UDP Comparison</h2>
+    <h2>TCP vs UDP — Full Comparison</h2>
 
     <div class="table-wrap">
       <table>
@@ -743,24 +825,44 @@ tbody tr:hover td { background: #f6f9ff; }
         </thead>
         <tbody>
           <tr>
-            <td class="td-feature">Connection</td>
-            <td>Connection-based</td>
-            <td>Connectionless</td>
+            <td class="td-feature">Connection type</td>
+            <td>Connection-oriented — handshake required</td>
+            <td>Connectionless — no handshake</td>
           </tr>
           <tr>
             <td class="td-feature">Reliability</td>
-            <td>Guaranteed delivery</td>
-            <td>No guarantee</td>
+            <td>Guaranteed delivery — every packet confirmed</td>
+            <td>No guarantee — packets may be lost</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Order</td>
+            <td>Data arrives in correct sequence</td>
+            <td>Packets may arrive out of order</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Error checking</td>
+            <td>Yes — detects and retransmits errors</td>
+            <td>Minimal — checksums only, no retransmit</td>
           </tr>
           <tr>
             <td class="td-feature">Speed</td>
-            <td>Slower</td>
-            <td>Faster</td>
+            <td>Slower — overhead from handshaking and ACKs</td>
+            <td>Faster — no connection setup delay</td>
           </tr>
           <tr>
-            <td class="td-feature">Error Checking</td>
-            <td>Yes</td>
-            <td>Minimal</td>
+            <td class="td-feature">OSI Layer</td>
+            <td>Layer 4 — Transport</td>
+            <td>Layer 4 — Transport</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Best for</td>
+            <td>Accuracy-critical data — web, email, files</td>
+            <td>Speed-critical data — video, VoIP, DNS</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Header size</td>
+            <td>20 bytes minimum</td>
+            <td>8 bytes — much lighter</td>
           </tr>
         </tbody>
       </table>
@@ -768,65 +870,134 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <hr class="divider">
 
-    <h2>Common Ports by Protocol</h2>
+    <h2>The TCP Three-Way Handshake</h2>
+
+    <p>Before TCP sends any data, it establishes a connection using a <strong>three-way handshake</strong>. This is one of the most tested concepts on the CompTIA A+ exam — know the three steps and what each one means.</p>
+
+    <div class="handshake-flow">
+      <div class="handshake-step">
+        <div class="handshake-num">1</div>
+        <div class="handshake-content">
+          <div class="handshake-title">SYN <span class="handshake-from">Client → Server</span></div>
+          <div class="handshake-desc">The client sends a <strong>SYN</strong> (synchronize) packet to the server, saying: "I want to establish a connection."</div>
+        </div>
+      </div>
+      <div class="handshake-arrow">↓</div>
+      <div class="handshake-step">
+        <div class="handshake-num">2</div>
+        <div class="handshake-content">
+          <div class="handshake-title">SYN-ACK <span class="handshake-from">Server → Client</span></div>
+          <div class="handshake-desc">The server responds with a <strong>SYN-ACK</strong> (synchronize-acknowledge), saying: "I received your request and I'm ready."</div>
+        </div>
+      </div>
+      <div class="handshake-arrow">↓</div>
+      <div class="handshake-step">
+        <div class="handshake-num">3</div>
+        <div class="handshake-content">
+          <div class="handshake-title">ACK <span class="handshake-from">Client → Server</span></div>
+          <div class="handshake-desc">The client sends an <strong>ACK</strong> (acknowledge), saying: "Confirmed. Connection established — let's transfer data."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ A+ Exam — Three-Way Handshake</div>
+      <p>The sequence is always <strong>SYN → SYN-ACK → ACK</strong>. The exam may ask you to identify what happens at each step, or which step fails when a connection can't be established. If a server is unreachable, the SYN is sent but the SYN-ACK never arrives — the connection times out at step 1.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Which protocol uses which ports?</h2>
+
+    <p>Knowing whether a service uses TCP or UDP is high-value exam content — it's often tested by asking which protocol a specific port uses, or what protocol you'd expect to see for a given problem.</p>
 
     <div class="port-grid">
       <div class="port-card tcp-card">
-        <div class="port-card-label">TCP Ports</div>
-        <div class="port-row">
-          <span class="port-name">HTTP</span>
-          <span class="port-num">80</span>
-        </div>
-        <div class="port-row">
-          <span class="port-name">HTTPS</span>
-          <span class="port-num">443</span>
-        </div>
-        <div class="port-row">
-          <span class="port-name">FTP</span>
-          <span class="port-num">21</span>
-        </div>
-        <div class="port-row">
-          <span class="port-name">RDP</span>
-          <span class="port-num">3389</span>
-        </div>
+        <div class="port-card-label">TCP Ports — reliability required</div>
+        <div class="port-row"><span class="port-name">HTTP</span><span class="port-num">80</span></div>
+        <div class="port-row"><span class="port-name">HTTPS</span><span class="port-num">443</span></div>
+        <div class="port-row"><span class="port-name">FTP</span><span class="port-num">20 / 21</span></div>
+        <div class="port-row"><span class="port-name">SSH</span><span class="port-num">22</span></div>
+        <div class="port-row"><span class="port-name">Telnet</span><span class="port-num">23</span></div>
+        <div class="port-row"><span class="port-name">SMTP</span><span class="port-num">25</span></div>
+        <div class="port-row"><span class="port-name">POP3</span><span class="port-num">110</span></div>
+        <div class="port-row"><span class="port-name">IMAP</span><span class="port-num">143</span></div>
+        <div class="port-row"><span class="port-name">RDP</span><span class="port-num">3389</span></div>
+        <div class="port-row"><span class="port-name">SMB</span><span class="port-num">445</span></div>
       </div>
 
       <div class="port-card udp-card">
-        <div class="port-card-label">UDP Ports</div>
-        <div class="port-row">
-          <span class="port-name">DNS</span>
-          <span class="port-num">53</span>
-        </div>
-        <div class="port-row">
-          <span class="port-name">DHCP</span>
-          <span class="port-num">67/68</span>
-        </div>
-        <div class="port-row">
-          <span class="port-name">Streaming</span>
-          <span class="port-num">varies</span>
-        </div>
-        <div class="port-row">
-          <span class="port-name">VoIP</span>
-          <span class="port-num">varies</span>
-        </div>
+        <div class="port-card-label">UDP Ports — speed required</div>
+        <div class="port-row"><span class="port-name">DNS</span><span class="port-num">53</span></div>
+        <div class="port-row"><span class="port-name">DHCP</span><span class="port-num">67 / 68</span></div>
+        <div class="port-row"><span class="port-name">SNMP</span><span class="port-num">161 / 162</span></div>
+        <div class="port-row"><span class="port-name">TFTP</span><span class="port-num">69</span></div>
+        <div class="port-row"><span class="port-name">NTP</span><span class="port-num">123</span></div>
+        <div class="port-row"><span class="port-name">Syslog</span><span class="port-num">514</span></div>
+        <div class="port-row"><span class="port-name">VoIP / RTP</span><span class="port-num">varies</span></div>
+        <div class="port-row"><span class="port-name">Video streaming</span><span class="port-num">varies</span></div>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--muted);margin-top:8px;">Note: DNS uses UDP for standard queries (fast, small packets) but switches to TCP for large responses and zone transfers.</p>
+
+    <hr class="divider">
+
+    <h2>When to use TCP vs UDP</h2>
+
+    <p>The choice between TCP and UDP comes down to one question: <strong>is it worse to be slow or to lose data?</strong></p>
+
+    <p><strong>Use TCP</strong> when the data must arrive complete and correct — loading a webpage, downloading a file, sending an email, accessing a remote desktop. A missing chunk of a file or a half-loaded webpage is useless, so TCP's retransmission guarantees are worth the extra overhead.</p>
+
+    <p><strong>Use UDP</strong> when speed matters more than perfection — live video calls, online gaming, DNS lookups, streaming. In a video call, a dropped frame is barely noticeable. But a 2-second pause while TCP retransmits a lost packet would make the call unusable. UDP just moves on and keeps the stream flowing.</p>
+
+    <div class="use-case-grid">
+      <div class="use-case-card use-case-tcp">
+        <div class="use-case-label">TCP — Use when</div>
+        <div class="use-case-item">🌐 Loading websites (HTTP/HTTPS)</div>
+        <div class="use-case-item">📁 Downloading or uploading files (FTP)</div>
+        <div class="use-case-item">📧 Sending or receiving email (SMTP, IMAP)</div>
+        <div class="use-case-item">🖥️ Remote desktop sessions (RDP)</div>
+        <div class="use-case-item">🔐 Secure shell access (SSH)</div>
+        <div class="use-case-item">🗂️ Windows file sharing (SMB)</div>
+      </div>
+      <div class="use-case-card use-case-udp">
+        <div class="use-case-label">UDP — Use when</div>
+        <div class="use-case-item">📹 Live video streaming</div>
+        <div class="use-case-item">📞 VoIP and video calls</div>
+        <div class="use-case-item">🎮 Online gaming</div>
+        <div class="use-case-item">🔍 DNS lookups (port 53)</div>
+        <div class="use-case-item">📡 DHCP address assignment</div>
+        <div class="use-case-item">📊 Network monitoring (SNMP)</div>
       </div>
     </div>
 
     <hr class="divider">
 
-    <h2>When Would You Use Each?</h2>
+    <h2>A+ Exam Scenarios</h2>
 
-    <p>Use <strong>TCP</strong> when accuracy matters — web browsing, file transfers, email, and anything where missing data would cause problems.</p>
-    <p>Use <strong>UDP</strong> when speed matters — gaming, live streaming, VoIP, and DNS lookups where a small delay is worse than a lost packet.</p>
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "Which protocol guarantees delivery of packets?" → <strong>TCP</strong></div>
+      <div class="scenario-item">💬 "A user's video call is choppy but functional. Which protocol is most likely being used?" → <strong>UDP</strong> — dropped packets cause choppiness but the call continues</div>
+      <div class="scenario-item">💬 "Which protocol requires a three-way handshake before transmitting data?" → <strong>TCP</strong></div>
+      <div class="scenario-item">💬 "DNS uses which protocol for standard queries?" → <strong>UDP</strong> (port 53) — fast, small packets</div>
+      <div class="scenario-item">💬 "A file transfer fails halfway through and must restart. Which protocol is being used?" → <strong>TCP</strong> — it detects the failure and retransmits</div>
+      <div class="scenario-item">💬 "Which protocol operates at the Transport layer?" → <strong>Both TCP and UDP</strong> — Layer 4</div>
+      <div class="scenario-item">💬 "What are the three steps of the TCP handshake in order?" → <strong>SYN, SYN-ACK, ACK</strong></div>
+      <div class="scenario-item">💬 "DHCP uses which protocol?" → <strong>UDP</strong> (ports 67/68) — broadcast-based, no prior connection</div>
+    </div>
 
     <hr class="divider">
 
-    <h2>Exam Tip</h2>
+    <h2>Key Takeaways</h2>
 
-    <div class="exam-tip">
-      <div class="exam-tip-label">⚡ CompTIA A+ Exam Tip</div>
-      <p><strong>If the question mentions reliability or guaranteed delivery</strong> → Think TCP.</p>
-      <p><strong>If the question mentions speed, streaming, or live communication</strong> → Think UDP.</p>
+    <div class="summary-list">
+      <div class="summary-item"><strong>TCP = reliable, ordered, connection-based.</strong> Uses a three-way handshake (SYN → SYN-ACK → ACK) before any data transfers</div>
+      <div class="summary-item"><strong>UDP = fast, connectionless, no guarantees.</strong> Sends data without establishing a connection — packets may arrive out of order or not at all</div>
+      <div class="summary-item">Both operate at <strong>Layer 4 (Transport)</strong> of the OSI model</div>
+      <div class="summary-item">TCP ports: HTTP (80), HTTPS (443), FTP (20/21), SSH (22), SMTP (25), RDP (3389)</div>
+      <div class="summary-item">UDP ports: DNS (53), DHCP (67/68), SNMP (161/162), TFTP (69)</div>
+      <div class="summary-item">DNS uses <strong>UDP for queries</strong> but <strong>TCP for zone transfers</strong> — the exam tests this distinction</div>
     </div>
 
     <hr class="divider">
@@ -834,10 +1005,15 @@ tbody tr:hover td { background: #f6f9ff; }
     <h2>Related Networking Articles</h2>
 
     <div class="related-grid">
-      <a href="subnet-mask.html" class="related-link">What Is a Subnet Mask?</a>
+      <a href="osi-model.html" class="related-link">OSI Model — All 7 Layers</a>
+      <a href="ports.html" class="related-link">CompTIA A+ Port Numbers</a>
+      <a href="firewall-basics.html" class="related-link">Firewall Basics</a>
       <a href="dhcp.html" class="related-link">What Is DHCP?</a>
       <a href="dns.html" class="related-link">What Is DNS?</a>
       <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
+      <a href="router-vs-switch.html" class="related-link">Router vs Switch</a>
+      <a href="networking.html" class="related-link">Networking Master Guide</a>
+    </div>
       <a href="ports.html" class="related-link">Common Port Numbers</a>
       <a href="apipa.html" class="related-link">What Is APIPA?</a>
       <a href="osi-model.html" class="related-link">OSI Model Explained</a>
