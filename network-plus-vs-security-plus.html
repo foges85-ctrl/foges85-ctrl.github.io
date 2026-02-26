@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/network-plus-vs-security-plus.html">
+
+<title>Network+ vs Security+ — Which Should You Take Next? (2026)</title>
+<meta name="description" content="Network+ vs Security+ — what's the difference, which is harder, which pays more, and which certification you should take next based on your career goals.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --purple:  #7c3aed;
+  --purple2: #6d28d9;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter); color: var(--text);
+  line-height: 1.65; -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 28px;
+  height: 68px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+}
+.logo-link {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 17px; color: var(--navy); letter-spacing: -0.3px; flex-shrink: 0;
+}
+.logo-img { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px; font-weight: 600; padding: 8px 14px;
+  border-radius: 8px; color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+}
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta {
+  background: var(--navy); color: var(--white) !important;
+  padding: 8px 18px; border-radius: 8px; margin-left: 6px;
+  transition: background 0.15s, transform 0.1s;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 44px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy); position: relative;
+  overflow: hidden; padding: 60px 28px 70px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(124,58,237,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.page-hero-inner {
+  max-width: 1100px; margin: 0 auto;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.6s ease both;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  margin-bottom: 20px; font-family: 'DM Mono', monospace;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.35);
+  color: #c4b5fd; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
+}
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(26px, 4vw, 42px); font-weight: 800;
+  color: var(--white); line-height: 1.15;
+  letter-spacing: -0.8px; margin-bottom: 14px;
+}
+.page-hero h1 .blue { color: #7eb3ff; }
+.page-hero h1 .purple { color: #c4b5fd; }
+.page-hero-sub {
+  font-size: 16px; color: rgba(255,255,255,0.6);
+  max-width: 620px; line-height: 1.7;
+}
+
+/* ── ARTICLE ── */
+.article-wrap {
+  max-width: 860px; margin: 0 auto; padding: 52px 28px 80px;
+  animation: fadeUp 0.6s ease both;
+}
+@media (max-width: 768px) { .article-wrap { padding: 36px 16px 60px; } }
+
+.article-body h2 {
+  font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.3px; margin: 48px 0 16px;
+}
+.article-body h2:first-child { margin-top: 0; }
+.article-body p {
+  font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 16px;
+}
+.article-body strong { color: var(--navy); font-weight: 700; }
+
+/* ── QUICK ANSWER ── */
+.quick-answer {
+  background: var(--navy); border-radius: 14px;
+  padding: 24px 26px; margin-bottom: 40px; position: relative; overflow: hidden;
+}
+.quick-answer::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(124,58,237,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.quick-answer-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #c4b5fd;
+  margin-bottom: 10px; position: relative;
+}
+.quick-answer-text {
+  font-size: 15px; color: rgba(255,255,255,0.85);
+  line-height: 1.7; position: relative;
+}
+.quick-answer-text strong { color: var(--white); }
+
+/* ── CERT DUEL CARDS ── */
+.cert-duel {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 40px;
+}
+@media (max-width: 580px) { .cert-duel { grid-template-columns: 1fr; } }
+.cert-duel-card {
+  border-radius: 14px; padding: 22px 24px; border: 2px solid transparent;
+}
+.cert-duel-netplus {
+  background: linear-gradient(135deg, rgba(26,108,255,0.06), rgba(26,108,255,0.02));
+  border-color: rgba(26,108,255,0.3);
+}
+.cert-duel-secplus {
+  background: linear-gradient(135deg, rgba(124,58,237,0.06), rgba(124,58,237,0.02));
+  border-color: rgba(124,58,237,0.3);
+}
+.cert-duel-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 6px;
+}
+.cert-duel-netplus .cert-duel-label { color: var(--blue); }
+.cert-duel-secplus .cert-duel-label { color: var(--purple); }
+.cert-duel-name {
+  font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800;
+  color: var(--navy); margin-bottom: 10px;
+}
+.cert-duel-facts { display: flex; flex-direction: column; gap: 7px; }
+.cert-duel-fact {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13.5px; color: var(--text); line-height: 1.5;
+}
+.cert-duel-fact-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px; color: var(--slate);
+  min-width: 80px; padding-top: 2px; flex-shrink: 0;
+}
+
+/* ── COMPARISON TABLE ── */
+.table-wrap {
+  overflow-x: auto; border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow); margin-bottom: 40px;
+}
+table { width: 100%; border-collapse: collapse; background: var(--white); min-width: 520px; }
+thead th {
+  background: var(--navy); color: rgba(255,255,255,0.7);
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.7px; padding: 14px 18px; text-align: left;
+  font-family: 'DM Mono', monospace;
+}
+thead th:first-child { color: var(--white); }
+.th-netplus { color: #7eb3ff !important; }
+.th-secplus { color: #c4b5fd !important; }
+tbody td {
+  padding: 13px 18px; border-bottom: 1px solid var(--border);
+  font-size: 14px; color: var(--text); vertical-align: top; line-height: 1.5;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #f6f9ff; }
+.td-feature { font-weight: 700; color: var(--navy); white-space: nowrap; }
+
+/* ── COVERAGE GRID ── */
+.coverage-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 40px;
+}
+@media (max-width: 580px) { .coverage-grid { grid-template-columns: 1fr; } }
+.coverage-card { border-radius: 12px; padding: 20px 22px; }
+.coverage-netplus {
+  background: rgba(26,108,255,0.04); border: 1px solid rgba(26,108,255,0.2);
+}
+.coverage-secplus {
+  background: rgba(124,58,237,0.04); border: 1px solid rgba(124,58,237,0.2);
+}
+.coverage-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 12px;
+}
+.coverage-netplus .coverage-label { color: var(--blue); }
+.coverage-secplus .coverage-label { color: var(--purple); }
+.coverage-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13.5px; color: var(--text); margin-bottom: 7px; line-height: 1.4;
+}
+.coverage-item::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+}
+.coverage-netplus .coverage-item::before { background: var(--blue); }
+.coverage-secplus .coverage-item::before { background: var(--purple); }
+
+/* ── EXAM TIP ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060; border-left: 4px solid #f0c000;
+  border-radius: 12px; padding: 18px 22px; margin-bottom: 40px;
+}
+.exam-tip-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px;
+}
+.exam-tip p { font-size: 14px; color: #3a2800; line-height: 1.7; margin-bottom: 8px; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #1a1000; }
+
+/* ── SCENARIO CARDS ── */
+.scenario-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+.scenario-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px 20px;
+  display: flex; align-items: flex-start; gap: 14px;
+  box-shadow: var(--card-shadow);
+}
+.scenario-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.scenario-situation {
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.6px; color: var(--slate);
+  font-family: 'DM Mono', monospace; margin-bottom: 4px;
+}
+.scenario-answer {
+  font-size: 14px; font-weight: 700; color: var(--navy);
+  margin-bottom: 4px; line-height: 1.4;
+}
+.scenario-reason { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+.scenario-badge {
+  display: inline-block; padding: 2px 10px; border-radius: 100px;
+  font-size: 11px; font-weight: 700; font-family: 'DM Mono', monospace; margin-left: 8px;
+}
+.badge-netplus { background: rgba(26,108,255,0.1); color: var(--blue); }
+.badge-secplus { background: rgba(124,58,237,0.1); color: var(--purple); }
+.badge-both { background: rgba(138,155,181,0.15); color: var(--slate); }
+
+/* ── CTA GRID ── */
+.cta-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 40px;
+}
+@media (max-width: 560px) { .cta-grid { grid-template-columns: 1fr; } }
+.cta-card {
+  border-radius: 14px; padding: 24px; text-align: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cta-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(10,22,40,0.14); }
+.cta-card-netplus {
+  background: linear-gradient(135deg, rgba(26,108,255,0.08), rgba(26,108,255,0.03));
+  border: 2px solid rgba(26,108,255,0.3);
+}
+.cta-card-secplus {
+  background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(124,58,237,0.03));
+  border: 2px solid rgba(124,58,237,0.3);
+}
+.cta-card-icon { font-size: 28px; margin-bottom: 10px; }
+.cta-card-title {
+  font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800;
+  color: var(--navy); margin-bottom: 6px;
+}
+.cta-card-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 18px; border-radius: 9px; font-size: 13.5px; font-weight: 700;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cta-btn:hover { transform: translateY(-1px); }
+.cta-btn-netplus {
+  background: var(--blue); color: var(--white);
+  box-shadow: 0 4px 14px rgba(26,108,255,0.3);
+}
+.cta-btn-secplus {
+  background: var(--purple); color: var(--white);
+  box-shadow: 0 4px 14px rgba(124,58,237,0.3);
+}
+
+/* ── RELATED ── */
+.related-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px;
+}
+.related-link {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 16px; font-size: 14px;
+  font-weight: 600; color: var(--navy);
+  transition: border-color 0.15s, color 0.15s, transform 0.15s;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.related-link:hover { border-color: rgba(124,58,237,0.3); color: var(--purple); transform: translateY(-1px); }
+.related-link::before { content: '→'; color: var(--purple); font-size: 13px; }
+
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  max-width: 1100px; margin: 28px auto 0; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+@media (max-width: 600px) { .footer { padding: 36px 16px; } .footer-bottom { flex-direction: column; } }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span>Network+ vs Security+</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Certifications · Career Guide</div>
+    <h1><span class="blue">Network+</span> vs <span class="purple">Security+</span></h1>
+    <p class="page-hero-sub">What's the difference, which is harder, which pays more, and which certification you should tackle next — answered clearly based on where you want your IT career to go.</p>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <!-- QUICK ANSWER -->
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Quick Answer</div>
+      <div class="quick-answer-text">
+        <strong>It depends on your career direction.</strong> If you want to work in networking, infrastructure, or sysadmin roles — take Network+ next. If you want to move into cybersecurity, work in government IT, or need DoD 8570 compliance — take Security+ next. Both certifications are legitimate mid-level credentials. The right one depends on what you want to do, not which is objectively better.
+      </div>
+    </div>
+
+    <h2>What each certification actually covers</h2>
+
+    <p>Network+ and Security+ sit at a similar career level — both are intermediate CompTIA certifications typically pursued after A+. But they go deep in very different directions. Network+ goes deep on how networks are built and operate. Security+ goes deep on how to identify threats, implement controls, and protect systems.</p>
+
+    <div class="cert-duel">
+      <div class="cert-duel-card cert-duel-netplus">
+        <div class="cert-duel-label">Networking Track</div>
+        <div class="cert-duel-name">CompTIA Network+</div>
+        <div class="cert-duel-facts">
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Exam code</span>
+            N10-009
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Format</span>
+            One exam, up to 90 questions
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Cost</span>
+            ~$369
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Passing score</span>
+            720 / 900
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Recommended before</span>
+            CompTIA A+ or equivalent experience
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Renewal</span>
+            Every 3 years
+          </div>
+        </div>
+      </div>
+      <div class="cert-duel-card cert-duel-secplus">
+        <div class="cert-duel-label">Cybersecurity Track</div>
+        <div class="cert-duel-name">CompTIA Security+</div>
+        <div class="cert-duel-facts">
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Exam code</span>
+            SY0-701
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Format</span>
+            One exam, up to 90 questions + PBQs
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Cost</span>
+            ~$404
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Passing score</span>
+            750 / 900
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Recommended before</span>
+            Network+ or 2 years IT experience
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Renewal</span>
+            Every 3 years
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Side-by-side comparison</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th class="th-netplus">Network+</th>
+            <th class="th-secplus">Security+</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-feature">Difficulty</td>
+            <td>Intermediate — heavy on subnetting and routing</td>
+            <td>Intermediate — heavy on applied judgment and scenarios</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Exam cost</td>
+            <td>~$369</td>
+            <td>~$404</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Focus area</td>
+            <td>How networks are designed, built, and troubleshot</td>
+            <td>How systems are secured, threats identified, incidents handled</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Math required</td>
+            <td>Yes — subnetting, CIDR, IP calculations</td>
+            <td>Minimal — more conceptual and scenario-based</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Best for</td>
+            <td>Network admin, sysadmin, IT infrastructure roles</td>
+            <td>Cybersecurity analyst, security admin, SOC roles</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Average salary</td>
+            <td>$55,000–$75,000+</td>
+            <td>$65,000–$90,000+</td>
+          </tr>
+          <tr>
+            <td class="td-feature">DoD 8570 / 8140</td>
+            <td>IAT Level II</td>
+            <td>IAT Level II + IAM Level I — more roles covered</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Job posting demand</td>
+            <td>High in networking / infrastructure</td>
+            <td>Very high — one of the most requested certs in job listings</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Leads toward</td>
+            <td>CCNA, cloud certifications, sysadmin path</td>
+            <td>CySA+, CEH, CISSP, penetration testing path</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Study time</td>
+            <td>~2–4 months (with A+ background)</td>
+            <td>~2–4 months (with networking background)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>What Network+ actually tests</h2>
+
+    <p>Network+ is built around understanding how networks function at a deep level. Where A+ gives you a surface-level introduction to networking, Network+ expects you to actually calculate subnets, understand how routing protocols make forwarding decisions, configure VLANs, and diagnose complex network failures. The troubleshooting component is significant — a large portion of the exam presents network scenarios and asks you to identify what went wrong and how to fix it.</p>
+
+    <div class="coverage-grid">
+      <div class="coverage-card coverage-netplus">
+        <div class="coverage-label">Network+ Domains</div>
+        <div class="coverage-item">Networking concepts — OSI model, protocols, ports</div>
+        <div class="coverage-item">Network implementation — VLANs, wireless, routing</div>
+        <div class="coverage-item">IP addressing and subnetting (CIDR)</div>
+        <div class="coverage-item">WAN technologies and cloud networking</div>
+        <div class="coverage-item">Network operations — monitoring, documentation</div>
+        <div class="coverage-item">Network security fundamentals</div>
+        <div class="coverage-item">Network troubleshooting methodology</div>
+      </div>
+      <div class="coverage-card coverage-secplus">
+        <div class="coverage-label">What N+ does NOT cover deeply</div>
+        <div class="coverage-item">Cryptography and PKI</div>
+        <div class="coverage-item">Threat intelligence and attack techniques</div>
+        <div class="coverage-item">Identity and access management</div>
+        <div class="coverage-item">Incident response procedures</div>
+        <div class="coverage-item">Governance, risk, and compliance</div>
+        <div class="coverage-item">Vulnerability management</div>
+        <div class="coverage-item">Security architecture and zero trust</div>
+      </div>
+    </div>
+
+    <h2>What Security+ actually tests</h2>
+
+    <p>Security+ tests applied security judgment more than technical configuration. The exam doesn't ask you to configure a firewall — it asks you to look at a scenario, identify the threat, and choose the most appropriate control. Cryptography, identity management, and incident response are significant portions of the exam that don't appear in Network+ at all. Performance-based questions (PBQs) require you to interact with simulated environments, which catches candidates who only memorized definitions without understanding how concepts apply.</p>
+
+    <div class="coverage-grid">
+      <div class="coverage-card coverage-secplus">
+        <div class="coverage-label">Security+ Domains (SY0-701)</div>
+        <div class="coverage-item">General security concepts and controls</div>
+        <div class="coverage-item">Threats, vulnerabilities, and mitigations</div>
+        <div class="coverage-item">Cryptography and PKI</div>
+        <div class="coverage-item">Identity and access management</div>
+        <div class="coverage-item">Security architecture and zero trust</div>
+        <div class="coverage-item">Cloud and virtualization security</div>
+        <div class="coverage-item">Incident response and digital forensics</div>
+        <div class="coverage-item">Governance, risk, and compliance (GRC)</div>
+      </div>
+      <div class="coverage-card coverage-netplus">
+        <div class="coverage-label">What Sec+ assumes you already know</div>
+        <div class="coverage-item">TCP/IP fundamentals</div>
+        <div class="coverage-item">Basic network protocols and ports</div>
+        <div class="coverage-item">Firewall and network segmentation concepts</div>
+        <div class="coverage-item">OSI model and how traffic flows</div>
+        <div class="coverage-item">Basic routing and switching</div>
+        <div class="coverage-item">Wireless networking fundamentals</div>
+      </div>
+    </div>
+
+    <h2>Which is harder?</h2>
+
+    <p>They're different kinds of hard. Network+ is harder if you struggle with math and technical depth — subnetting trips up many candidates and the troubleshooting scenarios require systematic thinking about how routing and switching actually work.</p>
+
+    <p>Security+ is harder if you struggle with ambiguity. The exam frequently presents scenarios where multiple answers seem defensible, and you have to choose the <em>best</em> one. Cryptographic concepts, PKI chains, and risk management frameworks can feel abstract in a way that networking topics don't. Performance-based questions add another layer of difficulty that pure multiple-choice prep doesn't cover.</p>
+
+    <p>In terms of raw failure rates, Security+ tends to trip up slightly more candidates on their first attempt — mainly because people underestimate how much applied judgment it requires and over-rely on memorization.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">📊 Study time comparison</div>
+      <p><strong>Network+:</strong> 2–4 months with A+ background. The subnetting and routing content takes time to internalize — practice problems matter more than re-reading notes.</p>
+      <p><strong>Security+:</strong> 2–4 months with networking experience. The breadth of domains is wide, and PBQ practice is essential. Candidates who only study multiple choice often fail because of PBQs.</p>
+    </div>
+
+    <h2>Which pays more?</h2>
+
+    <p>Security+ typically leads to higher-paying roles, particularly in cybersecurity analyst, SOC analyst, and security engineering positions. The cybersecurity skills gap is real — there are more open security positions than qualified candidates, which keeps salaries elevated. That said, experienced Network+ holders in network engineering roles can earn comparable or higher compensation once they have years of experience.</p>
+
+    <p>For government and DoD work specifically, Security+ carries more weight. It satisfies IAT Level II and IAM Level I requirements under DoD 8570/8140, covering more positions than Network+ alone. If federal IT or defense contractor work is your target, Security+ has a clear compensation advantage.</p>
+
+    <h2>Which should you take next?</h2>
+
+    <div class="scenario-grid">
+      <div class="scenario-card">
+        <div class="scenario-icon">🌐</div>
+        <div>
+          <div class="scenario-situation">You want to work in networking or infrastructure</div>
+          <div class="scenario-answer">Take Network+ next <span class="scenario-badge badge-netplus">Network+ First</span></div>
+          <div class="scenario-reason">Network+ directly validates the skills employers look for in network admin and sysadmin roles. It's the more natural progression from A+ for this path and makes Security+ easier when you get there.</div>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-icon">🔒</div>
+        <div>
+          <div class="scenario-situation">You want to work in cybersecurity specifically</div>
+          <div class="scenario-answer">Take Security+ next <span class="scenario-badge badge-secplus">Security+ First</span></div>
+          <div class="scenario-reason">Security+ is the baseline for most entry-level cybersecurity roles. If cybersecurity is your target, get Security+ on your resume as quickly as possible — it unlocks SOC analyst and security admin job listings that ignore candidates without it.</div>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-icon">🏛️</div>
+        <div>
+          <div class="scenario-situation">You're pursuing government or DoD IT work</div>
+          <div class="scenario-answer">Security+ is the priority <span class="scenario-badge badge-secplus">Security+ First</span></div>
+          <div class="scenario-reason">DoD 8570/8140 requirements make Security+ essentially mandatory for many federal IT positions. It satisfies more roles than Network+ and should be your first target if government work is the goal.</div>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-icon">✅</div>
+        <div>
+          <div class="scenario-situation">You already have Network+ and want to level up</div>
+          <div class="scenario-answer">Security+ is the clear next step <span class="scenario-badge badge-secplus">Security+ Next</span></div>
+          <div class="scenario-reason">Network+ builds much of the foundation Security+ assumes — you already understand protocols, ports, firewalls, and network architecture. You're better prepared for Security+ than most candidates and should capitalize on that momentum.</div>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-icon">💼</div>
+        <div>
+          <div class="scenario-situation">You're undecided on specialization</div>
+          <div class="scenario-answer">Take Network+ first, then Security+ <span class="scenario-badge badge-both">Both</span></div>
+          <div class="scenario-reason">Network+ → Security+ is the most common and logical CompTIA progression. Network+ gives you depth in infrastructure; Security+ builds on that with security concepts. Together they make you competitive for a wide range of IT roles.</div>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-icon">⏱️</div>
+        <div>
+          <div class="scenario-situation">You need a certification quickly for a job application</div>
+          <div class="scenario-answer">Depends on the role — check the job listing <span class="scenario-badge badge-both">Depends</span></div>
+          <div class="scenario-reason">Look at which certification appears more often in job listings for the role you're targeting. Network admin and infrastructure roles list Network+. Security analyst and IT security roles list Security+. Let the job market tell you which to prioritize.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Ready to start studying?</h2>
+    <p style="margin-bottom:24px;">See the recommended study materials for whichever certification you're targeting next:</p>
+
+    <div class="cta-grid">
+      <div class="cta-card cta-card-netplus">
+        <div class="cta-card-icon">🌐</div>
+        <div class="cta-card-title">CompTIA Network+ Resources</div>
+        <div class="cta-card-desc">Best study guide (with 10% exam voucher), practice exams, and free course for the N10-009 exam.</div>
+        <a href="best-network-plus.html" class="cta-btn cta-btn-netplus">See Network+ Resources →</a>
+      </div>
+      <div class="cta-card cta-card-secplus">
+        <div class="cta-card-icon">🔒</div>
+        <div class="cta-card-title">CompTIA Security+ Resources</div>
+        <div class="cta-card-desc">Best study guide, practice exams, and Professor Messer's free course for the SY0-701 exam.</div>
+        <a href="best-security-plus.html" class="cta-btn cta-btn-secplus">See Security+ Resources →</a>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="aplus-vs-network-plus.html" class="related-link">A+ vs Network+ — Which First?</a>
+      <a href="best-study-resources.html" class="related-link">All Study Resources</a>
+      <a href="firewall-basics.html" class="related-link">Firewall Basics</a>
+      <a href="subnetting.html" class="related-link">Subnetting Explained</a>
+      <a href="osi-model.html" class="related-link">OSI Model Explained</a>
+      <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP</a>
+      <a href="ports.html" class="related-link">Port Numbers Reference</a>
+      <a href="network-troubleshooting-commands.html" class="related-link">Troubleshooting Commands</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+, Network+, and Security+ resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Compare Certs</div>
+      <a href="aplus-vs-network-plus.html">A+ vs Network+</a>
+      <a href="network-plus-vs-security-plus.html">Network+ vs Security+</a>
+      <a href="best-study-resources.html">All Study Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="subnetting.html">Subnetting</a>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="firewall-basics.html">Firewall Basics</a>
+      <a href="ports.html">Port Numbers</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span>Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>
