@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/aplus-vs-network-plus.html">
+
+<title>CompTIA A+ vs Network+ — Which Should You Take First? (2026)</title>
+<meta name="description" content="CompTIA A+ vs Network+ — what's the difference, which is harder, which pays more, and which you should take first. A clear guide for anyone starting out in IT.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter); color: var(--text);
+  line-height: 1.65; -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 28px;
+  height: 68px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+}
+.logo-link {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 17px; color: var(--navy); letter-spacing: -0.3px; flex-shrink: 0;
+}
+.logo-img { height: 40px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px; font-weight: 600; padding: 8px 14px;
+  border-radius: 8px; color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+}
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta {
+  background: var(--navy); color: var(--white) !important;
+  padding: 8px 18px; border-radius: 8px; margin-left: 6px;
+  transition: background 0.15s, transform 0.1s;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 34px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy); position: relative;
+  overflow: hidden; padding: 60px 28px 70px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(0,194,168,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.page-hero-inner {
+  max-width: 1100px; margin: 0 auto;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.6s ease both;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  margin-bottom: 20px; font-family: 'DM Mono', monospace;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(0,194,168,0.15); border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
+}
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(26px, 4vw, 42px); font-weight: 800;
+  color: var(--white); line-height: 1.15;
+  letter-spacing: -0.8px; margin-bottom: 14px;
+}
+.page-hero h1 span { color: var(--teal); }
+.page-hero-sub {
+  font-size: 16px; color: rgba(255,255,255,0.6);
+  max-width: 620px; line-height: 1.7;
+}
+
+/* ── ARTICLE WRAP ── */
+.article-wrap {
+  max-width: 860px; margin: 0 auto; padding: 52px 28px 80px;
+}
+@media (max-width: 768px) { .article-wrap { padding: 36px 16px 60px; } }
+
+.article-body h2 {
+  font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.3px;
+  margin: 48px 0 16px;
+}
+.article-body h2:first-child { margin-top: 0; }
+.article-body p {
+  font-size: 15px; color: var(--text); line-height: 1.75;
+  margin-bottom: 16px;
+}
+.article-body p:last-child { margin-bottom: 0; }
+.article-body strong { color: var(--navy); font-weight: 700; }
+
+/* ── QUICK ANSWER BOX ── */
+.quick-answer {
+  background: var(--navy); border-radius: 14px;
+  padding: 24px 26px; margin-bottom: 40px; position: relative; overflow: hidden;
+}
+.quick-answer::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(0,194,168,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.quick-answer-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 10px; position: relative;
+}
+.quick-answer-text {
+  font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7;
+  position: relative;
+}
+.quick-answer-text strong { color: var(--white); }
+
+/* ── CERT DUEL CARDS ── */
+.cert-duel {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  margin-bottom: 40px;
+}
+@media (max-width: 580px) { .cert-duel { grid-template-columns: 1fr; } }
+.cert-duel-card {
+  border-radius: 14px; padding: 22px 24px;
+  border: 2px solid transparent;
+}
+.cert-duel-aplus {
+  background: linear-gradient(135deg, rgba(0,194,168,0.06), rgba(0,194,168,0.02));
+  border-color: rgba(0,194,168,0.3);
+}
+.cert-duel-netplus {
+  background: linear-gradient(135deg, rgba(26,108,255,0.06), rgba(26,108,255,0.02));
+  border-color: rgba(26,108,255,0.3);
+}
+.cert-duel-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 6px;
+}
+.cert-duel-aplus .cert-duel-label { color: var(--teal2); }
+.cert-duel-netplus .cert-duel-label { color: var(--blue); }
+.cert-duel-name {
+  font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800;
+  color: var(--navy); margin-bottom: 10px;
+}
+.cert-duel-facts { display: flex; flex-direction: column; gap: 7px; }
+.cert-duel-fact {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13.5px; color: var(--text); line-height: 1.5;
+}
+.cert-duel-fact-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px; color: var(--slate);
+  min-width: 80px; padding-top: 2px; flex-shrink: 0;
+}
+
+/* ── COMPARISON TABLE ── */
+.table-wrap {
+  overflow-x: auto; border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow); margin-bottom: 40px;
+}
+table { width: 100%; border-collapse: collapse; background: var(--white); min-width: 520px; }
+thead th {
+  background: var(--navy); color: rgba(255,255,255,0.7);
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.7px; padding: 14px 18px; text-align: left;
+  font-family: 'DM Mono', monospace;
+}
+thead th:first-child { color: var(--white); }
+.th-aplus { color: var(--teal) !important; }
+.th-netplus { color: #7eb3ff !important; }
+tbody td {
+  padding: 13px 18px; border-bottom: 1px solid var(--border);
+  font-size: 14px; color: var(--text); vertical-align: top; line-height: 1.5;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #f6f9ff; }
+.td-feature { font-weight: 700; color: var(--navy); white-space: nowrap; }
+
+/* ── SCENARIO CARDS ── */
+.scenario-grid {
+  display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px;
+}
+.scenario-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px 20px;
+  display: flex; align-items: flex-start; gap: 14px;
+  box-shadow: var(--card-shadow);
+}
+.scenario-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.scenario-situation {
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.6px; color: var(--slate);
+  font-family: 'DM Mono', monospace; margin-bottom: 4px;
+}
+.scenario-answer {
+  font-size: 14px; font-weight: 700; color: var(--navy);
+  margin-bottom: 4px; line-height: 1.4;
+}
+.scenario-reason { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+.scenario-badge {
+  display: inline-block; padding: 2px 10px; border-radius: 100px;
+  font-size: 11px; font-weight: 700; font-family: 'DM Mono', monospace;
+  margin-left: 8px; vertical-align: middle;
+}
+.badge-aplus { background: rgba(0,194,168,0.12); color: var(--teal2); }
+.badge-netplus { background: rgba(26,108,255,0.1); color: var(--blue); }
+.badge-both { background: rgba(138,155,181,0.15); color: var(--slate); }
+
+/* ── TOPIC COVERAGE ── */
+.coverage-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  margin-bottom: 40px;
+}
+@media (max-width: 580px) { .coverage-grid { grid-template-columns: 1fr; } }
+.coverage-card {
+  border-radius: 12px; padding: 20px 22px;
+}
+.coverage-aplus {
+  background: rgba(0,194,168,0.04); border: 1px solid rgba(0,194,168,0.2);
+}
+.coverage-netplus {
+  background: rgba(26,108,255,0.04); border: 1px solid rgba(26,108,255,0.2);
+}
+.coverage-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 12px;
+}
+.coverage-aplus .coverage-label { color: var(--teal2); }
+.coverage-netplus .coverage-label { color: var(--blue); }
+.coverage-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13.5px; color: var(--text); margin-bottom: 7px; line-height: 1.4;
+}
+.coverage-item::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+}
+.coverage-aplus .coverage-item::before { background: var(--teal2); }
+.coverage-netplus .coverage-item::before { background: var(--blue); }
+
+/* ── EXAM TIP ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060; border-left: 4px solid #f0c000;
+  border-radius: 12px; padding: 18px 22px; margin-bottom: 40px;
+}
+.exam-tip-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px;
+}
+.exam-tip p { font-size: 14px; color: #3a2800; line-height: 1.7; margin-bottom: 8px; }
+.exam-tip p:last-child { margin-bottom: 0; }
+
+/* ── CTA CARDS ── */
+.cta-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  margin-bottom: 40px;
+}
+@media (max-width: 560px) { .cta-grid { grid-template-columns: 1fr; } }
+.cta-card {
+  border-radius: 14px; padding: 24px; text-align: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cta-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(10,22,40,0.14); }
+.cta-card-aplus {
+  background: linear-gradient(135deg, rgba(0,194,168,0.08), rgba(0,194,168,0.03));
+  border: 2px solid rgba(0,194,168,0.3);
+}
+.cta-card-netplus {
+  background: linear-gradient(135deg, rgba(26,108,255,0.08), rgba(26,108,255,0.03));
+  border: 2px solid rgba(26,108,255,0.3);
+}
+.cta-card-icon { font-size: 28px; margin-bottom: 10px; }
+.cta-card-title {
+  font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800;
+  color: var(--navy); margin-bottom: 6px;
+}
+.cta-card-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 18px; border-radius: 9px;
+  font-size: 13.5px; font-weight: 700;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cta-btn:hover { transform: translateY(-1px); }
+.cta-btn-aplus {
+  background: var(--teal); color: var(--navy);
+  box-shadow: 0 4px 14px rgba(0,194,168,0.3);
+}
+.cta-btn-netplus {
+  background: var(--blue); color: var(--white);
+  box-shadow: 0 4px 14px rgba(26,108,255,0.3);
+}
+
+/* ── RELATED ARTICLES ── */
+.related-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px;
+}
+.related-link {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 16px; font-size: 14px;
+  font-weight: 600; color: var(--navy);
+  transition: border-color 0.15s, color 0.15s, transform 0.15s;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.related-link:hover { border-color: rgba(0,194,168,0.3); color: var(--teal2); transform: translateY(-1px); }
+
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  max-width: 1100px; margin: 28px auto 0; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+@media (max-width: 600px) { .footer { padding: 36px 16px; } .footer-bottom { flex-direction: column; } }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.article-wrap { animation: fadeUp 0.6s ease both; }
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="logo-128.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span>CompTIA A+ vs Network+</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Certifications · Career Guide</div>
+    <h1>CompTIA A+ vs <span>Network+</span></h1>
+    <p class="page-hero-sub">What's the difference, which is harder, which pays more, and which one you should take first — answered clearly for anyone starting out in IT.</p>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <!-- QUICK ANSWER -->
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Quick Answer</div>
+      <div class="quick-answer-text">
+        <strong>Take A+ first.</strong> It's the entry-level certification with no prerequisites, and it builds the foundation that Network+ directly builds on. If you're brand new to IT, A+ is your starting point. If you've already passed A+ or have solid IT experience, Network+ is the logical next step — and the more valuable credential for networking and infrastructure roles.
+      </div>
+    </div>
+
+    <h2>What each certification actually covers</h2>
+
+    <p>A+ and Network+ are both vendor-neutral CompTIA certifications, but they test very different things at very different depths. Understanding what's actually on each exam helps you decide which one makes sense for where you are right now.</p>
+
+    <div class="cert-duel">
+      <div class="cert-duel-card cert-duel-aplus">
+        <div class="cert-duel-label">Entry Level</div>
+        <div class="cert-duel-name">CompTIA A+</div>
+        <div class="cert-duel-facts">
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Exam codes</span>
+            220-1201 (Core 1) + 220-1202 (Core 2)
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Format</span>
+            Two separate exams, both required
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Cost</span>
+            ~$246 per exam ($492 total)
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Passing score</span>
+            675–700 / 900
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Prerequisite</span>
+            None — no experience required
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Renewal</span>
+            Every 3 years (CEUs or re-exam)
+          </div>
+        </div>
+      </div>
+      <div class="cert-duel-card cert-duel-netplus">
+        <div class="cert-duel-label">Intermediate</div>
+        <div class="cert-duel-name">CompTIA Network+</div>
+        <div class="cert-duel-facts">
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Exam code</span>
+            N10-009
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Format</span>
+            One exam
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Cost</span>
+            ~$369
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Passing score</span>
+            720 / 900
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Prerequisite</span>
+            None official — A+ strongly recommended
+          </div>
+          <div class="cert-duel-fact">
+            <span class="cert-duel-fact-label">Renewal</span>
+            Every 3 years (CEUs or re-exam)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Side-by-side comparison</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th class="th-aplus">A+</th>
+            <th class="th-netplus">Network+</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-feature">Difficulty</td>
+            <td>Beginner–Intermediate</td>
+            <td>Intermediate — noticeably harder</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Number of exams</td>
+            <td>2 (Core 1 + Core 2)</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Total cost</td>
+            <td>~$492</td>
+            <td>~$369</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Topic scope</td>
+            <td>Broad — hardware, OS, networking basics, security, troubleshooting</td>
+            <td>Deep — networking protocols, subnetting, routing, security, cloud</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Networking depth</td>
+            <td>Surface level — ports, basic protocols, OSI model</td>
+            <td>Deep — subnetting, routing protocols, VLANs, wireless, WAN</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Best for</td>
+            <td>Help desk, IT support, field technician roles</td>
+            <td>Network admin, sysadmin, IT infrastructure roles</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Average salary impact</td>
+            <td>Entry-level IT positions — $40,000–$55,000</td>
+            <td>Mid-level networking roles — $55,000–$75,000+</td>
+          </tr>
+          <tr>
+            <td class="td-feature">DoD 8570 approved</td>
+            <td>Yes — IAT Level I</td>
+            <td>Yes — IAT Level II (higher level)</td>
+          </tr>
+          <tr>
+            <td class="td-feature">Study time</td>
+            <td>~3–6 months for most beginners</td>
+            <td>~2–4 months (assuming A+ knowledge)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>What A+ actually tests</h2>
+
+    <p>A+ is split across two exams. Core 1 focuses on hardware, mobile devices, networking basics, virtualization, and cloud computing. Core 2 covers operating systems, security, software troubleshooting, and operational procedures. The breadth is wide but the depth on any single topic is moderate — you need to know a little about a lot of things.</p>
+
+    <div class="coverage-grid">
+      <div class="coverage-card coverage-aplus">
+        <div class="coverage-label">A+ Core 1 (220-1201)</div>
+        <div class="coverage-item">Mobile devices and hardware</div>
+        <div class="coverage-item">Networking basics — TCP/IP, ports, protocols</div>
+        <div class="coverage-item">Virtualization and cloud computing</div>
+        <div class="coverage-item">Hardware troubleshooting</div>
+        <div class="coverage-item">Printers and peripherals</div>
+      </div>
+      <div class="coverage-card coverage-netplus">
+        <div class="coverage-label">A+ Core 2 (220-1202)</div>
+        <div class="coverage-item">Windows, macOS, Linux OS</div>
+        <div class="coverage-item">Security fundamentals</div>
+        <div class="coverage-item">Software troubleshooting</div>
+        <div class="coverage-item">Operational procedures</div>
+        <div class="coverage-item">Scripting basics</div>
+      </div>
+    </div>
+
+    <h2>What Network+ actually tests</h2>
+
+    <p>Network+ goes deep on networking in a way A+ doesn't. Where A+ asks "what is a subnet mask?", Network+ asks you to calculate subnets, assign addresses, identify CIDR notation, and troubleshoot routing failures. The exam has five domains: networking concepts, network implementation, network operations, network security, and network troubleshooting.</p>
+
+    <div class="coverage-grid">
+      <div class="coverage-card coverage-aplus">
+        <div class="coverage-label">Network+ key topics</div>
+        <div class="coverage-item">Subnetting and IP addressing (CIDR)</div>
+        <div class="coverage-item">Routing protocols — OSPF, BGP, EIGRP</div>
+        <div class="coverage-item">VLANs and network segmentation</div>
+        <div class="coverage-item">Wireless networking standards</div>
+        <div class="coverage-item">WAN technologies and cloud networking</div>
+      </div>
+      <div class="coverage-card coverage-netplus">
+        <div class="coverage-label">Network+ continued</div>
+        <div class="coverage-item">Network security — firewalls, IDS/IPS, VPNs</div>
+        <div class="coverage-item">Network monitoring and management</div>
+        <div class="coverage-item">High availability and disaster recovery</div>
+        <div class="coverage-item">Troubleshooting complex network issues</div>
+        <div class="coverage-item">Documentation and change management</div>
+      </div>
+    </div>
+
+    <h2>Which is harder?</h2>
+
+    <p>Network+ is harder — and it's not particularly close. A+ has more topics to cover but none go very deep. Network+ expects you to actually calculate subnets, understand how routing protocols make decisions, configure VLANs, and troubleshoot network failures methodically. The scenario-based questions on Network+ are more complex and require a higher level of applied understanding.</p>
+
+    <p>The A+ exam also has two separate tests, which means twice the scheduling, twice the fees, and twice the exam day stress — even if each individual exam is less difficult than Network+. Most people find the total A+ journey more time-consuming than Network+ once they have the foundation.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">📊 How difficult is each exam really?</div>
+      <p><strong>A+:</strong> Most beginners with no IT background need 3–6 months of study. The material is broad and some topics (hardware, printers, mobile devices) feel tedious but aren't conceptually difficult.</p>
+      <p><strong>Network+:</strong> Most candidates with A+ experience need 2–4 months. The material is narrower but deeper — subnetting alone trips up a significant number of first-time test-takers.</p>
+    </div>
+
+    <h2>Which pays more?</h2>
+
+    <p>Network+ generally leads to higher-paying roles because it targets more specialized positions. A+ opens doors to help desk and IT support jobs — valuable entry points, but typically at lower salary bands. Network+ positions you for network administrator, systems administrator, and infrastructure roles that sit a level above entry-level support.</p>
+
+    <p>That said, salary depends far more on the specific role and company than on the certification alone. A+ is often a prerequisite just to get your first IT job. Network+ is what you add to that to move into more technical and better-compensated work. The two certifications are most valuable when held together.</p>
+
+    <h2>Which should you take first?</h2>
+
+    <p>The answer depends on where you are right now:</p>
+
+    <div class="scenario-grid">
+      <div class="scenario-card">
+        <div class="scenario-icon">🆕</div>
+        <div>
+          <div class="scenario-situation">You're brand new to IT — no experience</div>
+          <div class="scenario-answer">Start with A+ <span class="scenario-badge badge-aplus">A+ First</span></div>
+          <div class="scenario-reason">A+ assumes no prior knowledge and covers foundational concepts that everything else in IT builds on. Network+ will be significantly harder without it.</div>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-icon">🛠️</div>
+        <div>
+          <div class="scenario-situation">You work in IT already but never got certified</div>
+          <div class="scenario-answer">Probably A+ first, possibly both at once <span class="scenario-badge badge-both">Depends</span></div>
+          <div class="scenario-reason">If you've been doing help desk or IT support for a year or more, you may be able to pass both in quick succession. A+ validates what you already know. Network+ extends it.</div>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-icon">🎓</div>
+        <div>
+          <div class="scenario-situation">You have a networking or CS degree</div>
+          <div class="scenario-answer">You could start directly with Network+ <span class="scenario-badge badge-netplus">Network+ OK</span></div>
+          <div class="scenario-reason">A formal networking education covers most of what A+ tests. If you already understand subnetting, TCP/IP, and networking fundamentals, jumping to Network+ is reasonable.</div>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-icon">✅</div>
+        <div>
+          <div class="scenario-situation">You already passed A+</div>
+          <div class="scenario-answer">Network+ is your next step <span class="scenario-badge badge-netplus">Network+ Next</span></div>
+          <div class="scenario-reason">The networking content on your A+ exam is the foundation for everything on Network+. You're better prepared than you probably think. Build on that momentum.</div>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-icon">🎯</div>
+        <div>
+          <div class="scenario-situation">You want a job in networking specifically</div>
+          <div class="scenario-answer">A+ first, then Network+ as fast as possible <span class="scenario-badge badge-both">Both</span></div>
+          <div class="scenario-reason">For networking roles, both certifications together are more valuable than either alone. A+ gets you in the door, Network+ gets you the role you want.</div>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-icon">🏛️</div>
+        <div>
+          <div class="scenario-situation">You're pursuing a government / DoD IT role</div>
+          <div class="scenario-answer">You need both — Network+ carries more weight <span class="scenario-badge badge-both">Both</span></div>
+          <div class="scenario-reason">DoD 8570 requires specific certifications for different access levels. A+ covers IAT Level I. Network+ covers IAT Level II, which is required for more positions.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Ready to start studying?</h2>
+    <p style="margin-bottom:24px;">See the recommended study materials for whichever certification you're targeting:</p>
+
+    <div class="cta-grid">
+      <div class="cta-card cta-card-aplus">
+        <div class="cta-card-icon">📘</div>
+        <div class="cta-card-title">CompTIA A+ Resources</div>
+        <div class="cta-card-desc">Best study guide, practice exams, and free course for the 220-1201/1202 exams.</div>
+        <a href="best-a-plus.html" class="cta-btn cta-btn-aplus">See A+ Resources →</a>
+      </div>
+      <div class="cta-card cta-card-netplus">
+        <div class="cta-card-icon">🌐</div>
+        <div class="cta-card-title">CompTIA Network+ Resources</div>
+        <div class="cta-card-desc">Best study guide (with 10% exam voucher), practice exams, and free course for N10-009.</div>
+        <a href="best-network-plus.html" class="cta-btn cta-btn-netplus">See Network+ Resources →</a>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="networking-roadmap.html" class="related-link">Networking Mastery Roadmap</a>
+      <a href="osi-model.html" class="related-link">OSI Model Explained</a>
+      <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP Explained</a>
+      <a href="ports.html" class="related-link">CompTIA A+ Port Numbers</a>
+      <a href="firewall-basics.html" class="related-link">Firewall Basics</a>
+      <a href="subnet-mask.html" class="related-link">What Is a Subnet Mask?</a>
+      <a href="network-troubleshooting-commands.html" class="related-link">Troubleshooting Commands</a>
+      <a href="best-study-resources.html" class="related-link">All Study Resources</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Pages</div>
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="best-study-resources.html">Best Study Resources</a>
+      <a href="aplus-vs-network-plus.html">A+ vs Network+</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="ports.html">Port Numbers</a>
+      <a href="subnet-mask.html">Subnet Mask</a>
+      <a href="firewall-basics.html">Firewall Basics</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span>Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>
