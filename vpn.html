@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/vpn.html">
+
+<title>What is a VPN? How VPNs Work — CompTIA Network+ & Security+ Guide (2026)</title>
+<meta name="description" content="What is a VPN and how does it work? Tunneling protocols, types of VPN, split tunneling, and every VPN concept tested on CompTIA Network+ and Security+ — explained clearly.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --purple:  #7c3aed;
+  --purple2: #6d28d9;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter); color: var(--text);
+  line-height: 1.65; -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 28px;
+  height: 68px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+}
+.logo-link {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 17px; color: var(--navy); letter-spacing: -0.3px; flex-shrink: 0;
+}
+.logo-img { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px; font-weight: 600; padding: 8px 14px;
+  border-radius: 8px; color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+}
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta {
+  background: var(--navy); color: var(--white) !important;
+  padding: 8px 18px; border-radius: 8px; margin-left: 6px;
+  transition: background 0.15s, transform 0.1s;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 44px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy); position: relative;
+  overflow: hidden; padding: 60px 28px 70px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(26,108,255,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(0,194,168,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.page-hero-inner {
+  max-width: 1100px; margin: 0 auto;
+  position: relative; z-index: 1; animation: fadeUp 0.6s ease both;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  margin-bottom: 20px; font-family: 'DM Mono', monospace;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(26,108,255,0.15); border: 1px solid rgba(26,108,255,0.35);
+  color: #7eb3ff; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
+}
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(26px, 4vw, 42px); font-weight: 800;
+  color: var(--white); line-height: 1.15; letter-spacing: -0.8px; margin-bottom: 14px;
+}
+.page-hero h1 span { color: #7eb3ff; }
+.page-hero-sub {
+  font-size: 16px; color: rgba(255,255,255,0.6); max-width: 620px; line-height: 1.7;
+}
+
+/* ── ARTICLE ── */
+.article-wrap {
+  max-width: 860px; margin: 0 auto; padding: 52px 28px 80px;
+  animation: fadeUp 0.5s ease both;
+}
+@media (max-width: 768px) { .article-wrap { padding: 36px 16px 60px; } }
+.article-body h2 {
+  font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.3px; margin: 48px 0 16px;
+}
+.article-body h2:first-child { margin-top: 0; }
+.article-body p { font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 16px; }
+.article-body strong { color: var(--navy); font-weight: 700; }
+
+/* ── QUICK ANSWER ── */
+.quick-answer {
+  background: var(--navy); border-radius: 14px;
+  padding: 24px 26px; margin-bottom: 40px; position: relative; overflow: hidden;
+}
+.quick-answer::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(26,108,255,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.quick-answer-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #7eb3ff;
+  margin-bottom: 10px; position: relative;
+}
+.quick-answer-text {
+  font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; position: relative;
+}
+.quick-answer-text strong { color: var(--white); }
+
+/* ── CODE BLOCKS ── */
+.code-block {
+  background: var(--navy); border-radius: 12px; overflow: hidden;
+  margin-bottom: 24px; border: 1px solid rgba(255,255,255,0.08);
+}
+.code-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.7px; text-transform: uppercase; color: #7eb3ff;
+  padding: 10px 18px 8px; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.code-block pre {
+  font-family: 'DM Mono', monospace; font-size: 13.5px;
+  color: rgba(255,255,255,0.85); line-height: 1.8;
+  padding: 16px 18px; overflow-x: auto; margin: 0;
+}
+.code-hl { color: #7eb3ff; font-weight: 700; }
+.code-teal { color: var(--teal); font-weight: 700; }
+.code-comment { color: rgba(255,255,255,0.35); }
+.code-inline {
+  font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500;
+  background: rgba(26,108,255,0.1); color: var(--blue);
+  padding: 2px 7px; border-radius: 5px;
+}
+
+/* ── VPN TYPE CARDS ── */
+.vpn-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 40px;
+}
+@media (max-width: 580px) { .vpn-grid { grid-template-columns: 1fr; } }
+.vpn-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px 22px; box-shadow: var(--card-shadow);
+  transition: border-color 0.15s, transform 0.15s;
+}
+.vpn-card:hover { border-color: rgba(26,108,255,0.3); transform: translateY(-2px); }
+.vpn-card-icon { font-size: 26px; margin-bottom: 10px; }
+.vpn-card-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.6px; color: var(--blue); margin-bottom: 6px;
+}
+.vpn-card-title {
+  font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 800;
+  color: var(--navy); margin-bottom: 8px;
+}
+.vpn-card-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; margin-bottom: 10px; }
+.vpn-card-use {
+  font-size: 12px; font-weight: 600; color: var(--blue);
+  font-family: 'DM Mono', monospace;
+}
+
+/* ── FLOW DIAGRAM ── */
+.flow {
+  display: flex; align-items: stretch; gap: 0;
+  margin-bottom: 28px; flex-wrap: wrap; border-radius: 12px;
+  overflow: hidden; border: 1px solid var(--border);
+}
+.flow-step {
+  flex: 1; min-width: 100px; background: var(--white);
+  padding: 16px 14px; text-align: center; border-right: 1px solid var(--border);
+}
+.flow-step:last-child { border-right: none; }
+.flow-step-icon { font-size: 22px; margin-bottom: 6px; }
+.flow-step-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px; color: var(--slate); margin-bottom: 4px;
+}
+.flow-step-title { font-size: 12px; font-weight: 700; color: var(--navy); line-height: 1.4; }
+.flow-step-sub { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+
+/* ── SPLIT TUNNEL DIAGRAM ── */
+.tunnel-compare {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 40px;
+}
+@media (max-width: 560px) { .tunnel-compare { grid-template-columns: 1fr; } }
+.tunnel-card {
+  border-radius: 12px; padding: 18px 20px;
+}
+.tunnel-full {
+  background: rgba(26,108,255,0.04); border: 1px solid rgba(26,108,255,0.2);
+}
+.tunnel-split {
+  background: rgba(0,194,168,0.04); border: 1px solid rgba(0,194,168,0.2);
+}
+.tunnel-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px;
+}
+.tunnel-full .tunnel-label { color: var(--blue); }
+.tunnel-split .tunnel-label { color: var(--teal2); }
+.tunnel-title {
+  font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 800;
+  color: var(--navy); margin-bottom: 8px;
+}
+.tunnel-item {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 13.5px; color: var(--text); margin-bottom: 6px; line-height: 1.45;
+}
+.tunnel-item::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 6px;
+}
+.tunnel-full .tunnel-item::before { background: var(--blue); }
+.tunnel-split .tunnel-item::before { background: var(--teal2); }
+
+/* ── TABLE ── */
+.table-wrap {
+  overflow-x: auto; border-radius: 14px; border: 1px solid var(--border);
+  box-shadow: var(--card-shadow); margin-bottom: 40px;
+}
+table { width: 100%; border-collapse: collapse; background: var(--white); min-width: 500px; }
+thead th {
+  background: var(--navy); color: rgba(255,255,255,0.7);
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.7px; padding: 14px 18px; text-align: left;
+  font-family: 'DM Mono', monospace;
+}
+thead th:first-child { color: var(--white); }
+tbody td {
+  padding: 13px 18px; border-bottom: 1px solid var(--border);
+  font-size: 14px; color: var(--text); vertical-align: top; line-height: 1.5;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #f6f9ff; }
+.td-proto { font-weight: 700; color: var(--navy); font-family: 'DM Mono', monospace; font-size: 13px; }
+.badge-modern { background: rgba(0,194,168,0.12); color: var(--teal2); }
+.badge-legacy { background: rgba(138,155,181,0.15); color: var(--slate); }
+.badge-deprecated { background: rgba(220,38,38,0.08); color: #dc2626; }
+.proto-badge {
+  display: inline-block; padding: 2px 8px; border-radius: 100px;
+  font-size: 11px; font-weight: 700; font-family: 'DM Mono', monospace;
+}
+
+/* ── EXAM TIP ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060; border-left: 4px solid #f0c000;
+  border-radius: 12px; padding: 18px 22px; margin-bottom: 40px;
+}
+.exam-tip-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px;
+}
+.exam-tip p { font-size: 14px; color: #3a2800; line-height: 1.7; margin-bottom: 8px; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #1a1000; }
+
+/* ── SCENARIO LIST ── */
+.scenario-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+.scenario-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 18px;
+  font-size: 14px; color: var(--text); line-height: 1.65;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.scenario-item strong { color: var(--navy); }
+
+/* ── CTA BOX ── */
+.cta-box {
+  background: linear-gradient(135deg, var(--navy), var(--navy2));
+  border-radius: 16px; padding: 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap; position: relative; overflow: hidden; margin-bottom: 40px;
+}
+.cta-box::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(26,108,255,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-box-text h3 {
+  font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800;
+  color: var(--white); margin-bottom: 4px;
+}
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 10px; font-size: 14px; font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s; white-space: nowrap; flex-shrink: 0;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-teal { background: var(--teal); color: var(--navy); box-shadow: 0 6px 20px rgba(0,194,168,0.3); }
+.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
+
+/* ── RELATED ── */
+.related-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px;
+}
+.related-link {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 16px; font-size: 14px;
+  font-weight: 600; color: var(--navy);
+  transition: border-color 0.15s, color 0.15s, transform 0.15s;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.related-link:hover { border-color: rgba(26,108,255,0.3); color: var(--blue); transform: translateY(-1px); }
+.related-link::before { content: '→'; color: var(--blue); font-size: 13px; }
+
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  max-width: 1100px; margin: 28px auto 0; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+@media (max-width: 600px) { .footer { padding: 36px 16px; } .footer-bottom { flex-direction: column; } }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <span>›</span>
+      <span>What is a VPN?</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Network+ · Security+ · Core Concept</div>
+    <h1>What is a <span>VPN?</span></h1>
+    <p class="page-hero-sub">How VPNs work, the protocols that power them, types of VPN deployment, split tunneling, and every VPN concept tested on CompTIA Network+ and Security+.</p>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ What is a VPN?</div>
+      <div class="quick-answer-text">
+        A VPN (Virtual Private Network) creates an <strong>encrypted tunnel</strong> between a device and a network over the public internet, making traffic appear to originate from the VPN endpoint rather than the user's actual location. It provides confidentiality, integrity, and authentication for traffic that would otherwise travel unprotected. On both Network+ and Security+ exams, VPNs are tested heavily — especially tunneling protocols, types, and split tunneling.
+      </div>
+    </div>
+
+    <h2>How a VPN works</h2>
+
+    <p>Without a VPN, your traffic travels from your device to its destination in a way that your ISP, network administrators, and potentially attackers on the same network can see. A VPN changes this by wrapping your traffic in an encrypted tunnel to a VPN server — everything between you and that server is encrypted and unreadable to outside observers.</p>
+
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-step-icon">💻</div>
+        <div class="flow-step-label">Your device</div>
+        <div class="flow-step-title">Encrypts traffic before sending</div>
+        <div class="flow-step-sub">Original packet wrapped inside encrypted tunnel</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-icon">🔒</div>
+        <div class="flow-step-label">Encrypted tunnel</div>
+        <div class="flow-step-title">Travels over public internet</div>
+        <div class="flow-step-sub">ISP sees encrypted data only — destination hidden</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-icon">🖥️</div>
+        <div class="flow-step-label">VPN server</div>
+        <div class="flow-step-title">Decrypts and forwards traffic</div>
+        <div class="flow-step-sub">Request appears to come from VPN server's IP</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-icon">🌐</div>
+        <div class="flow-step-label">Destination</div>
+        <div class="flow-step-title">Receives request normally</div>
+        <div class="flow-step-sub">Sees VPN server IP, not your device's IP</div>
+      </div>
+    </div>
+
+    <p>The key concept here is <strong>tunneling</strong> — encapsulating one network protocol inside another. The original packet becomes the payload inside an outer encrypted packet. This is why VPNs can traverse the public internet securely.</p>
+
+    <h2>Types of VPN</h2>
+
+    <div class="vpn-grid">
+      <div class="vpn-card">
+        <div class="vpn-card-icon">👤</div>
+        <div class="vpn-card-label">Remote Access VPN</div>
+        <div class="vpn-card-title">Client-to-Site</div>
+        <div class="vpn-card-desc">An individual user connects to a corporate network from a remote location. The VPN client on their device establishes a tunnel to the VPN concentrator at the office.</div>
+        <div class="vpn-card-use">→ Most common type. Used for remote workers.</div>
+      </div>
+      <div class="vpn-card">
+        <div class="vpn-card-icon">🏢</div>
+        <div class="vpn-card-label">Site-to-Site VPN</div>
+        <div class="vpn-card-title">Network-to-Network</div>
+        <div class="vpn-card-desc">Two entire networks are connected through a persistent VPN tunnel — typically two office locations. No VPN client needed on individual devices; the routers handle it.</div>
+        <div class="vpn-card-use">→ Connecting branch offices to HQ securely.</div>
+      </div>
+      <div class="vpn-card">
+        <div class="vpn-card-icon">🌍</div>
+        <div class="vpn-card-label">SSL/TLS VPN</div>
+        <div class="vpn-card-title">Browser-Based</div>
+        <div class="vpn-card-desc">Uses standard HTTPS (port 443) to create the tunnel — works through a web browser without a dedicated client. Harder to block since port 443 is almost always open.</div>
+        <div class="vpn-card-use">→ Easy to deploy, works through firewalls.</div>
+      </div>
+      <div class="vpn-card">
+        <div class="vpn-card-icon">🔐</div>
+        <div class="vpn-card-label">IPsec VPN</div>
+        <div class="vpn-card-title">Network Layer</div>
+        <div class="vpn-card-desc">Operates at Layer 3 (Network layer) of the OSI model. Provides strong encryption and authentication. Standard for site-to-site VPNs and enterprise remote access.</div>
+        <div class="vpn-card-use">→ Most common for enterprise and site-to-site.</div>
+      </div>
+    </div>
+
+    <h2>VPN tunneling protocols — the exam table</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Protocol</th>
+            <th>Port / Layer</th>
+            <th>Encryption</th>
+            <th>Status</th>
+            <th>Key facts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-proto">IPsec</td>
+            <td>Layer 3 (IP)</td>
+            <td>AES, 3DES</td>
+            <td><span class="proto-badge badge-modern">Current</span></td>
+            <td>Two modes: Transport (encrypts payload only) and Tunnel (encrypts entire packet). Uses AH and ESP protocols.</td>
+          </tr>
+          <tr>
+            <td class="td-proto">OpenVPN</td>
+            <td>UDP 1194 / TCP 443</td>
+            <td>TLS / AES</td>
+            <td><span class="proto-badge badge-modern">Current</span></td>
+            <td>Open-source, highly configurable. Can run on port 443 to bypass firewalls. Widely used in enterprise and consumer VPNs.</td>
+          </tr>
+          <tr>
+            <td class="td-proto">WireGuard</td>
+            <td>UDP 51820</td>
+            <td>ChaCha20</td>
+            <td><span class="proto-badge badge-modern">Current</span></td>
+            <td>Modern, lean protocol with significantly less code than OpenVPN/IPsec. Fast and increasingly adopted.</td>
+          </tr>
+          <tr>
+            <td class="td-proto">L2TP/IPsec</td>
+            <td>UDP 1701, 500, 4500</td>
+            <td>IPsec (AES)</td>
+            <td><span class="proto-badge badge-legacy">Legacy</span></td>
+            <td>L2TP provides the tunnel, IPsec provides encryption — neither provides security alone. Common on older enterprise systems.</td>
+          </tr>
+          <tr>
+            <td class="td-proto">SSTP</td>
+            <td>TCP 443</td>
+            <td>TLS</td>
+            <td><span class="proto-badge badge-legacy">Legacy</span></td>
+            <td>Microsoft proprietary. Uses HTTPS port so passes through most firewalls. Windows-only natively.</td>
+          </tr>
+          <tr>
+            <td class="td-proto">PPTP</td>
+            <td>TCP 1723</td>
+            <td>MPPE (weak)</td>
+            <td><span class="proto-badge badge-deprecated">Deprecated</span></td>
+            <td>Old Microsoft protocol. Encryption is broken — known vulnerabilities. Appears on exam as an example of weak/insecure VPN. Do not use.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ PPTP on the exam</div>
+      <p>PPTP appears frequently on Security+ as the answer to "which VPN protocol is considered insecure?" Its encryption (MPPE) has known weaknesses and it should never be used on modern networks. If a question asks which VPN protocol to avoid or replace, <strong>PPTP</strong> is the answer.</p>
+      <p>Contrast with IPsec and OpenVPN — both are considered secure and current standards.</p>
+    </div>
+
+    <h2>IPsec modes and components — Security+ detail</h2>
+
+    <p>IPsec is the most heavily tested VPN technology on both Network+ and Security+. You need to know its two modes and two core protocols:</p>
+
+    <div class="code-block">
+      <div class="code-label">IPsec — modes and protocols</div>
+      <pre><span class="code-hl">Transport Mode</span>
+  Encrypts only the <span class="code-teal">payload</span> (data portion) of each IP packet
+  Original IP header preserved — source and destination IPs visible
+  Used for <span class="code-teal">end-to-end</span> encryption between two hosts
+
+<span class="code-hl">Tunnel Mode</span>
+  Encrypts the <span class="code-teal">entire original IP packet</span> (header + payload)
+  New outer IP header added with VPN endpoint addresses
+  Used for <span class="code-teal">gateway-to-gateway</span> (site-to-site) VPNs
+
+<span class="code-hl">AH — Authentication Header</span>
+  Provides <span class="code-teal">integrity and authentication</span> — no encryption
+  Verifies the packet hasn't been tampered with
+
+<span class="code-hl">ESP — Encapsulating Security Payload</span>
+  Provides <span class="code-teal">encryption + integrity + authentication</span>
+  Most commonly used — does everything AH does plus encryption</pre>
+    </div>
+
+    <h2>Split tunneling</h2>
+
+    <p>Split tunneling determines whether <em>all</em> of a user's traffic goes through the VPN, or only traffic destined for the corporate network.</p>
+
+    <div class="tunnel-compare">
+      <div class="tunnel-card tunnel-full">
+        <div class="tunnel-label">Full Tunneling</div>
+        <div class="tunnel-title">All traffic through VPN</div>
+        <div class="tunnel-item">All internet traffic routed through VPN server</div>
+        <div class="tunnel-item">Company can monitor and filter all traffic</div>
+        <div class="tunnel-item">Higher bandwidth load on VPN infrastructure</div>
+        <div class="tunnel-item">More secure — no traffic escapes the tunnel</div>
+        <div class="tunnel-item">Slower for user — all traffic hairpins through VPN</div>
+      </div>
+      <div class="tunnel-card tunnel-split">
+        <div class="tunnel-label">Split Tunneling</div>
+        <div class="tunnel-title">Only corporate traffic through VPN</div>
+        <div class="tunnel-item">Corporate traffic → VPN tunnel</div>
+        <div class="tunnel-item">Internet traffic → direct to ISP (not through VPN)</div>
+        <div class="tunnel-item">Reduces VPN bandwidth load significantly</div>
+        <div class="tunnel-item">Faster browsing for users</div>
+        <div class="tunnel-item">Security risk — internet traffic unmonitored by IT</div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Split tunneling exam angle</div>
+      <p>The Security+ exam frequently frames split tunneling as a <strong>security risk</strong>. The concern is that a remote employee's device connects to both the corporate VPN and the public internet simultaneously — if the device is compromised, an attacker could potentially use it as a pivot point into the corporate network.</p>
+      <p>Exam question pattern: "Which VPN configuration poses the greatest security risk?" → <strong>Split tunneling</strong>.</p>
+    </div>
+
+    <h2>Key VPN terms</h2>
+
+    <div class="code-block">
+      <div class="code-label">VPN vocabulary — Network+ and Security+ exam</div>
+      <pre><span class="code-hl">VPN Concentrator</span>   <span class="code-comment">→ Dedicated hardware/software that manages VPN connections at scale</span>
+<span class="code-hl">Tunnel</span>             <span class="code-comment">→ The encrypted path through which encapsulated packets travel</span>
+<span class="code-hl">Encapsulation</span>      <span class="code-comment">→ Wrapping one packet inside another to traverse a network</span>
+<span class="code-hl">IKE / IKEv2</span>        <span class="code-comment">→ Internet Key Exchange — negotiates IPsec security associations (SAs)</span>
+<span class="code-hl">Security Association</span><span class="code-comment">→ Agreement on encryption algorithms and keys between VPN peers</span>
+<span class="code-hl">Always-on VPN</span>      <span class="code-comment">→ Device maintains VPN connection automatically, even before login</span>
+<span class="code-hl">Clientless VPN</span>     <span class="code-comment">→ Browser-based SSL VPN — no client software required</span>
+<span class="code-hl">Split DNS</span>          <span class="code-comment">→ Corporate DNS queries go through VPN; public DNS queries go direct</span></pre>
+    </div>
+
+    <h2>Exam scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "Which VPN protocol is considered insecure and should be replaced?" → <strong>PPTP</strong></div>
+      <div class="scenario-item">💬 "A remote employee needs to access the corporate network securely. Which VPN type should be deployed?" → <strong>Remote access (client-to-site) VPN</strong></div>
+      <div class="scenario-item">💬 "Two branch offices need to be connected securely over the internet. Which VPN type is most appropriate?" → <strong>Site-to-site VPN</strong></div>
+      <div class="scenario-item">💬 "Which IPsec mode encrypts the entire IP packet including the original header?" → <strong>Tunnel mode</strong></div>
+      <div class="scenario-item">💬 "Which IPsec protocol provides encryption in addition to authentication and integrity?" → <strong>ESP (Encapsulating Security Payload)</strong></div>
+      <div class="scenario-item">💬 "A VPN configuration where only corporate traffic goes through the VPN tunnel is called ___" → <strong>Split tunneling</strong></div>
+      <div class="scenario-item">💬 "Which VPN configuration poses the greatest security risk for remote workers?" → <strong>Split tunneling</strong></div>
+      <div class="scenario-item">💬 "An organization needs a VPN that works through restrictive firewalls without special ports. Which protocol should they use?" → <strong>SSL/TLS VPN or OpenVPN on port 443</strong></div>
+      <div class="scenario-item">💬 "Which protocol is responsible for negotiating IPsec security associations?" → <strong>IKE / IKEv2</strong></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Ready to sit Network+ or Security+?</h3>
+        <p>See the study guides and practice exams worth your time for both certifications.</p>
+      </div>
+      <a href="best-study-resources.html" class="btn btn-teal">See Study Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="firewall-basics.html" class="related-link">Firewall Basics</a>
+      <a href="cryptography.html" class="related-link">What is Cryptography?</a>
+      <a href="network-attacks.html" class="related-link">Common Network Attacks</a>
+      <a href="osi-model.html" class="related-link">OSI Model Explained</a>
+      <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP</a>
+      <a href="ports.html" class="related-link">Port Numbers Reference</a>
+      <a href="best-network-plus.html" class="related-link">Best Network+ Resources</a>
+      <a href="best-security-plus.html" class="related-link">Best Security+ Resources</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+, Network+, and Security+ resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Security+</div>
+      <a href="cryptography.html">What is Cryptography?</a>
+      <a href="network-attacks.html">Common Network Attacks</a>
+      <a href="vpn.html">What is a VPN?</a>
+      <a href="best-security-plus.html">Best Security+ Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="firewall-basics.html">Firewall Basics</a>
+      <a href="subnetting.html">Subnetting</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="ports.html">Port Numbers</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span>Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>
