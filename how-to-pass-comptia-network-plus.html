@@ -18,10 +18,10 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="canonical" href="https://itstudyhub.org/how-to-pass-comptia-aplus.html">
+<link rel="canonical" href="https://itstudyhub.org/how-to-pass-comptia-network-plus.html">
 
-<title>How to Pass CompTIA A+ in 2026 — Study Plan, Tips & What to Expect</title>
-<meta name="description" content="How to pass CompTIA A+ — a realistic study plan, what the exam actually tests, how long to study, the best resources, and exam day tips from someone who knows the material.">
+<title>How to Pass CompTIA Network+ in 2026 — Study Plan, Tips & What to Expect</title>
+<meta name="description" content="How to pass CompTIA Network+ — a realistic study plan, what the exam actually tests, how long to study, the best resources, and exam day tips for N10-009.">
 
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -38,6 +38,7 @@
   --teal:    #00c2a8;
   --teal2:   #00a892;
   --blue:    #1a6cff;
+  --blue2:   #1560e8;
   --slate:   #8a9bb5;
   --light:   #f0f4fa;
   --lighter: #f8fafd;
@@ -104,8 +105,8 @@ a { color: inherit; text-decoration: none; }
 .page-hero::before {
   content: ''; position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(0,194,168,0.1) 0%, transparent 70%),
-    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.08) 0%, transparent 60%);
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(26,108,255,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(0,194,168,0.08) 0%, transparent 60%);
   pointer-events: none;
 }
 .page-hero::after {
@@ -129,8 +130,8 @@ a { color: inherit; text-decoration: none; }
 .breadcrumb span { color: rgba(255,255,255,0.25); }
 .page-hero-badge {
   display: inline-flex; align-items: center; gap: 7px;
-  background: rgba(0,194,168,0.15); border: 1px solid rgba(0,194,168,0.35);
-  color: var(--teal); font-size: 12px; font-weight: 600;
+  background: rgba(26,108,255,0.15); border: 1px solid rgba(26,108,255,0.35);
+  color: #7eb3ff; font-size: 12px; font-weight: 600;
   letter-spacing: 0.8px; text-transform: uppercase;
   padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
 }
@@ -139,7 +140,7 @@ a { color: inherit; text-decoration: none; }
   font-size: clamp(26px, 4vw, 42px); font-weight: 800;
   color: var(--white); line-height: 1.15; letter-spacing: -0.8px; margin-bottom: 14px;
 }
-.page-hero h1 span { color: var(--teal); }
+.page-hero h1 span { color: #7eb3ff; }
 .page-hero-sub {
   font-size: 16px; color: rgba(255,255,255,0.6); max-width: 620px; line-height: 1.7;
 }
@@ -165,12 +166,12 @@ a { color: inherit; text-decoration: none; }
 }
 .quick-answer::before {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(0,194,168,0.12) 0%, transparent 70%);
+  background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(26,108,255,0.15) 0%, transparent 70%);
   pointer-events: none;
 }
 .quick-answer-label {
   font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
-  letter-spacing: 0.8px; text-transform: uppercase; color: var(--teal);
+  letter-spacing: 0.8px; text-transform: uppercase; color: #7eb3ff;
   margin-bottom: 10px; position: relative;
 }
 .quick-answer-text {
@@ -192,7 +193,7 @@ a { color: inherit; text-decoration: none; }
   font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800;
   color: var(--navy); margin-bottom: 4px;
 }
-.stat-val span { color: var(--teal2); }
+.stat-val span { color: var(--blue); }
 .stat-label { font-size: 12px; color: var(--muted); font-weight: 600; }
 
 /* ── PHASE CARDS ── */
@@ -204,11 +205,11 @@ a { color: inherit; text-decoration: none; }
 .phase-header {
   padding: 14px 20px; display: flex; align-items: center; gap: 14px;
   border-bottom: 1px solid var(--border);
-  background: linear-gradient(135deg, rgba(0,194,168,0.04), rgba(0,194,168,0.01));
+  background: linear-gradient(135deg, rgba(26,108,255,0.04), rgba(26,108,255,0.01));
 }
 .phase-num {
   width: 32px; height: 32px; border-radius: 50%;
-  background: var(--teal2); color: var(--white);
+  background: var(--blue); color: var(--white);
   font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 800;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
@@ -224,7 +225,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 13.5px; color: var(--text); margin-bottom: 7px; line-height: 1.5;
 }
 .phase-task::before {
-  content: '✓'; color: var(--teal2); font-weight: 700; flex-shrink: 0; font-size: 13px;
+  content: '✓'; color: var(--blue); font-weight: 700; flex-shrink: 0; font-size: 13px;
 }
 
 /* ── DOMAIN TABLE ── */
@@ -247,12 +248,8 @@ tbody td {
 tbody tr:last-child td { border-bottom: none; }
 tbody tr:hover td { background: #f6f9ff; }
 .td-domain { font-weight: 700; color: var(--navy); }
-.weight-bar {
-  display: flex; align-items: center; gap: 8px;
-}
-.bar {
-  height: 8px; border-radius: 4px; background: var(--teal2); min-width: 4px;
-}
+.weight-bar { display: flex; align-items: center; gap: 8px; }
+.bar { height: 8px; border-radius: 4px; background: var(--blue); min-width: 4px; }
 
 /* ── EXAM TIP ── */
 .exam-tip {
@@ -284,6 +281,20 @@ tbody tr:hover td { background: #f6f9ff; }
 }
 .tip-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
 
+/* ── HARDER THAN A+ CALLOUT ── */
+.callout {
+  background: rgba(26,108,255,0.04); border: 1px solid rgba(26,108,255,0.2);
+  border-left: 4px solid var(--blue);
+  border-radius: 12px; padding: 18px 22px; margin-bottom: 40px;
+}
+.callout-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
+}
+.callout p { font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 8px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout strong { color: var(--navy); }
+
 /* ── CTA BOX ── */
 .cta-box {
   background: linear-gradient(135deg, var(--navy), var(--navy2));
@@ -294,7 +305,7 @@ tbody tr:hover td { background: #f6f9ff; }
 .cta-box::before {
   content: ''; position: absolute; top: -40px; right: -40px;
   width: 180px; height: 180px;
-  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(26,108,255,0.2) 0%, transparent 70%);
   pointer-events: none;
 }
 .cta-box-text h3 {
@@ -308,8 +319,8 @@ tbody tr:hover td { background: #f6f9ff; }
   transition: transform 0.15s, box-shadow 0.15s; white-space: nowrap; flex-shrink: 0;
 }
 .btn:hover { transform: translateY(-2px); }
-.btn-teal { background: var(--teal); color: var(--navy); font-weight: 700; box-shadow: 0 6px 20px rgba(0,194,168,0.3); }
-.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
+.btn-blue { background: var(--blue); color: var(--white); box-shadow: 0 6px 20px rgba(26,108,255,0.3); }
+.btn-blue:hover { box-shadow: 0 10px 28px rgba(26,108,255,0.4); background: var(--blue2); }
 
 /* ── RELATED ── */
 .related-grid {
@@ -323,8 +334,8 @@ tbody tr:hover td { background: #f6f9ff; }
   transition: border-color 0.15s, color 0.15s, transform 0.15s;
   box-shadow: 0 2px 8px rgba(10,22,40,0.05);
 }
-.related-link:hover { border-color: rgba(0,194,168,0.3); color: var(--teal2); transform: translateY(-1px); }
-.related-link::before { content: '→'; color: var(--teal2); font-size: 13px; }
+.related-link:hover { border-color: rgba(26,108,255,0.3); color: var(--blue); transform: translateY(-1px); }
+.related-link::before { content: '→'; color: var(--blue); font-size: 13px; }
 
 /* ── DIVIDER ── */
 .divider { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
@@ -381,11 +392,11 @@ tbody tr:hover td { background: #f6f9ff; }
     <nav class="breadcrumb">
       <a href="index.html">Home</a>
       <span>›</span>
-      <span>How to Pass CompTIA A+</span>
+      <span>How to Pass CompTIA Network+</span>
     </nav>
-    <div class="page-hero-badge">CompTIA A+ · Study Guide · 2026</div>
-    <h1>How to Pass <span>CompTIA A+</span></h1>
-    <p class="page-hero-sub">A realistic study plan, what the exam actually tests, how long to study, which resources are worth your time, and exam day strategies that make a real difference.</p>
+    <div class="page-hero-badge">CompTIA Network+ · Study Guide · 2026</div>
+    <h1>How to Pass <span>CompTIA Network+</span></h1>
+    <p class="page-hero-sub">A realistic study plan for N10-009, what the exam actually tests, how long to study, which resources are worth your time, and the strategies that make a real difference on exam day.</p>
   </div>
 </section>
 
@@ -396,138 +407,117 @@ tbody tr:hover td { background: #f6f9ff; }
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ The short version</div>
       <div class="quick-answer-text">
-        CompTIA A+ requires passing <strong>two exams</strong> — Core 1 (220-1101) and Core 2 (220-1102). Most people pass with 2–4 months of consistent study using a good textbook, practice exams, and hands-on practice. The exam isn't about memorising facts — it's about applying knowledge to realistic troubleshooting scenarios. That distinction is why people who only read textbooks fail, and people who combine reading with practice questions pass.
+        CompTIA Network+ is a <strong>single exam</strong> (N10-009) covering networking concepts, infrastructure, operations, security, and troubleshooting. Most people pass with 2–4 months of consistent study. Network+ is meaningfully harder than A+ — subnetting and routing require real practice, not just reading. Candidates who only study multiple choice and skip hands-on practice with IP addressing are the ones who fail.
       </div>
     </div>
 
     <div class="stat-row">
       <div class="stat-pill">
-        <div class="stat-val"><span>2</span></div>
-        <div class="stat-label">Exams required</div>
+        <div class="stat-val"><span>1</span></div>
+        <div class="stat-label">Exam required</div>
       </div>
       <div class="stat-pill">
         <div class="stat-val"><span>90</span></div>
-        <div class="stat-label">Questions per exam</div>
+        <div class="stat-label">Max questions</div>
       </div>
       <div class="stat-pill">
-        <div class="stat-val"><span>675</span> / 900</div>
-        <div class="stat-label">Passing score (Core 1)</div>
+        <div class="stat-val"><span>720</span> / 900</div>
+        <div class="stat-label">Passing score</div>
       </div>
       <div class="stat-pill">
-        <div class="stat-val"><span>700</span> / 900</div>
-        <div class="stat-label">Passing score (Core 2)</div>
+        <div class="stat-val"><span>90</span> min</div>
+        <div class="stat-label">Exam duration</div>
       </div>
     </div>
 
-    <h2>What the A+ exam actually tests</h2>
+    <div class="callout">
+      <div class="callout-label">📊 Network+ vs A+ — what's actually different</div>
+      <p>A+ tests broad IT knowledge across hardware, OS, and basic networking. Network+ goes deep on networking specifically — you need to understand how data actually moves across networks, how routing and switching decisions are made, and how to calculate subnets by hand. The troubleshooting scenarios are more complex and require systematic methodology rather than pattern-matching.</p>
+      <p><strong>If you passed A+, you already have the foundation.</strong> Ports, protocols, the OSI model, and basic TCP/IP are review. The new material is subnetting, routing protocols, VLANs, WAN technologies, and network operations — give these areas the most time.</p>
+    </div>
 
-    <p>A lot of people go into A+ expecting a hardware quiz and are surprised by how much troubleshooting, operating systems, networking, and security content appears. The exam tests whether you can <em>think like a technician</em> — given a real scenario, what would you do first, what would you check, and what's the most likely cause?</p>
+    <h2>What the Network+ exam actually tests</h2>
 
-    <p>Performance-based questions (PBQs) appear at the start of each exam and require you to interact with simulated environments — drag-and-drop cable connections, configure settings in a simulated OS, or work through a troubleshooting scenario. These take longer than multiple choice and cannot be skipped entirely. Many candidates underestimate them.</p>
+    <p>N10-009 has five domains. The weighting tells you where to spend your study time — networking fundamentals and troubleshooting together make up over half the exam:</p>
 
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
             <th>Domain</th>
-            <th>Core 1 weight</th>
+            <th>Weight</th>
             <th>What it covers</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="td-domain">Mobile Devices</td>
-            <td><div class="weight-bar"><div class="bar" style="width:70px"></div> 15%</div></td>
-            <td>Laptops, tablets, smartphones — hardware, connectivity, synchronisation</td>
+            <td class="td-domain">Networking Fundamentals</td>
+            <td><div class="weight-bar"><div class="bar" style="width:130px"></div> 24%</div></td>
+            <td>OSI model, ports and protocols, IP addressing, subnetting, routing concepts, switching, wireless standards</td>
           </tr>
           <tr>
-            <td class="td-domain">Networking</td>
-            <td><div class="weight-bar"><div class="bar" style="width:110px"></div> 20%</div></td>
-            <td>TCP/IP, ports, protocols, wireless standards, network hardware</td>
+            <td class="td-domain">Network Implementation</td>
+            <td><div class="weight-bar"><div class="bar" style="width:125px"></div> 19%</div></td>
+            <td>Routing protocols (OSPF, BGP, RIP), VLANs, switching features, wireless implementation, cloud networking</td>
           </tr>
           <tr>
-            <td class="td-domain">Hardware</td>
-            <td><div class="weight-bar"><div class="bar" style="width:135px"></div> 25%</div></td>
-            <td>CPUs, RAM, storage, motherboards, power supplies, printers</td>
+            <td class="td-domain">Network Operations</td>
+            <td><div class="weight-bar"><div class="bar" style="width:125px"></div> 16%</div></td>
+            <td>Monitoring, documentation, network policies, disaster recovery, high availability, remote access</td>
           </tr>
           <tr>
-            <td class="td-domain">Virtualisation & Cloud</td>
-            <td><div class="weight-bar"><div class="bar" style="width:110px"></div> 11%</div></td>
-            <td>Cloud models (IaaS/SaaS/PaaS), hypervisors, virtual machines</td>
+            <td class="td-domain">Network Security</td>
+            <td><div class="weight-bar"><div class="bar" style="width:130px"></div> 19%</div></td>
+            <td>Firewalls, IDS/IPS, VPNs, network hardening, physical security, common attacks and defences</td>
           </tr>
           <tr>
-            <td class="td-domain">Hardware & Network Troubleshooting</td>
-            <td><div class="weight-bar"><div class="bar" style="width:160px"></div> 29%</div></td>
-            <td>Systematic troubleshooting methodology, diagnosing hardware and network problems</td>
+            <td class="td-domain">Network Troubleshooting</td>
+            <td><div class="weight-bar"><div class="bar" style="width:145px"></div> 22%</div></td>
+            <td>Troubleshooting methodology, cable issues, connectivity problems, performance issues, tools (ping, tracert, nslookup, netstat)</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Domain</th>
-            <th>Core 2 weight</th>
-            <th>What it covers</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="td-domain">Operating Systems</td>
-            <td><div class="weight-bar"><div class="bar" style="width:145px"></div> 27%</div></td>
-            <td>Windows, macOS, Linux, Chrome OS — installation, management, command line</td>
-          </tr>
-          <tr>
-            <td class="td-domain">Security</td>
-            <td><div class="weight-bar"><div class="bar" style="width:135px"></div> 25%</div></td>
-            <td>Malware, threats, physical security, wireless security, data destruction</td>
-          </tr>
-          <tr>
-            <td class="td-domain">Software Troubleshooting</td>
-            <td><div class="weight-bar"><div class="bar" style="width:135px"></div> 22%</div></td>
-            <td>OS problems, malware removal, application issues, mobile device troubleshooting</td>
-          </tr>
-          <tr>
-            <td class="td-domain">Operational Procedures</td>
-            <td><div class="weight-bar"><div class="bar" style="width:135px"></div> 26%</div></td>
-            <td>Documentation, change management, safety, environmental controls, professionalism</td>
-          </tr>
-        </tbody>
-      </table>
+    <h2>The one topic that fails most candidates — subnetting</h2>
+
+    <p>Subnetting is the make-or-break topic on Network+. It's not optional, it can't be guessed, and it appears in multiple questions including performance-based questions where you have to calculate subnet ranges, usable hosts, and broadcast addresses under time pressure.</p>
+
+    <p>The good news is subnetting is completely learnable with the right approach. The bad news is most candidates underestimate how much practice it takes to do it quickly and accurately under exam conditions. Reading about subnetting is not enough — you need to do hundreds of practice problems until the pattern is automatic.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Subnetting study strategy</div>
+      <p><strong>Learn the /24 to /32 range first</strong> — these are the most commonly tested. Know the subnet mask, number of subnets, and usable hosts for each prefix length without having to calculate from scratch.</p>
+      <p><strong>Practice daily, not in marathon sessions.</strong> 15–20 subnetting problems every day for 4 weeks builds fluency faster than doing 100 problems on one weekend. Speed comes from repetition, not understanding alone.</p>
+      <p>A free resource worth bookmarking: subnettingpractice.com — unlimited randomised problems with instant feedback.</p>
     </div>
 
-    <h2>How long does it take to study for A+?</h2>
-
-    <p>The honest answer is 2–4 months for most people studying part-time (1–2 hours per day). That said, your starting point matters significantly:</p>
+    <h2>How long does it take to study for Network+?</h2>
 
     <div class="tips-grid">
       <div class="tip-card">
-        <div class="tip-icon">🆕</div>
-        <div class="tip-title">Complete beginner</div>
-        <div class="tip-desc">No IT background at all — budget 3–4 months. The hardware and networking content will be mostly new and needs time to sink in through practice.</div>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">🖥️</div>
-        <div class="tip-title">Some IT experience</div>
-        <div class="tip-desc">You've built PCs, worked help desk, or studied IT casually — 2–3 months is realistic. You'll move faster through hardware but may need more time on troubleshooting methodology.</div>
+        <div class="tip-icon">✅</div>
+        <div class="tip-title">Have CompTIA A+</div>
+        <div class="tip-desc">2–3 months part-time. A+ gave you the foundation — focus extra time on subnetting, routing protocols, and VLANs which A+ doesn't cover in depth.</div>
       </div>
       <div class="tip-card">
         <div class="tip-icon">💼</div>
-        <div class="tip-title">Working in IT already</div>
-        <div class="tip-desc">Active IT role — 6–8 weeks is achievable. Focus your time on domains outside your daily work. Don't assume job experience covers exam content; the domains are broader than most IT roles.</div>
+        <div class="tip-title">Working in networking</div>
+        <div class="tip-desc">6–8 weeks is realistic. Your hands-on experience covers troubleshooting well but the exam tests specific protocols and terminology — don't skip the study guide.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🆕</div>
+        <div class="tip-title">No networking background</div>
+        <div class="tip-desc">3–4 months. Budget extra time for subnetting and the OSI model. These concepts need time to fully click — rushing them leads to failure on scenario questions.</div>
       </div>
       <div class="tip-card">
         <div class="tip-icon">🔁</div>
         <div class="tip-title">Retaking after a fail</div>
-        <div class="tip-desc">2–4 more weeks focused on your weak domains. Pull your score report, identify the lowest-scoring areas, and target those specifically rather than re-studying everything.</div>
+        <div class="tip-desc">Pull your score report and identify your lowest domains. Most retake failures come from subnetting or network troubleshooting — target those specifically rather than re-studying everything.</div>
       </div>
     </div>
 
     <h2>The study plan that works</h2>
-
-    <p>Most people who fail A+ studied too passively — they read or watched videos but didn't do enough practice questions. The study plan below is built around active recall, which is how you actually retain technical material.</p>
 
     <div class="phase-list">
 
@@ -535,16 +525,16 @@ tbody tr:hover td { background: #f6f9ff; }
         <div class="phase-header">
           <div class="phase-num">1</div>
           <div>
-            <div class="phase-title">Weeks 1–4 — Build the foundation</div>
-            <div class="phase-sub">Core 1 content: hardware, networking, mobile devices</div>
+            <div class="phase-title">Weeks 1–3 — Networking fundamentals and subnetting</div>
+            <div class="phase-sub">OSI model, IP addressing, subnetting — build the foundation</div>
           </div>
         </div>
         <div class="phase-body">
-          <p>Work through a structured study guide (Walker Bridge's CompTIA A+ Core Study Guide or Professor Messer's free course) covering Core 1 domains. Don't rush — understanding the hardware and networking fundamentals deeply makes everything else easier. After each chapter, do 10–15 practice questions on that topic.</p>
-          <div class="phase-task">Read or watch the hardware domain in full — CPUs, RAM, storage types, motherboard components</div>
-          <div class="phase-task">Cover the networking domain — TCP/IP, ports, protocols, wireless standards</div>
-          <div class="phase-task">Do 15–20 practice questions per domain as you go</div>
-          <div class="phase-task">Build or explore a PC physically if possible — hands-on accelerates retention dramatically</div>
+          <p>Start with the OSI model and TCP/IP fundamentals — even if you covered these for A+, review them with Network+ depth in mind. Then spend the majority of this phase on subnetting. Don't move on until you can calculate subnet ranges, usable hosts, and broadcast addresses consistently and quickly.</p>
+          <div class="phase-task">Review OSI model layers, protocols at each layer, and encapsulation</div>
+          <div class="phase-task">Learn IPv4 addressing — classes, private ranges, CIDR notation</div>
+          <div class="phase-task">Master subnetting — do at least 20 practice problems per day</div>
+          <div class="phase-task">Cover ports and protocols — know the top 20 by number and purpose</div>
         </div>
       </div>
 
@@ -552,16 +542,17 @@ tbody tr:hover td { background: #f6f9ff; }
         <div class="phase-header">
           <div class="phase-num">2</div>
           <div>
-            <div class="phase-title">Weeks 5–6 — Core 1 practice and review</div>
-            <div class="phase-sub">Practice exams, identify weak areas, targeted review</div>
+            <div class="phase-title">Weeks 4–6 — Network implementation and operations</div>
+            <div class="phase-sub">Routing protocols, VLANs, switching, wireless, WAN</div>
           </div>
         </div>
         <div class="phase-body">
-          <p>Stop reading new material and switch entirely to practice exams. Take full timed practice tests to simulate exam conditions. Review every wrong answer — not just what the right answer is, but <em>why</em> the other options are wrong.</p>
-          <div class="phase-task">Take 2–3 full Core 1 practice exams under timed conditions</div>
-          <div class="phase-task">Score each domain separately — identify where you're below 75%</div>
-          <div class="phase-task">Go back to weak domains only — don't re-study what you already know</div>
-          <div class="phase-task">Target 80%+ consistently on practice tests before booking the real exam</div>
+          <p>This phase covers the content that's most different from A+. Routing protocols, VLANs, and switching concepts require understanding how network decisions are made — not just memorising names. Use diagrams and draw out network topologies as you study; visualising traffic flow accelerates understanding.</p>
+          <div class="phase-task">Routing protocols — OSPF (link-state), RIP (distance vector), BGP (path vector)</div>
+          <div class="phase-task">VLANs — purpose, trunking, inter-VLAN routing, 802.1Q</div>
+          <div class="phase-task">Switching — STP, port security, MAC address tables</div>
+          <div class="phase-task">Wireless — 802.11 standards, frequencies, WPA2 vs WPA3</div>
+          <div class="phase-task">WAN technologies — MPLS, SD-WAN, broadband types</div>
         </div>
       </div>
 
@@ -569,16 +560,17 @@ tbody tr:hover td { background: #f6f9ff; }
         <div class="phase-header">
           <div class="phase-num">3</div>
           <div>
-            <div class="phase-title">Sit Core 1 — then start Core 2</div>
-            <div class="phase-sub">Don't wait too long between exams</div>
+            <div class="phase-title">Weeks 7–8 — Security, operations, and troubleshooting</div>
+            <div class="phase-sub">Network security concepts, monitoring, troubleshooting methodology</div>
           </div>
         </div>
         <div class="phase-body">
-          <p>Book and sit Core 1 when you're consistently hitting 80%+ on practice tests. Then begin Core 2 immediately — don't take a long break. Core 2 covers operating systems, security, software troubleshooting, and operational procedures. The security content here overlaps with what Security+ covers at a deeper level.</p>
-          <div class="phase-task">Book Core 1 when practice scores are consistently 80%+</div>
-          <div class="phase-task">Start Core 2 study within a week of sitting Core 1</div>
-          <div class="phase-task">Pay extra attention to Windows command line — it's heavily tested</div>
-          <div class="phase-task">Don't neglect operational procedures — it's 26% of Core 2 and often under-studied</div>
+          <p>The security domain on Network+ is broader than many candidates expect — not just firewalls and VPNs but also network hardening, attack types, and physical security. The troubleshooting domain requires internalising a systematic methodology: identify the problem, establish a theory, test the theory, implement the solution, verify, and document.</p>
+          <div class="phase-task">Firewalls, IDS/IPS, VPNs, DMZ architecture</div>
+          <div class="phase-task">Common network attacks — DoS, MitM, ARP poisoning, DNS spoofing</div>
+          <div class="phase-task">Troubleshooting tools — ping, tracert, nslookup, netstat, ipconfig</div>
+          <div class="phase-task">CompTIA's 7-step troubleshooting methodology — memorise the order</div>
+          <div class="phase-task">Network monitoring — SNMP, syslog, NetFlow, bandwidth monitoring</div>
         </div>
       </div>
 
@@ -586,16 +578,16 @@ tbody tr:hover td { background: #f6f9ff; }
         <div class="phase-header">
           <div class="phase-num">4</div>
           <div>
-            <div class="phase-title">Weeks 9–12 — Core 2 practice and exam</div>
-            <div class="phase-sub">Same process — practice heavy, targeted review</div>
+            <div class="phase-title">Weeks 9–10 — Practice exams and targeted review</div>
+            <div class="phase-sub">Full timed tests, identify weak areas, book and sit the exam</div>
           </div>
         </div>
         <div class="phase-body">
-          <p>Repeat the same process for Core 2. Switch to practice exams after covering the content, target weak domains, and book the exam when scores are consistent. Many people find Core 2 harder than Core 1 because the operating system and troubleshooting scenarios require more judgment calls.</p>
-          <div class="phase-task">Take 2–3 full Core 2 practice exams under timed conditions</div>
-          <div class="phase-task">Focus extra time on OS troubleshooting and security scenarios</div>
-          <div class="phase-task">Practice PBQ-style questions — simulate, don't just read</div>
-          <div class="phase-task">Book and sit Core 2 when practice scores are consistently 80%+</div>
+          <p>Stop reading new material and switch entirely to practice exams. Take full 90-question timed tests under real conditions. For every wrong answer, understand not just what the right answer is but why — Network+ scenarios often have two plausible answers and the reasoning matters more than the answer itself.</p>
+          <div class="phase-task">Take 3–4 full practice exams under timed conditions</div>
+          <div class="phase-task">Score each domain separately — target anything below 75%</div>
+          <div class="phase-task">Continue daily subnetting practice throughout this phase</div>
+          <div class="phase-task">Book the exam when you're consistently hitting 80%+ on practice tests</div>
         </div>
       </div>
 
@@ -605,63 +597,63 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <div class="tips-grid">
       <div class="tip-card">
+        <div class="tip-icon">🧮</div>
+        <div class="tip-title">Write down subnetting cheat sheet first</div>
+        <div class="tip-desc">Before the timer starts you get scratch paper. Write down your subnet reference — /24 through /30 masks, host counts, and any formulas you've memorised. Takes 2 minutes and saves time mid-exam.</div>
+      </div>
+      <div class="tip-card">
         <div class="tip-icon">🚩</div>
-        <div class="tip-title">Flag and skip PBQs first</div>
-        <div class="tip-desc">PBQs appear at the start and take 5–10 minutes each. Flag them, skip to multiple choice, answer everything you can, then return to PBQs with remaining time. This alone improves scores for many candidates.</div>
+        <div class="tip-title">Flag PBQs and return later</div>
+        <div class="tip-desc">Performance-based questions at the start take 5–10 minutes each. Flag them, skip to multiple choice, answer all you can quickly, then return with remaining time. This is the single most effective time management strategy.</div>
       </div>
       <div class="tip-card">
         <div class="tip-icon">🔍</div>
-        <div class="tip-title">Read every option before answering</div>
-        <div class="tip-desc">A+ scenario questions often have two plausible answers. The right answer is usually the "best first step" — systematic troubleshooting methodology matters. Read all four options before committing.</div>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">⏱️</div>
-        <div class="tip-title">Watch your time</div>
-        <div class="tip-desc">90 minutes for up to 90 questions. That's 1 minute per question maximum. Don't spend 4 minutes on one question — flag it and move on. Unanswered questions are wrong; guesses have a chance.</div>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">🧠</div>
-        <div class="tip-title">Trust your preparation</div>
-        <div class="tip-desc">If you've been hitting 80%+ on practice tests consistently, you're ready. Exam anxiety causes more failures than lack of knowledge. The real exam format matches quality practice tests closely.</div>
+        <div class="tip-title">Read the scenario carefully</div>
+        <div class="tip-desc">Network+ scenario questions contain all the information you need. Slow down and identify what the actual problem is before looking at answers — rushing to the options causes candidates to miss key details in the scenario.</div>
       </div>
       <div class="tip-card">
         <div class="tip-icon">📋</div>
-        <div class="tip-title">Use the notepad</div>
-        <div class="tip-desc">You get scratch paper or a digital notepad at the testing centre. Use it to write down subnetting formulas, port numbers, or anything else you've memorised before the timer starts.</div>
+        <div class="tip-title">Apply the troubleshooting methodology</div>
+        <div class="tip-desc">When a troubleshooting scenario asks "what should you do first?" — run through CompTIA's 7-step methodology. The exam rewards the correct first step, which is always identifying and documenting the problem before acting.</div>
       </div>
       <div class="tip-card">
-        <div class="tip-icon">🔄</div>
-        <div class="tip-title">Change answers carefully</div>
-        <div class="tip-desc">Your first instinct is usually right. Only change an answer if you have a specific reason — not just because you feel uncertain on review. Second-guessing without new information usually hurts scores.</div>
+        <div class="tip-icon">⏱️</div>
+        <div class="tip-title">Manage your time — 1 min per question</div>
+        <div class="tip-desc">90 minutes for up to 90 questions. Budget roughly 1 minute per multiple choice question and save 15–20 minutes for PBQs. Flag anything that takes more than 90 seconds and move on.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🎯</div>
+        <div class="tip-title">80%+ on practice tests = ready</div>
+        <div class="tip-desc">If you're consistently hitting 80%+ on quality practice exams (Dion Training, Professor Messer), you are ready. Don't delay booking out of anxiety — the exam format closely mirrors good practice tests.</div>
       </div>
     </div>
 
     <div class="exam-tip">
-      <div class="exam-tip-label">⚡ The most common reason people fail</div>
-      <p><strong>Not enough practice questions.</strong> Reading and watching videos feels productive but it's passive. The exam tests application, not recall. If you can't consistently score 75%+ on practice tests, you're not ready — regardless of how much you've read. Switch to active practice earlier than feels comfortable.</p>
-      <p>The second most common reason: <strong>underestimating Core 2 operational procedures.</strong> It's 26% of the exam and covers documentation, change management, and professionalism — topics that feel boring to study but appear constantly on the actual exam.</p>
+      <div class="exam-tip-label">⚡ The most common reason people fail Network+</div>
+      <p><strong>Underestimating subnetting.</strong> Candidates who can explain subnetting conceptually but can't calculate quickly under time pressure run out of time on PBQs and lose points they would have had. Subnetting speed comes only from repetitive practice — there's no shortcut.</p>
+      <p>The second most common reason: <strong>skipping the troubleshooting methodology.</strong> CompTIA's 7-step process is directly tested and scenario questions specifically ask for the correct first, second, or next step. Memorise the order: identify the problem → establish a theory → test the theory → establish a plan → implement → verify → document.</p>
     </div>
 
     <hr class="divider">
 
     <div class="cta-box">
       <div class="cta-box-text">
-        <h3>Ready to start studying?</h3>
-        <p>The best A+ study guide, practice exams, and Professor Messer's free course for 2026.</p>
+        <h3>Ready to start studying for Network+?</h3>
+        <p>The best N10-009 study guide, practice exams, and Professor Messer's free course.</p>
       </div>
-      <a href="best-a-plus.html" class="btn btn-teal">See A+ Study Resources →</a>
+      <a href="best-network-plus.html" class="btn btn-blue">See Network+ Resources →</a>
     </div>
 
     <h2>Related Articles</h2>
     <div class="related-grid">
-      <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
+      <a href="best-network-plus.html" class="related-link">Best Network+ Study Resources</a>
+      <a href="how-to-pass-comptia-aplus.html" class="related-link">How to Pass CompTIA A+</a>
       <a href="aplus-vs-network-plus.html" class="related-link">A+ vs Network+ — Which First?</a>
-      <a href="osi-model.html" class="related-link">OSI Model Explained</a>
-      <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP</a>
-      <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
-      <a href="ports.html" class="related-link">Port Numbers Reference</a>
+      <a href="network-plus-vs-security-plus.html" class="related-link">Network+ vs Security+</a>
       <a href="subnetting.html" class="related-link">Subnetting Explained</a>
-      <a href="best-study-resources.html" class="related-link">All Study Resources</a>
+      <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
+      <a href="osi-model.html" class="related-link">OSI Model Explained</a>
+      <a href="wireless-networking.html" class="related-link">Wireless Networking</a>
     </div>
 
   </div>
@@ -675,17 +667,18 @@ tbody tr:hover td { background: #f6f9ff; }
       <div class="footer-tagline">Practical CompTIA A+, Network+, and Security+ resources for real-world IT success.</div>
     </div>
     <div class="footer-links">
-      <div class="footer-links-title">CompTIA A+</div>
-      <a href="how-to-pass-comptia-aplus.html">How to Pass A+</a>
-      <a href="best-a-plus.html">Best A+ Resources</a>
-      <a href="aplus-vs-network-plus.html">A+ vs Network+</a>
+      <div class="footer-links-title">CompTIA Network+</div>
+      <a href="how-to-pass-comptia-network-plus.html">How to Pass Network+</a>
+      <a href="best-network-plus.html">Best Network+ Resources</a>
+      <a href="subnetting.html">Subnetting Explained</a>
+      <a href="network-troubleshooting-commands.html">Troubleshooting Commands</a>
     </div>
     <div class="footer-links">
       <div class="footer-links-title">Topics</div>
       <a href="osi-model.html">OSI Model</a>
       <a href="tcp-vs-udp.html">TCP vs UDP</a>
-      <a href="network-troubleshooting-commands.html">Troubleshooting Commands</a>
-      <a href="ports.html">Port Numbers</a>
+      <a href="vpn.html">What is a VPN?</a>
+      <a href="wireless-networking.html">Wireless Networking</a>
     </div>
   </div>
   <div class="footer-bottom">
