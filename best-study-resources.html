@@ -165,7 +165,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 24px;
 }
 .cert-compare {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;
 }
 @media (max-width: 580px) { .cert-compare { grid-template-columns: 1fr; } }
 .cert-card {
@@ -182,12 +182,17 @@ a { color: inherit; text-decoration: none; }
   background: linear-gradient(135deg, rgba(26,108,255,0.05), rgba(26,108,255,0.02));
   border-color: rgba(26,108,255,0.25);
 }
+.cert-card-secplus {
+  background: linear-gradient(135deg, rgba(124,58,237,0.05), rgba(124,58,237,0.02));
+  border-color: rgba(124,58,237,0.25);
+}
 .cert-card-label {
   font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 6px;
 }
 .cert-card-aplus .cert-card-label { color: var(--teal2); }
 .cert-card-netplus .cert-card-label { color: var(--blue); }
+.cert-card-secplus .cert-card-label { color: #7c3aed; }
 .cert-card-name {
   font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 800;
   color: var(--navy); margin-bottom: 8px;
@@ -217,6 +222,10 @@ a { color: inherit; text-decoration: none; }
 .cert-btn-netplus {
   background: var(--blue); color: var(--white);
   box-shadow: 0 4px 14px rgba(26,108,255,0.3);
+}
+.cert-btn-secplus {
+  background: #7c3aed; color: var(--white);
+  box-shadow: 0 4px 14px rgba(124,58,237,0.3);
 }
 
 /* ── SECTION DIVIDER ── */
@@ -439,6 +448,18 @@ a { color: inherit; text-decoration: none; }
           <div class="cert-fact"><span class="cert-fact-label">Prerequisite</span> A+ recommended</div>
         </div>
         <a href="best-network-plus.html" class="cert-btn cert-btn-netplus">Network+ Study Resources →</a>
+      </div>
+      <div class="cert-card cert-card-secplus">
+        <div class="cert-card-label">Go Deeper</div>
+        <div class="cert-card-name">CompTIA Security+</div>
+        <div class="cert-card-desc">The most widely recognised entry-level cybersecurity certification. Covers threats, attacks, cryptography, identity management, and governance. The starting point for a security career.</div>
+        <div class="cert-card-facts">
+          <div class="cert-fact"><span class="cert-fact-label">Exam code</span> SY0-701</div>
+          <div class="cert-fact"><span class="cert-fact-label">Difficulty</span> Intermediate–Advanced</div>
+          <div class="cert-fact"><span class="cert-fact-label">Best for</span> Security analyst, SOC roles</div>
+          <div class="cert-fact"><span class="cert-fact-label">Prerequisite</span> Network+ recommended</div>
+        </div>
+        <a href="best-security-plus.html" class="cert-btn cert-btn-secplus">Security+ Study Resources →</a>
       </div>
     </div>
   </div>
