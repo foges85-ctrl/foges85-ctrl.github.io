@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/dns.html">
 
-<title>What Is DNS? Domain Name System Explained Simply (CompTIA A+ Guide)</title>
-<meta name="description" content="What is DNS? Learn how the Domain Name System translates domain names into IP addresses, how DNS servers work, and how to troubleshoot DNS failures for the CompTIA A+ exam.">
+<title>What Is DNS? Domain Name System Explained — CompTIA A+ & Network+ Guide (2026)</title>
+<meta name="description" content="What is DNS and how does it work? DNS record types, hierarchy, zones, DNSSEC, nslookup, troubleshooting, and every DNS concept tested on CompTIA A+ and Network+ — explained clearly.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -476,6 +476,69 @@ a:hover { text-decoration: underline; }
   .phonebook-box { flex-direction: column; }
 }
 
+/* ── DNS RECORD TYPES TABLE ── */
+.record-tag {
+  display: inline-block; padding: 2px 8px; border-radius: 6px;
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  background: rgba(26,108,255,0.1); color: var(--blue);
+  border: 1px solid rgba(26,108,255,0.2);
+}
+
+/* ── DNS HIERARCHY ── */
+.hierarchy-stack {
+  display: flex; flex-direction: column; gap: 6px; margin-bottom: 28px;
+}
+.hierarchy-level {
+  display: grid; grid-template-columns: 140px 1fr;
+  align-items: center; gap: 14px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 16px;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.hierarchy-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  color: var(--white); background: var(--navy);
+  border-radius: 6px; padding: 4px 10px; text-align: center; white-space: nowrap;
+}
+.hierarchy-desc { font-size: 13.5px; color: var(--text); line-height: 1.5; }
+.hierarchy-desc strong { color: var(--navy); }
+@media (max-width: 480px) {
+  .hierarchy-level { grid-template-columns: 1fr; }
+}
+
+/* ── CODE BLOCK (dns page) ── */
+.dns-code-block {
+  background: var(--navy); border-radius: 12px; overflow: hidden;
+  margin-bottom: 28px; border: 1px solid rgba(255,255,255,0.08);
+}
+.dns-code-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.7px; text-transform: uppercase; color: var(--teal);
+  padding: 10px 18px 8px; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.dns-code-block pre {
+  font-family: 'DM Mono', monospace; font-size: 13px;
+  color: rgba(255,255,255,0.85); line-height: 1.8;
+  padding: 14px 18px; overflow-x: auto; margin: 0;
+}
+.dns-code-hl { color: #7eb3ff; font-weight: 700; }
+.dns-code-teal { color: var(--teal); font-weight: 700; }
+.dns-code-comment { color: rgba(255,255,255,0.35); }
+
+/* ── CALLOUT ── */
+.dns-callout {
+  background: rgba(26,108,255,0.04); border: 1px solid rgba(26,108,255,0.2);
+  border-left: 4px solid var(--blue);
+  border-radius: 12px; padding: 16px 20px; margin-bottom: 28px;
+}
+.dns-callout-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
+}
+.dns-callout p { font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 6px; }
+.dns-callout p:last-child { margin-bottom: 0; }
+.dns-callout strong { color: var(--navy); }
+
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -516,10 +579,10 @@ a:hover { text-decoration: underline; }
       <span>›</span>
       <span>DNS</span>
     </nav>
-    <div class="page-hero-badge">CompTIA A+ · Core Concept</div>
+    <div class="page-hero-badge">CompTIA A+ · Network+ · Core Concept</div>
     <h1>What Is <span>DNS?</span></h1>
     <p class="page-hero-sub">
-      You type google.com — your computer connects in milliseconds. DNS is the invisible system that makes that happen, and it's a high-yield topic on the CompTIA A+ exam.
+      You type google.com — your computer connects in milliseconds. DNS is the invisible system that makes that happen. Here's how it works, every record type, and every DNS concept tested on CompTIA A+ and Network+.
     </p>
   </div>
 </section>
@@ -711,6 +774,184 @@ a:hover { text-decoration: underline; }
 
     <hr class="divider">
 
+    <h2>DNS Record Types</h2>
+    <p>DNS record types are heavily tested on Network+. Each record type stores a different kind of information about a domain. Know every type below — the exam will describe a scenario and ask which record type is needed.</p>
+
+    <div class="table-wrap" style="overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:28px;">
+      <table style="width:100%;border-collapse:collapse;background:var(--white);min-width:400px;">
+        <thead>
+          <tr>
+            <th style="background:var(--navy);color:var(--white);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;">Record</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;">Full name</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;">What it maps / stores</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;">Exam scenario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;"><span class="record-tag">A</span></td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;font-weight:700;color:var(--navy);">Address</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;">Hostname → IPv4 address</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;color:var(--muted);">"What record maps a domain name to an IPv4 address?"</td>
+          </tr>
+          <tr style="background:#f9fbff;">
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;"><span class="record-tag">AAAA</span></td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;font-weight:700;color:var(--navy);">IPv6 Address</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;">Hostname → IPv6 address</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;color:var(--muted);">"Which record resolves a hostname to an IPv6 address?"</td>
+          </tr>
+          <tr>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;"><span class="record-tag">CNAME</span></td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;font-weight:700;color:var(--navy);">Canonical Name</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;">Alias → another hostname (not an IP directly)</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;color:var(--muted);">"www.example.com pointing to example.com" — classic CNAME use</td>
+          </tr>
+          <tr style="background:#f9fbff;">
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;"><span class="record-tag">MX</span></td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;font-weight:700;color:var(--navy);">Mail Exchanger</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;">Domain → mail server responsible for receiving email</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;color:var(--muted);">"Email to @company.com isn't delivering — which record would you check?"</td>
+          </tr>
+          <tr>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;"><span class="record-tag">PTR</span></td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;font-weight:700;color:var(--navy);">Pointer</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;">IP address → hostname (reverse lookup)</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;color:var(--muted);">"Which record is used for reverse DNS lookups?"</td>
+          </tr>
+          <tr style="background:#f9fbff;">
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;"><span class="record-tag">NS</span></td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;font-weight:700;color:var(--navy);">Name Server</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;">Identifies the authoritative name servers for a domain</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;color:var(--muted);">"Which DNS servers are authoritative for this domain?"</td>
+          </tr>
+          <tr>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;"><span class="record-tag">SOA</span></td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;font-weight:700;color:var(--navy);">Start of Authority</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;">Zone metadata — primary NS, admin email, serial number, refresh/retry/expire timers</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;color:var(--muted);">"Which record contains zone transfer timing information?"</td>
+          </tr>
+          <tr style="background:#f9fbff;">
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;"><span class="record-tag">TXT</span></td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;font-weight:700;color:var(--navy);">Text</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;">Arbitrary text — used for SPF, DKIM, DMARC email authentication records</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;color:var(--muted);">"Which record type is used to publish SPF email sender policy?"</td>
+          </tr>
+          <tr>
+            <td style="padding:13px 18px;font-size:14px;vertical-align:top;"><span class="record-tag">SRV</span></td>
+            <td style="padding:13px 18px;font-size:14px;vertical-align:top;font-weight:700;color:var(--navy);">Service</td>
+            <td style="padding:13px 18px;font-size:14px;vertical-align:top;">Specifies hostname and port for specific services (SIP, XMPP, etc.)</td>
+            <td style="padding:13px 18px;font-size:14px;vertical-align:top;color:var(--muted);">Less commonly tested — know it exists and what it does</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ The most tested record type question</div>
+      <p><strong>A record</strong> = hostname to IPv4. <strong>AAAA record</strong> = hostname to IPv6. <strong>PTR record</strong> = IP to hostname (reverse — the opposite of A/AAAA). <strong>CNAME</strong> = alias to another name, never directly to an IP.</p>
+      <p>The <strong>MX record</strong> is the one to check whenever an email delivery scenario appears. The <strong>TXT record</strong> is what SPF, DKIM, and DMARC email security policies use.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>DNS Hierarchy</h2>
+    <p>DNS is a distributed, hierarchical system — no single server knows every domain. Resolution works by walking down the hierarchy from the top until an authoritative answer is found.</p>
+
+    <div class="hierarchy-stack">
+      <div class="hierarchy-level">
+        <div class="hierarchy-label">Root servers</div>
+        <div class="hierarchy-desc"><strong>13 sets of root servers</strong> (labelled A–M) sit at the top of the hierarchy. They don't know IP addresses — they know which TLD servers to ask next.</div>
+      </div>
+      <div class="hierarchy-level">
+        <div class="hierarchy-label">TLD servers</div>
+        <div class="hierarchy-desc"><strong>Top-Level Domain servers</strong> handle .com, .org, .net, .uk and so on. They know which authoritative name servers hold records for domains within their TLD.</div>
+      </div>
+      <div class="hierarchy-level">
+        <div class="hierarchy-label">Authoritative NS</div>
+        <div class="hierarchy-desc"><strong>Authoritative name servers</strong> hold the actual DNS records for a specific domain — A records, MX records, etc. This is the definitive answer.</div>
+      </div>
+      <div class="hierarchy-level">
+        <div class="hierarchy-label">Recursive resolver</div>
+        <div class="hierarchy-desc"><strong>Your ISP or configured DNS server</strong> (e.g. 8.8.8.8). Does the legwork — queries root → TLD → authoritative on your behalf, caches the result, returns the answer to you.</div>
+      </div>
+    </div>
+
+    <div class="dns-callout">
+      <div class="dns-callout-label">📌 Recursive vs iterative queries</div>
+      <p><strong>Recursive query:</strong> Your device asks the resolver — the resolver does all the work and returns a final answer. Most client-to-resolver queries are recursive.</p>
+      <p><strong>Iterative query:</strong> The resolver asks a root server — the root server says "ask this TLD server" — the resolver asks the TLD server — and so on. Resolver-to-server queries are iterative.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>DNS Zones</h2>
+    <p>A DNS zone is an administrative portion of the DNS namespace — essentially the set of DNS records a particular name server is responsible for managing.</p>
+
+    <div class="dns-code-block">
+      <div class="dns-code-label">DNS zone types</div>
+      <pre><span class="dns-code-hl">Primary zone</span>      <span class="dns-code-comment">→ The read/write master copy of DNS records for a domain</span>
+                   <span class="dns-code-comment">   Changes are made here and replicated to secondary zones</span>
+
+<span class="dns-code-hl">Secondary zone</span>    <span class="dns-code-comment">→ Read-only copy of a primary zone — provides redundancy</span>
+                   <span class="dns-code-comment">   Updated via zone transfers from the primary</span>
+
+<span class="dns-code-hl">Stub zone</span>         <span class="dns-code-comment">→ Contains only NS records — used to find authoritative servers</span>
+                   <span class="dns-code-comment">   Lighter than a full secondary zone</span>
+
+<span class="dns-code-teal">Forward lookup zone</span> <span class="dns-code-comment">→ Resolves hostnames → IP addresses (standard direction)</span>
+<span class="dns-code-teal">Reverse lookup zone</span> <span class="dns-code-comment">→ Resolves IP addresses → hostnames (uses PTR records)</span></pre>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Zone transfers — TCP port 53</div>
+      <p>When a secondary DNS server requests an updated copy of records from a primary, this is called a <strong>zone transfer</strong>. Zone transfers use <strong>TCP port 53</strong> (not UDP). Regular DNS queries use UDP port 53 — this distinction is tested.</p>
+      <p>Zone transfers should be restricted to authorised secondary servers only — unrestricted zone transfers are a security vulnerability that can expose your entire DNS record set.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>DNSSEC</h2>
+    <p>DNSSEC (DNS Security Extensions) adds cryptographic signatures to DNS records to protect against <strong>DNS spoofing</strong> and <strong>cache poisoning</strong> attacks — where an attacker injects false DNS responses to redirect traffic to malicious servers.</p>
+
+    <p>Without DNSSEC, nothing stops a malicious DNS server from returning a forged IP address for a domain. DNSSEC lets resolvers verify that responses are authentic and haven't been tampered with, using a chain of trust from the root servers down to the authoritative name server.</p>
+
+    <div class="dns-callout">
+      <div class="dns-callout-label">🔒 DNSSEC exam points</div>
+      <p><strong>What it protects against:</strong> DNS cache poisoning / DNS spoofing — where attackers feed false DNS records to redirect users to malicious sites.</p>
+      <p><strong>How it works:</strong> Cryptographic signatures (using public key cryptography) are added to DNS records. Resolvers validate signatures using a chain of trust anchored at the root.</p>
+      <p><strong>What it does NOT do:</strong> DNSSEC does not encrypt DNS queries — it only authenticates them. DNS-over-HTTPS (DoH) and DNS-over-TLS (DoT) are what provide encryption.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>nslookup — The DNS Troubleshooting Tool</h2>
+    <p>nslookup is the primary tool for DNS diagnostics and is tested on both A+ and Network+. It queries DNS servers directly and shows what records are returned — letting you pinpoint exactly where DNS resolution is failing.</p>
+
+    <div class="dns-code-block">
+      <div class="dns-code-label">nslookup — common uses</div>
+      <pre><span class="dns-code-comment"># Basic lookup — find the IP for a hostname</span>
+<span class="dns-code-hl">nslookup google.com</span>
+
+<span class="dns-code-comment"># Query a specific DNS server (bypass your default)</span>
+<span class="dns-code-hl">nslookup google.com 8.8.8.8</span>
+
+<span class="dns-code-comment"># Look up a specific record type</span>
+<span class="dns-code-hl">nslookup -type=MX gmail.com</span>       <span class="dns-code-comment">→ Find mail servers</span>
+<span class="dns-code-hl">nslookup -type=TXT example.com</span>    <span class="dns-code-comment">→ Find SPF/DKIM records</span>
+<span class="dns-code-hl">nslookup -type=NS example.com</span>     <span class="dns-code-comment">→ Find authoritative name servers</span>
+
+<span class="dns-code-comment"># Reverse lookup — find hostname for an IP</span>
+<span class="dns-code-hl">nslookup 8.8.8.8</span>                  <span class="dns-code-comment">→ Returns dns.google</span></pre>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ nslookup exam scenario</div>
+      <p>"A technician can ping 8.8.8.8 successfully but websites will not load. Which tool should they use to verify DNS resolution is working?" → <strong>nslookup</strong></p>
+      <p>"An administrator runs nslookup and gets a response from 192.168.1.1 but the IP returned for google.com is incorrect. What does this indicate?" → <strong>The local DNS server (192.168.1.1) has a corrupted or poisoned cache — try querying a known-good server like 8.8.8.8 directly.</strong></p>
+    </div>
+
+    <hr class="divider">
+
     <h2>Final Summary</h2>
 
     <div class="summary-list">
@@ -719,7 +960,11 @@ a:hover { text-decoration: underline; }
       <div class="summary-item">Common public DNS servers: <strong>8.8.8.8</strong> (Google) and <strong>1.1.1.1</strong> (Cloudflare)</div>
       <div class="summary-item">If DNS fails: websites won't load but you can still ping IP addresses directly</div>
       <div class="summary-item">Fix with <strong>ipconfig /flushdns</strong> or manually set DNS to <strong>8.8.8.8</strong></div>
-      <div class="summary-item">DNS issues are among the most common troubleshooting scenarios on <strong>CompTIA A+</strong></div>
+      <div class="summary-item">DNS record types: <strong>A</strong> (IPv4), <strong>AAAA</strong> (IPv6), <strong>CNAME</strong> (alias), <strong>MX</strong> (email), <strong>PTR</strong> (reverse), <strong>NS</strong> (name servers), <strong>TXT</strong> (SPF/DKIM)</div>
+      <div class="summary-item">DNS hierarchy: <strong>Root servers → TLD servers → Authoritative NS → Recursive resolver</strong></div>
+      <div class="summary-item">Zone transfers use <strong>TCP port 53</strong> — regular queries use <strong>UDP port 53</strong></div>
+      <div class="summary-item"><strong>DNSSEC</strong> adds cryptographic signatures to prevent DNS spoofing and cache poisoning</div>
+      <div class="summary-item">Use <strong>nslookup</strong> to test DNS resolution and query specific record types</div>
     </div>
 
     <hr class="divider">
@@ -745,13 +990,13 @@ a:hover { text-decoration: underline; }
 
     <div class="related-grid">
       <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
-      <a href="subnet-mask.html" class="related-link">What Is a Subnet Mask?</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
       <a href="dhcp.html" class="related-link">What Is DHCP?</a>
       <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
       <a href="ports.html" class="related-link">Common Port Numbers</a>
-      <a href="apipa.html" class="related-link">What Is APIPA?</a>
+      <a href="what-is-a-router.html" class="related-link">What is a Router?</a>
       <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP Explained</a>
-      <a href="home-lab-setup-guide.html" class="related-link">Build Your First Home Lab</a>
+      <a href="osi-model.html" class="related-link">OSI Model Explained</a>
     </div>
 
     <!-- CTA -->
@@ -791,9 +1036,4 @@ a:hover { text-decoration: underline; }
   </div>
   <div class="footer-bottom">
     <span>© 2025 IT Study Hub — itstudyhub.org</span>
-    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</span>
-  </div>
-</footer>
-
-</body>
-</html>
+    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure:
