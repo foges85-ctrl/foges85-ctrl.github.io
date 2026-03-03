@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/dhcp.html">
 
-<title>What Is DHCP? Dynamic Host Configuration Protocol Explained Simply</title>
-<meta name="description" content="What is DHCP? Learn how Dynamic Host Configuration Protocol automatically assigns IP addresses, how the DORA process works, and how to troubleshoot DHCP failures for the CompTIA A+ exam.">
+<title>What Is DHCP? Dynamic Host Configuration Protocol Explained — CompTIA A+ & Network+ (2026)</title>
+<meta name="description" content="What is DHCP and how does it work? DORA process, scopes, relay agents, reservations, APIPA, rogue DHCP attacks, and every DHCP concept tested on CompTIA A+ and Network+ — explained clearly.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -581,6 +581,74 @@ a:hover { text-decoration: underline; }
   .cta-box { flex-direction: column; align-items: flex-start; }
 }
 
+/* ── CODE BLOCK ── */
+.dhcp-code-block {
+  background: var(--navy); border-radius: 12px; overflow: hidden;
+  margin-bottom: 28px; border: 1px solid rgba(255,255,255,0.08);
+}
+.dhcp-code-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.7px; text-transform: uppercase; color: var(--teal);
+  padding: 10px 18px 8px; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.dhcp-code-block pre {
+  font-family: 'DM Mono', monospace; font-size: 13px;
+  color: rgba(255,255,255,0.85); line-height: 1.8;
+  padding: 14px 18px; overflow-x: auto; margin: 0;
+}
+.dhcp-hl    { color: #7eb3ff; font-weight: 700; }
+.dhcp-teal  { color: var(--teal); font-weight: 700; }
+.dhcp-yellow { color: #fcd34d; font-weight: 700; }
+.dhcp-comment { color: rgba(255,255,255,0.35); }
+
+/* ── CONCEPT CARDS ── */
+.dhcp-concept-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px;
+}
+@media (max-width: 580px) { .dhcp-concept-grid { grid-template-columns: 1fr; } }
+.dhcp-concept-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px 20px; box-shadow: var(--card-shadow);
+}
+.dhcp-concept-icon { font-size: 20px; margin-bottom: 8px; }
+.dhcp-concept-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.6px; color: var(--teal2); margin-bottom: 5px;
+}
+.dhcp-concept-title {
+  font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 800;
+  color: var(--navy); margin-bottom: 6px;
+}
+.dhcp-concept-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+
+/* ── CALLOUT ── */
+.dhcp-callout {
+  background: rgba(26,108,255,0.04); border: 1px solid rgba(26,108,255,0.2);
+  border-left: 4px solid var(--blue);
+  border-radius: 12px; padding: 16px 20px; margin-bottom: 28px;
+}
+.dhcp-callout-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
+}
+.dhcp-callout p { font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 6px; }
+.dhcp-callout p:last-child { margin-bottom: 0; }
+.dhcp-callout strong { color: var(--navy); }
+
+/* ── WARNING CALLOUT ── */
+.dhcp-warning {
+  background: rgba(239,68,68,0.04); border: 1px solid rgba(239,68,68,0.2);
+  border-left: 4px solid #ef4444;
+  border-radius: 12px; padding: 16px 20px; margin-bottom: 28px;
+}
+.dhcp-warning-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #dc2626; margin-bottom: 8px;
+}
+.dhcp-warning p { font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 6px; }
+.dhcp-warning p:last-child { margin-bottom: 0; }
+.dhcp-warning strong { color: #7f1d1d; }
+
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -621,7 +689,7 @@ a:hover { text-decoration: underline; }
       <span>›</span>
       <span>DHCP</span>
     </nav>
-    <div class="page-hero-badge">CompTIA A+ · Core Concept</div>
+    <div class="page-hero-badge">CompTIA A+ · Network+ · Core Concept</div>
     <h1>What Is <span>DHCP?</span></h1>
     <p class="page-hero-sub">
       If APIPA (169.254.x.x) is the sign that something went wrong, DHCP is the system that normally prevents it. Understanding DHCP is essential for the CompTIA A+ exam.
@@ -853,6 +921,103 @@ a:hover { text-decoration: underline; }
 
     <hr class="divider">
 
+    <h2>DHCP Scopes, Exclusions &amp; Reservations</h2>
+    <p>These three concepts define how a DHCP server controls address assignment. They are frequently tested together on Network+ in scenario-based questions.</p>
+
+    <div class="dhcp-concept-grid">
+      <div class="dhcp-concept-card">
+        <div class="dhcp-concept-icon">📦</div>
+        <div class="dhcp-concept-label">Address pool</div>
+        <div class="dhcp-concept-title">DHCP Scope</div>
+        <div class="dhcp-concept-desc">The range of IP addresses a DHCP server can assign — for example 192.168.1.10 to 192.168.1.250. You configure one scope per subnet. The scope also defines the lease duration, default gateway, and DNS servers to hand out.</div>
+      </div>
+      <div class="dhcp-concept-card">
+        <div class="dhcp-concept-icon">🚫</div>
+        <div class="dhcp-concept-label">Carve-out from scope</div>
+        <div class="dhcp-concept-title">Exclusion Range</div>
+        <div class="dhcp-concept-desc">A block of addresses within the scope that the DHCP server will never assign. Used to protect addresses you've manually assigned to routers, servers, or printers — so DHCP never hands them out to another device.</div>
+      </div>
+      <div class="dhcp-concept-card">
+        <div class="dhcp-concept-icon">📌</div>
+        <div class="dhcp-concept-label">Fixed assignment</div>
+        <div class="dhcp-concept-title">DHCP Reservation</div>
+        <div class="dhcp-concept-desc">Maps a specific MAC address to a specific IP address. The device still uses DHCP but always receives the same IP. Best of both worlds — centralised management with a predictable address for printers, APs, and servers.</div>
+      </div>
+      <div class="dhcp-concept-card">
+        <div class="dhcp-concept-icon">⏱️</div>
+        <div class="dhcp-concept-label">Temporary assignment</div>
+        <div class="dhcp-concept-title">Lease Duration</div>
+        <div class="dhcp-concept-desc">How long a device can use an assigned IP before it must renew. Short leases (hours) suit guest networks where devices come and go. Long leases (days) suit stable office environments to reduce DORA traffic overhead.</div>
+      </div>
+    </div>
+
+    <div class="exam-tip" style="background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:18px 22px;margin-bottom:28px;">
+      <div class="exam-tip-label" style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#b08000;margin-bottom:8px;">⚡ Reservation vs exclusion — a common trap</div>
+      <p style="font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:8px;"><strong>Exclusion:</strong> The DHCP server skips those addresses entirely — they're available for manual static assignment but DHCP will never touch them.</p>
+      <p style="font-size:14px;color:#3a2800;line-height:1.7;"><strong>Reservation:</strong> The DHCP server still manages the address — but always assigns that specific IP to that specific MAC address. The device uses DHCP; it just always gets the same answer.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>DHCP Relay Agents</h2>
+    <p>DHCP uses broadcast packets for the Discover and Request steps. By definition, <strong>routers do not forward broadcasts</strong> — so a device on one subnet normally can't reach a DHCP server on a different subnet.</p>
+
+    <p>A <strong>DHCP relay agent</strong> (also called an IP helper) solves this. It's configured on a router interface and listens for DHCP broadcasts from clients. When it hears one, it converts it to a unicast packet and forwards it to the DHCP server's IP address. The server responds to the relay, which forwards the reply back to the client.</p>
+
+    <div class="dhcp-code-block">
+      <div class="dhcp-code-label">How a DHCP relay agent works</div>
+      <pre><span class="dhcp-comment">Without relay agent:</span>
+Client (VLAN 10) <span class="dhcp-hl">──broadcast──►</span> Router <span class="dhcp-hl">✗ drops it</span>  DHCP Server (VLAN 20)
+
+<span class="dhcp-comment">With relay agent (ip helper-address configured on router interface):</span>
+Client (VLAN 10) <span class="dhcp-hl">──broadcast──►</span> Router <span class="dhcp-teal">──unicast──►</span> DHCP Server (VLAN 20)
+                                        <span class="dhcp-teal">◄──unicast──</span>
+Client          <span class="dhcp-teal">◄──unicast──</span> Router</pre>
+    </div>
+
+    <div class="dhcp-callout">
+      <div class="dhcp-callout-label">📌 ip helper-address — the Cisco command</div>
+      <p>On Cisco routers, the relay agent is configured per interface with <strong>ip helper-address [DHCP server IP]</strong>. This is the most commonly tested implementation detail for Network+.</p>
+      <p>The relay agent forwards not just DHCP traffic but also several other broadcast-based protocols by default — DNS, TFTP, NTP, and others on their standard ports.</p>
+    </div>
+
+    <div class="exam-tip" style="background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:18px 22px;margin-bottom:28px;">
+      <div class="exam-tip-label" style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#b08000;margin-bottom:8px;">⚡ Classic relay agent scenario</div>
+      <p style="font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:8px;">"Devices on VLAN 20 are getting APIPA addresses even though a DHCP server exists on VLAN 10. What is the most likely cause?"</p>
+      <p style="font-size:14px;color:#3a2800;line-height:1.7;"><strong>Answer: No DHCP relay agent configured on the router interface for VLAN 20.</strong> The DHCP broadcasts from VLAN 20 clients are being dropped at the router and never reaching the server.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>APIPA — When DHCP Fails</h2>
+    <p>If a device sends DHCP Discover messages and receives no response, it doesn't give up entirely. Windows automatically assigns itself an address in the <strong>169.254.0.0/16</strong> range — this is called APIPA (Automatic Private IP Addressing).</p>
+
+    <div class="dhcp-code-block">
+      <div class="dhcp-code-label">APIPA at a glance</div>
+      <pre><span class="dhcp-hl">Range:</span>      169.254.0.0 – 169.254.255.255 <span class="dhcp-comment">(/16)</span>
+<span class="dhcp-hl">Assigned:</span>  Automatically by the OS when DHCP fails
+<span class="dhcp-hl">Scope:</span>     Link-local only <span class="dhcp-comment">— same subnet communication only</span>
+<span class="dhcp-hl">No gateway:</span> Cannot route to the internet or other subnets
+<span class="dhcp-hl">Symptom:</span>   Device has a 169.254.x.x address <span class="dhcp-comment">→ DHCP failed</span>
+<span class="dhcp-hl">Fix:</span>       Restore DHCP server or run <span class="dhcp-teal">ipconfig /release</span> then <span class="dhcp-teal">ipconfig /renew</span></pre>
+    </div>
+
+    <p>An APIPA address on a Windows device is almost always a symptom of a DHCP problem — the DHCP server is down, unreachable, or the scope is exhausted. Two devices with APIPA addresses in the same subnet can still talk to each other, but neither can reach the internet or any other subnet.</p>
+
+    <hr class="divider">
+
+    <h2>Rogue DHCP Servers</h2>
+    <p>A rogue DHCP server is an unauthorised device on the network that responds to DHCP Discover messages. Because DHCP is first-come-first-served, if the rogue server responds faster than the legitimate one, it wins — and can hand out false IP addresses, a wrong default gateway (routing traffic through an attacker's machine), or a malicious DNS server (redirecting web traffic).</p>
+
+    <div class="dhcp-warning">
+      <div class="dhcp-warning-label">⚠️ Rogue DHCP — a common attack vector</div>
+      <p><strong>What the attacker controls:</strong> Default gateway (enabling man-in-the-middle), DNS server (enabling phishing via DNS hijacking), or simply an incorrect subnet — causing a denial of service.</p>
+      <p><strong>Defence — DHCP snooping:</strong> A managed switch feature that designates only certain ports as "trusted" DHCP sources. Any DHCP Offer or Acknowledge arriving on an untrusted port is dropped. This is the primary mitigation and is tested on Network+.</p>
+      <p><strong>Also tested:</strong> On Windows Server networks, the DHCP server must be <strong>authorised in Active Directory</strong> before it can respond to clients — a built-in rogue server prevention mechanism.</p>
+    </div>
+
+    <hr class="divider">
+
     <h2>Final Summary</h2>
 
     <div class="summary-list">
@@ -861,6 +1026,9 @@ a:hover { text-decoration: underline; }
       <div class="summary-item">DHCP uses the 4-step <strong>DORA</strong> process: Discover → Offer → Request → Acknowledge</div>
       <div class="summary-item">A DHCP lease is <strong>temporary</strong> — the device renews it automatically before expiry</div>
       <div class="summary-item">If DHCP fails, the device falls back to <strong>APIPA (169.254.x.x)</strong> with no internet</div>
+      <div class="summary-item"><strong>Scope</strong> = address pool · <strong>Exclusion</strong> = addresses DHCP skips · <strong>Reservation</strong> = fixed IP per MAC address</div>
+      <div class="summary-item">A <strong>DHCP relay agent</strong> (ip helper-address) forwards DHCP broadcasts across routers to a centralised server</div>
+      <div class="summary-item">A <strong>rogue DHCP server</strong> can hijack clients — mitigate with <strong>DHCP snooping</strong> on managed switches</div>
     </div>
 
     <hr class="divider">
@@ -886,15 +1054,13 @@ a:hover { text-decoration: underline; }
 
     <div class="related-grid">
       <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
-      <a href="subnet-mask.html" class="related-link">What Is a Subnet Mask?</a>
       <a href="dns.html" class="related-link">What Is DNS?</a>
       <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
       <a href="ports.html" class="related-link">Common Port Numbers</a>
-      <a href="apipa.html" class="related-link">What Is APIPA?</a>
+      <a href="what-is-a-router.html" class="related-link">What is a Router?</a>
       <a href="mac-address.html" class="related-link">What Is a MAC Address?</a>
-      <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP Explained</a>
-      <a href="home-lab-setup-guide.html" class="related-link">Build Your First Home Lab</a>
-      <a href="ipv4-vs-ipv6.html" class="related-link">IPv4 vs IPv6 Explained</a>
+      <a href="vlan-explained.html" class="related-link">VLANs Explained</a>
     </div>
 
     <!-- CTA -->
@@ -934,9 +1100,4 @@ a:hover { text-decoration: underline; }
   </div>
   <div class="footer-bottom">
     <span>© 2025 IT Study Hub — itstudyhub.org</span>
-    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</span>
-  </div>
-</footer>
-
-</body>
-</html>
+    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure:
