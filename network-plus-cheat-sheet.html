@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/network-plus-cheat-sheet.html">
+
+<title>CompTIA Network+ Cheat Sheet 2026 — Ports, Protocols, Subnetting & OSI Model</title>
+<meta name="description" content="The ultimate CompTIA Network+ cheat sheet for N10-009 — every port number, OSI model layers, subnetting reference, routing protocols, wireless standards, and key acronyms for the exam.">
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
+     crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --blue2:   #1560e8;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter); color: var(--text);
+  line-height: 1.65; -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 28px;
+  height: 68px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+}
+.logo-link {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 17px; color: var(--navy); letter-spacing: -0.3px; flex-shrink: 0;
+}
+.logo-img { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px; font-weight: 600; padding: 8px 14px;
+  border-radius: 8px; color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+}
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta {
+  background: var(--navy); color: var(--white) !important;
+  padding: 8px 18px; border-radius: 8px; margin-left: 6px;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); }
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 44px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy); position: relative;
+  overflow: hidden; padding: 60px 28px 70px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(26,108,255,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(0,194,168,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.page-hero-inner {
+  max-width: 1100px; margin: 0 auto;
+  position: relative; z-index: 1; animation: fadeUp 0.6s ease both;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  margin-bottom: 20px; font-family: 'DM Mono', monospace;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(26,108,255,0.15); border: 1px solid rgba(26,108,255,0.35);
+  color: #7eb3ff; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
+}
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(26px, 4vw, 42px); font-weight: 800;
+  color: var(--white); line-height: 1.15; letter-spacing: -0.8px; margin-bottom: 14px;
+}
+.page-hero h1 span { color: #7eb3ff; }
+.page-hero-sub {
+  font-size: 16px; color: rgba(255,255,255,0.6); max-width: 620px; line-height: 1.7;
+}
+
+/* ── TOC ── */
+.toc-wrap {
+  max-width: 900px; margin: 0 auto; padding: 32px 28px 0;
+}
+@media (max-width: 768px) { .toc-wrap { padding: 24px 16px 0; } }
+.toc-box {
+  background: var(--white); border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 12px; padding: 20px 24px;
+  box-shadow: var(--card-shadow);
+}
+.toc-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.7px; color: var(--blue);
+  margin-bottom: 12px;
+}
+.toc-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px;
+}
+@media (max-width: 500px) { .toc-grid { grid-template-columns: 1fr; } }
+.toc-link {
+  font-size: 13.5px; color: var(--blue); font-weight: 600;
+  padding: 3px 0; display: flex; align-items: center; gap: 6px;
+}
+.toc-link:hover { color: var(--blue2); }
+.toc-link::before { content: '↓'; font-size: 12px; }
+
+/* ── ARTICLE ── */
+.article-wrap {
+  max-width: 900px; margin: 0 auto; padding: 40px 28px 80px;
+  animation: fadeUp 0.5s ease both;
+}
+@media (max-width: 768px) { .article-wrap { padding: 28px 16px 60px; } }
+
+/* ── SECTION HEADERS ── */
+.section-title {
+  font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.3px;
+  display: flex; align-items: center; gap: 10px;
+  margin: 48px 0 16px; padding-bottom: 10px;
+  border-bottom: 2px solid var(--blue);
+}
+.section-title:first-of-type { margin-top: 0; }
+.section-title .s-icon { font-size: 20px; }
+.section-intro { font-size: 14px; color: var(--muted); margin-bottom: 16px; line-height: 1.65; }
+
+/* ── TABLE ── */
+.table-wrap {
+  overflow-x: auto; border-radius: 12px; border: 1px solid var(--border);
+  box-shadow: var(--card-shadow); margin-bottom: 32px;
+}
+table { width: 100%; border-collapse: collapse; background: var(--white); min-width: 400px; }
+thead th {
+  background: var(--navy); color: rgba(255,255,255,0.7);
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.7px; padding: 12px 16px; text-align: left;
+  font-family: 'DM Mono', monospace;
+}
+thead th:first-child { color: var(--white); }
+tbody td {
+  padding: 11px 16px; border-bottom: 1px solid var(--border);
+  font-size: 13.5px; color: var(--text); vertical-align: top; line-height: 1.5;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #f4f8ff; }
+.td-key {
+  font-family: 'DM Mono', monospace; font-weight: 700;
+  color: var(--navy); font-size: 13px; white-space: nowrap;
+}
+.td-blue { color: var(--blue); font-weight: 700; font-family: 'DM Mono', monospace; font-size: 13px; }
+.badge {
+  display: inline-block; padding: 2px 7px; border-radius: 100px;
+  font-size: 10px; font-weight: 700; font-family: 'DM Mono', monospace;
+  white-space: nowrap;
+}
+.badge-tcp { background: rgba(26,108,255,0.1); color: var(--blue); }
+.badge-udp { background: rgba(0,194,168,0.1); color: var(--teal2); }
+.badge-both { background: rgba(124,58,237,0.1); color: #7c3aed; }
+
+/* ── OSI LAYERS ── */
+.osi-stack {
+  display: flex; flex-direction: column; gap: 6px; margin-bottom: 32px;
+}
+.osi-layer {
+  display: grid; grid-template-columns: 80px 1fr 1fr;
+  align-items: center; gap: 12px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 16px;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.osi-num {
+  font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 800;
+  color: var(--white); background: var(--blue);
+  border-radius: 8px; padding: 4px 10px; text-align: center;
+  white-space: nowrap;
+}
+.osi-name { font-weight: 700; color: var(--navy); font-size: 14px; }
+.osi-detail { font-size: 13px; color: var(--muted); line-height: 1.4; }
+@media (max-width: 520px) {
+  .osi-layer { grid-template-columns: 70px 1fr; }
+  .osi-detail { display: none; }
+}
+
+/* ── SUBNET TABLE special ── */
+.subnet-note { font-size: 12px; color: var(--muted); margin-bottom: 12px; font-family: 'DM Mono', monospace; }
+
+/* ── CODE BLOCK ── */
+.code-block {
+  background: var(--navy); border-radius: 12px; overflow: hidden;
+  margin-bottom: 32px; border: 1px solid rgba(255,255,255,0.08);
+}
+.code-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.7px; text-transform: uppercase; color: #7eb3ff;
+  padding: 10px 18px 8px; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.code-block pre {
+  font-family: 'DM Mono', monospace; font-size: 13px;
+  color: rgba(255,255,255,0.85); line-height: 1.8;
+  padding: 16px 18px; overflow-x: auto; margin: 0;
+}
+.code-hl { color: #7eb3ff; font-weight: 700; }
+.code-teal { color: var(--teal); font-weight: 700; }
+.code-comment { color: rgba(255,255,255,0.38); }
+
+/* ── EXAM TIP ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060; border-left: 4px solid #f0c000;
+  border-radius: 12px; padding: 16px 20px; margin-bottom: 32px;
+}
+.exam-tip-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px;
+}
+.exam-tip p { font-size: 13.5px; color: #3a2800; line-height: 1.7; margin-bottom: 6px; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #1a1000; }
+
+/* ── CTA BOX ── */
+.cta-box {
+  background: linear-gradient(135deg, var(--navy), var(--navy2));
+  border-radius: 16px; padding: 28px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap; position: relative; overflow: hidden; margin-bottom: 40px;
+}
+.cta-box::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(26,108,255,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-box-text h3 {
+  font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 800;
+  color: var(--white); margin-bottom: 4px;
+}
+.cta-box-text p { font-size: 13.5px; color: rgba(255,255,255,0.6); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 20px; border-radius: 10px; font-size: 13.5px; font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s; white-space: nowrap; flex-shrink: 0;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-blue { background: var(--blue); color: var(--white); box-shadow: 0 6px 20px rgba(26,108,255,0.3); }
+.btn-blue:hover { background: var(--blue2); box-shadow: 0 10px 28px rgba(26,108,255,0.4); }
+
+/* ── RELATED ── */
+.related-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px;
+}
+.related-link {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 16px; font-size: 14px;
+  font-weight: 600; color: var(--navy);
+  transition: border-color 0.15s, color 0.15s, transform 0.15s;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.related-link:hover { border-color: rgba(26,108,255,0.3); color: var(--blue); transform: translateY(-1px); }
+.related-link::before { content: '→'; color: var(--blue); font-size: 13px; }
+
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  max-width: 1100px; margin: 28px auto 0; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+@media (max-width: 600px) { .footer { padding: 36px 16px; } .footer-bottom { flex-direction: column; } }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span>Network+ Cheat Sheet</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Network+ · N10-009 · Quick Reference</div>
+    <h1>CompTIA <span>Network+</span> Cheat Sheet</h1>
+    <p class="page-hero-sub">Every port number, OSI model layer, subnetting reference, routing protocol, wireless standard, and key acronym you need for the N10-009 exam — all in one place.</p>
+  </div>
+</section>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc-wrap">
+  <div class="toc-box">
+    <div class="toc-label">📋 Jump to section</div>
+    <div class="toc-grid">
+      <a href="#osi" class="toc-link">OSI Model</a>
+      <a href="#ports" class="toc-link">Port Numbers</a>
+      <a href="#subnetting" class="toc-link">Subnetting Reference</a>
+      <a href="#protocols" class="toc-link">Protocols & Standards</a>
+      <a href="#routing" class="toc-link">Routing Protocols</a>
+      <a href="#wireless" class="toc-link">Wireless Standards</a>
+      <a href="#security" class="toc-link">Network Security</a>
+      <a href="#troubleshooting" class="toc-link">Troubleshooting Tools</a>
+      <a href="#acronyms" class="toc-link">Key Acronyms</a>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+
+  <!-- OSI MODEL -->
+  <div id="osi" class="section-title"><span class="s-icon">🔢</span> OSI Model</div>
+  <p class="section-intro">The OSI model is one of the most tested topics on Network+. Know every layer number, name, what it does, and at least two protocols or devices that operate at each layer.</p>
+
+  <div class="osi-stack">
+    <div class="osi-layer">
+      <div class="osi-num">Layer 7</div>
+      <div class="osi-name">Application</div>
+      <div class="osi-detail">HTTP, HTTPS, FTP, SMTP, DNS, DHCP, SNMP — user-facing protocols</div>
+    </div>
+    <div class="osi-layer">
+      <div class="osi-num">Layer 6</div>
+      <div class="osi-name">Presentation</div>
+      <div class="osi-detail">Encryption, compression, encoding — SSL/TLS, JPEG, ASCII, Unicode</div>
+    </div>
+    <div class="osi-layer">
+      <div class="osi-num">Layer 5</div>
+      <div class="osi-name">Session</div>
+      <div class="osi-detail">Opens, maintains, closes sessions — NetBIOS, RPC, SQL sessions</div>
+    </div>
+    <div class="osi-layer">
+      <div class="osi-num">Layer 4</div>
+      <div class="osi-name">Transport</div>
+      <div class="osi-detail">TCP (reliable, connection-oriented), UDP (fast, connectionless) — port numbers live here</div>
+    </div>
+    <div class="osi-layer">
+      <div class="osi-num">Layer 3</div>
+      <div class="osi-name">Network</div>
+      <div class="osi-detail">IP addressing, routing — routers, Layer 3 switches, IP, ICMP, OSPF, BGP</div>
+    </div>
+    <div class="osi-layer">
+      <div class="osi-num">Layer 2</div>
+      <div class="osi-name">Data Link</div>
+      <div class="osi-detail">MAC addresses, frames, switching — switches, bridges, ARP, Ethernet, Wi-Fi</div>
+    </div>
+    <div class="osi-layer">
+      <div class="osi-num">Layer 1</div>
+      <div class="osi-name">Physical</div>
+      <div class="osi-detail">Bits, cables, signals — hubs, repeaters, cables, connectors, voltages</div>
+    </div>
+  </div>
+
+  <div class="exam-tip">
+    <div class="exam-tip-label">⚡ OSI memory tricks</div>
+    <p><strong>Layers 7→1:</strong> "All People Seem To Need Data Processing" (Application, Presentation, Session, Transport, Network, Data Link, Physical)</p>
+    <p><strong>Layers 1→7:</strong> "Please Do Not Throw Sausage Pizza Away"</p>
+    <p><strong>Key device associations:</strong> Hub = Layer 1 · Switch = Layer 2 · Router = Layer 3 · Firewall = Layer 3/4 · Load balancer = Layer 4/7</p>
+  </div>
+
+  <!-- PORT NUMBERS -->
+  <div id="ports" class="section-title"><span class="s-icon">🔌</span> Port Numbers</div>
+  <p class="section-intro">Memorise every port below — Network+ tests these directly and in scenario questions where you must identify a blocked service from its port number.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Port</th><th>Protocol</th><th>Service</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-blue">20</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">FTP Data</td><td>Active FTP data transfer</td></tr>
+        <tr><td class="td-blue">21</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">FTP Control</td><td>FTP commands and control channel</td></tr>
+        <tr><td class="td-blue">22</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">SSH</td><td>Secure remote access — encrypted replacement for Telnet</td></tr>
+        <tr><td class="td-blue">23</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">Telnet</td><td>Unencrypted remote access — deprecated, insecure</td></tr>
+        <tr><td class="td-blue">25</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">SMTP</td><td>Sends email between mail servers</td></tr>
+        <tr><td class="td-blue">53</td><td><span class="badge badge-both">TCP/UDP</span></td><td class="td-key">DNS</td><td>UDP for queries, TCP for zone transfers</td></tr>
+        <tr><td class="td-blue">67/68</td><td><span class="badge badge-udp">UDP</span></td><td class="td-key">DHCP</td><td>67 = server, 68 = client</td></tr>
+        <tr><td class="td-blue">69</td><td><span class="badge badge-udp">UDP</span></td><td class="td-key">TFTP</td><td>Trivial FTP — no auth, used for booting and config files</td></tr>
+        <tr><td class="td-blue">80</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">HTTP</td><td>Unencrypted web traffic</td></tr>
+        <tr><td class="td-blue">110</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">POP3</td><td>Downloads email to device, deletes from server</td></tr>
+        <tr><td class="td-blue">119</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">NNTP</td><td>Network News Transfer Protocol — Usenet</td></tr>
+        <tr><td class="td-blue">123</td><td><span class="badge badge-udp">UDP</span></td><td class="td-key">NTP</td><td>Network Time Protocol — clock synchronisation</td></tr>
+        <tr><td class="td-blue">137–139</td><td><span class="badge badge-both">TCP/UDP</span></td><td class="td-key">NetBIOS</td><td>Legacy Windows name resolution and file sharing</td></tr>
+        <tr><td class="td-blue">143</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">IMAP</td><td>Email stays on server, synced to devices</td></tr>
+        <tr><td class="td-blue">161/162</td><td><span class="badge badge-udp">UDP</span></td><td class="td-key">SNMP</td><td>161 = queries, 162 = traps (alerts)</td></tr>
+        <tr><td class="td-blue">389</td><td><span class="badge badge-both">TCP/UDP</span></td><td class="td-key">LDAP</td><td>Directory services — Active Directory queries</td></tr>
+        <tr><td class="td-blue">443</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">HTTPS</td><td>Encrypted web traffic (TLS)</td></tr>
+        <tr><td class="td-blue">445</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">SMB</td><td>Windows file sharing, Active Directory</td></tr>
+        <tr><td class="td-blue">465/587</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">SMTP (Secure)</td><td>587 = STARTTLS (preferred), 465 = SMTPS</td></tr>
+        <tr><td class="td-blue">514</td><td><span class="badge badge-udp">UDP</span></td><td class="td-key">Syslog</td><td>System log messages — network device logging</td></tr>
+        <tr><td class="td-blue">636</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">LDAPS</td><td>LDAP over SSL — encrypted directory queries</td></tr>
+        <tr><td class="td-blue">993</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">IMAPS</td><td>IMAP over SSL — encrypted email retrieval</td></tr>
+        <tr><td class="td-blue">995</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">POP3S</td><td>POP3 over SSL — encrypted email download</td></tr>
+        <tr><td class="td-blue">1433</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">MS SQL</td><td>Microsoft SQL Server</td></tr>
+        <tr><td class="td-blue">1723</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">PPTP</td><td>Legacy VPN — insecure, deprecated</td></tr>
+        <tr><td class="td-blue">3306</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">MySQL</td><td>MySQL database</td></tr>
+        <tr><td class="td-blue">3389</td><td><span class="badge badge-both">TCP/UDP</span></td><td class="td-key">RDP</td><td>Remote Desktop Protocol — Windows remote access</td></tr>
+        <tr><td class="td-blue">5060/5061</td><td><span class="badge badge-both">TCP/UDP</span></td><td class="td-key">SIP</td><td>Session Initiation Protocol — VoIP signalling</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SUBNETTING -->
+  <div id="subnetting" class="section-title"><span class="s-icon">🧮</span> Subnetting Quick Reference</div>
+  <p class="section-intro">The most tested calculation topic on Network+. Know the subnet mask, number of hosts, and network increment for each CIDR prefix from /24 to /30.</p>
+
+  <p class="subnet-note">Formula: Usable hosts = 2^(host bits) − 2 &nbsp;·&nbsp; Network bits + host bits = 32</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>CIDR</th><th>Subnet Mask</th><th>Hosts per Subnet</th><th>Increment</th><th>Subnets from /24</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-blue">/24</td><td class="td-key">255.255.255.0</td><td>254</td><td>N/A</td><td>1</td></tr>
+        <tr><td class="td-blue">/25</td><td class="td-key">255.255.255.128</td><td>126</td><td>128</td><td>2</td></tr>
+        <tr><td class="td-blue">/26</td><td class="td-key">255.255.255.192</td><td>62</td><td>64</td><td>4</td></tr>
+        <tr><td class="td-blue">/27</td><td class="td-key">255.255.255.224</td><td>30</td><td>32</td><td>8</td></tr>
+        <tr><td class="td-blue">/28</td><td class="td-key">255.255.255.240</td><td>14</td><td>16</td><td>16</td></tr>
+        <tr><td class="td-blue">/29</td><td class="td-key">255.255.255.248</td><td>6</td><td>8</td><td>32</td></tr>
+        <tr><td class="td-blue">/30</td><td class="td-key">255.255.255.252</td><td>2</td><td>4</td><td>64</td></tr>
+        <tr><td class="td-blue">/16</td><td class="td-key">255.255.0.0</td><td>65,534</td><td>—</td><td>—</td></tr>
+        <tr><td class="td-blue">/8</td><td class="td-key">255.0.0.0</td><td>16,777,214</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">Private IP address ranges (RFC 1918)</div>
+    <pre><span class="code-hl">10.0.0.0/8</span>       <span class="code-comment">→ 10.0.0.0 – 10.255.255.255      (Class A — large enterprises)</span>
+<span class="code-hl">172.16.0.0/12</span>    <span class="code-comment">→ 172.16.0.0 – 172.31.255.255   (Class B — medium networks)</span>
+<span class="code-hl">192.168.0.0/16</span>   <span class="code-comment">→ 192.168.0.0 – 192.168.255.255 (Class C — home/small office)</span>
+
+<span class="code-teal">Special ranges:</span>
+<span class="code-hl">127.0.0.0/8</span>      <span class="code-comment">→ Loopback — 127.0.0.1 = localhost, tests local TCP/IP stack</span>
+<span class="code-hl">169.254.0.0/16</span>   <span class="code-comment">→ APIPA — self-assigned when DHCP fails (link-local)</span></pre>
+  </div>
+
+  <!-- PROTOCOLS -->
+  <div id="protocols" class="section-title"><span class="s-icon">📡</span> Key Protocols & Standards</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Protocol</th><th>Full Name</th><th>What it does</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-key">TCP</td><td>Transmission Control Protocol</td><td>Reliable, connection-oriented, three-way handshake (SYN, SYN-ACK, ACK)</td></tr>
+        <tr><td class="td-key">UDP</td><td>User Datagram Protocol</td><td>Fast, connectionless, no guarantee of delivery — streaming, DNS, VoIP</td></tr>
+        <tr><td class="td-key">IP</td><td>Internet Protocol</td><td>Logical addressing and routing at Layer 3</td></tr>
+        <tr><td class="td-key">ICMP</td><td>Internet Control Message Protocol</td><td>Error messages and diagnostics — used by ping and traceroute</td></tr>
+        <tr><td class="td-key">ARP</td><td>Address Resolution Protocol</td><td>Resolves IP addresses to MAC addresses on a local network</td></tr>
+        <tr><td class="td-key">DNS</td><td>Domain Name System</td><td>Resolves hostnames to IP addresses — "phonebook of the internet"</td></tr>
+        <tr><td class="td-key">DHCP</td><td>Dynamic Host Configuration Protocol</td><td>Automatically assigns IP, subnet mask, gateway, and DNS to devices</td></tr>
+        <tr><td class="td-key">NAT</td><td>Network Address Translation</td><td>Translates private IPs to a public IP for internet access</td></tr>
+        <tr><td class="td-key">SNMP</td><td>Simple Network Management Protocol</td><td>Monitors and manages network devices — v3 adds encryption</td></tr>
+        <tr><td class="td-key">NTP</td><td>Network Time Protocol</td><td>Synchronises clocks across network devices — UDP port 123</td></tr>
+        <tr><td class="td-key">STP</td><td>Spanning Tree Protocol</td><td>Prevents switching loops by blocking redundant paths</td></tr>
+        <tr><td class="td-key">802.1Q</td><td>VLAN Tagging Standard</td><td>Tags Ethernet frames with VLAN ID for trunk links between switches</td></tr>
+        <tr><td class="td-key">802.1X</td><td>Port-Based Access Control</td><td>Authenticates devices before allowing network access — uses RADIUS</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ROUTING PROTOCOLS -->
+  <div id="routing" class="section-title"><span class="s-icon">🗺️</span> Routing Protocols</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Protocol</th><th>Type</th><th>Algorithm</th><th>Metric</th><th>Key fact</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-key">RIP v2</td><td>IGP / Distance Vector</td><td>Bellman-Ford</td><td>Hop count (max 15)</td><td>Simple, slow convergence — 15 hops = unreachable</td></tr>
+        <tr><td class="td-key">OSPF</td><td>IGP / Link State</td><td>Dijkstra (SPF)</td><td>Cost (bandwidth)</td><td>Most common interior routing — fast convergence, scalable</td></tr>
+        <tr><td class="td-key">EIGRP</td><td>IGP / Hybrid</td><td>DUAL</td><td>Bandwidth + delay</td><td>Cisco proprietary — combines distance vector and link state traits</td></tr>
+        <tr><td class="td-key">BGP</td><td>EGP / Path Vector</td><td>Best path selection</td><td>AS path attributes</td><td>Routes traffic between autonomous systems — the internet's routing protocol</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="exam-tip">
+    <div class="exam-tip-label">⚡ Routing exam shortcuts</div>
+    <p><strong>IGP</strong> = Interior Gateway Protocol — routes within one organisation (RIP, OSPF, EIGRP)</p>
+    <p><strong>EGP</strong> = Exterior Gateway Protocol — routes between organisations/ISPs (BGP)</p>
+    <p><strong>Distance vector</strong> = knows direction and distance to destinations (RIP). <strong>Link state</strong> = knows the full network map (OSPF). <strong>Path vector</strong> = knows the full path including autonomous systems (BGP).</p>
+  </div>
+
+  <!-- WIRELESS -->
+  <div id="wireless" class="section-title"><span class="s-icon">📶</span> Wireless Standards</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Standard</th><th>Wi-Fi Name</th><th>Frequency</th><th>Max Speed</th><th>Key feature</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-key">802.11a</td><td>Wi-Fi 1</td><td>5 GHz</td><td>54 Mbps</td><td>First 5 GHz standard — less interference</td></tr>
+        <tr><td class="td-key">802.11b</td><td>Wi-Fi 2</td><td>2.4 GHz</td><td>11 Mbps</td><td>First widely adopted Wi-Fi standard</td></tr>
+        <tr><td class="td-key">802.11g</td><td>Wi-Fi 3</td><td>2.4 GHz</td><td>54 Mbps</td><td>Backward compatible with 802.11b</td></tr>
+        <tr><td class="td-key">802.11n</td><td>Wi-Fi 4</td><td>2.4 / 5 GHz</td><td>600 Mbps</td><td>First dual-band — introduced MIMO</td></tr>
+        <tr><td class="td-key">802.11ac</td><td>Wi-Fi 5</td><td>5 GHz</td><td>3.5 Gbps</td><td>MU-MIMO, beamforming — enterprise standard</td></tr>
+        <tr><td class="td-key">802.11ax</td><td>Wi-Fi 6/6E</td><td>2.4 / 5 / 6 GHz</td><td>9.6 Gbps</td><td>OFDMA — most efficient in dense environments</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">Wireless security protocols</div>
+    <pre><span class="code-hl">WEP</span>      <span class="code-comment">→ Broken — RC4 cipher, crackable in minutes. Never use.</span>
+<span class="code-hl">WPA</span>      <span class="code-comment">→ Deprecated — TKIP encryption, vulnerabilities exist</span>
+<span class="code-hl">WPA2</span>     <span class="code-comment">→ Current standard — AES-CCMP encryption</span>
+         <span class="code-comment">   Personal (PSK) = shared password | Enterprise (802.1X) = RADIUS auth</span>
+<span class="code-hl">WPA3</span>     <span class="code-comment">→ Latest — SAE replaces PSK handshake, forward secrecy</span>
+         <span class="code-comment">   Required on Wi-Fi 6 certified devices</span></pre>
+  </div>
+
+  <!-- SECURITY -->
+  <div id="security" class="section-title"><span class="s-icon">🔒</span> Network Security</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Term</th><th>What it does</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-key">Firewall</td><td>Filters traffic based on rules — stateless (packet filtering) or stateful (tracks connections)</td></tr>
+        <tr><td class="td-key">IDS</td><td>Intrusion Detection System — monitors and alerts on suspicious traffic, does not block</td></tr>
+        <tr><td class="td-key">IPS</td><td>Intrusion Prevention System — monitors and actively blocks suspicious traffic inline</td></tr>
+        <tr><td class="td-key">DMZ</td><td>Demilitarised zone — network segment between internal and external networks for public-facing servers</td></tr>
+        <tr><td class="td-key">VPN</td><td>Encrypted tunnel over public internet — IPsec for site-to-site, SSL/TLS VPN for remote access</td></tr>
+        <tr><td class="td-key">ACL</td><td>Access Control List — ordered list of permit/deny rules applied to router interfaces</td></tr>
+        <tr><td class="td-key">NAC</td><td>Network Access Control — verifies device compliance before granting network access</td></tr>
+        <tr><td class="td-key">VLAN</td><td>Virtual LAN — logical network segments on the same physical switch, isolates broadcast domains</td></tr>
+        <tr><td class="td-key">AAA</td><td>Authentication, Authorisation, Accounting — RADIUS and TACACS+ implement AAA for network access</td></tr>
+        <tr><td class="td-key">RADIUS</td><td>Centrally authenticates network access — encrypts password only, UDP ports 1812/1813</td></tr>
+        <tr><td class="td-key">TACACS+</td><td>Cisco AAA protocol — encrypts entire packet, separates auth/authz/accounting, TCP port 49</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TROUBLESHOOTING -->
+  <div id="troubleshooting" class="section-title"><span class="s-icon">🔧</span> Troubleshooting Tools & Commands</div>
+
+  <div class="code-block">
+    <div class="code-label">Essential troubleshooting commands</div>
+    <pre><span class="code-hl">ping</span>          <span class="code-comment">→ Tests ICMP connectivity to a host — basic reachability test</span>
+<span class="code-hl">tracert/traceroute</span> <span class="code-comment">→ Shows each hop to a destination — identifies where traffic fails</span>
+<span class="code-hl">ipconfig</span>      <span class="code-comment">→ Shows IP, subnet, gateway (Windows) — /all shows DNS, MAC</span>
+<span class="code-hl">ifconfig/ip a</span> <span class="code-comment">→ Shows network interface info (Linux/macOS)</span>
+<span class="code-hl">nslookup</span>      <span class="code-comment">→ Queries DNS — tests name resolution</span>
+<span class="code-hl">netstat</span>       <span class="code-comment">→ Shows active connections and listening ports</span>
+<span class="code-hl">arp -a</span>        <span class="code-comment">→ Shows ARP cache — IP to MAC mappings</span>
+<span class="code-hl">nmap</span>          <span class="code-comment">→ Network scanner — discovers hosts and open ports</span>
+<span class="code-hl">route print</span>   <span class="code-comment">→ Shows local routing table (Windows)</span>
+<span class="code-hl">pathping</span>      <span class="code-comment">→ Combines ping and tracert — shows packet loss per hop (Windows)</span></pre>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">CompTIA 7-step troubleshooting methodology</div>
+    <pre><span class="code-hl">1.</span> Identify the problem          <span class="code-comment">→ Gather information, question users, identify symptoms</span>
+<span class="code-hl">2.</span> Establish a theory            <span class="code-comment">→ Question the obvious, consider multiple causes</span>
+<span class="code-hl">3.</span> Test the theory               <span class="code-comment">→ Confirm or deny — if denied, establish new theory</span>
+<span class="code-hl">4.</span> Establish a plan of action    <span class="code-comment">→ Consider effects, create plan to resolve</span>
+<span class="code-hl">5.</span> Implement the solution        <span class="code-comment">→ Apply fix, escalate if needed</span>
+<span class="code-hl">6.</span> Verify full system functionality <span class="code-comment">→ Confirm fix works, check for side effects</span>
+<span class="code-hl">7.</span> Document findings             <span class="code-comment">→ Record what happened, what fixed it, preventive measures</span></pre>
+  </div>
+
+  <!-- ACRONYMS -->
+  <div id="acronyms" class="section-title"><span class="s-icon">📖</span> Key Acronyms</div>
+  <p class="section-intro">Network+ loves acronym-heavy questions. If you can't expand an acronym instantly you'll lose time on the exam.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Acronym</th><th>Stands for</th><th>One-line description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-key">APIPA</td><td>Automatic Private IP Addressing</td><td>169.254.x.x — self-assigned when DHCP fails</td></tr>
+        <tr><td class="td-key">CIDR</td><td>Classless Inter-Domain Routing</td><td>IP addressing notation using prefix length (e.g. /24)</td></tr>
+        <tr><td class="td-key">CSMA/CD</td><td>Carrier Sense Multiple Access / Collision Detection</td><td>Wired Ethernet collision-handling method</td></tr>
+        <tr><td class="td-key">CSMA/CA</td><td>Carrier Sense Multiple Access / Collision Avoidance</td><td>Wireless collision avoidance — used in 802.11</td></tr>
+        <tr><td class="td-key">FQDN</td><td>Fully Qualified Domain Name</td><td>Complete domain name — www.example.com</td></tr>
+        <tr><td class="td-key">MTBF</td><td>Mean Time Between Failures</td><td>Average time a device runs before failing</td></tr>
+        <tr><td class="td-key">MTTR</td><td>Mean Time To Repair</td><td>Average time to restore a failed device</td></tr>
+        <tr><td class="td-key">QoS</td><td>Quality of Service</td><td>Prioritises certain traffic types — VoIP, video</td></tr>
+        <tr><td class="td-key">SLA</td><td>Service Level Agreement</td><td>Contractual uptime and performance guarantees</td></tr>
+        <tr><td class="td-key">SDN</td><td>Software-Defined Networking</td><td>Separates control plane from data plane — centralised management</td></tr>
+        <tr><td class="td-key">MPLS</td><td>Multiprotocol Label Switching</td><td>WAN technology using labels to route traffic efficiently</td></tr>
+        <tr><td class="td-key">PoE</td><td>Power over Ethernet</td><td>Delivers electrical power over Ethernet cable — IP phones, APs</td></tr>
+        <tr><td class="td-key">STP</td><td>Spanning Tree Protocol</td><td>Prevents Layer 2 loops in switched networks</td></tr>
+        <tr><td class="td-key">LACP</td><td>Link Aggregation Control Protocol</td><td>Combines multiple physical links into one logical link (802.3ad)</td></tr>
+        <tr><td class="td-key">VXLAN</td><td>Virtual Extensible LAN</td><td>Extends VLANs across Layer 3 networks — used in cloud/data centres</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <div class="cta-box">
+    <div class="cta-box-text">
+      <h3>Ready to pass Network+?</h3>
+      <p>The N10-009 study guide, Dion Training practice exams, and Professor Messer's free course.</p>
+    </div>
+    <a href="best-network-plus.html" class="btn btn-blue">See Network+ Resources →</a>
+  </div>
+
+  <h2 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:var(--navy);margin-bottom:16px;">Related Articles</h2>
+  <div class="related-grid">
+    <a href="how-to-pass-comptia-network-plus.html" class="related-link">How to Pass Network+</a>
+    <a href="best-network-plus.html" class="related-link">Best Network+ Resources</a>
+    <a href="osi-model.html" class="related-link">OSI Model Explained</a>
+    <a href="subnetting.html" class="related-link">Subnetting Explained</a>
+    <a href="ports.html" class="related-link">Port Numbers Reference</a>
+    <a href="network-troubleshooting-commands.html" class="related-link">Troubleshooting Commands</a>
+    <a href="wireless-networking.html" class="related-link">Wireless Networking</a>
+    <a href="vpn.html" class="related-link">What is a VPN?</a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+, Network+, and Security+ resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Network+</div>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-network-plus.html">How to Pass Network+</a>
+      <a href="best-network-plus.html">Best Network+ Resources</a>
+      <a href="subnetting.html">Subnetting Explained</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="ports.html">Port Numbers</a>
+      <a href="vpn.html">What is a VPN?</a>
+      <a href="wireless-networking.html">Wireless Networking</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>
