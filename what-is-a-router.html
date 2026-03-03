@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/what-is-a-router.html">
+
+<title>What is a Router? How Routers Work — CompTIA A+ & Network+ Guide (2026)</title>
+<meta name="description" content="What is a router and how does it work? Routing tables, default gateways, NAT, static vs dynamic routing, and every router concept tested on CompTIA A+ and Network+ — explained clearly.">
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
+     crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter); color: var(--text);
+  line-height: 1.65; -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 28px;
+  height: 68px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+}
+.logo-link {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 17px; color: var(--navy); letter-spacing: -0.3px; flex-shrink: 0;
+}
+.logo-img { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px; font-weight: 600; padding: 8px 14px;
+  border-radius: 8px; color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+}
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta {
+  background: var(--navy); color: var(--white) !important;
+  padding: 8px 18px; border-radius: 8px; margin-left: 6px;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); }
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 44px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy); position: relative;
+  overflow: hidden; padding: 60px 28px 70px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(0,194,168,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.page-hero-inner {
+  max-width: 1100px; margin: 0 auto;
+  position: relative; z-index: 1; animation: fadeUp 0.6s ease both;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  margin-bottom: 20px; font-family: 'DM Mono', monospace;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(0,194,168,0.15); border: 1px solid rgba(0,194,168,0.35);
+  color: var(--teal); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
+}
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(26px, 4vw, 42px); font-weight: 800;
+  color: var(--white); line-height: 1.15; letter-spacing: -0.8px; margin-bottom: 14px;
+}
+.page-hero h1 span { color: var(--teal); }
+.page-hero-sub {
+  font-size: 16px; color: rgba(255,255,255,0.6); max-width: 620px; line-height: 1.7;
+}
+
+/* ── ARTICLE ── */
+.article-wrap {
+  max-width: 860px; margin: 0 auto; padding: 52px 28px 80px;
+  animation: fadeUp 0.5s ease both;
+}
+@media (max-width: 768px) { .article-wrap { padding: 36px 16px 60px; } }
+.article-body h2 {
+  font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.3px; margin: 48px 0 16px;
+}
+.article-body h2:first-child { margin-top: 0; }
+.article-body p { font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 16px; }
+.article-body strong { color: var(--navy); font-weight: 700; }
+
+/* ── QUICK ANSWER ── */
+.quick-answer {
+  background: var(--navy); border-radius: 14px;
+  padding: 24px 26px; margin-bottom: 40px; position: relative; overflow: hidden;
+}
+.quick-answer::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(0,194,168,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.quick-answer-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: var(--teal);
+  margin-bottom: 10px; position: relative;
+}
+.quick-answer-text {
+  font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; position: relative;
+}
+.quick-answer-text strong { color: var(--white); }
+
+/* ── CONCEPT CARDS ── */
+.concept-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 40px;
+}
+@media (max-width: 580px) { .concept-grid { grid-template-columns: 1fr; } }
+.concept-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px 20px; box-shadow: var(--card-shadow);
+}
+.concept-icon { font-size: 22px; margin-bottom: 8px; }
+.concept-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.6px; color: var(--teal2); margin-bottom: 6px;
+}
+.concept-title {
+  font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 800;
+  color: var(--navy); margin-bottom: 6px;
+}
+.concept-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+
+/* ── CODE BLOCK ── */
+.code-block {
+  background: var(--navy); border-radius: 12px; overflow: hidden;
+  margin-bottom: 32px; border: 1px solid rgba(255,255,255,0.08);
+}
+.code-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.7px; text-transform: uppercase; color: var(--teal);
+  padding: 10px 18px 8px; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.code-block pre {
+  font-family: 'DM Mono', monospace; font-size: 13.5px;
+  color: rgba(255,255,255,0.85); line-height: 1.8;
+  padding: 16px 18px; overflow-x: auto; margin: 0;
+}
+.code-hl { color: var(--teal); font-weight: 700; }
+.code-blue { color: #7eb3ff; font-weight: 700; }
+.code-comment { color: rgba(255,255,255,0.35); }
+
+/* ── TABLE ── */
+.table-wrap {
+  overflow-x: auto; border-radius: 14px; border: 1px solid var(--border);
+  box-shadow: var(--card-shadow); margin-bottom: 40px;
+}
+table { width: 100%; border-collapse: collapse; background: var(--white); min-width: 400px; }
+thead th {
+  background: var(--navy); color: rgba(255,255,255,0.7);
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.7px; padding: 14px 18px; text-align: left;
+  font-family: 'DM Mono', monospace;
+}
+thead th:first-child { color: var(--white); }
+tbody td {
+  padding: 13px 18px; border-bottom: 1px solid var(--border);
+  font-size: 14px; color: var(--text); vertical-align: top; line-height: 1.5;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #f0fbf9; }
+.td-term { font-weight: 700; color: var(--navy); font-family: 'DM Mono', monospace; font-size: 13px; }
+
+/* ── EXAM TIP ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060; border-left: 4px solid #f0c000;
+  border-radius: 12px; padding: 18px 22px; margin-bottom: 40px;
+}
+.exam-tip-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px;
+}
+.exam-tip p { font-size: 14px; color: #3a2800; line-height: 1.7; margin-bottom: 8px; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #1a1000; }
+
+/* ── SCENARIO LIST ── */
+.scenario-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+.scenario-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 18px;
+  font-size: 14px; color: var(--text); line-height: 1.65;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.scenario-item strong { color: var(--navy); }
+
+/* ── CTA BOX ── */
+.cta-box {
+  background: linear-gradient(135deg, var(--navy), var(--navy2));
+  border-radius: 16px; padding: 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap; position: relative; overflow: hidden; margin-bottom: 40px;
+}
+.cta-box::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-box-text h3 {
+  font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800;
+  color: var(--white); margin-bottom: 4px;
+}
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 10px; font-size: 14px; font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s; white-space: nowrap; flex-shrink: 0;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-teal { background: var(--teal); color: var(--navy); font-weight: 700; box-shadow: 0 6px 20px rgba(0,194,168,0.3); }
+.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
+
+/* ── RELATED ── */
+.related-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px;
+}
+.related-link {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 16px; font-size: 14px;
+  font-weight: 600; color: var(--navy);
+  transition: border-color 0.15s, color 0.15s, transform 0.15s;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.related-link:hover { border-color: rgba(0,194,168,0.3); color: var(--teal2); transform: translateY(-1px); }
+.related-link::before { content: '→'; color: var(--teal2); font-size: 13px; }
+
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  max-width: 1100px; margin: 28px auto 0; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+@media (max-width: 600px) { .footer { padding: 36px 16px; } .footer-bottom { flex-direction: column; } }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <span>›</span>
+      <span>What is a Router?</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · Network+ · Networking</div>
+    <h1>What is a <span>Router?</span></h1>
+    <p class="page-hero-sub">How routers work, what routing tables do, static vs dynamic routing, NAT, default gateways, and every router concept tested on CompTIA A+ and Network+.</p>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ What is a router?</div>
+      <div class="quick-answer-text">
+        A router is a <strong>Layer 3 network device</strong> that forwards data packets between different networks based on IP addresses. Where a switch connects devices within the same network, a router connects different networks together — including connecting your home or office network to the internet. Every time you load a webpage, your data passes through multiple routers to reach its destination.
+      </div>
+    </div>
+
+    <h2>What a router actually does</h2>
+
+    <p>When a device on your network wants to communicate with something outside its own network — a website, a server in another office, a cloud service — the traffic has to cross network boundaries. That's the router's job.</p>
+
+    <p>A router receives a packet, reads the destination IP address, looks up that address in its <strong>routing table</strong>, and forwards the packet out of the appropriate interface toward the destination. It does this for every single packet, millions of times per second in enterprise environments.</p>
+
+    <p>The key distinction to understand for the exam: <strong>switches use MAC addresses</strong> and operate at Layer 2. <strong>Routers use IP addresses</strong> and operate at Layer 3. A switch keeps traffic within a network; a router moves traffic between networks.</p>
+
+    <div class="code-block">
+      <div class="code-label">How a router makes a forwarding decision</div>
+      <pre><span class="code-hl">1. Packet arrives</span>       <span class="code-comment">→ Router receives packet on an interface</span>
+<span class="code-hl">2. Read destination IP</span>  <span class="code-comment">→ Router inspects Layer 3 header for destination address</span>
+<span class="code-hl">3. Check routing table</span> <span class="code-comment">→ Finds best matching route (longest prefix match wins)</span>
+<span class="code-hl">4. Forward packet</span>      <span class="code-comment">→ Sends packet out the correct interface toward next hop</span>
+<span class="code-hl">5. Decrement TTL</span>       <span class="code-comment">→ Reduces Time To Live by 1 — prevents infinite loops</span></pre>
+    </div>
+
+    <h2>The routing table</h2>
+
+    <p>The routing table is the router's map of the network. It stores known routes — destination networks, the next-hop router to send traffic to, and which interface to use. When a packet arrives, the router finds the most specific matching route and forwards accordingly.</p>
+
+    <div class="code-block">
+      <div class="code-label">Example routing table entries</div>
+      <pre><span class="code-hl">Destination</span>      <span class="code-blue">Next Hop</span>        <span class="code-comment">Interface   Source</span>
+192.168.1.0/24   <span class="code-blue">directly connected</span>  <span class="code-comment">eth0        Connected</span>
+10.0.0.0/8       <span class="code-blue">192.168.1.1</span>         <span class="code-comment">eth0        Static</span>
+172.16.0.0/12    <span class="code-blue">192.168.1.254</span>       <span class="code-comment">eth0        OSPF</span>
+0.0.0.0/0        <span class="code-blue">203.0.113.1</span>         <span class="code-comment">eth1        Default route</span></pre>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Longest prefix match</div>
+      <p>When multiple routes match a destination, the router always uses the <strong>most specific route</strong> — the one with the longest subnet mask (highest prefix length). A /28 route beats a /24 route beats the default route /0.</p>
+      <p>The default route (0.0.0.0/0) matches everything and is used as a last resort when no more specific route exists — typically pointing toward the internet gateway.</p>
+    </div>
+
+    <h2>Default gateway</h2>
+
+    <p>The default gateway is the IP address of the router interface that a device uses to reach destinations outside its own subnet. When your laptop wants to load a website, it sends the traffic to the default gateway — the router — which then forwards it toward the internet.</p>
+
+    <p>If a device has no default gateway configured, it can only communicate with other devices on its own subnet. Any traffic destined for a different network simply has nowhere to go and is dropped. This is one of the most common causes of connectivity problems and appears regularly in troubleshooting scenarios on both A+ and Network+.</p>
+
+    <h2>Static vs dynamic routing</h2>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-icon">✍️</div>
+        <div class="concept-label">Manually configured</div>
+        <div class="concept-title">Static Routing</div>
+        <div class="concept-desc">Routes are entered manually by an administrator. Simple and predictable — no routing protocol overhead. Best for small networks or specific fixed paths. Doesn't adapt automatically to network changes.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🔄</div>
+        <div class="concept-label">Automatically learned</div>
+        <div class="concept-title">Dynamic Routing</div>
+        <div class="concept-desc">Routers share routing information with each other using routing protocols (OSPF, RIP, EIGRP, BGP). Routes update automatically when the network changes. Scales to large networks but adds protocol overhead.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🌐</div>
+        <div class="concept-label">Last resort route</div>
+        <div class="concept-title">Default Route</div>
+        <div class="concept-desc">0.0.0.0/0 — matches any destination. Used when no more specific route exists. In most networks this points toward the ISP or internet gateway. Every packet that doesn't match another route goes here.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🔗</div>
+        <div class="concept-label">Directly attached</div>
+        <div class="concept-title">Connected Routes</div>
+        <div class="concept-desc">Networks directly attached to a router interface are automatically added to the routing table as connected routes. No configuration needed — the router knows about its own interfaces automatically.</div>
+      </div>
+    </div>
+
+    <h2>NAT — Network Address Translation</h2>
+
+    <p>NAT is one of the most important functions a router performs. It allows multiple devices on a private network to share a single public IP address when communicating with the internet.</p>
+
+    <p>Without NAT, every device would need its own public IP address — and with only around 4 billion IPv4 addresses available globally, this would have been exhausted long ago. NAT is why your home network can have 20 devices all using 192.168.x.x addresses while appearing to the internet as a single public IP.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>NAT Type</th><th>How it works</th><th>Use case</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-term">Static NAT</td>
+            <td>One private IP maps to one public IP — permanently</td>
+            <td>Hosting a server that needs a consistent public IP</td>
+          </tr>
+          <tr>
+            <td class="td-term">Dynamic NAT</td>
+            <td>Private IPs mapped to a pool of public IPs as needed</td>
+            <td>Multiple users sharing a small pool of public IPs</td>
+          </tr>
+          <tr>
+            <td class="td-term">PAT / NAT Overload</td>
+            <td>Many private IPs share one public IP using unique port numbers</td>
+            <td>Standard home/office internet connection — most common type</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ PAT is what your home router does</div>
+      <p>Port Address Translation (PAT), also called NAT Overload, is the type of NAT used in virtually every home and small office router. All devices share one public IP, and the router tracks which internal device initiated each connection by assigning unique port numbers. When the reply comes back, the router uses the port number to route the response to the correct internal device.</p>
+    </div>
+
+    <h2>Router vs wireless router vs access point</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Device</th><th>What it does</th><th>OSI Layer</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-term">Router</td>
+            <td>Forwards packets between networks based on IP addresses — connects networks</td>
+            <td>Layer 3</td>
+          </tr>
+          <tr>
+            <td class="td-term">Wireless Router</td>
+            <td>Router + switch + access point combined — the typical home device</td>
+            <td>Layer 2 / 3</td>
+          </tr>
+          <tr>
+            <td class="td-term">Access Point (AP)</td>
+            <td>Connects wireless clients to a wired network — does not route traffic between networks</td>
+            <td>Layer 2</td>
+          </tr>
+          <tr>
+            <td class="td-term">Switch</td>
+            <td>Connects devices within the same network using MAC addresses</td>
+            <td>Layer 2</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Exam scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "A user can access shared drives on the local network but cannot reach any websites. What is the most likely cause?" → <strong>Missing or incorrect default gateway</strong></div>
+      <div class="scenario-item">💬 "Which device operates at Layer 3 and forwards traffic between networks based on IP addresses?" → <strong>Router</strong></div>
+      <div class="scenario-item">💬 "A small office has 30 devices all sharing one public IP address for internet access. What technology enables this?" → <strong>NAT (specifically PAT / NAT Overload)</strong></div>
+      <div class="scenario-item">💬 "Which type of route is automatically added to a routing table when an interface is configured with an IP address?" → <strong>Connected route (directly connected)</strong></div>
+      <div class="scenario-item">💬 "A router has two matching routes to a destination — one is /24 and one is /28. Which route does the router use?" → <strong>The /28 route — longest prefix match wins</strong></div>
+      <div class="scenario-item">💬 "What is the purpose of the 0.0.0.0/0 route in a routing table?" → <strong>Default route — forwards traffic when no more specific route matches, typically toward the internet</strong></div>
+      <div class="scenario-item">💬 "Which NAT type maps one private IP address permanently to one public IP address?" → <strong>Static NAT</strong></div>
+      <div class="scenario-item">💬 "A device needs to communicate with a server on a different subnet. What must be configured on the device?" → <strong>Default gateway — the IP address of the router interface on the local subnet</strong></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for A+ or Network+?</h3>
+        <p>The study guides, practice exams, and free courses worth your time for both exams.</p>
+      </div>
+      <a href="best-study-resources.html" class="btn btn-teal">See Study Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="router-vs-switch.html" class="related-link">Router vs Switch</a>
+      <a href="default-gateway.html" class="related-link">What is a Default Gateway?</a>
+      <a href="nat-explained.html" class="related-link">NAT Explained</a>
+      <a href="osi-model.html" class="related-link">OSI Model Explained</a>
+      <a href="subnetting.html" class="related-link">Subnetting Explained</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-network-plus.html" class="related-link">How to Pass Network+</a>
+      <a href="best-network-plus.html" class="related-link">Best Network+ Resources</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+, Network+, and Security+ resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Networking</div>
+      <a href="what-is-a-router.html">What is a Router?</a>
+      <a href="router-vs-switch.html">Router vs Switch</a>
+      <a href="nat-explained.html">NAT Explained</a>
+      <a href="default-gateway.html">Default Gateway</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="subnetting.html">Subnetting</a>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>

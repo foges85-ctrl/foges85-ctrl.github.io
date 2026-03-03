@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/what-is-a-switch.html">
+
+<title>What is a Network Switch? How Switches Work — CompTIA A+ & Network+ Guide (2026)</title>
+<meta name="description" content="What is a network switch and how does it work? MAC address tables, VLANs, managed vs unmanaged, STP, and every switch concept tested on CompTIA A+ and Network+ — explained clearly.">
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
+     crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --blue2:   #1560e8;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter); color: var(--text);
+  line-height: 1.65; -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 28px;
+  height: 68px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+}
+.logo-link {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 17px; color: var(--navy); letter-spacing: -0.3px; flex-shrink: 0;
+}
+.logo-img { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px; font-weight: 600; padding: 8px 14px;
+  border-radius: 8px; color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+}
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta {
+  background: var(--navy); color: var(--white) !important;
+  padding: 8px 18px; border-radius: 8px; margin-left: 6px;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); }
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 44px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy); position: relative;
+  overflow: hidden; padding: 60px 28px 70px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(26,108,255,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(0,194,168,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.page-hero-inner {
+  max-width: 1100px; margin: 0 auto;
+  position: relative; z-index: 1; animation: fadeUp 0.6s ease both;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  margin-bottom: 20px; font-family: 'DM Mono', monospace;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(26,108,255,0.15); border: 1px solid rgba(26,108,255,0.35);
+  color: #7eb3ff; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
+}
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(26px, 4vw, 42px); font-weight: 800;
+  color: var(--white); line-height: 1.15; letter-spacing: -0.8px; margin-bottom: 14px;
+}
+.page-hero h1 span { color: #7eb3ff; }
+.page-hero-sub {
+  font-size: 16px; color: rgba(255,255,255,0.6); max-width: 620px; line-height: 1.7;
+}
+
+/* ── ARTICLE ── */
+.article-wrap {
+  max-width: 860px; margin: 0 auto; padding: 52px 28px 80px;
+  animation: fadeUp 0.5s ease both;
+}
+@media (max-width: 768px) { .article-wrap { padding: 36px 16px 60px; } }
+.article-body h2 {
+  font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.3px; margin: 48px 0 16px;
+}
+.article-body h2:first-child { margin-top: 0; }
+.article-body p { font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 16px; }
+.article-body strong { color: var(--navy); font-weight: 700; }
+
+/* ── QUICK ANSWER ── */
+.quick-answer {
+  background: var(--navy); border-radius: 14px;
+  padding: 24px 26px; margin-bottom: 40px; position: relative; overflow: hidden;
+}
+.quick-answer::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(26,108,255,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.quick-answer-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #7eb3ff;
+  margin-bottom: 10px; position: relative;
+}
+.quick-answer-text {
+  font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; position: relative;
+}
+.quick-answer-text strong { color: var(--white); }
+
+/* ── CONCEPT CARDS ── */
+.concept-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 40px;
+}
+@media (max-width: 580px) { .concept-grid { grid-template-columns: 1fr; } }
+.concept-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px 20px; box-shadow: var(--card-shadow);
+}
+.concept-icon { font-size: 22px; margin-bottom: 8px; }
+.concept-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.6px; color: var(--blue); margin-bottom: 6px;
+}
+.concept-title {
+  font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 800;
+  color: var(--navy); margin-bottom: 6px;
+}
+.concept-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+
+/* ── CODE BLOCK ── */
+.code-block {
+  background: var(--navy); border-radius: 12px; overflow: hidden;
+  margin-bottom: 32px; border: 1px solid rgba(255,255,255,0.08);
+}
+.code-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.7px; text-transform: uppercase; color: #7eb3ff;
+  padding: 10px 18px 8px; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.code-block pre {
+  font-family: 'DM Mono', monospace; font-size: 13.5px;
+  color: rgba(255,255,255,0.85); line-height: 1.8;
+  padding: 16px 18px; overflow-x: auto; margin: 0;
+}
+.code-hl { color: #7eb3ff; font-weight: 700; }
+.code-teal { color: var(--teal); font-weight: 700; }
+.code-comment { color: rgba(255,255,255,0.35); }
+
+/* ── TABLE ── */
+.table-wrap {
+  overflow-x: auto; border-radius: 14px; border: 1px solid var(--border);
+  box-shadow: var(--card-shadow); margin-bottom: 40px;
+}
+table { width: 100%; border-collapse: collapse; background: var(--white); min-width: 400px; }
+thead th {
+  background: var(--navy); color: rgba(255,255,255,0.7);
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.7px; padding: 14px 18px; text-align: left;
+  font-family: 'DM Mono', monospace;
+}
+thead th:first-child { color: var(--white); }
+tbody td {
+  padding: 13px 18px; border-bottom: 1px solid var(--border);
+  font-size: 14px; color: var(--text); vertical-align: top; line-height: 1.5;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #f4f8ff; }
+.td-term { font-weight: 700; color: var(--navy); font-family: 'DM Mono', monospace; font-size: 13px; }
+
+/* ── CALLOUT ── */
+.callout {
+  background: rgba(26,108,255,0.04); border: 1px solid rgba(26,108,255,0.2);
+  border-left: 4px solid var(--blue);
+  border-radius: 12px; padding: 18px 22px; margin-bottom: 40px;
+}
+.callout-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
+}
+.callout p { font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 8px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout strong { color: var(--navy); }
+
+/* ── EXAM TIP ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060; border-left: 4px solid #f0c000;
+  border-radius: 12px; padding: 18px 22px; margin-bottom: 40px;
+}
+.exam-tip-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px;
+}
+.exam-tip p { font-size: 14px; color: #3a2800; line-height: 1.7; margin-bottom: 8px; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #1a1000; }
+
+/* ── SCENARIO LIST ── */
+.scenario-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+.scenario-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 18px;
+  font-size: 14px; color: var(--text); line-height: 1.65;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.scenario-item strong { color: var(--navy); }
+
+/* ── CTA BOX ── */
+.cta-box {
+  background: linear-gradient(135deg, var(--navy), var(--navy2));
+  border-radius: 16px; padding: 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap; position: relative; overflow: hidden; margin-bottom: 40px;
+}
+.cta-box::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(26,108,255,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-box-text h3 {
+  font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800;
+  color: var(--white); margin-bottom: 4px;
+}
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 10px; font-size: 14px; font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s; white-space: nowrap; flex-shrink: 0;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-blue { background: var(--blue); color: var(--white); box-shadow: 0 6px 20px rgba(26,108,255,0.3); }
+.btn-blue:hover { background: var(--blue2); box-shadow: 0 10px 28px rgba(26,108,255,0.4); }
+
+/* ── RELATED ── */
+.related-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px;
+}
+.related-link {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 16px; font-size: 14px;
+  font-weight: 600; color: var(--navy);
+  transition: border-color 0.15s, color 0.15s, transform 0.15s;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.related-link:hover { border-color: rgba(26,108,255,0.3); color: var(--blue); transform: translateY(-1px); }
+.related-link::before { content: '→'; color: var(--blue); font-size: 13px; }
+
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  max-width: 1100px; margin: 28px auto 0; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+@media (max-width: 600px) { .footer { padding: 36px 16px; } .footer-bottom { flex-direction: column; } }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <span>›</span>
+      <span>What is a Switch?</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · Network+ · Networking</div>
+    <h1>What is a <span>Network Switch?</span></h1>
+    <p class="page-hero-sub">How switches work, MAC address tables, VLANs, managed vs unmanaged, STP, and every switch concept tested on CompTIA A+ and Network+ — explained clearly.</p>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ What is a switch?</div>
+      <div class="quick-answer-text">
+        A network switch is a <strong>Layer 2 device</strong> that connects multiple devices within the same network and forwards traffic between them using <strong>MAC addresses</strong>. Unlike a hub — which blindly sends every packet to every port — a switch learns which device is on which port and sends traffic only to its intended destination. This makes switches far more efficient and is why hubs are obsolete.
+      </div>
+    </div>
+
+    <h2>How a switch works — the MAC address table</h2>
+
+    <p>Every switch maintains a <strong>MAC address table</strong> (also called a CAM table — Content Addressable Memory). This table maps MAC addresses to the physical ports they were learned from. When a frame arrives, the switch checks this table to decide where to send it.</p>
+
+    <p>Switches learn MAC addresses automatically by inspecting the source address of every frame that arrives. If a device sends traffic from port 3, the switch records that MAC address against port 3. Over time the table fills up with all the devices on the network.</p>
+
+    <div class="code-block">
+      <div class="code-label">How a switch processes a frame — step by step</div>
+      <pre><span class="code-hl">1. Frame arrives</span>        <span class="code-comment">→ Switch receives frame on a port</span>
+<span class="code-hl">2. Learn source MAC</span>    <span class="code-comment">→ Records source MAC address → port in the MAC table</span>
+<span class="code-hl">3. Look up dest MAC</span>    <span class="code-comment">→ Checks MAC table for destination address</span>
+<span class="code-teal">   If found:</span>            <span class="code-comment">→ Forwards frame out the specific port only (unicast)</span>
+<span class="code-teal">   If not found:</span>        <span class="code-comment">→ Floods frame to ALL ports except the one it arrived on</span>
+<span class="code-teal">   If broadcast:</span>        <span class="code-comment">→ Floods frame to ALL ports in the VLAN (FF:FF:FF:FF:FF:FF)</span></pre>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Switch vs hub — know this for A+</div>
+      <p><strong>Hub (Layer 1):</strong> Repeats every signal to every port. All devices share bandwidth. Any transmission creates a collision domain. Obsolete.</p>
+      <p><strong>Switch (Layer 2):</strong> Sends frames only to the destination port. Each port is its own collision domain. Devices get dedicated bandwidth. Standard in all modern networks.</p>
+      <p>The exam loves asking which device creates a single collision domain (hub) vs which device creates separate collision domains per port (switch).</p>
+    </div>
+
+    <h2>Switch vs router — the key difference</h2>
+
+    <p>This is one of the most tested distinctions across both A+ and Network+. The difference comes down to what address each device uses and which layer it operates at.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>Switch</th><th>Router</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-term">OSI Layer</td><td>Layer 2 (Data Link)</td><td>Layer 3 (Network)</td></tr>
+          <tr><td class="td-term">Address used</td><td>MAC address</td><td>IP address</td></tr>
+          <tr><td class="td-term">Connects</td><td>Devices within the same network</td><td>Different networks together</td></tr>
+          <tr><td class="td-term">Traffic scope</td><td>Within a subnet / VLAN</td><td>Between subnets / networks</td></tr>
+          <tr><td class="td-term">Broadcast domain</td><td>All ports share one (unless VLANs used)</td><td>Separates broadcast domains</td></tr>
+          <tr><td class="td-term">Table used</td><td>MAC address table (CAM)</td><td>Routing table</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Managed vs unmanaged switches</h2>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-icon">🔌</div>
+        <div class="concept-label">Plug and play</div>
+        <div class="concept-title">Unmanaged Switch</div>
+        <div class="concept-desc">No configuration required — plug in and it works. No VLANs, no port security, no monitoring. Used in home networks and small offices where simplicity matters more than control.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">⚙️</div>
+        <div class="concept-label">Full configuration</div>
+        <div class="concept-title">Managed Switch</div>
+        <div class="concept-desc">Configurable via CLI or web interface. Supports VLANs, port security, STP, SNMP monitoring, QoS, link aggregation, and more. Required in any enterprise or business environment.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🏢</div>
+        <div class="concept-label">Core infrastructure</div>
+        <div class="concept-title">Core Switch</div>
+        <div class="concept-desc">High-speed switch at the centre of a network — connects distribution layer switches together. High bandwidth, high port density, minimal latency. Usually a Layer 3 switch.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">📦</div>
+        <div class="concept-label">Routing + switching</div>
+        <div class="concept-title">Layer 3 Switch</div>
+        <div class="concept-desc">A switch that can also perform routing between VLANs. Faster than a router for inter-VLAN traffic because it routes in hardware. Common in enterprise core and distribution layers.</div>
+      </div>
+    </div>
+
+    <h2>VLANs — virtual LANs</h2>
+
+    <p>A VLAN (Virtual Local Area Network) logically segments a physical switch into multiple separate networks. Devices on different VLANs cannot communicate with each other directly — they need a router or Layer 3 switch to route between them. VLANs are one of the most tested switch topics on Network+.</p>
+
+    <p>The main reasons to use VLANs are security (isolating sensitive systems), performance (reducing broadcast traffic), and flexibility (grouping devices by function rather than physical location).</p>
+
+    <div class="code-block">
+      <div class="code-label">VLAN key concepts</div>
+      <pre><span class="code-hl">Access port</span>     <span class="code-comment">→ Carries traffic for ONE VLAN — connects to end devices (PCs, printers)</span>
+<span class="code-hl">Trunk port</span>      <span class="code-comment">→ Carries traffic for MULTIPLE VLANs — connects switches to each other or to routers</span>
+<span class="code-hl">802.1Q</span>          <span class="code-comment">→ VLAN tagging standard — inserts a 4-byte tag into the Ethernet frame</span>
+<span class="code-hl">Native VLAN</span>     <span class="code-comment">→ VLAN that carries untagged traffic on a trunk port (default VLAN 1)</span>
+<span class="code-hl">Inter-VLAN routing</span> <span class="code-comment">→ Traffic between VLANs requires a router or Layer 3 switch</span></pre>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Trunk vs access port — a classic exam question</div>
+      <p>An <strong>access port</strong> belongs to one VLAN and connects to an end device. The device doesn't know or care about VLANs — the switch handles the tagging.</p>
+      <p>A <strong>trunk port</strong> carries multiple VLANs and connects switches together (or a switch to a router). Frames on a trunk are tagged with 802.1Q to identify which VLAN they belong to.</p>
+      <p>If the exam describes a port connecting two switches — it's a trunk. If it describes a port connecting a PC — it's an access port.</p>
+    </div>
+
+    <h2>Spanning Tree Protocol (STP)</h2>
+
+    <p>When you connect multiple switches together for redundancy, you create loops — and Layer 2 loops are catastrophic. A broadcast frame in a loop circulates forever, consuming all bandwidth in seconds (called a broadcast storm). STP prevents this by automatically blocking redundant paths while keeping them available as backup.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>STP Version</th><th>Standard</th><th>Key improvement</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-term">STP</td><td>802.1D</td><td>Original — slow convergence (30–50 seconds)</td></tr>
+          <tr><td class="td-term">RSTP</td><td>802.1w</td><td>Rapid STP — much faster convergence (seconds)</td></tr>
+          <tr><td class="td-term">MSTP</td><td>802.1s</td><td>Multiple STP — separate spanning tree per VLAN group</td></tr>
+          <tr><td class="td-term">PVST+</td><td>Cisco</td><td>Per-VLAN Spanning Tree — one STP instance per VLAN</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Port security</h2>
+
+    <p>Port security is a managed switch feature that restricts which MAC addresses are allowed on a given port. It's used to prevent unauthorised devices from connecting to the network — plugging an unknown laptop into a network port can be blocked by port security.</p>
+
+    <div class="callout">
+      <div class="callout-label">🔒 Port security violation actions</div>
+      <p><strong>Protect:</strong> Drops frames from unauthorised MACs silently — no alert, no shutdown.</p>
+      <p><strong>Restrict:</strong> Drops frames and increments a violation counter — generates a log but port stays up.</p>
+      <p><strong>Shutdown (default):</strong> Disables the port completely — requires manual re-enabling by an administrator. Most secure option.</p>
+    </div>
+
+    <h2>Exam scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "Which device operates at Layer 2 and forwards frames based on MAC addresses?" → <strong>Switch</strong></div>
+      <div class="scenario-item">💬 "A network is experiencing a broadcast storm. What device and feature would prevent this?" → <strong>Switch with Spanning Tree Protocol (STP)</strong></div>
+      <div class="scenario-item">💬 "An administrator wants to isolate the HR department's traffic from the rest of the network without buying new hardware. What should they configure?" → <strong>VLANs on a managed switch</strong></div>
+      <div class="scenario-item">💬 "Which port type on a switch carries traffic for multiple VLANs between switches?" → <strong>Trunk port (802.1Q)</strong></div>
+      <div class="scenario-item">💬 "A switch receives a frame destined for a MAC address not in its table. What does it do?" → <strong>Floods the frame to all ports except the one it arrived on (unknown unicast flooding)</strong></div>
+      <div class="scenario-item">💬 "Which switch feature prevents unauthorised devices from connecting by limiting which MAC addresses can use a port?" → <strong>Port security</strong></div>
+      <div class="scenario-item">💬 "What is the difference between a Layer 2 switch and a Layer 3 switch?" → <strong>A Layer 3 switch can route traffic between VLANs/subnets in addition to switching — it performs both Layer 2 switching and Layer 3 routing</strong></div>
+      <div class="scenario-item">💬 "Two switches are connected together. What type of port should be configured on each switch for that connection?" → <strong>Trunk port — to carry multiple VLANs between the switches</strong></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for A+ or Network+?</h3>
+        <p>The study guides, practice exams, and free resources worth your time for both exams.</p>
+      </div>
+      <a href="best-study-resources.html" class="btn btn-blue">See Study Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="what-is-a-router.html" class="related-link">What is a Router?</a>
+      <a href="router-vs-switch.html" class="related-link">Router vs Switch</a>
+      <a href="osi-model.html" class="related-link">OSI Model Explained</a>
+      <a href="mac-address.html" class="related-link">What is a MAC Address?</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="vlan-explained.html" class="related-link">VLANs Explained</a>
+      <a href="how-to-pass-comptia-network-plus.html" class="related-link">How to Pass Network+</a>
+      <a href="best-network-plus.html" class="related-link">Best Network+ Resources</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+, Network+, and Security+ resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Networking</div>
+      <a href="what-is-a-switch.html">What is a Switch?</a>
+      <a href="what-is-a-router.html">What is a Router?</a>
+      <a href="router-vs-switch.html">Router vs Switch</a>
+      <a href="mac-address.html">What is a MAC Address?</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="how-to-pass-comptia-network-plus.html">How to Pass Network+</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>
