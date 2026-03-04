@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/kerberos-explained.html">
+
+<title>What is Kerberos? Authentication Protocol Explained — CompTIA Security+ (2026)</title>
+<meta name="description" content="What is Kerberos and how does it work? TGT, TGS, KDC, port 88, Kerberos attacks (Pass-the-Ticket, Golden Ticket, Kerberoasting), and every Kerberos concept tested on CompTIA Security+.">
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
+     crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --blue2:   #1560e8;
+  --purple:  #7c3aed;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--lighter); color: var(--text); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+
+/* ── NAVBAR ── */
+.navbar { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 28px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo-link { display: flex; align-items: center; gap: 10px; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 17px; color: var(--navy); letter-spacing: -0.3px; flex-shrink: 0; }
+.logo-img { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a { font-size: 14px; font-weight: 600; padding: 8px 14px; border-radius: 8px; color: var(--muted); transition: color 0.15s, background 0.15s; }
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta { background: var(--navy); color: var(--white) !important; padding: 8px 18px; border-radius: 8px; margin-left: 6px; }
+.nav-links a.nav-cta:hover { background: var(--navy2); }
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 44px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero { background: var(--navy); position: relative; overflow: hidden; padding: 60px 28px 70px; }
+.page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 100% at 90% 50%, rgba(124,58,237,0.14) 0%, transparent 70%), radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.08) 0%, transparent 60%); pointer-events: none; }
+.page-hero::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none; }
+.page-hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; animation: fadeUp 0.6s ease both; }
+.breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 20px; font-family: 'DM Mono', monospace; }
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge { display: inline-flex; align-items: center; background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.35); color: #c4b5fd; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 18px; }
+.page-hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(26px, 4vw, 42px); font-weight: 800; color: var(--white); line-height: 1.15; letter-spacing: -0.8px; margin-bottom: 14px; }
+.page-hero h1 span { color: #c4b5fd; }
+.page-hero-sub { font-size: 16px; color: rgba(255,255,255,0.6); max-width: 620px; line-height: 1.7; }
+
+/* ── ARTICLE ── */
+.article-wrap { max-width: 860px; margin: 0 auto; padding: 52px 28px 80px; animation: fadeUp 0.5s ease both; }
+@media (max-width: 768px) { .article-wrap { padding: 36px 16px 60px; } }
+.article-body h2 { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800; color: var(--navy); letter-spacing: -0.3px; margin: 48px 0 16px; }
+.article-body h2:first-child { margin-top: 0; }
+.article-body p { font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 16px; }
+.article-body strong { color: var(--navy); font-weight: 700; }
+
+/* ── QUICK ANSWER ── */
+.quick-answer { background: var(--navy); border-radius: 14px; padding: 24px 26px; margin-bottom: 40px; position: relative; overflow: hidden; }
+.quick-answer::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(124,58,237,0.18) 0%, transparent 70%); pointer-events: none; }
+.quick-answer-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #c4b5fd; margin-bottom: 10px; position: relative; }
+.quick-answer-text { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; position: relative; }
+.quick-answer-text strong { color: var(--white); }
+
+/* ── STEP FLOW ── */
+.step-flow { display: flex; flex-direction: column; gap: 0; margin-bottom: 40px; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; box-shadow: var(--card-shadow); }
+.step-item { display: flex; align-items: flex-start; gap: 16px; padding: 16px 20px; background: var(--white); border-bottom: 1px solid var(--border); }
+.step-item:last-child { border-bottom: none; }
+.step-num { display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background: var(--navy); color: var(--white); font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+.step-content { flex: 1; }
+.step-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+.step-desc { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+.step-mono { font-family: 'DM Mono', monospace; font-size: 12px; background: var(--light); padding: 2px 7px; border-radius: 5px; color: var(--navy); }
+
+/* ── CODE BLOCK ── */
+.code-block { background: var(--navy); border-radius: 12px; overflow: hidden; margin-bottom: 32px; border: 1px solid rgba(255,255,255,0.08); }
+.code-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; color: #c4b5fd; padding: 10px 18px 8px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.code-block pre { font-family: 'DM Mono', monospace; font-size: 13.5px; color: rgba(255,255,255,0.85); line-height: 1.8; padding: 16px 18px; overflow-x: auto; margin: 0; }
+.code-hl      { color: #c4b5fd; font-weight: 700; }
+.code-teal    { color: var(--teal); font-weight: 700; }
+.code-blue    { color: #7eb3ff; font-weight: 700; }
+.code-comment { color: rgba(255,255,255,0.35); }
+
+/* ── TABLE ── */
+.table-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--border); box-shadow: var(--card-shadow); margin-bottom: 40px; }
+table { width: 100%; border-collapse: collapse; background: var(--white); min-width: 380px; }
+thead th { background: var(--navy); color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; padding: 14px 18px; text-align: left; font-family: 'DM Mono', monospace; }
+thead th:first-child { color: var(--white); }
+tbody td { padding: 13px 18px; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text); vertical-align: top; line-height: 1.55; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #faf4ff; }
+.td-term { font-weight: 700; color: var(--navy); font-family: 'DM Mono', monospace; font-size: 13px; }
+
+/* ── ATTACK CARDS ── */
+.attack-grid { display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
+.attack-card { background: var(--white); border: 1px solid var(--border); border-left: 4px solid #ef4444; border-radius: 12px; padding: 18px 20px; box-shadow: var(--card-shadow); }
+.attack-label { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #dc2626; margin-bottom: 5px; }
+.attack-title { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+.attack-how { font-size: 14px; color: var(--text); line-height: 1.65; margin-bottom: 8px; }
+.attack-defend { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+.attack-defend strong { color: var(--navy); }
+
+/* ── EXAM TIP ── */
+.exam-tip { background: linear-gradient(135deg, #fffbeb, #fef9e0); border: 1px solid #f0d060; border-left: 4px solid #f0c000; border-radius: 12px; padding: 18px 22px; margin-bottom: 40px; }
+.exam-tip-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px; }
+.exam-tip p { font-size: 14px; color: #3a2800; line-height: 1.7; margin-bottom: 8px; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #1a1000; }
+
+/* ── CALLOUT ── */
+.callout { background: rgba(124,58,237,0.04); border: 1px solid rgba(124,58,237,0.2); border-left: 4px solid var(--purple); border-radius: 12px; padding: 16px 20px; margin-bottom: 40px; }
+.callout-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--purple); margin-bottom: 8px; }
+.callout p { font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 6px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout strong { color: var(--navy); }
+
+/* ── SCENARIO LIST ── */
+.scenario-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+.scenario-item { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--text); line-height: 1.65; box-shadow: 0 2px 8px rgba(10,22,40,0.05); }
+.scenario-item strong { color: var(--navy); }
+
+/* ── CTA ── */
+.cta-box { background: linear-gradient(135deg, var(--navy), var(--navy2)); border-radius: 16px; padding: 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; position: relative; overflow: hidden; margin-bottom: 40px; }
+.cta-box::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; background: radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 70%); pointer-events: none; }
+.cta-box-text h3 { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 10px; font-size: 14px; font-weight: 600; transition: transform 0.15s, box-shadow 0.15s; white-space: nowrap; flex-shrink: 0; }
+.btn:hover { transform: translateY(-2px); }
+.btn-purple { background: var(--purple); color: var(--white); box-shadow: 0 6px 20px rgba(124,58,237,0.3); }
+.btn-purple:hover { box-shadow: 0 10px 28px rgba(124,58,237,0.4); }
+
+/* ── RELATED ── */
+.related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px; }
+.related-link { display: flex; align-items: center; gap: 8px; background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; font-size: 14px; font-weight: 600; color: var(--navy); transition: border-color 0.15s, color 0.15s, transform 0.15s; box-shadow: 0 2px 8px rgba(10,22,40,0.05); }
+.related-link:hover { border-color: rgba(124,58,237,0.3); color: var(--purple); transform: translateY(-1px); }
+.related-link::before { content: '→'; color: var(--purple); font-size: 13px; }
+
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom { max-width: 1100px; margin: 28px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+@media (max-width: 600px) { .footer { padding: 36px 16px; } .footer-bottom { flex-direction: column; } }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <span>›</span>
+      <span>What is Kerberos?</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Network+ · Security+ · 2026</div>
+    <h1>What is <span>Kerberos?</span></h1>
+    <p class="page-hero-sub">How Kerberos authentication works, the KDC, TGT and service tickets, the 5-minute clock skew rule, Kerberos attacks — Pass-the-Ticket, Golden Ticket, Kerberoasting — and every Kerberos concept tested on CompTIA Security+.</p>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ What is Kerberos?</div>
+      <div class="quick-answer-text">
+        Kerberos is a <strong>network authentication protocol</strong> that uses encrypted tickets to prove identity without transmitting passwords over the network. It is the default authentication protocol for Windows Active Directory domains. Kerberos runs on <strong>TCP/UDP port 88</strong> and relies on a trusted third party — the <strong>Key Distribution Centre (KDC)</strong> — to issue tickets that grant access to services. Because tickets are time-stamped, Kerberos requires all systems to have clocks synchronised within <strong>5 minutes</strong> — which is why NTP is critical in domain environments.
+      </div>
+    </div>
+
+    <h2>Why Kerberos exists — the problem it solves</h2>
+
+    <p>Before Kerberos, authentication often meant sending a password across the network every time a user accessed a resource. That password could be intercepted and replayed by an attacker. Kerberos solves this with a fundamentally different model: <strong>you prove your identity once to a trusted third party, and they give you a ticket</strong>. You then present that ticket to each service you want to access — your actual password never travels to the service at all.</p>
+
+    <p>It's the digital equivalent of showing your passport at a border once to get an entry stamp, then using that stamp to enter venues — you don't show your passport to every venue, just the stamp they can verify without contacting the border agency.</p>
+
+    <h2>The three Kerberos components</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Component</th><th>What it is</th><th>Role</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-term">KDC</td>
+            <td>Key Distribution Centre</td>
+            <td>The trusted third party — runs on the Domain Controller in Active Directory. Contains two services: the AS and the TGS.</td>
+          </tr>
+          <tr>
+            <td class="td-term">AS</td>
+            <td>Authentication Service</td>
+            <td>The part of the KDC that verifies the user's initial credentials and issues a TGT (Ticket-Granting Ticket).</td>
+          </tr>
+          <tr>
+            <td class="td-term">TGS</td>
+            <td>Ticket-Granting Service</td>
+            <td>The part of the KDC that accepts a TGT and issues service tickets for specific resources (file servers, email, web apps).</td>
+          </tr>
+          <tr>
+            <td class="td-term">TGT</td>
+            <td>Ticket-Granting Ticket</td>
+            <td>The "master ticket" issued after successful login. Presented to the TGS to request access to individual services. Valid for a limited time (10 hours by default in AD).</td>
+          </tr>
+          <tr>
+            <td class="td-term">Service Ticket</td>
+            <td>Session Ticket / ST</td>
+            <td>A ticket for a specific service. Presented directly to the service (file server, etc.) to prove identity. The service can verify it without contacting the KDC.</td>
+          </tr>
+          <tr>
+            <td class="td-term">Realm</td>
+            <td>Kerberos domain</td>
+            <td>The administrative boundary for Kerberos — maps to a Windows domain in Active Directory (e.g. COMPANY.COM).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>How Kerberos authentication works — step by step</h2>
+
+    <p>The full Kerberos flow involves six message exchanges across three parties. This sequence is tested on Security+ — understand each step and what it proves:</p>
+
+    <div class="step-flow">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">AS-REQ — User requests a TGT</div>
+          <div class="step-desc">The user's client sends an Authentication Service Request to the KDC. It includes the username and a timestamp encrypted with the user's password hash. The password itself is never sent.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">AS-REP — KDC issues the TGT</div>
+          <div class="step-desc">The KDC verifies the request by decrypting the timestamp using the stored password hash. If valid, it returns a <span class="step-mono">TGT</span> encrypted with the KDC's secret key (krbtgt account hash). The client stores this TGT in memory.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">TGS-REQ — User requests a service ticket</div>
+          <div class="step-desc">When the user needs to access a resource (e.g. a file server), their client sends a Ticket-Granting Service Request to the KDC, presenting the TGT and the name of the target service.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">TGS-REP — KDC issues a service ticket</div>
+          <div class="step-desc">The KDC decrypts the TGT (only it can, since it holds the krbtgt key), verifies it's valid, and issues a <span class="step-mono">service ticket</span> encrypted with the target service's secret key. The client stores this ticket.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">AP-REQ — User presents service ticket</div>
+          <div class="step-desc">The client sends the service ticket directly to the file server (or other target service). The file server decrypts it using its own key — no contact with the KDC needed at this point.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <div class="step-title">AP-REP — Service grants access</div>
+          <div class="step-desc">The service verifies the ticket is valid and not expired, confirms the user identity it contains, and grants access. The user's password was never transmitted to the service at any point.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ The key insight the exam tests</div>
+      <p>Kerberos is built on <strong>mutual trust without sharing passwords</strong>. The user proves identity to the KDC once. Services trust tickets issued by the KDC without ever seeing the user's password. The KDC never has to be contacted for every resource access — just once per service per session.</p>
+      <p><strong>Port 88</strong> — TCP and UDP. The KDC listens on 88. This is one of the most tested Kerberos facts alongside the 5-minute clock skew rule.</p>
+    </div>
+
+    <h2>The 5-minute clock skew rule</h2>
+
+    <p>Every Kerberos ticket contains a timestamp. The KDC and all clients must have clocks synchronised within <strong>5 minutes</strong> of each other. If the clock skew exceeds this threshold, the KDC rejects the ticket as potentially replayed — an attacker could theoretically capture a ticket and reuse it later, so the time window limits this risk.</p>
+
+    <div class="callout">
+      <div class="callout-label">📌 Why this matters — the NTP connection</div>
+      <p>This is exactly why <strong>NTP is critical in Active Directory environments</strong>. If a domain-joined machine's clock drifts more than 5 minutes from the Domain Controller (which runs the KDC), <strong>all Kerberos authentication fails</strong> for that machine — users cannot log in, cannot access shared drives, cannot authenticate to any domain service.</p>
+      <p>The most common cause is a VM that was suspended and resumed with a stale clock, or a machine that couldn't reach its NTP source. The fix is always: correct the clock first, then re-authenticate.</p>
+      <p>Exam scenario: "Users on a workstation suddenly cannot log into the domain. No network changes were made. The most likely cause?" → <strong>Clock skew — the workstation's clock has drifted beyond the 5-minute Kerberos tolerance.</strong></p>
+    </div>
+
+    <h2>Kerberos attacks — Security+ exam targets</h2>
+
+    <p>Kerberos attacks are high-frequency Security+ content. The exam expects you to recognise each attack by name, understand the mechanism, and know the defence. These attacks target different stages of the Kerberos ticket chain:</p>
+
+    <div class="attack-grid">
+      <div class="attack-card">
+        <div class="attack-label">Ticket theft attack</div>
+        <div class="attack-title">Pass-the-Ticket (PtT)</div>
+        <div class="attack-how">An attacker steals a valid Kerberos ticket from memory (using tools like Mimikatz) and uses it to authenticate as the victim — without knowing their password. Since the ticket is already encrypted and valid, the KDC accepts it. The attacker effectively impersonates the victim for the ticket's remaining lifetime.</div>
+        <div class="attack-defend"><strong>Defence:</strong> Credential Guard (isolates LSASS in a virtualised environment), short ticket lifetimes, monitoring for anomalous ticket usage from unexpected IPs, and privileged access workstations (PAWs).</div>
+      </div>
+      <div class="attack-card">
+        <div class="attack-label">Forged TGT attack</div>
+        <div class="attack-title">Golden Ticket Attack</div>
+        <div class="attack-how">If an attacker compromises the <strong>krbtgt account hash</strong> (the KDC's master key), they can forge completely valid TGTs for any user — including domain admins — with any expiry date, even after the real account is deleted or disabled. A Golden Ticket gives persistent, unrestricted domain access and is extremely difficult to detect because the tickets appear legitimate to every service.</div>
+        <div class="attack-defend"><strong>Defence:</strong> Reset the krbtgt account password twice (to invalidate all existing TGTs), monitor for tickets with abnormal lifetimes or group memberships, and implement tiered administration to protect Domain Controller access.</div>
+      </div>
+      <div class="attack-card">
+        <div class="attack-label">Forged service ticket</div>
+        <div class="attack-title">Silver Ticket Attack</div>
+        <div class="attack-how">If an attacker compromises a <strong>service account's password hash</strong> (rather than the krbtgt hash), they can forge service tickets for that specific service without contacting the KDC at all. More limited scope than a Golden Ticket (one service only) but harder to detect because it generates no KDC traffic.</div>
+        <div class="attack-defend"><strong>Defence:</strong> Use strong, long, randomly generated service account passwords. Enable Privileged Attribute Certificate (PAC) validation so services verify tickets with the KDC.</div>
+      </div>
+      <div class="attack-card">
+        <div class="attack-label">Credential attack</div>
+        <div class="attack-title">Kerberoasting</div>
+        <div class="attack-how">Any authenticated domain user can request service tickets for any service with a Service Principal Name (SPN) registered. The service ticket is encrypted with the service account's password hash. An attacker requests these tickets, extracts them, and cracks the encryption offline — no account lockout, no noise, no need for elevated privileges. Weak service account passwords are trivially cracked this way.</div>
+        <div class="attack-defend"><strong>Defence:</strong> Use strong, long passwords (25+ characters) for service accounts — or better, use <strong>Managed Service Accounts (MSAs)</strong> which have 240-character auto-rotating passwords that are practically uncrackable. Audit SPNs regularly.</div>
+      </div>
+      <div class="attack-card">
+        <div class="attack-label">Pre-auth bypass</div>
+        <div class="attack-title">AS-REP Roasting</div>
+        <div class="attack-how">For accounts that have <strong>Kerberos pre-authentication disabled</strong>, an attacker can request a TGT without proving identity first. The KDC responds with an AS-REP containing data encrypted with the user's password hash, which the attacker can extract and crack offline — similar to Kerberoasting but targeting user accounts instead of service accounts.</div>
+        <div class="attack-defend"><strong>Defence:</strong> Ensure Kerberos pre-authentication is enabled on all accounts (it's enabled by default — only disable for specific legacy application compatibility requirements). Monitor for AS-REP requests from accounts with pre-auth disabled.</div>
+      </div>
+    </div>
+
+    <h2>Kerberos quick reference</h2>
+
+    <div class="code-block">
+      <div class="code-label">Kerberos exam reference — cold recall facts</div>
+      <pre><span class="code-hl">Protocol:</span>     Kerberos
+<span class="code-hl">Port:</span>          TCP/UDP 88
+<span class="code-hl">Used by:</span>       Active Directory (default domain auth protocol)
+
+<span class="code-hl">KDC:</span>           Key Distribution Centre — runs on Domain Controller
+<span class="code-hl">AS:</span>            Authentication Service — issues TGT after login
+<span class="code-hl">TGS:</span>           Ticket-Granting Service — issues service tickets
+<span class="code-hl">TGT:</span>           Ticket-Granting Ticket — master ticket, valid 10hrs (default)
+<span class="code-hl">krbtgt:</span>        The KDC's master account — its hash signs all TGTs
+
+<span class="code-teal">Clock skew:</span>    5 minutes maximum — enforced to prevent ticket replay
+<span class="code-teal">NTP:</span>           Required — clocks must be synced for Kerberos to work
+
+<span class="code-hl">Attacks:</span>
+  <span class="code-purple">Pass-the-Ticket</span>   Stolen ticket used to impersonate user
+  <span class="code-purple">Golden Ticket</span>     Forged TGT from compromised krbtgt hash
+  <span class="code-purple">Silver Ticket</span>     Forged service ticket from compromised service hash
+  <span class="code-purple">Kerberoasting</span>     Offline cracking of service ticket encryption
+  <span class="code-purple">AS-REP Roasting</span>   Offline cracking when pre-auth is disabled</pre>
+    </div>
+
+    <h2>Exam scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "Which authentication protocol does Active Directory use by default for domain logins?" → <strong>Kerberos — runs on TCP/UDP port 88, uses the KDC on the Domain Controller</strong></div>
+      <div class="scenario-item">💬 "A user's workstation cannot authenticate to the domain after being offline for several days. No network changes were made. What is the most likely cause?" → <strong>Kerberos clock skew — the workstation's clock has drifted beyond 5 minutes from the Domain Controller. Sync time with NTP and re-authenticate.</strong></div>
+      <div class="scenario-item">💬 "An attacker extracts Kerberos tickets from memory using Mimikatz and uses them to access resources without knowing any passwords. What is this attack?" → <strong>Pass-the-Ticket (PtT)</strong></div>
+      <div class="scenario-item">💬 "An attacker compromises the krbtgt account hash and uses it to create forged tickets that grant domain admin access for any user. What is this attack?" → <strong>Golden Ticket attack — requires resetting the krbtgt password twice to remediate</strong></div>
+      <div class="scenario-item">💬 "An attacker requests service tickets for all SPN-registered service accounts and cracks them offline. No account lockouts occur. What is this attack?" → <strong>Kerberoasting — use Managed Service Accounts with long auto-rotating passwords to defend</strong></div>
+      <div class="scenario-item">💬 "What is the initial ticket issued by the Kerberos Authentication Service after a user provides valid credentials?" → <strong>TGT — Ticket-Granting Ticket, used to request individual service tickets without re-entering credentials</strong></div>
+      <div class="scenario-item">💬 "An organisation wants to prevent Kerberos ticket theft from memory. Which Windows feature should be enabled?" → <strong>Credential Guard — isolates LSASS in a virtualisation-based security environment, preventing Mimikatz-style ticket extraction</strong></div>
+      <div class="scenario-item">💬 "Which Kerberos attack exploits accounts that have pre-authentication disabled?" → <strong>AS-REP Roasting — the KDC returns encrypted data without verifying identity first, which can be cracked offline</strong></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for Security+?</h3>
+        <p>The SY0-701 study guide, Dion Training practice exams, and Professor Messer's free course.</p>
+      </div>
+      <a href="best-security-plus.html" class="btn btn-purple">See Security+ Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="ntp-explained.html" class="related-link">What is NTP?</a>
+      <a href="ldap-explained.html" class="related-link">What is LDAP?</a>
+      <a href="radius-explained.html" class="related-link">What is RADIUS?</a>
+      <a href="network-attacks.html" class="related-link">Network Attacks Explained</a>
+      <a href="cryptography.html" class="related-link">Cryptography Explained</a>
+      <a href="identity-and-access-management.html" class="related-link">Identity & Access Management</a>
+      <a href="how-to-pass-comptia-security-plus.html" class="related-link">How to Pass Security+</a>
+      <a href="best-security-plus.html" class="related-link">Best Security+ Resources</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+, Network+, and Security+ resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Authentication</div>
+      <a href="kerberos-explained.html">What is Kerberos?</a>
+      <a href="radius-explained.html">What is RADIUS?</a>
+      <a href="ldap-explained.html">What is LDAP?</a>
+      <a href="ssh-explained.html">What is SSH?</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Security+</div>
+      <a href="how-to-pass-comptia-security-plus.html">How to Pass Security+</a>
+      <a href="best-security-plus.html">Best Security+ Resources</a>
+      <a href="network-attacks.html">Network Attacks</a>
+      <a href="cryptography.html">Cryptography Explained</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>
