@@ -502,7 +502,7 @@ a:hover { text-decoration: underline; }
       <span>›</span>
       <span>Default Gateway</span>
     </nav>
-    <div class="page-hero-badge">CompTIA A+ · Core Concept</div>
+    <div class="page-hero-badge">CompTIA A+ · Network+</div>
     <h1>What Is a <span>Default Gateway?</span></h1>
     <p class="page-hero-sub">
       The default gateway is one of the most important networking concepts on the CompTIA A+ exam — it's the device that allows your computer to communicate outside its local network.
@@ -616,6 +616,90 @@ Default Gateway: <span class="blank">(blank)</span></pre>
 
     <hr class="divider">
 
+    <h2>How Routers Use the Gateway — Layer 3 Routing</h2>
+
+    <p>Understanding what the default gateway actually does helps with Network+ routing questions. When your device sends a packet to a destination outside the local subnet, it hands it to the gateway. The router then examines its <strong>routing table</strong> — a list of known networks and which interface or next-hop router to use to reach them.</p>
+
+    <div class="code-block" style="background:var(--navy);border-radius:12px;overflow:hidden;margin-bottom:28px;border:1px solid rgba(255,255,255,0.08);">
+      <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.7px;text-transform:uppercase;color:var(--teal);padding:10px 18px 8px;border-bottom:1px solid rgba(255,255,255,0.08);">Example routing table (simplified)</div>
+      <pre style="font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,0.85);line-height:1.8;padding:14px 18px;overflow-x:auto;margin:0;"><span style="color:var(--teal);font-weight:700;">Destination</span>       <span style="color:var(--teal);font-weight:700;">Subnet Mask</span>       <span style="color:var(--teal);font-weight:700;">Gateway</span>          <span style="color:var(--teal);font-weight:700;">Interface</span>
+192.168.1.0       255.255.255.0     On-link          Eth0  <span style="color:rgba(255,255,255,0.35);">← local subnet, send direct</span>
+10.0.0.0          255.0.0.0         10.10.1.1        Eth1  <span style="color:rgba(255,255,255,0.35);">← route to 10.x.x.x via next-hop</span>
+0.0.0.0           0.0.0.0           73.45.88.1       Eth0  <span style="color:rgba(255,255,255,0.35);">← default route — everything else</span></pre>
+    </div>
+
+    <p>The last entry — <strong>0.0.0.0/0</strong> — is the <strong>gateway of last resort</strong> (also called the default route). If no more specific route matches the destination, the packet is forwarded here. This is exactly what your home router does: it has a default route pointing to your ISP's router, so anything not on your local network gets sent upstream.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Network+ — gateway of last resort</div>
+      <p><strong>Gateway of last resort</strong> = the default route = 0.0.0.0/0. On Cisco routers you'd configure it with <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;">ip route 0.0.0.0 0.0.0.0 [next-hop IP]</code>. This appears in Network+ routing troubleshooting scenarios — if a router has no default route, packets to unknown networks are dropped.</p>
+      <p>On Cisco, <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;">show ip route</code> displays the routing table. A line beginning with <strong>S*</strong> is a static default route.</p>
+    </div>
+
+    <h2>Multiple Gateways and Routing Protocols</h2>
+
+    <p>Enterprise networks don't rely on static routes for everything — they use <strong>dynamic routing protocols</strong> that let routers share information about available paths automatically. The gateway a router uses can change based on network conditions.</p>
+
+    <div style="overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:28px;">
+      <table style="width:100%;border-collapse:collapse;background:var(--white);min-width:380px;">
+        <thead>
+          <tr>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.9);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:12px 16px;text-align:left;font-family:'DM Mono',monospace;">Protocol</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:12px 16px;text-align:left;font-family:'DM Mono',monospace;">Type</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:12px 16px;text-align:left;font-family:'DM Mono',monospace;">Use case</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:11px 16px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;">Static routes</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Manual</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Small networks, specific fixed paths. Default route (0.0.0.0/0) is always static.</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:11px 16px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;">RIP</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Dynamic (distance vector)</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Legacy. Counts hops — max 15 hops. Slow convergence. Rarely used today.</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:11px 16px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;">OSPF</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Dynamic (link state)</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Most common interior routing protocol. Uses cost (bandwidth) to pick best path. Fast convergence.</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:11px 16px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;">EIGRP</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Dynamic (hybrid)</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Cisco proprietary. Fast convergence, uses bandwidth and delay as metrics.</td>
+          </tr>
+          <tr>
+            <td style="padding:11px 16px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;">BGP</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Dynamic (path vector)</td>
+            <td style="padding:11px 16px;font-size:13.5px;">The internet's routing protocol — exchanges routes between ISPs and autonomous systems.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Default Gateway in IPv6</h2>
+
+    <p>IPv6 uses the same concept but works slightly differently. Rather than DHCP assigning a gateway, IPv6 devices use <strong>Router Advertisement (RA)</strong> messages — routers periodically broadcast their presence and IPv6 prefix on the local network. Devices use these advertisements to configure their own IPv6 address (SLAAC — Stateless Address Autoconfiguration) and learn the default gateway automatically.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Network+ — IPv6 gateway facts</div>
+      <p>IPv6 default gateways are <strong>link-local addresses</strong> (starting with fe80::) rather than full global unicast addresses. This is because link-local addresses are always reachable on the local segment regardless of global prefix changes.</p>
+      <p><strong>SLAAC</strong> (Stateless Address Autoconfiguration) — devices generate their own IPv6 address from the router-advertised prefix + their MAC address (EUI-64). No DHCP server needed for basic IPv6 connectivity.</p>
+    </div>
+
+    <h2>Exam scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "A user can access local file shares and printers but cannot browse any websites. What is the most likely cause?" → <strong>Incorrect or missing default gateway — local traffic works without the gateway, internet traffic requires it</strong></div>
+      <div class="scenario-item">💬 "Which routing table entry matches all destinations that don't match a more specific route?" → <strong>The default route — 0.0.0.0/0, also called the gateway of last resort</strong></div>
+      <div class="scenario-item">💬 "Which dynamic routing protocol uses link-state advertisements and selects paths based on bandwidth cost?" → <strong>OSPF — Open Shortest Path First</strong></div>
+      <div class="scenario-item">💬 "How do IPv6 devices automatically learn the default gateway without a DHCP server?" → <strong>Router Advertisement (RA) messages — routers broadcast their link-local address and prefix, devices use SLAAC</strong></div>
+    </div>
+
+    <hr class="divider">
+
     <h2>Final Summary</h2>
 
     <div class="summary-list">
@@ -658,6 +742,8 @@ Default Gateway: <span class="blank">(blank)</span></pre>
       <a href="home-lab-setup-guide.html" class="related-link">Build Your First Home Lab</a>
       <a href="firewall-basics.html" class="related-link">Firewall Basics</a>
       <a href="router-vs-switch.html" class="related-link">Router vs Switch</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
     </div>
 
     <!-- CTA -->
@@ -677,7 +763,7 @@ Default Gateway: <span class="blank">(blank)</span></pre>
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="footer-logo">IT Study Hub</div>
-      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+      <div class="footer-tagline">Practical CompTIA A+, Network+, and Security+ resources for real-world IT success.</div>
     </div>
     <div class="footer-links">
       <div class="footer-links-title">Pages</div>
@@ -697,9 +783,4 @@ Default Gateway: <span class="blank">(blank)</span></pre>
   </div>
   <div class="footer-bottom">
     <span>© 2025 IT Study Hub — itstudyhub.org</span>
-    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</span>
-  </div>
-</footer>
-
-</body>
-</html>
+    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure:

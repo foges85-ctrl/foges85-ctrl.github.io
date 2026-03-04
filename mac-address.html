@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/mac-address.html">
 
-<title>What Is a MAC Address? | CompTIA A+ Explained Simply (IT Study Hub)</title>
-<meta name="description" content="What is a MAC address, how it differs from an IP address, how to find yours on Windows, and how it appears on the CompTIA A+ exam — explained simply for beginners.">
+<title>What Is a MAC Address? | CompTIA A+ · Network+ · Security+ Explained Simply (IT Study Hub)</title>
+<meta name="description" content="What is a MAC address, how it differs from an IP address, how to find yours on Windows, and how it appears on the CompTIA A+ · Network+ · Security+ exam — explained simply for beginners.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -479,7 +479,7 @@ a:hover { text-decoration: underline; }
       <span>›</span>
       <span>MAC Address</span>
     </nav>
-    <div class="page-hero-badge">CompTIA A+ · Networking Fundamentals</div>
+    <div class="page-hero-badge">CompTIA A+ · Network+ · Security+ · Networking Fundamentals</div>
     <h1>What Is a <span>MAC Address?</span></h1>
     <p class="page-hero-sub">
       Every network device has a permanent hardware address burned in at the factory — and a temporary logical address assigned by DHCP. Understanding the difference between these two is a core A+ concept.
@@ -734,6 +734,98 @@ a:hover { text-decoration: underline; }
 
     <hr class="divider">
 
+    <h2>MAC spoofing — the Security+ attack</h2>
+
+    <p>Although MAC addresses are burned into hardware, the operating system can override what it transmits — this is called <strong>MAC spoofing</strong>. An attacker changes their device's reported MAC address to impersonate another device on the network.</p>
+
+    <div style="background:rgba(220,38,38,0.04);border:1px solid rgba(220,38,38,0.2);border-left:4px solid #ef4444;border-radius:12px;padding:16px 20px;margin-bottom:20px;">
+      <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#dc2626;margin-bottom:8px;">⚠️ MAC spoofing — how and why</div>
+      <p style="font-size:14px;color:var(--text);line-height:1.7;margin-bottom:8px;"><strong>Bypass MAC filtering:</strong> Many wireless networks use MAC address filtering as an access control measure — only allowing known MAC addresses to connect. An attacker can capture a legitimate device's MAC address from wireless traffic (MACs are transmitted in plaintext) and spoof it to gain access.</p>
+      <p style="font-size:14px;color:var(--text);line-height:1.7;margin-bottom:0;"><strong>Identity impersonation:</strong> On wired networks, spoofing a MAC address can fool switches into forwarding traffic intended for the real device to the attacker instead — a form of Layer 2 interception.</p>
+    </div>
+
+    <div style="background:rgba(26,108,255,0.04);border:1px solid rgba(26,108,255,0.2);border-left:4px solid #1a6cff;border-radius:12px;padding:16px 20px;margin-bottom:28px;">
+      <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#1a6cff;margin-bottom:8px;">📌 Why MAC filtering is weak security</div>
+      <p style="font-size:14px;color:var(--text);line-height:1.7;margin-bottom:0;">MAC filtering is easily defeated by spoofing and should never be relied on as a primary security control. The Security+ exam expects you to recognise it as <strong>security through obscurity</strong> — it adds friction but provides no real protection against a determined attacker. Use 802.1X (RADIUS authentication) instead for genuine network access control.</p>
+    </div>
+
+    <h2>CAM table overflow attack</h2>
+
+    <p>Switches maintain a <strong>CAM table</strong> (Content Addressable Memory) — a mapping of MAC addresses to switch ports. This is how a switch knows which port to send traffic to, rather than flooding it everywhere like a hub. Each entry has a timeout and is refreshed when traffic is seen from that MAC address.</p>
+
+    <p>A <strong>CAM table overflow</strong> attack exploits the fact that the CAM table has finite memory. The attacker floods the switch with thousands of frames with fake source MAC addresses, filling the CAM table completely. When the table is full, the switch can no longer learn new entries — it falls back to flooding all traffic out of all ports, exactly like a hub. The attacker's device, connected to one of those ports, now receives a copy of every frame on the network.</p>
+
+    <div style="background:var(--navy);border-radius:12px;overflow:hidden;margin-bottom:28px;border:1px solid rgba(255,255,255,0.08);">
+      <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.7px;text-transform:uppercase;color:var(--teal);padding:10px 18px 8px;border-bottom:1px solid rgba(255,255,255,0.08);">CAM table overflow — attack flow</div>
+      <pre style="font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,0.85);line-height:1.8;padding:14px 18px;overflow-x:auto;margin:0;"><span style="color:rgba(255,255,255,0.35);">Normal operation:</span>
+Switch CAM table: AA:BB:CC → Port 1 | DD:EE:FF → Port 2 | ...
+Switch sends traffic only to the correct port
+
+<span style="color:#ef4444;font-weight:700;">Attack:</span>
+Attacker tool (macof) floods switch with 10,000+ fake MAC addresses
+CAM table fills to capacity — no more entries can be added
+
+<span style="color:rgba(255,255,255,0.35);">Result:</span>
+Switch cannot find new MACs in table → floods ALL traffic to ALL ports
+Attacker receives a copy of every frame → <span style="color:#ef4444;font-weight:700;">passive network interception</span></pre>
+    </div>
+
+    <h2>Port security — the defence</h2>
+
+    <p><strong>Port security</strong> is a switch feature that limits how many MAC addresses can be learned on a given port, and optionally locks the port to specific MAC addresses. It directly counters CAM table overflow attacks and prevents rogue devices from connecting.</p>
+
+    <div style="background:var(--navy);border-radius:12px;overflow:hidden;margin-bottom:28px;border:1px solid rgba(255,255,255,0.08);">
+      <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.7px;text-transform:uppercase;color:var(--teal);padding:10px 18px 8px;border-bottom:1px solid rgba(255,255,255,0.08);">Port security — violation modes</div>
+      <pre style="font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,0.85);line-height:1.8;padding:14px 18px;overflow-x:auto;margin:0;"><span style="color:var(--teal);font-weight:700;">Protect</span>   Drop frames from unknown MACs. No alert, port stays up.
+<span style="color:#fcd34d;font-weight:700;">Restrict</span>  Drop frames + increment violation counter + send SNMP trap.
+<span style="color:#ef4444;font-weight:700;">Shutdown</span>  Put port into err-disabled state immediately. Requires manual re-enable.
+           ← Default and most secure. The exam answer when asked "most restrictive mode".</pre>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Security+ — MAC address attacks summary</div>
+      <p><strong>MAC spoofing</strong> — attacker changes their MAC to impersonate another device. Bypasses MAC filtering. Defence: use 802.1X instead of MAC filtering.</p>
+      <p><strong>CAM table overflow</strong> — floods switch with fake MACs until it floods traffic like a hub. Enables passive interception. Defence: port security with maximum MAC limit per port.</p>
+      <p><strong>Port security shutdown mode</strong> — the most restrictive violation response. Err-disables the port immediately when a violation is detected.</p>
+    </div>
+
+    <h2>Broadcast vs unicast vs multicast — MAC addressing modes</h2>
+
+    <p>Not all frames are addressed to a single device. Understanding the three MAC addressing modes is tested on both A+ and Network+:</p>
+
+    <div style="overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:28px;">
+      <table style="width:100%;border-collapse:collapse;background:var(--white);min-width:360px;">
+        <thead>
+          <tr>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.9);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:12px 16px;text-align:left;font-family:'DM Mono',monospace;">Type</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:12px 16px;text-align:left;font-family:'DM Mono',monospace;">MAC address</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:12px 16px;text-align:left;font-family:'DM Mono',monospace;">Delivered to</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:12px 16px;text-align:left;font-family:'DM Mono',monospace;">Example use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:11px 16px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;">Unicast</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Specific device MAC</td>
+            <td style="padding:11px 16px;font-size:13.5px;">One device only</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Normal data transfer between two devices</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:11px 16px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;">Broadcast</td>
+            <td style="padding:11px 16px;font-size:13.5px;">FF:FF:FF:FF:FF:FF</td>
+            <td style="padding:11px 16px;font-size:13.5px;">All devices on segment</td>
+            <td style="padding:11px 16px;font-size:13.5px;">ARP requests, DHCP discovery</td>
+          </tr>
+          <tr>
+            <td style="padding:11px 16px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;">Multicast</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Starts with 01:00:5E (IPv4)</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Group of subscribed devices</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Video streaming, routing protocol updates</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <h2>Key Takeaways</h2>
 
     <div class="summary-list">
@@ -778,7 +870,7 @@ a:hover { text-decoration: underline; }
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="footer-logo">IT Study Hub</div>
-      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+      <div class="footer-tagline">Practical CompTIA A+ · Network+ · Security+ and Networking resources for real-world IT success.</div>
     </div>
     <div class="footer-links">
       <div class="footer-links-title">Pages</div>
@@ -801,9 +893,4 @@ a:hover { text-decoration: underline; }
   </div>
   <div class="footer-bottom">
     <span>© 2025 IT Study Hub — itstudyhub.org</span>
-    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</span>
-  </div>
-</footer>
-
-</body>
-</html>
+    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure:

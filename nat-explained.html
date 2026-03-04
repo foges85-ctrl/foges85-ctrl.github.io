@@ -465,7 +465,7 @@ a:hover { text-decoration: underline; }
       <span>›</span>
       <span>NAT</span>
     </nav>
-    <div class="page-hero-badge">CompTIA A+ · Core Concept</div>
+    <div class="page-hero-badge">CompTIA A+ · Network+ · Security+</div>
     <h1>What Is <span>NAT?</span></h1>
     <p class="page-hero-sub">
       Network Address Translation allows every device in your home to share a single public IP address. It's one of the most important concepts in modern networking — and on the CompTIA A+ exam.
@@ -565,6 +565,89 @@ a:hover { text-decoration: underline; }
 
     <hr class="divider">
 
+    <h2>PAT — Port Address Translation in depth</h2>
+
+    <p>PAT (also called <strong>NAT overload</strong>) is the type of NAT used on virtually every home and small business network. It's what allows dozens of devices to share a single public IP address simultaneously — and it's heavily tested on both A+ and Network+.</p>
+
+    <p>The trick is port numbers. Each outbound connection gets a unique source port number assigned by the router. The router maintains a <strong>NAT translation table</strong> that maps each private IP + port to the public IP + port, so it knows exactly which device to send the response back to.</p>
+
+    <div class="code-block" style="background:var(--navy);border-radius:12px;overflow:hidden;margin-bottom:28px;border:1px solid rgba(255,255,255,0.08);">
+      <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.7px;text-transform:uppercase;color:var(--teal);padding:10px 18px 8px;border-bottom:1px solid rgba(255,255,255,0.08);">PAT translation table — example</div>
+      <pre style="font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,0.85);line-height:1.8;padding:14px 18px;overflow-x:auto;margin:0;"><span style="color:var(--teal);font-weight:700;">Private IP : Port</span>      <span style="color:var(--teal);font-weight:700;">→ Public IP : Port</span>      <span style="color:rgba(255,255,255,0.35);">Destination</span>
+192.168.1.10 : 52341  →  73.45.88.200 : 1024   <span style="color:rgba(255,255,255,0.35);">→ google.com:443</span>
+192.168.1.10 : 52342  →  73.45.88.200 : 1025   <span style="color:rgba(255,255,255,0.35);">→ youtube.com:443</span>
+192.168.1.25 : 49871  →  73.45.88.200 : 1026   <span style="color:rgba(255,255,255,0.35);">→ google.com:443</span>
+192.168.1.42 : 61204  →  73.45.88.200 : 1027   <span style="color:rgba(255,255,255,0.35);">→ amazon.com:443</span>
+
+<span style="color:rgba(255,255,255,0.35);">When google.com responds to 73.45.88.200:1024 — router knows to forward it to 192.168.1.10:52341</span></pre>
+    </div>
+
+    <h2>NAT types comparison — Network+ table</h2>
+
+    <div style="overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:28px;">
+      <table style="width:100%;border-collapse:collapse;background:var(--white);min-width:400px;">
+        <thead>
+          <tr>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.9);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:12px 16px;text-align:left;font-family:'DM Mono',monospace;">Type</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:12px 16px;text-align:left;font-family:'DM Mono',monospace;">Mapping</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:12px 16px;text-align:left;font-family:'DM Mono',monospace;">Use case</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:12px 16px;text-align:left;font-family:'DM Mono',monospace;">Public IPs needed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:11px 16px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;">Static NAT</td>
+            <td style="padding:11px 16px;font-size:13.5px;">1 private IP ↔ 1 public IP (permanent)</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Public-facing servers — web, email, FTP. The server must always be reachable at the same public IP.</td>
+            <td style="padding:11px 16px;font-size:13.5px;">1 per device</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:11px 16px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;">Dynamic NAT</td>
+            <td style="padding:11px 16px;font-size:13.5px;">1 private IP ↔ 1 public IP (from pool, on-demand)</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Organisations with a pool of public IPs but fewer than devices. Less common than PAT.</td>
+            <td style="padding:11px 16px;font-size:13.5px;">1 per active session</td>
+          </tr>
+          <tr>
+            <td style="padding:11px 16px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;">PAT / NAT Overload</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Many private IPs ↔ 1 public IP (tracked by port)</td>
+            <td style="padding:11px 16px;font-size:13.5px;">All home routers and most small/medium businesses. Virtually universal.</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Just 1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Port forwarding — punching holes in NAT</h2>
+
+    <p>NAT provides a natural firewall effect — unsolicited inbound traffic has nowhere to go because the router doesn't have a matching entry in its translation table. But sometimes you <em>want</em> inbound traffic to reach a specific internal device: a home server, a gaming console, a security camera.</p>
+
+    <p><strong>Port forwarding</strong> creates a static NAT rule that permanently maps a specific public port to an internal IP and port. When traffic arrives on that port, the router forwards it straight to the designated device without waiting for an outbound connection.</p>
+
+    <div class="code-block" style="background:var(--navy);border-radius:12px;overflow:hidden;margin-bottom:28px;border:1px solid rgba(255,255,255,0.08);">
+      <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.7px;text-transform:uppercase;color:var(--teal);padding:10px 18px 8px;border-bottom:1px solid rgba(255,255,255,0.08);">Port forwarding example</div>
+      <pre style="font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,0.85);line-height:1.8;padding:14px 18px;overflow-x:auto;margin:0;"><span style="color:rgba(255,255,255,0.35);">Rule: forward external port 8080 → internal 192.168.1.100:80</span>
+
+Internet user visits: <span style="color:var(--teal);font-weight:700;">73.45.88.200:8080</span>
+Router translates to: <span style="color:#7eb3ff;font-weight:700;">192.168.1.100:80</span>  (internal web server)
+
+<span style="color:rgba(255,255,255,0.35);">Without port forwarding — inbound traffic on 8080 would be silently dropped</span>
+<span style="color:rgba(255,255,255,0.35);">With port forwarding — router has a static rule to forward it</span></pre>
+    </div>
+
+    <h2>NAT and security — the Security+ angle</h2>
+
+    <p>NAT has security implications that appear on Security+. Understanding both the protection it provides and its limitations is important:</p>
+
+    <div style="background:rgba(26,108,255,0.04);border:1px solid rgba(26,108,255,0.2);border-left:4px solid #1a6cff;border-radius:12px;padding:16px 20px;margin-bottom:20px;">
+      <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#1a6cff;margin-bottom:8px;">Security benefit</div>
+      <p style="font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;">NAT acts as an <strong>implicit inbound firewall</strong>. Internal devices are hidden behind the public IP — their private addresses are not routable from the internet. Unsolicited inbound packets have no matching NAT entry and are dropped. This is not a substitute for a real firewall, but it does reduce the attack surface significantly compared to having every device publicly exposed.</p>
+    </div>
+
+    <div style="background:rgba(220,38,38,0.04);border:1px solid rgba(220,38,38,0.2);border-left:4px solid #ef4444;border-radius:12px;padding:16px 20px;margin-bottom:28px;">
+      <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#dc2626;margin-bottom:8px;">Security limitation</div>
+      <p style="font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;">NAT does <strong>not</strong> inspect traffic content — it only translates addresses. Malware on an internal device can still make outbound connections through NAT freely. NAT also complicates some security protocols (like IPsec in transport mode) because it modifies the packet headers that the cryptographic signature protects. <strong>NAT traversal</strong> techniques (like UDP hole-punching used by VoIP and VPNs) are needed to work around this.</p>
+    </div>
+
     <h2>How NAT Appears on the A+ Exam</h2>
     <p>Exam questions may ask:</p>
 
@@ -639,6 +722,10 @@ a:hover { text-decoration: underline; }
       <a href="dhcp.html" class="related-link">What Is DHCP?</a>
       <a href="dns.html" class="related-link">What Is DNS?</a>
       <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
+      <a href="vpn.html" class="related-link">What is a VPN?</a>
+      <a href="firewall-basics.html" class="related-link">Firewall Basics</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
       <a href="osi-model.html" class="related-link">OSI Model Explained</a>
       <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP Explained</a>
       <a href="home-lab-setup-guide.html" class="related-link">Build Your First Home Lab</a>
@@ -684,9 +771,4 @@ a:hover { text-decoration: underline; }
   </div>
   <div class="footer-bottom">
     <span>© 2025 IT Study Hub — itstudyhub.org</span>
-    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</span>
-  </div>
-</footer>
-
-</body>
-</html>
+    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure:
