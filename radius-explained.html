@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/radius-explained.html">
+
+<title>What is RADIUS? AAA Authentication Explained — CompTIA Network+ & Security+ (2026)</title>
+<meta name="description" content="What is RADIUS and how does it work? AAA authentication, RADIUS vs TACACS+, 802.1X, port 1812 vs 1813, and every RADIUS concept tested on CompTIA Network+ and Security+.">
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
+     crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --blue2:   #1560e8;
+  --purple:  #7c3aed;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--lighter); color: var(--text); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+
+/* ── NAVBAR ── */
+.navbar { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 28px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo-link { display: flex; align-items: center; gap: 10px; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 17px; color: var(--navy); letter-spacing: -0.3px; flex-shrink: 0; }
+.logo-img { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a { font-size: 14px; font-weight: 600; padding: 8px 14px; border-radius: 8px; color: var(--muted); transition: color 0.15s, background 0.15s; }
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta { background: var(--navy); color: var(--white) !important; padding: 8px 18px; border-radius: 8px; margin-left: 6px; }
+.nav-links a.nav-cta:hover { background: var(--navy2); }
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 44px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero { background: var(--navy); position: relative; overflow: hidden; padding: 60px 28px 70px; }
+.page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 100% at 90% 50%, rgba(26,108,255,0.12) 0%, transparent 70%), radial-gradient(ellipse 30% 60% at 5% 90%, rgba(0,194,168,0.08) 0%, transparent 60%); pointer-events: none; }
+.page-hero::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none; }
+.page-hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; animation: fadeUp 0.6s ease both; }
+.breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 20px; font-family: 'DM Mono', monospace; }
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge { display: inline-flex; align-items: center; background: rgba(26,108,255,0.15); border: 1px solid rgba(26,108,255,0.35); color: #7eb3ff; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 18px; }
+.page-hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(26px, 4vw, 42px); font-weight: 800; color: var(--white); line-height: 1.15; letter-spacing: -0.8px; margin-bottom: 14px; }
+.page-hero h1 span { color: #7eb3ff; }
+.page-hero-sub { font-size: 16px; color: rgba(255,255,255,0.6); max-width: 620px; line-height: 1.7; }
+
+/* ── ARTICLE ── */
+.article-wrap { max-width: 860px; margin: 0 auto; padding: 52px 28px 80px; animation: fadeUp 0.5s ease both; }
+@media (max-width: 768px) { .article-wrap { padding: 36px 16px 60px; } }
+.article-body h2 { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800; color: var(--navy); letter-spacing: -0.3px; margin: 48px 0 16px; }
+.article-body h2:first-child { margin-top: 0; }
+.article-body p { font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 16px; }
+.article-body strong { color: var(--navy); font-weight: 700; }
+
+/* ── QUICK ANSWER ── */
+.quick-answer { background: var(--navy); border-radius: 14px; padding: 24px 26px; margin-bottom: 40px; position: relative; overflow: hidden; }
+.quick-answer::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(26,108,255,0.15) 0%, transparent 70%); pointer-events: none; }
+.quick-answer-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #7eb3ff; margin-bottom: 10px; position: relative; }
+.quick-answer-text { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; position: relative; }
+.quick-answer-text strong { color: var(--white); }
+
+/* ── AAA CARDS ── */
+.aaa-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 40px; }
+@media (max-width: 640px) { .aaa-grid { grid-template-columns: 1fr; } }
+.aaa-card { background: var(--navy); border-radius: 12px; padding: 22px 20px; position: relative; overflow: hidden; }
+.aaa-card::before { content: ''; position: absolute; inset: 0; pointer-events: none; }
+.aaa-card.auth::before { background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(26,108,255,0.18) 0%, transparent 70%); }
+.aaa-card.authz::before { background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,194,168,0.15) 0%, transparent 70%); }
+.aaa-card.acct::before { background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124,58,237,0.15) 0%, transparent 70%); }
+.aaa-letter { font-family: 'Outfit', sans-serif; font-size: 42px; font-weight: 800; line-height: 1; margin-bottom: 4px; position: relative; }
+.aaa-card.auth  .aaa-letter { color: #7eb3ff; }
+.aaa-card.authz .aaa-letter { color: var(--teal); }
+.aaa-card.acct  .aaa-letter { color: #c4b5fd; }
+.aaa-word { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 12px; position: relative; }
+.aaa-question { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 6px; position: relative; }
+.aaa-desc { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.55; position: relative; }
+
+/* ── TABLE ── */
+.table-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--border); box-shadow: var(--card-shadow); margin-bottom: 40px; }
+table { width: 100%; border-collapse: collapse; background: var(--white); min-width: 380px; }
+thead th { background: var(--navy); color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; padding: 14px 18px; text-align: left; font-family: 'DM Mono', monospace; }
+thead th:first-child { color: var(--white); }
+tbody td { padding: 13px 18px; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text); vertical-align: top; line-height: 1.55; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #f4f8ff; }
+.td-term { font-weight: 700; color: var(--navy); font-family: 'DM Mono', monospace; font-size: 13px; }
+.td-good { color: #16a34a; font-weight: 700; }
+.td-warn { color: #b45309; font-weight: 700; }
+
+/* ── CODE BLOCK ── */
+.code-block { background: var(--navy); border-radius: 12px; overflow: hidden; margin-bottom: 32px; border: 1px solid rgba(255,255,255,0.08); }
+.code-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; color: #7eb3ff; padding: 10px 18px 8px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.code-block pre { font-family: 'DM Mono', monospace; font-size: 13.5px; color: rgba(255,255,255,0.85); line-height: 1.8; padding: 16px 18px; overflow-x: auto; margin: 0; }
+.code-hl      { color: #7eb3ff; font-weight: 700; }
+.code-teal    { color: var(--teal); font-weight: 700; }
+.code-purple  { color: #c4b5fd; font-weight: 700; }
+.code-comment { color: rgba(255,255,255,0.35); }
+
+/* ── CONCEPT CARDS ── */
+.concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 40px; }
+@media (max-width: 580px) { .concept-grid { grid-template-columns: 1fr; } }
+.concept-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; box-shadow: var(--card-shadow); border-top: 3px solid var(--blue); }
+.concept-icon { font-size: 22px; margin-bottom: 8px; }
+.concept-label { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--blue); margin-bottom: 6px; }
+.concept-title { font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+.concept-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+
+/* ── EXAM TIP ── */
+.exam-tip { background: linear-gradient(135deg, #fffbeb, #fef9e0); border: 1px solid #f0d060; border-left: 4px solid #f0c000; border-radius: 12px; padding: 18px 22px; margin-bottom: 40px; }
+.exam-tip-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px; }
+.exam-tip p { font-size: 14px; color: #3a2800; line-height: 1.7; margin-bottom: 8px; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #1a1000; }
+
+/* ── CALLOUT ── */
+.callout { background: rgba(26,108,255,0.04); border: 1px solid rgba(26,108,255,0.2); border-left: 4px solid var(--blue); border-radius: 12px; padding: 16px 20px; margin-bottom: 40px; }
+.callout-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+.callout p { font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 6px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout strong { color: var(--navy); }
+
+/* ── SCENARIO LIST ── */
+.scenario-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+.scenario-item { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--text); line-height: 1.65; box-shadow: 0 2px 8px rgba(10,22,40,0.05); }
+.scenario-item strong { color: var(--navy); }
+
+/* ── CTA ── */
+.cta-box { background: linear-gradient(135deg, var(--navy), var(--navy2)); border-radius: 16px; padding: 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; position: relative; overflow: hidden; margin-bottom: 40px; }
+.cta-box::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; background: radial-gradient(circle, rgba(26,108,255,0.2) 0%, transparent 70%); pointer-events: none; }
+.cta-box-text h3 { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 10px; font-size: 14px; font-weight: 600; transition: transform 0.15s, box-shadow 0.15s; white-space: nowrap; flex-shrink: 0; }
+.btn:hover { transform: translateY(-2px); }
+.btn-blue { background: var(--blue); color: var(--white); box-shadow: 0 6px 20px rgba(26,108,255,0.3); }
+.btn-blue:hover { background: var(--blue2); box-shadow: 0 10px 28px rgba(26,108,255,0.4); }
+
+/* ── RELATED ── */
+.related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px; }
+.related-link { display: flex; align-items: center; gap: 8px; background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; font-size: 14px; font-weight: 600; color: var(--navy); transition: border-color 0.15s, color 0.15s, transform 0.15s; box-shadow: 0 2px 8px rgba(10,22,40,0.05); }
+.related-link:hover { border-color: rgba(26,108,255,0.3); color: var(--blue); transform: translateY(-1px); }
+.related-link::before { content: '→'; color: var(--blue); font-size: 13px; }
+
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom { max-width: 1100px; margin: 28px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+@media (max-width: 600px) { .footer { padding: 36px 16px; } .footer-bottom { flex-direction: column; } }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <span>›</span>
+      <span>What is RADIUS?</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Network+ · Security+ · 2026</div>
+    <h1>What is <span>RADIUS?</span></h1>
+    <p class="page-hero-sub">AAA authentication explained — what RADIUS is, how it works, RADIUS vs TACACS+, 802.1X network access control, and every RADIUS concept tested on CompTIA Network+ and Security+.</p>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ What is RADIUS?</div>
+      <div class="quick-answer-text">
+        RADIUS (Remote Authentication Dial-In User Service) is a networking protocol that provides centralised <strong>AAA — Authentication, Authorisation, and Accounting</strong> for users connecting to a network. It runs over <strong>UDP port 1812</strong> (authentication) and <strong>UDP port 1813</strong> (accounting). RADIUS is the standard for authenticating VPN users, Wi-Fi clients (via 802.1X), and remote access — rather than storing credentials on each device, RADIUS forwards them to a central server that makes the access decision.
+      </div>
+    </div>
+
+    <h2>AAA — the three functions RADIUS provides</h2>
+
+    <p>RADIUS is described as an AAA protocol. Before diving into the mechanics, it helps to understand what each A stands for — these are tested individually on both Network+ and Security+:</p>
+
+    <div class="aaa-grid">
+      <div class="aaa-card auth">
+        <div class="aaa-letter">A</div>
+        <div class="aaa-word">Authentication</div>
+        <div class="aaa-question">Who are you?</div>
+        <div class="aaa-desc">Verifying identity — confirming the user is who they claim to be via credentials, certificates, or tokens.</div>
+      </div>
+      <div class="aaa-card authz">
+        <div class="aaa-letter">A</div>
+        <div class="aaa-word">Authorisation</div>
+        <div class="aaa-question">What can you access?</div>
+        <div class="aaa-desc">Determining what resources the authenticated user is permitted to access — VLANs, network segments, services, admin rights.</div>
+      </div>
+      <div class="aaa-card acct">
+        <div class="aaa-letter">A</div>
+        <div class="aaa-word">Accounting</div>
+        <div class="aaa-question">What did you do?</div>
+        <div class="aaa-desc">Logging what the user did — session start/end times, bytes transferred, commands executed. Critical for auditing and compliance.</div>
+      </div>
+    </div>
+
+    <h2>How RADIUS works</h2>
+
+    <p>RADIUS introduces a three-party model: the <strong>supplicant</strong> (the user or device trying to connect), the <strong>NAS/authenticator</strong> (the network device — VPN gateway, wireless AP, switch), and the <strong>RADIUS server</strong> (the central authority that makes the access decision).</p>
+
+    <div class="code-block">
+      <div class="code-label">RADIUS authentication flow</div>
+      <pre><span class="code-teal">Supplicant</span>          <span class="code-hl">NAS / Authenticator</span>      <span class="code-purple">RADIUS Server</span>
+(User / Device)     (VPN gateway / AP / Switch)  (Central auth)
+
+     │                        │                        │
+     │──── Connect request ──▶│                        │
+     │                        │──── Access-Request ───▶│
+     │                        │    (credentials,        │
+     │                        │     NAS IP, port)       │
+     │                        │                        │ Checks credentials
+     │                        │                        │ against directory
+     │                        │◀─── Access-Accept ─────│
+     │                        │    (+ VLAN, policies)   │
+     │◀─── Network access ────│                        │
+     │                        │                        │
+     │                        │──── Accounting-Start ──▶│ (session begins)
+     │                        │                        │
+     │──── Disconnect ────────▶│                       │
+     │                        │──── Accounting-Stop ───▶│ (session logged)</pre>
+    </div>
+
+    <p>The key insight is that the NAS never makes the access decision itself — it just <strong>proxies</strong> the credentials to the RADIUS server. The RADIUS server checks those credentials against a backend directory (Active Directory via LDAP, a local user database, or another source) and returns Access-Accept or Access-Reject. The NAS enforces whatever the RADIUS server decides.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ RADIUS ports — cold recall</div>
+      <p><strong>UDP 1812</strong> — RADIUS authentication and authorisation (Access-Request, Access-Accept, Access-Reject).</p>
+      <p><strong>UDP 1813</strong> — RADIUS accounting (session start, stop, and interim updates).</p>
+      <p>Older implementations used UDP 1645 and 1646 respectively — the exam may reference these legacy ports. Know both pairs. RADIUS uses UDP (not TCP) because it handles its own retransmission logic.</p>
+    </div>
+
+    <h2>RADIUS vs TACACS+</h2>
+
+    <p>RADIUS and TACACS+ are both AAA protocols but serve different primary use cases. This comparison is one of the most commonly tested distinctions on Network+ and Security+:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>RADIUS</th><th>TACACS+</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-term">Developed by</td>
+            <td>Open standard (RFC 2865)</td>
+            <td>Cisco proprietary</td>
+          </tr>
+          <tr>
+            <td class="td-term">Transport</td>
+            <td>UDP 1812 / 1813</td>
+            <td>TCP 49</td>
+          </tr>
+          <tr>
+            <td class="td-term">Encryption</td>
+            <td class="td-warn">Password only — rest of packet unencrypted</td>
+            <td class="td-good">Full packet encryption — entire body encrypted</td>
+          </tr>
+          <tr>
+            <td class="td-term">AAA separation</td>
+            <td>Authentication and authorisation combined</td>
+            <td>Authentication, authorisation, and accounting fully separated</td>
+          </tr>
+          <tr>
+            <td class="td-term">Primary use</td>
+            <td>Network access — VPN, Wi-Fi, 802.1X</td>
+            <td>Device administration — router/switch command authorisation</td>
+          </tr>
+          <tr>
+            <td class="td-term">Multiprotocol</td>
+            <td>Originally for dial-up, now broadly used</td>
+            <td>Excellent support for multiple protocols and shell access</td>
+          </tr>
+          <tr>
+            <td class="td-term">Vendor support</td>
+            <td>Universal — all vendors support RADIUS</td>
+            <td>Primarily Cisco environments</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ RADIUS vs TACACS+ — the exam shortcut</div>
+      <p><strong>RADIUS</strong> = network access control (who can connect to the network — VPN users, Wi-Fi clients). UDP. Encrypts password only.</p>
+      <p><strong>TACACS+</strong> = device administration (which commands can an admin run on a router or switch). TCP 49. Fully encrypted. Cisco environments.</p>
+      <p>Scenario: "An administrator wants to control which commands a network engineer can run on Cisco routers." → <strong>TACACS+</strong>. "A company needs to authenticate remote VPN users against Active Directory." → <strong>RADIUS</strong>.</p>
+    </div>
+
+    <h2>802.1X — RADIUS for wired and wireless access control</h2>
+
+    <p><strong>802.1X</strong> is the IEEE standard for port-based network access control. It uses RADIUS as its backend authentication server. When a device plugs into a switch port or connects to a Wi-Fi network, 802.1X holds them in an unauthenticated state — a kind of quarantine — until RADIUS verifies their identity.</p>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-icon">💻</div>
+        <div class="concept-label">Device trying to connect</div>
+        <div class="concept-title">Supplicant</div>
+        <div class="concept-desc">The end user's device. Runs 802.1X client software (built into Windows, macOS, and most operating systems). Sends credentials to the authenticator when challenged.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">📡</div>
+        <div class="concept-label">Network device</div>
+        <div class="concept-title">Authenticator</div>
+        <div class="concept-desc">The switch port or wireless access point. Blocks all traffic except EAP authentication messages until RADIUS approves access. Forwards credentials to the RADIUS server.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🖥️</div>
+        <div class="concept-label">Central decision maker</div>
+        <div class="concept-title">Authentication Server (RADIUS)</div>
+        <div class="concept-desc">Receives credentials from the authenticator, checks them against Active Directory or another directory, and returns Access-Accept or Access-Reject — plus VLAN and policy assignments.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🔒</div>
+        <div class="concept-label">Auth protocol</div>
+        <div class="concept-title">EAP (Extensible Auth Protocol)</div>
+        <div class="concept-desc">The protocol used between the supplicant and authenticator. EAP is a framework with many methods — EAP-TLS (certificates), PEAP (password in TLS tunnel), EAP-TTLS. EAP-TLS is the most secure.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">📌 Why 802.1X matters for Security+</div>
+      <p>Without 802.1X, anyone who physically plugs into a switch port gets network access. With 802.1X, <strong>every device must authenticate before any traffic is allowed</strong> — unauthenticated devices are placed in a quarantine VLAN or blocked entirely.</p>
+      <p>This is the standard defence against <strong>rogue device attacks</strong> — an attacker plugging a laptop into an empty switch port and accessing the internal network. 802.1X prevents this at the port level.</p>
+      <p>The exam may describe 802.1X as <strong>"port-based NAC (Network Access Control)"</strong> — this is the same thing.</p>
+    </div>
+
+    <h2>EAP methods — what the exam tests</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>EAP Method</th><th>How it authenticates</th><th>Security level</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-term">EAP-TLS</td>
+            <td>Mutual certificate authentication — both client and server present certificates. Requires PKI infrastructure.</td>
+            <td class="td-good">Strongest — mutual auth, no password</td>
+          </tr>
+          <tr>
+            <td class="td-term">PEAP</td>
+            <td>Creates a TLS tunnel using the server's certificate, then authenticates the client with a password inside the tunnel. No client certificate needed.</td>
+            <td class="td-good">Strong — password protected by TLS tunnel</td>
+          </tr>
+          <tr>
+            <td class="td-term">EAP-TTLS</td>
+            <td>Similar to PEAP — TLS tunnel, then various authentication methods inside. More flexible than PEAP.</td>
+            <td class="td-good">Strong — TLS-protected inner auth</td>
+          </tr>
+          <tr>
+            <td class="td-term">EAP-MD5</td>
+            <td>Password hashed with MD5. No server authentication — vulnerable to MITM attacks.</td>
+            <td class="td-warn">Weak — MD5 is broken, no server auth</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ EAP-TLS is always the most secure answer</div>
+      <p>If the exam asks which EAP method provides the highest security, the answer is <strong>EAP-TLS</strong> — it uses certificates on both sides (mutual authentication), eliminates passwords entirely, and provides the strongest protection against MITM attacks.</p>
+      <p>The tradeoff is infrastructure cost — you need a PKI to issue client certificates. PEAP is the practical middle ground: strong security without requiring client certificates.</p>
+    </div>
+
+    <h2>RADIUS in enterprise deployments</h2>
+
+    <p>In production environments, RADIUS doesn't work in isolation. It connects to backend systems to check credentials and retrieve authorisation policies:</p>
+
+    <div class="code-block">
+      <div class="code-label">RADIUS enterprise architecture</div>
+      <pre><span class="code-comment">User connects to Wi-Fi / VPN / switch port</span>
+          │
+          ▼
+<span class="code-hl">Authenticator</span> (AP / VPN gateway / switch)
+          │  EAP over RADIUS (UDP 1812)
+          ▼
+<span class="code-teal">RADIUS Server</span> (e.g. Microsoft NPS, FreeRADIUS, Cisco ISE)
+          │
+          ├──▶ <span class="code-hl">Active Directory / LDAP</span>  <span class="code-comment">(verify credentials)</span>
+          │
+          ├──▶ <span class="code-hl">Certificate Authority</span>      <span class="code-comment">(validate client certs for EAP-TLS)</span>
+          │
+          └──▶ <span class="code-hl">Policy engine</span>             <span class="code-comment">(assign VLAN, ACL, time restrictions)</span>
+                    │
+                    └─▶ Access-Accept (+ VLAN tag, ACL) → user gets network access
+                        Access-Reject → user blocked</pre>
+    </div>
+
+    <p>Common RADIUS server implementations include <strong>Microsoft NPS</strong> (Network Policy Server — built into Windows Server), <strong>FreeRADIUS</strong> (open source, widely used on Linux), and <strong>Cisco ISE</strong> (Identity Services Engine — enterprise NAC platform).</p>
+
+    <h2>Exam scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "A company wants to authenticate VPN users against Active Directory from a central server rather than storing credentials on the VPN appliance. Which protocol should they use?" → <strong>RADIUS — centralised AAA, forwards credentials to Active Directory for verification</strong></div>
+      <div class="scenario-item">💬 "Which protocol uses TCP port 49 and fully encrypts the entire authentication packet — commonly used for Cisco device administration?" → <strong>TACACS+</strong></div>
+      <div class="scenario-item">💬 "What are the three components of AAA?" → <strong>Authentication (who are you), Authorisation (what can you access), Accounting (what did you do)</strong></div>
+      <div class="scenario-item">💬 "Which IEEE standard provides port-based network access control, blocking unauthenticated devices at the switch port?" → <strong>802.1X — uses RADIUS as the backend authentication server</strong></div>
+      <div class="scenario-item">💬 "Which EAP method requires certificates on both the client and server and provides the strongest authentication?" → <strong>EAP-TLS — mutual certificate authentication, no passwords</strong></div>
+      <div class="scenario-item">💬 "A security team wants to prevent rogue devices from connecting to switch ports. What technology should be implemented?" → <strong>802.1X port-based NAC with RADIUS — unauthenticated devices are blocked or quarantined</strong></div>
+      <div class="scenario-item">💬 "What are the RADIUS ports for authentication and accounting?" → <strong>UDP 1812 (authentication) and UDP 1813 (accounting)</strong></div>
+      <div class="scenario-item">💬 "A network engineer needs to log every command an administrator executes on a Cisco router. Which AAA protocol best supports this?" → <strong>TACACS+ — separates authentication, authorisation, and accounting; supports per-command authorisation and full logging on Cisco devices</strong></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for Network+ or Security+?</h3>
+        <p>The study guides, practice exams, and free resources worth your time.</p>
+      </div>
+      <a href="best-study-resources.html" class="btn btn-blue">See Study Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="ldap-explained.html" class="related-link">What is LDAP?</a>
+      <a href="ntp-explained.html" class="related-link">What is NTP?</a>
+      <a href="snmp-explained.html" class="related-link">What is SNMP?</a>
+      <a href="firewall-basics.html" class="related-link">Firewall Basics Explained</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="ports.html" class="related-link">Port Numbers Reference</a>
+      <a href="how-to-pass-comptia-network-plus.html" class="related-link">How to Pass Network+</a>
+      <a href="how-to-pass-comptia-security-plus.html" class="related-link">How to Pass Security+</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+, Network+, and Security+ resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Protocols</div>
+      <a href="radius-explained.html">What is RADIUS?</a>
+      <a href="ldap-explained.html">What is LDAP?</a>
+      <a href="ntp-explained.html">What is NTP?</a>
+      <a href="snmp-explained.html">What is SNMP?</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Network+</div>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-network-plus.html">How to Pass Network+</a>
+      <a href="best-network-plus.html">Best Network+ Resources</a>
+      <a href="ports.html">Port Numbers Reference</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>
