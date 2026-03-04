@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/ldap-explained.html">
+
+<title>What is LDAP? Lightweight Directory Access Protocol Explained — CompTIA Network+ & Security+ (2026)</title>
+<meta name="description" content="What is LDAP and how does it work? LDAP vs LDAPS, port 389 vs 636, Active Directory, distinguished names, LDAP injection, and every LDAP concept tested on CompTIA Network+ and Security+.">
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
+     crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --blue2:   #1560e8;
+  --purple:  #7c3aed;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter); color: var(--text);
+  line-height: 1.65; -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 28px;
+  height: 68px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+}
+.logo-link {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 17px; color: var(--navy); letter-spacing: -0.3px; flex-shrink: 0;
+}
+.logo-img { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px; font-weight: 600; padding: 8px 14px;
+  border-radius: 8px; color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+}
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta {
+  background: var(--navy); color: var(--white) !important;
+  padding: 8px 18px; border-radius: 8px; margin-left: 6px;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); }
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 44px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy); position: relative;
+  overflow: hidden; padding: 60px 28px 70px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(124,58,237,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.page-hero-inner {
+  max-width: 1100px; margin: 0 auto;
+  position: relative; z-index: 1; animation: fadeUp 0.6s ease both;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  margin-bottom: 20px; font-family: 'DM Mono', monospace;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge {
+  display: inline-flex; align-items: center;
+  background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.35);
+  color: #c4b5fd; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
+}
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(26px, 4vw, 42px); font-weight: 800;
+  color: var(--white); line-height: 1.15; letter-spacing: -0.8px; margin-bottom: 14px;
+}
+.page-hero h1 span { color: #c4b5fd; }
+.page-hero-sub {
+  font-size: 16px; color: rgba(255,255,255,0.6); max-width: 620px; line-height: 1.7;
+}
+
+/* ── ARTICLE ── */
+.article-wrap {
+  max-width: 860px; margin: 0 auto; padding: 52px 28px 80px;
+  animation: fadeUp 0.5s ease both;
+}
+@media (max-width: 768px) { .article-wrap { padding: 36px 16px 60px; } }
+.article-body h2 {
+  font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.3px; margin: 48px 0 16px;
+}
+.article-body h2:first-child { margin-top: 0; }
+.article-body p { font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 16px; }
+.article-body strong { color: var(--navy); font-weight: 700; }
+
+/* ── QUICK ANSWER ── */
+.quick-answer {
+  background: var(--navy); border-radius: 14px;
+  padding: 24px 26px; margin-bottom: 40px; position: relative; overflow: hidden;
+}
+.quick-answer::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(124,58,237,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.quick-answer-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #c4b5fd;
+  margin-bottom: 10px; position: relative;
+}
+.quick-answer-text {
+  font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; position: relative;
+}
+.quick-answer-text strong { color: var(--white); }
+
+/* ── TABLE ── */
+.table-wrap {
+  overflow-x: auto; border-radius: 14px; border: 1px solid var(--border);
+  box-shadow: var(--card-shadow); margin-bottom: 40px;
+}
+table { width: 100%; border-collapse: collapse; background: var(--white); min-width: 380px; }
+thead th {
+  background: var(--navy); color: rgba(255,255,255,0.7);
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.7px; padding: 14px 18px; text-align: left;
+  font-family: 'DM Mono', monospace;
+}
+thead th:first-child { color: var(--white); }
+tbody td {
+  padding: 13px 18px; border-bottom: 1px solid var(--border);
+  font-size: 14px; color: var(--text); vertical-align: top; line-height: 1.55;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #faf4ff; }
+.td-term { font-weight: 700; color: var(--navy); font-family: 'DM Mono', monospace; font-size: 13px; }
+.td-good { color: #16a34a; font-weight: 700; }
+.td-bad  { color: #dc2626; font-weight: 700; }
+
+/* ── CODE BLOCK ── */
+.code-block {
+  background: var(--navy); border-radius: 12px; overflow: hidden;
+  margin-bottom: 32px; border: 1px solid rgba(255,255,255,0.08);
+}
+.code-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.7px; text-transform: uppercase; color: #c4b5fd;
+  padding: 10px 18px 8px; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.code-block pre {
+  font-family: 'DM Mono', monospace; font-size: 13.5px;
+  color: rgba(255,255,255,0.85); line-height: 1.8;
+  padding: 16px 18px; overflow-x: auto; margin: 0;
+}
+.code-hl      { color: #c4b5fd; font-weight: 700; }
+.code-teal    { color: var(--teal); font-weight: 700; }
+.code-blue    { color: #7eb3ff; font-weight: 700; }
+.code-comment { color: rgba(255,255,255,0.35); }
+
+/* ── CONCEPT CARDS ── */
+.concept-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 40px;
+}
+@media (max-width: 580px) { .concept-grid { grid-template-columns: 1fr; } }
+.concept-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px 20px; box-shadow: var(--card-shadow);
+  border-top: 3px solid var(--purple);
+}
+.concept-icon { font-size: 22px; margin-bottom: 8px; }
+.concept-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.6px; color: var(--purple); margin-bottom: 6px;
+}
+.concept-title {
+  font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 800;
+  color: var(--navy); margin-bottom: 6px;
+}
+.concept-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+
+/* ── EXAM TIP ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060; border-left: 4px solid #f0c000;
+  border-radius: 12px; padding: 18px 22px; margin-bottom: 40px;
+}
+.exam-tip-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px;
+}
+.exam-tip p { font-size: 14px; color: #3a2800; line-height: 1.7; margin-bottom: 8px; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #1a1000; }
+
+/* ── CALLOUT ── */
+.callout {
+  background: rgba(124,58,237,0.04); border: 1px solid rgba(124,58,237,0.2);
+  border-left: 4px solid var(--purple);
+  border-radius: 12px; padding: 16px 20px; margin-bottom: 40px;
+}
+.callout-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: var(--purple); margin-bottom: 8px;
+}
+.callout p { font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 6px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout strong { color: var(--navy); }
+
+/* ── WARNING ── */
+.warning {
+  background: rgba(220,38,38,0.04); border: 1px solid rgba(220,38,38,0.2);
+  border-left: 4px solid #ef4444;
+  border-radius: 12px; padding: 16px 20px; margin-bottom: 40px;
+}
+.warning-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #dc2626; margin-bottom: 8px;
+}
+.warning p { font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 6px; }
+.warning p:last-child { margin-bottom: 0; }
+.warning strong { color: #7f1d1d; }
+
+/* ── SCENARIO LIST ── */
+.scenario-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+.scenario-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 18px;
+  font-size: 14px; color: var(--text); line-height: 1.65;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.scenario-item strong { color: var(--navy); }
+
+/* ── CTA BOX ── */
+.cta-box {
+  background: linear-gradient(135deg, var(--navy), var(--navy2));
+  border-radius: 16px; padding: 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap; position: relative; overflow: hidden; margin-bottom: 40px;
+}
+.cta-box::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-box-text h3 {
+  font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800;
+  color: var(--white); margin-bottom: 4px;
+}
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 10px; font-size: 14px; font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s; white-space: nowrap; flex-shrink: 0;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-purple { background: var(--purple); color: var(--white); box-shadow: 0 6px 20px rgba(124,58,237,0.3); }
+.btn-purple:hover { box-shadow: 0 10px 28px rgba(124,58,237,0.4); }
+
+/* ── RELATED ── */
+.related-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px;
+}
+.related-link {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 16px; font-size: 14px;
+  font-weight: 600; color: var(--navy);
+  transition: border-color 0.15s, color 0.15s, transform 0.15s;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.related-link:hover { border-color: rgba(124,58,237,0.3); color: var(--purple); transform: translateY(-1px); }
+.related-link::before { content: '→'; color: var(--purple); font-size: 13px; }
+
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  max-width: 1100px; margin: 28px auto 0; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+@media (max-width: 600px) { .footer { padding: 36px 16px; } .footer-bottom { flex-direction: column; } }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <span>›</span>
+      <span>What is LDAP?</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Network+ · Security+ · 2026</div>
+    <h1>What is <span>LDAP?</span></h1>
+    <p class="page-hero-sub">Lightweight Directory Access Protocol — how it works, LDAP vs LDAPS, Active Directory, distinguished names, LDAP injection attacks, and every LDAP concept tested on CompTIA Network+ and Security+.</p>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ What is LDAP?</div>
+      <div class="quick-answer-text">
+        LDAP (Lightweight Directory Access Protocol) is a protocol used to <strong>access and manage directory services</strong> — centralised databases that store information about users, computers, groups, and resources on a network. It runs over <strong>TCP/UDP port 389</strong> (plaintext) or <strong>port 636</strong> (LDAPS — LDAP over TLS). Microsoft's Active Directory is the most widely deployed directory service and uses LDAP as its access protocol. When you log into a Windows domain, LDAP is doing the work of looking up your account.
+      </div>
+    </div>
+
+    <h2>What is a directory service?</h2>
+
+    <p>A directory service is a specialised database optimised for reading and searching rather than frequent writes. It stores objects — users, computers, printers, groups — and their attributes, organised in a hierarchical tree structure.</p>
+
+    <p>Think of it as a company's phone book, but far more powerful. Instead of just names and numbers, it stores every attribute about every user and device: password hashes, group memberships, login times, email addresses, department, manager, certificate information, and more. LDAP is the protocol that lets applications query and update this directory.</p>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-icon">🗂️</div>
+        <div class="concept-label">Most common</div>
+        <div class="concept-title">Active Directory (AD)</div>
+        <div class="concept-desc">Microsoft's directory service, built on LDAP and Kerberos. Used in the vast majority of enterprise Windows environments. Stores all domain user and computer accounts.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🐧</div>
+        <div class="concept-label">Open source</div>
+        <div class="concept-title">OpenLDAP</div>
+        <div class="concept-desc">The primary open-source LDAP implementation. Used on Linux servers and in cross-platform environments where a Microsoft AD licence isn't viable.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">☁️</div>
+        <div class="concept-label">Cloud-based</div>
+        <div class="concept-title">Azure AD / Entra ID</div>
+        <div class="concept-desc">Microsoft's cloud directory service. Uses modern protocols (OAuth, OIDC) rather than traditional LDAP, but serves the same identity management purpose for cloud and hybrid environments.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🔌</div>
+        <div class="concept-label">Integration point</div>
+        <div class="concept-title">LDAP as a connector</div>
+        <div class="concept-desc">Applications authenticate against LDAP rather than maintaining their own user databases. VPNs, email servers, Wi-Fi (802.1X), and web apps all use LDAP to verify credentials against the central directory.</div>
+      </div>
+    </div>
+
+    <h2>LDAP vs LDAPS — the port distinction</h2>
+
+    <p>This is the most reliably tested LDAP fact on Network+ and Security+. Know both ports and what the difference means:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Protocol</th><th>Port</th><th>Encryption</th><th>Use</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-term">LDAP</td>
+            <td><strong>TCP/UDP 389</strong></td>
+            <td class="td-bad">✗ Plaintext — credentials visible in traffic</td>
+            <td>Legacy environments only — should not be used for authentication over untrusted networks</td>
+          </tr>
+          <tr>
+            <td class="td-term">LDAPS</td>
+            <td><strong>TCP 636</strong></td>
+            <td class="td-good">✓ TLS encrypted — credentials protected</td>
+            <td>Production standard — LDAP wrapped in TLS, same as HTTP vs HTTPS</td>
+          </tr>
+          <tr>
+            <td class="td-term">LDAP + StartTLS</td>
+            <td><strong>TCP 389</strong></td>
+            <td class="td-good">✓ Upgrades to TLS mid-session</td>
+            <td>Alternative to LDAPS — starts unencrypted on 389 then upgrades. Less preferred than LDAPS.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Port 389 vs 636 — instant recall</div>
+      <p><strong>389</strong> = LDAP (plaintext). <strong>636</strong> = LDAPS (encrypted with TLS).</p>
+      <p>Same relationship as HTTP (80) and HTTPS (443), or FTP (21) and FTPS (990). The exam will present a scenario where credentials are being transmitted insecurely over LDAP and ask how to fix it — the answer is always <strong>switch to LDAPS on port 636</strong>.</p>
+    </div>
+
+    <h2>LDAP directory structure</h2>
+
+    <p>LDAP directories are organised as a hierarchical tree called the <strong>Directory Information Tree (DIT)</strong>. Every entry in the tree is called a <strong>Distinguished Name (DN)</strong> — a unique path that identifies exactly where an object sits in the hierarchy.</p>
+
+    <div class="code-block">
+      <div class="code-label">LDAP directory structure — example</div>
+      <pre><span class="code-comment">Domain: company.com</span>
+<span class="code-comment">Tree root (DC = Domain Component):</span>
+
+<span class="code-hl">DC=company,DC=com</span>                           <span class="code-comment">← root of the domain</span>
+  │
+  ├── <span class="code-teal">OU=Users,DC=company,DC=com</span>              <span class="code-comment">← Organisational Unit</span>
+  │     ├── <span class="code-blue">CN=John Smith,OU=Users,DC=company,DC=com</span>
+  │     └── <span class="code-blue">CN=Jane Doe,OU=Users,DC=company,DC=com</span>
+  │
+  ├── <span class="code-teal">OU=Computers,DC=company,DC=com</span>
+  │     └── <span class="code-blue">CN=DESKTOP-01,OU=Computers,DC=company,DC=com</span>
+  │
+  └── <span class="code-teal">OU=Groups,DC=company,DC=com</span>
+        └── <span class="code-blue">CN=IT-Admins,OU=Groups,DC=company,DC=com</span></pre>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">📌 DN components — what the abbreviations mean</div>
+      <p><strong>DN (Distinguished Name)</strong> — the full unique path to an object. Example: <code style="font-family:'DM Mono',monospace;font-size:12px;background:var(--light);padding:2px 6px;border-radius:4px;">CN=John Smith,OU=Users,DC=company,DC=com</code></p>
+      <p><strong>CN (Common Name)</strong> — the name of the object itself (a user, group, or computer).</p>
+      <p><strong>OU (Organisational Unit)</strong> — a container for grouping objects. Like a folder. You apply Group Policy at the OU level in Active Directory.</p>
+      <p><strong>DC (Domain Component)</strong> — one label of the domain name. <code style="font-family:'DM Mono',monospace;font-size:12px;background:var(--light);padding:2px 6px;border-radius:4px;">company.com</code> becomes <code style="font-family:'DM Mono',monospace;font-size:12px;background:var(--light);padding:2px 6px;border-radius:4px;">DC=company,DC=com</code>.</p>
+    </div>
+
+    <h2>How LDAP authentication works</h2>
+
+    <p>When an application needs to verify a user's credentials against a directory, it uses an LDAP <strong>bind</strong> operation — connecting to the directory server and authenticating. There are two types of bind:</p>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-icon">🔓</div>
+        <div class="concept-label">No credentials</div>
+        <div class="concept-title">Anonymous Bind</div>
+        <div class="concept-desc">Connect to the LDAP server without providing credentials. Limited read access to public directory information. A security risk if the directory exposes sensitive data to anonymous queries — should be disabled in production.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🔐</div>
+        <div class="concept-label">With credentials</div>
+        <div class="concept-title">Simple Bind</div>
+        <div class="concept-desc">Authenticate with a DN and password. The password is sent in plaintext unless LDAPS or StartTLS is used. This is why using LDAPS (port 636) is critical — simple bind over plain LDAP exposes passwords.</div>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <div class="code-label">LDAP authentication flow — application login</div>
+      <pre><span class="code-comment">User enters credentials into an application</span>
+
+1. App connects to LDAP server on port <span class="code-hl">636 (LDAPS)</span>
+2. App binds using a service account DN + password
+   <span class="code-comment">(a read-only account dedicated to LDAP lookups)</span>
+3. App searches for the user:
+   <span class="code-teal">Filter: (&(objectClass=user)(sAMAccountName=jsmith))</span>
+4. LDAP returns the user's full DN
+5. App attempts to bind again using the user's DN + entered password
+6. If bind succeeds → <span class="code-teal">authentication successful</span>
+   If bind fails   → <span class="code-hl">wrong password — deny access</span></pre>
+    </div>
+
+    <h2>LDAP and Active Directory</h2>
+
+    <p>Active Directory is not the same as LDAP — AD is a <strong>directory service</strong> that uses LDAP as one of its access protocols. Active Directory also uses Kerberos for authentication, DNS for service location, and Group Policy for configuration management. LDAP is the query language AD speaks.</p>
+
+    <p>In a Windows domain environment, applications that need to look up users or verify group memberships do so via LDAP queries to a Domain Controller. The Domain Controller listens on ports 389 (LDAP) and 636 (LDAPS) for these queries.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Active Directory + LDAP exam angle</div>
+      <p>"Which protocol does Active Directory use to allow applications to query user and group information?" → <strong>LDAP</strong></p>
+      <p>"An application needs to authenticate users against Active Directory. Which port should be used to ensure credentials are encrypted?" → <strong>636 (LDAPS)</strong> — plain LDAP on 389 sends credentials unencrypted.</p>
+      <p>Remember: AD uses both <strong>LDAP</strong> (for directory queries) and <strong>Kerberos</strong> (for authentication tickets). They serve different purposes and are both tested.</p>
+    </div>
+
+    <h2>LDAP injection — the Security+ attack</h2>
+
+    <p>LDAP injection is an attack that targets applications which build LDAP queries using unsanitised user input — the LDAP equivalent of SQL injection. If an application constructs an LDAP filter by directly concatenating user-supplied values, an attacker can manipulate the filter to bypass authentication or extract directory data.</p>
+
+    <div class="warning">
+      <div class="warning-label">⚠️ LDAP injection — how it works</div>
+      <p><strong>Vulnerable application builds this LDAP filter:</strong></p>
+      <p><code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(220,38,38,0.08);padding:4px 8px;border-radius:4px;display:block;margin:8px 0;">(&(uid=<em>[username input]</em>)(password=<em>[password input]</em>))</code></p>
+      <p><strong>Attacker enters as username:</strong> <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(220,38,38,0.08);padding:4px 8px;border-radius:4px;">admin)(&(password=*</code></p>
+      <p>This manipulates the filter to always return true, bypassing the password check entirely and logging in as admin with any password.</p>
+      <p><strong>Prevention:</strong> Input validation and sanitisation — escape special LDAP characters in user input before building queries. Use parameterised LDAP queries where available.</p>
+    </div>
+
+    <h2>LDAP security hardening</h2>
+
+    <div class="code-block">
+      <div class="code-label">LDAP hardening best practices</div>
+      <pre><span class="code-hl">Use LDAPS (port 636)</span>         <span class="code-comment">→ Encrypt all LDAP traffic with TLS</span>
+                              <span class="code-comment">   Never send credentials over plain LDAP (389)</span>
+
+<span class="code-hl">Disable anonymous bind</span>       <span class="code-comment">→ Require authentication for all directory queries</span>
+                              <span class="code-comment">   Prevents unauthenticated enumeration of users/groups</span>
+
+<span class="code-hl">Use dedicated service accounts</span> <span class="code-comment">→ Read-only accounts for LDAP lookups</span>
+                              <span class="code-comment">   Limit blast radius if the account is compromised</span>
+
+<span class="code-hl">Restrict LDAP access by IP</span>   <span class="code-comment">→ Only allow LDAP queries from app servers</span>
+                              <span class="code-comment">   Use firewall rules to block port 389/636 elsewhere</span>
+
+<span class="code-hl">Sanitise LDAP queries</span>        <span class="code-comment">→ Escape special characters to prevent LDAP injection</span>
+                              <span class="code-comment">   Treat all user input as untrusted</span></pre>
+    </div>
+
+    <h2>Exam scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "Which protocol is used to query and manage a directory service such as Active Directory?" → <strong>LDAP — Lightweight Directory Access Protocol</strong></div>
+      <div class="scenario-item">💬 "An application authenticates users against Active Directory. A packet capture shows credentials are being sent in plaintext. What should be implemented?" → <strong>LDAPS on port 636 — LDAP over TLS encrypts credentials in transit</strong></div>
+      <div class="scenario-item">💬 "Which port does LDAP use for unencrypted directory queries?" → <strong>TCP/UDP port 389</strong></div>
+      <div class="scenario-item">💬 "Which port does LDAPS use for encrypted directory queries?" → <strong>TCP port 636</strong></div>
+      <div class="scenario-item">💬 "An attacker manipulates a login form's input field to bypass LDAP authentication entirely. What attack is this?" → <strong>LDAP injection — unsanitised input allows manipulation of the LDAP query filter</strong></div>
+      <div class="scenario-item">💬 "What is the unique path that identifies an object's location in an LDAP directory tree?" → <strong>Distinguished Name (DN) — e.g. CN=John Smith,OU=Users,DC=company,DC=com</strong></div>
+      <div class="scenario-item">💬 "Which LDAP operation is used to authenticate to a directory server with a DN and password?" → <strong>Bind — specifically a Simple Bind when using a DN and password combination</strong></div>
+      <div class="scenario-item">💬 "Active Directory uses which two protocols for authentication and directory access?" → <strong>Kerberos (authentication tickets) and LDAP (directory queries)</strong></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for Security+?</h3>
+        <p>The SY0-701 study guide, Dion Training practice exams, and Professor Messer's free course.</p>
+      </div>
+      <a href="best-security-plus.html" class="btn btn-purple">See Security+ Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="ntp-explained.html" class="related-link">What is NTP?</a>
+      <a href="snmp-explained.html" class="related-link">What is SNMP?</a>
+      <a href="dns.html" class="related-link">What is DNS?</a>
+      <a href="ports.html" class="related-link">Port Numbers Reference</a>
+      <a href="network-attacks.html" class="related-link">Network Attacks Explained</a>
+      <a href="firewall-basics.html" class="related-link">Firewall Basics Explained</a>
+      <a href="how-to-pass-comptia-security-plus.html" class="related-link">How to Pass Security+</a>
+      <a href="best-security-plus.html" class="related-link">Best Security+ Resources</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+, Network+, and Security+ resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Protocols</div>
+      <a href="ldap-explained.html">What is LDAP?</a>
+      <a href="ntp-explained.html">What is NTP?</a>
+      <a href="snmp-explained.html">What is SNMP?</a>
+      <a href="dns.html">What is DNS?</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Security+</div>
+      <a href="how-to-pass-comptia-security-plus.html">How to Pass Security+</a>
+      <a href="best-security-plus.html">Best Security+ Resources</a>
+      <a href="network-attacks.html">Network Attacks</a>
+      <a href="cryptography.html">Cryptography Explained</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>
