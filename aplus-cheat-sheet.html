@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/aplus-cheat-sheet.html">
+
+<title>CompTIA A+ Cheat Sheet 2026 — Core 1 & Core 2 Quick Reference (220-1101 / 220-1102)</title>
+<meta name="description" content="The ultimate CompTIA A+ cheat sheet — ports, connector types, RAM and storage, OSI model, Windows commands, security threats, troubleshooting steps, and every key fact for the 220-1101 and 220-1102 exams.">
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
+     crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--lighter); color: var(--text); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+
+/* ── NAVBAR ── */
+.navbar { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 28px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo-link { display: flex; align-items: center; gap: 10px; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 17px; color: var(--navy); letter-spacing: -0.3px; flex-shrink: 0; }
+.logo-img { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a { font-size: 14px; font-weight: 600; padding: 8px 14px; border-radius: 8px; color: var(--muted); transition: color 0.15s, background 0.15s; }
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta { background: var(--navy); color: var(--white) !important; padding: 8px 18px; border-radius: 8px; margin-left: 6px; }
+.nav-links a.nav-cta:hover { background: var(--navy2); }
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 44px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero { background: var(--navy); position: relative; overflow: hidden; padding: 60px 28px 70px; }
+.page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 100% at 90% 50%, rgba(0,194,168,0.12) 0%, transparent 70%), radial-gradient(ellipse 30% 60% at 5% 90%, rgba(0,194,168,0.06) 0%, transparent 60%); pointer-events: none; }
+.page-hero::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none; }
+.page-hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; animation: fadeUp 0.6s ease both; }
+.breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 20px; font-family: 'DM Mono', monospace; }
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge { display: inline-flex; align-items: center; background: rgba(0,194,168,0.15); border: 1px solid rgba(0,194,168,0.35); color: var(--teal); font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 18px; }
+.page-hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(26px, 4vw, 42px); font-weight: 800; color: var(--white); line-height: 1.15; letter-spacing: -0.8px; margin-bottom: 14px; }
+.page-hero h1 span { color: var(--teal); }
+.page-hero-sub { font-size: 16px; color: rgba(255,255,255,0.6); max-width: 680px; line-height: 1.7; }
+
+/* ── TOC ── */
+.toc-wrap { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+.toc-box { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 20px 24px; margin: 28px 0 0; box-shadow: var(--card-shadow); display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.toc-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); width: 100%; margin-bottom: 4px; }
+.toc-link { font-size: 13px; font-weight: 600; color: var(--teal2); padding: 4px 10px; background: rgba(0,194,168,0.07); border-radius: 6px; transition: background 0.15s; white-space: nowrap; }
+.toc-link:hover { background: rgba(0,194,168,0.16); }
+@media (max-width: 768px) { .toc-wrap { padding: 0 16px; } }
+
+/* ── ARTICLE ── */
+.article-wrap { max-width: 1100px; margin: 0 auto; padding: 40px 28px 80px; }
+@media (max-width: 768px) { .article-wrap { padding: 28px 16px 60px; } }
+
+/* ── SECTION TITLE ── */
+.section-title { font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 800; color: var(--navy); letter-spacing: -0.3px; margin: 48px 0 6px; display: flex; align-items: center; gap: 10px; padding-bottom: 10px; border-bottom: 2px solid var(--teal); }
+.section-title:first-child { margin-top: 0; }
+.s-icon { font-size: 20px; }
+.section-intro { font-size: 14px; color: var(--muted); line-height: 1.65; margin: 8px 0 18px; }
+
+/* ── TABLE ── */
+.table-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--border); box-shadow: var(--card-shadow); margin-bottom: 28px; }
+table { width: 100%; border-collapse: collapse; background: var(--white); min-width: 340px; }
+thead th { background: var(--navy); color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; padding: 12px 16px; text-align: left; font-family: 'DM Mono', monospace; }
+thead th:first-child { color: var(--white); }
+tbody td { padding: 11px 16px; border-bottom: 1px solid var(--border); font-size: 13.5px; color: var(--text); vertical-align: top; line-height: 1.5; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #f0fbf9; }
+.td-key { font-weight: 700; color: var(--navy); font-family: 'DM Mono', monospace; font-size: 12.5px; }
+.td-teal { color: var(--teal2); font-weight: 700; }
+
+/* ── CODE BLOCK ── */
+.code-block { background: var(--navy); border-radius: 12px; overflow: hidden; margin-bottom: 28px; border: 1px solid rgba(255,255,255,0.08); }
+.code-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; color: var(--teal); padding: 10px 18px 8px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.code-block pre { font-family: 'DM Mono', monospace; font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.8; padding: 14px 18px; overflow-x: auto; margin: 0; }
+.code-hl      { color: var(--teal); font-weight: 700; }
+.code-blue    { color: #7eb3ff; font-weight: 700; }
+.code-yellow  { color: #fcd34d; }
+.code-comment { color: rgba(255,255,255,0.35); }
+
+/* ── EXAM TIP ── */
+.exam-tip { background: linear-gradient(135deg, #fffbeb, #fef9e0); border: 1px solid #f0d060; border-left: 4px solid #f0c000; border-radius: 12px; padding: 16px 20px; margin-bottom: 28px; }
+.exam-tip-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px; }
+.exam-tip p { font-size: 13.5px; color: #3a2800; line-height: 1.7; margin-bottom: 6px; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #1a1000; }
+
+/* ── 2-COL GRID ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+@media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+.mini-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; box-shadow: var(--card-shadow); }
+.mini-card-title { font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+.mini-card-body { font-size: 13px; color: var(--text); line-height: 1.65; }
+.mini-card-body strong { color: var(--navy); }
+
+/* ── CTA / RELATED ── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 8px 0 36px; }
+.cta-box { background: linear-gradient(135deg, var(--navy), var(--navy2)); border-radius: 16px; padding: 28px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; position: relative; overflow: hidden; margin-bottom: 36px; }
+.cta-box::before { content: ''; position: absolute; top: -40px; right: -40px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(0,194,168,0.18) 0%, transparent 70%); pointer-events: none; }
+.cta-box-text h3 { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+.btn { display: inline-flex; align-items: center; padding: 11px 22px; border-radius: 10px; font-size: 14px; font-weight: 600; transition: transform 0.15s, box-shadow 0.15s; white-space: nowrap; flex-shrink: 0; }
+.btn:hover { transform: translateY(-2px); }
+.btn-teal { background: var(--teal); color: var(--navy); font-weight: 700; box-shadow: 0 6px 20px rgba(0,194,168,0.3); }
+.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
+.related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px; }
+.related-link { display: flex; align-items: center; gap: 8px; background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 11px 15px; font-size: 14px; font-weight: 600; color: var(--navy); transition: border-color 0.15s, color 0.15s, transform 0.15s; box-shadow: 0 2px 8px rgba(10,22,40,0.05); }
+.related-link:hover { border-color: rgba(0,194,168,0.3); color: var(--teal2); transform: translateY(-1px); }
+.related-link::before { content: '→'; color: var(--teal2); font-size: 13px; }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom { max-width: 1100px; margin: 28px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+@media (max-width: 600px) { .footer { padding: 36px 16px; } .footer-bottom { flex-direction: column; } }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span>CompTIA A+ Cheat Sheet</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · 220-1101 &amp; 220-1102 · 2026</div>
+    <h1>CompTIA <span>A+ Cheat Sheet</span></h1>
+    <p class="page-hero-sub">Every port, connector, RAM type, storage interface, Windows command, security threat, troubleshooting methodology, and key fact you need for the 220-1101 (Core 1) and 220-1102 (Core 2) exams — on one page.</p>
+  </div>
+</section>
+
+<!-- TOC -->
+<div class="toc-wrap">
+  <div class="toc-box">
+    <div class="toc-label">Jump to section</div>
+    <a href="#ports" class="toc-link">Ports & Protocols</a>
+    <a href="#connectors" class="toc-link">Connectors & Cables</a>
+    <a href="#ram" class="toc-link">RAM Types</a>
+    <a href="#storage" class="toc-link">Storage Interfaces</a>
+    <a href="#display" class="toc-link">Display Connectors</a>
+    <a href="#networking" class="toc-link">Networking Basics</a>
+    <a href="#wireless" class="toc-link">Wireless Standards</a>
+    <a href="#os" class="toc-link">Windows Commands</a>
+    <a href="#security" class="toc-link">Security Threats</a>
+    <a href="#troubleshooting" class="toc-link">Troubleshooting Steps</a>
+    <a href="#acronyms" class="toc-link">Key Acronyms</a>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+
+  <!-- PORTS -->
+  <div id="ports" class="section-title"><span class="s-icon">🔌</span> Ports &amp; Protocols</div>
+  <p class="section-intro">The A+ exam tests port numbers in scenario questions — "a user can't send email" maps to ports 25/587. Know the port, protocol (TCP/UDP), and what breaks when it's blocked.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Port</th><th>TCP/UDP</th><th>Service</th><th>Key fact</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-key">20</td><td>TCP</td><td>FTP Data</td><td>Active FTP data transfer</td></tr>
+        <tr><td class="td-key">21</td><td>TCP</td><td>FTP Control</td><td>FTP commands — unencrypted, use SFTP instead</td></tr>
+        <tr><td class="td-key">22</td><td>TCP</td><td>SSH / SFTP / SCP</td><td>Secure remote access and file transfer — replaces Telnet and FTP</td></tr>
+        <tr><td class="td-key">23</td><td>TCP</td><td>Telnet</td><td>Unencrypted remote access — deprecated, sends credentials in plaintext</td></tr>
+        <tr><td class="td-key">25</td><td>TCP</td><td>SMTP</td><td>Sends outgoing email — often blocked by ISPs to prevent spam</td></tr>
+        <tr><td class="td-key">53</td><td>TCP/UDP</td><td>DNS</td><td>UDP for queries, TCP for zone transfers and large responses</td></tr>
+        <tr><td class="td-key">67 / 68</td><td>UDP</td><td>DHCP</td><td>67 = server listens, 68 = client listens — DORA process</td></tr>
+        <tr><td class="td-key">80</td><td>TCP</td><td>HTTP</td><td>Unencrypted web — traffic visible to anyone on the network</td></tr>
+        <tr><td class="td-key">110</td><td>TCP</td><td>POP3</td><td>Downloads email to device, removes from server</td></tr>
+        <tr><td class="td-key">123</td><td>UDP</td><td>NTP</td><td>Clock synchronisation — Kerberos fails if clocks drift 5+ min</td></tr>
+        <tr><td class="td-key">143</td><td>TCP</td><td>IMAP</td><td>Email stays on server, synced across devices</td></tr>
+        <tr><td class="td-key">161 / 162</td><td>UDP</td><td>SNMP</td><td>161 = queries to agent, 162 = traps from agent</td></tr>
+        <tr><td class="td-key">389</td><td>TCP/UDP</td><td>LDAP</td><td>Active Directory queries — unencrypted, use LDAPS (636)</td></tr>
+        <tr><td class="td-key">443</td><td>TCP</td><td>HTTPS</td><td>Encrypted web — TLS. Always prefer over HTTP.</td></tr>
+        <tr><td class="td-key">445</td><td>TCP</td><td>SMB</td><td>Windows file and printer sharing, Active Directory</td></tr>
+        <tr><td class="td-key">465 / 587</td><td>TCP</td><td>SMTP Secure</td><td>587 (STARTTLS) preferred for email submission — 465 = SMTPS</td></tr>
+        <tr><td class="td-key">636</td><td>TCP</td><td>LDAPS</td><td>LDAP over TLS — encrypted directory queries</td></tr>
+        <tr><td class="td-key">993</td><td>TCP</td><td>IMAPS</td><td>IMAP over TLS — encrypted email retrieval</td></tr>
+        <tr><td class="td-key">995</td><td>TCP</td><td>POP3S</td><td>POP3 over TLS — encrypted email download</td></tr>
+        <tr><td class="td-key">3389</td><td>TCP/UDP</td><td>RDP</td><td>Windows Remote Desktop — block at firewall, use VPN if needed externally</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CONNECTORS -->
+  <div id="connectors" class="section-title"><span class="s-icon">🔧</span> Connectors &amp; Cables</div>
+  <p class="section-intro">Core 1 tests connector identification heavily — expect photos of connectors with multiple choice answers. Know the visual appearance, use case, and speed/standard for each.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Connector</th><th>Type</th><th>Key facts</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-key">USB-A</td><td>USB</td><td>Rectangular — the classic USB. Host-side connector on PCs.</td></tr>
+        <tr><td class="td-key">USB-B</td><td>USB</td><td>Square with bevelled corners — printers and older devices.</td></tr>
+        <tr><td class="td-key">USB Mini-B</td><td>USB</td><td>Trapezoidal 5-pin — older cameras, MP3 players.</td></tr>
+        <tr><td class="td-key">USB Micro-B</td><td>USB</td><td>Thin, asymmetric — older Android phones.</td></tr>
+        <tr><td class="td-key">USB-C</td><td>USB</td><td>Oval, reversible — USB 3.1/3.2/4, Thunderbolt 3/4, up to 240W charging. Used by modern devices.</td></tr>
+        <tr><td class="td-key">USB 2.0</td><td>USB</td><td>480 Mbps max. Black port colour coding.</td></tr>
+        <tr><td class="td-key">USB 3.0 / 3.2 Gen 1</td><td>USB</td><td>5 Gbps. Blue port — backward compatible with USB 2.0.</td></tr>
+        <tr><td class="td-key">USB 3.1 / 3.2 Gen 2</td><td>USB</td><td>10 Gbps. Teal/red port on some motherboards.</td></tr>
+        <tr><td class="td-key">Thunderbolt 1/2</td><td>Thunderbolt</td><td>Uses Mini DisplayPort physical connector. 10/20 Gbps. Lightning bolt icon.</td></tr>
+        <tr><td class="td-key">Thunderbolt 3/4</td><td>Thunderbolt</td><td>Uses USB-C physical connector. 40 Gbps. Supports PCIe, DisplayPort, power.</td></tr>
+        <tr><td class="td-key">RJ-11</td><td>Telephone</td><td>6-position, 2-contact (6P2C) — telephone/modem. Smaller than RJ-45.</td></tr>
+        <tr><td class="td-key">RJ-45</td><td>Ethernet</td><td>8-position, 8-contact (8P8C) — Ethernet networking. The standard LAN connector.</td></tr>
+        <tr><td class="td-key">LC</td><td>Fibre optic</td><td>Small form-factor — most common in enterprise. Push-pull latch.</td></tr>
+        <tr><td class="td-key">SC</td><td>Fibre optic</td><td>Square snap-in connector. Larger than LC. Common in older installs.</td></tr>
+        <tr><td class="td-key">ST</td><td>Fibre optic</td><td>Bayonet-style — twist and lock. Legacy.</td></tr>
+        <tr><td class="td-key">DB-9 / DE-9</td><td>Serial</td><td>9-pin D-sub — RS-232 serial. Console access to routers/switches.</td></tr>
+        <tr><td class="td-key">DB-25</td><td>Serial/Parallel</td><td>25-pin D-sub — older parallel printer ports and serial interfaces.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="exam-tip">
+    <div class="exam-tip-label">⚡ Cable categories — Ethernet speed limits</div>
+    <p><strong>Cat 5:</strong> 100 Mbps @ 100m (Fast Ethernet). <strong>Cat 5e:</strong> 1 Gbps @ 100m — most common in homes. <strong>Cat 6:</strong> 1 Gbps @ 100m / 10 Gbps @ 55m. <strong>Cat 6a:</strong> 10 Gbps @ 100m — augmented, shielded. <strong>Cat 7:</strong> 10 Gbps @ 100m, fully shielded. <strong>Cat 8:</strong> 25–40 Gbps @ 30m — data centres.</p>
+    <p><strong>Straight-through:</strong> PC to switch/router. <strong>Crossover:</strong> PC to PC, switch to switch (modern switches use Auto-MDIX so crossover is rarely needed). <strong>Rollover/console:</strong> PC to router/switch console port.</p>
+  </div>
+
+  <!-- RAM -->
+  <div id="ram" class="section-title"><span class="s-icon">🧠</span> RAM Types</div>
+  <p class="section-intro">Know the pin counts, speeds, and form factors — the exam will give you a scenario where you need to identify the correct module type for a given system.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Type</th><th>Form factor</th><th>Pins (DIMM)</th><th>Pins (SO-DIMM)</th><th>Key facts</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-key">DDR3</td><td>Desktop / Laptop</td><td>240-pin</td><td>204-pin</td><td>1066–2133 MHz. Notch positioned differently from DDR4 — not interchangeable.</td></tr>
+        <tr><td class="td-key">DDR4</td><td>Desktop / Laptop</td><td>288-pin</td><td>260-pin</td><td>2133–3200+ MHz. Most common in systems from ~2014–2022. Lower voltage than DDR3.</td></tr>
+        <tr><td class="td-key">DDR5</td><td>Desktop / Laptop</td><td>288-pin</td><td>262-pin</td><td>4800+ MHz. Current standard. Not backward compatible with DDR4 slots.</td></tr>
+        <tr><td class="td-key">ECC RAM</td><td>Server</td><td>Varies</td><td>—</td><td>Error Correcting Code — detects and fixes single-bit errors. Required in servers and workstations. Not compatible with standard consumer motherboards.</td></tr>
+        <tr><td class="td-key">SO-DIMM</td><td>Laptop / Small form</td><td>—</td><td>Smaller module</td><td>Small Outline DIMM — used in laptops, mini-PCs. Same DDR generation as full DIMM but physically smaller.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="exam-tip">
+    <div class="exam-tip-label">⚡ RAM exam tips</div>
+    <p><strong>Dual-channel:</strong> Install matching pairs in correct slots (usually A1+B1 or A2+B2 — check motherboard manual) for double the memory bandwidth.</p>
+    <p><strong>DIMM vs SO-DIMM:</strong> If the scenario mentions a laptop, the answer is SO-DIMM. Desktop = DIMM.</p>
+    <p><strong>DDR generations are NOT backward compatible</strong> — a DDR4 stick will not fit in a DDR5 slot even if the pin count is the same. The notch position is different.</p>
+  </div>
+
+  <!-- STORAGE -->
+  <div id="storage" class="section-title"><span class="s-icon">💾</span> Storage Interfaces &amp; Types</div>
+  <p class="section-intro">The A+ exam tests storage connectors, interfaces, and form factors. Know what connects to what and the speed difference between HDD, SATA SSD, and NVMe SSD.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Interface</th><th>Max speed</th><th>Connector</th><th>Key facts</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-key">SATA III</td><td>600 MB/s</td><td>7-pin SATA data + 15-pin power</td><td>Standard for HDDs and 2.5" SSDs. Most common desktop/laptop interface.</td></tr>
+        <tr><td class="td-key">M.2 SATA</td><td>600 MB/s</td><td>M.2 slot (B+M keyed)</td><td>SATA speeds in M.2 form factor. Uses same SATA protocol — not faster than 2.5" SATA SSD.</td></tr>
+        <tr><td class="td-key">NVMe (PCIe)</td><td>3,500+ MB/s</td><td>M.2 slot (M keyed) or PCIe slot</td><td>NVMe = Non-Volatile Memory Express. Uses PCIe lanes directly — 5–7× faster than SATA. Current standard for SSDs.</td></tr>
+        <tr><td class="td-key">PCIe 4.0 NVMe</td><td>7,000 MB/s</td><td>M.2 (M keyed)</td><td>Double PCIe 3.0 NVMe speeds. Backward compatible — a PCIe 4 drive works in a PCIe 3 slot at reduced speed.</td></tr>
+        <tr><td class="td-key">HDD (SATA)</td><td>~150 MB/s</td><td>SATA</td><td>Mechanical spinning disk — 5400 or 7200 RPM. Much slower than SSD, used for high-capacity bulk storage.</td></tr>
+        <tr><td class="td-key">eMMC</td><td>~400 MB/s</td><td>Soldered to board</td><td>Embedded MultiMediaCard — soldered storage in budget laptops and tablets. Not replaceable.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="exam-tip">
+    <div class="exam-tip-label">⚡ M.2 keying — B key vs M key vs B+M key</div>
+    <p>M.2 slots have physical keys (notch positions) that determine which drives are compatible. <strong>M key</strong> supports NVMe (PCIe) drives. <strong>B+M key</strong> supports SATA drives (and some NVMe). A drive that is M-keyed only will not fit in a B+M slot. Check the motherboard spec before purchasing an M.2 drive.</p>
+    <p><strong>RAID basics:</strong> RAID 0 = striping (speed, no redundancy). RAID 1 = mirroring (redundancy, half capacity). RAID 5 = striping with parity (3+ drives, one drive fault tolerance). RAID 10 = mirroring + striping (4+ drives, best of both).</p>
+  </div>
+
+  <!-- DISPLAY -->
+  <div id="display" class="section-title"><span class="s-icon">🖥️</span> Display Connectors</div>
+  <p class="section-intro">Display connector identification appears in Core 1 scenarios. Know the shape, pin count, and whether each carries audio.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Connector</th><th>Pins / signal</th><th>Audio?</th><th>Key facts</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-key">VGA</td><td>15-pin D-sub</td><td>No</td><td>Analogue only. Blue trapezoidal connector. Legacy — no longer supported by modern GPUs.</td></tr>
+        <tr><td class="td-key">DVI-D</td><td>Digital only</td><td>No</td><td>All-digital. Single-link = 1080p. Dual-link = 2560×1600. White rectangular connector.</td></tr>
+        <tr><td class="td-key">DVI-A</td><td>Analogue only</td><td>No</td><td>Analogue signal only — compatible with VGA via adapter.</td></tr>
+        <tr><td class="td-key">DVI-I</td><td>Analogue + Digital</td><td>No</td><td>Integrated — supports both digital and analogue. Can adapt to VGA.</td></tr>
+        <tr><td class="td-key">HDMI</td><td>19-pin</td><td>Yes</td><td>Carries audio + video. Multiple versions — HDMI 2.1 supports 8K/120Hz. Most common consumer display connector.</td></tr>
+        <tr><td class="td-key">DisplayPort</td><td>20-pin</td><td>Yes</td><td>Higher bandwidth than HDMI for same generation. Supports daisy-chaining multiple monitors. Preferred for gaming monitors.</td></tr>
+        <tr><td class="td-key">Mini DisplayPort</td><td>20-pin (mini)</td><td>Yes</td><td>Physically smaller — used by Apple and some laptops. Same signal as full DisplayPort.</td></tr>
+        <tr><td class="td-key">Thunderbolt 3/4</td><td>USB-C physical</td><td>Yes</td><td>Supports DisplayPort signal over USB-C. Also carries PCIe and power simultaneously.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- NETWORKING -->
+  <div id="networking" class="section-title"><span class="s-icon">🌐</span> Networking Basics</div>
+  <p class="section-intro">A+ Core 1 covers networking fundamentals — IP addressing, subnet masks, DHCP, DNS, and troubleshooting connectivity. Know these cold.</p>
+
+  <div class="code-block">
+    <div class="code-label">IP addressing quick reference</div>
+    <pre><span class="code-hl">Private IP ranges (not routable on internet):</span>
+  10.0.0.0  – 10.255.255.255     <span class="code-comment">/8  — Class A private</span>
+  172.16.0.0 – 172.31.255.255   <span class="code-comment">/12 — Class B private</span>
+  192.168.0.0 – 192.168.255.255 <span class="code-comment">/16 — Class C private (most home networks)</span>
+
+<span class="code-hl">Special addresses:</span>
+  127.0.0.1     <span class="code-comment">→ Loopback / localhost — tests local TCP/IP stack</span>
+  169.254.x.x   <span class="code-comment">→ APIPA — self-assigned when DHCP fails (link-local only)</span>
+  0.0.0.0       <span class="code-comment">→ Default route / unassigned address</span>
+  255.255.255.255 <span class="code-comment">→ Broadcast — sends to all hosts on network</span>
+
+<span class="code-hl">Common subnet masks:</span>
+  /8  = 255.0.0.0       <span class="code-comment">→ 16,777,214 hosts</span>
+  /16 = 255.255.0.0     <span class="code-comment">→ 65,534 hosts</span>
+  /24 = 255.255.255.0   <span class="code-comment">→ 254 hosts   (most common small network)</span>
+  /25 = 255.255.255.128 <span class="code-comment">→ 126 hosts</span>
+  /26 = 255.255.255.192 <span class="code-comment">→ 62 hosts</span>
+  /30 = 255.255.255.252 <span class="code-comment">→ 2 hosts    (point-to-point links)</span></pre>
+  </div>
+
+  <div class="two-col">
+    <div class="mini-card">
+      <div class="mini-card-title">DHCP — DORA process</div>
+      <div class="mini-card-body">
+        <strong>D</strong>iscover — client broadcasts looking for a DHCP server<br>
+        <strong>O</strong>ffer — server offers an IP address<br>
+        <strong>R</strong>equest — client accepts the offer<br>
+        <strong>A</strong>cknowledge — server confirms the lease<br><br>
+        If DHCP fails → client self-assigns an APIPA address (169.254.x.x).
+      </div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-title">DNS — name resolution order</div>
+      <div class="mini-card-body">
+        1. Local DNS cache (ipconfig /displaydns)<br>
+        2. hosts file (C:\Windows\System32\drivers\etc\hosts)<br>
+        3. DNS server query (configured in network settings)<br>
+        4. Recursive query to root / TLD / authoritative servers<br><br>
+        DNS uses <strong>UDP port 53</strong> for queries, <strong>TCP port 53</strong> for zone transfers.
+      </div>
+    </div>
+  </div>
+
+  <!-- WIRELESS -->
+  <div id="wireless" class="section-title"><span class="s-icon">📶</span> Wireless Standards</div>
+  <p class="section-intro">Know each 802.11 standard's frequency, maximum speed, and key distinguishing feature. The exam distinguishes between 2.4 GHz (range) and 5 GHz (speed).</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Standard</th><th>Common name</th><th>Frequency</th><th>Max speed</th><th>Key facts</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-key">802.11a</td><td>Wi-Fi 1</td><td>5 GHz</td><td>54 Mbps</td><td>5 GHz only — less interference but shorter range. Older standard.</td></tr>
+        <tr><td class="td-key">802.11b</td><td>Wi-Fi 2</td><td>2.4 GHz</td><td>11 Mbps</td><td>First widely adopted standard. 2.4 GHz only — susceptible to interference from microwaves and Bluetooth.</td></tr>
+        <tr><td class="td-key">802.11g</td><td>Wi-Fi 3</td><td>2.4 GHz</td><td>54 Mbps</td><td>Backward compatible with 802.11b. 2.4 GHz — longer range than 5 GHz.</td></tr>
+        <tr><td class="td-key">802.11n</td><td>Wi-Fi 4</td><td>2.4 &amp; 5 GHz</td><td>600 Mbps</td><td>First dual-band standard. Introduced MIMO (Multiple Input Multiple Output). Still common.</td></tr>
+        <tr><td class="td-key">802.11ac</td><td>Wi-Fi 5</td><td>5 GHz only</td><td>3.5 Gbps</td><td>MU-MIMO. Wave 2 added wider channels (160 MHz). Very common in home/enterprise.</td></tr>
+        <tr><td class="td-key">802.11ax</td><td>Wi-Fi 6 / 6E</td><td>2.4, 5, 6 GHz</td><td>9.6 Gbps</td><td>OFDMA improves performance in dense environments. Wi-Fi 6E adds 6 GHz band (6E only).</td></tr>
+        <tr><td class="td-key">802.11be</td><td>Wi-Fi 7</td><td>2.4, 5, 6 GHz</td><td>46 Gbps</td><td>Multi-Link Operation (MLO) — uses multiple bands simultaneously. Newest standard.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="exam-tip">
+    <div class="exam-tip-label">⚡ Wireless security protocols — know the order</div>
+    <p><strong>WEP</strong> — broken, never use. Static keys, RC4 encryption, crackable in minutes.</p>
+    <p><strong>WPA</strong> — TKIP encryption. Better than WEP but still has vulnerabilities.</p>
+    <p><strong>WPA2</strong> — AES/CCMP encryption. Current minimum standard. Personal (PSK) vs Enterprise (802.1X/RADIUS).</p>
+    <p><strong>WPA3</strong> — Strongest. SAE replaces PSK (eliminates offline dictionary attacks). Forward secrecy. Mandatory for Wi-Fi 6 certified devices.</p>
+    <p>Exam scenario: "Which wireless security protocol uses AES encryption?" → <strong>WPA2 or WPA3</strong>. "Which is the most secure?" → <strong>WPA3</strong>.</p>
+  </div>
+
+  <!-- WINDOWS COMMANDS -->
+  <div id="os" class="section-title"><span class="s-icon">⌨️</span> Windows Commands</div>
+  <p class="section-intro">Core 2 tests command-line tools heavily — expect to be given a task ("check what ports are listening") and choose the correct command. Know what each does and when to use it.</p>
+
+  <div class="code-block">
+    <div class="code-label">Networking commands</div>
+    <pre><span class="code-hl">ipconfig</span>           <span class="code-comment">→ Shows IP, subnet mask, default gateway</span>
+<span class="code-hl">ipconfig /all</span>      <span class="code-comment">→ Full details including MAC address, DNS servers, DHCP lease info</span>
+<span class="code-hl">ipconfig /release</span>  <span class="code-comment">→ Releases DHCP-assigned IP address</span>
+<span class="code-hl">ipconfig /renew</span>    <span class="code-comment">→ Requests a new IP from DHCP server</span>
+<span class="code-hl">ipconfig /flushdns</span> <span class="code-comment">→ Clears DNS resolver cache — fixes stale DNS entries</span>
+<span class="code-hl">ping</span>               <span class="code-comment">→ Tests basic connectivity — sends ICMP echo requests</span>
+<span class="code-hl">tracert</span>            <span class="code-comment">→ Shows each hop to destination — identifies where traffic fails</span>
+<span class="code-hl">nslookup</span>           <span class="code-comment">→ Queries DNS — tests name resolution for a hostname</span>
+<span class="code-hl">netstat</span>            <span class="code-comment">→ Shows active TCP/UDP connections and listening ports</span>
+<span class="code-hl">netstat -a</span>         <span class="code-comment">→ All connections and listening ports</span>
+<span class="code-hl">netstat -b</span>         <span class="code-comment">→ Shows which executable is using each connection</span>
+<span class="code-hl">arp -a</span>             <span class="code-comment">→ Displays ARP cache — IP to MAC address mappings</span>
+<span class="code-hl">net use</span>            <span class="code-comment">→ Maps a network drive (net use Z: \\server\share)</span></pre>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">System and disk commands</div>
+    <pre><span class="code-hl">sfc /scannow</span>       <span class="code-comment">→ System File Checker — repairs corrupted Windows system files</span>
+<span class="code-hl">DISM /Online /Cleanup-Image /RestoreHealth</span>
+                   <span class="code-comment">→ Repairs Windows image when sfc fails</span>
+<span class="code-hl">chkdsk</span>             <span class="code-comment">→ Check Disk — scans for file system and physical disk errors</span>
+<span class="code-hl">chkdsk /f /r</span>       <span class="code-comment">→ /f fixes errors, /r locates bad sectors (requires reboot)</span>
+<span class="code-hl">diskpart</span>           <span class="code-comment">→ Disk partitioning utility — create, format, delete partitions</span>
+<span class="code-hl">format</span>             <span class="code-comment">→ Formats a drive with a filesystem (NTFS, FAT32, exFAT)</span>
+<span class="code-hl">defrag</span>             <span class="code-comment">→ Defragments HDD — do NOT use on SSDs</span>
+<span class="code-hl">robocopy</span>           <span class="code-comment">→ Robust file copy — preserves permissions, restarts on failure</span>
+<span class="code-hl">xcopy</span>              <span class="code-comment">→ Extended copy — copies files and directory trees</span></pre>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">User, process, and admin commands</div>
+    <pre><span class="code-hl">tasklist</span>           <span class="code-comment">→ Lists all running processes (like Task Manager in CLI)</span>
+<span class="code-hl">taskkill /PID xxxx</span> <span class="code-comment">→ Kills a process by its Process ID</span>
+<span class="code-hl">msconfig</span>           <span class="code-comment">→ System Configuration — manage startup items, boot options</span>
+<span class="code-hl">regedit</span>            <span class="code-comment">→ Registry Editor — edit Windows registry (use with caution)</span>
+<span class="code-hl">gpedit.msc</span>         <span class="code-comment">→ Group Policy Editor — local security and config policies</span>
+<span class="code-hl">lusrmgr.msc</span>        <span class="code-comment">→ Local Users and Groups manager</span>
+<span class="code-hl">services.msc</span>       <span class="code-comment">→ Windows Services management console</span>
+<span class="code-hl">eventvwr.msc</span>       <span class="code-comment">→ Event Viewer — system, application, and security logs</span>
+<span class="code-hl">mmc</span>                <span class="code-comment">→ Microsoft Management Console — add snap-ins</span>
+<span class="code-hl">gpupdate /force</span>    <span class="code-comment">→ Forces immediate Group Policy refresh</span>
+<span class="code-hl">shutdown /r /t 0</span>   <span class="code-comment">→ Immediate restart (/s for shutdown, /t 0 = no delay)</span></pre>
+  </div>
+
+  <!-- SECURITY -->
+  <div id="security" class="section-title"><span class="s-icon">🔒</span> Security Threats</div>
+  <p class="section-intro">Core 2 has a heavy security focus. Know each threat type by name — the exam describes a scenario and you identify the attack.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Threat</th><th>What it is</th><th>Key indicator</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-key">Phishing</td><td>Fraudulent emails impersonating trusted organisations to steal credentials or install malware</td><td>Urgent email asking you to click a link and log in</td></tr>
+        <tr><td class="td-key">Spear phishing</td><td>Targeted phishing using personal details to appear more convincing — aimed at a specific person</td><td>Email that uses your name, role, or refers to a real project</td></tr>
+        <tr><td class="td-key">Whaling</td><td>Spear phishing targeting executives (CEO, CFO)</td><td>Email impersonating a CEO requesting a wire transfer</td></tr>
+        <tr><td class="td-key">Vishing</td><td>Voice phishing — fraudulent phone calls impersonating IT support, banks, or government</td><td>Caller asks for your password or to install remote access software</td></tr>
+        <tr><td class="td-key">Smishing</td><td>SMS phishing — fraudulent text messages with malicious links</td><td>Text claiming your package is held, click to reschedule</td></tr>
+        <tr><td class="td-key">Ransomware</td><td>Malware that encrypts files and demands payment for the decryption key</td><td>Files have strange extensions, ransom note appears on screen</td></tr>
+        <tr><td class="td-key">Trojan horse</td><td>Malware disguised as legitimate software — appears harmless, installs malicious payload</td><td>Free software download that behaves oddly after install</td></tr>
+        <tr><td class="td-key">Rootkit</td><td>Malware that hides itself and other malware from the OS — runs with elevated privileges</td><td>Antivirus can't find it but symptoms persist — requires bootable scanner</td></tr>
+        <tr><td class="td-key">Keylogger</td><td>Records keystrokes to capture passwords and sensitive data</td><td>Credentials compromised despite strong password practices</td></tr>
+        <tr><td class="td-key">Spyware</td><td>Monitors user activity and sends data to a third party without consent</td><td>Browser redirects, slow performance, unexpected pop-ups</td></tr>
+        <tr><td class="td-key">Adware</td><td>Displays unwanted advertisements — often bundled with free software</td><td>Pop-up ads in browser, homepage changed without permission</td></tr>
+        <tr><td class="td-key">Man-in-the-Middle</td><td>Attacker intercepts and potentially alters communication between two parties</td><td>ARP poisoning, rogue Wi-Fi hotspot — certificate errors can indicate MITM</td></tr>
+        <tr><td class="td-key">Social engineering</td><td>Manipulating people into revealing information or taking insecure actions — exploits trust</td><td>Someone calling claiming to be IT support needing your password</td></tr>
+        <tr><td class="td-key">Tailgating / piggybacking</td><td>Physically following an authorised person through a secure door</td><td>Person closely following you into a badge-access area</td></tr>
+        <tr><td class="td-key">Shoulder surfing</td><td>Watching someone enter credentials or view sensitive information in person</td><td>Someone standing behind you at an ATM or in a coffee shop</td></tr>
+        <tr><td class="td-key">Dumpster diving</td><td>Searching discarded materials for sensitive information — documents, drives</td><td>Shredded documents, wiped drives mitigate this</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TROUBLESHOOTING -->
+  <div id="troubleshooting" class="section-title"><span class="s-icon">🛠️</span> Troubleshooting Methodology</div>
+  <p class="section-intro">CompTIA's 7-step troubleshooting methodology is tested directly on both Core 1 and Core 2. Memorise the steps and order — scenario questions will ask which step comes next.</p>
+
+  <div class="code-block">
+    <div class="code-label">CompTIA 7-step troubleshooting methodology</div>
+    <pre><span class="code-hl">Step 1 —</span> Identify the problem
+         <span class="code-comment">Gather information, question the user, identify symptoms</span>
+         <span class="code-comment">Check for recent changes — "what changed right before this started?"</span>
+
+<span class="code-hl">Step 2 —</span> Establish a theory of probable cause
+         <span class="code-comment">Question the obvious first — is it plugged in? Is the service running?</span>
+         <span class="code-comment">Consider multiple possible causes before acting</span>
+
+<span class="code-hl">Step 3 —</span> Test the theory to determine cause
+         <span class="code-comment">Confirm or deny your theory</span>
+         <span class="code-comment">If theory is confirmed → move to step 4</span>
+         <span class="code-comment">If theory is NOT confirmed → return to step 2 with a new theory</span>
+
+<span class="code-hl">Step 4 —</span> Establish a plan of action to resolve the problem
+         <span class="code-comment">Consider effects of the fix on the rest of the system</span>
+         <span class="code-comment">Notify affected users of planned downtime if applicable</span>
+
+<span class="code-hl">Step 5 —</span> Implement the solution or escalate as necessary
+         <span class="code-comment">Apply the fix — if beyond your expertise, escalate to senior tech</span>
+
+<span class="code-hl">Step 6 —</span> Verify full system functionality
+         <span class="code-comment">Confirm the original problem is resolved</span>
+         <span class="code-comment">Implement preventive measures to stop recurrence</span>
+
+<span class="code-hl">Step 7 —</span> Document findings, actions, and outcomes
+         <span class="code-comment">Record what the problem was, what caused it, and what fixed it</span>
+         <span class="code-comment">Update knowledge base — helps the whole team next time</span></pre>
+  </div>
+
+  <div class="two-col">
+    <div class="mini-card">
+      <div class="mini-card-title">POST beep codes — common patterns</div>
+      <div class="mini-card-body">
+        POST (Power-On Self-Test) beeps indicate hardware failure during boot.<br><br>
+        <strong>1 short beep</strong> — POST passed, system OK (on some BIOS)<br>
+        <strong>Continuous beep</strong> — RAM not seated or failed<br>
+        <strong>3 beeps</strong> — RAM error (varies by BIOS maker)<br>
+        <strong>No beep + no video</strong> — CPU, RAM, or GPU issue<br><br>
+        Beep code meanings vary by BIOS manufacturer (AMI, Award, Phoenix). Always check the motherboard manual.
+      </div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-title">Common hardware symptoms</div>
+      <div class="mini-card-body">
+        <strong>Blue Screen of Death (BSOD)</strong> — hardware driver issue, RAM failure, or corrupted system files. Note the stop code.<br><br>
+        <strong>Spinning wheel / slow boot</strong> — failing HDD, check with chkdsk<br>
+        <strong>Overheating / random shutdown</strong> — clogged vents, failed fan, dried thermal paste<br>
+        <strong>Clicking HDD</strong> — imminent drive failure — back up immediately<br>
+        <strong>CMOS error on boot</strong> — dead CMOS battery (CR2032) — replace it
+      </div>
+    </div>
+  </div>
+
+  <!-- ACRONYMS -->
+  <div id="acronyms" class="section-title"><span class="s-icon">📖</span> Key Acronyms</div>
+  <p class="section-intro">The A+ exam uses acronyms constantly — both in questions and answer choices. If you hesitate on an acronym you lose time. Know every expansion below cold.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Acronym</th><th>Stands for</th><th>One-line description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-key">APIPA</td><td>Automatic Private IP Addressing</td><td>169.254.x.x — self-assigned when DHCP fails</td></tr>
+        <tr><td class="td-key">BIOS</td><td>Basic Input/Output System</td><td>Firmware that initialises hardware at boot — legacy, replaced by UEFI</td></tr>
+        <tr><td class="td-key">UEFI</td><td>Unified Extensible Firmware Interface</td><td>Modern replacement for BIOS — supports GPT, Secure Boot, GUI</td></tr>
+        <tr><td class="td-key">GPT</td><td>GUID Partition Table</td><td>Modern partition scheme — supports 128 partitions, drives over 2 TB</td></tr>
+        <tr><td class="td-key">MBR</td><td>Master Boot Record</td><td>Legacy partition scheme — max 4 primary partitions, max 2 TB drive</td></tr>
+        <tr><td class="td-key">NTFS</td><td>New Technology File System</td><td>Windows default file system — supports permissions, encryption, large files</td></tr>
+        <tr><td class="td-key">FAT32</td><td>File Allocation Table 32</td><td>Cross-platform — max 4 GB per file. Used on USB drives for compatibility.</td></tr>
+        <tr><td class="td-key">exFAT</td><td>Extended FAT</td><td>Modern FAT — no file size limit. Used on large USB drives and SD cards.</td></tr>
+        <tr><td class="td-key">RAID</td><td>Redundant Array of Independent Disks</td><td>Combines multiple drives for speed and/or redundancy</td></tr>
+        <tr><td class="td-key">UPS</td><td>Uninterruptible Power Supply</td><td>Battery backup that keeps systems running during brief power outages</td></tr>
+        <tr><td class="td-key">KVM</td><td>Keyboard, Video, Mouse switch</td><td>Allows one keyboard/monitor/mouse to control multiple computers</td></tr>
+        <tr><td class="td-key">VDI</td><td>Virtual Desktop Infrastructure</td><td>Hosts desktop OS instances on a centralised server — thin clients connect</td></tr>
+        <tr><td class="td-key">IaaS</td><td>Infrastructure as a Service</td><td>Cloud provides VMs, storage, networking — you manage OS and apps (AWS EC2)</td></tr>
+        <tr><td class="td-key">PaaS</td><td>Platform as a Service</td><td>Cloud provides runtime environment — you manage only the application code</td></tr>
+        <tr><td class="td-key">SaaS</td><td>Software as a Service</td><td>Cloud provides the full application — you just use it (Microsoft 365, Salesforce)</td></tr>
+        <tr><td class="td-key">MDM</td><td>Mobile Device Management</td><td>Centrally manages mobile devices — enforces policies, remote wipe</td></tr>
+        <tr><td class="td-key">MFA</td><td>Multi-Factor Authentication</td><td>Requires two or more factors — something you know, have, or are</td></tr>
+        <tr><td class="td-key">ACL</td><td>Access Control List</td><td>List of rules defining who can access what resource</td></tr>
+        <tr><td class="td-key">TPM</td><td>Trusted Platform Module</td><td>Hardware chip that stores encryption keys — required for BitLocker and Windows 11</td></tr>
+        <tr><td class="td-key">BitLocker</td><td>—</td><td>Windows full-disk encryption — uses TPM to store key. Protects data if drive is removed.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <div class="cta-box">
+    <div class="cta-box-text">
+      <h3>Ready to pass the A+ exam?</h3>
+      <p>The best study guides, video courses, and practice exams for 220-1101 and 220-1102.</p>
+    </div>
+    <a href="best-a-plus.html" class="btn btn-teal">See A+ Study Resources →</a>
+  </div>
+
+  <h2 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:var(--navy);margin-bottom:16px;">Related Articles</h2>
+  <div class="related-grid">
+    <a href="how-to-pass-comptia-aplus.html" class="related-link">How to Pass the A+</a>
+    <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
+    <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+    <a href="dns.html" class="related-link">What is DNS?</a>
+    <a href="dhcp.html" class="related-link">What is DHCP?</a>
+    <a href="firewall-basics.html" class="related-link">Firewall Basics</a>
+    <a href="apipa.html" class="related-link">What is APIPA?</a>
+    <a href="ports.html" class="related-link">Port Numbers Reference</a>
+    <a href="aplus-vs-network-plus.html" class="related-link">A+ vs Network+</a>
+    <a href="ssh-explained.html" class="related-link">What is SSH?</a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+, Network+, and Security+ resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">A+</div>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-aplus.html">How to Pass the A+</a>
+      <a href="best-a-plus.html">Best A+ Resources</a>
+      <a href="aplus-vs-network-plus.html">A+ vs Network+</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Cheat Sheets</div>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="ports.html">Port Numbers</a>
+      <a href="subnetting.html">Subnetting Guide</a>
+      <a href="osi-model.html">OSI Model</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>
