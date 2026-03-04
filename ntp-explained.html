@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/ntp-explained.html">
+
+<title>What is NTP? Network Time Protocol Explained — CompTIA Network+ & Security+ (2026)</title>
+<meta name="description" content="What is NTP and how does it work? Stratum levels, NTP vs SNTP, port 123, NTP security risks, NTP amplification attacks, and every NTP concept tested on CompTIA Network+ and Security+.">
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
+     crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --blue2:   #1560e8;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter); color: var(--text);
+  line-height: 1.65; -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 28px;
+  height: 68px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+}
+.logo-link {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 17px; color: var(--navy); letter-spacing: -0.3px; flex-shrink: 0;
+}
+.logo-img { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px; font-weight: 600; padding: 8px 14px;
+  border-radius: 8px; color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+}
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta {
+  background: var(--navy); color: var(--white) !important;
+  padding: 8px 18px; border-radius: 8px; margin-left: 6px;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); }
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 44px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy); position: relative;
+  overflow: hidden; padding: 60px 28px 70px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(26,108,255,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(0,194,168,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.page-hero-inner {
+  max-width: 1100px; margin: 0 auto;
+  position: relative; z-index: 1; animation: fadeUp 0.6s ease both;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  margin-bottom: 20px; font-family: 'DM Mono', monospace;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge {
+  display: inline-flex; align-items: center;
+  background: rgba(26,108,255,0.15); border: 1px solid rgba(26,108,255,0.35);
+  color: #7eb3ff; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
+}
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(26px, 4vw, 42px); font-weight: 800;
+  color: var(--white); line-height: 1.15; letter-spacing: -0.8px; margin-bottom: 14px;
+}
+.page-hero h1 span { color: #7eb3ff; }
+.page-hero-sub {
+  font-size: 16px; color: rgba(255,255,255,0.6); max-width: 620px; line-height: 1.7;
+}
+
+/* ── ARTICLE ── */
+.article-wrap {
+  max-width: 860px; margin: 0 auto; padding: 52px 28px 80px;
+  animation: fadeUp 0.5s ease both;
+}
+@media (max-width: 768px) { .article-wrap { padding: 36px 16px 60px; } }
+.article-body h2 {
+  font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.3px; margin: 48px 0 16px;
+}
+.article-body h2:first-child { margin-top: 0; }
+.article-body p { font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 16px; }
+.article-body strong { color: var(--navy); font-weight: 700; }
+
+/* ── QUICK ANSWER ── */
+.quick-answer {
+  background: var(--navy); border-radius: 14px;
+  padding: 24px 26px; margin-bottom: 40px; position: relative; overflow: hidden;
+}
+.quick-answer::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(26,108,255,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.quick-answer-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #7eb3ff;
+  margin-bottom: 10px; position: relative;
+}
+.quick-answer-text {
+  font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; position: relative;
+}
+.quick-answer-text strong { color: var(--white); }
+
+/* ── STRATUM STACK ── */
+.stratum-stack { display: flex; flex-direction: column; gap: 6px; margin-bottom: 40px; }
+.stratum-row {
+  display: grid; grid-template-columns: 110px 1fr;
+  align-items: center; gap: 16px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 18px;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.stratum-badge {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  text-align: center; padding: 5px 8px; border-radius: 8px; white-space: nowrap;
+}
+.s0 { background: rgba(26,108,255,0.12); color: var(--blue); border: 1px solid rgba(26,108,255,0.25); }
+.s1 { background: rgba(0,194,168,0.12); color: var(--teal2); border: 1px solid rgba(0,194,168,0.25); }
+.s2 { background: rgba(99,102,241,0.10); color: #4f46e5; border: 1px solid rgba(99,102,241,0.2); }
+.s3 { background: var(--light); color: var(--muted); border: 1px solid var(--border); }
+.stratum-desc { font-size: 14px; color: var(--text); line-height: 1.5; }
+.stratum-desc strong { color: var(--navy); }
+@media (max-width: 480px) { .stratum-row { grid-template-columns: 1fr; } }
+
+/* ── TABLE ── */
+.table-wrap {
+  overflow-x: auto; border-radius: 14px; border: 1px solid var(--border);
+  box-shadow: var(--card-shadow); margin-bottom: 40px;
+}
+table { width: 100%; border-collapse: collapse; background: var(--white); min-width: 380px; }
+thead th {
+  background: var(--navy); color: rgba(255,255,255,0.7);
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.7px; padding: 14px 18px; text-align: left;
+  font-family: 'DM Mono', monospace;
+}
+thead th:first-child { color: var(--white); }
+tbody td {
+  padding: 13px 18px; border-bottom: 1px solid var(--border);
+  font-size: 14px; color: var(--text); vertical-align: top; line-height: 1.55;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #f4f8ff; }
+.td-term { font-weight: 700; color: var(--navy); font-family: 'DM Mono', monospace; font-size: 13px; }
+
+/* ── CODE BLOCK ── */
+.code-block {
+  background: var(--navy); border-radius: 12px; overflow: hidden;
+  margin-bottom: 32px; border: 1px solid rgba(255,255,255,0.08);
+}
+.code-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.7px; text-transform: uppercase; color: #7eb3ff;
+  padding: 10px 18px 8px; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.code-block pre {
+  font-family: 'DM Mono', monospace; font-size: 13.5px;
+  color: rgba(255,255,255,0.85); line-height: 1.8;
+  padding: 16px 18px; overflow-x: auto; margin: 0;
+}
+.code-hl      { color: #7eb3ff; font-weight: 700; }
+.code-teal    { color: var(--teal); font-weight: 700; }
+.code-comment { color: rgba(255,255,255,0.35); }
+
+/* ── EXAM TIP ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060; border-left: 4px solid #f0c000;
+  border-radius: 12px; padding: 18px 22px; margin-bottom: 40px;
+}
+.exam-tip-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px;
+}
+.exam-tip p { font-size: 14px; color: #3a2800; line-height: 1.7; margin-bottom: 8px; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #1a1000; }
+
+/* ── CALLOUT ── */
+.callout {
+  background: rgba(26,108,255,0.04); border: 1px solid rgba(26,108,255,0.2);
+  border-left: 4px solid var(--blue);
+  border-radius: 12px; padding: 16px 20px; margin-bottom: 40px;
+}
+.callout-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
+}
+.callout p { font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 6px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout strong { color: var(--navy); }
+
+/* ── WARNING ── */
+.warning {
+  background: rgba(220,38,38,0.04); border: 1px solid rgba(220,38,38,0.2);
+  border-left: 4px solid #ef4444;
+  border-radius: 12px; padding: 16px 20px; margin-bottom: 40px;
+}
+.warning-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #dc2626; margin-bottom: 8px;
+}
+.warning p { font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 6px; }
+.warning p:last-child { margin-bottom: 0; }
+.warning strong { color: #7f1d1d; }
+
+/* ── SCENARIO LIST ── */
+.scenario-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+.scenario-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 18px;
+  font-size: 14px; color: var(--text); line-height: 1.65;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.scenario-item strong { color: var(--navy); }
+
+/* ── CTA BOX ── */
+.cta-box {
+  background: linear-gradient(135deg, var(--navy), var(--navy2));
+  border-radius: 16px; padding: 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap; position: relative; overflow: hidden; margin-bottom: 40px;
+}
+.cta-box::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(26,108,255,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-box-text h3 {
+  font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800;
+  color: var(--white); margin-bottom: 4px;
+}
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 10px; font-size: 14px; font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s; white-space: nowrap; flex-shrink: 0;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-blue { background: var(--blue); color: var(--white); box-shadow: 0 6px 20px rgba(26,108,255,0.3); }
+.btn-blue:hover { background: var(--blue2); box-shadow: 0 10px 28px rgba(26,108,255,0.4); }
+
+/* ── RELATED ── */
+.related-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px;
+}
+.related-link {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 16px; font-size: 14px;
+  font-weight: 600; color: var(--navy);
+  transition: border-color 0.15s, color 0.15s, transform 0.15s;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.related-link:hover { border-color: rgba(26,108,255,0.3); color: var(--blue); transform: translateY(-1px); }
+.related-link::before { content: '→'; color: var(--blue); font-size: 13px; }
+
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  max-width: 1100px; margin: 28px auto 0; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+@media (max-width: 600px) { .footer { padding: 36px 16px; } .footer-bottom { flex-direction: column; } }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <span>›</span>
+      <span>What is NTP?</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Network+ · Security+ · 2026</div>
+    <h1>What is <span>NTP?</span></h1>
+    <p class="page-hero-sub">Network Time Protocol — why accurate time matters in networking, stratum levels, how NTP synchronises clocks, NTP security risks, and every NTP concept tested on CompTIA Network+ and Security+.</p>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ What is NTP?</div>
+      <div class="quick-answer-text">
+        NTP (Network Time Protocol) is a protocol that <strong>synchronises the clocks of computers and network devices</strong> to a common time source. It runs over <strong>UDP port 123</strong> and is one of the oldest protocols still in active use. Accurate time is critical for security logs, authentication systems, SSL/TLS certificates, Kerberos, and forensic investigations — a clock that's even a few minutes off can cause authentication failures and make log correlation impossible.
+      </div>
+    </div>
+
+    <h2>Why accurate time matters in networking</h2>
+
+    <p>Time synchronisation sounds like a minor housekeeping task, but it underpins some of the most critical functions in a network. These are the real-world consequences of clocks being out of sync — and the reason the exam treats NTP as a significant protocol:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>System</th><th>What breaks without accurate time</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-term">Kerberos authentication</td>
+            <td>Kerberos tickets are time-stamped and expire — if a device's clock is more than 5 minutes off from the domain controller, authentication fails entirely. This is the most tested NTP consequence on Security+.</td>
+          </tr>
+          <tr>
+            <td class="td-term">SSL / TLS certificates</td>
+            <td>Certificates have valid-from and valid-to timestamps. A device with a wrong clock may reject valid certificates as expired or not-yet-valid.</td>
+          </tr>
+          <tr>
+            <td class="td-term">Security log correlation</td>
+            <td>When investigating an incident across multiple devices, log timestamps must align. A 10-minute clock drift makes it impossible to reconstruct the correct sequence of events.</td>
+          </tr>
+          <tr>
+            <td class="td-term">Scheduled tasks and cron jobs</td>
+            <td>Backups, maintenance windows, and automated jobs run at the wrong time — or not at all — if the system clock is wrong.</td>
+          </tr>
+          <tr>
+            <td class="td-term">Multi-factor authentication</td>
+            <td>TOTP-based MFA (like Google Authenticator) generates codes based on the current time. A device out of sync will generate codes that don't match and MFA will fail.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>NTP stratum levels</h2>
+
+    <p>NTP uses a hierarchical system called <strong>stratum levels</strong> to describe how far a clock is from a reference time source. Stratum 0 is the most accurate; each level further down introduces a small amount of additional drift.</p>
+
+    <div class="stratum-stack">
+      <div class="stratum-row">
+        <div class="stratum-badge s0">Stratum 0</div>
+        <div class="stratum-desc"><strong>Reference clocks</strong> — atomic clocks, GPS receivers, radio time signals. These are the ultimate source of truth. They are not on the network directly — they connect to Stratum 1 servers.</div>
+      </div>
+      <div class="stratum-row">
+        <div class="stratum-badge s1">Stratum 1</div>
+        <div class="stratum-desc"><strong>Primary time servers</strong> — computers directly connected to a Stratum 0 source. These are the public NTP servers (pool.ntp.org, time.google.com, time.cloudflare.com). Highly accurate, typically within microseconds.</div>
+      </div>
+      <div class="stratum-row">
+        <div class="stratum-badge s2">Stratum 2</div>
+        <div class="stratum-desc"><strong>Secondary servers</strong> — sync from Stratum 1. Most enterprise internal NTP servers are Stratum 2. They serve time to internal clients and reduce load on public Stratum 1 servers.</div>
+      </div>
+      <div class="stratum-row">
+        <div class="stratum-badge s3">Stratum 3–15</div>
+        <div class="stratum-desc"><strong>Downstream clients and servers</strong> — each level synchronises from the one above. Workstations, switches, and routers typically sit at Stratum 3 or 4. Accuracy decreases slightly at each hop but remains acceptable for network purposes.</div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Stratum — what the exam tests</div>
+      <p><strong>Lower stratum = more accurate.</strong> Stratum 0 is the reference source. Stratum 1 is closest to it. A device at Stratum 3 synchronises from a Stratum 2 server, which synchronises from Stratum 1.</p>
+      <p>The exam may ask: "An NTP server synchronises directly from an atomic clock. What stratum level is it?" → <strong>Stratum 1</strong>. Or: "Which stratum level represents the most accurate time source?" → <strong>Stratum 0</strong> (the reference clock itself, not on the network).</p>
+    </div>
+
+    <h2>How NTP synchronisation works</h2>
+
+    <p>NTP doesn't just set the clock once — it continuously monitors drift and makes small adjustments to keep clocks aligned. The protocol measures the round-trip delay to the time server and accounts for it when calculating the correct local time.</p>
+
+    <div class="code-block">
+      <div class="code-label">NTP synchronisation process</div>
+      <pre><span class="code-comment">1. Client sends NTP request to server</span>
+   Client records: T1 = time request was sent
+
+<span class="code-comment">2. Server receives request, sends response</span>
+   Server records: T2 = time request was received
+                   T3 = time response was sent
+
+<span class="code-comment">3. Client receives response</span>
+   Client records: T4 = time response was received
+
+<span class="code-comment">4. Client calculates offset and delay:</span>
+   <span class="code-hl">Round-trip delay</span> = (T4 - T1) - (T3 - T2)
+   <span class="code-hl">Clock offset</span>     = ((T2 - T1) + (T3 - T4)) / 2
+
+<span class="code-comment">5. Client adjusts its clock by the offset</span>
+   <span class="code-teal">Slewing:</span>  gradual adjustment for small drifts (normal)
+   <span class="code-teal">Stepping:</span> immediate jump for large differences (&gt; 128ms default)</pre>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">📌 NTP vs SNTP</div>
+      <p><strong>NTP</strong> (Network Time Protocol) — full implementation with drift correction, multiple server polling, and statistical filtering. Used on servers and network infrastructure. Accurate to within milliseconds.</p>
+      <p><strong>SNTP</strong> (Simple NTP) — simplified version that uses a single server without drift correction. Used on embedded devices, IoT, and simple clients where full NTP complexity isn't needed. Less accurate but much lighter weight.</p>
+      <p>Both use <strong>UDP port 123</strong>. The exam distinguishes them by use case — SNTP for simple/embedded devices, NTP for infrastructure.</p>
+    </div>
+
+    <h2>NTP in enterprise networks</h2>
+
+    <p>In a well-designed enterprise network, NTP follows a hierarchy that mirrors the stratum model. Rather than having every device query a public internet NTP server directly — which wastes bandwidth and creates an external dependency — the network designates internal NTP servers that sync from public sources and serve time to everything internally.</p>
+
+    <div class="code-block">
+      <div class="code-label">Typical enterprise NTP architecture</div>
+      <pre><span class="code-comment">Internet</span>
+    │
+    ▼
+<span class="code-hl">Public NTP servers</span>  <span class="code-comment">(Stratum 1 — pool.ntp.org, time.google.com)</span>
+    │
+    ▼
+<span class="code-hl">Internal NTP server</span>  <span class="code-comment">(Stratum 2 — domain controller or dedicated server)</span>
+    │
+    ├── <span class="code-teal">Core switches / routers</span>   <span class="code-comment">(Stratum 3)</span>
+    ├── <span class="code-teal">Access layer switches</span>      <span class="code-comment">(Stratum 3)</span>
+    ├── <span class="code-teal">Servers</span>                    <span class="code-comment">(Stratum 3)</span>
+    └── <span class="code-teal">Workstations</span>               <span class="code-comment">(Stratum 3-4, via domain)</span></pre>
+    </div>
+
+    <p>On Windows domain networks, the <strong>Primary Domain Controller (PDC) Emulator</strong> is typically the internal NTP authority. All domain-joined machines automatically sync their clocks through the domain hierarchy, which is why Kerberos authentication works reliably — every device on the domain shares the same time source.</p>
+
+    <h2>NTP security risks</h2>
+
+    <p>NTP is a trusted but often overlooked attack surface. Three NTP-related attacks appear on Security+:</p>
+
+    <div class="warning">
+      <div class="warning-label">⚠️ NTP amplification attack (DDoS)</div>
+      <p>NTP has a diagnostic command called <strong>monlist</strong> that returns a list of the last 600 clients that queried the server. An attacker can send a tiny spoofed request (just 8 bytes) to an NTP server with a victim's IP as the source — the server responds with up to 100× more data directed at the victim. This <strong>amplification factor</strong> makes NTP one of the most effective DDoS reflection vectors.</p>
+      <p><strong>Mitigation:</strong> Disable the monlist command on NTP servers, restrict NTP to known clients via ACLs, deploy NTPv4 with authentication.</p>
+    </div>
+
+    <div class="warning">
+      <div class="warning-label">⚠️ NTP spoofing / time poisoning</div>
+      <p>An attacker on the network sends fake NTP responses to shift a device's clock. If successful, this can <strong>expire or invalidate SSL/TLS certificates</strong>, cause Kerberos authentication failures, invalidate log timestamps, or cause time-based one-time passwords (TOTP) to fail.</p>
+      <p><strong>Mitigation:</strong> Use NTPv4 with authentication (NTP authentication uses MD5 or SHA keys to verify server identity), restrict NTP sources to trusted internal servers only.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">📌 NTP authentication</div>
+      <p>NTPv4 supports symmetric key authentication — the client and server share a secret key and the server signs its time responses. This prevents an attacker from injecting fake NTP responses because they don't know the key.</p>
+      <p>On Cisco devices: configured with <code style="font-family:'DM Mono',monospace;font-size:12px;background:var(--light);padding:2px 6px;border-radius:4px;">ntp authenticate</code> and <code style="font-family:'DM Mono',monospace;font-size:12px;background:var(--light);padding:2px 6px;border-radius:4px;">ntp authentication-key</code> commands. The exam may reference this as a hardening step.</p>
+    </div>
+
+    <h2>Quick reference — NTP facts for the exam</h2>
+
+    <div class="code-block">
+      <div class="code-label">NTP exam reference</div>
+      <pre><span class="code-hl">Protocol:</span>   NTP (Network Time Protocol)
+<span class="code-hl">Port:</span>        UDP 123
+<span class="code-hl">Purpose:</span>     Clock synchronisation across network devices
+
+<span class="code-hl">Stratum 0:</span>   Atomic clock / GPS — reference source, not on network
+<span class="code-hl">Stratum 1:</span>   Primary server — directly connected to Stratum 0
+<span class="code-hl">Stratum 2:</span>   Syncs from Stratum 1 — typical enterprise NTP server
+<span class="code-hl">Lower = more accurate</span>  |  <span class="code-hl">Max usable stratum = 15</span>
+
+<span class="code-teal">Kerberos:</span>   Fails if clock skew &gt; 5 minutes — most tested consequence
+<span class="code-teal">TOTP/MFA:</span>   Time-based codes fail if clock is wrong
+<span class="code-teal">Logs:</span>       Cannot correlate events across devices with different times
+
+<span class="code-hl">SNTP:</span>       Simplified NTP — single server, no drift correction
+<span class="code-hl">NTP auth:</span>   MD5 or SHA key — prevents time spoofing
+
+<span class="code-teal">NTP amplification:</span>  monlist command abused for DDoS reflection</pre>
+    </div>
+
+    <h2>Exam scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "Users on a Windows domain are suddenly unable to authenticate. The help desk finds that one workstation's clock is 10 minutes ahead of the domain controller. What is the most likely cause of the authentication failure?" → <strong>Kerberos requires clock skew to be within 5 minutes — a 10-minute difference causes authentication tickets to be rejected</strong></div>
+      <div class="scenario-item">💬 "Which protocol synchronises clocks across network devices and uses UDP port 123?" → <strong>NTP — Network Time Protocol</strong></div>
+      <div class="scenario-item">💬 "An NTP server synchronises directly from an atomic clock. What stratum level is it?" → <strong>Stratum 1</strong></div>
+      <div class="scenario-item">💬 "Which stratum level describes the atomic clocks and GPS receivers that are the ultimate reference time sources?" → <strong>Stratum 0</strong></div>
+      <div class="scenario-item">💬 "A security analyst is investigating an incident but finds that log timestamps from different devices don't align. What should be implemented to prevent this?" → <strong>NTP — synchronise all devices to a common time source so log timestamps are consistent</strong></div>
+      <div class="scenario-item">💬 "An attacker sends a small spoofed UDP packet to a public NTP server and the victim receives a large flood of traffic in response. What attack is this?" → <strong>NTP amplification attack — the attacker exploits the monlist command to amplify traffic toward the victim</strong></div>
+      <div class="scenario-item">💬 "Which simplified version of NTP is used on embedded and IoT devices where full NTP is too resource-intensive?" → <strong>SNTP — Simple Network Time Protocol, also uses UDP port 123</strong></div>
+      <div class="scenario-item">💬 "What NTP feature prevents attackers from injecting fake time responses?" → <strong>NTP authentication — shared MD5 or SHA keys that the client uses to verify the server's responses are legitimate</strong></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for Network+ or Security+?</h3>
+        <p>The study guides, practice exams, and free resources worth your time.</p>
+      </div>
+      <a href="best-study-resources.html" class="btn btn-blue">See Study Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="snmp-explained.html" class="related-link">What is SNMP?</a>
+      <a href="dns.html" class="related-link">What is DNS?</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="ports.html" class="related-link">Port Numbers Reference</a>
+      <a href="network-attacks.html" class="related-link">Network Attacks Explained</a>
+      <a href="firewall-basics.html" class="related-link">Firewall Basics Explained</a>
+      <a href="how-to-pass-comptia-network-plus.html" class="related-link">How to Pass Network+</a>
+      <a href="how-to-pass-comptia-security-plus.html" class="related-link">How to Pass Security+</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+, Network+, and Security+ resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Protocols</div>
+      <a href="ntp-explained.html">What is NTP?</a>
+      <a href="snmp-explained.html">What is SNMP?</a>
+      <a href="dns.html">What is DNS?</a>
+      <a href="dhcp.html">What is DHCP?</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Network+</div>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-network-plus.html">How to Pass Network+</a>
+      <a href="best-network-plus.html">Best Network+ Resources</a>
+      <a href="ports.html">Port Numbers Reference</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>
