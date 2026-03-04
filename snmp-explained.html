@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x512.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/snmp-explained.html">
+
+<title>What is SNMP? Simple Network Management Protocol Explained — CompTIA Network+ (2026)</title>
+<meta name="description" content="What is SNMP and how does it work? SNMPv1 vs v2c vs v3, OIDs, MIBs, traps, community strings, port 161 vs 162, and every SNMP concept tested on CompTIA Network+ — explained clearly.">
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
+     crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --blue2:   #1560e8;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter); color: var(--text);
+  line-height: 1.65; -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 28px;
+  height: 68px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+}
+.logo-link {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 17px; color: var(--navy); letter-spacing: -0.3px; flex-shrink: 0;
+}
+.logo-img { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px; font-weight: 600; padding: 8px 14px;
+  border-radius: 8px; color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+}
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta {
+  background: var(--navy); color: var(--white) !important;
+  padding: 8px 18px; border-radius: 8px; margin-left: 6px;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); }
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 44px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy); position: relative;
+  overflow: hidden; padding: 60px 28px 70px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(26,108,255,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(0,194,168,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.page-hero-inner {
+  max-width: 1100px; margin: 0 auto;
+  position: relative; z-index: 1; animation: fadeUp 0.6s ease both;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  margin-bottom: 20px; font-family: 'DM Mono', monospace;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge {
+  display: inline-flex; align-items: center;
+  background: rgba(26,108,255,0.15); border: 1px solid rgba(26,108,255,0.35);
+  color: #7eb3ff; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
+}
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(26px, 4vw, 42px); font-weight: 800;
+  color: var(--white); line-height: 1.15; letter-spacing: -0.8px; margin-bottom: 14px;
+}
+.page-hero h1 span { color: #7eb3ff; }
+.page-hero-sub {
+  font-size: 16px; color: rgba(255,255,255,0.6); max-width: 620px; line-height: 1.7;
+}
+
+/* ── ARTICLE ── */
+.article-wrap {
+  max-width: 860px; margin: 0 auto; padding: 52px 28px 80px;
+  animation: fadeUp 0.5s ease both;
+}
+@media (max-width: 768px) { .article-wrap { padding: 36px 16px 60px; } }
+.article-body h2 {
+  font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.3px; margin: 48px 0 16px;
+}
+.article-body h2:first-child { margin-top: 0; }
+.article-body p { font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 16px; }
+.article-body strong { color: var(--navy); font-weight: 700; }
+
+/* ── QUICK ANSWER ── */
+.quick-answer {
+  background: var(--navy); border-radius: 14px;
+  padding: 24px 26px; margin-bottom: 40px; position: relative; overflow: hidden;
+}
+.quick-answer::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(26,108,255,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.quick-answer-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #7eb3ff;
+  margin-bottom: 10px; position: relative;
+}
+.quick-answer-text {
+  font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; position: relative;
+}
+.quick-answer-text strong { color: var(--white); }
+
+/* ── TABLE ── */
+.table-wrap {
+  overflow-x: auto; border-radius: 14px; border: 1px solid var(--border);
+  box-shadow: var(--card-shadow); margin-bottom: 40px;
+}
+table { width: 100%; border-collapse: collapse; background: var(--white); min-width: 400px; }
+thead th {
+  background: var(--navy); color: rgba(255,255,255,0.7);
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.7px; padding: 14px 18px; text-align: left;
+  font-family: 'DM Mono', monospace;
+}
+thead th:first-child { color: var(--white); }
+tbody td {
+  padding: 13px 18px; border-bottom: 1px solid var(--border);
+  font-size: 14px; color: var(--text); vertical-align: top; line-height: 1.55;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #f4f8ff; }
+.td-term { font-weight: 700; color: var(--navy); font-family: 'DM Mono', monospace; font-size: 13px; }
+.badge {
+  display: inline-block; padding: 2px 8px; border-radius: 6px;
+  font-size: 11px; font-weight: 700; font-family: 'DM Mono', monospace;
+}
+.badge-deprecated { background: rgba(220,38,38,0.1); color: #dc2626; border: 1px solid rgba(220,38,38,0.2); }
+.badge-legacy     { background: rgba(234,179,8,0.1);  color: #b45309; border: 1px solid rgba(234,179,8,0.2); }
+.badge-current    { background: rgba(22,163,74,0.1);  color: #16a34a; border: 1px solid rgba(22,163,74,0.2); }
+
+/* ── CODE BLOCK ── */
+.code-block {
+  background: var(--navy); border-radius: 12px; overflow: hidden;
+  margin-bottom: 32px; border: 1px solid rgba(255,255,255,0.08);
+}
+.code-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.7px; text-transform: uppercase; color: #7eb3ff;
+  padding: 10px 18px 8px; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.code-block pre {
+  font-family: 'DM Mono', monospace; font-size: 13.5px;
+  color: rgba(255,255,255,0.85); line-height: 1.8;
+  padding: 16px 18px; overflow-x: auto; margin: 0;
+}
+.code-hl      { color: #7eb3ff; font-weight: 700; }
+.code-teal    { color: var(--teal); font-weight: 700; }
+.code-yellow  { color: #fcd34d; }
+.code-comment { color: rgba(255,255,255,0.35); }
+
+/* ── CONCEPT CARDS ── */
+.concept-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 40px;
+}
+@media (max-width: 580px) { .concept-grid { grid-template-columns: 1fr; } }
+.concept-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px 20px; box-shadow: var(--card-shadow);
+  border-top: 3px solid var(--blue);
+}
+.concept-icon { font-size: 22px; margin-bottom: 8px; }
+.concept-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.6px; color: var(--blue); margin-bottom: 6px;
+}
+.concept-title {
+  font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 800;
+  color: var(--navy); margin-bottom: 6px;
+}
+.concept-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+
+/* ── EXAM TIP ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060; border-left: 4px solid #f0c000;
+  border-radius: 12px; padding: 18px 22px; margin-bottom: 40px;
+}
+.exam-tip-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px;
+}
+.exam-tip p { font-size: 14px; color: #3a2800; line-height: 1.7; margin-bottom: 8px; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #1a1000; }
+
+/* ── CALLOUT ── */
+.callout {
+  background: rgba(26,108,255,0.04); border: 1px solid rgba(26,108,255,0.2);
+  border-left: 4px solid var(--blue);
+  border-radius: 12px; padding: 16px 20px; margin-bottom: 40px;
+}
+.callout-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
+}
+.callout p { font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 6px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout strong { color: var(--navy); }
+
+/* ── WARNING ── */
+.warning {
+  background: rgba(220,38,38,0.04); border: 1px solid rgba(220,38,38,0.2);
+  border-left: 4px solid #ef4444;
+  border-radius: 12px; padding: 16px 20px; margin-bottom: 40px;
+}
+.warning-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #dc2626; margin-bottom: 8px;
+}
+.warning p { font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 6px; }
+.warning p:last-child { margin-bottom: 0; }
+.warning strong { color: #7f1d1d; }
+
+/* ── SCENARIO LIST ── */
+.scenario-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+.scenario-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 18px;
+  font-size: 14px; color: var(--text); line-height: 1.65;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.scenario-item strong { color: var(--navy); }
+
+/* ── CTA BOX ── */
+.cta-box {
+  background: linear-gradient(135deg, var(--navy), var(--navy2));
+  border-radius: 16px; padding: 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap; position: relative; overflow: hidden; margin-bottom: 40px;
+}
+.cta-box::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(26,108,255,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-box-text h3 {
+  font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800;
+  color: var(--white); margin-bottom: 4px;
+}
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 10px; font-size: 14px; font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s; white-space: nowrap; flex-shrink: 0;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-blue { background: var(--blue); color: var(--white); box-shadow: 0 6px 20px rgba(26,108,255,0.3); }
+.btn-blue:hover { background: var(--blue2); box-shadow: 0 10px 28px rgba(26,108,255,0.4); }
+
+/* ── RELATED ── */
+.related-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px;
+}
+.related-link {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 16px; font-size: 14px;
+  font-weight: 600; color: var(--navy);
+  transition: border-color 0.15s, color 0.15s, transform 0.15s;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.related-link:hover { border-color: rgba(26,108,255,0.3); color: var(--blue); transform: translateY(-1px); }
+.related-link::before { content: '→'; color: var(--blue); font-size: 13px; }
+
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  max-width: 1100px; margin: 28px auto 0; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+@media (max-width: 600px) { .footer { padding: 36px 16px; } .footer-bottom { flex-direction: column; } }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <span>›</span>
+      <span>What is SNMP?</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Network+ · Security+ · 2026</div>
+    <h1>What is <span>SNMP?</span></h1>
+    <p class="page-hero-sub">Simple Network Management Protocol — how it works, OIDs, MIBs, traps, the three versions, why SNMPv1 and v2c are security risks, and every SNMP concept tested on CompTIA Network+ and Security+.</p>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ What is SNMP?</div>
+      <div class="quick-answer-text">
+        SNMP (Simple Network Management Protocol) is a protocol used to <strong>monitor and manage network devices</strong> — routers, switches, firewalls, servers, printers — from a central location. It lets a network management system collect performance data (CPU usage, bandwidth, error rates), check device status, and make configuration changes remotely. SNMP uses <strong>UDP port 161</strong> for queries and <strong>UDP port 162</strong> for traps (alerts sent by devices). Three versions exist — SNMPv3 is the only one considered secure.
+      </div>
+    </div>
+
+    <h2>Why SNMP exists</h2>
+
+    <p>Managing a network with hundreds of routers, switches, and servers individually would be impossible at scale. SNMP solves this by giving a central <strong>network management station (NMS)</strong> a standardised way to query any managed device for its current status and statistics — without logging into each device separately.</p>
+
+    <p>Think of it as a health-monitoring system for your entire network infrastructure. The NMS can poll every device every few minutes, collect data, graph trends, and send alerts when something goes wrong — all automatically.</p>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-icon">🖥️</div>
+        <div class="concept-label">Central controller</div>
+        <div class="concept-title">SNMP Manager (NMS)</div>
+        <div class="concept-desc">The network management station that sends queries and receives data. Runs monitoring software like SolarWinds, PRTG, or Nagios. Polls agents on a schedule and collects metrics.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">📡</div>
+        <div class="concept-label">On each device</div>
+        <div class="concept-title">SNMP Agent</div>
+        <div class="concept-desc">Software running on a managed device (router, switch, server) that responds to queries from the manager. Maintains a local database of device statistics called the MIB.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">📊</div>
+        <div class="concept-label">Data store</div>
+        <div class="concept-title">MIB (Management Information Base)</div>
+        <div class="concept-desc">A structured database of variables the agent can report — CPU load, interface status, bytes in/out, error counts. Each variable has a unique identifier called an OID.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🔔</div>
+        <div class="concept-label">Proactive alerts</div>
+        <div class="concept-title">SNMP Trap</div>
+        <div class="concept-desc">Instead of waiting to be polled, the agent proactively sends a trap to the manager when a significant event occurs — a link going down, a threshold exceeded, a device rebooting.</div>
+      </div>
+    </div>
+
+    <h2>How SNMP communication works</h2>
+
+    <p>SNMP communication happens in two directions — the manager polling agents, and agents sending unsolicited traps. Both use UDP, which makes SNMP lightweight but also connectionless.</p>
+
+    <div class="code-block">
+      <div class="code-label">SNMP message types</div>
+      <pre><span class="code-hl">GetRequest</span>       <span class="code-comment">Manager → Agent  (UDP 161)</span>
+                 <span class="code-comment">Ask for the value of a specific OID</span>
+                 <span class="code-comment">e.g. "What is the current CPU utilisation?"</span>
+
+<span class="code-hl">GetNextRequest</span>   <span class="code-comment">Manager → Agent  (UDP 161)</span>
+                 <span class="code-comment">Walk through the MIB tree sequentially</span>
+
+<span class="code-hl">GetBulkRequest</span>   <span class="code-comment">Manager → Agent  (UDP 161) — SNMPv2c+</span>
+                 <span class="code-comment">Retrieve large amounts of data efficiently</span>
+
+<span class="code-hl">SetRequest</span>       <span class="code-comment">Manager → Agent  (UDP 161)</span>
+                 <span class="code-comment">Change a value on the device</span>
+                 <span class="code-comment">e.g. "Change the interface description"</span>
+
+<span class="code-teal">GetResponse</span>      <span class="code-comment">Agent → Manager  (UDP 161)</span>
+                 <span class="code-comment">Reply to any Get or Set request</span>
+
+<span class="code-teal">Trap</span>             <span class="code-comment">Agent → Manager  (UDP 162)</span>
+                 <span class="code-comment">Unsolicited alert — sent when an event occurs</span>
+                 <span class="code-comment">e.g. link down, high temperature, auth failure</span>
+
+<span class="code-teal">Inform</span>           <span class="code-comment">Agent → Manager  (UDP 162) — SNMPv2c+</span>
+                 <span class="code-comment">Like a trap but requires acknowledgement</span></pre>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Port 161 vs port 162 — always tested</div>
+      <p><strong>UDP 161</strong> — SNMP queries (manager polling agents). The agent listens on 161.</p>
+      <p><strong>UDP 162</strong> — SNMP traps (agents sending alerts to manager). The manager listens on 162.</p>
+      <p>Memory trick: the manager <em>asks</em> on 161, the device <em>tells</em> on 162. Both are UDP — SNMP is connectionless by design to reduce overhead on managed devices.</p>
+    </div>
+
+    <h2>OIDs and MIBs</h2>
+
+    <p>Every piece of information an SNMP agent can report is identified by an <strong>OID (Object Identifier)</strong> — a dotted numeric string that uniquely identifies a variable in the global SNMP namespace. The collection of all OIDs a device supports is defined in its <strong>MIB (Management Information Base)</strong>.</p>
+
+    <div class="code-block">
+      <div class="code-label">OID structure — example</div>
+      <pre><span class="code-hl">1.3.6.1.2.1.1.1.0</span>  <span class="code-comment">→ sysDescr — system description string</span>
+<span class="code-hl">1.3.6.1.2.1.1.3.0</span>  <span class="code-comment">→ sysUpTime — how long since last reboot</span>
+<span class="code-hl">1.3.6.1.2.1.2.2.1.10.1</span>  <span class="code-comment">→ ifInOctets — bytes received on interface 1</span>
+<span class="code-hl">1.3.6.1.2.1.2.2.1.16.1</span>  <span class="code-comment">→ ifOutOctets — bytes sent on interface 1</span>
+
+<span class="code-comment">Structure: iso.org.dod.internet.mgmt.mib-2.interfaces...</span>
+<span class="code-comment">Each number represents a branch in the OID tree</span></pre>
+    </div>
+
+    <p>You don't need to memorise OIDs for the exam — but you do need to understand that OIDs are the addressing system SNMP uses to identify specific data points, and that the MIB is the schema defining which OIDs a device supports and what they mean.</p>
+
+    <h2>SNMPv1 vs SNMPv2c vs SNMPv3</h2>
+
+    <p>The version of SNMP in use determines the security level of your network monitoring. This is one of the most heavily tested SNMP topics — the exam will ask you to identify which version to use and why the older versions are security risks.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Version</th>
+            <th>Authentication</th>
+            <th>Encryption</th>
+            <th>Status</th>
+            <th>Key fact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-term">SNMPv1</td>
+            <td>Community string (plaintext)</td>
+            <td>None</td>
+            <td><span class="badge badge-deprecated">Avoid</span></td>
+            <td>Original version. Community string sent in cleartext — trivial to intercept. No encryption whatsoever.</td>
+          </tr>
+          <tr>
+            <td class="td-term">SNMPv2c</td>
+            <td>Community string (plaintext)</td>
+            <td>None</td>
+            <td><span class="badge badge-legacy">Legacy</span></td>
+            <td>Added GetBulk and Inform — more efficient. Still sends community strings in plaintext. No real security improvement over v1.</td>
+          </tr>
+          <tr>
+            <td class="td-term">SNMPv3</td>
+            <td>Username + MD5/SHA hashing</td>
+            <td>AES or 3DES</td>
+            <td><span class="badge badge-current">Recommended</span></td>
+            <td>Adds authentication, encryption, and message integrity. The only version that should be used in production environments.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Community strings — the SNMPv1/v2c security problem</h2>
+
+    <p>SNMPv1 and SNMPv2c use <strong>community strings</strong> as a basic form of authentication — essentially a shared password included in every SNMP message. There are two types:</p>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-icon">👁️</div>
+        <div class="concept-label">Read access</div>
+        <div class="concept-title">Read-Only Community String</div>
+        <div class="concept-desc">Allows the manager to query (GET) data from the agent. Default value is almost always <strong>"public"</strong> — one of the most dangerously predictable defaults in networking.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">✏️</div>
+        <div class="concept-label">Write access</div>
+        <div class="concept-title">Read-Write Community String</div>
+        <div class="concept-desc">Allows the manager to both query and modify (SET) values on the device. Default is typically <strong>"private"</strong>. An attacker with this string can change device configuration.</div>
+      </div>
+    </div>
+
+    <div class="warning">
+      <div class="warning-label">⚠️ Why SNMPv1/v2c are security risks</div>
+      <p><strong>Community strings are sent in plaintext.</strong> Anyone capturing network traffic with a packet analyser can read them directly — no decryption needed. With the read-write community string, an attacker can reconfigure network devices remotely.</p>
+      <p><strong>Default community strings</strong> ("public" and "private") are well-known and are actively scanned for by attackers. Devices left with defaults are trivially exploitable.</p>
+      <p><strong>Best practice:</strong> Use SNMPv3 exclusively. If you must use v1/v2c, change community strings from defaults, restrict SNMP access via ACLs to only the management station's IP, and consider placing SNMP traffic on a dedicated out-of-band management VLAN.</p>
+    </div>
+
+    <h2>SNMPv3 security model</h2>
+
+    <p>SNMPv3 replaces community strings with a proper security framework using three configurable security levels:</p>
+
+    <div class="code-block">
+      <div class="code-label">SNMPv3 security levels</div>
+      <pre><span class="code-hl">noAuthNoPriv</span>   <span class="code-comment">No authentication, no encryption</span>
+               <span class="code-comment">Username only — still weak, not recommended</span>
+
+<span class="code-hl">authNoPriv</span>     <span class="code-comment">Authentication (MD5 or SHA), no encryption</span>
+               <span class="code-comment">Verifies identity but traffic still readable</span>
+
+<span class="code-teal">authPriv</span>       <span class="code-comment">Authentication + Encryption (AES or 3DES)</span>
+               <span class="code-comment">Full security — use this in production</span>
+               <span class="code-comment">Credentials verified, traffic encrypted end-to-end</span></pre>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">📌 SNMPv3 terminology the exam uses</div>
+      <p><strong>USM (User-based Security Model)</strong> — handles authentication and encryption using named users and credentials rather than community strings.</p>
+      <p><strong>VACM (View-based Access Control Model)</strong> — controls which OIDs a user can access, providing granular read/write permissions per user.</p>
+    </div>
+
+    <h2>SNMP in network monitoring — real-world context</h2>
+
+    <p>In practice, SNMP is what powers most enterprise network monitoring platforms. Tools like SolarWinds NPM, PRTG, Nagios, Zabbix, and LibreNMS all use SNMP to collect metrics from managed devices.</p>
+
+    <p>A typical deployment polls every managed device every 5 minutes, collects interface traffic counters, CPU and memory utilisation, and interface error rates, then graphs the data over time. SNMP traps provide near-real-time alerting — a switch sending a trap the moment a port goes down is far faster than waiting for the next polling cycle.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ SNMP exam summary — what to know cold</div>
+      <p><strong>Port 161 UDP</strong> — SNMP queries (manager to agent). <strong>Port 162 UDP</strong> — SNMP traps (agent to manager).</p>
+      <p><strong>SNMPv1/v2c</strong> — community strings in plaintext, security risk. <strong>SNMPv3</strong> — username/password + AES encryption, the only secure version.</p>
+      <p><strong>Trap</strong> = unsolicited alert from agent to manager. <strong>Poll/Get</strong> = manager asking agent for data. <strong>Set</strong> = manager changing a value on the device.</p>
+      <p><strong>MIB</strong> = the schema of what data a device can report. <strong>OID</strong> = the unique identifier for each data point within the MIB.</p>
+    </div>
+
+    <h2>Exam scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "Which protocol is used to monitor and manage network devices from a central management station?" → <strong>SNMP (Simple Network Management Protocol)</strong></div>
+      <div class="scenario-item">💬 "A network administrator receives an alert from a switch that an interface went down. The switch sent this notification without being polled. What is this called?" → <strong>An SNMP trap — sent proactively by the agent to the manager on UDP port 162</strong></div>
+      <div class="scenario-item">💬 "Which port does an SNMP agent listen on for queries from the management station?" → <strong>UDP port 161</strong></div>
+      <div class="scenario-item">💬 "Which SNMP version sends community strings in cleartext, making it a security risk?" → <strong>SNMPv1 and SNMPv2c — both transmit community strings unencrypted</strong></div>
+      <div class="scenario-item">💬 "Which SNMP version should be used in a production environment that requires authentication and encryption?" → <strong>SNMPv3 with authPriv security level — provides both authentication (SHA) and encryption (AES)</strong></div>
+      <div class="scenario-item">💬 "A security audit finds that all network devices have SNMP enabled with the community string set to 'public'. What is the risk?" → <strong>Any attacker on the network can query all device data — 'public' is the well-known default read-only community string for SNMPv1/v2c</strong></div>
+      <div class="scenario-item">💬 "What is the database called that defines all the variables an SNMP agent can report?" → <strong>MIB — Management Information Base</strong></div>
+      <div class="scenario-item">💬 "An SNMP community string grants read-write access to managed devices. What is the risk if this string is intercepted?" → <strong>An attacker could use the SetRequest operation to modify device configuration remotely</strong></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for Network+?</h3>
+        <p>The N10-009 study guide, Dion Training practice exams, and Professor Messer's free course.</p>
+      </div>
+      <a href="best-network-plus.html" class="btn btn-blue">See Network+ Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="ports.html" class="related-link">Port Numbers Reference</a>
+      <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
+      <a href="firewall-basics.html" class="related-link">Firewall Basics Explained</a>
+      <a href="vlan-explained.html" class="related-link">VLANs Explained</a>
+      <a href="what-is-a-switch.html" class="related-link">What is a Switch?</a>
+      <a href="how-to-pass-comptia-network-plus.html" class="related-link">How to Pass Network+</a>
+      <a href="best-network-plus.html" class="related-link">Best Network+ Resources</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+, Network+, and Security+ resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Protocols</div>
+      <a href="snmp-explained.html">What is SNMP?</a>
+      <a href="dns.html">What is DNS?</a>
+      <a href="dhcp.html">What is DHCP?</a>
+      <a href="ssh-explained.html">What is SSH?</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Network+</div>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-network-plus.html">How to Pass Network+</a>
+      <a href="best-network-plus.html">Best Network+ Resources</a>
+      <a href="ports.html">Port Numbers Reference</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>
