@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/firewall-basics.html">
 
-<title>Firewall Basics Explained | CompTIA A+ Guide (IT Study Hub)</title>
-<meta name="description" content="What is a firewall, how do allow/deny rules work, what types exist, and what does the CompTIA A+ exam test? Explained simply for beginners.">
+<title>What is a Firewall? Firewall Basics Explained — CompTIA A+, Network+ & Security+ (2026)</title>
+<meta name="description" content="What is a firewall and how does it work? Stateful vs stateless, NGFW, IDS vs IPS, DMZ, ACLs, WAF, and every firewall concept tested on CompTIA A+, Network+, and Security+ — explained clearly.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -436,6 +436,66 @@ a:hover { text-decoration: underline; }
   .cta-box { flex-direction: column; align-items: flex-start; }
 }
 
+/* ── NEW SECTION STYLES ── */
+.fw-code-block {
+  background: var(--navy); border-radius: 12px; overflow: hidden;
+  margin-bottom: 28px; border: 1px solid rgba(255,255,255,0.08);
+}
+.fw-code-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.7px; text-transform: uppercase; color: var(--teal);
+  padding: 10px 18px 8px; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.fw-code-block pre {
+  font-family: 'DM Mono', monospace; font-size: 13px;
+  color: rgba(255,255,255,0.85); line-height: 1.8;
+  padding: 14px 18px; overflow-x: auto; margin: 0;
+}
+.fw-hl      { color: #7eb3ff; font-weight: 700; }
+.fw-teal    { color: var(--teal); font-weight: 700; }
+.fw-comment { color: rgba(255,255,255,0.35); }
+
+.fw-compare-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 28px;
+}
+@media (max-width: 640px) { .fw-compare-grid { grid-template-columns: 1fr; } }
+.fw-compare-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px; box-shadow: var(--card-shadow);
+}
+.fw-compare-icon { font-size: 22px; margin-bottom: 8px; }
+.fw-compare-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.6px; color: var(--blue); margin-bottom: 5px;
+}
+.fw-compare-title {
+  font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 800;
+  color: var(--navy); margin-bottom: 6px;
+}
+.fw-compare-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+.fw-callout {
+  background: rgba(26,108,255,0.04); border: 1px solid rgba(26,108,255,0.2);
+  border-left: 4px solid var(--blue);
+  border-radius: 12px; padding: 16px 20px; margin-bottom: 28px;
+}
+.fw-callout-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
+}
+.fw-callout p { font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 6px; }
+.fw-callout p:last-child { margin-bottom: 0; }
+.fw-callout strong { color: var(--navy); }
+
+.fw-scenario-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.fw-scenario-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 18px;
+  font-size: 14px; color: var(--text); line-height: 1.65;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.fw-scenario-item strong { color: var(--navy); }
+
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -475,9 +535,9 @@ a:hover { text-decoration: underline; }
       <span>›</span>
       <span>Firewall Basics</span>
     </nav>
-    <div class="page-hero-badge">CompTIA A+ · Network Security</div>
+    <div class="page-hero-badge">CompTIA A+ · Network+ · Security+</div>
     <h1>Firewall <span>Basics</span> Explained</h1>
-    <p class="page-hero-sub">A firewall is the gatekeeper between your network and the rest of the internet — deciding which traffic gets through and which gets blocked. Here's how they work and what the A+ exam tests.</p>
+    <p class="page-hero-sub">What a firewall is, how rules work, stateful vs stateless, NGFW, IDS vs IPS, DMZ, WAF, and every firewall concept tested on CompTIA A+, Network+, and Security+.</p>
   </div>
 </section>
 
@@ -729,6 +789,186 @@ a:hover { text-decoration: underline; }
 
     <hr class="divider">
 
+    <h2>Next-Generation Firewalls (NGFW)</h2>
+
+    <p>Traditional firewalls operate at Layers 3 and 4 — they see IP addresses, ports, and protocols. A <strong>Next-Generation Firewall</strong> goes further, performing <strong>deep packet inspection (DPI)</strong> to examine the actual contents of traffic at Layer 7 (the application layer).</p>
+
+    <p>This matters because modern attacks don't respect port numbers. Malware can tunnel over port 443 (HTTPS) to bypass traditional firewalls. An NGFW can identify the actual application — not just the port — and make decisions based on content, user identity, and threat intelligence.</p>
+
+    <div class="fw-compare-grid">
+      <div class="fw-compare-card">
+        <div class="fw-compare-icon">🔍</div>
+        <div class="fw-compare-label">Layer 7 inspection</div>
+        <div class="fw-compare-title">Deep Packet Inspection</div>
+        <div class="fw-compare-desc">Reads inside the packet payload — not just the header. Can identify the actual application regardless of what port it uses.</div>
+      </div>
+      <div class="fw-compare-card">
+        <div class="fw-compare-icon">🧠</div>
+        <div class="fw-compare-label">Integrated capability</div>
+        <div class="fw-compare-title">IPS Integration</div>
+        <div class="fw-compare-desc">Most NGFWs include an inline intrusion prevention system — detecting and blocking known attack patterns in real time.</div>
+      </div>
+      <div class="fw-compare-card">
+        <div class="fw-compare-icon">👤</div>
+        <div class="fw-compare-label">Identity-aware</div>
+        <div class="fw-compare-title">User &amp; App Control</div>
+        <div class="fw-compare-desc">Rules can be applied per user or group (via Active Directory integration), not just per IP — "block social media for the Sales VLAN."</div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ NGFW exam shortcut</div>
+      <p>If a question mentions <strong>application-aware</strong>, <strong>deep packet inspection</strong>, <strong>Layer 7 filtering</strong>, or <strong>user-based policies</strong> — the answer is <strong>Next-Generation Firewall (NGFW)</strong>.</p>
+      <p>Traditional firewalls = Layers 3/4 (IP, port, protocol). NGFW = Layer 7 (application content, user identity, threat intelligence).</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>IDS vs IPS vs Firewall</h2>
+
+    <p>These three are the most commonly confused security devices on Network+ and Security+. They are related but do fundamentally different things.</p>
+
+    <div style="overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:28px;">
+      <table style="width:100%;border-collapse:collapse;background:var(--white);min-width:480px;">
+        <thead>
+          <tr>
+            <th style="background:var(--navy);color:var(--white);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;">Device</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;">Placement</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;">What it does</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;">Can it block?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;">Firewall</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;">Network perimeter — inline</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;">Allows or blocks traffic based on rules (IP, port, protocol)</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;"><strong style="color:#16a34a;">Yes</strong> — blocks by default policy and rules</td>
+          </tr>
+          <tr style="background:#f9fbff;">
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;">IDS</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;">Out-of-band — monitors a copy of traffic (SPAN port)</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;">Detects suspicious traffic patterns and <strong>alerts</strong> — passive monitoring only</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;"><strong style="color:#dc2626;">No</strong> — detects and alerts only, cannot block</td>
+          </tr>
+          <tr>
+            <td style="padding:13px 18px;font-size:14px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;">IPS</td>
+            <td style="padding:13px 18px;font-size:14px;">Inline — traffic flows through it</td>
+            <td style="padding:13px 18px;font-size:14px;">Detects suspicious traffic and <strong>actively blocks</strong> it in real time</td>
+            <td style="padding:13px 18px;font-size:14px;"><strong style="color:#16a34a;">Yes</strong> — drops malicious packets inline before they reach the destination</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ IDS vs IPS — the one-line distinction</div>
+      <p><strong>IDS = passive.</strong> It watches and alerts — like a security camera. Traffic still flows through. Generates logs and alerts for a security team to investigate.</p>
+      <p><strong>IPS = active.</strong> It sits inline and can drop packets in real time — like a security guard who can physically stop someone. The tradeoff: a misconfigured IPS can block legitimate traffic (false positives).</p>
+      <p>The exam loves asking: "Which device monitors traffic and generates alerts but cannot block?" → <strong>IDS</strong>. "Which device can actively drop malicious packets?" → <strong>IPS</strong>.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>DMZ — Demilitarised Zone</h2>
+
+    <p>A DMZ is a network segment that sits between the public internet and the internal private network — a middle ground for servers that need to be publicly accessible (web servers, email servers, DNS servers) without exposing the internal network to direct internet access.</p>
+
+    <div class="fw-code-block">
+      <div class="fw-code-label">DMZ network layout</div>
+      <pre><span class="fw-comment">Internet</span>
+    │
+    ▼
+<span class="fw-hl">[ Firewall — outer ]</span>   <span class="fw-comment">← allows HTTP/HTTPS inbound to DMZ servers</span>
+    │
+    ▼
+<span class="fw-teal">[ DMZ — public servers ]</span>  <span class="fw-comment">← web server, email server, public DNS</span>
+    │
+    ▼
+<span class="fw-hl">[ Firewall — inner ]</span>   <span class="fw-comment">← strict rules, very little DMZ→internal allowed</span>
+    │
+    ▼
+<span class="fw-comment">Internal network — private (databases, file servers, workstations)</span></pre>
+    </div>
+
+    <div class="fw-callout">
+      <div class="fw-callout-label">📌 Why a DMZ matters</div>
+      <p>If a web server in the DMZ is compromised, the attacker is trapped in the DMZ — the inner firewall prevents them from reaching the internal network. Without a DMZ, a compromised public-facing server has direct access to everything on the internal network.</p>
+      <p><strong>Single firewall DMZ:</strong> One firewall with three interfaces — internet, DMZ, internal. Simpler but less secure.</p>
+      <p><strong>Dual firewall DMZ:</strong> Two separate firewalls — one facing the internet, one facing the internal network. More secure, more expensive. Best practice for enterprise environments.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>ACLs — Access Control Lists</h2>
+
+    <p>An ACL is a stateless packet filter configured on a router interface. It's not a true firewall — it evaluates each packet independently with no awareness of connection state — but it's the primary traffic control mechanism on routers and is heavily tested on Network+.</p>
+
+    <div class="fw-code-block">
+      <div class="fw-code-label">ACL vs firewall — key differences</div>
+      <pre><span class="fw-hl">ACL (router)</span>
+  Stateless <span class="fw-comment">— evaluates each packet independently</span>
+  Applied per interface, per direction <span class="fw-comment">(inbound or outbound)</span>
+  Rules: permit or deny by source/dest IP, port, protocol
+  No connection tracking <span class="fw-comment">— return traffic needs explicit rules</span>
+  Fast <span class="fw-comment">— hardware-accelerated in ASICs</span>
+
+<span class="fw-teal">Firewall</span>
+  Stateful <span class="fw-comment">— tracks connection state table</span>
+  Sits at network boundary, inspects all traffic
+  Automatically allows return traffic for established sessions
+  Application-aware (NGFW) <span class="fw-comment">— inspects Layer 7 content</span></pre>
+    </div>
+
+    <hr class="divider">
+
+    <h2>WAF — Web Application Firewall</h2>
+
+    <p>A WAF is a specialised firewall that operates at Layer 7 specifically to protect web applications. Where a traditional firewall can block traffic by IP and port, a WAF understands HTTP/HTTPS and can inspect the content of web requests to detect and block web-specific attacks.</p>
+
+    <div class="fw-compare-grid">
+      <div class="fw-compare-card">
+        <div class="fw-compare-icon">💉</div>
+        <div class="fw-compare-label">Most common web attack</div>
+        <div class="fw-compare-title">SQL Injection</div>
+        <div class="fw-compare-desc">Attacker injects malicious SQL into form fields to manipulate the database. A WAF detects and blocks requests containing SQL syntax in unexpected places.</div>
+      </div>
+      <div class="fw-compare-card">
+        <div class="fw-compare-icon">📜</div>
+        <div class="fw-compare-label">Script injection</div>
+        <div class="fw-compare-title">Cross-Site Scripting (XSS)</div>
+        <div class="fw-compare-desc">Attacker injects malicious JavaScript into a web page that runs in other users' browsers. A WAF filters out script tags and suspicious payloads in web requests.</div>
+      </div>
+      <div class="fw-compare-card">
+        <div class="fw-compare-icon">🌊</div>
+        <div class="fw-compare-label">Availability attack</div>
+        <div class="fw-compare-title">DDoS Mitigation</div>
+        <div class="fw-compare-desc">WAFs can detect and rate-limit volumetric attacks, bot traffic, and request floods targeting web applications — protecting availability.</div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ WAF exam shortcut</div>
+      <p>If the question mentions protecting a <strong>web application</strong> from <strong>SQL injection, XSS, or OWASP Top 10 attacks</strong> — the answer is <strong>WAF (Web Application Firewall)</strong>, not a regular firewall or IPS.</p>
+      <p>A regular firewall sees "HTTPS traffic on port 443 — allow." A WAF opens that HTTPS traffic and reads the HTTP request content to decide if it's an attack.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Exam scenarios</h2>
+
+    <div class="fw-scenario-list">
+      <div class="fw-scenario-item">💬 "A security device monitors a copy of network traffic and generates alerts but does not block anything. What is it?" → <strong>IDS (Intrusion Detection System)</strong></div>
+      <div class="fw-scenario-item">💬 "Which device sits inline and can actively drop malicious packets before they reach their destination?" → <strong>IPS (Intrusion Prevention System)</strong></div>
+      <div class="fw-scenario-item">💬 "A company hosts a public web server and wants to protect the internal network if it's compromised. What network design achieves this?" → <strong>DMZ — place the web server in a DMZ segment between two firewalls</strong></div>
+      <div class="fw-scenario-item">💬 "Which firewall type can identify traffic by application rather than just port number?" → <strong>Next-Generation Firewall (NGFW) — uses deep packet inspection at Layer 7</strong></div>
+      <div class="fw-scenario-item">💬 "A web application is being attacked with SQL injection. Which security device is specifically designed to block this?" → <strong>WAF (Web Application Firewall)</strong></div>
+      <div class="fw-scenario-item">💬 "Which is configured on a router interface and filters packets based on IP address and port with no connection tracking?" → <strong>ACL (Access Control List) — stateless packet filtering</strong></div>
+      <div class="fw-scenario-item">💬 "A firewall rule allows HTTPS (443) inbound but a user reports they cannot browse the web. The firewall logs show outbound traffic is being blocked. What is the most likely cause?" → <strong>The outbound allow rule is missing — the firewall is blocking the return traffic. Either add an outbound allow rule or verify the firewall is stateful and tracking the connection.</strong></div>
+    </div>
+
+    <hr class="divider">
+
     <h2>Key Takeaways</h2>
 
     <div class="summary-list">
@@ -739,6 +979,10 @@ a:hover { text-decoration: underline; }
       <div class="summary-item">Rules are processed in order — the <strong>first matching rule wins</strong>. Order matters enormously.</div>
       <div class="summary-item">Windows Defender Firewall has three profiles: <strong>Domain, Private, and Public</strong> — Public is the most restrictive</div>
       <div class="summary-item">Block port 23 (Telnet) and use port 22 (SSH) instead — Telnet sends credentials in plaintext, SSH encrypts them</div>
+      <div class="summary-item"><strong>NGFW</strong> = deep packet inspection at Layer 7 — application-aware, user-aware, IPS-integrated</div>
+      <div class="summary-item"><strong>IDS</strong> = passive monitoring and alerts only. <strong>IPS</strong> = inline, actively blocks malicious traffic</div>
+      <div class="summary-item">A <strong>DMZ</strong> isolates public-facing servers — if compromised, attackers can't reach the internal network</div>
+      <div class="summary-item"><strong>WAF</strong> protects web applications from SQL injection, XSS, and other Layer 7 attacks</div>
     </div>
 
     <h2>Related Articles</h2>
@@ -746,12 +990,12 @@ a:hover { text-decoration: underline; }
     <div class="related-grid">
       <a href="ports.html" class="related-link">Common Port Numbers</a>
       <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
-      <a href="osi-model.html" class="related-link">OSI Model — All 7 Layers</a>
-      <a href="nat-explained.html" class="related-link">What Is NAT?</a>
-      <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP Explained</a>
-      <a href="ipv4-vs-ipv6.html" class="related-link">IPv4 vs IPv6 Explained</a>
-      <a href="default-gateway.html" class="related-link">What Is a Default Gateway?</a>
-      <a href="networking.html" class="related-link">Networking Master Guide</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="vlan-explained.html" class="related-link">VLANs Explained</a>
+      <a href="vpn.html" class="related-link">What is a VPN?</a>
+      <a href="osi-model.html" class="related-link">OSI Model Explained</a>
+      <a href="how-to-pass-comptia-network-plus.html" class="related-link">How to Pass Network+</a>
+      <a href="how-to-pass-comptia-security-plus.html" class="related-link">How to Pass Security+</a>
     </div>
 
     <div class="cta-box">
@@ -770,7 +1014,7 @@ a:hover { text-decoration: underline; }
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="footer-logo">IT Study Hub</div>
-      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+      <div class="footer-tagline">Practical CompTIA A+, Network+, and Security+ resources for real-world IT success.</div>
     </div>
     <div class="footer-links">
       <div class="footer-links-title">Pages</div>
@@ -792,9 +1036,4 @@ a:hover { text-decoration: underline; }
   </div>
   <div class="footer-bottom">
     <span>© 2025 IT Study Hub — itstudyhub.org</span>
-    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a commission at no extra cost to you.</span>
-  </div>
-</footer>
-
-</body>
-</html>
+    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure:
