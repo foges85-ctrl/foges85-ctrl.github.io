@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/ssh-explained.html">
+
+<title>What is SSH? Secure Shell Explained — CompTIA A+, Network+ & Security+ (2026)</title>
+<meta name="description" content="What is SSH and how does it work? SSH vs Telnet, port 22, public key authentication, SSH tunnelling, and every SSH concept tested on CompTIA A+, Network+, and Security+ — explained clearly.">
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
+     crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --blue2:   #1560e8;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter); color: var(--text);
+  line-height: 1.65; -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 28px;
+  height: 68px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+}
+.logo-link {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 17px; color: var(--navy); letter-spacing: -0.3px; flex-shrink: 0;
+}
+.logo-img { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px; font-weight: 600; padding: 8px 14px;
+  border-radius: 8px; color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+}
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta {
+  background: var(--navy); color: var(--white) !important;
+  padding: 8px 18px; border-radius: 8px; margin-left: 6px;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); }
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 44px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy); position: relative;
+  overflow: hidden; padding: 60px 28px 70px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(0,194,168,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.page-hero-inner {
+  max-width: 1100px; margin: 0 auto;
+  position: relative; z-index: 1; animation: fadeUp 0.6s ease both;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  margin-bottom: 20px; font-family: 'DM Mono', monospace;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(0,194,168,0.15); border: 1px solid rgba(0,194,168,0.35);
+  color: var(--teal); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
+}
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(26px, 4vw, 42px); font-weight: 800;
+  color: var(--white); line-height: 1.15; letter-spacing: -0.8px; margin-bottom: 14px;
+}
+.page-hero h1 span { color: var(--teal); }
+.page-hero-sub {
+  font-size: 16px; color: rgba(255,255,255,0.6); max-width: 620px; line-height: 1.7;
+}
+
+/* ── ARTICLE ── */
+.article-wrap {
+  max-width: 860px; margin: 0 auto; padding: 52px 28px 80px;
+  animation: fadeUp 0.5s ease both;
+}
+@media (max-width: 768px) { .article-wrap { padding: 36px 16px 60px; } }
+.article-body h2 {
+  font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.3px; margin: 48px 0 16px;
+}
+.article-body h2:first-child { margin-top: 0; }
+.article-body p { font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 16px; }
+.article-body strong { color: var(--navy); font-weight: 700; }
+
+/* ── QUICK ANSWER ── */
+.quick-answer {
+  background: var(--navy); border-radius: 14px;
+  padding: 24px 26px; margin-bottom: 40px; position: relative; overflow: hidden;
+}
+.quick-answer::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(0,194,168,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.quick-answer-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: var(--teal);
+  margin-bottom: 10px; position: relative;
+}
+.quick-answer-text {
+  font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; position: relative;
+}
+.quick-answer-text strong { color: var(--white); }
+
+/* ── COMPARE TABLE ── */
+.table-wrap {
+  overflow-x: auto; border-radius: 14px; border: 1px solid var(--border);
+  box-shadow: var(--card-shadow); margin-bottom: 40px;
+}
+table { width: 100%; border-collapse: collapse; background: var(--white); min-width: 400px; }
+thead th {
+  background: var(--navy); color: rgba(255,255,255,0.7);
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.7px; padding: 14px 18px; text-align: left;
+  font-family: 'DM Mono', monospace;
+}
+thead th:first-child { color: var(--white); }
+tbody td {
+  padding: 13px 18px; border-bottom: 1px solid var(--border);
+  font-size: 14px; color: var(--text); vertical-align: top; line-height: 1.5;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #f0fbf9; }
+.td-term { font-weight: 700; color: var(--navy); font-family: 'DM Mono', monospace; font-size: 13px; }
+.td-good { color: #16a34a; font-weight: 700; }
+.td-bad  { color: #dc2626; font-weight: 700; }
+
+/* ── CODE BLOCK ── */
+.code-block {
+  background: var(--navy); border-radius: 12px; overflow: hidden;
+  margin-bottom: 32px; border: 1px solid rgba(255,255,255,0.08);
+}
+.code-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.7px; text-transform: uppercase; color: var(--teal);
+  padding: 10px 18px 8px; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.code-block pre {
+  font-family: 'DM Mono', monospace; font-size: 13.5px;
+  color: rgba(255,255,255,0.85); line-height: 1.8;
+  padding: 16px 18px; overflow-x: auto; margin: 0;
+}
+.code-hl      { color: var(--teal); font-weight: 700; }
+.code-blue    { color: #7eb3ff; font-weight: 700; }
+.code-yellow  { color: #fcd34d; }
+.code-comment { color: rgba(255,255,255,0.35); }
+
+/* ── STEP FLOW ── */
+.step-flow { display: flex; flex-direction: column; gap: 0; margin-bottom: 40px; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; box-shadow: var(--card-shadow); }
+.step-item {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 16px 20px; background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+.step-item:last-child { border-bottom: none; }
+.step-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--navy); color: var(--white);
+  font-family: 'DM Mono', monospace; font-size: 12px;
+  font-weight: 700; flex-shrink: 0; margin-top: 2px;
+}
+.step-content { flex: 1; }
+.step-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+.step-desc { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+
+/* ── CONCEPT CARDS ── */
+.concept-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 40px;
+}
+@media (max-width: 580px) { .concept-grid { grid-template-columns: 1fr; } }
+.concept-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px 20px; box-shadow: var(--card-shadow);
+}
+.concept-icon { font-size: 22px; margin-bottom: 8px; }
+.concept-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.6px; color: var(--teal2); margin-bottom: 6px;
+}
+.concept-title {
+  font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 800;
+  color: var(--navy); margin-bottom: 6px;
+}
+.concept-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+
+/* ── EXAM TIP ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060; border-left: 4px solid #f0c000;
+  border-radius: 12px; padding: 18px 22px; margin-bottom: 40px;
+}
+.exam-tip-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px;
+}
+.exam-tip p { font-size: 14px; color: #3a2800; line-height: 1.7; margin-bottom: 8px; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #1a1000; }
+
+/* ── CALLOUT ── */
+.callout {
+  background: rgba(0,194,168,0.04); border: 1px solid rgba(0,194,168,0.25);
+  border-left: 4px solid var(--teal);
+  border-radius: 12px; padding: 16px 20px; margin-bottom: 40px;
+}
+.callout-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: var(--teal2); margin-bottom: 8px;
+}
+.callout p { font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 6px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout strong { color: var(--navy); }
+
+/* ── SCENARIO LIST ── */
+.scenario-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+.scenario-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 18px;
+  font-size: 14px; color: var(--text); line-height: 1.65;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.scenario-item strong { color: var(--navy); }
+
+/* ── CTA BOX ── */
+.cta-box {
+  background: linear-gradient(135deg, var(--navy), var(--navy2));
+  border-radius: 16px; padding: 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap; position: relative; overflow: hidden; margin-bottom: 40px;
+}
+.cta-box::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-box-text h3 {
+  font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800;
+  color: var(--white); margin-bottom: 4px;
+}
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 10px; font-size: 14px; font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s; white-space: nowrap; flex-shrink: 0;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-teal { background: var(--teal); color: var(--navy); font-weight: 700; box-shadow: 0 6px 20px rgba(0,194,168,0.3); }
+.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
+
+/* ── RELATED ── */
+.related-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px;
+}
+.related-link {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 16px; font-size: 14px;
+  font-weight: 600; color: var(--navy);
+  transition: border-color 0.15s, color 0.15s, transform 0.15s;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.related-link:hover { border-color: rgba(0,194,168,0.3); color: var(--teal2); transform: translateY(-1px); }
+.related-link::before { content: '→'; color: var(--teal2); font-size: 13px; }
+
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  max-width: 1100px; margin: 28px auto 0; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+@media (max-width: 600px) { .footer { padding: 36px 16px; } .footer-bottom { flex-direction: column; } }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <span>›</span>
+      <span>What is SSH?</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · Network+ · Security+</div>
+    <h1>What is <span>SSH?</span></h1>
+    <p class="page-hero-sub">Secure Shell — how it works, why it replaced Telnet, public key authentication, SSH tunnelling, and every SSH concept tested on CompTIA A+, Network+, and Security+.</p>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ What is SSH?</div>
+      <div class="quick-answer-text">
+        SSH (Secure Shell) is a <strong>cryptographic network protocol</strong> used to securely access and manage remote devices over an unsecured network. It encrypts everything — commands, responses, credentials — so nothing can be intercepted in transit. SSH replaced Telnet, which sent everything in plaintext. It runs on <strong>TCP port 22</strong> and is the standard for remote access to servers, routers, switches, and firewalls.
+      </div>
+    </div>
+
+    <h2>SSH vs Telnet — the core exam distinction</h2>
+
+    <p>Both SSH and Telnet give you a remote command-line interface to a network device. The difference is everything that happens to the data in transit — and this distinction is one of the most reliably tested comparisons across A+, Network+, and Security+.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>SSH</th><th>Telnet</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-term">Port</td>
+            <td><strong>TCP 22</strong></td>
+            <td>TCP 23</td>
+          </tr>
+          <tr>
+            <td class="td-term">Encryption</td>
+            <td class="td-good">✓ Fully encrypted</td>
+            <td class="td-bad">✗ Plaintext — everything visible</td>
+          </tr>
+          <tr>
+            <td class="td-term">Credentials</td>
+            <td class="td-good">✓ Encrypted in transit</td>
+            <td class="td-bad">✗ Username and password sent in cleartext</td>
+          </tr>
+          <tr>
+            <td class="td-term">Authentication</td>
+            <td>Password or public key</td>
+            <td>Password only</td>
+          </tr>
+          <tr>
+            <td class="td-term">Integrity</td>
+            <td class="td-good">✓ MAC ensures data hasn't been tampered with</td>
+            <td class="td-bad">✗ No integrity checking</td>
+          </tr>
+          <tr>
+            <td class="td-term">Status</td>
+            <td class="td-good">Current standard — use this</td>
+            <td class="td-bad">Deprecated — security risk, never use</td>
+          </tr>
+          <tr>
+            <td class="td-term">Use case</td>
+            <td>Managing servers, routers, switches, firewalls remotely</td>
+            <td>Legacy only — occasionally seen on isolated lab networks</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ The most common SSH exam question</div>
+      <p>"A network administrator needs to remotely manage a switch securely. Which protocol should they use?" → <strong>SSH (port 22)</strong> — not Telnet (port 23), which transmits credentials in plaintext.</p>
+      <p>"A technician captures network traffic and can read the administrator's username and password in the packet capture. Which remote access protocol is being used?" → <strong>Telnet</strong> — SSH would have encrypted those credentials.</p>
+    </div>
+
+    <h2>How SSH works — the connection process</h2>
+
+    <p>When you connect via SSH, several things happen before you ever type a command. The protocol establishes an encrypted channel and authenticates both the server and the client before any data is exchanged.</p>
+
+    <div class="step-flow">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">TCP connection established</div>
+          <div class="step-desc">Client connects to the server on TCP port 22. A standard three-way handshake completes first.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Protocol and algorithm negotiation</div>
+          <div class="step-desc">Client and server agree on which encryption algorithms, key exchange methods, and MAC algorithms to use for the session.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Server authentication — host key check</div>
+          <div class="step-desc">The server presents its host key (public key). The client checks this against its known_hosts file. On first connection, the client is prompted to verify and trust the key fingerprint.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Session key exchange</div>
+          <div class="step-desc">A shared symmetric session key is generated using a key exchange algorithm (Diffie-Hellman). This key encrypts everything for the rest of the session.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">User authentication</div>
+          <div class="step-desc">The client authenticates — either with a password (sent encrypted) or with public key authentication. The encrypted session is already established before credentials are sent.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <div class="step-title">Encrypted session begins</div>
+          <div class="step-desc">All subsequent commands and responses are encrypted with the symmetric session key. An attacker capturing this traffic sees only ciphertext.</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Password authentication vs public key authentication</h2>
+
+    <p>SSH supports two main ways to prove your identity to a server. Password authentication is simpler but weaker. Public key authentication is more secure and is the standard for servers and network equipment in professional environments.</p>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-icon">🔑</div>
+        <div class="concept-label">Simpler method</div>
+        <div class="concept-title">Password Authentication</div>
+        <div class="concept-desc">You enter your username and password. The password is sent encrypted inside the SSH session. Vulnerable to brute force attacks if weak passwords are used — still far better than Telnet, but public key auth is preferred.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🗝️</div>
+        <div class="concept-label">Stronger method</div>
+        <div class="concept-title">Public Key Authentication</div>
+        <div class="concept-desc">You generate a key pair — a private key (kept secret on your machine) and a public key (placed on the server). The server challenges you to prove you hold the private key without ever transmitting it. No password needed — much harder to brute force.</div>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <div class="code-label">Public key authentication — how it works</div>
+      <pre><span class="code-hl">Your machine:</span>  private key  <span class="code-comment">(id_rsa — never leaves your machine)</span>
+<span class="code-blue">Remote server:</span> public key   <span class="code-comment">(~/.ssh/authorized_keys — placed there once)</span>
+
+<span class="code-comment">During login:</span>
+1. Server sends a random challenge message
+2. Your client signs it with your <span class="code-hl">private key</span>
+3. Server verifies the signature using your <span class="code-blue">public key</span>
+4. Signature valid → authenticated — <span class="code-hl">no password ever sent</span></pre>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Public key auth — the Security+ angle</div>
+      <p>Public key authentication provides <strong>stronger authentication than passwords</strong> because the private key is never transmitted — an attacker intercepting traffic cannot capture it. It also eliminates the risk of password brute force attacks against the SSH service.</p>
+      <p>Disabling password authentication entirely and requiring key-based auth is a Security+ hardening best practice for SSH servers. The exam may describe this as "requiring certificate-based authentication."</p>
+    </div>
+
+    <h2>Common SSH commands</h2>
+
+    <div class="code-block">
+      <div class="code-label">SSH commands you need to know</div>
+      <pre><span class="code-comment"># Connect to a remote host</span>
+<span class="code-hl">ssh username@192.168.1.10</span>
+<span class="code-hl">ssh username@hostname.domain.com</span>
+
+<span class="code-comment"># Connect on a non-standard port</span>
+<span class="code-hl">ssh -p 2222 username@192.168.1.10</span>
+
+<span class="code-comment"># Connect using a specific private key file</span>
+<span class="code-hl">ssh -i ~/.ssh/id_rsa username@192.168.1.10</span>
+
+<span class="code-comment"># Copy files securely (SCP — Secure Copy Protocol)</span>
+<span class="code-hl">scp file.txt username@192.168.1.10:/home/username/</span>
+
+<span class="code-comment"># Generate an SSH key pair</span>
+<span class="code-hl">ssh-keygen -t rsa -b 4096</span>
+<span class="code-comment">  → creates id_rsa (private) and id_rsa.pub (public)</span></pre>
+    </div>
+
+    <h2>SSH tunnelling and port forwarding</h2>
+
+    <p>SSH can do more than give you a remote shell. It can create an encrypted tunnel that forwards other traffic through it — a technique called <strong>SSH tunnelling</strong> or port forwarding. This is tested on Security+ as both a legitimate tool and a potential security risk.</p>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-icon">➡️</div>
+        <div class="concept-label">Local to remote</div>
+        <div class="concept-title">Local Port Forwarding</div>
+        <div class="concept-desc">Forwards traffic from a local port on your machine through the SSH tunnel to a destination. Example: access a database on a remote server that only accepts local connections by tunnelling port 3306 through SSH.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">⬅️</div>
+        <div class="concept-label">Remote to local</div>
+        <div class="concept-title">Remote Port Forwarding</div>
+        <div class="concept-desc">Makes a service on your local machine accessible from the remote server. Used to expose a local development server to a remote host without opening firewall ports.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🌐</div>
+        <div class="concept-label">Proxy through SSH</div>
+        <div class="concept-title">Dynamic Port Forwarding</div>
+        <div class="concept-desc">Turns SSH into a SOCKS proxy. Your machine routes traffic through the remote server — effectively using it as a jump point for all outbound traffic. Used in restricted network environments.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🚨</div>
+        <div class="concept-label">Security risk</div>
+        <div class="concept-title">Tunnelling as Exfiltration</div>
+        <div class="concept-desc">Attackers can use SSH tunnelling to bypass firewalls and exfiltrate data — wrapping malicious traffic inside legitimate-looking SSH connections on port 22. Security teams monitor for unusual SSH tunnel activity.</div>
+      </div>
+    </div>
+
+    <h2>SCP and SFTP — secure file transfer</h2>
+
+    <p>Two secure file transfer protocols are built on top of SSH and are tested on the exams:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Protocol</th><th>Port</th><th>What it does</th><th>vs insecure alternative</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-term">SCP</td>
+            <td>TCP 22</td>
+            <td>Secure Copy Protocol — copies files between hosts over SSH. Command-line tool.</td>
+            <td>Replaces FTP (port 21) for secure file copy</td>
+          </tr>
+          <tr>
+            <td class="td-term">SFTP</td>
+            <td>TCP 22</td>
+            <td>SSH File Transfer Protocol — full file management over SSH. Supports browse, upload, download, rename, delete.</td>
+            <td>Replaces FTP for interactive file management</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">📌 SFTP is not FTP over SSL</div>
+      <p><strong>SFTP</strong> (SSH File Transfer Protocol) runs over SSH on port 22 — it is a completely different protocol from FTP.</p>
+      <p><strong>FTPS</strong> (FTP Secure) is FTP with TLS/SSL added — it still uses ports 20/21. The exam expects you to know the difference: SFTP = SSH-based (port 22), FTPS = TLS-wrapped FTP (ports 20/21).</p>
+    </div>
+
+    <h2>SSH hardening — Security+ exam points</h2>
+
+    <p>Simply running SSH isn't enough — a poorly configured SSH server is still a significant attack surface. These hardening steps are tested on Security+ and appear in scenario-based hardening questions.</p>
+
+    <div class="code-block">
+      <div class="code-label">SSH server hardening best practices</div>
+      <pre><span class="code-hl">Disable root login</span>          <span class="code-comment">→ PermitRootLogin no</span>
+                              <span class="code-comment">   Force use of a normal account + sudo instead</span>
+
+<span class="code-hl">Disable password auth</span>        <span class="code-comment">→ PasswordAuthentication no</span>
+                              <span class="code-comment">   Require public key auth — eliminates brute force risk</span>
+
+<span class="code-hl">Change default port</span>          <span class="code-comment">→ Port 2222 (or any non-22 port)</span>
+                              <span class="code-comment">   Reduces automated scanning noise (security through obscurity only)</span>
+
+<span class="code-hl">Restrict allowed users</span>       <span class="code-comment">→ AllowUsers admin deploy</span>
+                              <span class="code-comment">   Only named accounts can authenticate via SSH</span>
+
+<span class="code-hl">Use SSH protocol version 2</span>   <span class="code-comment">→ Protocol 2</span>
+                              <span class="code-comment">   SSHv1 has known vulnerabilities — always use v2</span>
+
+<span class="code-hl">Idle timeout</span>                 <span class="code-comment">→ ClientAliveInterval 300</span>
+                              <span class="code-comment">   Disconnect idle sessions after 5 minutes</span></pre>
+    </div>
+
+    <h2>Exam scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "A technician needs to manage a Linux server remotely from the office. Which protocol provides encrypted remote access?" → <strong>SSH (port 22)</strong></div>
+      <div class="scenario-item">💬 "During a security audit, a packet capture reveals administrator credentials transmitted in plaintext to a network switch. What should replace the current remote access protocol?" → <strong>SSH — replace Telnet (port 23) with SSH (port 22)</strong></div>
+      <div class="scenario-item">💬 "Which SSH authentication method is more secure than password authentication and does not transmit a secret over the network?" → <strong>Public key authentication — the private key never leaves the client machine</strong></div>
+      <div class="scenario-item">💬 "An administrator wants to securely copy a configuration file from a local machine to a remote server. Which protocol should they use?" → <strong>SCP or SFTP — both run over SSH on port 22</strong></div>
+      <div class="scenario-item">💬 "What is the difference between SFTP and FTPS?" → <strong>SFTP runs over SSH (port 22) — completely separate protocol. FTPS is FTP with TLS added, still uses ports 20/21.</strong></div>
+      <div class="scenario-item">💬 "An IDS alert shows unusual traffic on port 22 involving large data transfers at 2am. What attack technique might this indicate?" → <strong>SSH tunnelling used for data exfiltration — attacker wrapping exfil traffic inside SSH to bypass firewall rules</strong></div>
+      <div class="scenario-item">💬 "A security administrator wants to prevent brute force attacks against the SSH service. What is the most effective configuration change?" → <strong>Disable password authentication and require public key authentication (PasswordAuthentication no)</strong></div>
+      <div class="scenario-item">💬 "A user connects to a server via SSH for the first time and is shown a key fingerprint prompt. What should they do?" → <strong>Verify the fingerprint matches the server's known host key before accepting — accepting without verification is vulnerable to a man-in-the-middle attack</strong></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for Network+ or Security+?</h3>
+        <p>The study guides, practice exams, and free resources worth your time.</p>
+      </div>
+      <a href="best-study-resources.html" class="btn btn-teal">See Study Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="firewall-basics.html" class="related-link">Firewall Basics Explained</a>
+      <a href="vpn.html" class="related-link">What is a VPN?</a>
+      <a href="cryptography.html" class="related-link">Cryptography Explained</a>
+      <a href="ports.html" class="related-link">Port Numbers Reference</a>
+      <a href="network-attacks.html" class="related-link">Network Attacks Explained</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-security-plus.html" class="related-link">How to Pass Security+</a>
+      <a href="how-to-pass-comptia-network-plus.html" class="related-link">How to Pass Network+</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+, Network+, and Security+ resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Security</div>
+      <a href="ssh-explained.html">What is SSH?</a>
+      <a href="firewall-basics.html">Firewall Basics</a>
+      <a href="vpn.html">What is a VPN?</a>
+      <a href="cryptography.html">Cryptography</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Certifications</div>
+      <a href="how-to-pass-comptia-network-plus.html">How to Pass Network+</a>
+      <a href="how-to-pass-comptia-security-plus.html">How to Pass Security+</a>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="best-study-resources.html">Best Study Resources</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IT Study Hub — itstudyhub.org</span>
+    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>
