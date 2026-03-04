@@ -562,174 +562,17 @@ tbody tr:hover td { background: #f0fbf9; }
     <div class="code-block">
       <div class="code-label">SSH commands you need to know</div>
       <pre><span class="code-comment"># Connect to a remote host</span>
-<span class="code-hl">ssh username@192.168.1.10</span>
-<span class="code-hl">ssh username@hostname.domain.com</span>
+<span class="code-hl">ssh <a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a></span>
+<span class="code-hl">ssh <a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a></span>
 
 <span class="code-comment"># Connect on a non-standard port</span>
-<span class="code-hl">ssh -p 2222 username@192.168.1.10</span>
+<span class="code-hl">ssh -p 2222 <a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a></span>
 
 <span class="code-comment"># Connect using a specific private key file</span>
-<span class="code-hl">ssh -i ~/.ssh/id_rsa username@192.168.1.10</span>
+<span class="code-hl">ssh -i ~/.ssh/id_rsa <a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a></span>
 
 <span class="code-comment"># Copy files securely (SCP — Secure Copy Protocol)</span>
-<span class="code-hl">scp file.txt username@192.168.1.10:/home/username/</span>
-
-<span class="code-comment"># Generate an SSH key pair</span>
-<span class="code-hl">ssh-keygen -t rsa -b 4096</span>
-<span class="code-comment">  → creates id_rsa (private) and id_rsa.pub (public)</span></pre>
-    </div>
-
-    <h2>SSH tunnelling and port forwarding</h2>
-
-    <p>SSH can do more than give you a remote shell. It can create an encrypted tunnel that forwards other traffic through it — a technique called <strong>SSH tunnelling</strong> or port forwarding. This is tested on Security+ as both a legitimate tool and a potential security risk.</p>
-
-    <div class="concept-grid">
-      <div class="concept-card">
-        <div class="concept-icon">➡️</div>
-        <div class="concept-label">Local to remote</div>
-        <div class="concept-title">Local Port Forwarding</div>
-        <div class="concept-desc">Forwards traffic from a local port on your machine through the SSH tunnel to a destination. Example: access a database on a remote server that only accepts local connections by tunnelling port 3306 through SSH.</div>
-      </div>
-      <div class="concept-card">
-        <div class="concept-icon">⬅️</div>
-        <div class="concept-label">Remote to local</div>
-        <div class="concept-title">Remote Port Forwarding</div>
-        <div class="concept-desc">Makes a service on your local machine accessible from the remote server. Used to expose a local development server to a remote host without opening firewall ports.</div>
-      </div>
-      <div class="concept-card">
-        <div class="concept-icon">🌐</div>
-        <div class="concept-label">Proxy through SSH</div>
-        <div class="concept-title">Dynamic Port Forwarding</div>
-        <div class="concept-desc">Turns SSH into a SOCKS proxy. Your machine routes traffic through the remote server — effectively using it as a jump point for all outbound traffic. Used in restricted network environments.</div>
-      </div>
-      <div class="concept-card">
-        <div class="concept-icon">🚨</div>
-        <div class="concept-label">Security risk</div>
-        <div class="concept-title">Tunnelling as Exfiltration</div>
-        <div class="concept-desc">Attackers can use SSH tunnelling to bypass firewalls and exfiltrate data — wrapping malicious traffic inside legitimate-looking SSH connections on port 22. Security teams monitor for unusual SSH tunnel activity.</div>
-      </div>
-    </div>
-
-    <h2>SCP and SFTP — secure file transfer</h2>
-
-    <p>Two secure file transfer protocols are built on top of SSH and are tested on the exams:</p>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr><th>Protocol</th><th>Port</th><th>What it does</th><th>vs insecure alternative</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="td-term">SCP</td>
-            <td>TCP 22</td>
-            <td>Secure Copy Protocol — copies files between hosts over SSH. Command-line tool.</td>
-            <td>Replaces FTP (port 21) for secure file copy</td>
-          </tr>
-          <tr>
-            <td class="td-term">SFTP</td>
-            <td>TCP 22</td>
-            <td>SSH File Transfer Protocol — full file management over SSH. Supports browse, upload, download, rename, delete.</td>
-            <td>Replaces FTP for interactive file management</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="callout">
-      <div class="callout-label">📌 SFTP is not FTP over SSL</div>
-      <p><strong>SFTP</strong> (SSH File Transfer Protocol) runs over SSH on port 22 — it is a completely different protocol from FTP.</p>
-      <p><strong>FTPS</strong> (FTP Secure) is FTP with TLS/SSL added — it still uses ports 20/21. The exam expects you to know the difference: SFTP = SSH-based (port 22), FTPS = TLS-wrapped FTP (ports 20/21).</p>
-    </div>
-
-    <h2>SSH hardening — Security+ exam points</h2>
-
-    <p>Simply running SSH isn't enough — a poorly configured SSH server is still a significant attack surface. These hardening steps are tested on Security+ and appear in scenario-based hardening questions.</p>
-
-    <div class="code-block">
-      <div class="code-label">SSH server hardening best practices</div>
-      <pre><span class="code-hl">Disable root login</span>          <span class="code-comment">→ PermitRootLogin no</span>
-                              <span class="code-comment">   Force use of a normal account + sudo instead</span>
-
-<span class="code-hl">Disable password auth</span>        <span class="code-comment">→ PasswordAuthentication no</span>
-                              <span class="code-comment">   Require public key auth — eliminates brute force risk</span>
-
-<span class="code-hl">Change default port</span>          <span class="code-comment">→ Port 2222 (or any non-22 port)</span>
-                              <span class="code-comment">   Reduces automated scanning noise (security through obscurity only)</span>
-
-<span class="code-hl">Restrict allowed users</span>       <span class="code-comment">→ AllowUsers admin deploy</span>
-                              <span class="code-comment">   Only named accounts can authenticate via SSH</span>
-
-<span class="code-hl">Use SSH protocol version 2</span>   <span class="code-comment">→ Protocol 2</span>
-                              <span class="code-comment">   SSHv1 has known vulnerabilities — always use v2</span>
-
-<span class="code-hl">Idle timeout</span>                 <span class="code-comment">→ ClientAliveInterval 300</span>
-                              <span class="code-comment">   Disconnect idle sessions after 5 minutes</span></pre>
-    </div>
-
-    <h2>Exam scenarios</h2>
-
-    <div class="scenario-list">
-      <div class="scenario-item">💬 "A technician needs to manage a Linux server remotely from the office. Which protocol provides encrypted remote access?" → <strong>SSH (port 22)</strong></div>
-      <div class="scenario-item">💬 "During a security audit, a packet capture reveals administrator credentials transmitted in plaintext to a network switch. What should replace the current remote access protocol?" → <strong>SSH — replace Telnet (port 23) with SSH (port 22)</strong></div>
-      <div class="scenario-item">💬 "Which SSH authentication method is more secure than password authentication and does not transmit a secret over the network?" → <strong>Public key authentication — the private key never leaves the client machine</strong></div>
-      <div class="scenario-item">💬 "An administrator wants to securely copy a configuration file from a local machine to a remote server. Which protocol should they use?" → <strong>SCP or SFTP — both run over SSH on port 22</strong></div>
-      <div class="scenario-item">💬 "What is the difference between SFTP and FTPS?" → <strong>SFTP runs over SSH (port 22) — completely separate protocol. FTPS is FTP with TLS added, still uses ports 20/21.</strong></div>
-      <div class="scenario-item">💬 "An IDS alert shows unusual traffic on port 22 involving large data transfers at 2am. What attack technique might this indicate?" → <strong>SSH tunnelling used for data exfiltration — attacker wrapping exfil traffic inside SSH to bypass firewall rules</strong></div>
-      <div class="scenario-item">💬 "A security administrator wants to prevent brute force attacks against the SSH service. What is the most effective configuration change?" → <strong>Disable password authentication and require public key authentication (PasswordAuthentication no)</strong></div>
-      <div class="scenario-item">💬 "A user connects to a server via SSH for the first time and is shown a key fingerprint prompt. What should they do?" → <strong>Verify the fingerprint matches the server's known host key before accepting — accepting without verification is vulnerable to a man-in-the-middle attack</strong></div>
-    </div>
-
-    <hr class="divider">
-
-    <div class="cta-box">
-      <div class="cta-box-text">
-        <h3>Studying for Network+ or Security+?</h3>
-        <p>The study guides, practice exams, and free resources worth your time.</p>
-      </div>
-      <a href="best-study-resources.html" class="btn btn-teal">See Study Resources →</a>
-    </div>
-
-    <h2>Related Articles</h2>
-    <div class="related-grid">
-      <a href="firewall-basics.html" class="related-link">Firewall Basics Explained</a>
-      <a href="vpn.html" class="related-link">What is a VPN?</a>
-      <a href="cryptography.html" class="related-link">Cryptography Explained</a>
-      <a href="ports.html" class="related-link">Port Numbers Reference</a>
-      <a href="network-attacks.html" class="related-link">Network Attacks Explained</a>
-      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
-      <a href="how-to-pass-comptia-security-plus.html" class="related-link">How to Pass Security+</a>
-      <a href="how-to-pass-comptia-network-plus.html" class="related-link">How to Pass Network+</a>
-    </div>
-
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="footer-logo">IT Study Hub</div>
-      <div class="footer-tagline">Practical CompTIA A+, Network+, and Security+ resources for real-world IT success.</div>
-    </div>
-    <div class="footer-links">
-      <div class="footer-links-title">Security</div>
-      <a href="ssh-explained.html">What is SSH?</a>
-      <a href="firewall-basics.html">Firewall Basics</a>
-      <a href="vpn.html">What is a VPN?</a>
-      <a href="cryptography.html">Cryptography</a>
-    </div>
-    <div class="footer-links">
-      <div class="footer-links-title">Certifications</div>
-      <a href="how-to-pass-comptia-network-plus.html">How to Pass Network+</a>
-      <a href="how-to-pass-comptia-security-plus.html">How to Pass Security+</a>
-      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
-      <a href="best-study-resources.html">Best Study Resources</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2025 IT Study Hub — itstudyhub.org</span>
-    <span><a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+<span class="code-hl">scp file.txt <a href="mailto:contact@itstudyhub.org" style="color:rgba(255,255,255,0.4);">contact@itstudyhub.org</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
   </div>
 </footer>
 
