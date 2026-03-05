@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/troubleshooting-methodology.html">
+<title>CompTIA Troubleshooting Methodology — 6 Steps Explained (A+, Network+, Security+)</title>
+<meta name="description" content="Master CompTIA's 6-step troubleshooting methodology — identify the problem, establish a theory, test, establish a plan, implement, and document. Tested on A+, Network+, and Security+.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;
+  --light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;
+  --text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(0,194,168,.12) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(26,108,255,.08) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);transition:color .15s;}
+.breadcrumb a:hover{color:var(--teal);}
+.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(0,194,168,.12);border:1px solid rgba(0,194,168,.3);color:#5eead4;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,42px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:var(--teal);}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:620px;line-height:1.7;}
+.article-wrap{max-width:860px;margin:0 auto;padding:52px 28px 80px;animation:fadeUp .5s ease both;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:48px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body h3{font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;color:var(--navy);margin:28px 0 12px;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(0,194,168,.15) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* STEP FLOW */
+.step-flow{display:flex;flex-direction:column;gap:0;margin-bottom:40px;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--card-shadow);}
+.step-item{display:flex;align-items:flex-start;gap:16px;padding:20px 22px;background:var(--white);border-bottom:1px solid var(--border);}
+.step-item:last-child{border-bottom:none;}
+.step-item:nth-child(even){background:#fafbfd;}
+.step-num{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--navy);color:var(--white);font-family:'DM Mono',monospace;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px;}
+.step-content{flex:1;}
+.step-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.step-desc{font-size:13.5px;color:var(--muted);line-height:1.6;}
+.step-desc strong{color:var(--navy);}
+.step-sub{font-size:13px;color:var(--text);margin-top:10px;padding-top:10px;border-top:1px solid var(--border);line-height:1.6;}
+/* TABLE */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:380px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#f0f7ff;}
+.td-term{font-weight:700;color:var(--navy);}
+/* EXAM TIP */
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:18px 22px;margin-bottom:40px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#b08000;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:8px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+/* CALLOUT */
+.callout{background:rgba(26,108,255,.04);border:1px solid rgba(26,108,255,.2);border-left:4px solid var(--blue);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+/* SCENARIO */
+.scenario-list{display:flex;flex-direction:column;gap:10px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 18px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+/* CTA */
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(0,194,168,.2) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:600;transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn:hover{transform:translateY(-2px);}
+.btn-teal{background:var(--teal);color:var(--navy);box-shadow:0 6px 20px rgba(0,194,168,.3);}
+.btn-teal:hover{box-shadow:0 10px 28px rgba(0,194,168,.4);}
+/* RELATED */
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(0,194,168,.4);color:var(--teal);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--teal);font-size:13px;}
+.divider{border:none;border-top:1px solid var(--border);margin:0 0 40px;}
+/* FOOTER */
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+@media(max-width:600px){.footer{padding:36px 16px;}.footer-bottom{flex-direction:column;}}
+.footer-email{color:rgba(255,255,255,.4);}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Roadmap</a>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="best-study-resources.html" class="nav-cta">Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="networking-roadmap.html">Roadmap</a><span>›</span>
+      <span>Troubleshooting Methodology</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · Network+ · Security+ · 2026</div>
+    <h1>CompTIA <span>Troubleshooting Methodology</span></h1>
+    <p class="page-hero-sub">The 6-step troubleshooting process used on every CompTIA exam — A+, Network+, and Security+. Master the steps, the order, and how to apply them to real-world and exam scenarios.</p>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ The 6 Steps</div>
+      <div class="quick-answer-text">
+        <strong>1. Identify the problem</strong> → <strong>2. Establish a theory</strong> → <strong>3. Test the theory</strong> → <strong>4. Establish a plan of action</strong> → <strong>5. Implement the solution</strong> → <strong>6. Document findings.</strong> This exact sequence appears on every CompTIA certification exam — A+, Network+, and Security+ all test whether you can identify which step is being described in a scenario.
+      </div>
+    </div>
+
+    <h2>Why CompTIA Has a Standard Methodology</h2>
+    <p>In IT support, the difference between a good technician and a great one is rarely technical knowledge — it's <strong>systematic thinking</strong>. Without a methodology, technicians guess randomly, make changes without understanding them, and can't explain what they did or why it worked. CompTIA's 6-step model gives every exam candidate (and every IT professional) a repeatable framework that works on hardware, software, network, and security problems alike.</p>
+    <p>The methodology is deliberately general so it applies to everything from "a user's computer won't start" to "a network segment is unreachable" to "a security incident is in progress." The steps don't change — only the tools and techniques used within each step.</p>
+
+    <h2>The 6 Steps — In Detail</h2>
+
+    <div class="step-flow">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Identify the Problem</div>
+          <div class="step-desc">
+            Gather information before touching anything. Interview the user — ask what changed, when it started, whether it's happened before. Check error messages, event logs, and system information. Identify symptoms vs. the actual problem (a symptom is "screen is blank"; the problem might be a failed GPU, a loose cable, a dead power supply, or a software crash).
+            <div class="step-sub"><strong>Key actions:</strong> Question the user (open-ended and closed questions), review logs, duplicate the issue if possible, identify affected systems, check for recent changes — software installs, updates, hardware swaps, configuration changes.</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Establish a Theory of Probable Cause</div>
+          <div class="step-desc">
+            Based on what you've gathered, form a hypothesis. Start with the simplest and most likely cause — this is Occam's Razor in action. If a monitor is blank, check if it's plugged in before diagnosing the GPU. CompTIA calls this "question the obvious."
+            <div class="step-sub"><strong>Key actions:</strong> Research the symptoms (knowledge base, documentation, internet). Consider multiple possible causes and rank by likelihood. Start with the most probable, not the most interesting. For network problems — work from Layer 1 up the OSI model.</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Test the Theory to Determine the Cause</div>
+          <div class="step-desc">
+            Test your hypothesis. Change one variable at a time. If your theory is confirmed — move to step 4. If it's wrong — go back to step 2 and form a new theory. Never make multiple changes at once; you won't know which one fixed it.
+            <div class="step-sub"><strong>Key actions:</strong> Swap known-good components (cable, RAM, power supply). Run diagnostics. Check configurations against known-good baseline. If the theory is disproved, return to step 2. If you cannot determine the cause yourself — escalate to a higher level of support.</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Establish a Plan of Action to Resolve the Problem and Identify Potential Effects</div>
+          <div class="step-desc">
+            Before implementing anything, plan the fix. Consider side effects and risks — will your solution affect other systems? Do you need a change management approval? Do you need to back up data first? Is there a maintenance window required?
+            <div class="step-sub"><strong>Key actions:</strong> Check change management procedures. Identify potential impacts (downtime, data loss, service disruption). Back up configurations and data. Schedule during a maintenance window if needed. Communicate with affected users.</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">Implement the Solution or Escalate as Necessary</div>
+          <div class="step-desc">
+            Implement the fix you planned. If the solution is outside your technical scope, authority, or access — escalate. After implementing, verify the fix resolved the original problem and didn't introduce new ones. Test all affected functionality.
+            <div class="step-sub"><strong>Key actions:</strong> Apply the fix. Verify the original issue is resolved. Test related functionality (fixing one thing can break another). If the fix didn't work — return to step 2. Escalate if the problem is beyond your level.</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <div class="step-title">Verify Full System Functionality and Implement Preventive Measures</div>
+          <div class="step-desc">
+            Confirm the problem is fully resolved — not just for the original symptom but for the whole system. Implement preventive measures so it doesn't happen again (update policies, patch the system, add monitoring). Document everything.
+            <div class="step-sub"><strong>Key actions:</strong> Verify with the user that the problem is resolved. Test related systems. Implement preventive measures (patch management, configuration changes, user training). Document: what the problem was, what caused it, what you did to fix it, and how to prevent recurrence.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Exam tip — step order matters</div>
+      <p>CompTIA exam questions often describe a scenario mid-troubleshooting and ask "what should the technician do next?" The answer depends entirely on which step they're on. If they've identified the problem and formed a theory — the next step is <strong>test the theory</strong>, not implement a fix. If the theory was wrong — go back to step 2, not step 1.</p>
+      <p><strong>The most common wrong answers</strong> on these questions involve skipping steps (going straight from step 1 to step 5) or going backwards incorrectly. Also remember: documentation (step 6) is always last — the exam will try to trick you into picking "document the findings" before the problem is actually solved.</p>
+    </div>
+
+    <h2>Where Each Step Appears on the Exam</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Step</th><th>A+ Scenario Example</th><th>Network+ Scenario Example</th><th>Security+ Scenario Example</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">1 — Identify</td><td>User reports "computer is slow" — ask when it started, what changed</td><td>Users report intermittent connectivity — check logs, identify affected hosts</td><td>Alert fired — gather IOCs, identify affected systems, preserve evidence</td></tr>
+          <tr><td class="td-term">2 — Theory</td><td>Slow PC — probable cause: malware, failing HDD, insufficient RAM</td><td>Intermittent connectivity — probable cause: duplex mismatch, bad cable, overloaded switch</td><td>Suspicious traffic — probable cause: malware C2, compromised credential, insider threat</td></tr>
+          <tr><td class="td-term">3 — Test</td><td>Run Task Manager to check resource usage; run malware scan</td><td>Check interface stats for errors; swap cable; check switch port config</td><td>Isolate affected host; run EDR scan; check authentication logs</td></tr>
+          <tr><td class="td-term">4 — Plan</td><td>Schedule after hours reimaging; back up user data first</td><td>Plan maintenance window to reconfigure switch port</td><td>Draft containment plan; identify scope before eradicating</td></tr>
+          <tr><td class="td-term">5 — Implement</td><td>Reimage PC, restore data, reinstall software</td><td>Reconfigure port speed/duplex; replace cable</td><td>Isolate system, remove malware, patch vulnerability, restore from backup</td></tr>
+          <tr><td class="td-term">6 — Document</td><td>Log ticket: symptoms, cause (malware), fix (reimage), prevention (AV policy)</td><td>Update network documentation; add monitoring alert for interface errors</td><td>Write incident report; update IR playbook; conduct lessons-learned review</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>The OSI Model as a Troubleshooting Framework</h2>
+    <p>For network problems specifically, CompTIA recommends working <strong>bottom-up from Layer 1</strong> when establishing your theory of probable cause (step 2). There's no point diagnosing a DNS misconfiguration (Layer 7) if a cable is unplugged (Layer 1).</p>
+
+    <div class="callout">
+      <div class="callout-label">Network Troubleshooting — Bottom-Up OSI Approach</div>
+      <p><strong>Layer 1 — Physical:</strong> Is the cable connected? Are the link lights on the NIC and switch lit? Try a different cable or port.</p>
+      <p><strong>Layer 2 — Data Link:</strong> Is the NIC getting a MAC assignment? Is the switch port in the right VLAN? Check for duplex/speed mismatches.</p>
+      <p><strong>Layer 3 — Network:</strong> Does the host have a valid IP address (not 169.254.x.x)? Can it ping the default gateway? Check routing table.</p>
+      <p><strong>Layer 4 — Transport:</strong> Is the correct port open? Is a firewall blocking the connection? Run netstat/ss to check listening ports.</p>
+      <p><strong>Layer 7 — Application:</strong> Is the service running? Is the DNS name resolving? Is the application configured correctly?</p>
+    </div>
+
+    <h2>Change Management and the Troubleshooting Process</h2>
+    <p>Step 4 (establish a plan) connects directly to <strong>change management</strong> — a critical concept on both Network+ and Security+. In enterprise environments, you cannot simply implement changes without going through a formal approval process. The troubleshooting methodology acknowledges this: if your fix requires a configuration change to a production system, you need to follow change management procedures before step 5.</p>
+    <p>Key change management elements tested on Network+ and Security+: change request submission, approval by a change advisory board (CAB), scheduling during a maintenance window, rollback plan in case the change causes new problems, and post-implementation review.</p>
+
+    <h2>Documentation — Why Step 6 Matters Beyond the Exam</h2>
+    <p>Documentation is the step most commonly skipped in real IT environments and the step most often tested on CompTIA exams. Good documentation serves three purposes: it helps the next technician who encounters the same issue, it creates a paper trail for auditing and compliance, and it builds a knowledge base that speeds up future troubleshooting.</p>
+    <p>What good documentation includes: date and time of the issue, who reported it, the symptoms observed, the cause identified, every step taken to diagnose and fix it, the final resolution, preventive measures applied, and time to resolution.</p>
+
+    <hr class="divider">
+
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "A technician has confirmed the theory of probable cause. What should they do next?" → <strong>Step 4 — Establish a plan of action. Testing confirms the theory; planning precedes implementation.</strong></div>
+      <div class="scenario-item">💬 "After implementing a fix, the technician notices a new problem appeared. What step should they return to?" → <strong>Step 2 — Establish a new theory. The original fix either didn't address the root cause or introduced a new issue.</strong></div>
+      <div class="scenario-item">💬 "A user reports their monitor is blank. The technician's first action should be:" → <strong>Step 1 — Identify the problem. Ask when it started, check cables, look for error messages before forming any theory.</strong></div>
+      <div class="scenario-item">💬 "A technician fixes a network connectivity issue but doesn't write it up. Which step did they skip?" → <strong>Step 6 — Document findings, full system functionality verification, and preventive measures.</strong></div>
+      <div class="scenario-item">💬 "A technician suspects a bad RAM module. They replace it AND reinstall Windows at the same time. What troubleshooting principle did they violate?" → <strong>Change one variable at a time. Making multiple changes simultaneously means you cannot determine which change resolved the problem.</strong></div>
+      <div class="scenario-item">💬 "An issue is beyond the technician's authority to fix. According to the troubleshooting methodology, what should they do?" → <strong>Step 5 — Escalate as necessary. The methodology explicitly includes escalation as an option within the implementation step.</strong></div>
+      <div class="scenario-item">💬 "A network technician is troubleshooting connectivity. Ping to 8.8.8.8 works but ping to google.com fails. Which OSI layer does this indicate the problem is at?" → <strong>Layer 7 (Application) / DNS — IP connectivity works (Layer 3 OK), but name resolution fails, indicating a DNS issue.</strong></div>
+      <div class="scenario-item">💬 "Before implementing a fix on a production server, what should the technician do first?" → <strong>Step 4 — Back up data, identify potential effects, follow change management procedures, schedule a maintenance window if needed.</strong></div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Ready to pass the A+ exam?</h3>
+        <p>See the study guides, practice exams, and resources that make the difference.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn btn-teal">See A+ Study Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
+      <a href="osi-model.html" class="related-link">OSI Model Explained</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="security-plus-cheat-sheet.html" class="related-link">Security+ Cheat Sheet</a>
+      <a href="malware-types.html" class="related-link">Malware Types Explained</a>
+      <a href="incident-response-explained.html" class="related-link">Incident Response Explained</a>
+      <a href="how-to-pass-comptia-aplus.html" class="related-link">How to Pass the A+ Exam</a>
+      <a href="dns.html" class="related-link">What Is DNS?</a>
+      <a href="dhcp.html" class="related-link">What Is DHCP?</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Certifications</div>
+      <a href="how-to-pass-comptia-aplus.html">CompTIA A+</a>
+      <a href="how-to-pass-comptia-network-plus.html">Network+</a>
+      <a href="how-to-pass-comptia-security-plus.html">Security+</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="network-troubleshooting-commands.html">Troubleshooting Commands</a>
+      <a href="ports.html">Port Numbers</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span class="footer-email"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>

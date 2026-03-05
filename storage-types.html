@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/storage-types.html">
+<title>Storage Types Explained — HDD, SSD, NVMe, M.2, RAID | CompTIA A+ Guide (2026)</title>
+<meta name="description" content="Complete storage guide for CompTIA A+ — HDD vs SSD vs NVMe, M.2, SATA, PCIe, form factors, RAID levels 0/1/5/10, and every storage concept tested on the A+ 220-1101 exam.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(0,194,168,.14) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(26,108,255,.08) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(0,194,168,.12);border:1px solid rgba(0,194,168,.3);color:#5eead4;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,42px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:var(--teal);}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:620px;line-height:1.7;}
+.article-wrap{max-width:860px;margin:0 auto;padding:52px 28px 80px;animation:fadeUp .5s ease both;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:48px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body h3{font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;color:var(--navy);margin:28px 0 12px;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(0,194,168,.15) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:420px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#f0fdf4;}
+.td-term{font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;}
+/* STORAGE CARDS */
+.storage-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px 24px;margin-bottom:20px;box-shadow:var(--card-shadow);}
+.storage-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap;}
+.storage-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:rgba(0,194,168,.1);color:#0a7a6e;border:1px solid rgba(0,194,168,.25);}
+.storage-name{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--navy);}
+.storage-body p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:10px;}
+.storage-body p:last-child{margin-bottom:0;}
+.storage-body strong{color:var(--navy);}
+.storage-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);}
+@media(max-width:500px){.storage-specs{grid-template-columns:1fr 1fr;}}
+.spec-item{background:var(--light);border-radius:8px;padding:8px 12px;}
+.spec-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
+.spec-val{font-weight:600;color:var(--navy);font-size:13px;}
+/* RAID CARDS */
+.raid-grid{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.raid-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;box-shadow:var(--card-shadow);}
+.raid-header{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.raid-num{font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:var(--navy);min-width:60px;}
+.raid-name{font-family:'DM Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);}
+.raid-badges{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap;}
+.raid-badge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:100px;font-family:'DM Mono',monospace;letter-spacing:.4px;}
+.badge-speed{background:#dbeafe;color:#1d4ed8;}
+.badge-redundancy{background:#dcfce7;color:#166534;}
+.badge-nored{background:#fee2e2;color:#991b1b;}
+.raid-body{font-size:14px;color:var(--text);line-height:1.65;}
+.raid-body strong{color:var(--navy);}
+.raid-stats{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap;}
+.raid-stat{font-size:13px;color:var(--muted);}
+.raid-stat strong{color:var(--navy);}
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:18px 22px;margin-bottom:40px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#b08000;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:8px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+.scenario-list{display:flex;flex-direction:column;gap:10px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 18px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(0,194,168,.2) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:600;transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn:hover{transform:translateY(-2px);}
+.btn-teal{background:var(--teal);color:var(--navy);box-shadow:0 6px 20px rgba(0,194,168,.3);}
+.btn-teal:hover{box-shadow:0 10px 28px rgba(0,194,168,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(0,194,168,.4);color:var(--teal);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--teal);font-size:13px;}
+.divider{border:none;border-top:1px solid var(--border);margin:0 0 40px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-email{color:rgba(255,255,255,.4);}.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="troubleshooting-methodology.html">Troubleshooting</a>
+      <a href="best-a-plus.html" class="nav-cta">A+ Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="networking-roadmap.html">Roadmap</a><span>›</span>
+      <span>Storage Types</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · 220-1101 · 2026</div>
+    <h1>Storage Types <span>Explained</span></h1>
+    <p class="page-hero-sub">HDD, SSD, NVMe, M.2, SATA, PCIe, form factors, and RAID levels — every storage concept tested on the CompTIA A+ 220-1101 exam, explained clearly with real-world context.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Storage at a Glance</div>
+      <div class="quick-answer-text">
+        The A+ exam tests three storage technology generations: <strong>HDD</strong> (magnetic spinning disks — slow but cheap), <strong>SATA SSD</strong> (flash storage on the SATA bus — much faster than HDD), and <strong>NVMe SSD</strong> (flash storage on the PCIe bus — the fastest consumer storage available). Form factors include <strong>2.5-inch</strong> (laptops/desktops), <strong>3.5-inch</strong> (desktops), and <strong>M.2</strong> (small stick form factor, can be SATA or NVMe). <strong>RAID</strong> combines multiple drives for redundancy or performance.
+      </div>
+    </div>
+
+    <h2>HDD — Hard Disk Drive</h2>
+
+    <div class="storage-card">
+      <div class="storage-header">
+        <span class="storage-badge">Magnetic · Mechanical</span>
+        <span class="storage-name">Hard Disk Drive (HDD)</span>
+      </div>
+      <div class="storage-body">
+        <p>HDDs store data on magnetic platters that spin at high speed (typically <strong>5400 RPM or 7200 RPM</strong> for consumer drives; 10,000–15,000 RPM for enterprise). A read/write head moves across the spinning platters to access data. Because data access requires physical movement, HDDs are significantly slower than SSDs, especially for random read/write operations.</p>
+        <p>HDDs connect via <strong>SATA</strong> in modern systems. Despite being slower, HDDs remain cost-effective for large-capacity storage — you can get 8 TB HDDs for a fraction of the cost of an equivalent SSD. They're commonly used for backup drives, NAS systems, and secondary storage where speed isn't critical.</p>
+        <p><strong>Key failure modes:</strong> Head crashes (head touches platter), bearing failure, motor failure. Clicking or grinding sounds from a hard drive are warning signs of imminent failure. HDDs are sensitive to physical shocks while operating.</p>
+        <div class="storage-specs">
+          <div class="spec-item"><div class="spec-label">Interface</div><div class="spec-val">SATA III</div></div>
+          <div class="spec-item"><div class="spec-label">Speed</div><div class="spec-val">80–160 MB/s</div></div>
+          <div class="spec-item"><div class="spec-label">Form factors</div><div class="spec-val">3.5" / 2.5"</div></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>SSD — Solid State Drive</h2>
+
+    <div class="storage-card">
+      <div class="storage-header">
+        <span class="storage-badge">Flash · No Moving Parts</span>
+        <span class="storage-name">SATA SSD</span>
+      </div>
+      <div class="storage-body">
+        <p>SATA SSDs use NAND flash memory — no moving parts. Because there's no physical movement, access times are dramatically lower than HDDs. A SATA SSD can read sequential data at around <strong>500–560 MB/s</strong>, compared to 80–160 MB/s for an HDD. Random read/write performance is even more dramatically improved — this is why systems feel so much faster after an SSD upgrade.</p>
+        <p>SATA SSDs use the same <strong>SATA III interface</strong> as HDDs and come in the same <strong>2.5-inch form factor</strong>, making them direct HDD replacements in laptops and desktops. The SATA interface is the bottleneck — SATA III's 600 MB/s maximum is nearly saturated by modern SSDs, which is why NVMe was developed.</p>
+        <p><strong>Flash cell types:</strong> SLC (1 bit/cell — fastest, most durable, most expensive), MLC (2 bits), TLC (3 bits — most common consumer SSD), QLC (4 bits — cheapest, slowest, least durable).</p>
+        <div class="storage-specs">
+          <div class="spec-item"><div class="spec-label">Interface</div><div class="spec-val">SATA III</div></div>
+          <div class="spec-item"><div class="spec-label">Speed</div><div class="spec-val">500–560 MB/s</div></div>
+          <div class="spec-item"><div class="spec-label">Form factors</div><div class="spec-val">2.5" / M.2 (SATA)</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="storage-card">
+      <div class="storage-header">
+        <span class="storage-badge">Flash · PCIe · Fastest</span>
+        <span class="storage-name">NVMe SSD (Non-Volatile Memory Express)</span>
+      </div>
+      <div class="storage-body">
+        <p>NVMe (Non-Volatile Memory Express) is a protocol designed specifically for flash storage over the <strong>PCIe bus</strong> — bypassing the SATA controller entirely. PCIe has far higher bandwidth than SATA, allowing NVMe SSDs to achieve sequential read speeds of <strong>3,500–7,000+ MB/s</strong> (Gen 4/Gen 5). This is 6–14× faster than SATA SSD.</p>
+        <p>NVMe SSDs typically come in the <strong>M.2 form factor</strong> and plug directly into an M.2 slot on the motherboard. They also come in PCIe add-in card (AIC) format for desktops. The NVMe protocol is also much more efficient than AHCI (the protocol SATA SSDs use) — NVMe supports up to 65,535 command queues vs AHCI's single queue of 32 commands.</p>
+        <p><strong>Thermal note:</strong> NVMe SSDs run hot under sustained load — thermal throttling is common in laptops and compact builds without adequate cooling. Many M.2 slots in desktops come with heatsinks for this reason.</p>
+        <div class="storage-specs">
+          <div class="spec-item"><div class="spec-label">Interface</div><div class="spec-val">PCIe (via M.2 or AIC)</div></div>
+          <div class="spec-item"><div class="spec-label">Speed</div><div class="spec-val">3,500–7,000+ MB/s</div></div>
+          <div class="spec-item"><div class="spec-label">Form factors</div><div class="spec-val">M.2 / PCIe AIC</div></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Form Factors and Interfaces</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Form Factor</th><th>Size</th><th>Compatible With</th><th>Exam Note</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">3.5-inch</td><td>Standard desktop</td><td>HDDs only — desktops and NAS enclosures</td><td>Requires 4-pin Molex or SATA power; fits desktop drive bays</td></tr>
+          <tr><td class="td-term">2.5-inch</td><td>Laptop size</td><td>HDDs and SATA SSDs — laptops and desktops with adapter bracket</td><td>Thinner than 3.5" — most laptop drives are 2.5"</td></tr>
+          <tr><td class="td-term">M.2</td><td>Small stick (22mm wide)</td><td>SATA SSDs OR NVMe SSDs — determined by the drive's key type</td><td>M.2 is a form factor, not a protocol — check if slot is SATA, NVMe, or both</td></tr>
+          <tr><td class="td-term">mSATA</td><td>Mini card</td><td>Older SATA SSDs — mostly legacy laptops and embedded systems</td><td>Replaced by M.2 — still appears on A+ exam as legacy connector</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>M.2 Key Types</h3>
+    <p>M.2 drives have a notch called a "key" that determines compatibility. This is a common A+ exam topic because M.2 slots and drives must have matching keys:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Key</th><th>Protocol Support</th><th>Exam Note</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">M-key</td><td>NVMe (PCIe) and SATA</td><td>Most common on modern motherboards — accepts NVMe drives and some SATA M.2 drives</td></tr>
+          <tr><td class="td-term">B-key</td><td>SATA only (and older PCIe ×2)</td><td>Older slot type — won't accept modern NVMe drives that require PCIe ×4</td></tr>
+          <tr><td class="td-term">B+M key</td><td>SATA (fits both B and M slots)</td><td>Notched on both ends — SATA M.2 drives typically have B+M keying for maximum compatibility</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ A+ exam trap — M.2 ≠ NVMe</div>
+      <p><strong>M.2 is a form factor. NVMe is a protocol.</strong> A drive can be M.2 and use the SATA protocol (slower, ~500 MB/s). Another drive can be M.2 and use the NVMe protocol (faster, 3,500+ MB/s). The exam will give you a scenario where a user installs an M.2 drive into a new M.2 slot and it doesn't work — the most likely cause is a <strong>protocol mismatch</strong>: a SATA M.2 drive in an NVMe-only slot, or vice versa.</p>
+      <p>Also: <strong>NVMe ≠ PCIe AIC</strong> — NVMe can come in M.2 or PCIe add-in card form. The protocol (NVMe) and the form factor (M.2 or AIC) are separate characteristics.</p>
+    </div>
+
+    <h2>RAID — Redundant Array of Independent Disks</h2>
+    <p>RAID combines multiple drives to provide either <strong>fault tolerance</strong> (data survives a drive failure) or <strong>improved performance</strong> (or both). The A+ exam tests RAID 0, 1, 5, and 10 — you must know how each works, the minimum drives required, and what happens when a drive fails.</p>
+
+    <div class="raid-grid">
+
+      <div class="raid-card">
+        <div class="raid-header">
+          <span class="raid-num">RAID 0</span>
+          <span class="raid-name">Striping</span>
+          <div class="raid-badges">
+            <span class="raid-badge badge-speed">Fast</span>
+            <span class="raid-badge badge-nored">No Redundancy</span>
+          </div>
+        </div>
+        <div class="raid-body">
+          <strong>How it works:</strong> Data is split across all drives in the array — each drive stores a portion of every file. This means reads and writes happen in parallel, giving throughput proportional to the number of drives.<br><br>
+          <strong>Failure behaviour:</strong> If any single drive fails, <strong>all data is lost</strong> — there is no redundancy. RAID 0 trades safety for speed entirely.<br><br>
+          <strong>Use case:</strong> Video editing scratch disks, gaming drives, any workload prioritising speed over data safety. Not appropriate for any data you cannot afford to lose.
+          <div class="raid-stats">
+            <span class="raid-stat"><strong>Min drives:</strong> 2</span>
+            <span class="raid-stat"><strong>Capacity:</strong> 100% of total (no overhead)</span>
+            <span class="raid-stat"><strong>Drive failure tolerance:</strong> 0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="raid-card">
+        <div class="raid-header">
+          <span class="raid-num">RAID 1</span>
+          <span class="raid-name">Mirroring</span>
+          <div class="raid-badges">
+            <span class="raid-badge badge-redundancy">Full Redundancy</span>
+          </div>
+        </div>
+        <div class="raid-body">
+          <strong>How it works:</strong> Every write is duplicated to two (or more) drives simultaneously — each drive is an exact mirror of the other. Reads can be served from either drive, improving read performance slightly.<br><br>
+          <strong>Failure behaviour:</strong> If one drive fails, the other contains a complete copy of all data — the system continues operating without data loss. Replace the failed drive and the array rebuilds automatically.<br><br>
+          <strong>Use case:</strong> OS drives, critical data that must survive a single drive failure. Common in servers and workstations where downtime is unacceptable.
+          <div class="raid-stats">
+            <span class="raid-stat"><strong>Min drives:</strong> 2</span>
+            <span class="raid-stat"><strong>Capacity:</strong> 50% of total (half is mirror)</span>
+            <span class="raid-stat"><strong>Drive failure tolerance:</strong> 1</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="raid-card">
+        <div class="raid-header">
+          <span class="raid-num">RAID 5</span>
+          <span class="raid-name">Striping with Parity</span>
+          <div class="raid-badges">
+            <span class="raid-badge badge-speed">Good Performance</span>
+            <span class="raid-badge badge-redundancy">Redundancy</span>
+          </div>
+        </div>
+        <div class="raid-body">
+          <strong>How it works:</strong> Data is striped across all drives like RAID 0, but <strong>parity information</strong> is also distributed across all drives. Parity is a mathematical checksum — if one drive fails, its data can be reconstructed from the parity and remaining data on the other drives.<br><br>
+          <strong>Failure behaviour:</strong> The array can survive the failure of <strong>one drive</strong>. The system continues operating (in a degraded state) until the failed drive is replaced and the array rebuilds. If a second drive fails during rebuild — all data is lost.<br><br>
+          <strong>Use case:</strong> NAS drives, file servers, small business storage — good balance of capacity, performance, and redundancy.
+          <div class="raid-stats">
+            <span class="raid-stat"><strong>Min drives:</strong> 3</span>
+            <span class="raid-stat"><strong>Capacity:</strong> (N-1) drives (1 drive equivalent for parity)</span>
+            <span class="raid-stat"><strong>Drive failure tolerance:</strong> 1</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="raid-card">
+        <div class="raid-header">
+          <span class="raid-num">RAID 10</span>
+          <span class="raid-name">Stripe of Mirrors (RAID 1+0)</span>
+          <div class="raid-badges">
+            <span class="raid-badge badge-speed">Fast</span>
+            <span class="raid-badge badge-redundancy">Redundancy</span>
+          </div>
+        </div>
+        <div class="raid-body">
+          <strong>How it works:</strong> RAID 10 combines RAID 1 (mirroring) and RAID 0 (striping). Drives are first paired as mirrors (RAID 1), then those mirrors are striped together (RAID 0). You get both the performance of striping and the fault tolerance of mirroring.<br><br>
+          <strong>Failure behaviour:</strong> Can tolerate the failure of <strong>one drive per mirror pair</strong>. With 4 drives (2 pairs), up to 2 drives can fail — as long as they're not both from the same mirror pair. If both drives in a mirror pair fail, data is lost.<br><br>
+          <strong>Use case:</strong> Database servers, high-transaction workloads requiring both speed and redundancy. The premium choice when performance and fault tolerance are both required.
+          <div class="raid-stats">
+            <span class="raid-stat"><strong>Min drives:</strong> 4</span>
+            <span class="raid-stat"><strong>Capacity:</strong> 50% of total</span>
+            <span class="raid-stat"><strong>Drive failure tolerance:</strong> 1 per mirror pair</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ RAID exam tips</div>
+      <p><strong>RAID is NOT a backup.</strong> This is the most important RAID concept on the exam. RAID protects against drive failure — it does not protect against accidental deletion, ransomware, or corruption (which replicates to all mirrors instantly). Backups and RAID serve different purposes.</p>
+      <p><strong>RAID 0 has no fault tolerance</strong> — any drive failure destroys all data. <strong>RAID 1 and RAID 5 can each survive one drive failure</strong>. <strong>RAID 10 can survive one failure per mirror pair</strong>. The exam frequently asks "which RAID level provides redundancy with the best write performance?" → <strong>RAID 10</strong>.</p>
+    </div>
+
+    <h2>Storage Speed Comparison</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Storage Type</th><th>Interface</th><th>Typical Read Speed</th><th>Relative Speed</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">HDD (5400 RPM)</td><td>SATA III</td><td>80–120 MB/s</td><td>Slowest</td></tr>
+          <tr><td class="td-term">HDD (7200 RPM)</td><td>SATA III</td><td>120–160 MB/s</td><td>Slow</td></tr>
+          <tr><td class="td-term">SATA SSD</td><td>SATA III</td><td>500–560 MB/s</td><td>Fast</td></tr>
+          <tr><td class="td-term">NVMe SSD (Gen 3)</td><td>PCIe 3.0 ×4</td><td>3,000–3,500 MB/s</td><td>Very fast</td></tr>
+          <tr><td class="td-term">NVMe SSD (Gen 4)</td><td>PCIe 4.0 ×4</td><td>5,000–7,000 MB/s</td><td>Extremely fast</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "A user installs an M.2 drive into a new laptop and it is not detected. The drive is NVMe but the M.2 slot only supports SATA. What is the issue?" → <strong>Protocol mismatch — the M.2 slot is SATA-only and does not support NVMe (PCIe). The drive requires a slot with PCIe/NVMe support.</strong></div>
+      <div class="scenario-item">💬 "A hard drive makes a clicking sound during operation. What does this typically indicate?" → <strong>Imminent drive failure — the read/write head is failing (head crash or bearing failure). Back up data immediately.</strong></div>
+      <div class="scenario-item">💬 "A server needs storage that can survive a single drive failure with the best read performance and minimal capacity overhead. Which RAID level is most appropriate?" → <strong>RAID 5 — stripes data with distributed parity, survives one drive failure, and uses only 1 drive's worth of space for parity overhead (better than RAID 1's 50% overhead).</strong></div>
+      <div class="scenario-item">💬 "A company implements RAID 1 on their file server. An employee accidentally deletes an important folder. Will RAID protect the data?" → <strong>No — RAID mirrors are synchronised in real time. The deletion replicates to both drives immediately. RAID is not a substitute for backups.</strong></div>
+      <div class="scenario-item">💬 "Which RAID level requires a minimum of 4 drives and provides both striping performance and mirroring redundancy?" → <strong>RAID 10 (RAID 1+0) — stripe of mirrors.</strong></div>
+      <div class="scenario-item">💬 "A technician needs to recommend the fastest storage upgrade for a laptop currently using a 2.5-inch SATA HDD. What is the best option if the laptop has an M.2 slot?" → <strong>NVMe M.2 SSD — if the M.2 slot supports NVMe/PCIe, this provides up to 20× the speed of the HDD. Confirm slot compatibility before purchase.</strong></div>
+      <div class="scenario-item">💬 "In a RAID 5 array of 4 drives (each 2 TB), how much usable storage is available?" → <strong>6 TB — RAID 5 uses the equivalent of one drive for parity. (N-1) × drive size = (4-1) × 2 TB = 6 TB.</strong></div>
+      <div class="scenario-item">💬 "Which storage interface is a bottleneck for SSDs, limiting them to approximately 600 MB/s?" → <strong>SATA III — its maximum throughput of 6 Gbps (~600 MB/s) is nearly saturated by modern SSDs, which is why NVMe over PCIe was developed.</strong></div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for the A+ exam?</h3>
+        <p>See the best study guides and practice exams for the 220-1101 and 220-1102.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn btn-teal">See A+ Study Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="troubleshooting-methodology.html" class="related-link">Troubleshooting Methodology</a>
+      <a href="virtualization-explained.html" class="related-link">Virtualization Explained</a>
+      <a href="how-to-pass-comptia-aplus.html" class="related-link">How to Pass A+</a>
+      <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
+      <a href="home-lab-setup-guide.html" class="related-link">Home Lab Setup Guide</a>
+      <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
+      <a href="ports.html" class="related-link">Common Port Numbers</a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">CompTIA A+</div>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="troubleshooting-methodology.html">Troubleshooting</a>
+      <a href="how-to-pass-comptia-aplus.html">How to Pass A+</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Study</div>
+      <a href="best-a-plus.html">Best A+ Resources</a>
+      <a href="best-study-resources.html">All Study Resources</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span class="footer-email"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+</body>
+</html>

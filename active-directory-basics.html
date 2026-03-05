@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/active-directory-basics.html">
+<title>Active Directory Basics Explained — Domain, OU, GPO, Users &amp; Groups | CompTIA A+, Network+</title>
+<meta name="description" content="What is Active Directory? Domains, OUs, Group Policy, users and groups, domain join, LDAP, Kerberos — every Active Directory concept tested on CompTIA A+ Core 2, Network+, and Security+.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.12) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(0,194,168,.08) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,42px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:620px;line-height:1.7;}
+.article-wrap{max-width:860px;margin:0 auto;padding:52px 28px 80px;animation:fadeUp .5s ease both;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:48px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body h3{font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;color:var(--navy);margin:28px 0 12px;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.article-body code{font-family:'DM Mono',monospace;font-size:13px;background:var(--light);padding:2px 7px;border-radius:5px;color:var(--blue);}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.18) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:380px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#eff6ff;}
+.td-term{font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;}
+.code-block{background:var(--navy);border-radius:12px;overflow:hidden;margin-bottom:32px;border:1px solid rgba(255,255,255,.08);}
+.code-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:#93c5fd;padding:10px 18px 8px;border-bottom:1px solid rgba(255,255,255,.08);}
+.code-block pre{font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,.85);line-height:1.8;padding:16px 18px;overflow-x:auto;margin:0;}
+.code-teal{color:var(--teal);font-weight:700;}
+.code-blue{color:#93c5fd;font-weight:700;}
+.code-comment{color:rgba(255,255,255,.35);}
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:18px 22px;margin-bottom:40px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#b08000;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:8px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+.callout{background:rgba(26,108,255,.04);border:1px solid rgba(26,108,255,.2);border-left:4px solid var(--blue);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.scenario-list{display:flex;flex-direction:column;gap:10px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 18px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(26,108,255,.2) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:600;transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn:hover{transform:translateY(-2px);}
+.btn-blue{background:var(--blue);color:var(--white);box-shadow:0 6px 20px rgba(26,108,255,.3);}
+.btn-blue:hover{box-shadow:0 10px 28px rgba(26,108,255,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.3);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.divider{border:none;border-top:1px solid var(--border);margin:0 0 40px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+@media(max-width:600px){.footer{padding:36px 16px;}.footer-bottom{flex-direction:column;}}
+.footer-email{color:rgba(255,255,255,.4);}.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Roadmap</a>
+      <a href="kerberos-explained.html">Kerberos</a>
+      <a href="best-study-resources.html" class="nav-cta">Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="networking-roadmap.html">Roadmap</a><span>›</span>
+      <span>Active Directory Basics</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · Network+ · Security+ · 2026</div>
+    <h1>Active Directory <span>Basics</span> Explained</h1>
+    <p class="page-hero-sub">What Active Directory is, how domains and OUs work, Group Policy, domain join, users and groups, LDAP and Kerberos integration — every AD concept tested on CompTIA A+ Core 2, Network+, and Security+.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ What is Active Directory?</div>
+      <div class="quick-answer-text">
+        Active Directory (AD) is Microsoft's <strong>centralised directory service</strong> for managing users, computers, and resources in a Windows domain. Instead of configuring each computer individually, AD lets administrators manage thousands of machines from one place — setting password policies, software deployments, and access controls through <strong>Group Policy</strong>. AD runs on Windows Server and uses <strong>LDAP</strong> for directory queries and <strong>Kerberos</strong> for authentication.
+      </div>
+    </div>
+
+    <h2>Active Directory vs Workgroup — Why Domains Exist</h2>
+    <p>In a <strong>workgroup</strong> (peer-to-peer), each computer manages its own local user accounts. If you have 200 computers and need to update a password policy, you update it on 200 machines individually. That's unmanageable at scale.</p>
+    <p>In a <strong>domain</strong>, all user accounts, passwords, and policies are stored centrally on a <strong>Domain Controller (DC)</strong>. Users log in with domain credentials that authenticate against the DC. An admin changes a policy once and it applies everywhere. This is the fundamental reason Active Directory exists.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Workgroup</th><th>Active Directory Domain</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Scale</td><td>Up to ~10–20 computers</td><td>Thousands of computers</td></tr>
+          <tr><td class="td-term">User accounts</td><td>Local — stored on each machine</td><td>Centralised — stored on Domain Controller</td></tr>
+          <tr><td class="td-term">Password policy</td><td>Set per machine</td><td>Set once, applies everywhere via GPO</td></tr>
+          <tr><td class="td-term">Single sign-on</td><td>No — re-authenticate to each resource</td><td>Yes — Kerberos tickets grant access to multiple resources</td></tr>
+          <tr><td class="td-term">Management overhead</td><td>High — each machine individually</td><td>Low — centralised via AD tools</td></tr>
+          <tr><td class="td-term">Authentication</td><td>NTLM (local)</td><td>Kerberos (domain) / NTLM fallback</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Active Directory Structure — Forests, Trees, Domains, and OUs</h2>
+    <p>Active Directory is hierarchical. Understanding the structure is critical for A+ Core 2 and Network+ — exam questions frequently ask which level a particular object belongs to.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Level</th><th>What It Is</th><th>Exam Note</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Forest</td><td>The top-level AD boundary — one or more domain trees that share a common schema and global catalogue</td><td>The security boundary — trust relationships and schema are forest-wide. Multiple companies in one forest = full trust.</td></tr>
+          <tr><td class="td-term">Tree</td><td>A collection of domains sharing a contiguous DNS namespace (e.g. company.com and sales.company.com)</td><td>Child domains share parent namespace — sales.company.com is a child domain of company.com</td></tr>
+          <tr><td class="td-term">Domain</td><td>The core administrative unit — defines a security and replication boundary</td><td>Users and computers belong to a domain. Group Policy is applied at domain level or OU level.</td></tr>
+          <tr><td class="td-term">OU (Organisational Unit)</td><td>A container within a domain used to organise objects — like folders in a filing cabinet</td><td>The primary tool for delegation and GPO application. Admins can delegate control of an OU without giving full domain admin access.</td></tr>
+          <tr><td class="td-term">Objects</td><td>Anything stored in AD — users, computers, groups, printers, OUs</td><td>Every object has attributes. User objects have username, password hash, email, group memberships, etc.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Exam tip — forest vs domain boundary</div>
+      <p>The <strong>forest is the security boundary</strong>, not the domain. Two domains in the same forest automatically trust each other. Two domains in different forests do not have an automatic trust — a trust relationship must be manually created. Security+ uses this in scenarios about inter-organisational access.</p>
+      <p>The <strong>domain is the replication and administrative boundary</strong>. Group Policy Objects apply at the domain or OU level — not the forest level.</p>
+    </div>
+
+    <h2>The Domain Controller — AD's Central Server</h2>
+    <p>A <strong>Domain Controller (DC)</strong> is a Windows Server running Active Directory Domain Services (AD DS). It stores the AD database, authenticates users via Kerberos, and applies Group Policy. Every domain needs at least one DC — enterprises use multiple for redundancy and load distribution.</p>
+    <p>Key roles that run on Domain Controllers:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Role / Service</th><th>What It Does</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">AD DS</td><td>Active Directory Domain Services — the core directory database of users, computers, and objects</td></tr>
+          <tr><td class="td-term">KDC</td><td>Key Distribution Centre — handles Kerberos authentication for all domain users</td></tr>
+          <tr><td class="td-term">DNS Server</td><td>AD requires DNS — DCs typically run DNS to resolve AD service records (SRV records)</td></tr>
+          <tr><td class="td-term">SYSVOL</td><td>A shared folder replicated across all DCs — stores Group Policy templates and logon scripts</td></tr>
+          <tr><td class="td-term">Global Catalogue</td><td>A searchable index of all objects in the forest — needed for logon and universal group lookups</td></tr>
+          <tr><td class="td-term">FSMO Roles</td><td>Flexible Single Master Operations — five specialised roles distributed across DCs (PDC Emulator, RID Master, Infrastructure Master, Domain Naming Master, Schema Master)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Users, Groups, and Computers</h2>
+    <h3>User Accounts</h3>
+    <p>Domain user accounts are stored in AD and allow users to log in from any domain-joined computer. Each account has a <strong>User Principal Name (UPN)</strong> in the format <code>username@domain.com</code> and a legacy <strong>SAM account name</strong> in the format <code>DOMAIN\username</code>.</p>
+
+    <h3>Group Types</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Group Type</th><th>Scope</th><th>Use Case</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Domain Local</td><td>Access to resources in the same domain only</td><td>Assign permissions to resources — "Sales File Share Access"</td></tr>
+          <tr><td class="td-term">Global</td><td>Used across the entire forest</td><td>Organise users with similar roles — "Sales Department"</td></tr>
+          <tr><td class="td-term">Universal</td><td>Used across forests with trusts</td><td>Grant access across multiple domains — large enterprise use</td></tr>
+          <tr><td class="td-term">Security Group</td><td>Any scope</td><td>Assign permissions to resources (files, printers, applications)</td></tr>
+          <tr><td class="td-term">Distribution Group</td><td>Any scope</td><td>Email lists only — cannot be used for permissions</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">AGDLP — The Nesting Best Practice</div>
+      <p><strong>AGDLP</strong> is Microsoft's recommended group nesting strategy: <strong>A</strong>ccounts → <strong>G</strong>lobal groups → <strong>D</strong>omain <strong>L</strong>ocal groups → <strong>P</strong>ermissions.</p>
+      <p>Put users into Global groups (by role), put Global groups into Domain Local groups (by resource), assign permissions to Domain Local groups. This keeps management scalable — if a user changes role, you only update their Global group membership.</p>
+    </div>
+
+    <h2>Group Policy (GPO)</h2>
+    <p><strong>Group Policy Objects (GPOs)</strong> are collections of settings applied to users and computers in a domain. They're the primary tool for enforcing security baselines, deploying software, and configuring user desktops at scale. GPOs are the most commonly tested AD concept on the A+ Core 2 exam.</p>
+
+    <h3>GPO Scope and Application Order</h3>
+    <p>GPOs are applied in order — later policies override earlier ones (unless enforced). The order is: <strong>Local → Site → Domain → OU</strong> (remembered as <strong>LSDOU</strong>). OU GPOs are the most granular and applied last, so they win most conflicts.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>GPO Setting Category</th><th>Examples</th><th>Exam Relevance</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Password Policy</td><td>Minimum length, complexity, expiry, lockout threshold</td><td>A+ Core 2 — securing user accounts</td></tr>
+          <tr><td class="td-term">Account Lockout</td><td>Lock after N failed attempts, lockout duration, reset counter</td><td>A+ / Security+ — defence against brute force</td></tr>
+          <tr><td class="td-term">Software Deployment</td><td>Push MSI packages to computers or users</td><td>A+ Core 2 — enterprise software management</td></tr>
+          <tr><td class="td-term">Desktop Restrictions</td><td>Remove Control Panel, disable USB, restrict Run dialog</td><td>A+ Core 2 — standard hardening scenario</td></tr>
+          <tr><td class="td-term">Security Settings</td><td>Audit policies, user rights assignment, firewall rules</td><td>Security+ — security baseline enforcement</td></tr>
+          <tr><td class="td-term">Drive Mapping</td><td>Map shared drives automatically at logon</td><td>A+ Core 2 — common IT support task</td></tr>
+          <tr><td class="td-term">AppLocker / SRP</td><td>Whitelist or blacklist applications by path, hash, publisher</td><td>Security+ — application control</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Forcing and Refreshing Group Policy</h3>
+    <div class="code-block">
+      <div class="code-label">Group Policy Commands</div>
+      <pre><span class="code-teal">gpupdate /force</span>       <span class="code-comment"># Force immediate GPO refresh on Windows</span>
+<span class="code-teal">gpresult /r</span>           <span class="code-comment"># Show applied GPOs for current user/computer</span>
+<span class="code-teal">gpresult /h report.html</span> <span class="code-comment"># Generate HTML GPO report</span>
+<span class="code-blue">rsop.msc</span>             <span class="code-comment"># Resultant Set of Policy — GUI GPO diagnostics</span></pre>
+    </div>
+
+    <h2>Domain Join — How a Computer Joins AD</h2>
+    <p>When a computer joins a domain, it creates a <strong>computer account object</strong> in Active Directory and establishes a trust relationship with the DC. After joining, users can log in with domain credentials from that machine.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Step</th><th>What Happens</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">1. DNS Required</td><td>The computer must be able to resolve the domain name via DNS — typically pointing to the DC's IP as DNS server</td></tr>
+          <tr><td class="td-term">2. Join the Domain</td><td>System Properties → Change → Domain → enter domain name → provide domain admin credentials</td></tr>
+          <tr><td class="td-term">3. Computer Account Created</td><td>AD creates a computer object in the Computers container (or the OU specified by the admin)</td></tr>
+          <tr><td class="td-term">4. Restart Required</td><td>The machine restarts to apply domain settings and receive Group Policy</td></tr>
+          <tr><td class="td-term">5. GPO Applied</td><td>At logon, Group Policy is applied — desktop restrictions, mapped drives, software deployed</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>How Active Directory Uses LDAP and Kerberos</h2>
+    <p>Active Directory is built on two open protocols — LDAP for querying the directory and Kerberos for authentication:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Protocol</th><th>Port</th><th>Role in AD</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">LDAP</td><td>389 (TCP)</td><td>Query and modify AD objects — search for users, read group memberships, look up attributes. LDAP is how applications query AD.</td></tr>
+          <tr><td class="td-term">LDAPS</td><td>636 (TCP)</td><td>LDAP over TLS — encrypted directory queries. Required for secure environments; plain LDAP transmits data unencrypted.</td></tr>
+          <tr><td class="td-term">Kerberos</td><td>88 (TCP/UDP)</td><td>User authentication — issues TGTs and service tickets. The primary authentication protocol in AD domains. Requires clock sync within 5 minutes.</td></tr>
+          <tr><td class="td-term">DNS</td><td>53 (UDP/TCP)</td><td>AD depends on DNS for service discovery — DCs register SRV records so clients can find the KDC, LDAP, and other AD services.</td></tr>
+          <tr><td class="td-term">SMB</td><td>445 (TCP)</td><td>File sharing and SYSVOL access — Group Policy templates are delivered via SMB to clients from the DC's SYSVOL share.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Active Directory and Security+ — Attack Surface</h2>
+    <p>Because AD controls authentication and authorisation for the entire domain, it's a prime target for attackers. Security+ tests AD-specific attack scenarios regularly.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Attack</th><th>Target</th><th>How It Works</th><th>Defence</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Pass-the-Hash</td><td>NTLM credential</td><td>Attacker extracts NTLM hash from memory and uses it to authenticate without knowing the plaintext password</td><td>Credential Guard, disable NTLM, use Kerberos only</td></tr>
+          <tr><td class="td-term">Kerberoasting</td><td>Service account tickets</td><td>Requests Kerberos service tickets for SPNs and cracks them offline to recover service account passwords</td><td>Long, complex service account passwords; use gMSA (group Managed Service Accounts)</td></tr>
+          <tr><td class="td-term">Golden Ticket</td><td>krbtgt account hash</td><td>Forges TGTs for any user if the krbtgt hash is compromised — persistent domain compromise</td><td>Reset krbtgt password twice; monitor for anomalous ticket lifetimes</td></tr>
+          <tr><td class="td-term">DCSync</td><td>Domain replication</td><td>Attacker with replication rights pulls password hashes for all users by mimicking a DC sync operation</td><td>Restrict replication permissions to actual DCs only</td></tr>
+          <tr><td class="td-term">LDAP Enumeration</td><td>AD directory</td><td>Querying AD via LDAP to enumerate users, groups, computers, and trusts — standard recon step</td><td>LDAP signing required; monitor for unusual LDAP queries from non-admin accounts</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "A user can log in locally but cannot authenticate to domain resources after a VM was restored from a week-old snapshot. What is the likely cause?" → <strong>Secure channel broken between the computer and the DC — the computer account password has changed since the snapshot. Rejoin the domain or use netdom/PowerShell to reset the secure channel.</strong></div>
+      <div class="scenario-item">💬 "An admin wants to apply a desktop background policy to all computers in the Sales department but not the IT department. What should they use?" → <strong>Create an OU for Sales computers and apply the GPO to that OU. Use GPO filtering or WMI filters to target specific groups.</strong></div>
+      <div class="scenario-item">💬 "A new workstation has been configured but users report that GPOs are not applying. What is the most likely cause?" → <strong>The computer has not been joined to the domain, or DNS is misconfigured so it cannot reach the Domain Controller.</strong></div>
+      <div class="scenario-item">💬 "Which tool forces an immediate Group Policy refresh on a Windows client?" → <strong>gpupdate /force</strong></div>
+      <div class="scenario-item">💬 "An attacker compromises the krbtgt account hash. What attack can they now perform?" → <strong>Golden Ticket attack — they can forge TGTs for any user in the domain with any group membership and any expiry time.</strong></div>
+      <div class="scenario-item">💬 "What is the security boundary in Active Directory — the domain or the forest?" → <strong>The forest is the security boundary. Two domains in the same forest automatically trust each other. Different forests require explicit trust relationships.</strong></div>
+      <div class="scenario-item">💬 "Active Directory uses which two protocols for directory queries and authentication?" → <strong>LDAP (port 389) for directory queries and Kerberos (port 88) for authentication.</strong></div>
+      <div class="scenario-item">💬 "In what order are Group Policy Objects applied?" → <strong>LSDOU — Local, Site, Domain, OU. The last GPO applied wins unless a higher-level GPO is enforced.</strong></div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for A+ or Security+?</h3>
+        <p>See the best study guides and practice exams for both certifications.</p>
+      </div>
+      <a href="best-study-resources.html" class="btn btn-blue">See Study Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="kerberos-explained.html" class="related-link">Kerberos Explained</a>
+      <a href="ldap-explained.html" class="related-link">LDAP Explained</a>
+      <a href="identity-and-access-management.html" class="related-link">IAM Explained</a>
+      <a href="radius-explained.html" class="related-link">RADIUS Explained</a>
+      <a href="dns.html" class="related-link">What Is DNS?</a>
+      <a href="network-attacks.html" class="related-link">Network Attacks</a>
+      <a href="security-plus-cheat-sheet.html" class="related-link">Security+ Cheat Sheet</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-aplus.html" class="related-link">How to Pass A+</a>
+      <a href="how-to-pass-comptia-security-plus.html" class="related-link">How to Pass Security+</a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Certifications</div>
+      <a href="how-to-pass-comptia-aplus.html">CompTIA A+</a>
+      <a href="how-to-pass-comptia-network-plus.html">Network+</a>
+      <a href="how-to-pass-comptia-security-plus.html">Security+</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="kerberos-explained.html">Kerberos</a>
+      <a href="ldap-explained.html">LDAP</a>
+      <a href="identity-and-access-management.html">IAM</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span class="footer-email"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+</body>
+</html>
