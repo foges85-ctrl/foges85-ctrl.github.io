@@ -692,7 +692,7 @@ tbody tr:hover td { background: #f6f9ff; }
       <span>›</span>
       <span>OSI Model</span>
     </nav>
-    <div class="page-hero-badge">CompTIA A+ · Core Concept</div>
+    <div class="page-hero-badge">CompTIA A+ · Network+ · Security+</div>
     <h1>OSI Model <span>Explained Simply</span></h1>
     <p class="page-hero-sub">
       All 7 layers of the OSI model broken down with memory tricks, real-world examples, and troubleshooting scenarios for the CompTIA A+ exam.
@@ -852,6 +852,77 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <hr class="divider">
 
+    <h2>OSI Model — Network+ Deep Dive: Protocols at Each Layer</h2>
+
+    <p>The Network+ exam maps specific protocols, devices, and technologies to OSI layers. You need to know not just what each layer does, but <em>which protocols live there</em> and <em>what devices operate at each layer</em>.</p>
+
+    <table class="info-table">
+      <thead><tr><th>Layer</th><th>Name</th><th>Protocols</th><th>Devices</th><th>PDU</th></tr></thead>
+      <tbody>
+        <tr><td><strong>7</strong></td><td>Application</td><td>HTTP, HTTPS, FTP, SMTP, DNS, DHCP, SNMP, SSH, Telnet, LDAP</td><td>Proxy, Load balancer, NGFW</td><td>Data</td></tr>
+        <tr><td><strong>6</strong></td><td>Presentation</td><td>TLS/SSL, JPEG, MPEG, ASCII, encryption formats</td><td>—</td><td>Data</td></tr>
+        <tr><td><strong>5</strong></td><td>Session</td><td>NetBIOS, RPC, SQL sessions, NFS</td><td>—</td><td>Data</td></tr>
+        <tr><td><strong>4</strong></td><td>Transport</td><td>TCP, UDP, TLS (session establishment)</td><td>Firewall (ports)</td><td>Segment</td></tr>
+        <tr><td><strong>3</strong></td><td>Network</td><td>IP (IPv4/IPv6), ICMP, OSPF, BGP, RIP, EIGRP, IPsec</td><td>Router, Layer 3 switch</td><td>Packet</td></tr>
+        <tr><td><strong>2</strong></td><td>Data Link</td><td>Ethernet, Wi-Fi (802.11), ARP, PPP, STP, VLANs (802.1Q)</td><td>Switch, Bridge, WAP</td><td>Frame</td></tr>
+        <tr><td><strong>1</strong></td><td>Physical</td><td>Ethernet (physical), USB, Bluetooth (physical), DSL</td><td>Hub, Repeater, Cable, NIC</td><td>Bit</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-amber">
+      <strong>⚡ Network+ exam tip — Layer 2 vs Layer 3 switches:</strong> A standard switch operates at Layer 2 using MAC addresses. A Layer 3 (multilayer) switch can also route between VLANs using IP addresses — it's a switch with routing capability. Exam questions often ask which device operates at which layer.
+    </div>
+
+    <h3>Encapsulation — How Data Travels Down the Stack</h3>
+    <p>When data is sent, each layer adds its own header (and sometimes trailer). This is called <strong>encapsulation</strong>. On the receiving end, each layer strips its header — called <strong>de-encapsulation</strong>.</p>
+
+    <div class="code-block" style="background:#0d1b2a;border-radius:10px;padding:18px 22px;font-family:'DM Mono',monospace;font-size:13px;line-height:1.9;overflow-x:auto;margin-bottom:16px;">
+      <span style="color:#fbbf24;">Layer 7–5</span> <span style="color:#c4b5fd;">Application Data</span> <span style="color:rgba(255,255,255,0.35);">← HTTP request, email, file</span><br>
+      <span style="color:#fbbf24;">Layer 4  </span> <span style="color:#c4b5fd;">[TCP/UDP Header]</span> + Data <span style="color:rgba(255,255,255,0.35);">← adds port numbers → Segment</span><br>
+      <span style="color:#fbbf24;">Layer 3  </span> <span style="color:#c4b5fd;">[IP Header]</span> + Segment <span style="color:rgba(255,255,255,0.35);">← adds IP addresses → Packet</span><br>
+      <span style="color:#fbbf24;">Layer 2  </span> <span style="color:#c4b5fd;">[Ethernet Header]</span> + Packet + <span style="color:#c4b5fd;">[FCS Trailer]</span> <span style="color:rgba(255,255,255,0.35);">← adds MAC → Frame</span><br>
+      <span style="color:#fbbf24;">Layer 1  </span> <span style="color:#c4b5fd;">101001011...</span> <span style="color:rgba(255,255,255,0.35);">← Frame converted to bits on wire</span>
+    </div>
+
+    <h2>OSI Model — Security+ Attack Mapping</h2>
+
+    <p>Security+ maps attacks to the OSI layer where they occur. Understanding which layer an attack targets tells you which layer the defence needs to operate at.</p>
+
+    <table class="info-table">
+      <thead><tr><th>Layer</th><th>Attack</th><th>How It Targets This Layer</th><th>Defence Layer</th></tr></thead>
+      <tbody>
+        <tr><td><strong>7 — Application</strong></td><td>SQL injection, XSS, CSRF</td><td>Exploits application logic and input handling</td><td>WAF, input validation, secure coding</td></tr>
+        <tr><td><strong>7 — Application</strong></td><td>Phishing, social engineering</td><td>Targets the human user of the application</td><td>User training, email filtering</td></tr>
+        <tr><td><strong>6 — Presentation</strong></td><td>SSL stripping, downgrade attacks</td><td>Forces plaintext by removing TLS encryption</td><td>HSTS, TLS pinning, strong cipher policy</td></tr>
+        <tr><td><strong>5 — Session</strong></td><td>Session hijacking, replay attack</td><td>Steals or replays valid session tokens</td><td>Encrypted sessions, short token lifetimes</td></tr>
+        <tr><td><strong>4 — Transport</strong></td><td>SYN flood, port scanning</td><td>Exploits TCP handshake or probes open ports</td><td>SYN cookies, firewall port filtering</td></tr>
+        <tr><td><strong>3 — Network</strong></td><td>IP spoofing, route poisoning, DDoS</td><td>Forges source IPs or manipulates routing tables</td><td>BCP38, OSPF authentication, rate limiting</td></tr>
+        <tr><td><strong>2 — Data Link</strong></td><td>ARP spoofing, MAC flooding, VLAN hopping</td><td>Poisons ARP cache or floods switch CAM table</td><td>DAI, port security, private VLANs</td></tr>
+        <tr><td><strong>1 — Physical</strong></td><td>Wiretapping, jamming, hardware keylogger</td><td>Intercepts or disrupts physical medium</td><td>Physical security, fibre (harder to tap), TEMPEST shielding</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-amber">
+      <strong>⚡ Security+ exam tip:</strong> When a scenario describes an attack, identify the layer first — then match the defence. A WAF operates at Layer 7. A firewall filtering ports operates at Layer 4. A switch with port security operates at Layer 2. The exam tests whether you can match controls to the correct layer.
+    </div>
+
+    <h2>Network+ and Security+ Exam Scenarios</h2>
+
+    <div class="exam-scenarios">
+      <div class="scenario-card">
+        <div class="scenario-q">A technician adds a source IP address and destination IP address to a packet. At which OSI layer is this occurring?</div>
+        <div class="scenario-a"><strong>Layer 3 — Network.</strong> IP addresses are added at the Network layer during encapsulation. MAC addresses are added at Layer 2. Port numbers are added at Layer 4.</div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-q">An attacker is sending forged ARP replies to redirect traffic through their machine. Which OSI layer is being attacked?</div>
+        <div class="scenario-a"><strong>Layer 2 — Data Link.</strong> ARP operates at Layer 2, mapping IP addresses to MAC addresses. ARP spoofing poisons the ARP cache so traffic is forwarded to the attacker's MAC. Dynamic ARP Inspection (DAI) on a managed switch defends against this.</div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-q">You plug a new device into a network switch. The switch learns the device's address and starts forwarding traffic. What address did the switch learn, and at which layer?</div>
+        <div class="scenario-a"><strong>MAC address, Layer 2.</strong> Switches build a CAM (Content Addressable Memory) table mapping MAC addresses to switch ports. This is a Layer 2 function. Routers make forwarding decisions at Layer 3 using IP addresses.</div>
+      </div>
+    </div>
+
     <h2>Related Networking Articles</h2>
 
     <div class="related-grid">
@@ -866,6 +937,9 @@ tbody tr:hover td { background: #f6f9ff; }
       <a href="ports.html" class="related-link">Common Port Numbers</a>
       <a href="apipa.html" class="related-link">What Is APIPA?</a>
       <a href="home-lab-setup-guide.html" class="related-link">Build Your First Home Lab</a>
+          <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="security-plus-cheat-sheet.html" class="related-link">Security+ Cheat Sheet</a>
+      <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP Explained</a>
     </div>
 
     <!-- CTA -->

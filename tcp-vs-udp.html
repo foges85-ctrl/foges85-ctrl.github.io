@@ -773,7 +773,7 @@ tbody tr:hover td { background: #f6f9ff; }
       <span>›</span>
       <span>TCP vs UDP</span>
     </nav>
-    <div class="page-hero-badge">CompTIA A+ · Protocols</div>
+    <div class="page-hero-badge">CompTIA A+ · Network+ · Security+</div>
     <h1>What Is TCP? <span>TCP vs UDP Explained</span></h1>
     <p class="page-hero-sub">
       TCP and UDP are the two transport layer protocols that carry almost all internet traffic. Understanding exactly how each works — and why the A+ exam cares — starts here.
@@ -1010,6 +1010,77 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <hr class="divider">
 
+    <h2>TCP and UDP in Network+ — Ports, Flags, and Flow Control</h2>
+
+    <p>The Network+ exam goes deeper than just "TCP is reliable, UDP is fast." You need to understand TCP flags, flow control mechanisms, and how the protocol behaves at scale.</p>
+
+    <h3>TCP Flags</h3>
+    <p>Every TCP segment has a 6-bit flags field. These flags control the state of a connection and appear directly in Network+ questions about connection setup, teardown, and port scanning.</p>
+
+    <table class="info-table">
+      <thead><tr><th>Flag</th><th>Name</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>SYN</code></td><td>Synchronise</td><td>Initiates a connection — first step of three-way handshake</td></tr>
+        <tr><td><code>ACK</code></td><td>Acknowledge</td><td>Confirms receipt of data or SYN — used in most segments</td></tr>
+        <tr><td><code>FIN</code></td><td>Finish</td><td>Graceful connection close — four-way teardown uses FIN/ACK</td></tr>
+        <tr><td><code>RST</code></td><td>Reset</td><td>Abrupt connection termination — port closed or error</td></tr>
+        <tr><td><code>PSH</code></td><td>Push</td><td>Send buffered data immediately without waiting</td></tr>
+        <tr><td><code>URG</code></td><td>Urgent</td><td>Prioritise this data — rarely used in modern networks</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-amber">
+      <strong>⚡ Network+ exam tip:</strong> RST vs FIN — RST abruptly kills the connection (port closed or error). FIN is a polite goodbye that goes through a four-way teardown (FIN → ACK → FIN → ACK). A port scanner receiving RST means port is closed; no response means filtered by firewall.
+    </div>
+
+    <h3>TCP Flow Control — Windowing</h3>
+    <p>TCP uses a <strong>sliding window</strong> to control how much data can be in-flight at once without waiting for an ACK. A larger window = more throughput. If packets are dropped, the window size shrinks. This is why a congested network causes TCP to slow down automatically.</p>
+
+    <h3>The Four-Way TCP Teardown</h3>
+    <div class="code-block" style="background:#0d1b2a;border-radius:10px;padding:18px 22px;font-family:'DM Mono',monospace;font-size:13px;line-height:1.8;overflow-x:auto;margin-bottom:16px;">
+      <span style="color:#c4b5fd;">Client →</span> <span style="color:#a5f3fc;">FIN</span> <span style="color:rgba(255,255,255,0.4);"># Client done sending</span><br>
+      <span style="color:#c4b5fd;">Server →</span> <span style="color:#a5f3fc;">ACK</span> <span style="color:rgba(255,255,255,0.4);"># Server acknowledges</span><br>
+      <span style="color:#c4b5fd;">Server →</span> <span style="color:#a5f3fc;">FIN</span> <span style="color:rgba(255,255,255,0.4);"># Server also done sending</span><br>
+      <span style="color:#c4b5fd;">Client →</span> <span style="color:#a5f3fc;">ACK</span> <span style="color:rgba(255,255,255,0.4);"># Client acknowledges — connection closed</span>
+    </div>
+
+    <h2>TCP and UDP in Security+ — Attacks and Defences</h2>
+
+    <p>Security+ tests how attackers exploit both protocols and how defenders protect against them.</p>
+
+    <table class="info-table">
+      <thead><tr><th>Attack</th><th>Protocol</th><th>How It Works</th><th>Defence</th></tr></thead>
+      <tbody>
+        <tr><td><strong>SYN Flood</strong></td><td>TCP</td><td>Sends thousands of SYN packets without completing handshake — exhausts server connection table</td><td>SYN cookies, rate limiting, firewall</td></tr>
+        <tr><td><strong>UDP Flood</strong></td><td>UDP</td><td>Sends massive volume of UDP packets to random ports — forces target to process and reply with ICMP unreachable</td><td>Rate limiting, DDoS scrubbing</td></tr>
+        <tr><td><strong>TCP Session Hijacking</strong></td><td>TCP</td><td>Attacker predicts sequence numbers and injects packets into an active session</td><td>Encrypted sessions (TLS), randomised ISNs</td></tr>
+        <tr><td><strong>DNS Amplification</strong></td><td>UDP</td><td>Spoofs victim's IP in small DNS query — large response sent to victim (amplification factor 28–54x)</td><td>Disable open resolvers, BCP38 filtering</td></tr>
+        <tr><td><strong>Fragmentation Attack</strong></td><td>IP/UDP</td><td>Splits malicious payload across fragments to evade IDS inspection</td><td>Stateful reassembly at firewall/IDS</td></tr>
+        <tr><td><strong>Replay Attack</strong></td><td>TCP/UDP</td><td>Captures valid packets and retransmits them to repeat an action</td><td>Sequence numbers, timestamps, nonces</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-amber">
+      <strong>⚡ Security+ exam tip:</strong> SYN flood is the classic TCP DoS attack — the half-open connection table fills up. SYN cookies defeat this by encoding session info in the sequence number so the server doesn't need to store state until the handshake completes. Expect a scenario question on this.
+    </div>
+
+    <h2>Network+ and Security+ Exam Scenarios</h2>
+
+    <div class="exam-scenarios">
+      <div class="scenario-card">
+        <div class="scenario-q">A server is receiving thousands of SYN packets from random source IPs and becomes unreachable. What type of attack is this?</div>
+        <div class="scenario-a"><strong>SYN flood (TCP DoS attack).</strong> The attacker sends SYN packets but never completes the three-way handshake. The server's half-open connection table fills up, preventing legitimate connections. Defences include SYN cookies and rate limiting.</div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-q">A port scan returns RST on port 443 and no response on port 22. What does this tell you?</div>
+        <div class="scenario-a"><strong>Port 443 is closed (RST = port actively rejected the connection). Port 22 is filtered (no response = firewall dropped the packet silently).</strong> An open port would return SYN-ACK.</div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-q">Why does a video streaming application use UDP instead of TCP?</div>
+        <div class="scenario-a"><strong>Latency tolerance over reliability.</strong> A dropped video frame is acceptable — a brief glitch is less noticeable than the stutter caused by TCP's retransmission delay. UDP keeps the stream flowing at the cost of occasional lost frames.</div>
+      </div>
+    </div>
+
     <h2>Related Networking Articles</h2>
 
     <div class="related-grid">
@@ -1025,6 +1096,8 @@ tbody tr:hover td { background: #f6f9ff; }
       <a href="ports.html" class="related-link">Common Port Numbers</a>
       <a href="apipa.html" class="related-link">What Is APIPA?</a>
       <a href="osi-model.html" class="related-link">OSI Model Explained</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="security-plus-cheat-sheet.html" class="related-link">Security+ Cheat Sheet</a>
       <a href="home-lab-setup-guide.html" class="related-link">Build Your First Home Lab</a>
     </div>
 

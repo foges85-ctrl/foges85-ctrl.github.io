@@ -831,7 +831,7 @@ tbody tr:hover td { background: #f6f9ff; }
       <span>›</span>
       <span>Subnet Mask</span>
     </nav>
-    <div class="page-hero-badge">CompTIA A+ · Core Concept</div>
+    <div class="page-hero-badge">CompTIA A+ · Network+ · Security+</div>
     <h1>What Is a <span>Subnet Mask?</span></h1>
     <p class="page-hero-sub">
       If an IP address identifies your device on a network, the subnet mask answers the key question: which part is the network, and which part is the device?
@@ -1028,6 +1028,74 @@ Mask: 255.255.255.0</pre>
       </div>
     </div>
 
+    <h2>CIDR Notation — The Network+ Way to Write Subnet Masks</h2>
+
+    <p>The A+ exam uses dotted-decimal subnet masks like <code>255.255.255.0</code>. The Network+ exam adds <strong>CIDR notation</strong> (Classless Inter-Domain Routing), which expresses the same mask as a prefix length — a slash followed by the number of network bits.</p>
+
+    <table class="info-table">
+      <thead><tr><th>Subnet Mask</th><th>CIDR</th><th>Hosts per Subnet</th><th>Common Use</th></tr></thead>
+      <tbody>
+        <tr><td><code>255.0.0.0</code></td><td><code>/8</code></td><td>16,777,214</td><td>Class A private (10.x.x.x)</td></tr>
+        <tr><td><code>255.255.0.0</code></td><td><code>/16</code></td><td>65,534</td><td>Class B private (172.16–31.x.x)</td></tr>
+        <tr><td><code>255.255.255.0</code></td><td><code>/24</code></td><td>254</td><td>Most common — small office LAN</td></tr>
+        <tr><td><code>255.255.255.128</code></td><td><code>/25</code></td><td>126</td><td>Split a /24 into two halves</td></tr>
+        <tr><td><code>255.255.255.192</code></td><td><code>/26</code></td><td>62</td><td>Split a /24 into four quarters</td></tr>
+        <tr><td><code>255.255.255.224</code></td><td><code>/27</code></td><td>30</td><td>Small department or VLAN</td></tr>
+        <tr><td><code>255.255.255.240</code></td><td><code>/28</code></td><td>14</td><td>Server cluster or DMZ</td></tr>
+        <tr><td><code>255.255.255.252</code></td><td><code>/30</code></td><td>2</td><td>Point-to-point WAN links</td></tr>
+        <tr><td><code>255.255.255.255</code></td><td><code>/32</code></td><td>1</td><td>Single host route or loopback</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-amber">
+      <strong>⚡ Network+ exam tip:</strong> Hosts per subnet = 2<sup>host bits</sup> − 2. Subtract 2 because the first address is the network address and the last is the broadcast address. For a /26: 32 − 26 = 6 host bits → 2<sup>6</sup> − 2 = 62 usable hosts.
+    </div>
+
+    <h2>Subnet Masks and Network Segmentation — The Security+ Angle</h2>
+
+    <p>On the Security+ exam, subnet masks aren't just about addressing — they're a <strong>security tool</strong>. Proper subnetting is one of the primary methods used to implement network segmentation, which limits the blast radius of a breach.</p>
+
+    <h3>Why Segmentation Matters</h3>
+    <p>If every device on your network shares the same subnet (e.g., 192.168.1.0/24), a compromised device can reach every other device directly at Layer 2. Segmenting the network with different subnets forces all inter-segment traffic through a router or firewall, where it can be inspected and filtered.</p>
+
+    <div class="callout callout-blue" style="background:#eff6ff;border-left:4px solid #1d4ed8;">
+      <strong>Segmentation example:</strong> Separating guest Wi-Fi (10.10.20.0/24) from the corporate LAN (10.10.10.0/24) with a firewall between them means a compromised guest device cannot reach internal servers — even on the same physical network. The different subnet forces traffic through the firewall.
+    </div>
+
+    <h3>Common Segmentation Architectures</h3>
+    <table class="info-table">
+      <thead><tr><th>Zone</th><th>Typical Subnet</th><th>What Belongs Here</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Internal LAN</strong></td><td><code>10.0.1.0/24</code></td><td>Workstations, internal services</td></tr>
+        <tr><td><strong>DMZ</strong></td><td><code>10.0.2.0/24</code></td><td>Public-facing web servers, email gateways</td></tr>
+        <tr><td><strong>Server VLAN</strong></td><td><code>10.0.3.0/24</code></td><td>Database servers, file servers</td></tr>
+        <tr><td><strong>Guest Wi-Fi</strong></td><td><code>10.0.4.0/24</code></td><td>Untrusted devices — internet only</td></tr>
+        <tr><td><strong>IoT / OT</strong></td><td><code>10.0.5.0/24</code></td><td>Cameras, sensors, industrial devices</td></tr>
+        <tr><td><strong>Management</strong></td><td><code>10.0.100.0/24</code></td><td>Network gear management interfaces</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-amber">
+      <strong>⚡ Security+ exam tip:</strong> Microsegmentation takes this further — each workload or application gets its own security boundary, enforced by software-defined networking rather than physical subnets. Zero Trust architecture relies heavily on microsegmentation: traffic between segments is always verified, never implicitly trusted regardless of subnet.
+    </div>
+
+    <h2>Network+ Exam Scenarios</h2>
+
+    <div class="exam-scenarios">
+      <div class="scenario-card">
+        <div class="scenario-q">A host at 192.168.1.50/26 tries to communicate with 192.168.1.130. The communication fails. Why?</div>
+        <div class="scenario-a"><strong>Different subnets.</strong> A /26 mask splits 192.168.1.0 into four subnets: .0–.63, .64–.127, .128–.191, .192–.255. Host .50 is in the .0 subnet; host .130 is in the .128 subnet. They cannot communicate directly — traffic must go through a router.</div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-q">You need to create a point-to-point link between two routers. Which subnet mask wastes the fewest addresses?</div>
+        <div class="scenario-a"><strong>/30 (255.255.255.252).</strong> Provides exactly 2 usable host addresses — one for each router interface. A /29 would provide 6 hosts, wasting 4 addresses.</div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-q">A company needs to split a 192.168.10.0/24 network into subnets of at least 50 hosts each. Which mask should they use?</div>
+        <div class="scenario-a"><strong>/26 (255.255.255.192).</strong> Provides 62 usable hosts per subnet. A /27 only provides 30 hosts — not enough. A /26 splits the /24 into four equal subnets of 62 hosts each.</div>
+      </div>
+    </div>
+
     <h2>Related Networking Articles</h2>
 
     <div class="related-grid">
@@ -1041,6 +1109,8 @@ Mask: 255.255.255.0</pre>
       <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP Explained</a>
       <a href="home-lab-setup-guide.html" class="related-link">Build Your First Home Lab</a>
       <a href="ipv4-vs-ipv6.html" class="related-link">IPv4 vs IPv6 Explained</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="security-plus-cheat-sheet.html" class="related-link">Security+ Cheat Sheet</a>
     </div>
 
     <!-- CTA -->
