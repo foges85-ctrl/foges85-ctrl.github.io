@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XZCKBGX083"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XZCKBGX083');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CompTIA Security+ Cheat Sheet 2026 — SY0-701 Quick Reference</title>
+<link rel="canonical" href="https://itstudyhub.org/security-plus-cheat-sheet.html">
+<meta name="description" content="The ultimate CompTIA Security+ cheat sheet for SY0-701 — cryptography, threats and attacks, IAM, PKI, network security, incident response, frameworks, and every key acronym for the exam.">
+<meta property="og:title" content="CompTIA Security+ Cheat Sheet 2026 — SY0-701 Quick Reference">
+<meta property="og:description" content="Every cryptography algorithm, threat category, IAM concept, PKI term, and security framework you need for the SY0-701 exam on one page.">
+<meta property="og:type" content="article">
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+
+<link rel="icon" type="image/png" href="favicon-512x512.png">
+<link rel="apple-touch-icon" href="favicon-512x512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy: #0d1b2a;
+  --navy2: #112240;
+  --purple: #7c3aed;
+  --purple2: #9b5df5;
+  --purple-light: #ede9fe;
+  --amber: #f59e0b;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --bg: #f8fafc;
+  --white: #ffffff;
+  --mono: 'DM Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+
+/* NAVBAR */
+.navbar { background: var(--navy); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+.logo-link { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-img { height: 52px; width: 52px; border-radius: 8px; }
+.logo-text { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 18px; color: #fff; }
+.nav-links { display: flex; gap: 24px; list-style: none; }
+.nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: #fff; }
+@media (max-width: 600px) { .nav-links { display: none; } }
+
+/* HERO */
+.page-hero { background: linear-gradient(135deg, var(--navy) 0%, #1e0a3c 60%, #2d1060 100%); padding: 64px 24px 56px; position: relative; overflow: hidden; }
+.page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(124,58,237,0.18) 0%, transparent 65%); }
+.page-hero::after { content: ''; position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%); border-radius: 50%; }
+.page-hero-inner { max-width: 820px; margin: 0 auto; position: relative; z-index: 1; }
+.page-hero-badge { display: inline-block; background: rgba(124,58,237,0.25); border: 1px solid rgba(124,58,237,0.4); color: #c4b5fd; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; padding: 5px 14px; border-radius: 20px; margin-bottom: 20px; text-transform: uppercase; }
+.page-hero h1 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: clamp(28px, 5vw, 44px); color: #fff; line-height: 1.15; margin-bottom: 16px; }
+.page-hero h1 span { color: #c4b5fd; }
+.page-hero-sub { color: rgba(255,255,255,0.7); font-size: 16px; max-width: 620px; line-height: 1.6; }
+
+/* TOC */
+.toc-bar { background: #fff; border-bottom: 1px solid var(--border); padding: 12px 24px; overflow-x: auto; white-space: nowrap; }
+.toc-bar-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: 8px; flex-wrap: nowrap; }
+.toc-pill { display: inline-block; padding: 5px 14px; background: var(--purple-light); color: var(--purple); border-radius: 20px; font-size: 12px; font-weight: 600; text-decoration: none; font-family: var(--mono); white-space: nowrap; transition: background 0.2s, color 0.2s; }
+.toc-pill:hover { background: var(--purple); color: #fff; }
+
+/* ARTICLE */
+.article-wrap { max-width: 900px; margin: 0 auto; padding: 48px 24px 64px; }
+
+.section-title { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 20px; color: var(--navy); margin: 48px 0 20px; padding-bottom: 10px; border-bottom: 2px solid var(--purple-light); display: flex; align-items: center; gap: 10px; scroll-margin-top: 80px; }
+.section-title:first-of-type { margin-top: 0; }
+.section-title .s-icon { font-size: 20px; }
+
+/* TABLES */
+.cheat-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 8px; }
+.cheat-table th { background: var(--navy); color: #fff; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 10px 14px; text-align: left; }
+.cheat-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+.cheat-table tr:last-child td { border-bottom: none; }
+.cheat-table tr:nth-child(even) td { background: #faf9ff; }
+.cheat-table tr:hover td { background: var(--purple-light); transition: background 0.15s; }
+.mono { font-family: var(--mono); font-size: 12px; color: var(--purple); }
+.tag-purple { display: inline-block; background: var(--purple-light); color: var(--purple); font-family: var(--mono); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+.tag-red { display: inline-block; background: #fef2f2; color: #dc2626; font-family: var(--mono); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; }
+.tag-green { display: inline-block; background: #f0fdf4; color: #16a34a; font-family: var(--mono); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; }
+.tag-blue { display: inline-block; background: #eff6ff; color: #1d4ed8; font-family: var(--mono); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; }
+.tag-amber { display: inline-block; background: #fffbeb; color: #d97706; font-family: var(--mono); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; }
+
+/* CODE BLOCKS */
+.code-block { background: var(--navy); border-radius: 10px; padding: 20px 24px; font-family: var(--mono); font-size: 13px; line-height: 1.8; overflow-x: auto; margin-bottom: 8px; }
+.code-block .c-label { color: #c4b5fd; font-weight: 500; }
+.code-block .c-val { color: #a5f3fc; }
+.code-block .c-note { color: rgba(255,255,255,0.4); font-style: italic; }
+.code-block .c-head { color: #fbbf24; font-weight: 600; }
+
+/* CALLOUT BOXES */
+.callout { border-radius: 10px; padding: 16px 20px; margin: 20px 0; font-size: 14px; line-height: 1.6; }
+.callout-amber { background: #fffbeb; border-left: 4px solid var(--amber); }
+.callout-purple { background: var(--purple-light); border-left: 4px solid var(--purple); }
+.callout-red { background: #fef2f2; border-left: 4px solid #dc2626; }
+.callout-green { background: #f0fdf4; border-left: 4px solid #16a34a; }
+.callout strong { font-weight: 700; }
+
+/* TWO-COL GRID */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 8px; }
+@media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+.mini-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
+.mini-card h4 { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 8px; }
+.mini-card ul { list-style: none; padding: 0; }
+.mini-card ul li { font-size: 13px; padding: 3px 0; color: var(--text); border-bottom: 1px solid #f1f5f9; }
+.mini-card ul li:last-child { border-bottom: none; }
+.mini-card ul li span { float: right; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+/* RELATED */
+.related-box { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 28px; margin-top: 48px; }
+.related-box h2 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 20px; color: var(--navy); margin-bottom: 16px; }
+.related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.related-link { display: block; padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: var(--text); font-size: 13px; font-weight: 500; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
+.related-link:hover { border-color: rgba(124,58,237,0.3); color: var(--purple); transform: translateY(-1px); }
+.related-link::before { content: '→'; color: var(--purple); font-size: 13px; }
+
+/* CTA */
+.cta-box { background: linear-gradient(135deg, #1e0a3c 0%, var(--navy) 100%); border-radius: 14px; padding: 32px; margin-top: 48px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.cta-box h3 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 20px; color: #fff; margin-bottom: 6px; }
+.cta-box p { color: rgba(255,255,255,0.7); font-size: 14px; }
+.cta-btn { display: inline-block; background: var(--purple); color: #fff; font-weight: 700; font-size: 14px; padding: 12px 24px; border-radius: 8px; text-decoration: none; white-space: nowrap; transition: background 0.2s; }
+.cta-btn:hover { background: var(--purple2); }
+
+/* FOOTER */
+.footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 48px 24px 32px; margin-top: 0; }
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-cols { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer-brand p { font-size: 13px; line-height: 1.7; margin-top: 10px; }
+.footer-brand .logo-text { color: #fff; }
+.footer-col h4 { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 13px; color: #fff; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 8px; }
+.footer-col ul li a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+.footer-col ul li a:hover { color: #fff; }
+.footer-bottom { max-width: 1100px; margin: 28px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+@media (max-width: 600px) { .footer { padding: 36px 16px; } .footer-bottom { flex-direction: column; } .footer-cols { grid-template-columns: 1fr; gap: 24px; } }
+
+.footer-email { color:rgba(255,255,255,0.4); }
+.footer-pp { color:rgba(255,255,255,0.4); }
+
+/* TABLE WRAPPER */
+.table-wrap { overflow-x: auto; margin-bottom: 24px; border-radius: 10px; border: 1px solid var(--border); }
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span class="logo-text">IT Study Hub</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="best-security-plus.html">Security+ Resources</a></li>
+      <li><a href="how-to-pass-comptia-security-plus.html">Pass Security+</a></li>
+      <li><a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-badge">CompTIA Security+ · SY0-701 · 2026 · Quick Reference</div>
+    <h1>CompTIA Security+ <span>Cheat Sheet</span></h1>
+    <p class="page-hero-sub">Every cryptography algorithm, threat and attack type, IAM concept, PKI term, network security control, incident response step, and compliance framework you need for the SY0-701 exam — on one page.</p>
+  </div>
+</section>
+
+<!-- TOC -->
+<div class="toc-bar">
+  <div class="toc-bar-inner">
+    <a href="#crypto" class="toc-pill">Cryptography</a>
+    <a href="#threats" class="toc-pill">Threats & Attacks</a>
+    <a href="#network" class="toc-pill">Network Security</a>
+    <a href="#iam" class="toc-pill">IAM</a>
+    <a href="#pki" class="toc-pill">PKI & Certs</a>
+    <a href="#vuln" class="toc-pill">Vulnerabilities</a>
+    <a href="#incident" class="toc-pill">Incident Response</a>
+    <a href="#frameworks" class="toc-pill">Frameworks</a>
+    <a href="#wireless" class="toc-pill">Wireless Security</a>
+    <a href="#acronyms" class="toc-pill">Acronyms</a>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+
+  <!-- CRYPTOGRAPHY -->
+  <div id="crypto" class="section-title"><span class="s-icon">🔐</span> Cryptography</div>
+
+  <div class="callout callout-amber">
+    <strong>⚡ Exam tip:</strong> Know symmetric vs asymmetric, which algorithms are weak vs strong, and what each is used for. AES = encryption, SHA = hashing, RSA = key exchange/signatures. These distinctions appear constantly.
+  </div>
+
+  <div class="table-wrap">
+    <table class="cheat-table">
+      <thead><tr><th>Algorithm</th><th>Type</th><th>Key Size</th><th>Use Case</th><th>Exam Note</th></tr></thead>
+      <tbody>
+        <tr><td><strong>AES</strong></td><td><span class="tag-purple">Symmetric</span></td><td class="mono">128 / 192 / 256-bit</td><td>Bulk data encryption</td><td>Current standard — AES-256 strongest</td></tr>
+        <tr><td><strong>3DES</strong></td><td><span class="tag-purple">Symmetric</span></td><td class="mono">112 / 168-bit</td><td>Legacy encryption</td><td>Deprecated — being phased out</td></tr>
+        <tr><td><strong>DES</strong></td><td><span class="tag-purple">Symmetric</span></td><td class="mono">56-bit</td><td>Legacy</td><td>Weak — considered broken</td></tr>
+        <tr><td><strong>RSA</strong></td><td><span class="tag-blue">Asymmetric</span></td><td class="mono">2048 / 4096-bit</td><td>Key exchange, digital signatures</td><td>2048-bit minimum; slow for bulk data</td></tr>
+        <tr><td><strong>ECC</strong></td><td><span class="tag-blue">Asymmetric</span></td><td class="mono">256-bit ≈ RSA 3072</td><td>Mobile, IoT, TLS</td><td>Same security as RSA with smaller keys</td></tr>
+        <tr><td><strong>Diffie-Hellman</strong></td><td><span class="tag-blue">Asymmetric</span></td><td>—</td><td>Key exchange only</td><td>DH = static; DHE = ephemeral (forward secrecy)</td></tr>
+        <tr><td><strong>MD5</strong></td><td><span class="tag-amber">Hash</span></td><td class="mono">128-bit output</td><td>Legacy integrity check</td><td>Broken — collision vulnerable, do not use</td></tr>
+        <tr><td><strong>SHA-1</strong></td><td><span class="tag-amber">Hash</span></td><td class="mono">160-bit output</td><td>Legacy</td><td>Deprecated — weak, replaced by SHA-2</td></tr>
+        <tr><td><strong>SHA-256</strong></td><td><span class="tag-amber">Hash</span></td><td class="mono">256-bit output</td><td>File integrity, certificates</td><td>SHA-2 family — current standard</td></tr>
+        <tr><td><strong>SHA-3</strong></td><td><span class="tag-amber">Hash</span></td><td class="mono">Variable</td><td>High-security hashing</td><td>Different design from SHA-2; backup standard</td></tr>
+        <tr><td><strong>HMAC</strong></td><td><span class="tag-amber">Hash + Key</span></td><td>—</td><td>Message authentication</td><td>Hash + secret key = proves integrity AND authenticity</td></tr>
+        <tr><td><strong>PBKDF2 / bcrypt</strong></td><td><span class="tag-amber">Key Derivation</span></td><td>—</td><td>Password hashing</td><td>Slow by design — defeats brute force</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two-col">
+    <div class="mini-card">
+      <h4>Symmetric vs Asymmetric</h4>
+      <ul>
+        <li>Symmetric <span>Same key encrypts + decrypts</span></li>
+        <li>Asymmetric <span>Public key encrypts, private decrypts</span></li>
+        <li>Symmetric is faster <span>Used for bulk data</span></li>
+        <li>Asymmetric is slower <span>Used for key exchange</span></li>
+        <li>Hybrid (TLS) <span>Asymmetric to share symmetric key</span></li>
+      </ul>
+    </div>
+    <div class="mini-card">
+      <h4>Encryption Modes (AES)</h4>
+      <ul>
+        <li>ECB <span>Weak — same block = same cipher</span></li>
+        <li>CBC <span>IV + XOR — common, sequential</span></li>
+        <li>CTR <span>Stream mode, parallelisable</span></li>
+        <li>GCM <span>Authenticated encryption — preferred</span></li>
+        <li>OFB / CFB <span>Stream-like from block cipher</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-purple">
+    <strong>Forward Secrecy:</strong> DHE and ECDHE generate a new session key for every connection. If the server's private key is later compromised, past sessions cannot be decrypted. Required for PFS (Perfect Forward Secrecy).
+  </div>
+
+  <!-- THREATS & ATTACKS -->
+  <div id="threats" class="section-title"><span class="s-icon">⚠️</span> Threats & Attacks</div>
+
+  <div class="callout callout-amber">
+    <strong>⚡ Exam tip:</strong> Security+ SY0-701 heavily tests threat categories. Know: social engineering indicators, malware types, application attacks (SQLi, XSS, buffer overflow), and network attacks (MitM, replay, DoS/DDoS).
+  </div>
+
+  <div class="table-wrap">
+    <table class="cheat-table">
+      <thead><tr><th>Attack / Threat</th><th>Category</th><th>How It Works</th><th>Key Defence</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Phishing</strong></td><td><span class="tag-amber">Social Engineering</span></td><td>Fraudulent email impersonating trusted entity</td><td>Email filtering, user training, SPF/DKIM/DMARC</td></tr>
+        <tr><td><strong>Spear Phishing</strong></td><td><span class="tag-amber">Social Engineering</span></td><td>Targeted phishing using personal info</td><td>MFA, security awareness training</td></tr>
+        <tr><td><strong>Whaling</strong></td><td><span class="tag-amber">Social Engineering</span></td><td>Phishing targeting executives (CFO, CEO)</td><td>Out-of-band verification for wire transfers</td></tr>
+        <tr><td><strong>Vishing</strong></td><td><span class="tag-amber">Social Engineering</span></td><td>Voice phishing via phone call</td><td>Call-back verification procedures</td></tr>
+        <tr><td><strong>Smishing</strong></td><td><span class="tag-amber">Social Engineering</span></td><td>SMS phishing with malicious links</td><td>User training, MDM, URL filtering</td></tr>
+        <tr><td><strong>Pretexting</strong></td><td><span class="tag-amber">Social Engineering</span></td><td>Fabricated scenario to extract info</td><td>Identity verification procedures</td></tr>
+        <tr><td><strong>Tailgating / Piggybacking</strong></td><td><span class="tag-amber">Physical</span></td><td>Following authorised person through secure door</td><td>Mantraps, security guards, access cards</td></tr>
+        <tr><td><strong>Ransomware</strong></td><td><span class="tag-red">Malware</span></td><td>Encrypts files, demands payment for key</td><td>Offline backups (3-2-1 rule), patch management</td></tr>
+        <tr><td><strong>Trojan Horse</strong></td><td><span class="tag-red">Malware</span></td><td>Malicious code disguised as legitimate software</td><td>Application whitelisting, AV</td></tr>
+        <tr><td><strong>Rootkit</strong></td><td><span class="tag-red">Malware</span></td><td>Hides itself at OS/firmware level</td><td>Secure Boot, TPM, OS reinstall</td></tr>
+        <tr><td><strong>Keylogger</strong></td><td><span class="tag-red">Malware</span></td><td>Records keystrokes to capture credentials</td><td>MFA, virtual keyboards, EDR</td></tr>
+        <tr><td><strong>RAT</strong></td><td><span class="tag-red">Malware</span></td><td>Remote Access Trojan — gives attacker control</td><td>Endpoint protection, network monitoring</td></tr>
+        <tr><td><strong>Worm</strong></td><td><span class="tag-red">Malware</span></td><td>Self-replicates across network without user action</td><td>Network segmentation, patching</td></tr>
+        <tr><td><strong>SQL Injection</strong></td><td><span class="tag-purple">Application</span></td><td>Malicious SQL in input fields queries DB directly</td><td>Parameterised queries, input validation, WAF</td></tr>
+        <tr><td><strong>XSS</strong></td><td><span class="tag-purple">Application</span></td><td>Injects scripts into web pages viewed by users</td><td>Output encoding, CSP headers, WAF</td></tr>
+        <tr><td><strong>CSRF</strong></td><td><span class="tag-purple">Application</span></td><td>Forces authenticated user to submit malicious request</td><td>CSRF tokens, SameSite cookie flag</td></tr>
+        <tr><td><strong>Buffer Overflow</strong></td><td><span class="tag-purple">Application</span></td><td>Overwrites memory to execute arbitrary code</td><td>ASLR, DEP, input validation, safe coding</td></tr>
+        <tr><td><strong>Man-in-the-Middle</strong></td><td><span class="tag-blue">Network</span></td><td>Intercepts communication between two parties</td><td>TLS/HTTPS, certificate pinning, MFA</td></tr>
+        <tr><td><strong>Replay Attack</strong></td><td><span class="tag-blue">Network</span></td><td>Captures and re-sends valid authentication tokens</td><td>Nonces, timestamps, session tokens</td></tr>
+        <tr><td><strong>DoS / DDoS</strong></td><td><span class="tag-blue">Network</span></td><td>Floods target with traffic to cause outage</td><td>Rate limiting, CDN, scrubbing centres</td></tr>
+        <tr><td><strong>DNS Poisoning</strong></td><td><span class="tag-blue">Network</span></td><td>Corrupts DNS cache to redirect users</td><td>DNSSEC, secure resolvers</td></tr>
+        <tr><td><strong>ARP Spoofing</strong></td><td><span class="tag-blue">Network</span></td><td>Links attacker MAC to legitimate IP</td><td>Dynamic ARP Inspection (DAI), static ARP</td></tr>
+        <tr><td><strong>Pass-the-Hash</strong></td><td><span class="tag-red">Credential</span></td><td>Uses captured NTLM hash without cracking it</td><td>Privileged Access Workstations, Credential Guard</td></tr>
+        <tr><td><strong>Kerberoasting</strong></td><td><span class="tag-red">Credential</span></td><td>Requests service tickets to crack offline</td><td>Long service account passwords, AES encryption</td></tr>
+        <tr><td><strong>Brute Force</strong></td><td><span class="tag-red">Credential</span></td><td>Tries all password combinations</td><td>Account lockout, MFA, long passwords</td></tr>
+        <tr><td><strong>Rainbow Table</strong></td><td><span class="tag-red">Credential</span></td><td>Pre-computed hash lookup table</td><td>Password salting defeats rainbow tables</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- NETWORK SECURITY -->
+  <div id="network" class="section-title"><span class="s-icon">🛡️</span> Network Security Controls</div>
+
+  <div class="table-wrap">
+    <table class="cheat-table">
+      <thead><tr><th>Control</th><th>What It Does</th><th>Exam Key Fact</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Firewall</strong></td><td>Filters traffic by port, IP, protocol</td><td>Stateful = tracks connections; stateless = packet-by-packet</td></tr>
+        <tr><td><strong>NGFW</strong></td><td>Next-Gen Firewall — adds DPI, IPS, app awareness</td><td>Operates at Layer 7; understands application context</td></tr>
+        <tr><td><strong>IDS</strong></td><td>Intrusion Detection System — alerts only</td><td>Passive — detects and logs, does NOT block</td></tr>
+        <tr><td><strong>IPS</strong></td><td>Intrusion Prevention System — blocks inline</td><td>Active — sits inline, can drop malicious packets</td></tr>
+        <tr><td><strong>WAF</strong></td><td>Web Application Firewall — filters HTTP/S</td><td>Protects against SQLi, XSS, CSRF at app layer</td></tr>
+        <tr><td><strong>SIEM</strong></td><td>Security Info & Event Management — aggregates logs</td><td>Correlates events from multiple sources; used for forensics</td></tr>
+        <tr><td><strong>SOAR</strong></td><td>Security Orchestration, Automation & Response</td><td>Automates incident response playbooks; extends SIEM</td></tr>
+        <tr><td><strong>NAC</strong></td><td>Network Access Control — checks device posture</td><td>Quarantines non-compliant devices before granting access</td></tr>
+        <tr><td><strong>Honeypot</strong></td><td>Decoy system to attract and study attackers</td><td>No legitimate traffic should reach it — any access = alert</td></tr>
+        <tr><td><strong>DMZ</strong></td><td>Demilitarised Zone — buffer between internet and LAN</td><td>Public-facing servers (web, email) placed here</td></tr>
+        <tr><td><strong>VPN</strong></td><td>Encrypted tunnel over untrusted network</td><td>Site-to-site vs remote access; split tunnel = partial routing</td></tr>
+        <tr><td><strong>Zero Trust</strong></td><td>Never trust, always verify — no implicit trust by network</td><td>Microsegmentation + identity verification at every hop</td></tr>
+        <tr><td><strong>SD-WAN</strong></td><td>Software-defined WAN with centralised control</td><td>Encrypts branch traffic; replaces MPLS in modern networks</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-purple">
+    <strong>IDS vs IPS exam trap:</strong> IDS = passive monitoring, generates alerts. IPS = active, sits inline, drops packets. NIDS/NIPS = network-based. HIDS/HIPS = host-based. Know which generates false positives (both can) and which can block (only IPS).
+  </div>
+
+  <!-- IAM -->
+  <div id="iam" class="section-title"><span class="s-icon">👤</span> Identity & Access Management (IAM)</div>
+
+  <div class="table-wrap">
+    <table class="cheat-table">
+      <thead><tr><th>Concept</th><th>Definition</th><th>Exam Key Fact</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Authentication</strong></td><td>Proving identity (who you are)</td><td>Something you know / have / are</td></tr>
+        <tr><td><strong>Authorisation</strong></td><td>Granting permissions (what you can do)</td><td>Happens AFTER authentication</td></tr>
+        <tr><td><strong>Accounting</strong></td><td>Logging and auditing activity</td><td>AAA = Authentication, Authorisation, Accounting</td></tr>
+        <tr><td><strong>MFA</strong></td><td>Multi-Factor Authentication — 2+ factor types</td><td>Two of the same type = NOT MFA (two passwords = single factor)</td></tr>
+        <tr><td><strong>TOTP</strong></td><td>Time-based One-Time Password</td><td>Changes every 30s — Google Authenticator, Microsoft Authenticator</td></tr>
+        <tr><td><strong>HOTP</strong></td><td>HMAC-based One-Time Password</td><td>Counter-based — valid until used, not time-limited</td></tr>
+        <tr><td><strong>SSO</strong></td><td>Single Sign-On — one login for multiple systems</td><td>Reduces password fatigue; SAML and OIDC are common protocols</td></tr>
+        <tr><td><strong>SAML</strong></td><td>Security Assertion Markup Language</td><td>XML-based SSO for web apps; IdP issues assertion to SP</td></tr>
+        <tr><td><strong>OAuth 2.0</strong></td><td>Authorisation framework — delegates access</td><td>Used for "Login with Google" — grants access tokens, not identity</td></tr>
+        <tr><td><strong>OIDC</strong></td><td>OpenID Connect — identity layer on OAuth 2.0</td><td>Adds authentication to OAuth; returns ID token with user info</td></tr>
+        <tr><td><strong>DAC</strong></td><td>Discretionary Access Control</td><td>Owner controls permissions — most flexible, least secure</td></tr>
+        <tr><td><strong>MAC</strong></td><td>Mandatory Access Control</td><td>Labels/classifications enforced by OS — most rigid</td></tr>
+        <tr><td><strong>RBAC</strong></td><td>Role-Based Access Control</td><td>Permissions assigned to roles, users assigned to roles</td></tr>
+        <tr><td><strong>ABAC</strong></td><td>Attribute-Based Access Control</td><td>Policy based on user + resource + environment attributes</td></tr>
+        <tr><td><strong>PoLP</strong></td><td>Principle of Least Privilege</td><td>Grant minimum access needed — applies to users AND services</td></tr>
+        <tr><td><strong>Separation of Duties</strong></td><td>No single person controls entire process</td><td>Example: person who requests payment ≠ person who approves it</td></tr>
+        <tr><td><strong>PAM</strong></td><td>Privileged Access Management</td><td>Controls and audits admin/privileged accounts specifically</td></tr>
+        <tr><td><strong>Federation</strong></td><td>Trusts identities from external organisations</td><td>IdP + SP relationship — used in B2B and cloud SSO</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PKI & CERTIFICATES -->
+  <div id="pki" class="section-title"><span class="s-icon">📜</span> PKI & Certificates</div>
+
+  <div class="callout callout-amber">
+    <strong>⚡ Exam tip:</strong> PKI questions test the chain of trust. Know: CA hierarchy (Root → Intermediate → End-entity), what each certificate field means, and what happens during TLS handshake. Certificate pinning and CT logs appear in SY0-701.
+  </div>
+
+  <div class="table-wrap">
+    <table class="cheat-table">
+      <thead><tr><th>Term</th><th>Definition</th><th>Exam Note</th></tr></thead>
+      <tbody>
+        <tr><td><strong>PKI</strong></td><td>Public Key Infrastructure — framework for managing digital certs</td><td>Binds public keys to identities via digital signatures</td></tr>
+        <tr><td><strong>CA</strong></td><td>Certificate Authority — issues and signs certificates</td><td>Root CA → Intermediate CA → End-entity cert chain</td></tr>
+        <tr><td><strong>Root CA</strong></td><td>Top of the trust hierarchy — self-signed</td><td>Kept offline (air-gapped) to protect private key</td></tr>
+        <tr><td><strong>Intermediate CA</strong></td><td>Issues certs on behalf of root CA</td><td>Online; if compromised, root CA can revoke it</td></tr>
+        <tr><td><strong>CSR</strong></td><td>Certificate Signing Request</td><td>Entity generates key pair, sends public key + info to CA</td></tr>
+        <tr><td><strong>X.509</strong></td><td>Standard format for digital certificates</td><td>Contains: subject, issuer, public key, validity period, signature</td></tr>
+        <tr><td><strong>SAN</strong></td><td>Subject Alternative Name</td><td>One cert covers multiple domains (replaces CN for multi-domain)</td></tr>
+        <tr><td><strong>Wildcard Cert</strong></td><td>*.example.com covers all subdomains</td><td>One level only — *.example.com ≠ *.sub.example.com</td></tr>
+        <tr><td><strong>CRL</strong></td><td>Certificate Revocation List</td><td>Published list of revoked certs; must be downloaded and checked</td></tr>
+        <tr><td><strong>OCSP</strong></td><td>Online Certificate Status Protocol</td><td>Real-time revocation check; OCSP stapling = server includes proof</td></tr>
+        <tr><td><strong>Certificate Pinning</strong></td><td>App hardcodes expected certificate/key</td><td>Prevents MitM even with valid but malicious CA cert</td></tr>
+        <tr><td><strong>CT Logs</strong></td><td>Certificate Transparency — public append-only log</td><td>Browsers require CT — detects mis-issued certificates</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="code-block">
+    <div class="c-head">TLS Handshake — Simplified</div>
+    <br>
+    <span class="c-label">1. Client Hello    </span><span class="c-val">→ TLS version, cipher suites, random nonce</span><br>
+    <span class="c-label">2. Server Hello    </span><span class="c-val">→ Chosen cipher suite, server certificate</span><br>
+    <span class="c-label">3. Certificate     </span><span class="c-val">→ Client verifies cert chain, validity, revocation</span><br>
+    <span class="c-label">4. Key Exchange    </span><span class="c-val">→ ECDHE: ephemeral keys exchanged (forward secrecy)</span><br>
+    <span class="c-label">5. Session Keys    </span><span class="c-val">→ Both sides derive symmetric session key (AES)</span><br>
+    <span class="c-label">6. Finished        </span><span class="c-val">→ Encrypted handshake verified — data transfer begins</span><br>
+    <br>
+    <span class="c-note"># Asymmetric crypto used ONLY for key exchange — symmetric AES encrypts actual data</span>
+  </div>
+
+  <!-- VULNERABILITIES -->
+  <div id="vuln" class="section-title"><span class="s-icon">🔍</span> Vulnerability Management</div>
+
+  <div class="table-wrap">
+    <table class="cheat-table">
+      <thead><tr><th>Term</th><th>Definition</th><th>Exam Note</th></tr></thead>
+      <tbody>
+        <tr><td><strong>CVE</strong></td><td>Common Vulnerabilities & Exposures — unique vuln IDs</td><td>CVE-YEAR-NUMBER format; published by NVD</td></tr>
+        <tr><td><strong>CVSS</strong></td><td>Common Vulnerability Scoring System — 0–10 severity</td><td>Critical = 9.0–10.0; High = 7.0–8.9; Medium = 4.0–6.9</td></tr>
+        <tr><td><strong>Zero-Day</strong></td><td>Vulnerability with no patch available yet</td><td>No vendor fix exists — highest risk; IOC monitoring critical</td></tr>
+        <tr><td><strong>Patch Management</strong></td><td>Process of testing and applying software updates</td><td>Identify → Test → Deploy → Verify; test before production</td></tr>
+        <tr><td><strong>Vulnerability Scan</strong></td><td>Automated scan to identify known vulnerabilities</td><td>Non-invasive; credentialed scan = more thorough</td></tr>
+        <tr><td><strong>Penetration Test</strong></td><td>Authorised simulated attack to find exploitable vulns</td><td>Active exploitation; requires written authorisation (RoE)</td></tr>
+        <tr><td><strong>Red Team</strong></td><td>Offensive security team simulating real attackers</td><td>Full attack simulation; blue team defends; purple team = both</td></tr>
+        <tr><td><strong>Threat Intelligence</strong></td><td>Knowledge about current threats, TTPs, indicators</td><td>IOC = Indicator of Compromise; TTPs = Tactics, Techniques, Procedures</td></tr>
+        <tr><td><strong>Attack Surface</strong></td><td>All points where attacker could try to enter</td><td>Reduce by disabling unused services, ports, accounts</td></tr>
+        <tr><td><strong>Supply Chain Attack</strong></td><td>Compromising software/hardware before delivery</td><td>SolarWinds = classic example; trust the vendor chain</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- INCIDENT RESPONSE -->
+  <div id="incident" class="section-title"><span class="s-icon">🚨</span> Incident Response</div>
+
+  <div class="callout callout-amber">
+    <strong>⚡ Exam tip:</strong> Know the NIST IR lifecycle and the order of steps. Containment comes before eradication. Documentation happens throughout. Chain of custody is critical for forensics evidence admissibility.
+  </div>
+
+  <div class="code-block">
+    <div class="c-head">NIST Incident Response Lifecycle</div>
+    <br>
+    <span class="c-label">Phase 1: Preparation      </span><span class="c-val">→ IR plan, tools, training, communication contacts</span><br>
+    <span class="c-label">Phase 2: Detection        </span><span class="c-val">→ Identify incident via SIEM, IDS, user reports</span><br>
+    <span class="c-label">Phase 3: Containment      </span><span class="c-val">→ Short-term (isolate) + long-term (patch, rebuild)</span><br>
+    <span class="c-label">Phase 4: Eradication      </span><span class="c-val">→ Remove malware, close attack vectors, patch</span><br>
+    <span class="c-label">Phase 5: Recovery         </span><span class="c-val">→ Restore from clean backups, monitor for re-infection</span><br>
+    <span class="c-label">Phase 6: Lessons Learned  </span><span class="c-val">→ Post-incident review, update IR plan</span><br>
+    <br>
+    <span class="c-note"># Order matters on the exam — Containment BEFORE Eradication BEFORE Recovery</span>
+  </div>
+
+  <div class="two-col">
+    <div class="mini-card">
+      <h4>Digital Forensics Order of Volatility</h4>
+      <ul>
+        <li>1. CPU registers + cache <span>Most volatile</span></li>
+        <li>2. RAM / running processes <span>Volatile</span></li>
+        <li>3. Network connections <span>Volatile</span></li>
+        <li>4. Running processes / temp files <span>Volatile</span></li>
+        <li>5. Disk storage <span>Persistent</span></li>
+        <li>6. Remote / cloud logs <span>Least volatile</span></li>
+      </ul>
+    </div>
+    <div class="mini-card">
+      <h4>Evidence Handling</h4>
+      <ul>
+        <li>Chain of custody <span>Tracks who touched evidence</span></li>
+        <li>Legal hold <span>Preserve data — do not delete</span></li>
+        <li>Bit-for-bit image <span>Never work on original</span></li>
+        <li>Hash verification <span>MD5/SHA to prove integrity</span></li>
+        <li>Write blockers <span>Prevent altering disk evidence</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FRAMEWORKS -->
+  <div id="frameworks" class="section-title"><span class="s-icon">📋</span> Frameworks, Regulations & Compliance</div>
+
+  <div class="table-wrap">
+    <table class="cheat-table">
+      <thead><tr><th>Framework / Regulation</th><th>Who / What</th><th>Key Requirement</th></tr></thead>
+      <tbody>
+        <tr><td><strong>NIST CSF</strong></td><td>US voluntary cybersecurity framework</td><td>5 functions: Identify, Protect, Detect, Respond, Recover</td></tr>
+        <tr><td><strong>NIST SP 800-53</strong></td><td>US federal security controls catalogue</td><td>Required for federal agencies; used as baseline globally</td></tr>
+        <tr><td><strong>ISO 27001</strong></td><td>International ISMS standard</td><td>Risk-based; certifiable; Annex A = 93 security controls</td></tr>
+        <tr><td><strong>PCI DSS</strong></td><td>Payment Card Industry — card data security</td><td>12 requirements; applies to any org storing/processing cards</td></tr>
+        <tr><td><strong>HIPAA</strong></td><td>US healthcare — PHI protection</td><td>Administrative, physical, and technical safeguards required</td></tr>
+        <tr><td><strong>GDPR</strong></td><td>EU — personal data protection</td><td>72-hour breach notification; right to erasure; data minimisation</td></tr>
+        <tr><td><strong>SOC 2</strong></td><td>AICPA — service org controls audit</td><td>5 Trust Service Criteria: Security, Availability, Integrity, Confidentiality, Privacy</td></tr>
+        <tr><td><strong>MITRE ATT&CK</strong></td><td>Adversary tactics and techniques matrix</td><td>TTPs mapped to real threat actors; used for threat hunting</td></tr>
+        <tr><td><strong>Cyber Kill Chain</strong></td><td>Lockheed Martin 7-phase attack model</td><td>Recon → Weaponise → Deliver → Exploit → Install → C2 → Act</td></tr>
+        <tr><td><strong>OWASP Top 10</strong></td><td>Web application security risks</td><td>Top risks: Broken Access Control, Injection, Crypto Failures</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- WIRELESS SECURITY -->
+  <div id="wireless" class="section-title"><span class="s-icon">📶</span> Wireless Security</div>
+
+  <div class="table-wrap">
+    <table class="cheat-table">
+      <thead><tr><th>Protocol</th><th>Encryption</th><th>Auth</th><th>Status</th><th>Exam Note</th></tr></thead>
+      <tbody>
+        <tr><td><strong>WEP</strong></td><td class="mono">RC4 (40-bit)</td><td>Shared key</td><td><span class="tag-red">Broken</span></td><td>Crackable in minutes — never use</td></tr>
+        <tr><td><strong>WPA</strong></td><td class="mono">TKIP (RC4)</td><td>PSK / Enterprise</td><td><span class="tag-red">Deprecated</span></td><td>TKIP is weak — replaced by WPA2</td></tr>
+        <tr><td><strong>WPA2-Personal</strong></td><td class="mono">AES-CCMP</td><td>PSK</td><td><span class="tag-amber">Acceptable</span></td><td>Vulnerable to PMKID attack; minimum standard</td></tr>
+        <tr><td><strong>WPA2-Enterprise</strong></td><td class="mono">AES-CCMP</td><td>802.1X / RADIUS</td><td><span class="tag-green">Recommended</span></td><td>Per-user auth — much stronger than PSK</td></tr>
+        <tr><td><strong>WPA3-Personal</strong></td><td class="mono">AES-GCMP-256</td><td>SAE</td><td><span class="tag-green">Current Standard</span></td><td>SAE replaces PSK — forward secrecy, offline attack resistant</td></tr>
+        <tr><td><strong>WPA3-Enterprise</strong></td><td class="mono">AES-GCMP-256</td><td>802.1X / RADIUS</td><td><span class="tag-green">Strongest</span></td><td>192-bit mode available; required for high-security environments</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two-col">
+    <div class="mini-card">
+      <h4>Wireless Attacks</h4>
+      <ul>
+        <li>Evil Twin <span>Rogue AP mimics legitimate SSID</span></li>
+        <li>Deauth Attack <span>Forces clients to reconnect (capture handshake)</span></li>
+        <li>PMKID Attack <span>Cracks WPA2-Personal without handshake</span></li>
+        <li>WPS PIN Attack <span>Brute forces 8-digit WPS PIN</span></li>
+        <li>Wardriving <span>Scanning for open/weak Wi-Fi networks</span></li>
+      </ul>
+    </div>
+    <div class="mini-card">
+      <h4>Wireless Defences</h4>
+      <ul>
+        <li>WPA3-Enterprise <span>Strongest option</span></li>
+        <li>Disable WPS <span>Eliminates WPS PIN attack</span></li>
+        <li>802.1X / RADIUS <span>Per-user authentication</span></li>
+        <li>WIDS <span>Wireless Intrusion Detection</span></li>
+        <li>Site survey <span>Detect rogue APs</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ACRONYMS -->
+  <div id="acronyms" class="section-title"><span class="s-icon">📖</span> Key Acronyms</div>
+
+  <div class="table-wrap">
+    <table class="cheat-table">
+      <thead><tr><th>Acronym</th><th>Full Name</th><th>One-Line Description</th></tr></thead>
+      <tbody>
+        <tr><td class="mono"><strong>AAA</strong></td><td>Authentication, Authorisation, Accounting</td><td>Security services framework — RADIUS and TACACS+ implement AAA</td></tr>
+        <tr><td class="mono"><strong>ACL</strong></td><td>Access Control List</td><td>Ordered rules permitting or denying traffic / access</td></tr>
+        <tr><td class="mono"><strong>APT</strong></td><td>Advanced Persistent Threat</td><td>Long-term, targeted attack — often nation-state actors</td></tr>
+        <tr><td class="mono"><strong>BCP</strong></td><td>Business Continuity Plan</td><td>Keeps operations running during and after a disaster</td></tr>
+        <tr><td class="mono"><strong>CIA</strong></td><td>Confidentiality, Integrity, Availability</td><td>The three core security principles — every control maps to one</td></tr>
+        <tr><td class="mono"><strong>DLP</strong></td><td>Data Loss Prevention</td><td>Prevents sensitive data leaving the organisation</td></tr>
+        <tr><td class="mono"><strong>DRP</strong></td><td>Disaster Recovery Plan</td><td>Restores IT systems after a disaster; subset of BCP</td></tr>
+        <tr><td class="mono"><strong>EDR</strong></td><td>Endpoint Detection and Response</td><td>Advanced endpoint protection with behaviour analysis</td></tr>
+        <tr><td class="mono"><strong>FIM</strong></td><td>File Integrity Monitoring</td><td>Alerts when critical files are changed unexpectedly</td></tr>
+        <tr><td class="mono"><strong>HSM</strong></td><td>Hardware Security Module</td><td>Dedicated hardware for cryptographic key storage</td></tr>
+        <tr><td class="mono"><strong>IOC</strong></td><td>Indicator of Compromise</td><td>Evidence of a breach — hashes, IPs, domains, registry keys</td></tr>
+        <tr><td class="mono"><strong>MFA</strong></td><td>Multi-Factor Authentication</td><td>2+ factors from different categories (know/have/are)</td></tr>
+        <tr><td class="mono"><strong>MTD</strong></td><td>Maximum Tolerable Downtime</td><td>Longest acceptable outage before serious business impact</td></tr>
+        <tr><td class="mono"><strong>RBAC</strong></td><td>Role-Based Access Control</td><td>Access permissions tied to job roles, not individuals</td></tr>
+        <tr><td class="mono"><strong>RPO</strong></td><td>Recovery Point Objective</td><td>Maximum data loss acceptable — drives backup frequency</td></tr>
+        <tr><td class="mono"><strong>RTO</strong></td><td>Recovery Time Objective</td><td>Maximum time to restore a system after failure</td></tr>
+        <tr><td class="mono"><strong>SIEM</strong></td><td>Security Information & Event Management</td><td>Aggregates and correlates logs for threat detection</td></tr>
+        <tr><td class="mono"><strong>SOC</strong></td><td>Security Operations Centre</td><td>Team monitoring and responding to security events 24/7</td></tr>
+        <tr><td class="mono"><strong>TTP</strong></td><td>Tactics, Techniques, and Procedures</td><td>How attackers operate — mapped in MITRE ATT&CK</td></tr>
+        <tr><td class="mono"><strong>XDR</strong></td><td>Extended Detection and Response</td><td>EDR extended across network, cloud, email — unified view</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-purple">
+    <strong>RPO vs RTO exam trap:</strong> RPO = how much data you can afford to lose (drives backup schedule). RTO = how fast you need to recover (drives DR infrastructure investment). MTD = the absolute maximum downtime before the business fails — RTO must be less than MTD.
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <div>
+      <h3>Ready to Pass Security+?</h3>
+      <p>See the best study resources, practice exams, and courses for the SY0-701 exam.</p>
+    </div>
+    <a href="best-security-plus.html" class="cta-btn">View Security+ Resources →</a>
+  </div>
+
+  <!-- RELATED -->
+  <div class="related-box">
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="how-to-pass-comptia-security-plus.html" class="related-link">How to Pass Security+</a>
+      <a href="best-security-plus.html" class="related-link">Best Security+ Study Resources</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="cryptography.html" class="related-link">Cryptography Explained</a>
+      <a href="identity-and-access-management.html" class="related-link">IAM Explained</a>
+      <a href="network-attacks.html" class="related-link">Network Attacks</a>
+      <a href="firewall-basics.html" class="related-link">Firewall Basics</a>
+      <a href="vpn.html" class="related-link">VPN Explained</a>
+      <a href="kerberos-explained.html" class="related-link">Kerberos Explained</a>
+      <a href="radius-explained.html" class="related-link">RADIUS Explained</a>
+      <a href="network-plus-vs-security-plus.html" class="related-link">Network+ vs Security+</a>
+    </div>
+  </div>
+
+</div><!-- end article-wrap -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-cols">
+      <div class="footer-brand">
+        <span class="logo-text">IT Study Hub</span>
+        <p>Free CompTIA study resources for A+, Network+, and Security+ candidates. Built by IT pros, for IT pros.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Certifications</h4>
+        <ul>
+          <li><a href="how-to-pass-comptia-aplus.html">CompTIA A+</a></li>
+          <li><a href="how-to-pass-comptia-network-plus.html">Network+</a></li>
+          <li><a href="how-to-pass-comptia-security-plus.html">Security+</a></li>
+          <li><a href="aplus-vs-network-plus.html">A+ vs Network+</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Reference</h4>
+        <ul>
+          <li><a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a></li>
+          <li><a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a></li>
+          <li><a href="security-plus-cheat-sheet.html">Security+ Cheat Sheet</a></li>
+          <li><a href="ports.html">Port Numbers</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+      <span class="footer-email"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
