@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/wireless-networking.html">
 
-<title>Wireless Networking Explained — 802.11 Standards, WPA2 vs WPA3 — CompTIA Guide (2026)</title>
-<meta name="description" content="Wireless networking explained — 802.11 standards (a/b/g/n/ac/ax), WPA vs WPA2 vs WPA3, wireless security attacks, and every wireless concept tested on CompTIA A+, Network+, and Security+.">
+<title>Wireless Networking Guide 2026 — 802.11 Standards, WPA3, Site Surveys, EAP | A+, Network+, Security+</title>
+<meta name="description" content="Complete wireless networking guide for CompTIA A+, Network+, and Security+ — 802.11 standards, Wi-Fi 6/6E, WPA3, site surveys, EAP types, channel bonding, antenna types, wireless attacks, and troubleshooting methodology.">
 
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -626,6 +626,167 @@ tbody tr:hover td { background: #f6f9ff; }
       </table>
     </div>
 
+    <h2>Wi-Fi 6 and Wi-Fi 6E — Network+ Deep Dive</h2>
+
+    <p>Wi-Fi 6 (802.11ax) introduced several technologies that the Network+ exam specifically tests. Understanding what each technology does — and why — is more important than memorising the acronyms alone.</p>
+
+    <div style="overflow-x:auto;margin-bottom:24px;border-radius:10px;border:1px solid var(--border);">
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+        <thead><tr style="background:var(--navy);color:#fff;">
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">Technology</th>
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">What It Does</th>
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">Benefit</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>OFDMA</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Orthogonal Frequency Division Multiple Access — divides channels into sub-channels (resource units)</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Multiple devices transmit simultaneously on one channel — eliminates the "take turns" limitation of older Wi-Fi</td></tr>
+          <tr style="background:#f8fafd;"><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>MU-MIMO (8×8)</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Multi-User MIMO expanded to 8 simultaneous spatial streams (up from 4 in Wi-Fi 5)</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">AP serves 8 clients simultaneously rather than sequentially</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>BSS Coloring</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Tags each BSS (network) with a colour so devices can distinguish overlapping networks on the same channel</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Reduces interference in dense deployments — devices ignore frames from other networks rather than waiting</td></tr>
+          <tr style="background:#f8fafd;"><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>TWT</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Target Wake Time — AP schedules when IoT devices wake up to transmit</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Dramatically improves battery life for IoT sensors and mobile devices</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>WPA3 required</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Wi-Fi 6 certification mandates WPA3 support</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">SAE replaces PSK — resistant to offline dictionary attacks and provides forward secrecy</td></tr>
+          <tr style="background:#f8fafd;"><td style="padding:9px 14px;"><strong>6 GHz band (Wi-Fi 6E)</strong></td><td style="padding:9px 14px;">Wi-Fi 6E adds the 6 GHz spectrum (5.925–7.125 GHz) — 59 additional 20 MHz channels</td><td style="padding:9px 14px;">Massive capacity in dense environments — stadiums, hospitals, offices. Less congestion than 5 GHz.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:0 0 32px;font-size:14px;">
+      <strong>⚡ Network+ exam tip — Wi-Fi 6 vs 6E vs Wi-Fi 7:</strong> Wi-Fi 6 = 802.11ax (2.4 + 5 GHz). Wi-Fi 6E = 802.11ax with 6 GHz band added. Wi-Fi 7 = 802.11be (adds 320 MHz channels and Multi-Link Operation). The exam tests 802.11ax specifically — know OFDMA and BSS Coloring as the defining features.
+    </div>
+
+    <h2>Site Surveys — Planning and Validating Wireless Deployments</h2>
+
+    <p>A <strong>wireless site survey</strong> is the process of planning, deploying, and validating a wireless network's coverage and performance. Network+ tests all three types — and Security+ tests the security implications of rogue AP detection during surveys.</p>
+
+    <div style="overflow-x:auto;margin-bottom:24px;border-radius:10px;border:1px solid var(--border);">
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+        <thead><tr style="background:var(--navy);color:#fff;">
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">Survey Type</th>
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">When Used</th>
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">What It Involves</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>Passive Survey</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Before deployment — planning phase</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Walk the area with a laptop in monitor mode, capturing existing RF signals without transmitting. Maps interference sources and existing networks. No APs required.</td></tr>
+          <tr style="background:#f8fafd;"><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>Active Survey</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">During/after deployment — validation</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Associates with APs and measures actual throughput, signal strength (RSSI), and SNR at various locations. Requires APs to be installed.</td></tr>
+          <tr><td style="padding:9px 14px;"><strong>Predictive Survey</strong></td><td style="padding:9px 14px;">Pre-deployment — uses software modelling</td><td style="padding:9px 14px;">Uses floor plan software to model RF propagation based on building materials and AP placement. Produces heat maps without physical walkthrough. Less accurate than active survey.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key Site Survey Metrics</h3>
+    <div style="overflow-x:auto;margin-bottom:24px;border-radius:10px;border:1px solid var(--border);">
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+        <thead><tr style="background:var(--navy);color:#fff;">
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">Metric</th>
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">Description</th>
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">Target Value</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>RSSI</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Received Signal Strength Indicator — measures how strong the signal is at the client</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">-65 dBm or better for good performance; -80 dBm = weak; -90 dBm = unusable</td></tr>
+          <tr style="background:#f8fafd;"><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>SNR</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Signal-to-Noise Ratio — difference between signal strength and background noise floor</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">25 dB minimum; 40+ dB excellent. Low SNR = interference problem even with good RSSI.</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>Channel utilisation</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Percentage of time the channel is in use</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Below 50% — above 80% causes performance degradation</td></tr>
+          <tr style="background:#f8fafd;"><td style="padding:9px 14px;"><strong>Heat map</strong></td><td style="padding:9px 14px;">Visual representation of signal strength coverage across a floor plan</td><td style="padding:9px 14px;">Tool output — identifies dead zones and areas of overlap between APs</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:0 0 32px;font-size:14px;">
+      <strong>⚡ Network+ exam tip — interference sources:</strong> Common sources of 2.4 GHz interference include microwave ovens, baby monitors, Bluetooth devices, and neighbouring Wi-Fi networks. The 5 GHz band has less interference but shorter range. A spectrum analyser identifies RF interference sources that a standard Wi-Fi adapter cannot.
+    </div>
+
+    <h2>EAP Types — 802.1X Authentication (Security+)</h2>
+
+    <p>When using WPA2/WPA3 Enterprise, clients authenticate via <strong>802.1X</strong> — which uses EAP (Extensible Authentication Protocol) as the authentication framework. Security+ tests the specific EAP types and what makes each one secure or insecure.</p>
+
+    <div style="overflow-x:auto;margin-bottom:24px;border-radius:10px;border:1px solid var(--border);">
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+        <thead><tr style="background:var(--navy);color:#fff;">
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">EAP Type</th>
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">Authentication Method</th>
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">Security Level</th>
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">Exam Note</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>EAP-TLS</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Mutual certificate-based — both client AND server present certificates</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);color:#16a34a;font-weight:600;">Strongest</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Most secure but requires PKI infrastructure to issue client certs — high overhead</td></tr>
+          <tr style="background:#f8fafd;"><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>PEAP</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Protected EAP — server cert only, client uses username/password inside TLS tunnel</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);color:#1d4ed8;font-weight:600;">Strong</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Most common in enterprises — no client certs needed. Uses MSCHAPv2 inside the tunnel.</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>EAP-TTLS</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Tunnelled TLS — server cert only, supports any inner auth method inside tunnel</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);color:#1d4ed8;font-weight:600;">Strong</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">More flexible than PEAP — can use PAP or CHAP inside tunnel. Common on Linux clients.</td></tr>
+          <tr style="background:#f8fafd;"><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>EAP-FAST</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Flexible Authentication via Secure Tunnelling — uses Protected Access Credentials (PACs)</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);color:#d97706;font-weight:600;">Moderate</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Cisco proprietary — designed for environments where PKI is impractical</td></tr>
+          <tr><td style="padding:9px 14px;"><strong>LEAP</strong></td><td style="padding:9px 14px;">Lightweight EAP — early Cisco proprietary, username/password only</td><td style="padding:9px 14px;color:#dc2626;font-weight:600;">Weak — deprecated</td><td style="padding:9px 14px;">Vulnerable to offline dictionary attacks — replaced by EAP-FAST. Do not use.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="background:#eff6ff;border-left:4px solid #1d4ed8;border-radius:8px;padding:14px 18px;margin:0 0 32px;font-size:14px;">
+      <strong>802.1X flow — how it works:</strong> Client (Supplicant) → Switch/AP (Authenticator) → RADIUS Server (Authentication Server). The switch/AP passes EAP messages between the client and the RADIUS server. The client is in an <em>unauthorised</em> state until RADIUS approves — only EAPOL frames pass through. Once authenticated, the port opens for normal traffic.
+    </div>
+
+    <h2>Channel Bonding and Antenna Types</h2>
+
+    <h3>Channel Bonding</h3>
+    <p>Channel bonding combines adjacent channels to increase bandwidth. A standard channel is 20 MHz wide. Bonding doubles or quadruples that width for higher throughput — at the cost of using more spectrum and increasing potential interference.</p>
+
+    <div style="overflow-x:auto;margin-bottom:24px;border-radius:10px;border:1px solid var(--border);">
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+        <thead><tr style="background:var(--navy);color:#fff;">
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">Width</th>
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">Channels Bonded</th>
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">Use Case</th>
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">Tradeoff</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>20 MHz</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">1 channel</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Dense deployments, 2.4 GHz</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Lower throughput, less interference</td></tr>
+          <tr style="background:#f8fafd;"><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>40 MHz</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">2 bonded</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">802.11n, moderate density</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">2× throughput; only 1 non-overlapping channel on 2.4 GHz — avoid bonding on 2.4 GHz</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>80 MHz</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">4 bonded</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">802.11ac, good for 5 GHz</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">High throughput; uses significant spectrum</td></tr>
+          <tr style="background:#f8fafd;"><td style="padding:9px 14px;"><strong>160 MHz</strong></td><td style="padding:9px 14px;">8 bonded</td><td style="padding:9px 14px;">802.11ax/Wi-Fi 6, 6 GHz band</td><td style="padding:9px 14px;">Maximum throughput — only practical on 6 GHz where spectrum is available</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Antenna Types</h3>
+    <div style="overflow-x:auto;margin-bottom:32px;border-radius:10px;border:1px solid var(--border);">
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+        <thead><tr style="background:var(--navy);color:#fff;">
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">Antenna Type</th>
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">Pattern</th>
+          <th style="padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">Best Use Case</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>Omnidirectional</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">360° horizontal radiation — broadcasts in all directions equally</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">General office/home coverage — most common AP antenna</td></tr>
+          <tr style="background:#f8fafd;"><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>Directional (Yagi)</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Focused beam in one direction — high gain, narrow pattern</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Point-to-point links between buildings — long distance, targeted coverage</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid var(--border);"><strong>Directional (Patch)</strong></td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Flat panel, forward-focused</td><td style="padding:9px 14px;border-bottom:1px solid var(--border);">Corridors, warehouses — covers a specific area without radiating behind</td></tr>
+          <tr style="background:#f8fafd;"><td style="padding:9px 14px;"><strong>Parabolic dish</strong></td><td style="padding:9px 14px;">Very high gain, extremely narrow beam</td><td style="padding:9px 14px;">Long-distance point-to-point links — miles between sites</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Wireless Troubleshooting Methodology</h2>
+
+    <p>Network+ and Security+ both include wireless troubleshooting scenarios. The methodology follows a logical pattern — identify symptoms, isolate the layer, and test fixes in order.</p>
+
+    <div style="display:flex;flex-direction:column;gap:0;margin-bottom:32px;border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+      <div style="background:var(--navy);padding:10px 18px;font-family:'DM Mono',monospace;font-size:12px;color:var(--teal);letter-spacing:.04em;">Wireless Troubleshooting Flow</div>
+      <div style="background:#fff;">
+        <div style="display:flex;gap:16px;padding:14px 18px;border-bottom:1px solid var(--border);align-items:flex-start;">
+          <div style="background:var(--navy);color:#fff;font-family:'DM Mono',monospace;font-size:12px;font-weight:700;min-width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;">1</div>
+          <div><strong style="font-size:14px;">Check signal strength (RSSI)</strong><br><span style="font-size:13px;color:#5c6f87;">Poor RSSI → move closer to AP, check for physical obstructions (concrete, metal). Below -75 dBm = connection quality issues.</span></div>
+        </div>
+        <div style="display:flex;gap:16px;padding:14px 18px;border-bottom:1px solid var(--border);align-items:flex-start;">
+          <div style="background:var(--navy);color:#fff;font-family:'DM Mono',monospace;font-size:12px;font-weight:700;min-width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;">2</div>
+          <div><strong style="font-size:14px;">Check for interference (SNR)</strong><br><span style="font-size:13px;color:#5c6f87;">Low SNR despite good RSSI → RF interference. Check channel utilisation, scan for competing networks, look for microwave/Bluetooth sources.</span></div>
+        </div>
+        <div style="display:flex;gap:16px;padding:14px 18px;border-bottom:1px solid var(--border);align-items:flex-start;">
+          <div style="background:var(--navy);color:#fff;font-family:'DM Mono',monospace;font-size:12px;font-weight:700;min-width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;">3</div>
+          <div><strong style="font-size:14px;">Verify correct SSID and security settings</strong><br><span style="font-size:13px;color:#5c6f87;">Client connecting to wrong SSID or wrong security type (WPA2 vs WPA3) will fail authentication — check client settings match AP config.</span></div>
+        </div>
+        <div style="display:flex;gap:16px;padding:14px 18px;border-bottom:1px solid var(--border);align-items:flex-start;">
+          <div style="background:var(--navy);color:#fff;font-family:'DM Mono',monospace;font-size:12px;font-weight:700;min-width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;">4</div>
+          <div><strong style="font-size:14px;">Check IP address assignment</strong><br><span style="font-size:13px;color:#5c6f87;">Associated but no internet → run ipconfig/ip addr. APIPA address (169.254.x.x) = DHCP failure. Check DHCP scope and lease availability.</span></div>
+        </div>
+        <div style="display:flex;gap:16px;padding:14px 18px;align-items:flex-start;">
+          <div style="background:var(--navy);color:#fff;font-family:'DM Mono',monospace;font-size:12px;font-weight:700;min-width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;">5</div>
+          <div><strong style="font-size:14px;">Check AP channel and overlap</strong><br><span style="font-size:13px;color:#5c6f87;">Slow speeds in specific areas → co-channel interference. Use site survey tool to check channel utilisation and adjust AP channel assignments to 1, 6, or 11 (2.4 GHz) or non-overlapping 5 GHz channels.</span></div>
+        </div>
+      </div>
+    </div>
+
     <h2>Exam scenarios</h2>
 
     <div class="scenario-list">
@@ -639,6 +800,14 @@ tbody tr:hover td { background: #f6f9ff; }
       <div class="scenario-item">💬 "A 2.4 GHz network is experiencing interference from a neighbouring network. Which channels avoid overlap?" → <strong>Channels 1, 6, and 11</strong></div>
       <div class="scenario-item">💬 "Which WPA3 feature protects previously recorded traffic if the encryption key is later compromised?" → <strong>Forward secrecy (via SAE)</strong></div>
       <div class="scenario-item">💬 "An attacker sends forged frames to disconnect wireless clients from an AP. What attack is this?" → <strong>Deauthentication attack</strong></div>
+      <div class="scenario-item">💬 "A network engineer needs to plan AP placement before installation. Which type of site survey uses software modelling rather than physical walkthrough?" → <strong>Predictive survey</strong></div>
+      <div class="scenario-item">💬 "After deploying APs, a technician walks the building measuring actual signal strength and throughput. What type of survey is this?" → <strong>Active survey</strong></div>
+      <div class="scenario-item">💬 "A wireless network requires each user to authenticate with a digital certificate — both the client and server present certificates. Which EAP type is this?" → <strong>EAP-TLS</strong></div>
+      <div class="scenario-item">💬 "An enterprise needs 802.1X authentication but cannot deploy client certificates. Which EAP type uses only a server certificate with username/password inside a TLS tunnel?" → <strong>PEAP</strong></div>
+      <div class="scenario-item">💬 "Wi-Fi 6 introduces which technology that allows multiple devices to transmit on the same channel simultaneously by dividing it into sub-channels?" → <strong>OFDMA</strong></div>
+      <div class="scenario-item">💬 "Users in a dense office environment report that despite strong signal, Wi-Fi performance is poor. The same channel is used by three nearby networks. What is the likely cause and solution?" → <strong>Co-channel interference — change AP channels so nearby networks use non-overlapping channels (1, 6, 11 on 2.4 GHz)</strong></div>
+      <div class="scenario-item">💬 "Which wireless antenna type is most appropriate for a point-to-point link between two buildings 500 metres apart?" → <strong>Directional antenna (Yagi or parabolic dish)</strong></div>
+      <div class="scenario-item">💬 "A device connects to Wi-Fi successfully but receives a 169.254.x.x address. What is the problem?" → <strong>DHCP failure — the device fell back to APIPA. Check DHCP server availability and scope lease pool.</strong></div>
     </div>
 
     <hr class="divider">
@@ -658,6 +827,8 @@ tbody tr:hover td { background: #f6f9ff; }
       <a href="vpn.html" class="related-link">What is a VPN?</a>
       <a href="osi-model.html" class="related-link">OSI Model Explained</a>
       <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="security-plus-cheat-sheet.html" class="related-link">Security+ Cheat Sheet</a>
       <a href="subnetting.html" class="related-link">Subnetting Explained</a>
       <a href="best-network-plus.html" class="related-link">Best Network+ Resources</a>
       <a href="best-security-plus.html" class="related-link">Best Security+ Resources</a>
