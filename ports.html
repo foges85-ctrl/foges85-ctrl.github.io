@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/ports.html">
 
-<title>CompTIA A+ Port Numbers List — Every Port on the Exam (2026)</title>
-<meta name="description" content="The complete CompTIA A+ ports list — every port number tested on the exam including HTTP, HTTPS, FTP, SSH, RDP, DNS, SMTP, RDP, SNMP and more, with memory tricks and exam scenarios.">
+<title>Port Numbers Complete Guide — CompTIA A+, Network+ &amp; Security+ 2026</title>
+<meta name="description" content="Complete port numbers reference for CompTIA A+, Network+, and Security+ — every port from the A+ list plus Network+ infrastructure ports (RADIUS, BGP, SIP, databases) and Security+ attack-surface ports (RDP, SMB, Kerberos, Metasploit).">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -964,6 +964,222 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <hr class="divider">
 
+    <h2>Network+ Port Numbers</h2>
+
+    <p>The Network+ exam N10-009 tests a broader set of ports than A+, covering routing protocols, infrastructure services, voice over IP, and database servers you'll encounter in enterprise environments.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Port</th><th>Protocol</th><th>Service</th><th>Exam priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="port-num">49</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">TACACS+</div><div class="service-desc">Terminal Access Controller Access Control System — AAA for Cisco devices, fully encrypts payload</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">69</span></td>
+            <td><span class="proto-badge proto-udp">UDP</span></td>
+            <td><div class="service-name">TFTP</div><div class="service-desc">Trivial File Transfer Protocol — simple, no auth, used to push IOS images to network devices</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">119</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">NNTP</div><div class="service-desc">Network News Transfer Protocol — Usenet newsgroup transfers</div></td>
+            <td><span class="priority-badge priority-low">Know it</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">179</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">BGP</div><div class="service-desc">Border Gateway Protocol — inter-AS routing on the internet. The routing protocol of the internet.</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">427</span></td>
+            <td><span class="proto-badge proto-both">TCP/UDP</span></td>
+            <td><div class="service-name">SLP</div><div class="service-desc">Service Location Protocol — discovers services on a local network</div></td>
+            <td><span class="priority-badge priority-low">Know it</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">514</span></td>
+            <td><span class="proto-badge proto-udp">UDP</span></td>
+            <td><div class="service-name">Syslog</div><div class="service-desc">System logging protocol — sends log messages to a central syslog server</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">520</span></td>
+            <td><span class="proto-badge proto-udp">UDP</span></td>
+            <td><div class="service-name">RIP</div><div class="service-desc">Routing Information Protocol — legacy distance-vector routing protocol</div></td>
+            <td><span class="priority-badge priority-med">Medium</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">546 / 547</span></td>
+            <td><span class="proto-badge proto-udp">UDP</span></td>
+            <td><div class="service-name">DHCPv6</div><div class="service-desc">DHCPv6 client (546) and server (547) — IPv6 address assignment</div></td>
+            <td><span class="priority-badge priority-med">Medium</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">1433</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">MS SQL Server</div><div class="service-desc">Microsoft SQL Server — default database port</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">1521</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">Oracle DB</div><div class="service-desc">Oracle Database listener — default connection port</div></td>
+            <td><span class="priority-badge priority-med">Medium</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">1720</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">H.323</div><div class="service-desc">VoIP call setup protocol — used in older video conferencing systems</div></td>
+            <td><span class="priority-badge priority-low">Know it</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">1812 / 1813</span></td>
+            <td><span class="proto-badge proto-udp">UDP</span></td>
+            <td><div class="service-name">RADIUS</div><div class="service-desc">Remote Authentication Dial-In User Service — 1812 = auth, 1813 = accounting. Used for 802.1X and VPN auth.</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">3306</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">MySQL / MariaDB</div><div class="service-desc">MySQL and MariaDB database server — most common open-source database port</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">5060 / 5061</span></td>
+            <td><span class="proto-badge proto-both">TCP/UDP</span></td>
+            <td><div class="service-name">SIP</div><div class="service-desc">Session Initiation Protocol — VoIP call setup. 5060 = unencrypted, 5061 = TLS encrypted</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">5432</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">PostgreSQL</div><div class="service-desc">PostgreSQL database server — common in enterprise and cloud environments</div></td>
+            <td><span class="priority-badge priority-med">Medium</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">5900</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">VNC</div><div class="service-desc">Virtual Network Computing — graphical remote desktop (cross-platform, no encryption by default)</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">8080 / 8443</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">HTTP-alt / HTTPS-alt</div><div class="service-desc">Alternate web server ports — 8080 = HTTP, 8443 = HTTPS. Used for dev, proxies, and web apps.</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">27017</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">MongoDB</div><div class="service-desc">MongoDB NoSQL database — default connection port</div></td>
+            <td><span class="priority-badge priority-low">Know it</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Security+ Port Numbers</h2>
+
+    <p>Security+ SY0-701 tests ports from both a defensive and offensive perspective — knowing which ports represent attack surfaces, which are commonly scanned, and which security tools use which ports.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Port</th><th>Protocol</th><th>Service</th><th>Security relevance</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="port-num">88</span></td>
+            <td><span class="proto-badge proto-both">TCP/UDP</span></td>
+            <td><div class="service-name">Kerberos</div><div class="service-desc">Authentication protocol used in Active Directory — Kerberoasting attack targets this port</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">135</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">RPC / MSRPC</div><div class="service-desc">Windows Remote Procedure Call — used by many Windows services; common target in lateral movement</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">443</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">HTTPS / TLS</div><div class="service-desc">Encrypted web — attackers commonly tunnel C2 traffic over port 443 to blend with normal traffic</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">445</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">SMB</div><div class="service-desc">Windows file sharing — exploited by WannaCry (EternalBlue). Block at perimeter firewall; disable if unused.</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">500</span></td>
+            <td><span class="proto-badge proto-udp">UDP</span></td>
+            <td><div class="service-name">IKE / IPsec</div><div class="service-desc">Internet Key Exchange — used to set up IPsec VPN tunnels</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">636</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">LDAPS</div><div class="service-desc">LDAP over TLS — secure directory access. Port 389 (unencrypted) should be disabled in favour of 636.</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">853</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">DNS over TLS (DoT)</div><div class="service-desc">Encrypts DNS queries to prevent eavesdropping and DNS spoofing — privacy-focused DNS</div></td>
+            <td><span class="priority-badge priority-med">Medium</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">989 / 990</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">FTPS</div><div class="service-desc">FTP over TLS — 989 = data, 990 = control. Distinct from SFTP (which runs over SSH port 22).</div></td>
+            <td><span class="priority-badge priority-med">Medium</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">1194</span></td>
+            <td><span class="proto-badge proto-udp">UDP</span></td>
+            <td><div class="service-name">OpenVPN</div><div class="service-desc">OpenVPN default port — commonly used for remote access VPN</div></td>
+            <td><span class="priority-badge priority-med">Medium</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">3389</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">RDP</div><div class="service-desc">Remote Desktop Protocol — high-value attack target; exposed RDP is a leading ransomware entry point. Change default port or restrict with firewall.</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">4444</span></td>
+            <td><span class="proto-badge proto-tcp">TCP</span></td>
+            <td><div class="service-name">Metasploit / Meterpreter</div><div class="service-desc">Default listener port for Metasploit Framework — seeing outbound connections to 4444 is a strong malware indicator</div></td>
+            <td><span class="priority-badge priority-high">High</span></td>
+          </tr>
+          <tr>
+            <td><span class="port-num">6881–6889</span></td>
+            <td><span class="proto-badge proto-both">TCP/UDP</span></td>
+            <td><div class="service-name">BitTorrent</div><div class="service-desc">Peer-to-peer file sharing — often blocked in corporate environments; data loss risk</div></td>
+            <td><span class="priority-badge priority-low">Know it</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-amber" style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:16px 0 24px;font-size:14px;">
+      <strong>⚡ Security+ exam tip — FTPS vs SFTP:</strong> These are completely different protocols that both do encrypted file transfer. SFTP (Secure FTP) runs over <strong>SSH on port 22</strong> and is a subsystem of SSH. FTPS (FTP Secure) runs over <strong>TLS on ports 989/990</strong> and is FTP with a TLS wrapper. Exam questions deliberately confuse these — know which uses which port.
+    </div>
+
+    <hr class="divider">
+
     <h2>Memory Tricks</h2>
 
     <div class="memory-grid">
@@ -1105,6 +1321,8 @@ tbody tr:hover td { background: #f6f9ff; }
       <a href="dhcp.html" class="related-link">What Is DHCP?</a>
       <a href="dns.html" class="related-link">What Is DNS?</a>
       <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="security-plus-cheat-sheet.html" class="related-link">Security+ Cheat Sheet</a>
       <a href="apipa.html" class="related-link">What Is APIPA?</a>
       <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP Explained</a>
       <a href="home-lab-setup-guide.html" class="related-link">Build Your First Home Lab</a>
@@ -1115,7 +1333,7 @@ tbody tr:hover td { background: #f6f9ff; }
     <!-- CTA -->
     <div class="cta-box">
       <div class="cta-box-text">
-        <h3>Preparing for the A+ Exam?</h3>
+        <h3>Preparing for A+, Network+, or Security+?</h3>
         <p>See the books, practice exams, and free resources that actually work.</p>
       </div>
       <a href="best-a-plus.html" class="btn btn-teal">See Best Study Resources →</a>
