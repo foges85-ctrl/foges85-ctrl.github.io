@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/network-cable-types.html">
+<title>Network Cable Types Explained — Cat5e, Cat6, Fiber, Coax, Connectors | CompTIA A+</title>
+<meta name="description" content="Complete network cable guide for CompTIA A+ — Cat5e vs Cat6 vs Cat6a vs Cat7, single-mode vs multimode fiber, coaxial, plenum vs riser, RJ-45, RJ-11, LC, SC, ST connectors, and exam scenarios.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(0,194,168,.14) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(26,108,255,.08) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(0,194,168,.12);border:1px solid rgba(0,194,168,.3);color:#5eead4;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,42px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:var(--teal);}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:620px;line-height:1.7;}
+.article-wrap{max-width:860px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:48px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body h3{font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;color:var(--navy);margin:28px 0 12px;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(0,194,168,.15) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:500px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#f0fdf4;}
+.td-term{font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;}
+.cable-card{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--teal);border-radius:12px;padding:20px 22px;margin-bottom:16px;box-shadow:var(--card-shadow);}
+.cable-card.fiber{border-left-color:var(--blue);}
+.cable-card.coax{border-left-color:var(--purple);}
+.cable-name{font-family:'Outfit',sans-serif;font-size:17px;font-weight:800;color:var(--navy);margin-bottom:4px;}
+.cable-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.cable-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;}
+@media(max-width:480px){.cable-specs{grid-template-columns:1fr 1fr;}}
+.spec-item{background:var(--light);border-radius:8px;padding:8px 12px;}
+.spec-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
+.spec-val{font-weight:700;color:var(--navy);font-size:13px;}
+.cable-desc{font-size:14px;color:var(--text);line-height:1.65;}
+.cable-desc strong{color:var(--navy);}
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:18px 22px;margin-bottom:40px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#b08000;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:8px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+.callout{background:rgba(0,194,168,.04);border:1px solid rgba(0,194,168,.2);border-left:4px solid var(--teal);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#0a7a6e;margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.scenario-list{display:flex;flex-direction:column;gap:10px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 18px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(0,194,168,.2) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:600;transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn:hover{transform:translateY(-2px);}
+.btn-teal{background:var(--teal);color:var(--navy);box-shadow:0 6px 20px rgba(0,194,168,.3);}
+.btn-teal:hover{box-shadow:0 10px 28px rgba(0,194,168,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(0,194,168,.4);color:var(--teal);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--teal);font-size:13px;}
+.divider{border:none;border-top:1px solid var(--border);margin:0 0 40px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Roadmap</a>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="best-a-plus.html" class="nav-cta">A+ Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="networking-roadmap.html">Networking Roadmap</a><span>›</span>
+      <span>Network Cable Types</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · 220-1101 · 2026</div>
+    <h1>Network Cable Types <span>Explained</span></h1>
+    <p class="page-hero-sub">Cat5e, Cat6, Cat6a, Cat7, single-mode fiber, multimode fiber, coaxial — speeds, distances, connectors, plenum vs riser ratings, and every cable concept tested on the CompTIA A+ 220-1101 exam.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Cable Types at a Glance</div>
+      <div class="quick-answer-text">
+        The A+ exam tests three cable families: <strong>twisted pair (Cat5e through Cat8)</strong> for most LAN runs, <strong>fiber optic (single-mode and multimode)</strong> for long distances and high speeds, and <strong>coaxial</strong> for cable internet and legacy TV/CCTV. The most tested distinctions are <strong>Cat5e vs Cat6 speeds and distances</strong>, <strong>single-mode vs multimode fiber</strong>, and <strong>plenum vs riser vs PVC jacket ratings</strong>.
+      </div>
+    </div>
+
+    <h2>Twisted Pair — Copper Ethernet Cables</h2>
+    <p>Twisted pair is the standard for LAN wiring. Four pairs of copper wires are twisted together inside the cable — the twisting reduces electromagnetic interference (EMI) between pairs (crosstalk) and from external sources. The category (Cat) rating determines maximum speed and bandwidth.</p>
+
+    <div class="cable-card">
+      <div class="cable-label">Twisted Pair · 100 MHz</div>
+      <div class="cable-name">Cat5e — Category 5 Enhanced</div>
+      <div class="cable-specs">
+        <div class="spec-item"><div class="spec-label">Max Speed</div><div class="spec-val">1 Gbps</div></div>
+        <div class="spec-item"><div class="spec-label">Max Distance</div><div class="spec-val">100 m (328 ft)</div></div>
+        <div class="spec-item"><div class="spec-label">Bandwidth</div><div class="spec-val">100 MHz</div></div>
+      </div>
+      <div class="cable-desc">The minimum standard for new installations. Supports Gigabit Ethernet (1000BASE-T) up to 100 metres. Cat5e improved on Cat5 by reducing crosstalk, enabling gigabit speeds. Still found in most existing office and home wiring. <strong>Connector: RJ-45</strong> (8P8C).</div>
+    </div>
+
+    <div class="cable-card">
+      <div class="cable-label">Twisted Pair · 250 MHz</div>
+      <div class="cable-name">Cat6 — Category 6</div>
+      <div class="cable-specs">
+        <div class="spec-item"><div class="spec-label">Max Speed</div><div class="spec-val">10 Gbps (55 m) / 1 Gbps (100 m)</div></div>
+        <div class="spec-item"><div class="spec-label">Max Distance</div><div class="spec-val">100 m at 1G / 55 m at 10G</div></div>
+        <div class="spec-item"><div class="spec-label">Bandwidth</div><div class="spec-val">250 MHz</div></div>
+      </div>
+      <div class="cable-desc">Supports 10 Gigabit Ethernet but only up to <strong>55 metres</strong> — a critical exam trap. At 100 metres it falls back to 1 Gbps like Cat5e. Cat6 uses a tighter twist and often a plastic spline separator between pairs to reduce crosstalk. <strong>Connector: RJ-45</strong>. Slightly thicker than Cat5e.</div>
+    </div>
+
+    <div class="cable-card">
+      <div class="cable-label">Twisted Pair · 500 MHz</div>
+      <div class="cable-name">Cat6a — Category 6 Augmented</div>
+      <div class="cable-specs">
+        <div class="spec-item"><div class="spec-label">Max Speed</div><div class="spec-val">10 Gbps</div></div>
+        <div class="spec-item"><div class="spec-label">Max Distance</div><div class="spec-val">100 m (328 ft)</div></div>
+        <div class="spec-item"><div class="spec-label">Bandwidth</div><div class="spec-val">500 MHz</div></div>
+      </div>
+      <div class="cable-desc">The "a" stands for augmented — Cat6a supports <strong>10 Gbps for the full 100 metres</strong>, solving Cat6's distance limitation. Much thicker and heavier than Cat6 due to additional shielding. Current best practice for new structured cabling installations. <strong>Connector: RJ-45</strong>. Requires larger conduit.</div>
+    </div>
+
+    <div class="cable-card">
+      <div class="cable-label">Twisted Pair · 600–2000 MHz</div>
+      <div class="cable-name">Cat7 / Cat8</div>
+      <div class="cable-specs">
+        <div class="spec-item"><div class="spec-label">Cat7 Speed</div><div class="spec-val">10 Gbps / 100 m</div></div>
+        <div class="spec-item"><div class="spec-label">Cat8 Speed</div><div class="spec-val">25–40 Gbps / 30 m</div></div>
+        <div class="spec-item"><div class="spec-label">Use Case</div><div class="spec-val">Data centre</div></div>
+      </div>
+      <div class="cable-desc">Cat7 is fully shielded (S/FTP) and uses GG45 or TERA connectors rather than standard RJ-45 — <strong>not commonly deployed</strong>, limited adoption. Cat8 supports 25–40 Gbps but only up to 30 metres — designed for <strong>data centre top-of-rack switch connections</strong>. Both appear occasionally on the A+ exam but are not heavily tested compared to Cat5e/Cat6/Cat6a.</div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ The Cat6 distance trap</div>
+      <p>The most common cable exam question: <strong>"A technician needs to run a cable 80 metres to support 10 Gbps. Which category is required?"</strong> The answer is <strong>Cat6a</strong> — not Cat6. Cat6 only supports 10 Gbps up to 55 metres. At 80 metres, Cat6 falls back to 1 Gbps. Cat6a supports 10 Gbps for the full 100-metre standard run.</p>
+      <p>Memory trick: <strong>Cat6 = 10G at 55m. Cat6a = 10G at 100m.</strong> The "a" buys you the extra distance.</p>
+    </div>
+
+    <h2>UTP vs STP — Shielding</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Type</th><th>Full Name</th><th>Construction</th><th>Use Case</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">UTP</td><td>Unshielded Twisted Pair</td><td>No metallic shielding around pairs or cable — relies on twisting alone for noise rejection</td><td>Standard office and home LAN — cheaper, easier to terminate, most common</td></tr>
+          <tr><td class="td-term">STP</td><td>Shielded Twisted Pair</td><td>Metallic foil or braid shield around individual pairs or the entire cable</td><td>Industrial environments, areas with high EMI (near motors, fluorescent lights, elevator shafts), Cat7</td></tr>
+          <tr><td class="td-term">F/UTP</td><td>Foil shielded, unshielded pairs</td><td>Foil shield around all pairs together, individual pairs unshielded</td><td>Common STP variant — Cat6a shielded versions often use this construction</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Fiber Optic Cable</h2>
+    <p>Fiber optic cables transmit data as pulses of light through glass or plastic strands — immune to EMI, capable of much higher speeds and longer distances than copper. Two major types, differentiated by the diameter of the glass core:</p>
+
+    <div class="cable-card fiber">
+      <div class="cable-label">Fiber Optic · Long Distance</div>
+      <div class="cable-name">Single-Mode Fiber (SMF)</div>
+      <div class="cable-specs">
+        <div class="spec-item"><div class="spec-label">Core Diameter</div><div class="spec-val">8–10 µm</div></div>
+        <div class="spec-item"><div class="spec-label">Distance</div><div class="spec-val">Up to 100+ km</div></div>
+        <div class="spec-item"><div class="spec-label">Light Source</div><div class="spec-val">Laser</div></div>
+      </div>
+      <div class="cable-desc">Single-mode has a very small core — only one mode (path) of light travels through it, eliminating modal dispersion. Uses a <strong>laser light source</strong>. Supports extremely long distances (tens to hundreds of kilometres) and very high bandwidth. Used for <strong>WANs, ISP backbone, long campus runs</strong>. More expensive transceivers than multimode. <strong>Cable jacket colour: yellow.</strong></div>
+    </div>
+
+    <div class="cable-card fiber">
+      <div class="cable-label">Fiber Optic · Short-Medium Distance</div>
+      <div class="cable-name">Multimode Fiber (MMF)</div>
+      <div class="cable-specs">
+        <div class="spec-item"><div class="spec-label">Core Diameter</div><div class="spec-val">50 or 62.5 µm</div></div>
+        <div class="spec-item"><div class="spec-label">Distance</div><div class="spec-val">Up to ~550 m (OM4)</div></div>
+        <div class="spec-item"><div class="spec-label">Light Source</div><div class="spec-val">LED or VCSEL</div></div>
+      </div>
+      <div class="cable-desc">Multimode has a larger core — multiple modes (paths) of light travel simultaneously. Uses an <strong>LED or VCSEL (Vertical Cavity Surface Emitting Laser)</strong> light source. Cheaper transceivers than single-mode. Shorter maximum distance due to modal dispersion. Used for <strong>data centres, campus backbone, building-to-building runs under 550m</strong>. <strong>Cable jacket colour: orange (OM1/OM2) or aqua (OM3/OM4).</strong></div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Property</th><th>Single-Mode</th><th>Multimode</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Core size</td><td>8–10 µm (tiny)</td><td>50 or 62.5 µm (larger)</td></tr>
+          <tr><td class="td-term">Light source</td><td>Laser</td><td>LED or VCSEL</td></tr>
+          <tr><td class="td-term">Distance</td><td>Up to 100+ km</td><td>Up to ~550 m (OM4)</td></tr>
+          <tr><td class="td-term">Cost</td><td>Higher (laser transceivers)</td><td>Lower (LED transceivers)</td></tr>
+          <tr><td class="td-term">Cable colour</td><td>Yellow</td><td>Orange or aqua</td></tr>
+          <tr><td class="td-term">Use case</td><td>WAN, ISP backbone, long campus</td><td>Data centre, campus backbone, building-to-building</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Fiber Connectors</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Connector</th><th>Type</th><th>Exam Note</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">LC (Lucent Connector)</td><td>Small form factor, push-pull latch — most common in modern data centres and SFP transceivers</td><td>Most common fiber connector on the A+ exam — small, used in SFP/SFP+ ports on switches and NICs</td></tr>
+          <tr><td class="td-term">SC (Subscriber Connector)</td><td>Square, push-pull snap-in connector — larger than LC, older standard</td><td>"Square connector" — used in older fiber infrastructure, still common in campus and WAN applications</td></tr>
+          <tr><td class="td-term">ST (Straight Tip)</td><td>Round bayonet-style connector, twist-lock — older standard</td><td>"Pointy/round tip with a twist" — found in legacy multimode installations, less common now</td></tr>
+          <tr><td class="td-term">MT-RJ</td><td>Duplex connector — carries both transmit and receive in a single small connector body</td><td>Less common — appears occasionally on A+ as a legacy connector type</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Coaxial Cable</h2>
+
+    <div class="cable-card coax">
+      <div class="cable-label">Coaxial · Legacy &amp; Cable Internet</div>
+      <div class="cable-name">Coaxial Cable (RG-6 / RG-59)</div>
+      <div class="cable-specs">
+        <div class="spec-item"><div class="spec-label">RG-6</div><div class="spec-val">Cable TV/internet, satellite</div></div>
+        <div class="spec-item"><div class="spec-label">RG-59</div><div class="spec-val">CCTV, legacy cable TV</div></div>
+        <div class="spec-item"><div class="spec-label">Connector</div><div class="spec-val">F-type (screw-on)</div></div>
+      </div>
+      <div class="cable-desc">Coaxial cable has a central conductor surrounded by insulation, a metallic shield, and an outer jacket. The shield provides excellent noise rejection. <strong>RG-6</strong> is the current standard for cable TV, cable internet (DOCSIS modems), and satellite — uses an <strong>F-type connector</strong> (the screw-on connector on the back of your cable box). <strong>RG-59</strong> is older and thinner — used for CCTV cameras and legacy cable TV. Coax also uses <strong>BNC connectors</strong> in older thin Ethernet (10BASE2) and security camera setups.</div>
+    </div>
+
+    <h2>Plenum vs Riser vs PVC — Fire Ratings</h2>
+    <p>Cable jacket ratings determine where a cable can legally be installed based on fire safety. This is heavily tested on the A+ exam:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Rating</th><th>Where It's Used</th><th>Fire Properties</th><th>Cost</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Plenum</td><td>Plenum spaces — above drop ceilings and below raised floors where HVAC air circulates. Required by fire code in these spaces.</td><td>Low smoke, low toxicity when burned. Air-handling spaces can spread smoke throughout a building — plenum cable won't poison occupants.</td><td>Most expensive</td></tr>
+          <tr><td class="td-term">Riser</td><td>Vertical runs between floors — inside conduit in walls or dedicated riser shafts</td><td>Flame-retardant — won't carry flame between floors, but produces more smoke/toxic fumes than plenum</td><td>Mid-range</td></tr>
+          <tr><td class="td-term">PVC</td><td>General purpose — inside walls (not plenum, not riser), short patch cables, desktop connections</td><td>No special fire rating — burns and produces toxic smoke. Not suitable for plenum or riser spaces.</td><td>Cheapest</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Fire rating substitution rule</div>
+      <p>You can always substitute a <strong>higher-rated cable in a lower-rated space</strong> but never the reverse. <strong>Plenum can go anywhere.</strong> Riser can replace PVC in riser spaces. PVC cannot be used in plenum or riser spaces.</p>
+      <p>The A+ exam scenario: "A technician needs to run cable above a drop ceiling in an office building. Which cable jacket is required?" → <strong>Plenum</strong> — the space above drop ceilings is always a plenum space.</p>
+    </div>
+
+    <h2>Copper Connectors</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Connector</th><th>Used With</th><th>Exam Note</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">RJ-45</td><td>Ethernet (Cat5e, Cat6, Cat6a) — 8 pins, 8 conductors (8P8C)</td><td>The standard Ethernet connector — all twisted pair LAN connections use RJ-45</td></tr>
+          <tr><td class="td-term">RJ-11</td><td>Telephone lines — 6 pins, 2–4 conductors (6P2C or 6P4C). Smaller than RJ-45</td><td>Phone jack — looks like a smaller RJ-45. DSL modems connect to the wall with RJ-11.</td></tr>
+          <tr><td class="td-term">F-type</td><td>Coaxial cable (RG-6, RG-59) — screw-on threaded connector</td><td>Cable TV and cable internet — the connector on the back of a cable modem or TV</td></tr>
+          <tr><td class="td-term">BNC</td><td>Coaxial cable — bayonet twist-lock connector</td><td>Legacy thin Ethernet (10BASE2), CCTV cameras, oscilloscopes</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "A company needs to run cable 80 metres to support 10 Gbps Ethernet. Which cable category is required?" → <strong>Cat6a — Cat6 only supports 10 Gbps up to 55 metres. Cat6a supports 10 Gbps for the full 100-metre standard run.</strong></div>
+      <div class="scenario-item">💬 "A technician needs to run network cable above a drop ceiling. Which jacket rating is required by fire code?" → <strong>Plenum — drop ceilings are plenum spaces where HVAC air circulates. Plenum cable produces low smoke and low toxicity when burned.</strong></div>
+      <div class="scenario-item">💬 "Which fiber type uses a laser light source and supports distances over 10 km?" → <strong>Single-mode fiber (SMF) — 8–10 µm core, laser light, distances up to 100+ km. Yellow jacket.</strong></div>
+      <div class="scenario-item">💬 "A data centre needs to connect two switches 300 metres apart. Which cable type is most appropriate?" → <strong>Multimode fiber — supports distances up to 550 m (OM4), cheaper than single-mode for medium distances, appropriate for intra-campus and data centre runs.</strong></div>
+      <div class="scenario-item">💬 "Which connector is used on the back of a cable modem to connect to the coaxial wall outlet?" → <strong>F-type connector — the screw-on connector used with RG-6 coaxial cable for cable TV and cable internet.</strong></div>
+      <div class="scenario-item">💬 "A technician is replacing a phone cable. The existing cable uses a smaller connector than RJ-45. What connector type is this?" → <strong>RJ-11 — the standard telephone connector, smaller than RJ-45, typically 6P2C or 6P4C.</strong></div>
+      <div class="scenario-item">💬 "What is the maximum distance for Cat5e running at 1 Gbps?" → <strong>100 metres (328 feet) — the standard maximum run length for all twisted pair Ethernet regardless of category.</strong></div>
+      <div class="scenario-item">💬 "A building has existing Cat6 cabling. A new requirement calls for 10 Gbps to all offices. Runs average 70 metres. What must be done?" → <strong>Replace with Cat6a — Cat6 cannot support 10 Gbps at 70 metres (limit is 55 m). Cat6a supports 10 Gbps at the full 100-metre run length.</strong></div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for A+ Core 1?</h3>
+        <p>See the best study guides and practice exams for the 220-1101 exam.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn btn-teal">See A+ Study Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="networking-roadmap.html" class="related-link">Networking Roadmap</a>
+      <a href="osi-model.html" class="related-link">OSI Model Explained</a>
+      <a href="wireless-networking.html" class="related-link">Wireless Networking</a>
+      <a href="router-vs-switch.html" class="related-link">Router vs Switch</a>
+      <a href="storage-types.html" class="related-link">Storage Types — HDD, SSD, NVMe</a>
+      <a href="home-lab-setup-guide.html" class="related-link">Build Your Home Lab</a>
+      <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">CompTIA A+</div>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="storage-types.html">Storage Types</a>
+      <a href="troubleshooting-methodology.html">Troubleshooting</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Study</div>
+      <a href="best-a-plus.html">Best A+ Resources</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="best-study-resources.html">All Study Resources</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+</body>
+</html>
