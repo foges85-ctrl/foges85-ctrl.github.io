@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/dns-record-types.html">
+<title>DNS Record Types Explained — A, AAAA, MX, CNAME, PTR, NS, TXT, CAA | CompTIA Network+</title>
+<meta name="description" content="Complete DNS record types guide for CompTIA Network+ and Security+ — A, AAAA, MX, CNAME, PTR, NS, SOA, TXT, CAA, SRV records explained with exam scenarios and real-world use cases.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.15) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(0,194,168,.07) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);transition:color .15s;}.breadcrumb a:hover{color:var(--teal);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,42px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.article-wrap{max-width:860px;margin:0 auto;padding:52px 28px 80px;animation:fadeUp .5s ease both;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:48px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.article-body code{font-family:'DM Mono',monospace;font-size:13px;background:var(--light);padding:2px 7px;border-radius:5px;color:var(--blue);}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.18) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* RECORD CARDS */
+.record-cards{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.record-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--card-shadow);}
+.record-header{display:flex;align-items:center;gap:14px;padding:14px 20px;background:linear-gradient(90deg,rgba(26,108,255,.05) 0%,transparent 100%);border-bottom:1px solid var(--border);}
+.record-type{font-family:'DM Mono',monospace;font-size:18px;font-weight:700;color:var(--blue);min-width:60px;}
+.record-name{font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:var(--navy);}
+.record-tag{margin-left:auto;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:3px 9px;border-radius:100px;background:rgba(26,108,255,.1);color:#1e40af;border:1px solid rgba(26,108,255,.2);white-space:nowrap;}
+.record-tag.security{background:rgba(124,58,237,.1);color:#5b21b6;border-color:rgba(124,58,237,.2);}
+.record-tag.email{background:rgba(0,194,168,.1);color:#0a7a6e;border-color:rgba(0,194,168,.2);}
+.record-body{padding:16px 20px;}
+.record-desc{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:12px;}
+.record-desc strong{color:var(--navy);}
+.record-example{font-family:'DM Mono',monospace;font-size:12px;background:var(--navy);color:#93c5fd;padding:10px 14px;border-radius:8px;margin-bottom:10px;overflow-x:auto;white-space:pre;}
+.record-exam{font-size:13px;color:var(--muted);line-height:1.6;padding-top:8px;border-top:1px solid var(--border);}
+.record-exam strong{color:var(--navy);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:420px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#eff6ff;}
+.td-term{font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;}
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:18px 22px;margin-bottom:40px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#b08000;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:8px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+.callout{background:rgba(26,108,255,.04);border:1px solid rgba(26,108,255,.2);border-left:4px solid var(--blue);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+.scenario-list{display:flex;flex-direction:column;gap:10px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 18px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(26,108,255,.2) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-blue{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:600;background:var(--blue);color:var(--white);box-shadow:0 6px 20px rgba(26,108,255,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(26,108,255,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.3);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.divider{border:none;border-top:1px solid var(--border);margin:0 0 40px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="dns.html">DNS Explained</a>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="best-network-plus.html" class="nav-cta">N+ Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="dns.html">DNS</a><span>›</span>
+      <span>DNS Record Types</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Network+ · Security+ · 2026</div>
+    <h1>DNS Record Types <span>Explained</span></h1>
+    <p class="page-hero-sub">A, AAAA, MX, CNAME, PTR, NS, SOA, TXT, CAA, and SRV records — what each one does, real zone file examples, DNS security records (SPF, DKIM, DMARC), and every DNS record type tested on CompTIA Network+ and Security+.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ What are DNS Records?</div>
+      <div class="quick-answer-text">
+        A DNS record is an entry in a DNS zone file that maps a name to a value — most commonly a domain name to an IP address, but also defining which server handles email, pointing subdomains to other names, and publishing security policy information. Different record <strong>types</strong> serve different purposes. The exam tests whether you know <strong>which record type solves which problem</strong> — not just that A records exist, but that an A record is the answer when "a host needs to resolve a name to an IPv4 address."
+      </div>
+    </div>
+
+    <h2>Core DNS Record Types</h2>
+
+    <div class="record-cards">
+
+      <div class="record-card">
+        <div class="record-header">
+          <div class="record-type">A</div>
+          <div class="record-name">Address Record — IPv4</div>
+          <div class="record-tag">Most Common</div>
+        </div>
+        <div class="record-body">
+          <div class="record-desc">Maps a <strong>hostname to an IPv4 address</strong>. The most fundamental DNS record — every website and server you reach by name relies on an A record. A single hostname can have multiple A records (for load balancing or redundancy).</div>
+          <div class="record-example">www.example.com.    IN  A    93.184.216.34
+mail.example.com.   IN  A    93.184.216.35</div>
+          <div class="record-exam"><strong>Exam use case:</strong> "A user can ping 93.184.216.34 but not www.example.com — what record is missing or misconfigured?" → A record. Any time a name fails to resolve to an IPv4 address, the A record is the first suspect.</div>
+        </div>
+      </div>
+
+      <div class="record-card">
+        <div class="record-header">
+          <div class="record-type">AAAA</div>
+          <div class="record-name">Address Record — IPv6</div>
+          <div class="record-tag">IPv6</div>
+        </div>
+        <div class="record-body">
+          <div class="record-desc">Maps a <strong>hostname to an IPv6 address</strong>. Called "quad-A" — the four As reference the fact that IPv6 addresses are four times the length of IPv4. Functionally identical to the A record but for 128-bit IPv6 addresses. Modern dual-stack deployments have both A and AAAA records for the same hostname.</div>
+          <div class="record-example">www.example.com.    IN  AAAA  2606:2800:220:1:248:1893:25c8:1946</div>
+          <div class="record-exam"><strong>Exam use case:</strong> "Which DNS record type resolves a hostname to an IPv6 address?" → AAAA. Easy points if you remember: A = IPv4, AAAA = IPv6.</div>
+        </div>
+      </div>
+
+      <div class="record-card">
+        <div class="record-header">
+          <div class="record-type">MX</div>
+          <div class="record-name">Mail Exchanger Record</div>
+          <div class="record-tag email">Email Routing</div>
+        </div>
+        <div class="record-body">
+          <div class="record-desc">Specifies the <strong>mail server responsible for accepting email for a domain</strong>. MX records include a priority value — lower number means higher priority. When email is sent to user@example.com, the sending server queries DNS for MX records to find where to deliver it. MX records point to hostnames (not IPs directly) — the hostname must have its own A record.</div>
+          <div class="record-example">example.com.    IN  MX  10  mail1.example.com.
+example.com.    IN  MX  20  mail2.example.com.  ; backup</div>
+          <div class="record-exam"><strong>Exam use case:</strong> "Email to the domain is not being delivered. Which DNS record type should be checked?" → MX. Also: "Which server receives email for a domain?" → the server pointed to by the MX record with the lowest priority number.</div>
+        </div>
+      </div>
+
+      <div class="record-card">
+        <div class="record-header">
+          <div class="record-type">CNAME</div>
+          <div class="record-name">Canonical Name — Alias</div>
+          <div class="record-tag">Alias</div>
+        </div>
+        <div class="record-body">
+          <div class="record-desc">Creates an <strong>alias from one hostname to another</strong> (the canonical name). Instead of pointing directly to an IP, a CNAME points to another hostname which then resolves to an IP. Commonly used to point multiple names (www, ftp, mail) to a single canonical hostname so you only update one A record when the IP changes. <strong>A CNAME cannot coexist with other records for the same name</strong> — and cannot be used for the zone apex (naked domain like example.com).</div>
+          <div class="record-example">www.example.com.    IN  CNAME  example.com.
+ftp.example.com.    IN  CNAME  example.com.</div>
+          <div class="record-exam"><strong>Exam use case:</strong> "An admin wants www.example.com and ftp.example.com to resolve to the same server without managing two A records. Which record type?" → CNAME. Key trap: CNAME points to a hostname, not an IP — the canonical name must have an A record.</div>
+        </div>
+      </div>
+
+      <div class="record-card">
+        <div class="record-header">
+          <div class="record-type">PTR</div>
+          <div class="record-name">Pointer Record — Reverse DNS</div>
+          <div class="record-tag">Reverse Lookup</div>
+        </div>
+        <div class="record-body">
+          <div class="record-desc">The <strong>reverse of an A record</strong> — maps an IP address back to a hostname. PTR records live in special reverse lookup zones (in-addr.arpa for IPv4). Used for reverse DNS lookups — tools like <code>nslookup</code> and <code>dig</code> use PTR records when you query an IP to find its name. Email servers check PTR records to verify sending mail servers are legitimate.</div>
+          <div class="record-example">; Reverse zone for 93.184.216.0/24
+34.216.184.93.in-addr.arpa.  IN  PTR  www.example.com.</div>
+          <div class="record-exam"><strong>Exam use case:</strong> "Which DNS record type is used in a reverse lookup zone?" → PTR. "A technician runs nslookup with an IP address and gets a hostname — which record type was queried?" → PTR.</div>
+        </div>
+      </div>
+
+      <div class="record-card">
+        <div class="record-header">
+          <div class="record-type">NS</div>
+          <div class="record-name">Name Server Record</div>
+          <div class="record-tag">Zone Authority</div>
+        </div>
+        <div class="record-body">
+          <div class="record-desc">Identifies the <strong>authoritative name servers for a DNS zone</strong>. NS records tell the DNS system which servers hold the official records for a domain. Every domain registered on the internet has NS records pointing to at least two authoritative name servers for redundancy. NS records are set at the domain registrar and propagated to the root DNS servers.</div>
+          <div class="record-example">example.com.    IN  NS  ns1.exampledns.com.
+example.com.    IN  NS  ns2.exampledns.com.</div>
+          <div class="record-exam"><strong>Exam use case:</strong> "Which DNS record type identifies the authoritative name servers for a domain?" → NS. If DNS for a domain is completely broken (no records resolve), checking NS records at the registrar is the first troubleshooting step.</div>
+        </div>
+      </div>
+
+      <div class="record-card">
+        <div class="record-header">
+          <div class="record-type">SOA</div>
+          <div class="record-name">Start of Authority</div>
+          <div class="record-tag">Zone Metadata</div>
+        </div>
+        <div class="record-body">
+          <div class="record-desc">The <strong>first record in every DNS zone file</strong> — contains administrative information about the zone: the primary name server, the email address of the zone administrator, the zone serial number (incremented every time the zone is updated), and timing values for how long secondary servers cache zone data (refresh, retry, expire, TTL).</div>
+          <div class="record-example">example.com.  IN  SOA  ns1.example.com.  admin.example.com. (
+                          2026010101 ; Serial
+                          3600       ; Refresh
+                          900        ; Retry
+                          604800     ; Expire
+                          300 )      ; Minimum TTL</div>
+          <div class="record-exam"><strong>Exam use case:</strong> "Which DNS record marks the beginning of a zone and contains the zone serial number?" → SOA. The serial number is how secondary DNS servers know when the zone has been updated and needs to be transferred.</div>
+        </div>
+      </div>
+
+      <div class="record-card">
+        <div class="record-header">
+          <div class="record-type">TXT</div>
+          <div class="record-name">Text Record</div>
+          <div class="record-tag email">SPF · DKIM · DMARC</div>
+        </div>
+        <div class="record-body">
+          <div class="record-desc">Stores <strong>arbitrary text data</strong> in DNS — originally for human-readable info but now used almost entirely for machine-readable verification data. The three critical Security+ TXT record uses are <strong>SPF</strong> (Sender Policy Framework — which servers can send email for a domain), <strong>DKIM</strong> (DomainKeys Identified Mail — public key for verifying email signatures), and <strong>DMARC</strong> (Domain-based Message Authentication, Reporting and Conformance — policy for handling SPF/DKIM failures). Also used for domain ownership verification by Google, Microsoft, and other services.</div>
+          <div class="record-example">; SPF record — only mail1 and mail2 can send for example.com
+example.com.  IN  TXT  "v=spf1 ip4:93.184.216.34 ip4:93.184.216.35 -all"
+
+; DMARC policy
+_dmarc.example.com.  IN  TXT  "v=DMARC1; p=reject; rua=mailto:dmarc@example.com"</div>
+          <div class="record-exam"><strong>Exam use case:</strong> "An organisation wants to prevent email spoofing — attackers sending email that appears to come from their domain. Which DNS records should be configured?" → SPF (TXT record), DKIM (TXT record), DMARC (TXT record). All three live in TXT records. SPF = who can send. DKIM = prove the email wasn't tampered with. DMARC = what to do when SPF/DKIM fail.</div>
+        </div>
+      </div>
+
+      <div class="record-card">
+        <div class="record-header">
+          <div class="record-type">CAA</div>
+          <div class="record-name">Certification Authority Authorization</div>
+          <div class="record-tag security">Security</div>
+        </div>
+        <div class="record-body">
+          <div class="record-desc">Specifies <strong>which Certificate Authorities are permitted to issue SSL/TLS certificates for a domain</strong>. If a CAA record is present, CAs that check (required by the CA/Browser Forum) will refuse to issue certificates for the domain unless they are listed. Prevents rogue or compromised CAs from issuing fraudulent certificates for your domain without your permission.</div>
+          <div class="record-example">example.com.  IN  CAA  0 issue "letsencrypt.org"
+example.com.  IN  CAA  0 issue "digicert.com"</div>
+          <div class="record-exam"><strong>Exam use case (Security+):</strong> "Which DNS record restricts which Certificate Authorities can issue certificates for a domain?" → CAA. Directly referenced in the PKI and certificate management Security+ domain. Cross-references with the PKI and digital certificates article.</div>
+        </div>
+      </div>
+
+      <div class="record-card">
+        <div class="record-header">
+          <div class="record-type">SRV</div>
+          <div class="record-name">Service Record</div>
+          <div class="record-tag">Service Discovery</div>
+        </div>
+        <div class="record-body">
+          <div class="record-desc">Specifies the <strong>hostname and port for specific services</strong> — allows clients to discover where a service runs without hardcoding server addresses. Used by VoIP (SIP), Microsoft Active Directory (Kerberos, LDAP), Microsoft Teams, and other services. SRV records include priority, weight (for load balancing), port, and target hostname.</div>
+          <div class="record-example">; AD domain controller — Kerberos service
+_kerberos._tcp.example.com.  IN  SRV  10 100 88  dc1.example.com.
+
+; SIP VoIP service
+_sip._tcp.example.com.       IN  SRV  10 100 5060  voip.example.com.</div>
+          <div class="record-exam"><strong>Exam use case:</strong> "Active Directory clients use which DNS record type to locate domain controllers?" → SRV. AD is entirely dependent on SRV records — if SRV records are missing or corrupt, domain join, authentication, and Group Policy all fail.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ The high-frequency exam distinctions</div>
+      <p><strong>A vs AAAA:</strong> A = IPv4. AAAA = IPv6. That's the entire difference.</p>
+      <p><strong>CNAME vs A:</strong> CNAME points to another hostname (alias). A record points to an IP. CNAME cannot be used at the zone apex (example.com itself — only subdomains like www.example.com).</p>
+      <p><strong>MX priority:</strong> Lower number = higher priority. If MX 10 is unreachable, senders try MX 20. Easy to get backwards on the exam.</p>
+      <p><strong>PTR = reverse DNS</strong> — IP to hostname. Lives in in-addr.arpa zones. Used by email servers to verify sender legitimacy.</p>
+      <p><strong>SPF/DKIM/DMARC all live in TXT records</strong> — the exam tests whether you know the function of each. SPF = which servers can send. DKIM = email signing/verification. DMARC = enforcement policy when SPF/DKIM fail.</p>
+    </div>
+
+    <h2>DNS Security — SPF, DKIM, DMARC in Depth</h2>
+    <p>These three TXT records work together to prevent email spoofing and phishing — a heavily tested Security+ topic:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Record</th><th>What It Does</th><th>How It Works</th><th>Limitation</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">SPF</td><td>Defines which mail servers are authorised to send email for the domain</td><td>Receiving server checks the sending server's IP against the SPF TXT record. If the IP isn't listed, the email fails SPF.</td><td>Breaks with email forwarding — forwarded email changes the sending IP, causing SPF failures</td></tr>
+          <tr><td class="td-term">DKIM</td><td>Allows the sending mail server to cryptographically sign outgoing email</td><td>Sender signs email headers with a private key. Receiver retrieves the public key from a DKIM TXT record and verifies the signature. Proves the email wasn't modified in transit.</td><td>Doesn't prevent the From: address from being spoofed — only proves the signing domain's integrity</td></tr>
+          <tr><td class="td-term">DMARC</td><td>Tells receiving servers what to do when SPF or DKIM checks fail (none / quarantine / reject)</td><td>Queries _dmarc.example.com TXT record for policy. Also enables reporting — organisations receive reports of who is sending email claiming to be from their domain.</td><td>Only as effective as its strictest policy setting. p=none provides reporting but no enforcement.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>DNS Record Quick Reference</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Record</th><th>Maps / Identifies</th><th>Primary Use Case</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">A</td><td>Hostname → IPv4 address</td><td>All forward DNS lookups for IPv4</td></tr>
+          <tr><td class="td-term">AAAA</td><td>Hostname → IPv6 address</td><td>All forward DNS lookups for IPv6</td></tr>
+          <tr><td class="td-term">MX</td><td>Domain → mail server hostname</td><td>Email routing — where to deliver email for a domain</td></tr>
+          <tr><td class="td-term">CNAME</td><td>Alias hostname → canonical hostname</td><td>Subdomains pointing to same server, CDN aliases</td></tr>
+          <tr><td class="td-term">PTR</td><td>IP address → hostname</td><td>Reverse DNS lookups, email server verification</td></tr>
+          <tr><td class="td-term">NS</td><td>Zone → authoritative name servers</td><td>Identifies which DNS servers hold zone records</td></tr>
+          <tr><td class="td-term">SOA</td><td>Zone metadata (serial, TTL, admin)</td><td>Zone synchronisation between primary/secondary DNS</td></tr>
+          <tr><td class="td-term">TXT</td><td>Domain → arbitrary text</td><td>SPF, DKIM, DMARC, domain ownership verification</td></tr>
+          <tr><td class="td-term">CAA</td><td>Domain → authorised CAs</td><td>Restrict which CAs can issue certificates for the domain</td></tr>
+          <tr><td class="td-term">SRV</td><td>Service → hostname + port</td><td>Active Directory, VoIP (SIP), service discovery</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>DNS Attacks Targeting Records</h2>
+
+    <div class="callout">
+      <div class="callout-label">Security+ DNS attack types</div>
+      <p><strong>DNS Spoofing / Cache Poisoning:</strong> Attacker injects malicious A records into a DNS resolver's cache — victims querying that resolver get a fake IP and are redirected to an attacker-controlled server. Defence: DNSSEC (cryptographically signs DNS records).</p>
+      <p><strong>DNS Hijacking:</strong> Attacker modifies legitimate DNS records (by compromising the registrar account or DNS provider) — everyone resolving the domain gets the attacker's IP. Defence: registrar account MFA, registry lock.</p>
+      <p><strong>DNS Zone Transfer Attack:</strong> Unauthorised zone transfer (AXFR) reveals all DNS records for a domain — a complete map of the organisation's infrastructure. Defence: restrict zone transfers to authorised secondary servers only.</p>
+      <p><strong>DNS Tunnelling:</strong> Data exfiltration encoded in DNS queries/responses — bypasses firewalls that allow DNS traffic. Defence: DNS query monitoring, restrict outbound DNS to trusted resolvers.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "Users can access a website by IP but not by hostname. Which DNS record type is most likely missing?" → <strong>A record — the forward lookup mapping the hostname to the IPv4 address is missing or misconfigured.</strong></div>
+      <div class="scenario-item">💬 "An administrator configures DNS so that both www.example.com and shop.example.com resolve to the same server. Rather than creating two A records, they want to manage a single IP. Which record type achieves this?" → <strong>CNAME — create CNAME records for www and shop pointing to the canonical hostname, which has a single A record. Update only the A record when the IP changes.</strong></div>
+      <div class="scenario-item">💬 "Email sent to users at example.com is bouncing. The MX record points to mail.example.com. What else must exist for email delivery to work?" → <strong>An A record for mail.example.com — MX records point to hostnames, not IPs. The mail server hostname must have its own A record resolving to an IP.</strong></div>
+      <div class="scenario-item">💬 "A security engineer wants to prevent attackers from obtaining fraudulent SSL certificates for the company's domain. Which DNS record should be added?" → <strong>CAA record — lists the authorised Certificate Authorities for the domain. CAs that comply with the CA/Browser Forum rules will not issue certificates to unlisted requestors.</strong></div>
+      <div class="scenario-item">💬 "Which three DNS records work together to prevent email spoofing and should be configured for every domain sending email?" → <strong>SPF (TXT) — authorised sending servers. DKIM (TXT) — cryptographic email signing. DMARC (TXT) — enforcement policy when SPF/DKIM fail.</strong></div>
+      <div class="scenario-item">💬 "A technician queries an IP address using nslookup and receives the associated hostname. Which DNS record type was queried?" → <strong>PTR record — pointer records in reverse lookup zones map IP addresses back to hostnames.</strong></div>
+      <div class="scenario-item">💬 "Active Directory clients cannot locate the domain controller after a DNS change. Which record type is most likely affected?" → <strong>SRV records — Active Directory relies on SRV records to locate domain controllers for Kerberos (port 88), LDAP (port 389), and other AD services.</strong></div>
+      <div class="scenario-item">💬 "What is the purpose of the serial number in the SOA record?" → <strong>Secondary DNS servers compare their cached serial number with the primary's SOA serial number to determine whether the zone has been updated and a zone transfer is needed.</strong></div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Preparing for Network+?</h3>
+        <p>See the best study guides and practice exams for the N10-009 exam.</p>
+      </div>
+      <a href="best-network-plus.html" class="btn-blue">See Network+ Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="dns.html" class="related-link">DNS Explained</a>
+      <a href="pki-and-certificates.html" class="related-link">PKI and Digital Certificates</a>
+      <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="ports.html" class="related-link">Port Numbers Reference</a>
+      <a href="social-engineering-attacks.html" class="related-link">Social Engineering Attacks</a>
+      <a href="active-directory-basics.html" class="related-link">Active Directory Basics</a>
+      <a href="how-to-pass-comptia-network-plus.html" class="related-link">How to Pass Network+</a>
+      <a href="security-plus-cheat-sheet.html" class="related-link">Security+ Cheat Sheet</a>
+      <a href="best-network-plus.html" class="related-link">Best Network+ Study Resources</a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Network+</div>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="dns.html">DNS Explained</a>
+      <a href="ports.html">Port Numbers</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Study</div>
+      <a href="best-network-plus.html">Best N+ Resources</a>
+      <a href="how-to-pass-comptia-network-plus.html">How to Pass N+</a>
+      <a href="best-study-resources.html">All Study Resources</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+</body>
+</html>

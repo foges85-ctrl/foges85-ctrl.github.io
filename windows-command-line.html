@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/windows-command-line.html">
+<title>Windows Command Line for IT Support — ipconfig, netstat, sfc, chkdsk, net user | CompTIA A+</title>
+<meta name="description" content="Windows command line reference for CompTIA A+ Core 2 — ipconfig, netstat, ping, tracert, nslookup, sfc, chkdsk, tasklist, net user, gpupdate — every command tested on the 220-1102 exam with syntax and use cases.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(0,194,168,.14) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(26,108,255,.08) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(0,194,168,.12);border:1px solid rgba(0,194,168,.3);color:#5eead4;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,42px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:var(--teal);}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;animation:fadeUp .5s ease both;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:48px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body h3{font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;color:var(--navy);margin:28px 0 10px;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(0,194,168,.15) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* COMMAND CARDS */
+.cmd-card{background:var(--white);border:1px solid var(--border);border-radius:14px;margin-bottom:20px;box-shadow:var(--card-shadow);overflow:hidden;}
+.cmd-header{display:flex;align-items:center;gap:12px;padding:14px 20px;background:var(--navy);flex-wrap:wrap;}
+.cmd-name{font-family:'DM Mono',monospace;font-size:17px;font-weight:700;color:var(--teal);}
+.cmd-title{font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;color:rgba(255,255,255,.8);}
+.cmd-tag{margin-left:auto;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:3px 9px;border-radius:100px;white-space:nowrap;}
+.tag-net{background:rgba(0,194,168,.2);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.tag-sys{background:rgba(26,108,255,.2);color:#93c5fd;border:1px solid rgba(26,108,255,.3);}
+.tag-acct{background:rgba(124,58,237,.2);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.tag-disk{background:rgba(245,158,11,.2);color:#fcd34d;border:1px solid rgba(245,158,11,.3);}
+.cmd-body{padding:18px 20px;}
+.cmd-desc{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:14px;}
+.cmd-desc strong{color:var(--navy);}
+.cmd-syntax-block{background:var(--navy);border-radius:8px;padding:12px 16px;margin-bottom:14px;overflow-x:auto;}
+.cmd-syntax-row{display:flex;align-items:baseline;gap:12px;margin-bottom:6px;flex-wrap:wrap;}
+.cmd-syntax-row:last-child{margin-bottom:0;}
+.cmd-syntax{font-family:'DM Mono',monospace;font-size:12.5px;color:var(--teal);white-space:nowrap;}
+.cmd-comment{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.4);}
+.cmd-exam{font-size:13px;background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:3px solid #f0c000;border-radius:8px;padding:10px 14px;color:#3a2800;line-height:1.6;}
+.cmd-exam strong{color:#1a1000;}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:420px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#f0fdf4;}
+.td-cmd{font-family:'DM Mono',monospace;font-weight:700;color:var(--teal);font-size:13px;background:var(--navy);padding:2px 8px;border-radius:5px;white-space:nowrap;}
+.callout{background:rgba(0,194,168,.04);border:1px solid rgba(0,194,168,.2);border-left:4px solid var(--teal);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#0a7a6e;margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+.scenario-list{display:flex;flex-direction:column;gap:10px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 18px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(0,194,168,.2) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-teal{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:600;background:var(--teal);color:var(--navy);box-shadow:0 6px 20px rgba(0,194,168,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-teal:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,194,168,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(0,194,168,.4);color:var(--teal);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--teal);font-size:13px;}
+.divider{border:none;border-top:1px solid var(--border);margin:0 0 40px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="network-troubleshooting-commands.html">Troubleshooting Commands</a>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="best-a-plus.html" class="nav-cta">A+ Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="networking-roadmap.html">Roadmap</a><span>›</span>
+      <span>Windows Command Line</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · 220-1102 · Core 2 · 2026</div>
+    <h1>Windows Command Line <span>for IT Support</span></h1>
+    <p class="page-hero-sub">ipconfig, netstat, ping, tracert, nslookup, sfc, chkdsk, tasklist, net user, gpupdate, and more — every command tested on CompTIA A+ Core 2 with exact syntax, what each switch does, and the support scenarios they solve.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Why the Command Line Matters</div>
+      <div class="quick-answer-text">
+        The Windows command line is tested heavily on A+ Core 2 — not just "what does ipconfig do" but <strong>which specific switch solves the problem in the scenario</strong>. A user can't connect after moving to a new office (<code>ipconfig /release</code> and <code>/renew</code>). A user's profile is corrupted (<code>sfc /scannow</code>). You need to find what's running on port 443 (<code>netstat -an</code>). Knowing the command is step one — knowing the right switch is what the exam actually tests.
+      </div>
+    </div>
+
+    <h2>Networking Commands</h2>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div class="cmd-name">ipconfig</div>
+        <div class="cmd-title">IP Configuration</div>
+        <div class="cmd-tag tag-net">Networking</div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc">Displays and manages IP configuration for all network adapters. The most-used network troubleshooting command — always run this first. Shows IP address, subnet mask, default gateway, and DNS servers. If you see <strong>169.254.x.x</strong>, DHCP has failed (APIPA).</div>
+        <div class="cmd-syntax-block">
+          <div class="cmd-syntax-row"><span class="cmd-syntax">ipconfig</span><span class="cmd-comment">; show IP config for all adapters</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">ipconfig /all</span><span class="cmd-comment">; full detail — MAC address, DHCP server, DNS servers, lease info</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">ipconfig /release</span><span class="cmd-comment">; release DHCP lease — sends DHCPRELEASE to server</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">ipconfig /renew</span><span class="cmd-comment">; request new DHCP lease — runs full DORA process</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">ipconfig /flushdns</span><span class="cmd-comment">; clear the local DNS resolver cache</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">ipconfig /displaydns</span><span class="cmd-comment">; show cached DNS entries</span></div>
+        </div>
+        <div class="cmd-exam"><strong>Exam scenarios:</strong> "User can't get online after moving to a new network — run <code>/release</code> then <code>/renew</code>." "User reaches wrong website despite URL being correct — run <code>/flushdns</code> to clear stale cached DNS entry." "169.254 address seen — DHCP failed, run <code>/release /renew</code> or check DHCP server."</div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div class="cmd-name">ping</div>
+        <div class="cmd-title">Packet Internet Groper — Connectivity Test</div>
+        <div class="cmd-tag tag-net">Networking</div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc">Tests basic <strong>Layer 3 (IP) connectivity</strong> using ICMP echo requests. A ping response proves the network path to that host works. No response could mean the host is down, ICMP is blocked by a firewall, or the route doesn't exist. Ping the loopback first to confirm TCP/IP is installed.</div>
+        <div class="cmd-syntax-block">
+          <div class="cmd-syntax-row"><span class="cmd-syntax">ping 127.0.0.1</span><span class="cmd-comment">; loopback — tests local TCP/IP stack (should always work)</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">ping 192.168.1.1</span><span class="cmd-comment">; test default gateway reachability</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">ping 8.8.8.8</span><span class="cmd-comment">; test internet connectivity by IP (bypasses DNS)</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">ping google.com</span><span class="cmd-comment">; test DNS resolution + internet connectivity</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">ping -t 8.8.8.8</span><span class="cmd-comment">; continuous ping until Ctrl+C (monitor stability)</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">ping -n 10 8.8.8.8</span><span class="cmd-comment">; send 10 pings (default is 4)</span></div>
+        </div>
+        <div class="cmd-exam"><strong>Exam troubleshooting ladder:</strong> ping 127.0.0.1 (TCP/IP stack OK) → ping own IP (NIC OK) → ping default gateway (local network OK) → ping 8.8.8.8 (internet routing OK) → ping google.com (DNS OK). Failure at each step identifies the layer of the problem.</div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div class="cmd-name">tracert</div>
+        <div class="cmd-title">Trace Route — Path Analysis</div>
+        <div class="cmd-tag tag-net">Networking</div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc">Shows the <strong>hop-by-hop path packets take to a destination</strong> and the round-trip time for each hop. Uses ICMP with incrementing TTL values. Each hop is a router. High latency at a specific hop indicates congestion or routing problems at or near that router. <code>* * *</code> means that router is not responding to ICMP — not necessarily a failure.</div>
+        <div class="cmd-syntax-block">
+          <div class="cmd-syntax-row"><span class="cmd-syntax">tracert 8.8.8.8</span><span class="cmd-comment">; trace path to Google DNS</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">tracert -d 8.8.8.8</span><span class="cmd-comment">; skip reverse DNS lookups (faster output)</span></div>
+        </div>
+        <div class="cmd-exam"><strong>Exam scenarios:</strong> "A user has internet access but a specific website is slow — tracert identifies which hop is adding latency." "tracert fails at hop 3 — the router at that hop is unreachable or blocking ICMP." Linux/macOS equivalent: <code>traceroute</code>.</div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div class="cmd-name">nslookup</div>
+        <div class="cmd-title">Name Server Lookup — DNS Query Tool</div>
+        <div class="cmd-tag tag-net">Networking</div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc">Queries DNS servers to <strong>resolve names to IPs or look up specific DNS records</strong>. Indispensable for diagnosing DNS problems. Can query specific DNS servers (not just the default) and request specific record types (MX, CNAME, TXT etc.).</div>
+        <div class="cmd-syntax-block">
+          <div class="cmd-syntax-row"><span class="cmd-syntax">nslookup google.com</span><span class="cmd-comment">; forward lookup — name to IP</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">nslookup 8.8.8.8</span><span class="cmd-comment">; reverse lookup — IP to name (queries PTR record)</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">nslookup google.com 1.1.1.1</span><span class="cmd-comment">; query specific DNS server (Cloudflare here)</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">nslookup -type=MX gmail.com</span><span class="cmd-comment">; look up MX records for a domain</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">nslookup -type=TXT example.com</span><span class="cmd-comment">; retrieve TXT records (SPF, DMARC etc.)</span></div>
+        </div>
+        <div class="cmd-exam"><strong>Exam scenarios:</strong> "A user can ping IPs but not hostnames — run nslookup to confirm DNS resolution is failing." "Email delivery is failing — run nslookup -type=MX to check MX records." "Check if DNS cache poisoning is occurring — query a trusted external DNS server to compare results."</div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div class="cmd-name">netstat</div>
+        <div class="cmd-title">Network Statistics — Active Connections</div>
+        <div class="cmd-tag tag-net">Networking</div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc">Displays <strong>active network connections, listening ports, and associated processes</strong>. Critical for identifying what's using which port, detecting unexpected outbound connections (potential malware C2 traffic), and confirming services are listening.</div>
+        <div class="cmd-syntax-block">
+          <div class="cmd-syntax-row"><span class="cmd-syntax">netstat -a</span><span class="cmd-comment">; all connections and listening ports</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">netstat -n</span><span class="cmd-comment">; show addresses as numbers (no DNS resolution, faster)</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">netstat -an</span><span class="cmd-comment">; all connections with numeric addresses — most useful</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">netstat -b</span><span class="cmd-comment">; show executable responsible for each connection (requires admin)</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">netstat -ano</span><span class="cmd-comment">; all connections with PID — use with tasklist to map process</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">netstat -e</span><span class="cmd-comment">; Ethernet statistics — bytes sent/received, errors</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">netstat -r</span><span class="cmd-comment">; routing table (same as route print)</span></div>
+        </div>
+        <div class="cmd-exam"><strong>Exam scenarios:</strong> "Identify which process is using port 8080 — run <code>netstat -ano</code> then find the PID in tasklist." "Suspected malware — run <code>netstat -an</code> to look for unexpected ESTABLISHED connections to external IPs."</div>
+      </div>
+    </div>
+
+    <h2>System Maintenance Commands</h2>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div class="cmd-name">sfc</div>
+        <div class="cmd-title">System File Checker</div>
+        <div class="cmd-tag tag-sys">System</div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc">Scans and <strong>repairs corrupted or missing Windows system files</strong>. Compares protected system files against a cached copy stored in the WinSxS folder. Repairs any files that don't match. Must be run as Administrator. On Windows 10/11, run DISM first if sfc reports it cannot fix files.</div>
+        <div class="cmd-syntax-block">
+          <div class="cmd-syntax-row"><span class="cmd-syntax">sfc /scannow</span><span class="cmd-comment">; scan and repair — most common usage, requires admin</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">sfc /verifyonly</span><span class="cmd-comment">; scan only, no repairs</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">DISM /Online /Cleanup-Image /RestoreHealth</span><span class="cmd-comment">; repair component store first if sfc fails</span></div>
+        </div>
+        <div class="cmd-exam"><strong>Exam scenarios:</strong> "A user reports random application crashes and missing DLL errors — run <code>sfc /scannow</code> to repair corrupted system files." "sfc /scannow reports it could not repair some files — run DISM /RestoreHealth first, then re-run sfc."</div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div class="cmd-name">chkdsk</div>
+        <div class="cmd-title">Check Disk — File System and Disk Integrity</div>
+        <div class="cmd-tag tag-disk">Disk</div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc">Scans a disk for <strong>file system errors and bad sectors</strong>. Without switches, chkdsk runs read-only and reports errors but doesn't fix them. With <code>/f</code> it fixes file system errors; with <code>/r</code> it locates bad sectors and attempts to recover data. On the system drive, chkdsk /f schedules the check to run at next boot (cannot check a drive that's in use).</div>
+        <div class="cmd-syntax-block">
+          <div class="cmd-syntax-row"><span class="cmd-syntax">chkdsk C:</span><span class="cmd-comment">; read-only scan of C: drive — reports errors, no fixes</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">chkdsk C: /f</span><span class="cmd-comment">; fix file system errors (schedules on reboot for C:)</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">chkdsk C: /r</span><span class="cmd-comment">; locate bad sectors + fix errors (implies /f, slower)</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">chkdsk D: /f /r</span><span class="cmd-comment">; fix + bad sector scan on data drive D:</span></div>
+        </div>
+        <div class="cmd-exam"><strong>Exam scenarios:</strong> "A user reports files becoming corrupted and Windows showing disk errors — run <code>chkdsk /r</code> to check for bad sectors." "/f vs /r: <code>/f</code> fixes file system logical errors; <code>/r</code> does everything /f does plus physical bad sector scan."</div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div class="cmd-name">tasklist / taskkill</div>
+        <div class="cmd-title">Process Management</div>
+        <div class="cmd-tag tag-sys">System</div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc"><code>tasklist</code> shows all <strong>running processes and their PIDs</strong>. <code>taskkill</code> terminates a process by PID or name. Used together to identify and kill unresponsive or suspicious processes from the command line (Task Manager alternative, useful in scripts or when the GUI is unresponsive).</div>
+        <div class="cmd-syntax-block">
+          <div class="cmd-syntax-row"><span class="cmd-syntax">tasklist</span><span class="cmd-comment">; list all running processes with PID and memory</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">tasklist | find "notepad"</span><span class="cmd-comment">; filter output — find specific process</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">taskkill /PID 1234</span><span class="cmd-comment">; graceful terminate by PID</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">taskkill /IM notepad.exe</span><span class="cmd-comment">; terminate by image name</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">taskkill /PID 1234 /F</span><span class="cmd-comment">; force kill — use when graceful fails</span></div>
+        </div>
+        <div class="cmd-exam"><strong>Exam scenarios:</strong> "From netstat -ano you found PID 4820 has an unexpected external connection — use tasklist to identify the process, then taskkill /PID 4820 /F to terminate it."</div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div class="cmd-name">shutdown</div>
+        <div class="cmd-title">Shutdown / Restart</div>
+        <div class="cmd-tag tag-sys">System</div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc">Shuts down, restarts, or logs off local or remote systems from the command line. Useful for remote administration and scripted maintenance.</div>
+        <div class="cmd-syntax-block">
+          <div class="cmd-syntax-row"><span class="cmd-syntax">shutdown /s /t 0</span><span class="cmd-comment">; shutdown immediately (/t 0 = 0 second delay)</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">shutdown /r /t 0</span><span class="cmd-comment">; restart immediately</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">shutdown /s /m \\PCNAME /t 60</span><span class="cmd-comment">; shutdown remote PC in 60 seconds</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">shutdown /a</span><span class="cmd-comment">; abort a pending shutdown</span></div>
+        </div>
+        <div class="cmd-exam"><strong>Exam note:</strong> <code>/s</code> = shutdown, <code>/r</code> = restart, <code>/t</code> = time delay in seconds, <code>/m</code> = remote machine. Remote shutdown requires admin rights on the target machine.</div>
+      </div>
+    </div>
+
+    <h2>User and Account Management Commands</h2>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div class="cmd-name">net user</div>
+        <div class="cmd-title">Local User Account Management</div>
+        <div class="cmd-tag tag-acct">Accounts</div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc">Creates, modifies, and manages <strong>local user accounts</strong> from the command line. Also displays account details. Requires Administrator privileges for modifications.</div>
+        <div class="cmd-syntax-block">
+          <div class="cmd-syntax-row"><span class="cmd-syntax">net user</span><span class="cmd-comment">; list all local user accounts</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">net user jsmith</span><span class="cmd-comment">; show details for user jsmith (last logon, groups, password info)</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">net user jsmith /add</span><span class="cmd-comment">; create new local account jsmith</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">net user jsmith NewPass1! </span><span class="cmd-comment">; reset password for jsmith</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">net user jsmith /active:no</span><span class="cmd-comment">; disable account</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">net user jsmith /delete</span><span class="cmd-comment">; delete account</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">net localgroup administrators jsmith /add</span><span class="cmd-comment">; add user to local admins group</span></div>
+        </div>
+        <div class="cmd-exam"><strong>Exam scenarios:</strong> "An employee is on leave — disable their account: <code>net user jsmith /active:no</code>." "New temp worker needs a local account — <code>net user tempuser Pass1! /add</code>."</div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div class="cmd-name">gpupdate / gpresult</div>
+        <div class="cmd-title">Group Policy Management</div>
+        <div class="cmd-tag tag-acct">Group Policy</div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc"><code>gpupdate</code> forces an immediate <strong>Group Policy refresh</strong> — instead of waiting for the background refresh interval (90 minutes ± 30 for computers, 90 minutes for users). <code>gpresult</code> shows which policies are actually applied to the current user and computer.</div>
+        <div class="cmd-syntax-block">
+          <div class="cmd-syntax-row"><span class="cmd-syntax">gpupdate</span><span class="cmd-comment">; refresh user and computer policies</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">gpupdate /force</span><span class="cmd-comment">; re-apply all policies even if unchanged</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">gpresult /r</span><span class="cmd-comment">; summary of applied policies for current user/computer</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">gpresult /h gp-report.html</span><span class="cmd-comment">; full HTML report of all applied GPOs</span></div>
+        </div>
+        <div class="cmd-exam"><strong>Exam scenarios:</strong> "A new GPO was deployed but users aren't seeing the change — run <code>gpupdate /force</code> on affected machines." "Verify which GPOs are applying to a user — run <code>gpresult /r</code>."</div>
+      </div>
+    </div>
+
+    <h2>File and Disk Commands</h2>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div class="cmd-name">diskpart</div>
+        <div class="cmd-title">Disk Partition Manager</div>
+        <div class="cmd-tag tag-disk">Disk</div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc">Powerful command-line tool for <strong>managing disks, partitions, and volumes</strong>. Used when the GUI Disk Management tool won't work — particularly for pre-OS environments (Windows PE/recovery). Dangerous — changes are immediate and irreversible.</div>
+        <div class="cmd-syntax-block">
+          <div class="cmd-syntax-row"><span class="cmd-syntax">diskpart</span><span class="cmd-comment">; launch interactive diskpart prompt</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">list disk</span><span class="cmd-comment">; show all physical disks</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">select disk 1</span><span class="cmd-comment">; target disk 1 for operations</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">list partition</span><span class="cmd-comment">; show partitions on selected disk</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">clean</span><span class="cmd-comment">; wipe all partition data from selected disk</span></div>
+        </div>
+        <div class="cmd-exam"><strong>Exam scenarios:</strong> "Preparing a new drive for Windows installation — use diskpart to create and format partitions." "A drive shows as RAW — diskpart can reformat (after data backup)."</div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div class="cmd-name">robocopy / xcopy</div>
+        <div class="cmd-title">File Copy with Advanced Options</div>
+        <div class="cmd-tag tag-sys">Files</div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc"><code>robocopy</code> (Robust File Copy) is the modern standard for <strong>copying files and folder trees</strong> with reliability features — retries on failure, preserves permissions and timestamps, mirrors directories, and can run as a sync job. <code>xcopy</code> is the older alternative, still tested on A+.</div>
+        <div class="cmd-syntax-block">
+          <div class="cmd-syntax-row"><span class="cmd-syntax">robocopy C:\Source D:\Dest /E</span><span class="cmd-comment">; copy all files + subdirectories including empty ones</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">robocopy C:\Source D:\Dest /MIR</span><span class="cmd-comment">; mirror — exact copy, deletes files in dest not in source</span></div>
+          <div class="cmd-syntax-row"><span class="cmd-syntax">xcopy C:\Source D:\Dest /E /H /Y</span><span class="cmd-comment">; copy all files, hidden files, no prompt to overwrite</span></div>
+        </div>
+        <div class="cmd-exam"><strong>Exam note:</strong> robocopy is preferred over xcopy for A+ Core 2 — it's more reliable, handles long paths, and has better error handling. /MIR is used for backup sync jobs.</div>
+      </div>
+    </div>
+
+    <h2>Command Quick Reference</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Command</th><th>Primary Use</th><th>Key Switch</th></tr></thead>
+        <tbody>
+          <tr><td><span class="td-cmd">ipconfig /all</span></td><td>Show full IP config inc. MAC, DHCP server</td><td><code>/release</code> + <code>/renew</code> = fix DHCP. <code>/flushdns</code> = clear DNS cache</td></tr>
+          <tr><td><span class="td-cmd">ping</span></td><td>Test Layer 3 connectivity hop by hop</td><td><code>-t</code> = continuous. <code>-n 10</code> = 10 packets</td></tr>
+          <tr><td><span class="td-cmd">tracert</span></td><td>Show path and latency to destination</td><td><code>-d</code> = skip DNS lookups (faster)</td></tr>
+          <tr><td><span class="td-cmd">nslookup</span></td><td>Query DNS records</td><td><code>-type=MX</code>, <code>-type=TXT</code> for specific records</td></tr>
+          <tr><td><span class="td-cmd">netstat -ano</span></td><td>Show active connections with PID</td><td><code>-b</code> = show process name (admin only)</td></tr>
+          <tr><td><span class="td-cmd">sfc /scannow</span></td><td>Repair corrupted system files</td><td>Run as admin. Run DISM first if it fails.</td></tr>
+          <tr><td><span class="td-cmd">chkdsk /r</span></td><td>Check disk for errors + bad sectors</td><td><code>/f</code> = fix errors only. <code>/r</code> = fix + bad sectors</td></tr>
+          <tr><td><span class="td-cmd">tasklist</span></td><td>List running processes</td><td>Pipe to <code>find "name"</code> to filter</td></tr>
+          <tr><td><span class="td-cmd">taskkill /F</span></td><td>Force-kill process by PID or name</td><td><code>/PID</code> = by ID. <code>/IM</code> = by name</td></tr>
+          <tr><td><span class="td-cmd">net user</span></td><td>Manage local user accounts</td><td><code>/add</code>, <code>/delete</code>, <code>/active:no</code></td></tr>
+          <tr><td><span class="td-cmd">gpupdate /force</span></td><td>Force Group Policy refresh</td><td><code>/force</code> re-applies all policies</td></tr>
+          <tr><td><span class="td-cmd">gpresult /r</span></td><td>Show applied Group Policy objects</td><td><code>/h file.html</code> = full report</td></tr>
+          <tr><td><span class="td-cmd">shutdown /r /t 0</span></td><td>Immediate restart</td><td><code>/s</code> = shutdown. <code>/m \\PC</code> = remote</td></tr>
+          <tr><td><span class="td-cmd">diskpart</span></td><td>Disk and partition management</td><td>Interactive — <code>list disk</code>, <code>select</code>, <code>clean</code></td></tr>
+          <tr><td><span class="td-cmd">robocopy /MIR</span></td><td>Mirror copy / backup sync</td><td><code>/E</code> = include empty subdirs</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Opening the command prompt correctly</div>
+      <p><strong>Standard CMD:</strong> Win+R → <code>cmd</code> → Enter. Limited privileges — cannot run commands that require admin.</p>
+      <p><strong>Elevated CMD (Run as Administrator):</strong> Search "cmd" → right-click → "Run as administrator." Required for sfc, chkdsk /f, net user changes, and most system commands. Many A+ exam scenarios specifically note that admin privileges are needed.</p>
+      <p><strong>PowerShell vs CMD:</strong> PowerShell is the modern shell and can run all CMD commands plus its own cmdlets. The A+ Core 2 exam tests CMD commands specifically — know both exist but focus on CMD syntax for the exam.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "A user moved to a new building and cannot get an IP address. Their adapter shows 169.254.x.x. Which commands should the technician run?" → <strong><code>ipconfig /release</code> followed by <code>ipconfig /renew</code> — releases the failed APIPA address and requests a new DHCP lease on the new network.</strong></div>
+      <div class="scenario-item">💬 "A user can ping 8.8.8.8 but cannot reach google.com by name. Which command diagnoses the DNS problem?" → <strong><code>nslookup google.com</code> — confirms DNS resolution is failing. Also run <code>ipconfig /flushdns</code> to clear any stale cached entries.</strong></div>
+      <div class="scenario-item">💬 "A technician suspects a process is making unexpected connections to an external IP. Which commands identify the process?" → <strong><code>netstat -ano</code> to see the connection and its PID, then <code>tasklist | find "PID"</code> to identify the process name.</strong></div>
+      <div class="scenario-item">💬 "A user reports application crashes and missing DLL errors after a Windows update. Which command should be run first?" → <strong><code>sfc /scannow</code> (as Administrator) — scans and repairs corrupted Windows system files. If it fails, run DISM /RestoreHealth first.</strong></div>
+      <div class="scenario-item">💬 "A drive is showing file system errors after an improper shutdown. Which command with which switches fixes this?" → <strong><code>chkdsk C: /f</code> — /f fixes file system errors. Add <code>/r</code> if you also want to check for bad sectors (slower but more thorough).</strong></div>
+      <div class="scenario-item">💬 "An IT admin deployed a new Group Policy restricting USB drives, but users are still able to use USB drives. What should the admin run on the affected machines?" → <strong><code>gpupdate /force</code> — forces immediate re-application of all Group Policy objects without waiting for the background refresh interval.</strong></div>
+      <div class="scenario-item">💬 "Which command shows the route packets take across the internet and identifies where latency is being introduced?" → <strong><code>tracert</code> — traces the hop-by-hop path and shows round-trip time for each router, identifying where delays occur.</strong></div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for A+ Core 2?</h3>
+        <p>See the best study guides and practice exams for the 220-1102 exam.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn-teal">See A+ Study Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
+      <a href="troubleshooting-methodology.html" class="related-link">Troubleshooting Methodology</a>
+      <a href="dns.html" class="related-link">DNS Explained</a>
+      <a href="dns-record-types.html" class="related-link">DNS Record Types</a>
+      <a href="active-directory-basics.html" class="related-link">Active Directory Basics</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="home-lab-setup-guide.html" class="related-link">Build Your Home Lab</a>
+      <a href="how-to-pass-comptia-aplus.html" class="related-link">How to Pass A+</a>
+      <a href="ports.html" class="related-link">Port Numbers Reference</a>
+      <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">CompTIA A+</div>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="troubleshooting-methodology.html">Troubleshooting</a>
+      <a href="network-troubleshooting-commands.html">Troubleshooting Commands</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Study</div>
+      <a href="best-a-plus.html">Best A+ Resources</a>
+      <a href="how-to-pass-comptia-aplus.html">How to Pass A+</a>
+      <a href="best-study-resources.html">All Study Resources</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+</body>
+</html>
