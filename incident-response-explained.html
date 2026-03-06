@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/incident-response-explained.html">
+<title>Incident Response Explained — 6 Phases, PICERL, IR Plan | CompTIA Security+ SY0-701</title>
+<meta name="description" content="Complete incident response guide for CompTIA Security+ SY0-701 — the 6 phases (PICERL), preparation, detection, containment, eradication, recovery, lessons learned, IoCs, and exam scenarios.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--red:#dc2626;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(124,58,237,.14) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(220,38,38,.07) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.35);color:#c4b5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,42px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#c4b5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:620px;line-height:1.7;}
+.article-wrap{max-width:860px;margin:0 auto;padding:52px 28px 80px;animation:fadeUp .5s ease both;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:48px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body h3{font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;color:var(--navy);margin:28px 0 12px;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(124,58,237,.18) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#c4b5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.step-flow{display:flex;flex-direction:column;gap:0;margin-bottom:40px;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--card-shadow);}
+.step-item{display:flex;align-items:flex-start;gap:18px;padding:20px 24px;background:var(--white);border-bottom:1px solid var(--border);}
+.step-item:last-child{border-bottom:none;}
+.step-item:nth-child(even){background:#fafbfd;}
+.step-num{display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;border-radius:50%;background:var(--purple);color:var(--white);font-family:'DM Mono',monospace;font-size:13px;font-weight:700;flex-shrink:0;margin-top:1px;}
+.step-content{flex:1;}
+.step-header{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+.step-title{font-size:15px;font-weight:800;color:var(--navy);font-family:'Outfit',sans-serif;}
+.step-abbr{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;background:rgba(124,58,237,.1);color:var(--purple);padding:3px 8px;border-radius:100px;border:1px solid rgba(124,58,237,.2);}
+.step-desc{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:8px;}
+.step-key{font-size:13px;color:var(--muted);line-height:1.6;}
+.step-key strong{color:var(--navy);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:400px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#fdf4ff;}
+.td-term{font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;}
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:18px 22px;margin-bottom:40px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#b08000;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:8px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+.callout{background:rgba(124,58,237,.04);border:1px solid rgba(124,58,237,.2);border-left:4px solid var(--purple);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--purple);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+.scenario-list{display:flex;flex-direction:column;gap:10px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 18px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(124,58,237,.2) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:600;transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn:hover{transform:translateY(-2px);}
+.btn-purple{background:var(--purple);color:var(--white);box-shadow:0 6px 20px rgba(124,58,237,.3);}
+.btn-purple:hover{box-shadow:0 10px 28px rgba(124,58,237,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(124,58,237,.3);color:var(--purple);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--purple);font-size:13px;}
+.divider{border:none;border-top:1px solid var(--border);margin:0 0 40px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="network-attacks.html">Network Attacks</a>
+      <a href="security-plus-cheat-sheet.html">Security+ Cheat Sheet</a>
+      <a href="best-security-plus.html" class="nav-cta">Security+ Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="security-plus-cheat-sheet.html">Security+</a><span>›</span>
+      <span>Incident Response</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Security+ · SY0-701 · 2026</div>
+    <h1>Incident Response <span>Explained</span></h1>
+    <p class="page-hero-sub">The 6-phase incident response process (PICERL), what happens at each phase, indicators of compromise, containment strategies, forensic evidence handling, and every IR concept tested on CompTIA Security+ SY0-701.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ What is Incident Response?</div>
+      <div class="quick-answer-text">
+        Incident response (IR) is the <strong>structured process an organisation follows when a security incident occurs</strong> — from the moment a threat is detected through containment, eradication, recovery, and a post-incident review. The goal is to minimise damage, reduce recovery time, and prevent recurrence. CompTIA Security+ tests the <strong>six-phase IR process</strong> extensively — you must know what happens at each phase and in what order.
+      </div>
+    </div>
+
+    <h2>The 6 Phases of Incident Response — PICERL</h2>
+    <p>CompTIA follows the <strong>PICERL</strong> model (also aligned with NIST SP 800-61). Memorise the acronym and what each phase involves — the exam will give you a scenario and ask which phase is being performed.</p>
+
+    <div class="step-flow">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-header">
+            <span class="step-title">Preparation</span>
+            <span class="step-abbr">P</span>
+          </div>
+          <div class="step-desc">Everything done <em>before</em> an incident occurs — building the capability to respond effectively. This is the most important phase because an organisation that hasn't prepared will be reactive and disorganised when an incident hits.</div>
+          <div class="step-key"><strong>Key actions:</strong> Develop and document the IR plan, form the incident response team (IRT), define roles and responsibilities, establish communication procedures, deploy detection tools (SIEM, IDS/IPS), conduct tabletop exercises, create and maintain asset inventory, establish relationships with law enforcement and legal counsel, set up a secure out-of-band communication channel for use during incidents.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-header">
+            <span class="step-title">Identification</span>
+            <span class="step-abbr">I</span>
+          </div>
+          <div class="step-desc">Detecting that an incident has occurred and determining its scope. Not every alert is an incident — this phase distinguishes real incidents from false positives and establishes the nature and extent of the compromise.</div>
+          <div class="step-key"><strong>Key actions:</strong> Monitor logs and SIEM alerts, identify indicators of compromise (IoCs), determine the scope and affected systems, classify the incident by severity, assign incident ID and begin documentation, notify the incident response team and management. <strong>First responder priority: preserve evidence before taking any remediation action.</strong></div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-header">
+            <span class="step-title">Containment</span>
+            <span class="step-abbr">C</span>
+          </div>
+          <div class="step-desc">Stopping the spread of the incident — limiting damage without yet removing the threat. Containment comes before eradication because you must stop the bleeding before you can treat the wound.</div>
+          <div class="step-key"><strong>Short-term containment:</strong> Isolate affected systems (network segmentation, disconnect from network), block malicious IPs/domains at the firewall, disable compromised accounts, preserve memory and disk images for forensics before making changes. <strong>Long-term containment:</strong> Apply temporary patches, rebuild systems in preparation for return to production, implement additional monitoring on remaining systems.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-header">
+            <span class="step-title">Eradication</span>
+            <span class="step-abbr">E</span>
+          </div>
+          <div class="step-desc">Removing the threat completely — malware, attacker persistence mechanisms, compromised accounts, and any backdoors the attacker may have installed. Eradication must be thorough; partial removal leads to re-infection.</div>
+          <div class="step-key"><strong>Key actions:</strong> Remove malware from all affected systems, close the vulnerability that was exploited (patch, configuration fix), delete or rebuild compromised accounts, scan for additional compromised systems, verify all persistence mechanisms (scheduled tasks, startup entries, registry keys, cron jobs) have been removed.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-header">
+            <span class="step-title">Recovery</span>
+            <span class="step-abbr">R</span>
+          </div>
+          <div class="step-desc">Restoring affected systems to normal operation — carefully and with validation. Return systems to production only after confirming they are clean and the vulnerability is patched.</div>
+          <div class="step-key"><strong>Key actions:</strong> Restore systems from clean backups (taken before compromise), apply all patches and security hardening, reset all affected credentials, validate system integrity before reconnecting to the network, monitor closely for signs of re-infection during the post-recovery period, confirm with business owners that systems are functioning correctly.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <div class="step-header">
+            <span class="step-title">Lessons Learned</span>
+            <span class="step-abbr">L</span>
+          </div>
+          <div class="step-desc">A post-incident review conducted after the incident is fully resolved — documenting what happened, what was done well, what failed, and what needs to change. This phase feeds back into Preparation to strengthen future response.</div>
+          <div class="step-key"><strong>Key actions:</strong> Conduct a post-incident review meeting with all stakeholders, document a complete timeline of the incident, identify root cause, document what controls failed and why, update the IR plan based on findings, recommend and implement control improvements, file required regulatory reports if applicable, update threat intelligence with new IoCs.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ PICERL exam tips</div>
+      <p><strong>Memorise the order:</strong> Preparation → Identification → Containment → Eradication → Recovery → Lessons Learned. The exam gives scenarios like "After removing malware, the team verifies the system is clean and reconnects it to the network" — that's <strong>Recovery</strong>, not Eradication.</p>
+      <p><strong>Containment before Eradication</strong> is the most common wrong-order trap. You contain first (stop the spread), then eradicate (remove the threat). Jumping to eradication while the attacker still has active access can alert them and cause them to destroy evidence or cause more damage.</p>
+      <p><strong>Evidence preservation is always priority in Identification.</strong> If the exam asks "What should the first responder do first?" the answer is almost always preserve evidence (memory dump, disk image) before taking action that might alter it.</p>
+    </div>
+
+    <h2>Indicators of Compromise (IoCs)</h2>
+    <p>IoCs are evidence that a system or network has been compromised. Recognising IoCs is tested in the Identification phase:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>IoC Type</th><th>Examples</th><th>What It Suggests</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Network IoCs</td><td>Unusual outbound traffic, connections to known malicious IPs, DNS queries to suspicious domains, traffic on unusual ports, large data transfers at off-hours</td><td>Command-and-control (C2) communication, data exfiltration, beaconing malware</td></tr>
+          <tr><td class="td-term">Host IoCs</td><td>Unexpected processes running, new scheduled tasks or startup entries, modified system files, disabled security tools, new user accounts created, privilege escalation events</td><td>Malware persistence, attacker maintaining foothold, lateral movement</td></tr>
+          <tr><td class="td-term">Account IoCs</td><td>Login at unusual times or from unusual locations, multiple failed logins followed by success, accounts accessing resources they never have before, new admin accounts</td><td>Credential compromise, brute force attack, insider threat</td></tr>
+          <tr><td class="td-term">Log IoCs</td><td>Gaps in log data (logs cleared or deleted), mass log events, Event ID 4624 (successful login) from unusual source, Event ID 4720 (account created)</td><td>Attacker covering tracks, automated attack tools running</td></tr>
+          <tr><td class="td-term">File IoCs</td><td>Unknown executables, files with double extensions (.pdf.exe), files in unusual locations (%temp%, AppData), recently modified system binaries, files with no creation date</td><td>Malware dropped on system, trojanised applications</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Containment Strategies</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Strategy</th><th>How It Works</th><th>When to Use</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Network Isolation</td><td>Remove the affected system from the network (unplug cable, disable network adapter, quarantine VLAN) — stops lateral movement and C2 communication</td><td>Active malware infection, suspected compromise — isolate immediately while preserving the system for forensics</td></tr>
+          <tr><td class="td-term">Segmentation</td><td>Use VLANs and firewall rules to limit the blast radius — contain the incident to the affected segment without taking entire network offline</td><td>When full isolation isn't possible due to business continuity requirements</td></tr>
+          <tr><td class="td-term">Account Disable / Reset</td><td>Disable or change credentials on compromised accounts to cut off attacker access without alerting them that they've been detected (if using a separate account)</td><td>Credential compromise, insider threat, account takeover</td></tr>
+          <tr><td class="td-term">Blackholing / Sinkholing</td><td>Redirect malicious domain DNS queries to a controlled server (sinkhole) instead of the attacker's C2 — cuts C2 communication while allowing you to monitor what was infected</td><td>Malware using domain generation algorithms (DGA) for C2</td></tr>
+          <tr><td class="td-term">System Shutdown</td><td>Power off the affected system — most aggressive option, destroys volatile memory (RAM) containing evidence</td><td>Last resort — only if the system is actively causing harm and forensics are not a priority</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Digital Forensics in Incident Response</h2>
+    <p>When legal action is possible or required, evidence must be collected following forensic principles to be admissible:</p>
+
+    <div class="callout">
+      <div class="callout-label">Order of Volatility — Collect Most Volatile First</div>
+      <p>Evidence should be collected from most volatile to least volatile — data that disappears first must be captured first:</p>
+      <p><strong>1. CPU registers and cache</strong> → <strong>2. RAM (memory dump)</strong> → <strong>3. Swap/page file</strong> → <strong>4. Running processes and network connections</strong> → <strong>5. Disk contents</strong> → <strong>6. Remote logs and monitoring data</strong> → <strong>7. Physical media (backups, removable drives)</strong></p>
+      <p>RAM is lost the moment the system is powered off — always capture a memory image before shutting down a compromised system if forensics matter.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Forensic Concept</th><th>What It Means</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Chain of Custody</td><td>A documented record of who collected evidence, who handled it, where it was stored, and who had access — ensures evidence integrity and admissibility in legal proceedings</td></tr>
+          <tr><td class="td-term">Legal Hold</td><td>A directive to preserve all potentially relevant data — stops normal deletion schedules, backup rotation, and log purging for the scope of the investigation</td></tr>
+          <tr><td class="td-term">Forensic Copy</td><td>A bit-for-bit copy of a disk or memory image — preserves all data including deleted files. Work from the copy, never the original evidence.</td></tr>
+          <tr><td class="td-term">Write Blocker</td><td>Hardware or software that prevents writes to the evidence drive during imaging — ensures the imaging process doesn't modify the evidence</td></tr>
+          <tr><td class="td-term">Hash Verification</td><td>Hash the evidence (SHA-256) before and after imaging — proves the copy is identical to the original and has not been tampered with</td></tr>
+          <tr><td class="td-term">Timeline Analysis</td><td>Reconstructing the sequence of events using log timestamps, file system metadata, and event records to establish when and how the compromise occurred</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>IR Communication and Escalation</h2>
+    <p>Who gets notified during an incident, and when, is a heavily tested Security+ topic. The wrong communication at the wrong time can tip off an insider threat, compromise an investigation, or create legal liability:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Stakeholder</th><th>When to Notify</th><th>Exam Note</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Senior Management</td><td>Early — as soon as the severity is understood. Management makes business decisions about containment trade-offs (taking systems offline, cost of downtime).</td><td>Management decides to shut down operations; IR team advises on technical options</td></tr>
+          <tr><td class="td-term">Legal Counsel</td><td>Early — before any public disclosure or communication with law enforcement. Legal determines reporting obligations.</td><td>Regulatory requirements (GDPR, HIPAA, PCI-DSS) mandate breach notification timelines</td></tr>
+          <tr><td class="td-term">HR</td><td>If insider threat is suspected — HR involvement required for disciplinary actions and ensuring proper process is followed</td><td>HR and legal must be involved before any insider is confronted or terminated</td></tr>
+          <tr><td class="td-term">Law Enforcement</td><td>After consulting legal — not all incidents require law enforcement; oversharing can complicate investigations</td><td>Law enforcement involvement may restrict what the organisation can do with its own systems</td></tr>
+          <tr><td class="td-term">Affected Users / Public</td><td>After containment, per legal requirements — premature disclosure can cause panic or tip off attackers</td><td>Notification timing and content is a legal requirement in many jurisdictions for data breaches</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "A security analyst notices unusual outbound traffic to an unknown external IP at 3am. They confirm the traffic is malicious. What phase of IR are they in?" → <strong>Identification — detecting and confirming that an incident has occurred.</strong></div>
+      <div class="scenario-item">💬 "After confirming ransomware on a workstation, the team disconnects it from the network. What phase is this?" → <strong>Containment — isolating the affected system to stop the spread before eradicating the malware.</strong></div>
+      <div class="scenario-item">💬 "The IR team removes malware from all affected systems and patches the exploited vulnerability. What phase is this?" → <strong>Eradication — removing the threat and closing the vulnerability that allowed it in.</strong></div>
+      <div class="scenario-item">💬 "Systems are restored from clean backups and monitored closely after being reconnected to the network. What phase is this?" → <strong>Recovery — returning systems to normal operation after the threat has been eradicated.</strong></div>
+      <div class="scenario-item">💬 "A first responder arrives at a compromised workstation. The system is still running. What should they do first?" → <strong>Capture a memory (RAM) dump — RAM is the most volatile evidence and is lost the moment the system powers off. Preserve volatile evidence before taking any other action.</strong></div>
+      <div class="scenario-item">💬 "The IR team is updating the IR plan based on what went wrong during a recent ransomware incident. What phase is this?" → <strong>Lessons Learned (Post-Incident Review) — the final phase that feeds improvements back into Preparation.</strong></div>
+      <div class="scenario-item">💬 "Why should eradication not happen before containment?" → <strong>Containment stops the spread first. Starting eradication while the attacker has active access can alert them, cause them to destroy evidence, escalate the attack, or move laterally to systems not yet identified.</strong></div>
+      <div class="scenario-item">💬 "A forensic investigator creates a bit-for-bit copy of a compromised hard drive and hashes both the original and copy. What is the hash used to prove?" → <strong>Integrity — the hash proves the forensic copy is identical to the original and has not been altered, establishing its validity as evidence (chain of custody).</strong></div>
+      <div class="scenario-item">💬 "Which PICERL phase involves training staff, developing IR plans, and running tabletop exercises?" → <strong>Preparation — all proactive activities that occur before an incident happen in this phase.</strong></div>
+      <div class="scenario-item">💬 "An organisation suffers a data breach affecting customer PII. Who should be notified first — the public, law enforcement, or legal counsel?" → <strong>Legal counsel — they determine regulatory notification requirements, timing, and guide all other communications to avoid legal liability.</strong></div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for Security+?</h3>
+        <p>See the study guides and practice exams that cover the full SY0-701 exam.</p>
+      </div>
+      <a href="best-security-plus.html" class="btn btn-purple">See Security+ Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="social-engineering-attacks.html" class="related-link">Social Engineering Attacks</a>
+      <a href="network-attacks.html" class="related-link">Network Attacks Explained</a>
+      <a href="malware-types.html" class="related-link">Malware Types Explained</a>
+      <a href="security-plus-cheat-sheet.html" class="related-link">Security+ Cheat Sheet</a>
+      <a href="identity-and-access-management.html" class="related-link">IAM Explained</a>
+      <a href="pki-and-certificates.html" class="related-link">PKI and Digital Certificates</a>
+      <a href="troubleshooting-methodology.html" class="related-link">Troubleshooting Methodology</a>
+      <a href="how-to-pass-comptia-security-plus.html" class="related-link">How to Pass Security+</a>
+      <a href="active-directory-basics.html" class="related-link">Active Directory Basics</a>
+      <a href="best-security-plus.html" class="related-link">Best Security+ Study Resources</a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Security+</div>
+      <a href="security-plus-cheat-sheet.html">Security+ Cheat Sheet</a>
+      <a href="network-attacks.html">Network Attacks</a>
+      <a href="social-engineering-attacks.html">Social Engineering</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Study</div>
+      <a href="best-security-plus.html">Best Security+ Resources</a>
+      <a href="how-to-pass-comptia-security-plus.html">How to Pass Security+</a>
+      <a href="best-study-resources.html">All Study Resources</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+</body>
+</html>

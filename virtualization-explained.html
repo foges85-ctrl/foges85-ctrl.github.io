@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/virtualization-explained.html">
+<title>Virtualization Explained — Type 1 vs Type 2 Hypervisors, VMs, Containers | CompTIA A+</title>
+<meta name="description" content="Virtualization guide for CompTIA A+ Core 2 — Type 1 vs Type 2 hypervisors, VMs, containers vs VMs, cloud models (IaaS/PaaS/SaaS), snapshots, and every virtualization concept tested on the exam.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(0,194,168,.14) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(26,108,255,.08) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(0,194,168,.12);border:1px solid rgba(0,194,168,.3);color:#5eead4;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,42px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:var(--teal);}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:620px;line-height:1.7;}
+.article-wrap{max-width:860px;margin:0 auto;padding:52px 28px 80px;animation:fadeUp .5s ease both;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:48px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body h3{font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;color:var(--navy);margin:28px 0 12px;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(0,194,168,.15) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:420px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#f0fdf4;}
+.td-term{font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+@media(max-width:580px){.compare-grid{grid-template-columns:1fr;}}
+.compare-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px;box-shadow:var(--card-shadow);}
+.compare-card.highlight{border-color:rgba(0,194,168,.3);border-top:4px solid var(--teal);}
+.compare-card.highlight2{border-color:rgba(26,108,255,.3);border-top:4px solid var(--blue);}
+.compare-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.compare-title{font-family:'Outfit',sans-serif;font-size:17px;font-weight:800;color:var(--navy);margin-bottom:12px;}
+.compare-body{font-size:13.5px;color:var(--text);line-height:1.65;}
+.compare-body strong{color:var(--navy);}
+.compare-examples{margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:12px;font-family:'DM Mono',monospace;color:var(--muted);}
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:18px 22px;margin-bottom:40px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#b08000;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:8px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+.callout{background:rgba(0,194,168,.04);border:1px solid rgba(0,194,168,.2);border-left:4px solid var(--teal);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#0a7a6e;margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.scenario-list{display:flex;flex-direction:column;gap:10px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 18px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(0,194,168,.2) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:600;transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn:hover{transform:translateY(-2px);}
+.btn-teal{background:var(--teal);color:var(--navy);box-shadow:0 6px 20px rgba(0,194,168,.3);}
+.btn-teal:hover{box-shadow:0 10px 28px rgba(0,194,168,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(0,194,168,.4);color:var(--teal);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--teal);font-size:13px;}
+.divider{border:none;border-top:1px solid var(--border);margin:0 0 40px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-email{color:rgba(255,255,255,.4);}.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="home-lab-setup-guide.html">Home Lab</a>
+      <a href="best-a-plus.html" class="nav-cta">A+ Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="networking-roadmap.html">Roadmap</a><span>›</span>
+      <span>Virtualization Explained</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · Network+ · Security+ · 2026</div>
+    <h1>Virtualization <span>Explained</span></h1>
+    <p class="page-hero-sub">Type 1 vs Type 2 hypervisors, virtual machines, containers vs VMs, cloud service models (IaaS/PaaS/SaaS), snapshots, and every virtualization concept tested on CompTIA A+ Core 2, Network+, and Security+.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ What is Virtualization?</div>
+      <div class="quick-answer-text">
+        Virtualization is the process of running <strong>multiple virtual computers on a single physical machine</strong>. A piece of software called a <strong>hypervisor</strong> divides the physical hardware — CPU, RAM, storage, network — into isolated virtual machines (VMs), each behaving as if it were a dedicated physical computer. One server running 10 VMs replaces 10 physical servers, dramatically reducing hardware costs, power consumption, and data centre space.
+      </div>
+    </div>
+
+    <h2>Type 1 vs Type 2 Hypervisors</h2>
+    <p>The most tested virtualization concept on the A+ Core 2 exam is the distinction between Type 1 and Type 2 hypervisors. They differ in where they run relative to the host operating system:</p>
+
+    <div class="compare-grid">
+      <div class="compare-card highlight">
+        <div class="compare-label">Bare-Metal Hypervisor</div>
+        <div class="compare-title">Type 1 Hypervisor</div>
+        <div class="compare-body">
+          Runs <strong>directly on the physical hardware</strong> — there is no host OS underneath it. The hypervisor IS the operating system. VMs run on top of the hypervisor, which directly manages the hardware resources.<br><br>
+          <strong>Performance:</strong> Best — no host OS overhead.<br>
+          <strong>Use case:</strong> Enterprise data centres, production servers, cloud infrastructure.<br>
+          <strong>Security:</strong> Smaller attack surface — no underlying OS to compromise.
+        </div>
+        <div class="compare-examples">Examples: VMware ESXi · Microsoft Hyper-V (server) · Citrix XenServer · KVM (Linux kernel)</div>
+      </div>
+      <div class="compare-card highlight2">
+        <div class="compare-label">Hosted Hypervisor</div>
+        <div class="compare-title">Type 2 Hypervisor</div>
+        <div class="compare-body">
+          Runs <strong>on top of a host operating system</strong> as an application — the host OS runs first, then the hypervisor runs within it as software. VMs run inside the hypervisor application.<br><br>
+          <strong>Performance:</strong> Lower — two OS layers add overhead.<br>
+          <strong>Use case:</strong> Developer workstations, home labs, testing environments.<br>
+          <strong>Security:</strong> Larger attack surface — host OS vulnerabilities affect all VMs.
+        </div>
+        <div class="compare-examples">Examples: VMware Workstation · Oracle VirtualBox · Parallels Desktop · QEMU</div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Type 1 vs Type 2 — The one-line test</div>
+      <p><strong>Type 1 = no host OS underneath</strong> (bare metal). <strong>Type 2 = runs on top of a host OS</strong> (hosted). The exam gives you a scenario — "A company wants maximum performance for production VMs running 24/7 in a data centre." → Type 1. "A developer wants to test software in different OS environments on their laptop." → Type 2.</p>
+      <p>Remember: <strong>VMware ESXi = Type 1. VMware Workstation = Type 2.</strong> Both are VMware products but fundamentally different architectures.</p>
+    </div>
+
+    <h2>Key Virtualization Concepts</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Concept</th><th>What It Is</th><th>Exam Relevance</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Guest OS</td><td>The operating system running inside a VM — it believes it's running on real hardware but is actually running in a virtualised environment</td><td>Each VM runs its own guest OS — a single physical host can run Windows Server, Ubuntu, and Windows 10 simultaneously</td></tr>
+          <tr><td class="td-term">Host OS</td><td>The operating system the Type 2 hypervisor runs on — the base OS of the physical machine (e.g. Windows 10 running VirtualBox)</td><td>Type 1 has no host OS. Type 2 requires one.</td></tr>
+          <tr><td class="td-term">Snapshot</td><td>A point-in-time copy of a VM's state — disk contents, memory, and configuration captured at that moment. Can be restored to roll the VM back to that exact state.</td><td>A+ Core 2 — used for safe testing (take snapshot, test, revert if needed) and backup. Not a substitute for full backups.</td></tr>
+          <tr><td class="td-term">VM Template</td><td>A pre-configured VM image used as a master copy to rapidly deploy identical VMs — avoids reinstalling OS and software for every new VM</td><td>Enterprise provisioning — deploy 50 identical VMs in minutes from one template</td></tr>
+          <tr><td class="td-term">vCPU</td><td>Virtual CPU — a portion of a physical CPU's capacity allocated to a VM. Multiple VMs can share physical CPU cores.</td><td>Over-provisioning vCPUs causes performance issues — common troubleshooting scenario</td></tr>
+          <tr><td class="td-term">VM Sprawl</td><td>The uncontrolled proliferation of VMs — too many VMs created and never decommissioned, consuming resources and creating security risks</td><td>Security+ — abandoned VMs may not receive patches, creating vulnerabilities. Requires VM lifecycle management.</td></tr>
+          <tr><td class="td-term">Live Migration</td><td>Moving a running VM from one physical host to another with no downtime — the VM keeps running during the move (VMware vMotion, Hyper-V Live Migration)</td><td>Network+ / Security+ — enables maintenance without downtime; requires shared storage</td></tr>
+          <tr><td class="td-term">Nested Virtualisation</td><td>Running a hypervisor inside a VM — a VM running its own VMs. Supported by some hypervisors; used in labs and cloud training environments.</td><td>Lab environments — your home lab may use nested virtualisation</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>VMs vs Containers</h2>
+    <p>Containers are a lighter-weight alternative to full VMs. Both isolate workloads, but they do it differently:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Virtual Machine</th><th>Container</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">What's isolated</td><td>Full OS + application — each VM has its own kernel, OS libraries, and processes</td><td>Application + dependencies only — shares the host OS kernel</td></tr>
+          <tr><td class="td-term">Size</td><td>Gigabytes — full OS image per VM</td><td>Megabytes — just the application and its libraries</td></tr>
+          <tr><td class="td-term">Startup time</td><td>Minutes — full OS boot sequence</td><td>Seconds or milliseconds — no OS boot needed</td></tr>
+          <tr><td class="td-term">Isolation</td><td>Strong — each VM has its own kernel, hardware-enforced separation</td><td>Weaker — all containers share the host kernel; a kernel vulnerability affects all</td></tr>
+          <tr><td class="td-term">Portability</td><td>Heavy — VM images are large and tied to hypervisor format</td><td>High — containers run identically on any system with the container runtime</td></tr>
+          <tr><td class="td-term">Technology</td><td>VMware, Hyper-V, VirtualBox</td><td>Docker, Podman, Kubernetes (orchestration)</td></tr>
+          <tr><td class="td-term">Use case</td><td>Running different OS types, strong isolation requirements, legacy apps</td><td>Microservices, DevOps pipelines, cloud-native applications</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Cloud Service Models — IaaS, PaaS, SaaS</h2>
+    <p>Cloud computing is virtualisation at scale — providers like AWS, Azure, and Google Cloud run massive hypervisor farms and rent virtual resources. The A+ Core 2 and Network+ exams test the three cloud service models:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Model</th><th>What the Provider Manages</th><th>What You Manage</th><th>Examples</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">IaaS<br><small>Infrastructure as a Service</small></td><td>Physical hardware, networking, virtualisation layer, storage</td><td>OS, middleware, applications, data — you install and manage everything above the hypervisor</td><td>AWS EC2, Azure VMs, Google Compute Engine</td></tr>
+          <tr><td class="td-term">PaaS<br><small>Platform as a Service</small></td><td>Everything in IaaS plus the OS, runtime, middleware, and development tools</td><td>Your application code and data only — the platform handles everything beneath</td><td>AWS Elastic Beanstalk, Azure App Service, Google App Engine, Heroku</td></tr>
+          <tr><td class="td-term">SaaS<br><small>Software as a Service</small></td><td>Everything — hardware through application</td><td>Your data and user configuration only — you just use the software</td><td>Microsoft 365, Google Workspace, Salesforce, Dropbox</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Cloud Deployment Models</div>
+      <p><strong>Public cloud:</strong> Resources shared among multiple customers on provider infrastructure (AWS, Azure, GCP). Most cost-effective, least control.</p>
+      <p><strong>Private cloud:</strong> Cloud infrastructure dedicated to a single organisation — either on-premises or hosted. Full control, higher cost.</p>
+      <p><strong>Hybrid cloud:</strong> Combination of public and private — workloads move between them based on need. Common enterprise model.</p>
+      <p><strong>Community cloud:</strong> Shared infrastructure for organisations with similar requirements (government agencies, healthcare providers). Less common on the exam but present.</p>
+    </div>
+
+    <h2>Virtualisation Security Concerns</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Concern</th><th>Description</th><th>Defence</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">VM Escape</td><td>An attacker exploits a hypervisor vulnerability to break out of a VM and access the host system or other VMs — the most severe virtualisation attack</td><td>Keep hypervisors patched, use Type 1 for isolation, monitor for anomalous inter-VM communication</td></tr>
+          <tr><td class="td-term">VM Sprawl</td><td>Uncontrolled creation of VMs leads to unpatched, forgotten systems that become attack vectors</td><td>VM lifecycle management policies, automated patch compliance, regular audits of running VMs</td></tr>
+          <tr><td class="td-term">Snapshot Risks</td><td>Old snapshots may contain unpatched OS states — restoring a snapshot rolls back security patches</td><td>Limit snapshot retention, delete snapshots after testing, never restore old snapshots to production</td></tr>
+          <tr><td class="td-term">Shared Resources</td><td>VMs on the same host share physical CPU and memory — side-channel attacks (like Spectre/Meltdown) can potentially leak data between VMs</td><td>CPU microcode patches, hypervisor isolation features, separate sensitive workloads to dedicated hosts</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "A company wants to run multiple server workloads on dedicated hardware with maximum performance and no host OS. Which hypervisor type should they use?" → <strong>Type 1 (bare-metal) hypervisor — runs directly on hardware. Examples: VMware ESXi, Microsoft Hyper-V Server.</strong></div>
+      <div class="scenario-item">💬 "A developer wants to test an application on Windows, Ubuntu, and macOS on their Windows laptop. Which virtualisation solution is most appropriate?" → <strong>Type 2 hypervisor (hosted) — VMware Workstation or VirtualBox runs as an application on the host Windows OS.</strong></div>
+      <div class="scenario-item">💬 "A technician needs to test a potentially malicious script safely. What virtualisation feature allows them to restore the VM to a clean state after testing?" → <strong>Snapshot — take a snapshot before testing, run the script, then revert the snapshot to restore the clean state.</strong></div>
+      <div class="scenario-item">💬 "Which cloud model requires the customer to manage the operating system and applications but not the physical hardware?" → <strong>IaaS (Infrastructure as a Service) — the provider manages hardware and virtualisation; the customer manages OS upward.</strong></div>
+      <div class="scenario-item">💬 "A company uses Microsoft 365 for email and collaboration. Which cloud model is this?" → <strong>SaaS (Software as a Service) — the provider manages everything; users just use the application.</strong></div>
+      <div class="scenario-item">💬 "An attacker exploits a hypervisor vulnerability to access the host system from inside a VM. What is this attack called?" → <strong>VM escape — breaking the virtualisation boundary to access the hypervisor or other VMs on the same host.</strong></div>
+      <div class="scenario-item">💬 "What is the main security risk of VM sprawl?" → <strong>Forgotten, unpatched VMs become attack vectors. VMs that are no longer monitored may have unpatched vulnerabilities and outdated security configurations.</strong></div>
+      <div class="scenario-item">💬 "How do containers differ from VMs in terms of OS isolation?" → <strong>Containers share the host OS kernel — they only isolate the application and its dependencies. VMs each run a full guest OS with their own kernel, providing stronger isolation.</strong></div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for A+ Core 2?</h3>
+        <p>See the best study guides and practice exams for the 220-1102 exam.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn btn-teal">See A+ Study Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="home-lab-setup-guide.html" class="related-link">Build Your Home Lab</a>
+      <a href="active-directory-basics.html" class="related-link">Active Directory Basics</a>
+      <a href="storage-types.html" class="related-link">Storage Types — HDD, SSD, NVMe, RAID</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="troubleshooting-methodology.html" class="related-link">Troubleshooting Methodology</a>
+      <a href="network-attacks.html" class="related-link">Network Attacks</a>
+      <a href="how-to-pass-comptia-aplus.html" class="related-link">How to Pass A+</a>
+      <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">CompTIA A+</div>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="storage-types.html">Storage Types</a>
+      <a href="troubleshooting-methodology.html">Troubleshooting</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Study</div>
+      <a href="best-a-plus.html">Best A+ Resources</a>
+      <a href="home-lab-setup-guide.html">Home Lab Guide</a>
+      <a href="best-study-resources.html">All Study Resources</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span class="footer-email"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+</body>
+</html>
