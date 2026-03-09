@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/ip-address-classes.html">
+<title>IP Address Classes Explained — Class A, B, C, D, E + Private Ranges</title>
+<meta name="description" content="Complete guide to IPv4 address classes — Class A, B, C, D, E ranges, public vs private IP addresses, loopback, APIPA, and what's actually tested on CompTIA A+ and Network+.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(0,194,168,.12) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(26,108,255,.08) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(0,194,168,.12);border:1px solid rgba(0,194,168,.3);color:#5eead4;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#5eead4;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+/* Quick answer */
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(0,194,168,.15) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#5eead4;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* Class cards */
+.class-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+@media(max-width:600px){.class-grid{grid-template-columns:1fr;}}
+.class-card{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--card-shadow);}
+.class-card-header{padding:14px 18px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.class-label{font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:var(--white);}
+.class-use{font-size:12px;font-weight:600;color:rgba(255,255,255,.65);font-family:'DM Mono',monospace;}
+.class-card-body{padding:14px 18px 16px;}
+.class-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--light);font-size:13px;}
+.class-row:last-child{border-bottom:none;padding-bottom:0;}
+.class-row-key{color:var(--muted);font-weight:500;}
+.class-row-val{font-family:'DM Mono',monospace;font-weight:700;color:var(--navy);font-size:12px;text-align:right;}
+.ca .class-card-header{background:linear-gradient(135deg,#1a6cff,#0a4fd4);}
+.cb .class-card-header{background:linear-gradient(135deg,#7c3aed,#5b21b6);}
+.cc .class-card-header{background:linear-gradient(135deg,#00c2a8,#009e8a);}
+.cd .class-card-header{background:linear-gradient(135deg,#f59e0b,#d97706);}
+.ce .class-card-header{background:linear-gradient(135deg,#6b7280,#4b5563);}
+/* Special ranges */
+.special-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:40px;}
+@media(max-width:600px){.special-grid{grid-template-columns:1fr;}}
+.special-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px;box-shadow:var(--card-shadow);}
+.special-card-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.special-card-range{font-family:'DM Mono',monospace;font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px;line-height:1.4;}
+.special-card-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+/* Tables */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:400px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#f0fdf9;}
+.td-term{font-weight:700;color:var(--navy);}
+.td-mono{font-family:'DM Mono',monospace;font-size:13px;}
+/* Exam tip */
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+/* Scenarios */
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+/* Callout */
+.callout{background:rgba(0,194,168,.04);border:1px solid rgba(0,194,168,.2);border-left:4px solid var(--teal);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+/* CTA */
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(0,194,168,.2) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-teal{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:600;background:var(--teal);color:var(--navy);box-shadow:0 6px 20px rgba(0,194,168,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;font-weight:700;}
+.btn-teal:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,194,168,.4);}
+/* Related */
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(0,194,168,.4);color:var(--teal);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--teal);font-size:13px;}
+/* Footer */
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="subnetting.html">Subnetting</a>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="best-a-plus.html" class="nav-cta">A+ Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="networking.html">Networking</a><span>›</span>
+      <span>IP Address Classes</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · Network+ · Core Concept</div>
+    <h1>IP Address <span>Classes Explained</span></h1>
+    <p class="page-hero-sub">Class A, B, C, D, and E — what the ranges are, how many hosts each supports, public vs private addresses, loopback, APIPA, and exactly what CompTIA tests on IP addressing.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Quick Answer</div>
+      <div class="quick-answer-text">
+        IPv4 addresses are divided into five classes (A–E) based on the first octet. <strong>Classes A, B, and C are used for unicast hosts.</strong> Class D is multicast. Class E is reserved for research. For the exam, the critical numbers are: <strong>Class A starts with 1–126, Class B with 128–191, Class C with 192–223.</strong> Private ranges (RFC 1918) are 10.x.x.x, 172.16–31.x.x, and 192.168.x.x. Loopback is 127.0.0.1. APIPA is 169.254.x.x.
+      </div>
+    </div>
+
+    <h2>The Five IP Address Classes</h2>
+
+    <div class="class-grid">
+      <div class="class-card ca">
+        <div class="class-card-header">
+          <span class="class-label">Class A</span>
+          <span class="class-use">Large networks</span>
+        </div>
+        <div class="class-card-body">
+          <div class="class-row"><span class="class-row-key">First octet range</span><span class="class-row-val">1 – 126</span></div>
+          <div class="class-row"><span class="class-row-key">Default subnet mask</span><span class="class-row-val">/8 — 255.0.0.0</span></div>
+          <div class="class-row"><span class="class-row-key">Network bits</span><span class="class-row-val">8</span></div>
+          <div class="class-row"><span class="class-row-key">Host bits</span><span class="class-row-val">24</span></div>
+          <div class="class-row"><span class="class-row-key">Hosts per network</span><span class="class-row-val">16,777,214</span></div>
+          <div class="class-row"><span class="class-row-key">Number of networks</span><span class="class-row-val">126</span></div>
+          <div class="class-row"><span class="class-row-key">First bit pattern</span><span class="class-row-val">0xxxxxxx</span></div>
+        </div>
+      </div>
+
+      <div class="class-card cb">
+        <div class="class-card-header">
+          <span class="class-label">Class B</span>
+          <span class="class-use">Medium networks</span>
+        </div>
+        <div class="class-card-body">
+          <div class="class-row"><span class="class-row-key">First octet range</span><span class="class-row-val">128 – 191</span></div>
+          <div class="class-row"><span class="class-row-key">Default subnet mask</span><span class="class-row-val">/16 — 255.255.0.0</span></div>
+          <div class="class-row"><span class="class-row-key">Network bits</span><span class="class-row-val">16</span></div>
+          <div class="class-row"><span class="class-row-key">Host bits</span><span class="class-row-val">16</span></div>
+          <div class="class-row"><span class="class-row-key">Hosts per network</span><span class="class-row-val">65,534</span></div>
+          <div class="class-row"><span class="class-row-key">Number of networks</span><span class="class-row-val">16,384</span></div>
+          <div class="class-row"><span class="class-row-key">First bit pattern</span><span class="class-row-val">10xxxxxx</span></div>
+        </div>
+      </div>
+
+      <div class="class-card cc">
+        <div class="class-card-header">
+          <span class="class-label">Class C</span>
+          <span class="class-use">Small networks</span>
+        </div>
+        <div class="class-card-body">
+          <div class="class-row"><span class="class-row-key">First octet range</span><span class="class-row-val">192 – 223</span></div>
+          <div class="class-row"><span class="class-row-key">Default subnet mask</span><span class="class-row-val">/24 — 255.255.255.0</span></div>
+          <div class="class-row"><span class="class-row-key">Network bits</span><span class="class-row-val">24</span></div>
+          <div class="class-row"><span class="class-row-key">Host bits</span><span class="class-row-val">8</span></div>
+          <div class="class-row"><span class="class-row-key">Hosts per network</span><span class="class-row-val">254</span></div>
+          <div class="class-row"><span class="class-row-key">Number of networks</span><span class="class-row-val">2,097,152</span></div>
+          <div class="class-row"><span class="class-row-key">First bit pattern</span><span class="class-row-val">110xxxxx</span></div>
+        </div>
+      </div>
+
+      <div class="class-card cd">
+        <div class="class-card-header">
+          <span class="class-label">Class D</span>
+          <span class="class-use">Multicast</span>
+        </div>
+        <div class="class-card-body">
+          <div class="class-row"><span class="class-row-key">First octet range</span><span class="class-row-val">224 – 239</span></div>
+          <div class="class-row"><span class="class-row-key">Purpose</span><span class="class-row-val">Multicast groups</span></div>
+          <div class="class-row"><span class="class-row-key">Subnet mask</span><span class="class-row-val">N/A</span></div>
+          <div class="class-row"><span class="class-row-key">Assignable to hosts?</span><span class="class-row-val">No</span></div>
+          <div class="class-row"><span class="class-row-key">Example use</span><span class="class-row-val">OSPF (224.0.0.5), streaming</span></div>
+          <div class="class-row"><span class="class-row-key">First bit pattern</span><span class="class-row-val">1110xxxx</span></div>
+        </div>
+      </div>
+
+      <div class="class-card ce">
+        <div class="class-card-header">
+          <span class="class-label">Class E</span>
+          <span class="class-use">Reserved / Research</span>
+        </div>
+        <div class="class-card-body">
+          <div class="class-row"><span class="class-row-key">First octet range</span><span class="class-row-val">240 – 255</span></div>
+          <div class="class-row"><span class="class-row-key">Purpose</span><span class="class-row-val">Experimental / reserved</span></div>
+          <div class="class-row"><span class="class-row-key">Assignable to hosts?</span><span class="class-row-val">No</span></div>
+          <div class="class-row"><span class="class-row-key">Used in practice?</span><span class="class-row-val">Never (limited broadcast: 255.255.255.255)</span></div>
+          <div class="class-row"><span class="class-row-key">First bit pattern</span><span class="class-row-val">1111xxxx</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Exam Tip — The Missing 127</div>
+      <p>You'll notice Class A goes from 1–126, not 1–127. <strong>127 is reserved for loopback</strong> (127.0.0.1 = localhost). The exam commonly asks "which address tests the local TCP/IP stack?" — the answer is always 127.0.0.1. The entire 127.0.0.0/8 range is loopback, but 127.0.0.1 is the specific address you need to know.</p>
+    </div>
+
+    <h2>Private IP Address Ranges (RFC 1918)</h2>
+
+    <p>Private addresses are not routable on the public internet. They are used inside LANs and translated to a public IP by NAT when accessing the internet. Knowing the three private ranges cold is non-negotiable for both A+ and Network+.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Class</th><th>Private Range</th><th>CIDR</th><th>Addresses Available</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="td-term">Class A</td>
+            <td class="td-mono">10.0.0.0 – 10.255.255.255</td>
+            <td class="td-mono">10.0.0.0/8</td>
+            <td>16,777,216</td>
+          </tr>
+          <tr>
+            <td class="td-term">Class B</td>
+            <td class="td-mono">172.16.0.0 – 172.31.255.255</td>
+            <td class="td-mono">172.16.0.0/12</td>
+            <td>1,048,576</td>
+          </tr>
+          <tr>
+            <td class="td-term">Class C</td>
+            <td class="td-mono">192.168.0.0 – 192.168.255.255</td>
+            <td class="td-mono">192.168.0.0/16</td>
+            <td>65,536</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Exam Trap — 172.x.x.x</div>
+      <p>The Class B private range doesn't cover all of 172.x.x.x — it only covers <strong>172.16.x.x through 172.31.x.x</strong>. A common exam trick is to present 172.15.x.x or 172.32.x.x as a private address — both are public. If you see a 172.x address, check the second octet: it must be 16–31 to be private.</p>
+    </div>
+
+    <h2>Special IP Ranges You Must Know</h2>
+
+    <div class="special-grid">
+      <div class="special-card">
+        <div class="special-card-label">Loopback</div>
+        <div class="special-card-range">127.0.0.0/8<br>127.0.0.1 (localhost)</div>
+        <div class="special-card-desc">Tests the local TCP/IP stack without sending traffic on the network. Ping 127.0.0.1 to verify TCP/IP is installed and functioning.</div>
+      </div>
+      <div class="special-card">
+        <div class="special-card-label">APIPA</div>
+        <div class="special-card-range">169.254.0.0/16<br>169.254.1.0 – 169.254.254.255</div>
+        <div class="special-card-desc">Automatic Private IP Addressing — self-assigned when DHCP fails. A 169.254.x.x address means the device cannot reach a DHCP server.</div>
+      </div>
+      <div class="special-card">
+        <div class="special-card-label">Limited Broadcast</div>
+        <div class="special-card-range">255.255.255.255</div>
+        <div class="special-card-desc">Broadcasts to all hosts on the local subnet. Not forwarded by routers. Used by DHCP Discover — a client with no IP can still broadcast.</div>
+      </div>
+      <div class="special-card">
+        <div class="special-card-label">This Network</div>
+        <div class="special-card-range">0.0.0.0/8</div>
+        <div class="special-card-desc">Represents the current network. Used in routing tables as the default route (0.0.0.0/0 = default gateway — match anything).</div>
+      </div>
+      <div class="special-card">
+        <div class="special-card-label">Link-Local (IPv4)</div>
+        <div class="special-card-range">169.254.0.0/16</div>
+        <div class="special-card-desc">Same as APIPA range. RFC 3927. Not routable beyond the local link. Also used for AWS instance metadata (169.254.169.254).</div>
+      </div>
+      <div class="special-card">
+        <div class="special-card-label">Multicast</div>
+        <div class="special-card-range">224.0.0.0/4<br>224.0.0.0 – 239.255.255.255</div>
+        <div class="special-card-desc">Class D. Sent to a group of subscribers. OSPF uses 224.0.0.5/6. RIP uses 224.0.0.9. EIGRP uses 224.0.0.10.</div>
+      </div>
+    </div>
+
+    <h2>Public vs Private — How NAT Bridges Them</h2>
+
+    <p>Private addresses can't be routed on the internet — routers drop packets with RFC 1918 source addresses. When your device (192.168.1.50) sends traffic to google.com, your router performs <strong>Network Address Translation (NAT)</strong>: it replaces the private source IP with its own public IP before forwarding the packet. When the response comes back, it reverses the translation and delivers it to your device.</p>
+
+    <div class="callout">
+      <div class="callout-label">Why Private Addresses Exist</div>
+      <p>IPv4 has approximately 4.3 billion addresses — far too few for every device on earth to have a unique public IP. Private ranges + NAT allow millions of devices to share a small pool of public IPs. A single home router with one public IP can serve dozens of private devices simultaneously.</p>
+      <p><strong>IPv6 solves this</strong> — its 128-bit address space provides ~340 undecillion addresses, enough for every device to have a globally unique public IP without NAT.</p>
+    </div>
+
+    <h2>Quick Reference — All Ranges</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Address / Range</th><th>Type</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="td-mono td-term">1.0.0.0 – 126.255.255.255</td><td>Class A (public)</td><td>10.x.x.x is private</td></tr>
+          <tr><td class="td-mono td-term">10.0.0.0/8</td><td>Class A private</td><td>10.0.0.0 – 10.255.255.255</td></tr>
+          <tr><td class="td-mono td-term">127.0.0.0/8</td><td>Loopback</td><td>127.0.0.1 = localhost, tests local stack</td></tr>
+          <tr><td class="td-mono td-term">128.0.0.0 – 191.255.255.255</td><td>Class B (public)</td><td>172.16–31.x.x is private</td></tr>
+          <tr><td class="td-mono td-term">172.16.0.0/12</td><td>Class B private</td><td>172.16.x.x – 172.31.x.x only</td></tr>
+          <tr><td class="td-mono td-term">169.254.0.0/16</td><td>APIPA / Link-local</td><td>DHCP failed — device self-assigned</td></tr>
+          <tr><td class="td-mono td-term">192.0.0.0 – 223.255.255.255</td><td>Class C (public)</td><td>192.168.x.x is private</td></tr>
+          <tr><td class="td-mono td-term">192.168.0.0/16</td><td>Class C private</td><td>Most common home/office range</td></tr>
+          <tr><td class="td-mono td-term">224.0.0.0 – 239.255.255.255</td><td>Class D — Multicast</td><td>Not assignable to hosts</td></tr>
+          <tr><td class="td-mono td-term">240.0.0.0 – 255.255.255.254</td><td>Class E — Reserved</td><td>Experimental, never used in production</td></tr>
+          <tr><td class="td-mono td-term">255.255.255.255</td><td>Limited broadcast</td><td>All hosts on local subnet, not routed</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Exam Scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "A technician runs ipconfig and sees the IP address 169.254.45.12. What does this indicate?" → <strong>DHCP failure — APIPA address. The device cannot reach a DHCP server and has self-assigned a 169.254.x.x address. Check: Is the DHCP server running? Is the network cable connected? Is the switch port up?</strong></div>
+      <div class="scenario-item">💬 "A user is assigned 172.20.5.100/16 as their IP address. Is this a private or public address?" → <strong>Private. 172.20.x.x falls within the 172.16.0.0–172.31.255.255 private range. Had it been 172.15.x.x or 172.32.x.x, it would be public.</strong></div>
+      <div class="scenario-item">💬 "Which command tests whether the local TCP/IP stack is installed and functional?" → <strong>ping 127.0.0.1 — the loopback address. If this fails, TCP/IP is not functioning on the local machine regardless of network connectivity.</strong></div>
+      <div class="scenario-item">💬 "A network admin is designing an office network for 300 workstations. Which IP class provides enough hosts in a single network without wasting addresses?" → <strong>Class B — provides up to 65,534 hosts per network. Class C only provides 254. A single 192.168.0.0/16 block (technically spanning multiple Class C networks) or 172.16.0.0/16 would work cleanly.</strong></div>
+      <div class="scenario-item">💬 "A router's routing table shows a 0.0.0.0/0 entry. What does this represent?" → <strong>The default route — packets with no more specific match are forwarded using this entry. It points to the default gateway and matches all destinations.</strong></div>
+      <div class="scenario-item">💬 "Which IP address class uses the first octet range 192–223?" → <strong>Class C — default /24 mask, 254 usable hosts per network. Most home and small office networks use Class C private space (192.168.x.x).</strong></div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Master the A+ exam</h3>
+        <p>See the best study guides, video courses, and practice tests for CompTIA A+ 220-1201/1202.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn-teal">See A+ Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="subnetting.html" class="related-link">Subnetting Guide</a>
+      <a href="subnet-mask.html" class="related-link">Subnet Masks Explained</a>
+      <a href="ipv4-vs-ipv6.html" class="related-link">IPv4 vs IPv6</a>
+      <a href="nat-explained.html" class="related-link">NAT Explained</a>
+      <a href="dhcp.html" class="related-link">DHCP Explained</a>
+      <a href="apipa.html" class="related-link">APIPA Explained</a>
+      <a href="default-gateway.html" class="related-link">Default Gateway</a>
+      <a href="tcp-ip-model.html" class="related-link">TCP/IP Model</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">A+</div>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-aplus.html">How to Pass A+</a>
+      <a href="best-a-plus.html">Best A+ Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Networking</div>
+      <a href="subnetting.html">Subnetting Guide</a>
+      <a href="ipv4-vs-ipv6.html">IPv4 vs IPv6</a>
+      <a href="nat-explained.html">NAT Explained</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/tcp-ip-model.html">
+<title>TCP/IP Model Explained — 4 Layers, Protocols & OSI Comparison</title>
+<meta name="description" content="The TCP/IP model explained — all 4 layers, what protocols live at each layer, how it compares to the OSI model, and what CompTIA A+ and Network+ actually test on TCP/IP.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.15) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(0,194,168,.07) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.18) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* Layer stack */
+.layer-stack{display:flex;flex-direction:column;gap:0;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+.layer-block{padding:0;}
+.layer-header{display:grid;grid-template-columns:60px 1fr auto;align-items:center;gap:16px;padding:18px 24px;cursor:default;}
+.layer-num{font-family:'DM Mono',monospace;font-size:22px;font-weight:700;color:var(--white);opacity:.7;line-height:1;text-align:center;}
+.layer-title-block{}
+.layer-name{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:2px;}
+.layer-pdu{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.5px;}
+.layer-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;background:rgba(255,255,255,.12);color:rgba(255,255,255,.7);padding:4px 10px;border-radius:100px;white-space:nowrap;}
+.layer-body{background:var(--white);padding:16px 24px 20px;border-top:1px solid var(--border);}
+.layer-desc{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:12px;}
+.layer-desc strong{color:var(--navy);}
+.protocol-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{font-family:'DM Mono',monospace;font-size:12px;font-weight:700;background:var(--light);color:var(--navy);padding:4px 10px;border-radius:6px;border:1px solid var(--border);}
+/* Layer colours */
+.l4{background:linear-gradient(135deg,#1a3a6e,#1a5fa8);}
+.l3{background:linear-gradient(135deg,#1a5a8a,#0e8a8a);}
+.l2{background:linear-gradient(135deg,#1a7a5a,#0a9a5a);}
+.l1{background:linear-gradient(135deg,#2a5a2a,#1a7a3a);}
+/* Comparison table */
+.compare-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+.compare-table{width:100%;border-collapse:collapse;background:var(--white);min-width:500px;}
+.compare-table thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+.compare-table thead th:first-child{color:var(--white);}
+.compare-table tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:middle;line-height:1.5;}
+.compare-table tbody tr:last-child td{border-bottom:none;}
+.compare-table tbody tr:hover td{background:#eff6ff;}
+.td-term{font-weight:700;color:var(--navy);}
+.td-mono{font-family:'DM Mono',monospace;font-size:13px;}
+.osi-layer{display:inline-block;background:var(--light);border:1px solid var(--border);border-radius:6px;padding:2px 8px;font-family:'DM Mono',monospace;font-size:12px;font-weight:700;color:var(--navy);}
+/* Encapsulation */
+.encap-stack{display:flex;flex-direction:column;gap:0;border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:40px;box-shadow:var(--card-shadow);}
+.encap-row{display:grid;grid-template-columns:160px 1fr;align-items:stretch;border-bottom:1px solid var(--border);}
+.encap-row:last-child{border-bottom:none;}
+.encap-label{padding:12px 16px;font-family:'DM Mono',monospace;font-size:12px;font-weight:700;color:var(--white);display:flex;align-items:center;}
+.encap-content{background:var(--white);padding:12px 16px;font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.encap-box{background:var(--light);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-family:'DM Mono',monospace;font-size:12px;font-weight:700;color:var(--navy);white-space:nowrap;}
+.encap-box.highlight{background:#dbeafe;border-color:#93c5fd;color:#1e40af;}
+.e4{background:linear-gradient(135deg,#1a3a6e,#1a5fa8);}
+.e3{background:linear-gradient(135deg,#1a5a8a,#0e8a8a);}
+.e2{background:linear-gradient(135deg,#1a7a5a,#0a9a5a);}
+.e1{background:linear-gradient(135deg,#2a5a2a,#1a7a3a);}
+/* Callout */
+.callout{background:rgba(26,108,255,.04);border:1px solid rgba(26,108,255,.2);border-left:4px solid var(--blue);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+/* Exam tip */
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+/* Scenarios */
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+/* CTA */
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-blue{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--blue);color:var(--white);box-shadow:0 6px 20px rgba(26,108,255,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(26,108,255,.4);}
+/* Related */
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.3);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+/* Footer */
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="network-plus-cheat-sheet.html">N+ Cheat Sheet</a>
+      <a href="best-network-plus.html" class="nav-cta">N+ Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="networking.html">Networking</a><span>›</span>
+      <span>TCP/IP Model</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · Network+ · Core Concept</div>
+    <h1>TCP/IP Model <span>Explained</span></h1>
+    <p class="page-hero-sub">The 4-layer TCP/IP model — what each layer does, which protocols live at each layer, how it maps to the OSI model, encapsulation from application to wire, and everything CompTIA actually tests.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Quick Answer</div>
+      <div class="quick-answer-text">
+        The TCP/IP model has <strong>4 layers</strong>: Application, Transport, Internet, and Network Access (bottom to top: Network Access → Internet → Transport → Application). It's the practical model that the real internet actually runs on. The OSI model has 7 layers and is the theoretical reference model. <strong>The key difference: TCP/IP collapses OSI's top three layers (Application, Presentation, Session) into one Application layer, and collapses OSI's bottom two (Data Link, Physical) into Network Access.</strong>
+      </div>
+    </div>
+
+    <h2>The 4 Layers of the TCP/IP Model</h2>
+
+    <div class="layer-stack">
+      <div class="layer-block">
+        <div class="layer-header l4">
+          <div class="layer-num">4</div>
+          <div class="layer-title-block">
+            <div class="layer-name">Application Layer</div>
+            <div class="layer-pdu">PDU: Data</div>
+          </div>
+          <div class="layer-badge">Top layer</div>
+        </div>
+        <div class="layer-body">
+          <div class="layer-desc">The layer users interact with directly — where applications generate and consume data. Handles everything from web browsing (HTTP/HTTPS) to email (SMTP/IMAP/POP3) to file transfers (FTP/SFTP) to DNS lookups. <strong>This single layer maps to OSI layers 5, 6, and 7</strong> (Session, Presentation, Application). When you type a URL, the browser operates at the Application layer.</div>
+          <div class="protocol-chips">
+            <span class="chip">HTTP/HTTPS</span><span class="chip">FTP/SFTP</span><span class="chip">SMTP</span><span class="chip">IMAP</span><span class="chip">POP3</span><span class="chip">DNS</span><span class="chip">DHCP</span><span class="chip">SSH</span><span class="chip">Telnet</span><span class="chip">SNMP</span><span class="chip">LDAP</span><span class="chip">RDP</span><span class="chip">NTP</span><span class="chip">TLS/SSL</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="layer-block">
+        <div class="layer-header l3">
+          <div class="layer-num">3</div>
+          <div class="layer-title-block">
+            <div class="layer-name">Transport Layer</div>
+            <div class="layer-pdu">PDU: Segment (TCP) / Datagram (UDP)</div>
+          </div>
+          <div class="layer-badge">Ports live here</div>
+        </div>
+        <div class="layer-body">
+          <div class="layer-desc">Responsible for end-to-end communication between applications — adding source and destination <strong>port numbers</strong> to identify which application should receive the data. TCP provides reliable, ordered, connection-oriented delivery with error checking and retransmission. UDP provides fast, connectionless, best-effort delivery. <strong>Maps directly to OSI Layer 4 (Transport).</strong></div>
+          <div class="protocol-chips">
+            <span class="chip">TCP</span><span class="chip">UDP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="layer-block">
+        <div class="layer-header l2">
+          <div class="layer-num">2</div>
+          <div class="layer-title-block">
+            <div class="layer-name">Internet Layer</div>
+            <div class="layer-pdu">PDU: Packet</div>
+          </div>
+          <div class="layer-badge">IP addressing</div>
+        </div>
+        <div class="layer-body">
+          <div class="layer-desc">Handles logical addressing and routing — getting packets from the source host to the destination host <strong>across multiple networks</strong>. IP addresses are assigned and used at this layer. Routers operate at this layer, reading the destination IP and deciding where to forward the packet next. <strong>Maps directly to OSI Layer 3 (Network).</strong></div>
+          <div class="protocol-chips">
+            <span class="chip">IPv4</span><span class="chip">IPv6</span><span class="chip">ICMP</span><span class="chip">ARP</span><span class="chip">OSPF</span><span class="chip">BGP</span><span class="chip">RIP</span><span class="chip">EIGRP</span><span class="chip">IPSec</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="layer-block">
+        <div class="layer-header l1">
+          <div class="layer-num">1</div>
+          <div class="layer-title-block">
+            <div class="layer-name">Network Access Layer</div>
+            <div class="layer-pdu">PDU: Frame (Data Link) / Bits (Physical)</div>
+          </div>
+          <div class="layer-badge">Physical + Data Link</div>
+        </div>
+        <div class="layer-body">
+          <div class="layer-desc">The bottom layer — responsible for physically transmitting data over the local network link. Handles MAC addressing, framing, error detection (CRC), and the actual transmission medium (copper, fiber, wireless). <strong>Maps to both OSI Layer 1 (Physical) and OSI Layer 2 (Data Link).</strong> NIC cards, switches, cables, and Wi-Fi radios operate here.</div>
+          <div class="protocol-chips">
+            <span class="chip">Ethernet (802.3)</span><span class="chip">Wi-Fi (802.11)</span><span class="chip">MAC addressing</span><span class="chip">PPP</span><span class="chip">Frame Relay</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>TCP/IP vs OSI Model — Side-by-Side Comparison</h2>
+
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead><tr><th>OSI Layer</th><th>OSI Name</th><th>TCP/IP Layer</th><th>Key Protocols</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">7</td><td>Application</td><td rowspan="3" style="font-weight:700;color:var(--navy);background:#eff6ff;vertical-align:middle;text-align:center;">Application</td><td class="td-mono">HTTP, FTP, DNS, SMTP</td></tr>
+          <tr><td class="td-term">6</td><td>Presentation</td><td class="td-mono">TLS/SSL, JPEG, ASCII</td></tr>
+          <tr><td class="td-term">5</td><td>Session</td><td class="td-mono">NetBIOS, RPC, SQL</td></tr>
+          <tr><td class="td-term">4</td><td>Transport</td><td style="font-weight:700;color:var(--navy);background:#f0fdf9;vertical-align:middle;text-align:center;">Transport</td><td class="td-mono">TCP, UDP</td></tr>
+          <tr><td class="td-term">3</td><td>Network</td><td style="font-weight:700;color:var(--navy);background:#fdf4ff;vertical-align:middle;text-align:center;">Internet</td><td class="td-mono">IP, ICMP, ARP, routing protocols</td></tr>
+          <tr><td class="td-term">2</td><td>Data Link</td><td rowspan="2" style="font-weight:700;color:var(--navy);background:#f0fdf4;vertical-align:middle;text-align:center;">Network Access</td><td class="td-mono">Ethernet, Wi-Fi, MAC addressing</td></tr>
+          <tr><td class="td-term">1</td><td>Physical</td><td class="td-mono">Cables, hubs, radio waves, NIC</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Exam Tip — Which Model Does CompTIA Prefer?</div>
+      <p>CompTIA tests <strong>both models</strong> — you need to know them both and understand the mapping between them. The OSI model is used more for theoretical troubleshooting questions ("at which layer does a router operate?"). The TCP/IP model is used when discussing how internet protocols actually work.</p>
+      <p><strong>Key mapping to memorise:</strong> TCP/IP Application = OSI layers 5+6+7. TCP/IP Transport = OSI layer 4. TCP/IP Internet = OSI layer 3. TCP/IP Network Access = OSI layers 1+2.</p>
+    </div>
+
+    <h2>Encapsulation — How Data Travels Down the Stack</h2>
+
+    <p>When you send data (say, an HTTP request), each layer <strong>wraps it in its own header</strong> before passing it down — this is called encapsulation. At the destination, each layer strips its header and passes the payload up — called decapsulation.</p>
+
+    <div class="encap-stack">
+      <div class="encap-row">
+        <div class="encap-label e4">Application Layer</div>
+        <div class="encap-content">
+          <div class="encap-box highlight">HTTP Request Data</div>
+          <span style="font-size:12px;color:var(--muted)">Your browser creates an HTTP GET request — this is just raw data at this point</span>
+        </div>
+      </div>
+      <div class="encap-row">
+        <div class="encap-label e3">Transport Layer</div>
+        <div class="encap-content">
+          <div class="encap-box">TCP Header (src port: 54321 → dst port: 443)</div>
+          <div class="encap-box highlight">HTTP Data</div>
+          <span style="font-size:12px;color:var(--muted)">Called a Segment</span>
+        </div>
+      </div>
+      <div class="encap-row">
+        <div class="encap-label e2">Internet Layer</div>
+        <div class="encap-content">
+          <div class="encap-box">IP Header (src: 192.168.1.5 → dst: 142.250.80.46)</div>
+          <div class="encap-box">TCP Header</div>
+          <div class="encap-box highlight">HTTP Data</div>
+          <span style="font-size:12px;color:var(--muted)">Called a Packet</span>
+        </div>
+      </div>
+      <div class="encap-row">
+        <div class="encap-label e1">Network Access</div>
+        <div class="encap-content">
+          <div class="encap-box">Ethernet Header (src MAC → dst MAC)</div>
+          <div class="encap-box">IP Header</div>
+          <div class="encap-box">TCP Header</div>
+          <div class="encap-box highlight">HTTP Data</div>
+          <div class="encap-box">FCS (CRC)</div>
+          <span style="font-size:12px;color:var(--muted)">Called a Frame → sent as bits</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Why This Matters for Troubleshooting</div>
+      <p>Understanding which layer a problem occurs at tells you exactly where to look. If you can ping by IP but not by hostname — the problem is at the Application layer (DNS). If you can ping the loopback but not the gateway — the problem is at the Network Access or Internet layer. <strong>CompTIA's troubleshooting methodology follows the layer model.</strong></p>
+      <p>A useful rule: <strong>ping tests the Internet layer</strong> (IP). <strong>nslookup tests the Application layer</strong> (DNS). If ping works but nslookup fails — DNS is broken, not the network.</p>
+    </div>
+
+    <h2>TCP vs UDP — The Transport Layer Protocols</h2>
+
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead><tr><th>Feature</th><th>TCP</th><th>UDP</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Connection type</td><td>Connection-oriented (3-way handshake: SYN, SYN-ACK, ACK)</td><td>Connectionless — no handshake</td></tr>
+          <tr><td class="td-term">Reliability</td><td>Guaranteed delivery — retransmits lost packets</td><td>Best-effort — no retransmission</td></tr>
+          <tr><td class="td-term">Order</td><td>Guaranteed in-order delivery</td><td>No ordering guarantee</td></tr>
+          <tr><td class="td-term">Speed</td><td>Slower — overhead of acknowledgements</td><td>Faster — no acknowledgement overhead</td></tr>
+          <tr><td class="td-term">Use cases</td><td>HTTP/HTTPS, SSH, FTP, email — anything where data integrity matters</td><td>DNS, DHCP, VoIP, video streaming, gaming — speed over reliability</td></tr>
+          <tr><td class="td-term">Error checking</td><td>Yes — checksum + sequence numbers + ACKs</td><td>Checksum only — no retransmission</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Exam Scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "At which TCP/IP layer does a router operate?" → <strong>Internet layer — routers read IP addresses to forward packets between networks. In OSI terms, this is Layer 3 (Network).</strong></div>
+      <div class="scenario-item">💬 "A technician is troubleshooting a connectivity issue. The user can ping the server by IP address but not by hostname. Which layer is most likely the problem?" → <strong>Application layer — specifically DNS. Name resolution (hostname → IP) happens at the Application layer. The network itself (Internet/Transport layers) is working fine since the IP ping succeeds.</strong></div>
+      <div class="scenario-item">💬 "Which protocol uses the 3-way handshake to establish a connection before transmitting data?" → <strong>TCP (Transmission Control Protocol) — SYN from client, SYN-ACK from server, ACK from client. This lives at the TCP/IP Transport layer.</strong></div>
+      <div class="scenario-item">💬 "Which TCP/IP model layer is responsible for MAC addressing and local frame delivery?" → <strong>Network Access layer — which maps to OSI layers 1 (Physical) and 2 (Data Link). Switches use MAC addresses to forward frames at this layer.</strong></div>
+      <div class="scenario-item">💬 "A VoIP application is dropping calls and experiencing delays. A technician decides that guaranteed delivery is less important than low latency. Which transport protocol should VoIP use?" → <strong>UDP — connectionless and faster, no retransmission overhead. A brief audio gap from a dropped packet is better than the delay caused by TCP retransmission waiting for an ACK.</strong></div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Ready to study Network+?</h3>
+        <p>See the best courses, study guides, and practice exams for CompTIA N10-009.</p>
+      </div>
+      <a href="best-network-plus.html" class="btn-blue">See Network+ Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="osi-model.html" class="related-link">OSI Model — All 7 Layers</a>
+      <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP Deep Dive</a>
+      <a href="ip-address-classes.html" class="related-link">IP Address Classes</a>
+      <a href="ports.html" class="related-link">Ports & Protocols</a>
+      <a href="subnetting.html" class="related-link">Subnetting Guide</a>
+      <a href="nat-explained.html" class="related-link">NAT Explained</a>
+      <a href="dns.html" class="related-link">DNS Explained</a>
+      <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="comptia-network-plus-domains.html" class="related-link">Network+ Exam Domains</a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Network+</div>
+      <a href="network-plus-cheat-sheet.html">N+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-network-plus.html">How to Pass N+</a>
+      <a href="best-network-plus.html">Best N+ Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Networking</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="subnetting.html">Subnetting</a>
+      <a href="routing-protocols.html">Routing Protocols</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>
