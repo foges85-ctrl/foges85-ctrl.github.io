@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/physical-security.html">
+<title>Physical Security for CompTIA Security+ — Mantraps, Badges, Cameras & Secure Disposal</title>
+<meta name="description" content="Physical security controls for CompTIA Security+ SY0-701 — access control vestibules (mantraps), badge systems, biometrics, surveillance, secure disposal (degaussing, shredding), and exam scenarios.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(124,58,237,.15) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(0,194,168,.07) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.35);color:#c4b5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#c4b5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(124,58,237,.2) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#c4b5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* Control cards */
+.control-card{background:var(--white);border:1px solid var(--border);border-radius:16px;margin-bottom:18px;box-shadow:var(--card-shadow);overflow:hidden;}
+.control-header{background:linear-gradient(90deg,rgba(124,58,237,.07) 0%,transparent 60%);padding:14px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.control-name{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--navy);}
+.control-type-badge{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;letter-spacing:.5px;}
+.type-deterrent{background:rgba(245,158,11,.1);color:#d97706;border:1px solid rgba(245,158,11,.25);}
+.type-preventive{background:rgba(26,108,255,.1);color:var(--blue);border:1px solid rgba(26,108,255,.25);}
+.type-detective{background:rgba(124,58,237,.1);color:var(--purple);border:1px solid rgba(124,58,237,.25);}
+.type-corrective{background:rgba(0,194,168,.1);color:#009e8a;border:1px solid rgba(0,194,168,.25);}
+.control-body{padding:14px 22px 18px;}
+.control-desc{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:10px;}
+.control-desc strong{color:var(--navy);}
+.control-detail{font-size:13px;background:var(--light);border-radius:8px;padding:10px 14px;color:var(--text);line-height:1.6;}
+.control-detail strong{color:var(--navy);}
+/* Disposal table */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:400px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#fdf4ff;}
+.td-term{font-weight:700;color:var(--navy);}
+/* Callout */
+.callout{background:rgba(124,58,237,.04);border:1px solid rgba(124,58,237,.2);border-left:4px solid var(--purple);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--purple);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+/* Exam tip */
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+/* Scenarios */
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+/* CTA */
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(124,58,237,.25) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-purple{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--purple);color:var(--white);box-shadow:0 6px 20px rgba(124,58,237,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-purple:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(124,58,237,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(124,58,237,.3);color:var(--purple);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--purple);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="security-plus-cheat-sheet.html">Security+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-security-plus.html">How to Pass</a>
+      <a href="best-security-plus.html" class="nav-cta">Security+ Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="comptia-security-plus-domains.html">Security+ Domains</a><span>›</span>
+      <span>Physical Security</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Security+ SY0-701 · A+ 220-1201</div>
+    <h1>Physical Security <span>Controls Explained</span></h1>
+    <p class="page-hero-sub">Access control vestibules, badge systems, biometrics, surveillance cameras, bollards, and secure data disposal — every physical security control tested on CompTIA Security+ and A+ with exam scenarios.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Quick Answer</div>
+      <div class="quick-answer-text">
+        Physical security controls protect facilities and hardware from unauthorised physical access. The exam tests four types of physical controls: <strong>deterrent</strong> (discourage attackers — fences, signs), <strong>preventive</strong> (stop access — mantraps, locks, badge readers), <strong>detective</strong> (identify incidents — cameras, motion sensors, logs), and <strong>corrective</strong> (respond after — guards, alarm response). <strong>The most tested physical security topic is the access control vestibule (mantrap)</strong> — know exactly how it works and why it prevents tailgating.
+      </div>
+    </div>
+
+    <h2>Access Control — Entry Points</h2>
+
+    <div class="control-card">
+      <div class="control-header">
+        <div class="control-name">Access Control Vestibule (Mantrap)</div>
+        <div><span class="control-type-badge type-preventive">Preventive</span></div>
+      </div>
+      <div class="control-body">
+        <div class="control-desc">A small enclosed space with <strong>two interlocking doors</strong> — the second door only unlocks after the first has closed and the person has been authenticated. Prevents tailgating (piggybacking) by ensuring only one person can enter at a time. CompTIA uses the term "access control vestibule" in SY0-701 — older materials and the real world still call it a mantrap.</div>
+        <div class="control-detail"><strong>How it works:</strong> Person enters through outer door (which locks behind them) → authenticates (badge, PIN, biometric) inside the vestibule → inner door unlocks. If authentication fails, the person is trapped in the vestibule for security personnel to respond. <strong>Exam trap:</strong> A mantrap prevents tailgating — it does NOT prevent someone with a stolen valid credential from entering.</div>
+      </div>
+    </div>
+
+    <div class="control-card">
+      <div class="control-header">
+        <div class="control-name">Badge / Proximity Card Readers</div>
+        <div><span class="control-type-badge type-preventive">Preventive</span></div>
+      </div>
+      <div class="control-body">
+        <div class="control-desc">Electronic access control using smart cards or proximity cards (RFID). <strong>Badge readers enforce least privilege at the physical layer</strong> — each employee's badge only grants access to areas required for their role. Access logs are maintained automatically.</div>
+        <div class="control-detail"><strong>Key terms:</strong> <strong>Proximity card</strong> = passive RFID, no battery, short range (tap to read). <strong>Smart card</strong> = contains a chip, can store certificates, used with a PIN (something you have + something you know = MFA). <strong>Tailgating</strong> = following an authorised person through a controlled door without authenticating — the main threat badge systems face.</div>
+      </div>
+    </div>
+
+    <div class="control-card">
+      <div class="control-header">
+        <div class="control-name">Biometric Authentication</div>
+        <div><span class="control-type-badge type-preventive">Preventive</span></div>
+      </div>
+      <div class="control-body">
+        <div class="control-desc">Uses physical characteristics to verify identity — fingerprint, retina scan, iris scan, facial recognition, hand geometry, voice recognition. <strong>Something you are</strong> — the strongest MFA factor because it cannot be lost or shared (unlike a badge or PIN). Used in high-security environments like datacentres and government facilities.</div>
+        <div class="control-detail"><strong>Key metrics:</strong> <strong>FAR (False Acceptance Rate)</strong> = incorrectly accepts unauthorised users (security risk). <strong>FRR (False Rejection Rate)</strong> = incorrectly rejects authorised users (usability problem). <strong>CER/EER (Crossover Error Rate)</strong> = the point where FAR = FRR — lower CER = more accurate system. The exam may ask which metric measures security vs convenience.</div>
+      </div>
+    </div>
+
+    <div class="control-card">
+      <div class="control-header">
+        <div class="control-name">Locks — Cipher, Deadbolt, Cable</div>
+        <div><span class="control-type-badge type-preventive">Preventive</span></div>
+      </div>
+      <div class="control-body">
+        <div class="control-desc">Physical locks remain fundamental. <strong>Cipher locks</strong> use a keypad combination — no badge required but combination must be changed when personnel leave. <strong>Deadbolts</strong> are standard door locks. <strong>Cable locks</strong> secure laptops and equipment to desks — prevents opportunistic theft.</div>
+        <div class="control-detail"><strong>Exam note:</strong> Cable locks are specifically called out in A+ as a physical security control for mobile devices and workstations. They are a deterrent and preventive control but can be defeated with sufficient time/tools — they protect against opportunistic theft, not a determined attacker.</div>
+      </div>
+    </div>
+
+    <h2>Perimeter Security</h2>
+
+    <div class="control-card">
+      <div class="control-header">
+        <div class="control-name">Bollards & Barricades</div>
+        <div><span class="control-type-badge type-preventive">Preventive</span></div>
+      </div>
+      <div class="control-body">
+        <div class="control-desc">Short vertical posts or barriers that <strong>prevent vehicle-based attacks</strong> — crashing through building entrances or ramming into infrastructure. Commonly seen outside government buildings, datacentres, and airports. Also includes concrete barriers, jersey barriers, and reinforced planters.</div>
+        <div class="control-detail"><strong>Exam use:</strong> If a scenario describes protecting a datacentre or office building from vehicles, bollards are the answer. Not relevant for stopping foot traffic — that's a mantrap or fence.</div>
+      </div>
+    </div>
+
+    <div class="control-card">
+      <div class="control-header">
+        <div class="control-name">Fencing & Security Guards</div>
+        <div><span class="control-type-badge type-deterrent">Deterrent</span></div>
+      </div>
+      <div class="control-body">
+        <div class="control-desc">Fencing deters and delays unauthorised perimeter entry. Height matters — 3–4ft deters casual entry, 6–7ft is more serious, 8ft+ with barbed wire is high security. <strong>Security guards</strong> provide both deterrence and detection — they can respond to incidents and use judgement in ways technology cannot.</div>
+        <div class="control-detail"><strong>Key distinction:</strong> Fencing is a deterrent (slows down) and preventive (blocks) control. Guards are deterrent and detective. Neither is as effective at preventing a determined attacker as layered controls — fence + guard + mantrap + badge is defence in depth.</div>
+      </div>
+    </div>
+
+    <div class="control-card">
+      <div class="control-header">
+        <div class="control-name">Lighting</div>
+        <div><span class="control-type-badge type-deterrent">Deterrent</span></div>
+      </div>
+      <div class="control-body">
+        <div class="control-desc">Adequate lighting deters attackers who rely on concealment and improves the effectiveness of surveillance cameras. <strong>Motion-activated lighting</strong> draws attention to movement in restricted areas. Lighting is a low-cost, high-impact physical deterrent.</div>
+        <div class="control-detail"><strong>Exam note:</strong> Lighting is classified as a deterrent control — it discourages attacks but does not prevent entry. Combined with cameras (detective) and locks (preventive), it contributes to defence in depth.</div>
+      </div>
+    </div>
+
+    <h2>Surveillance & Monitoring</h2>
+
+    <div class="control-card">
+      <div class="control-header">
+        <div class="control-name">CCTV / Surveillance Cameras</div>
+        <div><span class="control-type-badge type-detective">Detective</span></div>
+      </div>
+      <div class="control-body">
+        <div class="control-desc">Cameras serve as both deterrent (visible cameras discourage bad actors) and detective (recordings are reviewed after incidents). <strong>Key design considerations:</strong> coverage without blind spots, resolution sufficient for facial identification, adequate recording retention, protection of camera feeds from tampering.</div>
+        <div class="control-detail"><strong>PTZ cameras</strong> (Pan-Tilt-Zoom) can be remotely directed. <strong>IP cameras</strong> transmit over the network — secure the network feed. <strong>Motion-triggered recording</strong> reduces storage requirements. The exam may ask about camera placement strategy — cover entry/exit points, server rooms, and areas where sensitive equipment is stored.</div>
+      </div>
+    </div>
+
+    <div class="control-card">
+      <div class="control-header">
+        <div class="control-name">Motion Sensors & Alarms</div>
+        <div><span class="control-type-badge type-detective">Detective</span></div>
+      </div>
+      <div class="control-body">
+        <div class="control-desc">Detect movement in restricted areas and trigger alerts. <strong>PIR (Passive Infrared) sensors</strong> detect heat signatures from moving bodies — common in server rooms and offices after hours. Alarms alert security personnel to respond (corrective component).</div>
+        <div class="control-detail"><strong>Faraday cages</strong> are a related physical security concept — metal enclosures that block electromagnetic signals, preventing wireless communication (phone calls, Wi-Fi, RFID) inside. Used in high-security facilities to prevent wireless data exfiltration.</div>
+      </div>
+    </div>
+
+    <h2>Secure Data Disposal</h2>
+
+    <p>Physical security isn't just about keeping people out — it's also about ensuring data cannot be recovered from decommissioned hardware. The exam tests specific disposal methods for different media types.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Method</th><th>How It Works</th><th>Media Type</th><th>Recovery Possible?</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="td-term">Degaussing</td>
+            <td>Exposes magnetic media to a powerful magnetic field that randomises magnetic domains, erasing all data</td>
+            <td>HDDs, magnetic tape only — does NOT work on SSDs or optical media</td>
+            <td>No — permanently destroys data and renders the drive unusable</td>
+          </tr>
+          <tr>
+            <td class="td-term">Shredding</td>
+            <td>Physical destruction — cuts media into small pieces. Industrial shredders handle HDDs, SSDs, optical discs, paper</td>
+            <td>All media types, paper, credit cards</td>
+            <td>No — most secure method when done to a fine enough particle size</td>
+          </tr>
+          <tr>
+            <td class="td-term">Incineration</td>
+            <td>Burns media to ash — highest assurance of destruction</td>
+            <td>All media types</td>
+            <td>No — complete destruction</td>
+          </tr>
+          <tr>
+            <td class="td-term">Secure erase / Wiping</td>
+            <td>Overwrites all sectors with random data (multiple passes). NIST 800-88 guidelines define standards. DoD 5220.22-M is a common standard.</td>
+            <td>HDDs (effective). SSDs (less reliable due to wear levelling — physical destruction preferred)</td>
+            <td>Effectively no for HDDs with proper passes — SSDs may retain data in inaccessible sectors</td>
+          </tr>
+          <tr>
+            <td class="td-term">Cryptographic erase</td>
+            <td>Destroys the encryption key used to encrypt the drive — data becomes permanently inaccessible even though it technically still exists</td>
+            <td>Self-encrypting drives (SEDs), SSDs with hardware encryption</td>
+            <td>No — without the key the data is unreadable</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Degaussing Exam Trap</div>
+      <p><strong>Degaussing only works on magnetic media</strong> — HDDs and tape drives. It does NOT work on SSDs, USB drives, CDs/DVDs, or any flash/optical media because those don't use magnetic storage. The exam will try to trick you into choosing degaussing for an SSD — the correct answer for SSD disposal is physical destruction (shredding) or cryptographic erase.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Defence in Depth — Layering Physical Controls</div>
+      <p>Physical security is most effective when layered — no single control is sufficient. A well-designed facility uses: <strong>perimeter controls</strong> (fencing, bollards, lighting) → <strong>building entry</strong> (guards, badge readers, mantrap) → <strong>internal zones</strong> (additional badge readers, biometrics for server rooms) → <strong>detection</strong> (cameras, motion sensors, access logs) → <strong>response</strong> (alarms, guards, incident procedures).</p>
+      <p>The exam may present a scenario and ask which additional control is most appropriate — think about which layer of defence is weakest and pick the control that fills that gap.</p>
+    </div>
+
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "An organisation wants to prevent unauthorised individuals from following authorised employees through a secured door. Which physical control best addresses this?" → <strong>Access control vestibule (mantrap) — the two interlocking doors ensure only one person can pass through at a time after authentication. It specifically prevents tailgating, which badge readers alone cannot stop.</strong></div>
+      <div class="scenario-item">💬 "A security team is disposing of decommissioned hard drives containing sensitive patient data. Which method provides the strongest assurance that data cannot be recovered?" → <strong>Physical shredding or incineration — both guarantee data cannot be recovered. Degaussing also works for HDDs and renders them unusable. Simple deletion or formatting is not acceptable for regulated data.</strong></div>
+      <div class="scenario-item">💬 "A datacentre needs to dispose of 50 SSDs. A technician suggests degaussing. Is this appropriate?" → <strong>No — degaussing only works on magnetic media. SSDs use flash storage, which is not affected by magnetic fields. The correct methods for SSDs are physical destruction (shredding) or cryptographic erase if the drive supports hardware encryption.</strong></div>
+      <div class="scenario-item">💬 "A biometric system has a very low FAR but a high FRR. What does this mean in practice?" → <strong>The system rarely lets unauthorised users in (low FAR = good security) but frequently rejects legitimate users (high FRR = poor usability). It's secure but frustrating. Lowering the sensitivity would improve FRR but increase FAR — this is the security vs convenience tradeoff in biometrics.</strong></div>
+      <div class="scenario-item">💬 "Which physical control would best protect a datacentre entrance from a vehicle ramming attack?" → <strong>Bollards — short reinforced posts designed specifically to stop vehicle intrusions. Fencing, badges, and cameras do not provide vehicle resistance.</strong></div>
+      <div class="scenario-item">💬 "An employee's smart card is used to access the server room. The security team wants to ensure the card alone is insufficient for entry. What should they add?" → <strong>A PIN or biometric requirement — turning the smart card (something you have) into two-factor authentication by requiring something you know (PIN) or something you are (biometric). If the card is lost or stolen, the second factor prevents misuse.</strong></div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Ready to pass Security+?</h3>
+        <p>See the best courses, practice exams, and study guides for SY0-701.</p>
+      </div>
+      <a href="best-security-plus.html" class="btn-purple">See Security+ Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="social-engineering-attacks.html" class="related-link">Social Engineering Attacks</a>
+      <a href="identity-and-access-management.html" class="related-link">IAM Explained</a>
+      <a href="zero-trust-security.html" class="related-link">Zero Trust Security</a>
+      <a href="incident-response-explained.html" class="related-link">Incident Response</a>
+      <a href="malware-types.html" class="related-link">Malware Types</a>
+      <a href="comptia-security-plus-domains.html" class="related-link">Security+ Exam Domains</a>
+      <a href="security-plus-cheat-sheet.html" class="related-link">Security+ Cheat Sheet</a>
+      <a href="best-security-plus.html" class="related-link">Best Security+ Resources</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Security+</div>
+      <a href="security-plus-cheat-sheet.html">Security+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-security-plus.html">How to Pass Security+</a>
+      <a href="best-security-plus.html">Best Security+ Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Related</div>
+      <a href="social-engineering-attacks.html">Social Engineering</a>
+      <a href="identity-and-access-management.html">IAM</a>
+      <a href="zero-trust-security.html">Zero Trust</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>
