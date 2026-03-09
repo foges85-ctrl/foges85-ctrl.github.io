@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/windows-10-vs-11.html">
+<title>Windows 10 vs Windows 11 — CompTIA A+ 220-1202 Study Guide</title>
+<meta name="description" content="Windows 10 vs Windows 11 for CompTIA A+ 220-1202 — system requirements (TPM 2.0), new features, upgrade path, hardware compatibility, editions, and exam scenarios.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--win10:#0078d4;--win11:#0067b8;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(0,120,212,.2) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(0,194,168,.06) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(0,120,212,.2);border:1px solid rgba(0,120,212,.4);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(0,120,212,.2) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* Side by side comparison */
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+@media(max-width:600px){.vs-grid{grid-template-columns:1fr;}}
+.vs-col{}
+.vs-header{padding:16px 20px;text-align:center;}
+.vs-header-win10{background:var(--win10);}
+.vs-header-win11{background:var(--win11);}
+.vs-header-label{font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:var(--white);margin-bottom:2px;}
+.vs-header-sub{font-size:12px;color:rgba(255,255,255,.7);font-family:'DM Mono',monospace;}
+.vs-body{background:var(--white);padding:0;}
+.vs-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border);}
+.vs-row:last-child{border-bottom:none;}
+.vs-row-label{grid-column:1/-1;background:var(--navy);color:rgba(255,255,255,.6);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:7px 18px;font-family:'DM Mono',monospace;}
+.vs-cell{padding:10px 18px;font-size:13px;color:var(--text);line-height:1.5;border-right:1px solid var(--border);}
+.vs-cell:last-child{border-right:none;}
+.vs-cell strong{color:var(--navy);display:block;font-size:12px;margin-bottom:2px;}
+.highlight-new{background:#f0fdf4;}
+.highlight-req{background:#fef2f2;}
+/* Requirement cards */
+.req-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+@media(max-width:600px){.req-grid{grid-template-columns:1fr;}}
+.req-card{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--card-shadow);}
+.req-card-header{padding:14px 18px;font-family:'Outfit',sans-serif;font-size:17px;font-weight:800;color:var(--white);}
+.req-win10{background:var(--win10);}
+.req-win11{background:var(--win11);}
+.req-body{padding:0;}
+.req-row{display:flex;justify-content:space-between;align-items:center;padding:9px 16px;border-bottom:1px solid var(--light);font-size:13px;}
+.req-row:last-child{border-bottom:none;}
+.req-key{color:var(--muted);font-weight:500;}
+.req-val{font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:12px;text-align:right;}
+.req-val.highlight{color:#16a34a;}
+/* Feature table */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:400px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#eff6ff;}
+.td-term{font-weight:700;color:var(--navy);}
+.yes{color:#16a34a;font-weight:700;}
+.no{color:#dc2626;font-weight:700;}
+.limited{color:#d97706;font-weight:700;}
+/* Callout */
+.callout{background:rgba(0,120,212,.04);border:1px solid rgba(0,120,212,.2);border-left:4px solid var(--win10);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--win10);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+/* Exam tip */
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+/* Scenarios */
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+/* CTA */
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(0,120,212,.25) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-blue{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--win10);color:var(--white);box-shadow:0 6px 20px rgba(0,120,212,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,120,212,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(0,120,212,.3);color:var(--win10);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--win10);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="windows-command-line.html">Windows CLI</a>
+      <a href="aplus-cheat-sheet.html">Cheat Sheet</a>
+      <a href="best-a-plus.html" class="nav-cta">A+ Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="how-to-pass-comptia-aplus.html">CompTIA A+</a><span>›</span>
+      <span>Windows 10 vs 11</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ 220-1202 — Operating Systems Domain</div>
+    <h1>Windows 10 <span>vs Windows 11</span></h1>
+    <p class="page-hero-sub">System requirements, new features, hardware compatibility, upgrade paths, editions, and end-of-life dates — everything the CompTIA A+ 220-1202 tests about the differences between Windows 10 and Windows 11.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ The Key Exam Difference</div>
+      <div class="quick-answer-text">
+        The single most tested Windows 10 vs 11 distinction on the CompTIA A+ is the <strong>TPM 2.0 requirement</strong>. Windows 11 requires a Trusted Platform Module (TPM) 2.0 chip — Windows 10 does not. If a scenario describes a machine that cannot upgrade to Windows 11, <strong>TPM 2.0 is almost always the reason</strong>. Windows 11 also requires a 64-bit CPU, 4GB RAM, 64GB storage, and UEFI firmware with Secure Boot — significantly stricter than Windows 10.
+      </div>
+    </div>
+
+    <h2>System Requirements — Side by Side</h2>
+
+    <div class="req-grid">
+      <div class="req-card">
+        <div class="req-card-header req-win10">Windows 10</div>
+        <div class="req-body">
+          <div class="req-row"><span class="req-key">CPU</span><span class="req-val">1 GHz (32 or 64-bit)</span></div>
+          <div class="req-row"><span class="req-key">RAM</span><span class="req-val">1 GB (32-bit) / 2 GB (64-bit)</span></div>
+          <div class="req-row"><span class="req-key">Storage</span><span class="req-val">16 GB (32-bit) / 32 GB (64-bit)</span></div>
+          <div class="req-row"><span class="req-key">Display</span><span class="req-val">800 × 600 resolution</span></div>
+          <div class="req-row"><span class="req-key">TPM</span><span class="req-val">Not required</span></div>
+          <div class="req-row"><span class="req-key">UEFI / Secure Boot</span><span class="req-val">Not required</span></div>
+          <div class="req-row"><span class="req-key">DirectX</span><span class="req-val">DirectX 9</span></div>
+          <div class="req-row"><span class="req-key">End of Support</span><span class="req-val">October 14, 2025</span></div>
+        </div>
+      </div>
+      <div class="req-card">
+        <div class="req-card-header req-win11">Windows 11</div>
+        <div class="req-body">
+          <div class="req-row"><span class="req-key">CPU</span><span class="req-val highlight">1 GHz, 64-bit only, 2+ cores</span></div>
+          <div class="req-row"><span class="req-key">RAM</span><span class="req-val highlight">4 GB minimum</span></div>
+          <div class="req-row"><span class="req-key">Storage</span><span class="req-val highlight">64 GB minimum</span></div>
+          <div class="req-row"><span class="req-key">Display</span><span class="req-val highlight">720p, 9" diagonal+</span></div>
+          <div class="req-row"><span class="req-key">TPM</span><span class="req-val highlight">TPM 2.0 required</span></div>
+          <div class="req-row"><span class="req-key">UEFI / Secure Boot</span><span class="req-val highlight">Both required</span></div>
+          <div class="req-row"><span class="req-key">DirectX</span><span class="req-val highlight">DirectX 12</span></div>
+          <div class="req-row"><span class="req-key">End of Support</span><span class="req-val">October 2031 (est.)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 The Two Requirements That Appear Most on the A+</div>
+      <p><strong>TPM 2.0</strong> — Required by Windows 11, not Windows 10. A machine without TPM 2.0 cannot upgrade to Windows 11 through normal means. TPM also enables BitLocker encryption. If a question mentions BitLocker failing or Windows 11 upgrade failing, TPM is usually involved.</p>
+      <p><strong>64-bit only</strong> — Windows 11 dropped support for 32-bit processors entirely. Windows 10 still supports 32-bit. An older machine running a 32-bit CPU cannot run Windows 11 regardless of other specs. Windows 11 also requires a CPU from a specific compatibility list (Intel 8th gen+ or AMD Ryzen 2000+).</p>
+    </div>
+
+    <h2>Feature Differences</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Windows 10</th><th>Windows 11</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Start Menu</td><td>Left-aligned, live tiles, full customisation</td><td>Centre-aligned by default, no live tiles, simplified</td></tr>
+          <tr><td class="td-term">Taskbar</td><td>Fully customisable, can be moved to any edge</td><td>Bottom-only, less customisable, centred icons</td></tr>
+          <tr><td class="td-term">Virtual Desktops</td><td>Available (Task View)</td><td>Improved — each desktop has its own wallpaper</td></tr>
+          <tr><td class="td-term">Snap Layouts</td><td>Basic snap (2 windows)</td><td>Snap Layouts — up to 4 windows in templates</td></tr>
+          <tr><td class="td-term">Microsoft Teams</td><td>Separate download</td><td>Built-in (Chat integration in taskbar)</td></tr>
+          <tr><td class="td-term">Android Apps</td><td><span class="no">Not supported</span></td><td><span class="yes">Supported</span> via Amazon Appstore (Windows Subsystem for Android)</td></tr>
+          <tr><td class="td-term">DirectX</td><td>DirectX 9/10/11/12</td><td>DirectX 12 Ultimate (required)</td></tr>
+          <tr><td class="td-term">TPM Requirement</td><td><span class="no">Not required</span></td><td><span class="yes">TPM 2.0 required</span></td></tr>
+          <tr><td class="td-term">Secure Boot</td><td><span class="limited">Recommended</span></td><td><span class="yes">Required</span></td></tr>
+          <tr><td class="td-term">32-bit support</td><td><span class="yes">Yes</span> (32-bit editions available)</td><td><span class="no">No</span> — 64-bit only</td></tr>
+          <tr><td class="td-term">Internet Explorer</td><td>Available (legacy)</td><td>Removed — Edge only</td></tr>
+          <tr><td class="td-term">Control Panel</td><td>Available alongside Settings</td><td>Being phased to Settings — Control Panel still accessible</td></tr>
+          <tr><td class="td-term">Windows Update</td><td>Feature updates twice yearly</td><td>One major update per year</td></tr>
+          <tr><td class="td-term">Gaming features</td><td>Game Mode, Xbox app</td><td>Auto HDR, DirectStorage, improved Game Bar</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Editions — Windows 10 vs Windows 11</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Edition</th><th>Target User</th><th>Key Features</th><th>Both OSes?</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="td-term">Home</td>
+            <td>Consumers / personal use</td>
+            <td>Core Windows features, Microsoft 365, OneDrive, Windows Hello</td>
+            <td><span class="yes">Yes</span></td>
+          </tr>
+          <tr>
+            <td class="td-term">Pro</td>
+            <td>Small business / power users</td>
+            <td>Adds BitLocker, Group Policy, Remote Desktop (host), Hyper-V, domain join, Windows Sandbox</td>
+            <td><span class="yes">Yes</span></td>
+          </tr>
+          <tr>
+            <td class="td-term">Pro for Workstations</td>
+            <td>High-performance workstations</td>
+            <td>ReFS file system, persistent memory support, larger RAM support (up to 6 TB)</td>
+            <td><span class="yes">Yes</span></td>
+          </tr>
+          <tr>
+            <td class="td-term">Enterprise</td>
+            <td>Large organisations</td>
+            <td>All Pro features + DirectAccess, AppLocker, advanced threat protection, long-term servicing</td>
+            <td><span class="yes">Yes</span></td>
+          </tr>
+          <tr>
+            <td class="td-term">Education</td>
+            <td>Schools and universities</td>
+            <td>Similar to Enterprise — licensed through academic agreements</td>
+            <td><span class="yes">Yes</span></td>
+          </tr>
+          <tr>
+            <td class="td-term">S Mode</td>
+            <td>Budget / managed devices</td>
+            <td>Only runs apps from Microsoft Store, enhanced security, no traditional desktop apps</td>
+            <td><span class="yes">Yes</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Edition Features the A+ Tests Most</div>
+      <p><strong>BitLocker</strong> — Pro and above only. Not available in Home edition. Requires TPM for the most secure mode. A scenario saying a user needs BitLocker but has Windows 10/11 Home → they need to upgrade to Pro.</p>
+      <p><strong>Remote Desktop (hosting)</strong> — Pro and above only. Home can be a Remote Desktop client (connect to other machines) but cannot be hosted (accept incoming connections). This is a very common A+ scenario question.</p>
+      <p><strong>Group Policy Editor (gpedit.msc)</strong> — Pro and above only. Not available in Home. If a scenario asks about applying Group Policy settings to a single machine, the user needs Pro or higher.</p>
+      <p><strong>Hyper-V</strong> — Pro and above only. Windows Home cannot run Hyper-V virtualisation.</p>
+    </div>
+
+    <h2>Upgrade Path — Windows 10 to Windows 11</h2>
+
+    <div class="callout">
+      <div class="callout-label">How the Upgrade Works</div>
+      <p>Windows 10 users can upgrade to Windows 11 for free via Windows Update — <strong>if their hardware meets the requirements</strong>. Microsoft provides the PC Health Check tool to verify compatibility. The most common upgrade blockers are: no TPM 2.0, CPU not on the supported list, or the system using legacy BIOS instead of UEFI.</p>
+      <p><strong>In-place upgrade</strong> preserves files, apps, and settings. A <strong>clean install</strong> wipes everything. For the A+ exam, know that upgrading Windows 10 Home → Windows 11 Home is free and in-place. Moving from Home to Pro requires a separate licence purchase (on either OS).</p>
+      <p><strong>Windows 10 end of support: October 14, 2025.</strong> After this date, Microsoft no longer provides security updates for Windows 10. Organisations on Windows 10 after this date are running an unsupported OS — a security risk the A+ may test in a scenario.</p>
+    </div>
+
+    <h2>TPM — What It Is and Why It Matters</h2>
+
+    <p>TPM (Trusted Platform Module) is a security chip on the motherboard that stores cryptographic keys and performs security functions. <strong>Windows 11 requires TPM 2.0 — the most commonly tested Windows 11 fact on the A+ exam.</strong></p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>TPM Function</th><th>What It Does</th><th>Windows Feature It Enables</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Secure key storage</td><td>Stores encryption keys in tamper-resistant hardware — keys cannot be extracted by software</td><td>BitLocker drive encryption</td></tr>
+          <tr><td class="td-term">Platform integrity</td><td>Measures the boot process and detects if the OS has been tampered with</td><td>Secure Boot verification</td></tr>
+          <tr><td class="td-term">Windows Hello</td><td>Stores biometric authentication data (fingerprint, face) securely in hardware</td><td>Windows Hello for Business</td></tr>
+          <tr><td class="td-term">Device Health Attestation</td><td>Proves to a server that the device is in a known, trusted state</td><td>MDM compliance verification</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 TPM vs Secure Boot — Know the Difference</div>
+      <p><strong>TPM</strong> is a hardware chip that stores keys and measures system integrity. <strong>Secure Boot</strong> is a UEFI feature that prevents unsigned operating systems from loading at boot. They work together but are different things. Windows 11 requires both. A machine with TPM but without UEFI (running legacy BIOS) still cannot run Windows 11. You can enable Secure Boot in UEFI settings — you cannot add TPM in software if the chip isn't present.</p>
+    </div>
+
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "A technician tries to upgrade a 5-year-old desktop from Windows 10 to Windows 11. The PC Health Check tool reports the device is not compatible. The CPU speed and RAM both meet requirements. What is the most likely reason?" → <strong>TPM 2.0 — the most common Windows 11 compatibility blocker. Older systems often have TPM 1.2 or no TPM at all. The technician should check UEFI settings to see if TPM can be enabled, or check if the system has TPM 2.0 disabled in firmware.</strong></div>
+      <div class="scenario-item">💬 "A user running Windows 11 Home wants to enable BitLocker on their laptop. They navigate to the BitLocker settings but the option is greyed out. What is the cause?" → <strong>BitLocker requires Windows Pro or higher — it is not available in Windows Home edition. The user needs to upgrade their licence to Windows 11 Pro to access BitLocker.</strong></div>
+      <div class="scenario-item">💬 "A small business technician needs to allow a remote employee to connect to their Windows 10 workstation from home using Remote Desktop. The workstation is running Windows 10 Home. Will this work?" → <strong>No — Windows Home editions cannot host Remote Desktop connections (accept incoming RDP). The machine needs to be upgraded to Windows 10 Pro or Windows 11 Pro. The remote employee's machine can run any edition as the client.</strong></div>
+      <div class="scenario-item">💬 "A company needs to deploy Group Policy settings to individual workstations without a domain controller. What Windows edition do the workstations need?" → <strong>Windows Pro or higher — the Local Group Policy Editor (gpedit.msc) is not available in Windows Home editions. Pro adds the ability to configure local Group Policy settings independently of a domain.</strong></div>
+      <div class="scenario-item">💬 "A technician is setting up a Windows 11 machine and needs to ensure the boot process is protected against rootkits that load before the OS. Which UEFI feature should be enabled?" → <strong>Secure Boot — prevents unsigned code from loading during the boot process. Required for Windows 11 and specifically designed to block bootkit and rootkit malware that loads before the OS. Distinct from TPM, which stores keys and measures integrity.</strong></div>
+      <div class="scenario-item">💬 "An organisation is still running Windows 10 on all workstations after October 2025. What is the primary security concern?" → <strong>Windows 10 reached end of support in October 2025, meaning Microsoft no longer provides security patches. Any newly discovered vulnerabilities will remain unpatched, leaving the machines exposed. The organisation should upgrade to Windows 11 or purchase Extended Security Updates (ESU) if available.</strong></div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Ready to pass the A+ exam?</h3>
+        <p>See the best courses, practice exams, and study guides for 220-1201 and 220-1202.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn-blue">See Best A+ Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="comptia-aplus-domains.html" class="related-link">A+ Exam Domains Breakdown</a>
+      <a href="windows-command-line.html" class="related-link">Windows Command Line</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="troubleshooting-methodology.html" class="related-link">Troubleshooting Methodology</a>
+      <a href="active-directory-basics.html" class="related-link">Active Directory Basics</a>
+      <a href="linux-commands-basics.html" class="related-link">Linux Commands Basics</a>
+      <a href="how-to-pass-comptia-aplus.html" class="related-link">How to Pass the A+</a>
+      <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">A+</div>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-aplus.html">How to Pass A+</a>
+      <a href="best-a-plus.html">Best A+ Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Related</div>
+      <a href="windows-command-line.html">Windows CLI</a>
+      <a href="comptia-aplus-domains.html">A+ Domains</a>
+      <a href="troubleshooting-methodology.html">Troubleshooting</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>
