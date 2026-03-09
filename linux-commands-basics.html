@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/linux-commands-basics.html">
+<title>Linux Commands for CompTIA A+, Network+ & Security+ — 2026 Exam Guide</title>
+<meta name="description" content="Essential Linux commands for CompTIA exams — ls, cd, chmod, grep, ps, ifconfig/ip, sudo, find, cat, and more. With syntax, flags, exam scenarios, and what each cert actually tests.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(0,194,168,.13) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(26,108,255,.07) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(0,194,168,.12);border:1px solid rgba(0,194,168,.3);color:#5eead4;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#5eead4;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(0,194,168,.15) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#5eead4;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* Command cards */
+.cmd-card{background:var(--white);border:1px solid var(--border);border-radius:16px;margin-bottom:20px;box-shadow:var(--card-shadow);overflow:hidden;}
+.cmd-header{background:var(--navy);padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.cmd-name{font-family:'DM Mono',monospace;font-size:20px;font-weight:700;color:var(--teal);}
+.cmd-summary{font-size:13px;color:rgba(255,255,255,.55);font-style:italic;}
+.cmd-cert-badges{display:flex;gap:6px;flex-wrap:wrap;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;padding:3px 8px;border-radius:100px;letter-spacing:.4px;}
+.badge-aplus{background:rgba(0,194,168,.15);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.badge-nplus{background:rgba(26,108,255,.15);color:#93c5fd;border:1px solid rgba(26,108,255,.3);}
+.badge-splus{background:rgba(124,58,237,.15);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.cmd-body{padding:18px 22px;}
+.cmd-desc{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:14px;}
+.cmd-desc strong{color:var(--navy);}
+.syntax-block{background:#0d1b2e;border-radius:10px;padding:14px 18px;margin-bottom:14px;overflow-x:auto;}
+.syntax-block code{font-family:'DM Mono',monospace;font-size:13px;color:#e2e8f4;line-height:1.8;white-space:pre;}
+.syntax-block .cmd-kw{color:var(--teal);}
+.syntax-block .cmd-flag{color:#93c5fd;}
+.syntax-block .cmd-arg{color:#fcd34d;}
+.syntax-block .cmd-comment{color:#64748b;}
+.flags-table{width:100%;border-collapse:collapse;margin-bottom:14px;font-size:13px;}
+.flags-table th{background:var(--light);color:var(--navy);font-weight:700;padding:8px 12px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.4px;}
+.flags-table td{padding:8px 12px;border-bottom:1px solid var(--light);color:var(--text);vertical-align:top;line-height:1.5;}
+.flags-table tr:last-child td{border-bottom:none;}
+.flags-table .flag-col{font-family:'DM Mono',monospace;font-weight:700;color:var(--navy);white-space:nowrap;}
+.cmd-tip{font-size:13px;background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:3px solid #f0c000;border-radius:8px;padding:10px 14px;color:#3a2800;line-height:1.6;}
+.cmd-tip strong{color:#1a1000;}
+/* Table */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:400px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#f0fdf9;}
+.td-term{font-weight:700;color:var(--navy);}
+.td-mono{font-family:'DM Mono',monospace;font-size:13px;}
+/* Cert scope callout */
+.cert-scope{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:40px;}
+@media(max-width:600px){.cert-scope{grid-template-columns:1fr;}}
+.cert-scope-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px;box-shadow:var(--card-shadow);}
+.cert-scope-title{font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:var(--navy);margin-bottom:8px;}
+.cert-scope-items{font-size:13px;color:var(--text);line-height:1.8;}
+.cert-scope-items li{margin-left:14px;}
+/* Callout */
+.callout{background:rgba(0,194,168,.04);border:1px solid rgba(0,194,168,.2);border-left:4px solid var(--teal);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+/* Scenarios */
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+/* CTA */
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(0,194,168,.2) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-teal{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--teal);color:var(--navy);box-shadow:0 6px 20px rgba(0,194,168,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-teal:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,194,168,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(0,194,168,.4);color:var(--teal);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--teal);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="windows-command-line.html">Windows CLI</a>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="best-a-plus.html" class="nav-cta">A+ Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="networking.html">Networking</a><span>›</span>
+      <span>Linux Commands</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ 220-1202 · Network+ · Security+</div>
+    <h1>Linux Commands <span>for CompTIA Exams</span></h1>
+    <p class="page-hero-sub">Every Linux command tested on CompTIA A+, Network+, and Security+ — with syntax, key flags, real-world usage, and exam scenarios. Covers the new A+ 220-1202 Linux additions plus N+ and S+ command-line topics.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Why Linux Matters for CompTIA Now</div>
+      <div class="quick-answer-text">
+        The A+ 220-1202 (Core 2) exam added Linux to its scope — you need to know basic navigation, file permissions, and process management commands. Network+ tests Linux networking commands (<code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px;">ifconfig</code>, <code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px;">ip</code>, <code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px;">netstat</code>). Security+ tests log analysis, file integrity, and hardening commands. <strong>You don't need to be a Linux admin — you need to recognise what each command does and pick the right one for a given scenario.</strong>
+      </div>
+    </div>
+
+    <h2>What Each Cert Tests</h2>
+
+    <div class="cert-scope">
+      <div class="cert-scope-card">
+        <div class="cert-scope-title" style="color:var(--teal)">A+ 220-1202</div>
+        <div class="cert-scope-items">
+          <ul style="list-style:none;padding:0;">
+            <li>📁 ls, cd, pwd, mkdir, rm</li>
+            <li>📄 cat, cp, mv, touch</li>
+            <li>🔐 chmod, chown</li>
+            <li>👤 sudo, su</li>
+            <li>📦 apt, yum (package mgmt)</li>
+            <li>🔍 grep, find</li>
+            <li>📊 ps, top, kill</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cert-scope-card">
+        <div class="cert-scope-title" style="color:var(--blue)">Network+ N10-009</div>
+        <div class="cert-scope-items">
+          <ul style="list-style:none;padding:0;">
+            <li>🌐 ifconfig / ip addr</li>
+            <li>📡 ping, traceroute</li>
+            <li>🔍 netstat, ss</li>
+            <li>🔎 nslookup, dig</li>
+            <li>📶 iwconfig / iw</li>
+            <li>🛣️ route / ip route</li>
+            <li>🔥 iptables basics</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cert-scope-card">
+        <div class="cert-scope-title" style="color:var(--purple)">Security+ SY0-701</div>
+        <div class="cert-scope-items">
+          <ul style="list-style:none;padding:0;">
+            <li>📋 journalctl, tail -f</li>
+            <li>🔐 chmod, chown, umask</li>
+            <li>🔑 ssh, scp, sftp</li>
+            <li>🔍 grep, awk (log analysis)</li>
+            <li>🛡️ iptables / ufw</li>
+            <li>🔒 passwd, usermod</li>
+            <li>💾 dd, sha256sum</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h2>Navigation & File Management</h2>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div>
+          <div class="cmd-name">ls</div>
+          <div class="cmd-summary">List directory contents</div>
+        </div>
+        <div class="cmd-cert-badges">
+          <span class="cert-badge badge-aplus">A+</span>
+          <span class="cert-badge badge-nplus">N+</span>
+          <span class="cert-badge badge-splus">S+</span>
+        </div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc">Lists files and directories. The most commonly used Linux command — equivalent to <code style="font-family:'DM Mono',monospace;background:var(--light);padding:1px 5px;border-radius:4px;">dir</code> in Windows. With flags it shows hidden files, permissions, file sizes, and modification times.</div>
+        <div class="syntax-block"><code><span class="cmd-kw">ls</span>                          <span class="cmd-comment"># list current directory</span>
+<span class="cmd-kw">ls</span> <span class="cmd-flag">-l</span>                        <span class="cmd-comment"># long format — shows permissions, owner, size, date</span>
+<span class="cmd-kw">ls</span> <span class="cmd-flag">-a</span>                        <span class="cmd-comment"># show hidden files (names starting with .)</span>
+<span class="cmd-kw">ls</span> <span class="cmd-flag">-la</span>                       <span class="cmd-comment"># long format + hidden files (most common)</span>
+<span class="cmd-kw">ls</span> <span class="cmd-flag">-lh</span>                       <span class="cmd-comment"># long format with human-readable file sizes</span>
+<span class="cmd-kw">ls</span> <span class="cmd-arg">/etc</span>                      <span class="cmd-comment"># list contents of /etc directory</span></code></div>
+        <div class="cmd-tip"><strong>Exam tip:</strong> <code style="font-family:'DM Mono',monospace;">ls -la</code> shows hidden files AND permissions. Hidden files in Linux start with a dot (<code style="font-family:'DM Mono',monospace;">.bashrc</code>, <code style="font-family:'DM Mono',monospace;">.ssh</code>). The <code style="font-family:'DM Mono',monospace;">-l</code> flag output shows: permissions | links | owner | group | size | date | filename.</div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div>
+          <div class="cmd-name">cd / pwd / mkdir / rm</div>
+          <div class="cmd-summary">Navigate and manage directories</div>
+        </div>
+        <div class="cmd-cert-badges">
+          <span class="cert-badge badge-aplus">A+</span>
+        </div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc">Core navigation commands. <strong>cd</strong> changes directory, <strong>pwd</strong> prints the current working directory, <strong>mkdir</strong> creates directories, <strong>rm</strong> removes files and directories.</div>
+        <div class="syntax-block"><code><span class="cmd-kw">pwd</span>                          <span class="cmd-comment"># print current directory path</span>
+<span class="cmd-kw">cd</span> <span class="cmd-arg">/home/user</span>               <span class="cmd-comment"># absolute path navigation</span>
+<span class="cmd-kw">cd</span> <span class="cmd-arg">Documents</span>                <span class="cmd-comment"># relative path (from current dir)</span>
+<span class="cmd-kw">cd</span> <span class="cmd-arg">..</span>                        <span class="cmd-comment"># go up one directory</span>
+<span class="cmd-kw">cd</span> <span class="cmd-arg">~</span>                         <span class="cmd-comment"># go to home directory</span>
+<span class="cmd-kw">mkdir</span> <span class="cmd-arg">newfolder</span>             <span class="cmd-comment"># create a directory</span>
+<span class="cmd-kw">mkdir</span> <span class="cmd-flag">-p</span> <span class="cmd-arg">path/to/folder</span>    <span class="cmd-comment"># create nested directories</span>
+<span class="cmd-kw">rm</span> <span class="cmd-arg">file.txt</span>                 <span class="cmd-comment"># delete a file</span>
+<span class="cmd-kw">rm</span> <span class="cmd-flag">-r</span> <span class="cmd-arg">folder</span>               <span class="cmd-comment"># delete directory and all contents (recursive)</span>
+<span class="cmd-kw">rm</span> <span class="cmd-flag">-rf</span> <span class="cmd-arg">folder</span>              <span class="cmd-comment"># force delete — no prompts (dangerous!)</span></code></div>
+        <div class="cmd-tip"><strong>Exam tip:</strong> <code style="font-family:'DM Mono',monospace;">rm -rf</code> is non-recoverable — no Recycle Bin in Linux. The exam may present a scenario asking which flag deletes a directory and its contents: <code style="font-family:'DM Mono',monospace;">-r</code> (recursive). <code style="font-family:'DM Mono',monospace;">~</code> always means the current user's home directory.</div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div>
+          <div class="cmd-name">cat / cp / mv / touch</div>
+          <div class="cmd-summary">File viewing, copying, and moving</div>
+        </div>
+        <div class="cmd-cert-badges">
+          <span class="cert-badge badge-aplus">A+</span>
+          <span class="cert-badge badge-splus">S+</span>
+        </div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc"><strong>cat</strong> displays file contents, <strong>cp</strong> copies files, <strong>mv</strong> moves or renames files, <strong>touch</strong> creates empty files or updates timestamps.</div>
+        <div class="syntax-block"><code><span class="cmd-kw">cat</span> <span class="cmd-arg">file.txt</span>                <span class="cmd-comment"># display file contents</span>
+<span class="cmd-kw">cat</span> <span class="cmd-arg">/etc/passwd</span>             <span class="cmd-comment"># view the user account file</span>
+<span class="cmd-kw">cp</span> <span class="cmd-arg">source.txt dest.txt</span>      <span class="cmd-comment"># copy a file</span>
+<span class="cmd-kw">cp</span> <span class="cmd-flag">-r</span> <span class="cmd-arg">folder/ backup/</span>       <span class="cmd-comment"># copy directory recursively</span>
+<span class="cmd-kw">mv</span> <span class="cmd-arg">old.txt new.txt</span>          <span class="cmd-comment"># rename a file</span>
+<span class="cmd-kw">mv</span> <span class="cmd-arg">file.txt /tmp/</span>           <span class="cmd-comment"># move a file to another directory</span>
+<span class="cmd-kw">touch</span> <span class="cmd-arg">newfile.txt</span>           <span class="cmd-comment"># create empty file / update timestamp</span></code></div>
+        <div class="cmd-tip"><strong>Exam tip:</strong> <code style="font-family:'DM Mono',monospace;">mv</code> is both move AND rename — if the destination is in the same directory, it renames. <code style="font-family:'DM Mono',monospace;">cat /etc/passwd</code> is a common Security+ scenario — the passwd file stores user account info (not actual passwords, which are in <code style="font-family:'DM Mono',monospace;">/etc/shadow</code>).</div>
+      </div>
+    </div>
+
+    <h2>Permissions & Ownership</h2>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div>
+          <div class="cmd-name">chmod</div>
+          <div class="cmd-summary">Change file permissions</div>
+        </div>
+        <div class="cmd-cert-badges">
+          <span class="cert-badge badge-aplus">A+</span>
+          <span class="cert-badge badge-splus">S+</span>
+        </div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc">Controls who can read, write, and execute a file. The most permission-related command on the exam. Permissions are set for three entities: <strong>owner (u)</strong>, <strong>group (g)</strong>, and <strong>others (o)</strong>. Can be set symbolically (<code style="font-family:'DM Mono',monospace;">+x</code>) or numerically (octal notation).</div>
+        <div class="syntax-block"><code><span class="cmd-kw">chmod</span> <span class="cmd-arg">755</span> <span class="cmd-arg">script.sh</span>         <span class="cmd-comment"># owner=rwx, group=rx, others=rx</span>
+<span class="cmd-kw">chmod</span> <span class="cmd-arg">644</span> <span class="cmd-arg">file.txt</span>          <span class="cmd-comment"># owner=rw, group=r, others=r (typical file)</span>
+<span class="cmd-kw">chmod</span> <span class="cmd-arg">600</span> <span class="cmd-arg">private.key</span>       <span class="cmd-comment"># owner=rw only — SSH keys must be 600</span>
+<span class="cmd-kw">chmod</span> <span class="cmd-flag">+x</span> <span class="cmd-arg">script.sh</span>          <span class="cmd-comment"># add execute for everyone</span>
+<span class="cmd-kw">chmod</span> <span class="cmd-arg">u+x</span> <span class="cmd-arg">script.sh</span>         <span class="cmd-comment"># add execute for owner only</span>
+<span class="cmd-kw">chmod</span> <span class="cmd-arg">go-w</span> <span class="cmd-arg">file.txt</span>         <span class="cmd-comment"># remove write from group and others</span>
+<span class="cmd-kw">chmod</span> <span class="cmd-flag">-R</span> <span class="cmd-arg">755</span> <span class="cmd-arg">folder/</span>        <span class="cmd-comment"># apply recursively to all files in folder</span></code></div>
+        <table class="flags-table">
+          <tr><th>Value</th><th>Binary</th><th>Permissions</th></tr>
+          <tr><td class="flag-col">7</td><td class="flag-col">111</td><td>Read + Write + Execute (rwx)</td></tr>
+          <tr><td class="flag-col">6</td><td class="flag-col">110</td><td>Read + Write (rw-)</td></tr>
+          <tr><td class="flag-col">5</td><td class="flag-col">101</td><td>Read + Execute (r-x)</td></tr>
+          <tr><td class="flag-col">4</td><td class="flag-col">100</td><td>Read only (r--)</td></tr>
+          <tr><td class="flag-col">0</td><td class="flag-col">000</td><td>No permissions (---)</td></tr>
+        </table>
+        <div class="cmd-tip"><strong>Exam tip:</strong> <code style="font-family:'DM Mono',monospace;">chmod 777</code> gives everyone full read/write/execute — a Security+ red flag for misconfiguration. SSH private key files must be <code style="font-family:'DM Mono',monospace;">600</code> (owner read/write only) — SSH will refuse to use a key with broader permissions. Remember: three digits = owner / group / others.</div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div>
+          <div class="cmd-name">chown</div>
+          <div class="cmd-summary">Change file owner and group</div>
+        </div>
+        <div class="cmd-cert-badges">
+          <span class="cert-badge badge-aplus">A+</span>
+          <span class="cert-badge badge-splus">S+</span>
+        </div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc">Changes who owns a file or directory. Requires root/sudo. Distinct from <code style="font-family:'DM Mono',monospace;">chmod</code> — chown changes <em>who</em> owns the file, chmod changes <em>what they can do</em> with it.</div>
+        <div class="syntax-block"><code><span class="cmd-kw">chown</span> <span class="cmd-arg">alice file.txt</span>          <span class="cmd-comment"># change owner to alice</span>
+<span class="cmd-kw">chown</span> <span class="cmd-arg">alice:devteam file.txt</span>  <span class="cmd-comment"># change owner AND group</span>
+<span class="cmd-kw">chown</span> <span class="cmd-flag">-R</span> <span class="cmd-arg">alice:devteam</span> <span class="cmd-arg">folder/</span> <span class="cmd-comment"># recursive — all files in folder</span>
+<span class="cmd-kw">chown</span> <span class="cmd-arg">:devteam file.txt</span>       <span class="cmd-comment"># change group only (no owner change)</span></code></div>
+        <div class="cmd-tip"><strong>Exam distinction:</strong> <code style="font-family:'DM Mono',monospace;">chmod</code> = change permissions (what can be done). <code style="font-family:'DM Mono',monospace;">chown</code> = change ownership (who owns it). A scenario asking "which command grants a user ownership of a file" → chown. "Which command restricts a file to read-only" → chmod.</div>
+      </div>
+    </div>
+
+    <h2>Users, Sudo & Privileges</h2>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div>
+          <div class="cmd-name">sudo / su</div>
+          <div class="cmd-summary">Elevate privileges</div>
+        </div>
+        <div class="cmd-cert-badges">
+          <span class="cert-badge badge-aplus">A+</span>
+          <span class="cert-badge badge-splus">S+</span>
+        </div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc"><strong>sudo</strong> (superuser do) runs a single command with root privileges without switching to the root account. <strong>su</strong> switches to another user account entirely. sudo is the modern, auditable, preferred method — su is older and considered less secure.</div>
+        <div class="syntax-block"><code><span class="cmd-kw">sudo</span> <span class="cmd-arg">apt update</span>              <span class="cmd-comment"># run apt as root</span>
+<span class="cmd-kw">sudo</span> <span class="cmd-flag">-i</span>                       <span class="cmd-comment"># open a root shell (interactive)</span>
+<span class="cmd-kw">sudo</span> <span class="cmd-arg">!!                        </span><span class="cmd-comment"># re-run last command as sudo</span>
+<span class="cmd-kw">su</span> <span class="cmd-arg">alice</span>                      <span class="cmd-comment"># switch to user alice (requires alice's password)</span>
+<span class="cmd-kw">su</span> <span class="cmd-flag">-</span>                          <span class="cmd-comment"># switch to root (requires root password)</span>
+<span class="cmd-kw">passwd</span>                         <span class="cmd-comment"># change your own password</span>
+<span class="cmd-kw">sudo</span> <span class="cmd-arg">passwd alice</span>             <span class="cmd-comment"># change another user's password (as admin)</span></code></div>
+        <div class="cmd-tip"><strong>Security+ angle:</strong> <code style="font-family:'DM Mono',monospace;">sudo</code> is the principle of least privilege in practice — users run as non-root by default and only elevate for specific commands. Sudo activity is logged to <code style="font-family:'DM Mono',monospace;">/var/log/auth.log</code>, making it auditable. Giving all users <code style="font-family:'DM Mono',monospace;">sudo</code> access defeats the purpose.</div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div>
+          <div class="cmd-name">useradd / usermod / userdel</div>
+          <div class="cmd-summary">Manage user accounts</div>
+        </div>
+        <div class="cmd-cert-badges">
+          <span class="cert-badge badge-aplus">A+</span>
+          <span class="cert-badge badge-splus">S+</span>
+        </div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc">Create, modify, and delete Linux user accounts. Requires root/sudo. User account data is stored in <code style="font-family:'DM Mono',monospace;">/etc/passwd</code>, passwords in <code style="font-family:'DM Mono',monospace;">/etc/shadow</code>, groups in <code style="font-family:'DM Mono',monospace;">/etc/group</code>.</div>
+        <div class="syntax-block"><code><span class="cmd-kw">sudo useradd</span> <span class="cmd-arg">alice</span>            <span class="cmd-comment"># create user alice</span>
+<span class="cmd-kw">sudo useradd</span> <span class="cmd-flag">-m</span> <span class="cmd-flag">-s</span> <span class="cmd-arg">/bin/bash alice</span> <span class="cmd-comment"># create user with home dir and bash shell</span>
+<span class="cmd-kw">sudo usermod</span> <span class="cmd-flag">-aG</span> <span class="cmd-arg">sudo alice</span>   <span class="cmd-comment"># add alice to sudo group</span>
+<span class="cmd-kw">sudo usermod</span> <span class="cmd-flag">-L</span> <span class="cmd-arg">alice</span>          <span class="cmd-comment"># lock alice's account (disable login)</span>
+<span class="cmd-kw">sudo userdel</span> <span class="cmd-arg">alice</span>            <span class="cmd-comment"># delete user (keeps home directory)</span>
+<span class="cmd-kw">sudo userdel</span> <span class="cmd-flag">-r</span> <span class="cmd-arg">alice</span>         <span class="cmd-comment"># delete user AND home directory</span></code></div>
+        <div class="cmd-tip"><strong>Exam tip:</strong> <code style="font-family:'DM Mono',monospace;">usermod -L</code> locks an account without deleting it — the correct action when an employee leaves temporarily or an account is compromised. <code style="font-family:'DM Mono',monospace;">-aG</code> means "append to Group" — using <code style="font-family:'DM Mono',monospace;">-G</code> without <code style="font-family:'DM Mono',monospace;">-a</code> replaces all existing group memberships.</div>
+      </div>
+    </div>
+
+    <h2>Searching & Text Processing</h2>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div>
+          <div class="cmd-name">grep</div>
+          <div class="cmd-summary">Search text in files or output</div>
+        </div>
+        <div class="cmd-cert-badges">
+          <span class="cert-badge badge-aplus">A+</span>
+          <span class="cert-badge badge-splus">S+</span>
+        </div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc">Searches for a pattern in files or piped output. Arguably the most useful command for log analysis and Security+ forensics scenarios. Combined with <code style="font-family:'DM Mono',monospace;">|</code> (pipe), it filters the output of other commands.</div>
+        <div class="syntax-block"><code><span class="cmd-kw">grep</span> <span class="cmd-arg">"error"</span> <span class="cmd-arg">/var/log/syslog</span>    <span class="cmd-comment"># find lines containing "error"</span>
+<span class="cmd-kw">grep</span> <span class="cmd-flag">-i</span> <span class="cmd-arg">"failed"</span> <span class="cmd-arg">auth.log</span>     <span class="cmd-comment"># case-insensitive search</span>
+<span class="cmd-kw">grep</span> <span class="cmd-flag">-r</span> <span class="cmd-arg">"password"</span> <span class="cmd-arg">/etc/</span>      <span class="cmd-comment"># recursive search through directory</span>
+<span class="cmd-kw">grep</span> <span class="cmd-flag">-v</span> <span class="cmd-arg">"#"</span> <span class="cmd-arg">config.txt</span>        <span class="cmd-comment"># invert — show lines NOT containing #</span>
+<span class="cmd-kw">grep</span> <span class="cmd-flag">-n</span> <span class="cmd-arg">"root"</span> <span class="cmd-arg">/etc/passwd</span>    <span class="cmd-comment"># show line numbers</span>
+<span class="cmd-kw">grep</span> <span class="cmd-flag">-c</span> <span class="cmd-arg">"Failed"</span> <span class="cmd-arg">auth.log</span>     <span class="cmd-comment"># count matching lines</span>
+<span class="cmd-kw">cat</span> <span class="cmd-arg">auth.log</span> <span class="cmd-arg">|</span> <span class="cmd-kw">grep</span> <span class="cmd-arg">"ssh"</span>     <span class="cmd-comment"># pipe — filter cat output for ssh lines</span></code></div>
+        <div class="cmd-tip"><strong>S+ log analysis:</strong> <code style="font-family:'DM Mono',monospace;">grep -i "failed password" /var/log/auth.log</code> finds failed SSH login attempts — key in an incident response scenario. <code style="font-family:'DM Mono',monospace;">grep -v "#"</code> strips comments from config files to see active configuration only.</div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div>
+          <div class="cmd-name">find</div>
+          <div class="cmd-summary">Search for files by name, type, or attribute</div>
+        </div>
+        <div class="cmd-cert-badges">
+          <span class="cert-badge badge-aplus">A+</span>
+          <span class="cert-badge badge-splus">S+</span>
+        </div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc">Searches the filesystem for files matching given criteria — by name, type, size, permissions, owner, or modification time. More powerful than a simple filename search and useful for forensics scenarios.</div>
+        <div class="syntax-block"><code><span class="cmd-kw">find</span> <span class="cmd-arg">/home</span> <span class="cmd-flag">-name</span> <span class="cmd-arg">"*.txt"</span>       <span class="cmd-comment"># find all .txt files under /home</span>
+<span class="cmd-kw">find</span> <span class="cmd-arg">/</span> <span class="cmd-flag">-name</span> <span class="cmd-arg">"config.ini"</span>     <span class="cmd-comment"># find specific file anywhere on system</span>
+<span class="cmd-kw">find</span> <span class="cmd-arg">/var</span> <span class="cmd-flag">-type</span> <span class="cmd-arg">f</span> <span class="cmd-flag">-size</span> <span class="cmd-arg">+10M</span>  <span class="cmd-comment"># files larger than 10MB</span>
+<span class="cmd-kw">find</span> <span class="cmd-arg">/</span> <span class="cmd-flag">-perm</span> <span class="cmd-arg">777</span>               <span class="cmd-comment"># files with 777 permissions (security concern)</span>
+<span class="cmd-kw">find</span> <span class="cmd-arg">/tmp</span> <span class="cmd-flag">-mtime</span> <span class="cmd-arg">-1</span>            <span class="cmd-comment"># files modified in last 24 hours</span>
+<span class="cmd-kw">find</span> <span class="cmd-arg">/</span> <span class="cmd-flag">-user</span> <span class="cmd-arg">alice</span>              <span class="cmd-comment"># all files owned by alice</span></code></div>
+        <div class="cmd-tip"><strong>Forensics use:</strong> <code style="font-family:'DM Mono',monospace;">find / -perm 777</code> is a hardening check — world-writable files are a security risk. <code style="font-family:'DM Mono',monospace;">find / -mtime -1</code> finds recently modified files — useful when investigating a breach to see what was changed.</div>
+      </div>
+    </div>
+
+    <h2>Processes & System Monitoring</h2>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div>
+          <div class="cmd-name">ps / top / kill</div>
+          <div class="cmd-summary">View and manage running processes</div>
+        </div>
+        <div class="cmd-cert-badges">
+          <span class="cert-badge badge-aplus">A+</span>
+          <span class="cert-badge badge-splus">S+</span>
+        </div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc"><strong>ps</strong> shows a snapshot of current processes. <strong>top</strong> shows a live, updating view (like Task Manager). <strong>kill</strong> sends a signal to a process — usually to terminate it. Every process has a PID (process ID).</div>
+        <div class="syntax-block"><code><span class="cmd-kw">ps</span>                             <span class="cmd-comment"># show processes for current user/terminal</span>
+<span class="cmd-kw">ps</span> <span class="cmd-flag">aux</span>                        <span class="cmd-comment"># show ALL processes, all users, with details</span>
+<span class="cmd-kw">ps</span> <span class="cmd-flag">aux</span> | <span class="cmd-kw">grep</span> <span class="cmd-arg">apache</span>         <span class="cmd-comment"># find apache processes specifically</span>
+<span class="cmd-kw">top</span>                            <span class="cmd-comment"># live process monitor (q to quit)</span>
+<span class="cmd-kw">kill</span> <span class="cmd-arg">1234</span>                      <span class="cmd-comment"># send SIGTERM to PID 1234 (graceful stop)</span>
+<span class="cmd-kw">kill</span> <span class="cmd-flag">-9</span> <span class="cmd-arg">1234</span>                   <span class="cmd-comment"># send SIGKILL — force kill, no cleanup</span>
+<span class="cmd-kw">killall</span> <span class="cmd-arg">apache2</span>               <span class="cmd-comment"># kill all processes named apache2</span></code></div>
+        <div class="cmd-tip"><strong>Exam tip:</strong> <code style="font-family:'DM Mono',monospace;">ps aux</code> is the standard way to see all running processes — the <code style="font-family:'DM Mono',monospace;">a</code> (all users) <code style="font-family:'DM Mono',monospace;">u</code> (user-oriented format) <code style="font-family:'DM Mono',monospace;">x</code> (no terminal) flags together. <code style="font-family:'DM Mono',monospace;">kill -9</code> is a forced kill that cannot be blocked — use when a process is frozen and not responding to normal kill.</div>
+      </div>
+    </div>
+
+    <h2>Networking Commands</h2>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div>
+          <div class="cmd-name">ifconfig / ip addr</div>
+          <div class="cmd-summary">View and configure network interfaces</div>
+        </div>
+        <div class="cmd-cert-badges">
+          <span class="cert-badge badge-nplus">N+</span>
+          <span class="cert-badge badge-splus">S+</span>
+        </div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc"><code style="font-family:'DM Mono',monospace;">ifconfig</code> is the legacy command for network interface configuration, still widely used and tested. <code style="font-family:'DM Mono',monospace;">ip addr</code> is the modern replacement. Both show IP addresses, MAC addresses, and interface status. CompTIA tests both.</div>
+        <div class="syntax-block"><code><span class="cmd-kw">ifconfig</span>                       <span class="cmd-comment"># show all active interfaces</span>
+<span class="cmd-kw">ifconfig</span> <span class="cmd-arg">eth0</span>                  <span class="cmd-comment"># show specific interface</span>
+<span class="cmd-kw">ifconfig</span> <span class="cmd-arg">eth0</span> <span class="cmd-arg">192.168.1.10</span>    <span class="cmd-comment"># assign IP address (temporary)</span>
+<span class="cmd-kw">ifconfig</span> <span class="cmd-arg">eth0</span> <span class="cmd-arg">down</span>             <span class="cmd-comment"># disable interface</span>
+<span class="cmd-kw">ip addr</span>                        <span class="cmd-comment"># modern equivalent of ifconfig</span>
+<span class="cmd-kw">ip addr show</span> <span class="cmd-arg">eth0</span>             <span class="cmd-comment"># show specific interface</span>
+<span class="cmd-kw">ip link set</span> <span class="cmd-arg">eth0</span> <span class="cmd-arg">up</span>           <span class="cmd-comment"># bring interface up</span>
+<span class="cmd-kw">ip route show</span>                  <span class="cmd-comment"># display routing table</span></code></div>
+        <div class="cmd-tip"><strong>Exam tip:</strong> ifconfig is being replaced by the <code style="font-family:'DM Mono',monospace;">ip</code> command suite but both appear on exams. Key output to read: <code style="font-family:'DM Mono',monospace;">inet</code> = IPv4 address, <code style="font-family:'DM Mono',monospace;">inet6</code> = IPv6 address, <code style="font-family:'DM Mono',monospace;">ether</code> = MAC address, <code style="font-family:'DM Mono',monospace;">lo</code> = loopback interface (127.0.0.1).</div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div>
+          <div class="cmd-name">netstat / ss</div>
+          <div class="cmd-summary">Network connections and listening ports</div>
+        </div>
+        <div class="cmd-cert-badges">
+          <span class="cert-badge badge-nplus">N+</span>
+          <span class="cert-badge badge-splus">S+</span>
+        </div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc">Shows active network connections, listening ports, and socket statistics. Critical for identifying what services are running and detecting suspicious connections. <code style="font-family:'DM Mono',monospace;">ss</code> is the modern replacement for <code style="font-family:'DM Mono',monospace;">netstat</code>.</div>
+        <div class="syntax-block"><code><span class="cmd-kw">netstat</span> <span class="cmd-flag">-tuln</span>                  <span class="cmd-comment"># show listening TCP/UDP ports (numeric)</span>
+<span class="cmd-kw">netstat</span> <span class="cmd-flag">-tulnp</span>                 <span class="cmd-comment"># also show process name/PID</span>
+<span class="cmd-kw">netstat</span> <span class="cmd-flag">-an</span>                    <span class="cmd-comment"># all connections, numeric addresses</span>
+<span class="cmd-kw">ss</span> <span class="cmd-flag">-tuln</span>                       <span class="cmd-comment"># modern equivalent — listening ports</span>
+<span class="cmd-kw">ss</span> <span class="cmd-flag">-tulnp</span>                      <span class="cmd-comment"># with process info</span></code></div>
+        <div class="cmd-tip"><strong>Security+ use:</strong> <code style="font-family:'DM Mono',monospace;">netstat -tulnp</code> shows which process owns each listening port — used to detect unexpected services (e.g., a backdoor listening on an unusual port). Flag breakdown: <code style="font-family:'DM Mono',monospace;">t</code>=TCP, <code style="font-family:'DM Mono',monospace;">u</code>=UDP, <code style="font-family:'DM Mono',monospace;">l</code>=listening, <code style="font-family:'DM Mono',monospace;">n</code>=numeric (no DNS lookup), <code style="font-family:'DM Mono',monospace;">p</code>=process.</div>
+      </div>
+    </div>
+
+    <h2>Package Management</h2>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div>
+          <div class="cmd-name">apt / yum / dnf</div>
+          <div class="cmd-summary">Install and manage software packages</div>
+        </div>
+        <div class="cmd-cert-badges">
+          <span class="cert-badge badge-aplus">A+</span>
+        </div>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-desc">Linux software is installed via package managers. <strong>apt</strong> is used on Debian/Ubuntu. <strong>yum</strong> and <strong>dnf</strong> are used on Red Hat/CentOS/Fedora. The A+ exam tests awareness of both — you need to know which distro family uses which tool.</div>
+        <div class="syntax-block"><code><span class="cmd-comment"># Debian / Ubuntu (apt)</span>
+<span class="cmd-kw">sudo apt update</span>                <span class="cmd-comment"># refresh package list</span>
+<span class="cmd-kw">sudo apt upgrade</span>               <span class="cmd-comment"># upgrade all installed packages</span>
+<span class="cmd-kw">sudo apt install</span> <span class="cmd-arg">nginx</span>         <span class="cmd-comment"># install a package</span>
+<span class="cmd-kw">sudo apt remove</span> <span class="cmd-arg">nginx</span>          <span class="cmd-comment"># remove a package</span>
+
+<span class="cmd-comment"># Red Hat / CentOS / Fedora (yum / dnf)</span>
+<span class="cmd-kw">sudo yum update</span>                <span class="cmd-comment"># update packages (older systems)</span>
+<span class="cmd-kw">sudo dnf install</span> <span class="cmd-arg">httpd</span>         <span class="cmd-comment"># install package (newer Fedora/RHEL)</span>
+<span class="cmd-kw">sudo dnf remove</span> <span class="cmd-arg">httpd</span>          <span class="cmd-comment"># remove package</span></code></div>
+        <div class="cmd-tip"><strong>Exam tip:</strong> apt = Ubuntu/Debian. yum/dnf = RHEL/CentOS/Fedora. <code style="font-family:'DM Mono',monospace;">apt update</code> refreshes the list of available packages — it doesn't install anything. <code style="font-family:'DM Mono',monospace;">apt upgrade</code> actually installs the updates. You need to run update before upgrade or you may install an outdated version.</div>
+      </div>
+    </div>
+
+    <h2>Quick Reference Table</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Command</th><th>Purpose</th><th>Key Flag / Example</th><th>Certs</th></tr></thead>
+        <tbody>
+          <tr><td class="td-mono td-term">ls -la</td><td>List files with permissions + hidden</td><td><code class="td-mono">-l</code> long, <code class="td-mono">-a</code> hidden</td><td>A+ N+ S+</td></tr>
+          <tr><td class="td-mono td-term">chmod 755</td><td>Set file permissions (octal)</td><td>7=rwx, 6=rw, 5=rx, 4=r</td><td>A+ S+</td></tr>
+          <tr><td class="td-mono td-term">chown user:grp</td><td>Change file ownership</td><td><code class="td-mono">-R</code> recursive</td><td>A+ S+</td></tr>
+          <tr><td class="td-mono td-term">sudo</td><td>Run command as root</td><td><code class="td-mono">sudo -i</code> = root shell</td><td>A+ S+</td></tr>
+          <tr><td class="td-mono td-term">grep -i "term"</td><td>Search text in file</td><td><code class="td-mono">-i</code> case-insensitive, <code class="td-mono">-v</code> invert</td><td>A+ S+</td></tr>
+          <tr><td class="td-mono td-term">find / -name</td><td>Locate files by name/attribute</td><td><code class="td-mono">-perm 777</code> find world-writable</td><td>A+ S+</td></tr>
+          <tr><td class="td-mono td-term">ps aux</td><td>Show all running processes</td><td>pipe to grep to filter</td><td>A+ S+</td></tr>
+          <tr><td class="td-mono td-term">kill -9 PID</td><td>Force-kill a process</td><td>SIGKILL = cannot be blocked</td><td>A+</td></tr>
+          <tr><td class="td-mono td-term">ifconfig / ip addr</td><td>View network interfaces + IPs</td><td><code class="td-mono">ip addr show eth0</code></td><td>N+ S+</td></tr>
+          <tr><td class="td-mono td-term">netstat -tulnp</td><td>Show listening ports + processes</td><td>t=TCP u=UDP l=listen n=numeric</td><td>N+ S+</td></tr>
+          <tr><td class="td-mono td-term">apt / yum / dnf</td><td>Install software packages</td><td>apt=Debian/Ubuntu, yum=RHEL</td><td>A+</td></tr>
+          <tr><td class="td-mono td-term">tail -f /var/log</td><td>Live-follow a log file</td><td><code class="td-mono">-f</code> = follow (real-time)</td><td>S+</td></tr>
+          <tr><td class="td-mono td-term">sha256sum file</td><td>Generate/verify file hash</td><td>Used for file integrity verification</td><td>S+</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "A security analyst needs to find all files on a Linux system with world-writable permissions. Which command accomplishes this?" → <strong><code style="font-family:'DM Mono',monospace;">find / -perm 777</code> — searches the entire filesystem for files where owner, group, and others all have full rwx permissions. These are a security risk.</strong></div>
+      <div class="scenario-item">💬 "A technician creates a shell script but cannot execute it. The file permissions show <code style="font-family:'DM Mono',monospace;">-rw-r--r--</code>. Which command adds execute permission for the owner only?" → <strong><code style="font-family:'DM Mono',monospace;">chmod u+x script.sh</code> — <code style="font-family:'DM Mono',monospace;">u</code> = user (owner), <code style="font-family:'DM Mono',monospace;">+x</code> = add execute. Alternatively <code style="font-family:'DM Mono',monospace;">chmod 744</code> gives owner rwx, group r, others r.</strong></div>
+      <div class="scenario-item">💬 "An admin needs to check which process is listening on port 443. Which command shows listening ports with their associated process IDs?" → <strong><code style="font-family:'DM Mono',monospace;">netstat -tulnp</code> or <code style="font-family:'DM Mono',monospace;">ss -tulnp</code> — the <code style="font-family:'DM Mono',monospace;">p</code> flag adds process name and PID to the output.</strong></div>
+      <div class="scenario-item">💬 "After a suspected intrusion, a forensic analyst needs to find all files modified in the last 24 hours. Which command is correct?" → <strong><code style="font-family:'DM Mono',monospace;">find / -mtime -1</code> — <code style="font-family:'DM Mono',monospace;">-mtime -1</code> = modified less than 1 day ago. This helps identify what was changed during an attack.</strong></div>
+      <div class="scenario-item">💬 "A Linux admin needs to search the auth log for all failed SSH login attempts. Which command is most appropriate?" → <strong><code style="font-family:'DM Mono',monospace;">grep -i "failed" /var/log/auth.log</code> — the <code style="font-family:'DM Mono',monospace;">-i</code> flag makes the search case-insensitive, catching "Failed", "FAILED", etc. This is a core incident response skill.</strong></div>
+      <div class="scenario-item">💬 "A user on Ubuntu needs to install the curl package. They are not the root user. Which command is correct?" → <strong><code style="font-family:'DM Mono',monospace;">sudo apt install curl</code> — Ubuntu uses <code style="font-family:'DM Mono',monospace;">apt</code> (Debian-based). <code style="font-family:'DM Mono',monospace;">sudo</code> is required since package installation needs root privileges. On RHEL/CentOS it would be <code style="font-family:'DM Mono',monospace;">sudo yum install curl</code>.</strong></div>
+      <div class="scenario-item">💬 "An SSH private key file has permissions set to 644. When attempting to connect, SSH refuses to use the key. What is the problem?" → <strong>SSH rejects keys that are too permissive. Private key files must be <code style="font-family:'DM Mono',monospace;">chmod 600</code> (owner read/write only). Run <code style="font-family:'DM Mono',monospace;">chmod 600 ~/.ssh/id_rsa</code> to fix.</strong></div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Ready to pass the A+ exam?</h3>
+        <p>See the best study guides, video courses, and practice tests for 220-1201 and 220-1202.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn-teal">See A+ Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="windows-command-line.html" class="related-link">Windows Command Line</a>
+      <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="identity-and-access-management.html" class="related-link">IAM Explained</a>
+      <a href="troubleshooting-methodology.html" class="related-link">Troubleshooting Methodology</a>
+      <a href="social-engineering-attacks.html" class="related-link">Social Engineering Attacks</a>
+      <a href="home-lab-setup-guide.html" class="related-link">Build a Home Lab</a>
+      <a href="ssh-explained.html" class="related-link">SSH Explained</a>
+      <a href="security-plus-cheat-sheet.html" class="related-link">Security+ Cheat Sheet</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">A+</div>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-aplus.html">How to Pass A+</a>
+      <a href="best-a-plus.html">Best A+ Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Commands</div>
+      <a href="windows-command-line.html">Windows CLI</a>
+      <a href="network-troubleshooting-commands.html">Network Commands</a>
+      <a href="ssh-explained.html">SSH Explained</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>
