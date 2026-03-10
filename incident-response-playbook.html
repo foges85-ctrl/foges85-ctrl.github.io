@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/incident-response-playbook.html">
+<title>Incident Response Playbooks — Ransomware, Data Breach, DDoS & Insider Threat | Security+</title>
+<meta name="description" content="Incident response playbooks for CompTIA Security+ — step-by-step response procedures for ransomware, data breach, DDoS, phishing, and insider threats with exam scenarios.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--red:#dc2626;--orange:#ea580c;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(220,38,38,.15) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(124,58,237,.1) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);color:#fca5a5;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#fca5a5;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(220,38,38,.18) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#fca5a5;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* Playbook cards */
+.playbook{background:var(--white);border:1px solid var(--border);border-radius:16px;margin-bottom:36px;box-shadow:var(--card-shadow);overflow:hidden;}
+.playbook-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px;}
+.playbook-header.ransomware{background:linear-gradient(90deg,rgba(220,38,38,.07) 0%,transparent 60%);}
+.playbook-header.breach{background:linear-gradient(90deg,rgba(234,88,12,.07) 0%,transparent 60%);}
+.playbook-header.ddos{background:linear-gradient(90deg,rgba(26,108,255,.07) 0%,transparent 60%);}
+.playbook-header.phishing{background:linear-gradient(90deg,rgba(124,58,237,.07) 0%,transparent 60%);}
+.playbook-header.insider{background:linear-gradient(90deg,rgba(0,194,168,.07) 0%,transparent 60%);}
+.playbook-icon{font-size:28px;flex-shrink:0;}
+.playbook-title{font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:var(--navy);margin-bottom:2px;}
+.playbook-subtitle{font-size:13px;color:var(--muted);}
+.playbook-body{padding:0;}
+.pb-phase{border-bottom:1px solid var(--border);}
+.pb-phase:last-child{border-bottom:none;}
+.pb-phase-header{display:flex;align-items:center;gap:10px;padding:12px 22px;background:var(--lighter);}
+.pb-phase-num{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--white);font-size:11px;}
+.pn-red{background:var(--red);}
+.pn-orange{background:var(--orange);}
+.pn-blue{background:var(--blue);}
+.pn-purple{background:var(--purple);}
+.pn-teal{background:var(--teal);}
+.pn-green{background:#16a34a;}
+.pb-phase-name{font-family:'Outfit',sans-serif;font-size:14px;font-weight:800;color:var(--navy);}
+.pb-phase-tag{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;padding:2px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.4px;margin-left:auto;}
+.pt-prep{background:rgba(26,108,255,.1);color:var(--blue);}
+.pt-id{background:rgba(234,88,12,.1);color:var(--orange);}
+.pt-contain{background:rgba(220,38,38,.1);color:var(--red);}
+.pt-erad{background:rgba(124,58,237,.1);color:var(--purple);}
+.pt-rec{background:rgba(0,194,168,.1);color:var(--teal);}
+.pt-ll{background:rgba(22,163,74,.1);color:#16a34a;}
+.pb-phase-content{padding:12px 22px 14px 54px;}
+.pb-phase-content ul{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.pb-phase-content ul li{font-size:13px;color:var(--text);line-height:1.55;padding-left:14px;position:relative;}
+.pb-phase-content ul li::before{content:'›';position:absolute;left:0;color:var(--muted);font-weight:700;}
+.pb-phase-content ul li strong{color:var(--navy);}
+/* PICERL quick ref */
+.picerl-row{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:40px;box-shadow:var(--card-shadow);}
+@media(max-width:640px){.picerl-row{grid-template-columns:repeat(3,1fr);}}
+.picerl-cell{padding:12px 10px;text-align:center;border-right:1px solid var(--border);}
+.picerl-cell:last-child{border-right:none;}
+.pc-letter{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;margin-bottom:2px;}
+.pc-p{color:var(--blue);}
+.pc-i{color:var(--orange);}
+.pc-c{color:var(--red);}
+.pc-e{color:var(--purple);}
+.pc-r{color:var(--teal);}
+.pc-l{color:#16a34a;}
+.pc-word{font-size:11px;font-weight:700;color:var(--navy);}
+.pc-desc{font-size:10px;color:var(--muted);margin-top:2px;line-height:1.3;}
+/* Comparison table */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:400px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#fef2f2;}
+.td-term{font-weight:700;color:var(--navy);}
+/* Callout */
+.callout{background:rgba(220,38,38,.04);border:1px solid rgba(220,38,38,.18);border-left:4px solid var(--red);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+.callout.blue{background:rgba(26,108,255,.04);border-color:rgba(26,108,255,.18);border-left-color:var(--blue);}
+.callout.blue .callout-label{color:var(--blue);}
+/* Exam tip */
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+/* Scenarios */
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+/* CTA */
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(220,38,38,.2) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-purple{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--purple);color:var(--white);box-shadow:0 6px 20px rgba(124,58,237,.35);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-purple:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(124,58,237,.45);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(220,38,38,.3);color:var(--red);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--red);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="incident-response-explained.html">IR Overview</a>
+      <a href="security-plus-cheat-sheet.html">Security+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-security-plus.html">How to Pass</a>
+      <a href="best-security-plus.html" class="nav-cta">Security+ Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="incident-response-explained.html">Incident Response</a><span>›</span>
+      <span>Playbooks</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Security+ SY0-701 — Security Operations</div>
+    <h1>Incident Response <span>Playbooks</span></h1>
+    <p class="page-hero-sub">Step-by-step response procedures for ransomware, data breach, DDoS, phishing, and insider threats — mapped to the PICERL phases with exam scenarios for Security+ SY0-701.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Playbooks vs IR Plan</div>
+      <div class="quick-answer-text">
+        An <strong>IR plan</strong> is the overarching document that defines roles, communication procedures, and the general PICERL process. A <strong>playbook</strong> is an incident-specific procedure — a step-by-step checklist for responding to a particular type of incident (ransomware, DDoS, phishing). Good IR programs have one IR plan and many playbooks. Security+ SY0-701 tests both — the plan structure (PICERL) and the correct response actions for specific incident types.
+      </div>
+    </div>
+
+    <h2>PICERL — The Six Phases (Quick Reference)</h2>
+
+    <div class="picerl-row">
+      <div class="picerl-cell"><div class="pc-letter pc-p">P</div><div class="pc-word">Preparation</div><div class="pc-desc">Before the incident. Policies, tools, training, playbooks.</div></div>
+      <div class="picerl-cell"><div class="pc-letter pc-i">I</div><div class="pc-word">Identification</div><div class="pc-desc">Detect and confirm an incident occurred.</div></div>
+      <div class="picerl-cell"><div class="pc-letter pc-c">C</div><div class="pc-word">Containment</div><div class="pc-desc">Stop the spread. Isolate affected systems.</div></div>
+      <div class="picerl-cell"><div class="pc-letter pc-e">E</div><div class="pc-word">Eradication</div><div class="pc-desc">Remove the threat completely. Patch the vulnerability.</div></div>
+      <div class="picerl-cell"><div class="pc-letter pc-r">R</div><div class="pc-word">Recovery</div><div class="pc-desc">Restore systems. Verify clean. Return to production.</div></div>
+      <div class="picerl-cell"><div class="pc-letter pc-l">L</div><div class="pc-word">Lessons Learned</div><div class="pc-desc">Post-incident review. Improve the plan.</div></div>
+    </div>
+
+    <h2>Playbook 1 — Ransomware</h2>
+
+    <div class="playbook">
+      <div class="playbook-header ransomware">
+        <div class="playbook-icon">🔒</div>
+        <div>
+          <div class="playbook-title">Ransomware Response Playbook</div>
+          <div class="playbook-subtitle">Encrypts files and demands payment — speed of containment is everything</div>
+        </div>
+      </div>
+      <div class="playbook-body">
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-blue">P</div>
+            <div class="pb-phase-name">Preparation</div>
+            <span class="pb-phase-tag pt-prep">Before the incident</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>Maintain <strong>offline, tested backups</strong> following the 3-2-1 rule (3 copies, 2 media types, 1 offsite) — the most important ransomware defence</li>
+            <li>Segment the network with VLANs to limit lateral movement if ransomware spreads</li>
+            <li>Disable SMBv1, restrict RDP access, enforce MFA on all remote access</li>
+            <li>Deploy and configure EDR (Endpoint Detection and Response) with ransomware behavioural detection</li>
+            <li>Document all critical assets and their backup/recovery procedures</li>
+          </ul></div>
+        </div>
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-orange">I</div>
+            <div class="pb-phase-name">Identification</div>
+            <span class="pb-phase-tag pt-id">Detect & confirm</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>User reports files renamed with unknown extensions, ransom note on desktop</li>
+            <li>SIEM/EDR alerts on mass file encryption activity or Volume Shadow Copy (VSS) deletion</li>
+            <li>Identify <strong>patient zero</strong> — the first infected system — via EDR telemetry or log analysis</li>
+            <li>Determine the ransomware family (Nokoyawa, LockBit, etc.) — guides decryption tool search and legal reporting</li>
+            <li>Confirm scope: how many systems are encrypted? Has data been exfiltrated (double extortion)?</li>
+          </ul></div>
+        </div>
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-red">C</div>
+            <div class="pb-phase-name">Containment</div>
+            <span class="pb-phase-tag pt-contain">Stop the spread</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li><strong>Immediately isolate infected machines</strong> — disconnect network cable or disable NIC. Do not simply shut down (memory evidence lost)</li>
+            <li>Block known C2 (command-and-control) IPs and domains at the firewall</li>
+            <li>Disable compromised accounts — attacker may have stolen credentials</li>
+            <li>Quarantine the affected network segment at the switch/VLAN level</li>
+            <li><strong>Do not pay the ransom at this stage</strong> — legal, law enforcement, and insurance must be involved first</li>
+            <li>Preserve forensic evidence: memory dumps, disk images, network logs — before reimaging</li>
+          </ul></div>
+        </div>
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-purple">E</div>
+            <div class="pb-phase-name">Eradication</div>
+            <span class="pb-phase-tag pt-erad">Remove the threat</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>Check ransomware decryption tools (NoMoreRansom.org) before reimaging — some families have free decryptors</li>
+            <li><strong>Reimage all infected systems</strong> from known-good baseline — do not attempt to clean in place</li>
+            <li>Reset all credentials — assume all accounts on infected systems are compromised</li>
+            <li>Identify and patch the initial access vector (phishing link, RDP brute force, unpatched vulnerability)</li>
+            <li>Remove all persistence mechanisms: scheduled tasks, registry run keys, startup entries</li>
+          </ul></div>
+        </div>
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-teal">R</div>
+            <div class="pb-phase-name">Recovery</div>
+            <span class="pb-phase-tag pt-rec">Restore operations</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>Restore data from <strong>verified clean backups</strong> — confirm backup integrity before restoring</li>
+            <li>Bring systems online gradually — monitor closely for re-infection before expanding</li>
+            <li>Verify EDR is active and detecting on restored systems before returning to production</li>
+            <li>Notify affected users, management, legal counsel, and regulators per breach notification requirements</li>
+            <li>Monitor for signs of data exfiltration — double extortion ransomware may still threaten to publish stolen data</li>
+          </ul></div>
+        </div>
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-green">L</div>
+            <div class="pb-phase-name">Lessons Learned</div>
+            <span class="pb-phase-tag pt-ll">Post-incident review</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>Timeline review: how did ransomware enter, how long was it present before detection, what was the dwell time?</li>
+            <li>Review backup strategy — were backups clean? Were they accessible? How long did recovery take?</li>
+            <li>Update IR plan and playbook with lessons from this incident</li>
+            <li>Conduct phishing simulation and security awareness training if phishing was the vector</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Playbook 2 — Data Breach</h2>
+
+    <div class="playbook">
+      <div class="playbook-header breach">
+        <div class="playbook-icon">📤</div>
+        <div>
+          <div class="playbook-title">Data Breach Response Playbook</div>
+          <div class="playbook-subtitle">Unauthorised access to or exfiltration of sensitive data — legal timelines are critical</div>
+        </div>
+      </div>
+      <div class="playbook-body">
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-blue">P</div>
+            <div class="pb-phase-name">Preparation</div>
+            <span class="pb-phase-tag pt-prep">Before the incident</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>Classify all data by sensitivity — know where PII, PHI, PCI data lives before a breach occurs</li>
+            <li>Implement DLP (Data Loss Prevention) tools to detect and alert on large data transfers</li>
+            <li>Establish legal counsel relationships and regulatory notification procedures in advance</li>
+            <li>Know your breach notification deadlines: <strong>GDPR: 72 hours</strong> to supervisory authority; HIPAA: 60 days; many US state laws vary</li>
+          </ul></div>
+        </div>
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-orange">I</div>
+            <div class="pb-phase-name">Identification</div>
+            <span class="pb-phase-tag pt-id">Detect & confirm</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>SIEM alert on unusual large outbound data transfer, access to sensitive file shares at off-hours</li>
+            <li>DLP alert on emails containing credit card numbers, SSNs, or other sensitive data patterns</li>
+            <li>Determine: <strong>what data was accessed, by whom, when, and was it exfiltrated or only viewed?</strong></li>
+            <li>Check access logs for the affected systems — determine if internal or external actor</li>
+            <li>Document a preliminary scope assessment — data types, record count, affected individuals</li>
+          </ul></div>
+        </div>
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-red">C</div>
+            <div class="pb-phase-name">Containment</div>
+            <span class="pb-phase-tag pt-contain">Stop the spread</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>Revoke compromised credentials immediately — disable accounts, rotate API keys, invalidate sessions</li>
+            <li>Block exfiltration paths — close outbound connections to attacker-controlled infrastructure</li>
+            <li><strong>Preserve all evidence before containment actions change logs</strong> — forensic copy of relevant systems</li>
+            <li>Engage legal counsel immediately — they determine if law enforcement notification is required and guide all external communication</li>
+            <li>Do not publicly disclose the breach before legal review — premature disclosure can create liability</li>
+          </ul></div>
+        </div>
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-purple">E</div>
+            <div class="pb-phase-name">Eradication</div>
+            <span class="pb-phase-tag pt-erad">Remove the threat</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>Remove attacker access — all backdoors, compromised accounts, and persistence mechanisms</li>
+            <li>Patch the exploited vulnerability (SQL injection, misconfigured S3 bucket, unpatched CVE)</li>
+            <li>Verify no additional exfiltration paths remain — audit all egress points</li>
+            <li>Conduct full credential review — assume any credentials on affected systems are stolen</li>
+          </ul></div>
+        </div>
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-teal">R</div>
+            <div class="pb-phase-name">Recovery</div>
+            <span class="pb-phase-tag pt-rec">Restore & notify</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>Send breach notifications to regulators within required timeframes (GDPR 72h, HIPAA 60d)</li>
+            <li>Notify affected individuals per legal requirements — include what data, what happened, what they should do</li>
+            <li>Offer credit monitoring if financial or identity data was breached</li>
+            <li>Restore any affected systems from clean backups — verify integrity before returning to production</li>
+          </ul></div>
+        </div>
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-green">L</div>
+            <div class="pb-phase-name">Lessons Learned</div>
+            <span class="pb-phase-tag pt-ll">Post-incident review</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>How was the initial access gained — credential theft, vulnerability exploitation, insider?</li>
+            <li>How long did the attacker have access before detection? (Dwell time)</li>
+            <li>Were DLP and SIEM controls adequate? What additional monitoring is needed?</li>
+            <li>Update data classification and access control policies to reduce future exposure</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Playbook 3 — DDoS Attack</h2>
+
+    <div class="playbook">
+      <div class="playbook-header ddos">
+        <div class="playbook-icon">🌊</div>
+        <div>
+          <div class="playbook-title">DDoS Response Playbook</div>
+          <div class="playbook-subtitle">Distributed Denial of Service — availability attack, not a data breach</div>
+        </div>
+      </div>
+      <div class="playbook-body">
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-blue">P</div>
+            <div class="pb-phase-name">Preparation</div>
+            <span class="pb-phase-tag pt-prep">Before the incident</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>Subscribe to a <strong>DDoS mitigation service</strong> (Cloudflare, AWS Shield, Akamai) before an attack — reactive subscription during an attack is too slow</li>
+            <li>Over-provision bandwidth where possible — gives headroom during an attack</li>
+            <li>Configure rate limiting and geo-blocking on edge devices</li>
+            <li>Establish ISP contact point for upstream filtering — ISP can null-route attack traffic before it reaches your network</li>
+          </ul></div>
+        </div>
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-orange">I</div>
+            <div class="pb-phase-name">Identification</div>
+            <span class="pb-phase-tag pt-id">Detect & confirm</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>Sudden spike in inbound traffic, dramatically increased connection attempts, service degradation or outage</li>
+            <li>Identify attack type: volumetric (bandwidth flood), protocol (SYN flood, ping of death), application layer (HTTP flood)</li>
+            <li>Distinguish DDoS from legitimate traffic spike — check source diversity and traffic patterns</li>
+            <li>Note: DDoS is often a <strong>smokescreen</strong> for a simultaneous breach attempt — check for other indicators</li>
+          </ul></div>
+        </div>
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-red">C</div>
+            <div class="pb-phase-name">Containment</div>
+            <span class="pb-phase-tag pt-contain">Absorb or redirect</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>Activate DDoS mitigation service — scrubbing centre filters malicious traffic, passes legitimate traffic</li>
+            <li>Implement <strong>blackhole routing</strong> (null route) for the targeted IP if service must be sacrificed to protect the network</li>
+            <li>Contact ISP for upstream filtering — block attack traffic at the ISP level before it reaches your infrastructure</li>
+            <li>Apply ACLs to block known attacking IP ranges or ASNs if attack is from identifiable sources</li>
+            <li>Rate-limit connections per source IP at the firewall</li>
+          </ul></div>
+        </div>
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-purple">E</div>
+            <div class="pb-phase-name">Eradication</div>
+            <span class="pb-phase-tag pt-erad">Remove attack traffic</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>DDoS attacks typically end when attackers stop or move on — eradication is about removing the attack path, not a persistent attacker</li>
+            <li>Identify and block all identified botnet IPs used in the attack</li>
+            <li>If attack exploited an amplification vector (DNS amplification, NTP amplification), close the misconfiguration</li>
+          </ul></div>
+        </div>
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-teal">R</div>
+            <div class="pb-phase-name">Recovery</div>
+            <span class="pb-phase-tag pt-rec">Restore availability</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>Gradually restore services — monitor for return of attack traffic before fully opening</li>
+            <li>Remove temporary blocks carefully — some legitimate users may have been caught in IP blocks</li>
+            <li>Verify service performance is back to baseline — check response times, error rates</li>
+            <li>Keep mitigation services active for 24–48 hours — attacks often resume after a pause</li>
+          </ul></div>
+        </div>
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-green">L</div>
+            <div class="pb-phase-name">Lessons Learned</div>
+            <span class="pb-phase-tag pt-ll">Post-incident review</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>How quickly was the attack detected? What monitoring gaps existed?</li>
+            <li>Was DDoS protection in place adequate? Should a higher-tier mitigation service be subscribed?</li>
+            <li>Was this a smokescreen? Review logs for other compromise indicators during the attack window</li>
+            <li>Calculate business impact — downtime cost justifies investment in prevention</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Playbook 4 — Phishing / Business Email Compromise</h2>
+
+    <div class="playbook">
+      <div class="playbook-header phishing">
+        <div class="playbook-icon">🎣</div>
+        <div>
+          <div class="playbook-title">Phishing & BEC Response Playbook</div>
+          <div class="playbook-subtitle">The most common initial access vector — act before credentials are used</div>
+        </div>
+      </div>
+      <div class="playbook-body">
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-orange">I</div>
+            <div class="pb-phase-name">Identification</div>
+            <span class="pb-phase-tag pt-id">Detect & confirm</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>User reports suspicious email with link or attachment, or reports clicking a link and entering credentials</li>
+            <li>SIEM alert on user authenticating from unusual geographic location after clicking a link</li>
+            <li>Determine: did user click the link? Did they enter credentials? Did they open an attachment?</li>
+            <li>Pull the email headers — identify actual sending server, check SPF/DKIM/DMARC pass/fail</li>
+            <li>Identify all other users who received the same email — scope the campaign</li>
+          </ul></div>
+        </div>
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-red">C</div>
+            <div class="pb-phase-name">Containment</div>
+            <span class="pb-phase-tag pt-contain">Credential & email</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>If credentials were entered: <strong>immediately reset the affected account's password and revoke all active sessions</strong></li>
+            <li>Enable or enforce MFA on the compromised account before restoring access</li>
+            <li>Block the phishing domain and sending IP at the email gateway and web proxy</li>
+            <li>Recall/quarantine the phishing email from all recipient mailboxes using email admin tools</li>
+            <li>Check if the compromised account sent any outbound phishing emails to contacts</li>
+          </ul></div>
+        </div>
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-purple">E</div>
+            <div class="pb-phase-name">Eradication</div>
+            <span class="pb-phase-tag pt-erad">Remove attacker access</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>Audit the compromised account's activity — what was accessed, were email rules set up (attacker forwarding), were files shared?</li>
+            <li>Remove any inbox rules the attacker created (common BEC tactic: forward all emails to attacker)</li>
+            <li>If malware was delivered via attachment, treat as a malware incident — scan and remediate the endpoint</li>
+            <li>Review OAuth app permissions — attackers may have authorised malicious apps to access the account</li>
+          </ul></div>
+        </div>
+        <div class="pb-phase">
+          <div class="pb-phase-header">
+            <div class="pb-phase-num pn-green">L</div>
+            <div class="pb-phase-name">Lessons Learned</div>
+            <span class="pb-phase-tag pt-ll">Post-incident review</span>
+          </div>
+          <div class="pb-phase-content"><ul>
+            <li>Why did the phishing email bypass email security filters? Update rules accordingly</li>
+            <li>Conduct phishing simulation training with the affected user and their team</li>
+            <li>Review DMARC, DKIM, and SPF configuration for your own domain to prevent outbound spoofing</li>
+            <li>Enforce MFA across the organisation — a phished password alone should not grant access</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Containment Strategies — When to Use Each</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Strategy</th><th>What It Does</th><th>Use When</th><th>Trade-off</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="td-term">Network Isolation</td>
+            <td>Disconnect system from all networks — pull cable, disable NIC, quarantine VLAN</td>
+            <td>Active malware spreading laterally, compromised system, ransomware detected</td>
+            <td>System is unavailable — business impact. May alert attacker they've been detected.</td>
+          </tr>
+          <tr>
+            <td class="td-term">Segmentation</td>
+            <td>Move affected system to an isolated VLAN — internet blocked, internal blocked, only forensics team can access</td>
+            <td>Need to monitor attacker behaviour (honeypot), maintain limited availability during investigation</td>
+            <td>Attacker still has access to the isolated system — must monitor closely</td>
+          </tr>
+          <tr>
+            <td class="td-term">Blackholing / Null Route</td>
+            <td>Route all traffic to the targeted IP to /dev/null — drops all packets, service completely unavailable</td>
+            <td>DDoS overwhelming the network — sacrifice the targeted service to protect everything else</td>
+            <td>Service is completely unavailable to everyone, including legitimate users</td>
+          </tr>
+          <tr>
+            <td class="td-term">Account Suspension</td>
+            <td>Disable the compromised user account — prevents authentication</td>
+            <td>Credential compromise, phishing, insider threat — stop attacker from using stolen identity</td>
+            <td>Legitimate user cannot work — coordinate with affected user for rapid recovery</td>
+          </tr>
+          <tr>
+            <td class="td-term">Evidence Preservation (No Action)</td>
+            <td>Monitor without containment — collect evidence while attacker is unaware</td>
+            <td>Law enforcement investigation, threat intelligence gathering, when attacker access needs to be proven</td>
+            <td>Risk of additional damage while monitoring — requires legal authorisation and careful management</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Order of Volatility — Forensic Evidence Collection</div>
+      <p>When collecting evidence, start with the most volatile data (lost when system is powered off) and work toward the least volatile. The Security+ exam tests this order:</p>
+      <p><strong>1. CPU registers and cache</strong> → 2. RAM / memory contents → 3. Running processes → 4. Network connections → 5. Filesystem (temporary files, open files) → 6. Disk storage → 7. Remote logs → 8. Archived/backup media</p>
+      <p>This is why you <strong>do not immediately reboot or power off</strong> a compromised system — you lose RAM contents (encryption keys, running processes, network connections) that may be critical to the investigation.</p>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 The Most Tested IR Sequencing Questions</div>
+      <p><strong>Containment before eradication</strong> — you always stop the spread before removing the threat. Eradicating malware from one machine while it's still spreading to others is pointless.</p>
+      <p><strong>Legal counsel first for data breaches</strong> — before notifying the public, law enforcement, or even affected users, legal counsel must be engaged. They determine what must be disclosed, when, and how. Premature disclosure can create liability.</p>
+      <p><strong>Lessons Learned is mandatory</strong> — the post-incident review is not optional. Security+ scenario questions often describe skipping this phase — the correct answer is always that the organisation should conduct a lessons learned review regardless of how the incident resolved.</p>
+    </div>
+
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "A security analyst detects ransomware actively encrypting files on a workstation. The workstation is connected to a shared file server. What is the FIRST action the analyst should take?" → <strong>Isolate the infected workstation — disconnect it from the network immediately to stop encryption from spreading to the shared file server and other network resources. This is Containment, and it comes before Eradication. Shutting down the machine is secondary to isolation because shutdown destroys volatile memory evidence.</strong></div>
+      <div class="scenario-item">💬 "A company discovers a data breach affecting 50,000 customers' personal data including names, addresses, and email addresses. Who should be notified FIRST?" → <strong>Legal counsel — before notifying customers, regulators, law enforcement, or the public. Legal determines regulatory obligations (GDPR, state breach laws), notification timelines, and what can be disclosed without creating additional liability. Notifying the public before legal review can expose the company to further legal risk.</strong></div>
+      <div class="scenario-item">💬 "During a DDoS attack investigation, the security team notices simultaneous unusual login attempts from foreign IP addresses to the company's VPN. What should they conclude?" → <strong>The DDoS is likely a smokescreen — attackers use DDoS to distract security teams while simultaneously attempting to breach systems. The team should prioritise investigating the VPN login attempts, which represent an active credential attack, while the DDoS mitigation service handles the flood traffic.</strong></div>
+      <div class="scenario-item">💬 "An IR team has contained and eradicated a malware infection, restored systems from backup, and returned users to normal operations. A manager says the incident is over. What is the IR team missing?" → <strong>Lessons Learned (Post-Incident Review) — the final mandatory phase of PICERL. The team should conduct a structured review of what happened, what the timeline was, what went well, what failed, and update the IR plan and playbooks accordingly. Skipping this phase means the same incident may recur.</strong></div>
+      <div class="scenario-item">💬 "A forensic analyst needs to collect evidence from a compromised server that is still running. What should be collected first, before the server is powered off?" → <strong>Volatile evidence in the order of volatility — RAM contents first (running processes, network connections, encryption keys, active sessions), then network connection state, then the filesystem. If the server is powered off first, all RAM contents are lost permanently. Disk evidence can be acquired after power-off through imaging.</strong></div>
+      <div class="scenario-item">💬 "A user reports that after clicking a link in an email, they were taken to a login page that looked like their company's portal, and they entered their username and password. What should the IR team do immediately?" → <strong>Reset the user's password and invalidate all active sessions immediately — credential theft is assumed. Enable or enforce MFA before restoring access. Block the phishing domain at the email gateway and web proxy. Audit the account's recent activity for signs of attacker access (email rule changes, data access, outbound emails). Recall the phishing email from all other recipients.</strong></div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for Security+ SY0-701?</h3>
+        <p>See the best courses, practice exams, and study guides.</p>
+      </div>
+      <a href="best-security-plus.html" class="btn-purple">Best Security+ Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="incident-response-explained.html" class="related-link">Incident Response Overview (PICERL)</a>
+      <a href="malware-types.html" class="related-link">Malware Types Explained</a>
+      <a href="social-engineering-attacks.html" class="related-link">Social Engineering Attacks</a>
+      <a href="network-segmentation.html" class="related-link">Network Segmentation</a>
+      <a href="zero-trust-security.html" class="related-link">Zero Trust Security</a>
+      <a href="encryption-types.html" class="related-link">Encryption Types</a>
+      <a href="comptia-security-plus-domains.html" class="related-link">Security+ Exam Domains</a>
+      <a href="best-security-plus.html" class="related-link">Best Security+ Resources</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Security+</div>
+      <a href="security-plus-cheat-sheet.html">Security+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-security-plus.html">How to Pass Security+</a>
+      <a href="best-security-plus.html">Best Security+ Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Related</div>
+      <a href="incident-response-explained.html">IR Overview</a>
+      <a href="malware-types.html">Malware Types</a>
+      <a href="social-engineering-attacks.html">Social Engineering</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>
