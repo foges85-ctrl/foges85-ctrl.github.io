@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/subnetting-guide.html">
+<title>Subnetting Guide — Magic Number Method, VLSM & PBQ Practice | CompTIA Network+</title>
+<meta name="description" content="Master subnetting for CompTIA Network+ and A+ — the magic number method, VLSM, every /8 through /30, worked examples, CIDR reference table, and performance-based question practice.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.2) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(0,194,168,.08) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,46px);font-weight:800;color:var(--white);line-height:1.13;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-teal{background:rgba(0,194,168,.2);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.cb-blue{background:rgba(26,108,255,.2);color:#93c5fd;border:1px solid rgba(26,108,255,.3);}
+.article-wrap{max-width:920px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body h3{font-family:'Outfit',sans-serif;font-size:17px;font-weight:800;color:var(--navy);margin:28px 0 10px;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+/* Quick answer */
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.2) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* Magic number box */
+.magic-box{background:linear-gradient(135deg,rgba(26,108,255,.08),rgba(26,108,255,.03));border:2px solid rgba(26,108,255,.25);border-radius:16px;padding:28px;margin-bottom:40px;}
+.magic-box h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--navy);margin-bottom:16px;}
+.magic-steps{display:flex;flex-direction:column;gap:12px;}
+.magic-step{display:flex;align-items:flex-start;gap:14px;}
+.ms-num{width:32px;height:32px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:14px;font-weight:800;color:var(--white);flex-shrink:0;}
+.ms-content{}
+.ms-title{font-weight:700;color:var(--navy);font-size:15px;margin-bottom:2px;}
+.ms-desc{font-size:13px;color:var(--text);line-height:1.55;}
+.ms-desc strong{color:var(--navy);}
+/* Big CIDR table */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:500px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:13px 16px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:11px 16px;border-bottom:1px solid var(--border);font-size:13px;color:var(--text);vertical-align:middle;line-height:1.45;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#eff6ff;}
+.td-cidr{font-family:'DM Mono',monospace;font-weight:700;font-size:15px;color:var(--navy);}
+.td-mask{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);}
+.td-hosts{font-family:'DM Mono',monospace;font-weight:700;color:var(--blue);}
+.td-magic{font-family:'DM Mono',monospace;font-weight:700;color:var(--purple);}
+.td-subnets{font-family:'DM Mono',monospace;color:var(--text);}
+.row-highlight td{background:rgba(26,108,255,.04);}
+.exam-tag{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;}
+.et-aplus{background:rgba(0,194,168,.1);color:var(--teal);}
+.et-netplus{background:rgba(26,108,255,.1);color:var(--blue);}
+/* Worked example */
+.worked-example{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;box-shadow:var(--card-shadow);margin-bottom:32px;}
+.we-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
+.we-title{font-family:'Outfit',sans-serif;font-size:17px;font-weight:800;color:var(--navy);}
+.we-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;text-transform:uppercase;}
+.wb-aplus{background:rgba(0,194,168,.1);color:var(--teal);}
+.wb-netplus{background:rgba(26,108,255,.1);color:var(--blue);}
+.wb-hard{background:rgba(124,58,237,.1);color:var(--purple);}
+.we-problem{background:var(--light);border-radius:10px;padding:14px 18px;margin-bottom:18px;font-size:15px;font-weight:600;color:var(--navy);}
+.we-steps{display:flex;flex-direction:column;gap:10px;}
+.we-step{display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start;}
+.ws-num{font-family:'DM Mono',monospace;font-size:12px;font-weight:700;color:var(--blue);padding-top:2px;}
+.ws-content{font-size:14px;color:var(--text);line-height:1.6;}
+.ws-content strong{color:var(--navy);}
+.ws-mono{font-family:'DM Mono',monospace;font-size:13px;}
+.we-answer{background:linear-gradient(90deg,rgba(0,194,168,.08),transparent);border:1px solid rgba(0,194,168,.25);border-radius:10px;padding:14px 18px;margin-top:14px;}
+.wa-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;}
+.wa-values{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;}
+.wa-val{font-size:13px;}
+.wv-label{font-weight:700;color:var(--navy);}
+.wv-val{font-family:'DM Mono',monospace;color:var(--blue);}
+/* VLSM section */
+.vlsm-table{width:100%;border-collapse:collapse;background:var(--white);min-width:420px;}
+.vlsm-table thead th{background:var(--navy2);color:rgba(255,255,255,.7);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:12px 14px;text-align:left;font-family:'DM Mono',monospace;}
+.vlsm-table thead th:first-child{color:var(--white);}
+.vlsm-table tbody td{padding:10px 14px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle;}
+.vlsm-table tbody tr:last-child td{border-bottom:none;}
+/* PBQ scenarios */
+.pbq-list{display:flex;flex-direction:column;gap:16px;margin-bottom:40px;}
+.pbq-item{background:var(--white);border:1px solid var(--border);border-radius:13px;padding:18px 20px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.pbq-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px;}
+.pbq-q{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:10px;line-height:1.55;}
+.pbq-a{font-size:14px;color:var(--text);line-height:1.7;}
+.pbq-a strong{color:var(--navy);}
+/* Callout */
+.callout{background:rgba(26,108,255,.04);border:1px solid rgba(26,108,255,.18);border-left:4px solid var(--blue);border-radius:12px;padding:16px 20px;margin-bottom:36px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+.callout.purple{background:rgba(124,58,237,.04);border-color:rgba(124,58,237,.18);border-left-color:var(--purple);}
+.callout.purple .callout-label{color:var(--purple);}
+/* Exam tip */
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+/* CTA */
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-blue{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--blue);color:var(--white);box-shadow:0 6px 20px rgba(26,108,255,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(26,108,255,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.35);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="subnetting.html">Subnetting Basics</a>
+      <a href="ip-address-classes.html">IP Classes</a>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="best-network-plus.html" class="nav-cta">Network+ Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="subnetting.html">Subnetting</a><span>›</span>
+      <span>Deep Dive Guide</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Network+ N10-009 · A+ 220-1201</div>
+    <h1>Subnetting Guide — <span>Magic Number Method</span>, VLSM & PBQ Practice</h1>
+    <p class="page-hero-sub">The fastest subnetting method for exam conditions, every CIDR prefix from /8 to /30, VLSM for variable-size subnets, and full performance-based question walkthroughs for Network+ N10-009.</p>
+    <div class="cert-badges">
+      <span class="cert-badge cb-teal">A+ 220-1201</span>
+      <span class="cert-badge cb-blue">Network+ N10-009</span>
+    </div>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ The Key Insight</div>
+      <div class="quick-answer-text">
+        Subnetting is not memorisation — it's a <strong>repeating pattern</strong>. Every subnet has a block size (how many addresses it contains), and subnets always start at multiples of that block size. Once you know the <strong>magic number</strong> for any prefix length, you can find any subnet's network address, broadcast address, and usable host range in under 30 seconds. That's the entire skill the exam tests.
+      </div>
+    </div>
+
+    <h2>The Two Formulas (Memorise These First)</h2>
+
+    <div class="callout">
+      <div class="callout-label">The Only Two Formulas You Need</div>
+      <p><strong>Usable hosts per subnet</strong> = 2<sup>h</sup> − 2 &nbsp; (where h = number of host bits)</p>
+      <p>Subtract 2 because the first address (network address) and last address (broadcast) cannot be assigned to hosts.</p>
+      <p><strong>Number of subnets</strong> = 2<sup>s</sup> &nbsp; (where s = number of subnet bits borrowed from the host portion)</p>
+      <p>Example: /26 in a Class C (/24) network — you borrowed 2 bits for subnetting (26−24=2), so 2² = <strong>4 subnets</strong>, each with 2⁶−2 = <strong>62 usable hosts</strong>.</p>
+    </div>
+
+    <h2>The Magic Number Method</h2>
+
+    <p>The magic number is the <strong>block size</strong> of the subnet — how many IP addresses each subnet contains. Subnets always start at multiples of their block size. You never need to do binary conversion in your head once you know this method.</p>
+
+    <div class="magic-box">
+      <h3>How to Find Any Subnet — 4 Steps</h3>
+      <div class="magic-steps">
+        <div class="magic-step">
+          <div class="ms-num">1</div>
+          <div class="ms-content">
+            <div class="ms-title">Find the magic number</div>
+            <div class="ms-desc">Subtract the last non-255 octet of the subnet mask from 256. That's your block size (magic number).<br>Example: /26 = 255.255.255.<strong>192</strong> → 256 − 192 = <strong>64</strong></div>
+          </div>
+        </div>
+        <div class="magic-step">
+          <div class="ms-num">2</div>
+          <div class="ms-content">
+            <div class="ms-title">List the network addresses</div>
+            <div class="ms-desc">Start at 0, then add the magic number repeatedly. Each result is the start of the next subnet.<br>Example: /26 in 192.168.1.0 → <strong>0, 64, 128, 192</strong> (four subnets)</div>
+          </div>
+        </div>
+        <div class="magic-step">
+          <div class="ms-num">3</div>
+          <div class="ms-content">
+            <div class="ms-title">Find the broadcast address</div>
+            <div class="ms-desc">The broadcast is one less than the next network address.<br>Example: Network 192.168.1.64 → next network is 192.168.1.128 → broadcast is <strong>192.168.1.127</strong></div>
+          </div>
+        </div>
+        <div class="magic-step">
+          <div class="ms-num">4</div>
+          <div class="ms-content">
+            <div class="ms-title">Find usable host range</div>
+            <div class="ms-desc">First usable = network address + 1. Last usable = broadcast address − 1.<br>Example: Network .64, Broadcast .127 → Usable: <strong>192.168.1.65 – 192.168.1.126</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Complete CIDR Reference Table — /8 through /30</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>CIDR</th>
+            <th>Subnet Mask</th>
+            <th>Magic # (Block)</th>
+            <th>Usable Hosts</th>
+            <th>Subnets from /24</th>
+            <th>Exam Level</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-cidr">/8</td><td class="td-mask">255.0.0.0</td><td class="td-magic">—</td><td class="td-hosts">16,777,214</td><td class="td-subnets">—</td><td><span class="exam-tag et-aplus">A+</span></td></tr>
+          <tr><td class="td-cidr">/16</td><td class="td-mask">255.255.0.0</td><td class="td-magic">—</td><td class="td-hosts">65,534</td><td class="td-subnets">—</td><td><span class="exam-tag et-aplus">A+</span></td></tr>
+          <tr class="row-highlight"><td class="td-cidr">/24</td><td class="td-mask">255.255.255.0</td><td class="td-magic">—</td><td class="td-hosts">254</td><td class="td-subnets">1</td><td><span class="exam-tag et-aplus">A+</span></td></tr>
+          <tr><td class="td-cidr">/25</td><td class="td-mask">255.255.255.128</td><td class="td-magic">128</td><td class="td-hosts">126</td><td class="td-subnets">2</td><td><span class="exam-tag et-netplus">N+</span></td></tr>
+          <tr class="row-highlight"><td class="td-cidr">/26</td><td class="td-mask">255.255.255.192</td><td class="td-magic">64</td><td class="td-hosts">62</td><td class="td-subnets">4</td><td><span class="exam-tag et-netplus">N+</span></td></tr>
+          <tr><td class="td-cidr">/27</td><td class="td-mask">255.255.255.224</td><td class="td-magic">32</td><td class="td-hosts">30</td><td class="td-subnets">8</td><td><span class="exam-tag et-netplus">N+</span></td></tr>
+          <tr class="row-highlight"><td class="td-cidr">/28</td><td class="td-mask">255.255.255.240</td><td class="td-magic">16</td><td class="td-hosts">14</td><td class="td-subnets">16</td><td><span class="exam-tag et-netplus">N+</span></td></tr>
+          <tr><td class="td-cidr">/29</td><td class="td-mask">255.255.255.248</td><td class="td-magic">8</td><td class="td-hosts">6</td><td class="td-subnets">32</td><td><span class="exam-tag et-netplus">N+</span></td></tr>
+          <tr class="row-highlight"><td class="td-cidr">/30</td><td class="td-mask">255.255.255.252</td><td class="td-magic">4</td><td class="td-hosts">2</td><td class="td-subnets">64</td><td><span class="exam-tag et-netplus">N+</span></td></tr>
+          <tr><td class="td-cidr">/31</td><td class="td-mask">255.255.255.254</td><td class="td-magic">2</td><td class="td-hosts">0 (2 for P2P)</td><td class="td-subnets">128</td><td><span class="exam-tag et-netplus">N+</span></td></tr>
+          <tr><td class="td-cidr">/32</td><td class="td-mask">255.255.255.255</td><td class="td-magic">1</td><td class="td-hosts">1 (host route)</td><td class="td-subnets">256</td><td><span class="exam-tag et-netplus">N+</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Memorise This Pattern — Magic Numbers Are Powers of 2</div>
+      <p>The magic numbers for /25 through /30 are: <strong>128 · 64 · 32 · 16 · 8 · 4</strong>. Each one is half the previous. If you forget the block size for a prefix, just start at 128 for /25 and halve it for each step: /25=128, /26=64, /27=32, /28=16, /29=8, /30=4.</p>
+      <p><strong>/30 is the most important small subnet</strong> — 2 usable hosts, used for point-to-point WAN links between routers. The exam tests this frequently in router configuration scenarios.</p>
+    </div>
+
+    <h2>Worked Examples — Step by Step</h2>
+
+    <div class="worked-example">
+      <div class="we-header">
+        <div class="we-title">Example 1 — Find the subnet for a host IP</div>
+        <span class="we-badge wb-aplus">A+ Level</span>
+      </div>
+      <div class="we-problem">A host has IP 192.168.10.130/26. What is its network address, broadcast address, and usable host range?</div>
+      <div class="we-steps">
+        <div class="we-step"><div class="ws-num">1.</div><div class="ws-content"><strong>Find the magic number:</strong> /26 = 255.255.255.192 → 256 − 192 = <span class="ws-mono">64</span></div></div>
+        <div class="we-step"><div class="ws-num">2.</div><div class="ws-content"><strong>List subnet starts in the 4th octet (multiples of 64):</strong> <span class="ws-mono">0, 64, 128, 192</span></div></div>
+        <div class="we-step"><div class="ws-num">3.</div><div class="ws-content"><strong>Which subnet does .130 fall into?</strong> 128 ≤ 130 &lt; 192 → it's in the <span class="ws-mono">192.168.10.128</span> subnet</div></div>
+        <div class="we-step"><div class="ws-num">4.</div><div class="ws-content"><strong>Broadcast:</strong> next subnet starts at 192 → broadcast = <span class="ws-mono">192.168.10.191</span></div></div>
+        <div class="we-step"><div class="ws-num">5.</div><div class="ws-content"><strong>Usable range:</strong> <span class="ws-mono">192.168.10.129 – 192.168.10.190</span> (62 hosts)</div></div>
+      </div>
+      <div class="we-answer">
+        <div class="wa-label">✓ Answers</div>
+        <div class="wa-values">
+          <div class="wa-val"><span class="wv-label">Network: </span><span class="wv-val">192.168.10.128</span></div>
+          <div class="wa-val"><span class="wv-label">Broadcast: </span><span class="wv-val">192.168.10.191</span></div>
+          <div class="wa-val"><span class="wv-label">First host: </span><span class="wv-val">192.168.10.129</span></div>
+          <div class="wa-val"><span class="wv-label">Last host: </span><span class="wv-val">192.168.10.190</span></div>
+          <div class="wa-val"><span class="wv-label">Usable hosts: </span><span class="wv-val">62</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="worked-example">
+      <div class="we-header">
+        <div class="we-title">Example 2 — Choose the right subnet size</div>
+        <span class="we-badge wb-netplus">Network+ Level</span>
+      </div>
+      <div class="we-problem">A department needs exactly 20 hosts on a single subnet from the 10.0.0.0/24 block. What is the smallest subnet that fits, and what CIDR notation does it use?</div>
+      <div class="we-steps">
+        <div class="we-step"><div class="ws-num">1.</div><div class="ws-content"><strong>Find the smallest power of 2 that satisfies:</strong> 2<sup>h</sup> − 2 ≥ 20 → 2<sup>5</sup> − 2 = 30 ✓ (2<sup>4</sup> − 2 = 14 ✗ too small)</div></div>
+        <div class="we-step"><div class="ws-num">2.</div><div class="ws-content"><strong>5 host bits needed</strong> → 32 − 5 = <span class="ws-mono">/27</span></div></div>
+        <div class="we-step"><div class="ws-num">3.</div><div class="ws-content"><strong>Subnet mask:</strong> /27 = <span class="ws-mono">255.255.255.224</span> → magic number = 256 − 224 = 32</div></div>
+        <div class="we-step"><div class="ws-num">4.</div><div class="ws-content"><strong>First subnet:</strong> 10.0.0.0/27 → usable: <span class="ws-mono">10.0.0.1 – 10.0.0.30</span>, broadcast: 10.0.0.31</div></div>
+      </div>
+      <div class="we-answer">
+        <div class="wa-label">✓ Answers</div>
+        <div class="wa-values">
+          <div class="wa-val"><span class="wv-label">CIDR: </span><span class="wv-val">/27</span></div>
+          <div class="wa-val"><span class="wv-label">Mask: </span><span class="wv-val">255.255.255.224</span></div>
+          <div class="wa-val"><span class="wv-label">Usable hosts: </span><span class="wv-val">30</span></div>
+          <div class="wa-val"><span class="wv-label">Subnets from /24: </span><span class="wv-val">8</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="worked-example">
+      <div class="we-header">
+        <div class="we-title">Example 3 — Point-to-point WAN link</div>
+        <span class="we-badge wb-netplus">Network+ Level</span>
+      </div>
+      <div class="we-problem">Two routers need to be connected via a serial WAN link. Only 2 IP addresses are needed (one per router interface). What is the most efficient subnet?</div>
+      <div class="we-steps">
+        <div class="we-step"><div class="ws-num">1.</div><div class="ws-content"><strong>Need exactly 2 usable hosts:</strong> 2<sup>2</sup> − 2 = 2 ✓ → <span class="ws-mono">2 host bits</span></div></div>
+        <div class="we-step"><div class="ws-num">2.</div><div class="ws-content"><strong>CIDR:</strong> 32 − 2 = <span class="ws-mono">/30</span> → 255.255.255.252, magic number = 4</div></div>
+        <div class="we-step"><div class="ws-num">3.</div><div class="ws-content"><strong>/30 subnets:</strong> .0, .4, .8, .12, .16 … each with exactly 2 usable hosts</div></div>
+        <div class="we-step"><div class="ws-num">4.</div><div class="ws-content">Example subnet <span class="ws-mono">10.0.0.0/30</span>: Router A = 10.0.0.1, Router B = 10.0.0.2, Broadcast = 10.0.0.3</div></div>
+      </div>
+      <div class="we-answer">
+        <div class="wa-label">✓ Answer — /30 is always the correct answer for point-to-point router links</div>
+        <div class="wa-values">
+          <div class="wa-val"><span class="wv-label">CIDR: </span><span class="wv-val">/30</span></div>
+          <div class="wa-val"><span class="wv-label">Mask: </span><span class="wv-val">255.255.255.252</span></div>
+          <div class="wa-val"><span class="wv-label">Usable hosts: </span><span class="wv-val">2</span></div>
+          <div class="wa-val"><span class="wv-label">Block size: </span><span class="wv-val">4</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="worked-example">
+      <div class="we-header">
+        <div class="we-title">Example 4 — Identify the host's subnet from a given IP</div>
+        <span class="we-badge wb-hard">Harder — PBQ Style</span>
+      </div>
+      <div class="we-problem">A network admin receives an alert that 172.16.50.200/27 is unreachable. What subnet is this host on? Can it communicate directly with 172.16.50.220?</div>
+      <div class="we-steps">
+        <div class="we-step"><div class="ws-num">1.</div><div class="ws-content"><strong>Magic number for /27:</strong> 255.255.255.224 → 256 − 224 = <span class="ws-mono">32</span></div></div>
+        <div class="we-step"><div class="ws-num">2.</div><div class="ws-content"><strong>Subnet starts in 4th octet:</strong> 0, 32, 64, 96, 128, 160, 192, 224 — .200 falls in <span class="ws-mono">192–223</span> subnet</div></div>
+        <div class="we-step"><div class="ws-num">3.</div><div class="ws-content">Network: <span class="ws-mono">172.16.50.192/27</span> · Broadcast: <span class="ws-mono">172.16.50.223</span> · Hosts: .193–.222</div></div>
+        <div class="we-step"><div class="ws-num">4.</div><div class="ws-content">Is .220 in the same subnet? 192 ≤ 220 ≤ 223 → <strong>Yes</strong> — .220 is in the same /27 subnet, so they can communicate directly without a router</div></div>
+      </div>
+      <div class="we-answer">
+        <div class="wa-label">✓ Answers</div>
+        <div class="wa-values">
+          <div class="wa-val"><span class="wv-label">Subnet: </span><span class="wv-val">172.16.50.192/27</span></div>
+          <div class="wa-val"><span class="wv-label">Broadcast: </span><span class="wv-val">172.16.50.223</span></div>
+          <div class="wa-val"><span class="wv-label">Same subnet as .220? </span><span class="wv-val">Yes</span></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>VLSM — Variable Length Subnet Masking</h2>
+
+    <p>VLSM lets you use <strong>different subnet sizes within the same address space</strong> — so you're not wasting addresses by giving every department the same block size. Instead of one /24 = 8 equal /27 subnets, VLSM lets you give Sales a /25 (126 hosts), IT a /27 (30 hosts), and the WAN link a /30 (2 hosts). This is standard practice in real networks and is tested on Network+.</p>
+
+    <div class="callout purple">
+      <div class="callout-label">VLSM — The Rule</div>
+      <p><strong>Always allocate the largest subnet first.</strong> Start with the department that needs the most hosts, assign the smallest prefix that fits, then work down to smaller subnets. This prevents address space fragmentation.</p>
+      <p>Example: Given 192.168.1.0/24, allocate: Sales (100 hosts) → IT (25 hosts) → Management (10 hosts) → WAN link (2 hosts).</p>
+    </div>
+
+    <div class="table-wrap">
+      <table class="vlsm-table">
+        <thead>
+          <tr>
+            <th>Dept</th>
+            <th>Hosts Needed</th>
+            <th>Subnet Used</th>
+            <th>Network Address</th>
+            <th>Broadcast</th>
+            <th>Usable Range</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:700">Sales</td>
+            <td>100</td>
+            <td><span style="font-family:'DM Mono',monospace;font-weight:700">/25 (126 hosts)</span></td>
+            <td style="font-family:'DM Mono',monospace">192.168.1.0</td>
+            <td style="font-family:'DM Mono',monospace">192.168.1.127</td>
+            <td style="font-family:'DM Mono',monospace">.1 – .126</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700">IT</td>
+            <td>25</td>
+            <td><span style="font-family:'DM Mono',monospace;font-weight:700">/27 (30 hosts)</span></td>
+            <td style="font-family:'DM Mono',monospace">192.168.1.128</td>
+            <td style="font-family:'DM Mono',monospace">192.168.1.159</td>
+            <td style="font-family:'DM Mono',monospace">.129 – .158</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700">Management</td>
+            <td>10</td>
+            <td><span style="font-family:'DM Mono',monospace;font-weight:700">/28 (14 hosts)</span></td>
+            <td style="font-family:'DM Mono',monospace">192.168.1.160</td>
+            <td style="font-family:'DM Mono',monospace">192.168.1.175</td>
+            <td style="font-family:'DM Mono',monospace">.161 – .174</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700">WAN Link</td>
+            <td>2</td>
+            <td><span style="font-family:'DM Mono',monospace;font-weight:700">/30 (2 hosts)</span></td>
+            <td style="font-family:'DM Mono',monospace">192.168.1.176</td>
+            <td style="font-family:'DM Mono',monospace">192.168.1.179</td>
+            <td style="font-family:'DM Mono',monospace">.177 – .178</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Performance-Based Question (PBQ) Practice</h2>
+
+    <div class="pbq-list">
+      <div class="pbq-item">
+        <div class="pbq-label">PBQ Scenario 1 — Address Assignment</div>
+        <div class="pbq-q">A network uses the address block 10.10.10.0/24. You need to create subnets for four departments: Finance (50 hosts), HR (20 hosts), IT (12 hosts), and a WAN link (2 hosts). Assign subnets using VLSM, allocating the largest first.</div>
+        <div class="pbq-a"><strong>Finance (50 hosts):</strong> Needs /26 (62 hosts) → 10.10.10.0/26, usable .1–.62, broadcast .63<br><strong>HR (20 hosts):</strong> Needs /27 (30 hosts) → 10.10.10.64/27, usable .65–.94, broadcast .95<br><strong>IT (12 hosts):</strong> Needs /28 (14 hosts) → 10.10.10.96/28, usable .97–.110, broadcast .111<br><strong>WAN link:</strong> /30 → 10.10.10.112/30, usable .113–.114, broadcast .115<br>Remaining space: 10.10.10.116–10.10.10.255 is unallocated for future use.</div>
+      </div>
+      <div class="pbq-item">
+        <div class="pbq-label">PBQ Scenario 2 — Connectivity Troubleshooting</div>
+        <div class="pbq-q">Host A (192.168.5.65/27) cannot reach Host B (192.168.5.100/27). Both are on the same physical switch. The default gateway is 192.168.5.1. What is the problem?</div>
+        <div class="pbq-a"><strong>/27 has a magic number of 32.</strong> Subnet starts: 0, 32, 64, 96, 128...<br>Host A (.65) is in the 192.168.5.64/27 subnet (range: .65–.94, broadcast .95).<br>Host B (.100) is in the 192.168.5.96/27 subnet (range: .97–.126, broadcast .127).<br><strong>They are on different subnets</strong> — even though they're on the same switch, they cannot communicate directly. Traffic must route through the default gateway. The issue is that the switch is not doing inter-VLAN routing, or the subnets are not both reachable via the gateway 192.168.5.1 (which is itself not in either subnet — that's also a configuration error).</div>
+      </div>
+      <div class="pbq-item">
+        <div class="pbq-label">PBQ Scenario 3 — Subnet Identification from Route Table</div>
+        <div class="pbq-q">A router shows a route: 172.20.0.0/22. How many usable hosts does this subnet support, and what is the broadcast address?</div>
+        <div class="pbq-a"><strong>/22 spans the third octet.</strong> Host bits = 32 − 22 = 10. Usable hosts = 2¹⁰ − 2 = <strong>1,022 hosts</strong>.<br>Block size in the 3rd octet: /22 = 255.255.252.0 → 256 − 252 = 4 (blocks of 4 in 3rd octet).<br>Network 172.20.0.0 → next network is 172.20.4.0 → <strong>broadcast is 172.20.3.255</strong>.<br>Usable range: 172.20.0.1 – 172.20.3.254.</div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Three Common Exam Traps in Subnetting Questions</div>
+      <p><strong>The network and broadcast addresses are not usable.</strong> A /26 has 64 addresses but only 62 usable hosts (subtract 2, always). Exam questions that give you "64 hosts" are testing whether you pick /26 (62 hosts — correct) or /25 (126 hosts — unnecessarily large).</p>
+      <p><strong>/31 is a special case.</strong> Technically 2² − 2 = 0 usable hosts, but RFC 3021 permits /31 for point-to-point links because no broadcast is needed. The exam occasionally includes /31 — know that it's used for P2P links and has 2 assignable addresses.</p>
+      <p><strong>Don't confuse subnets-from-/24 with total subnets.</strong> A /26 gives you 4 subnets when splitting a /24. But if you're splitting a /22, you get many more. Always read the question — it will tell you the parent block you're subnetting from.</p>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Ready to pass Network+?</h3>
+        <p>See the best courses, practice exams, and study guides for N10-009.</p>
+      </div>
+      <a href="best-network-plus.html" class="btn-blue">Best Network+ Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="subnetting.html" class="related-link">Subnetting Basics</a>
+      <a href="ip-address-classes.html" class="related-link">IP Address Classes</a>
+      <a href="subnet-mask.html" class="related-link">Subnet Masks Explained</a>
+      <a href="ipv4-vs-ipv6.html" class="related-link">IPv4 vs IPv6</a>
+      <a href="tcp-ip-model.html" class="related-link">TCP/IP Model</a>
+      <a href="ports-and-protocols.html" class="related-link">Ports & Protocols</a>
+      <a href="comptia-network-plus-study-guide.html" class="related-link">Network+ Complete Study Guide</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Network+</div>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-network-plus.html">How to Pass Network+</a>
+      <a href="best-network-plus.html">Best Network+ Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Related</div>
+      <a href="subnetting.html">Subnetting Basics</a>
+      <a href="ip-address-classes.html">IP Address Classes</a>
+      <a href="tcp-ip-model.html">TCP/IP Model</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>
