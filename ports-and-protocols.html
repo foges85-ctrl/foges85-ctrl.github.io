@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/ports-and-protocols.html">
+<title>CompTIA Port Numbers Cheat Sheet — Every Port Tested on A+, Network+, Security+</title>
+<meta name="description" content="Every port number tested on CompTIA A+, Network+, and Security+ — FTP, SSH, DNS, HTTP, HTTPS, RDP, SMTP, IMAP and more. With TCP vs UDP, protocol descriptions, and exam tips.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.18) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(124,58,237,.1) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-teal{background:rgba(0,194,168,.2);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.cb-blue{background:rgba(26,108,255,.2);color:#93c5fd;border:1px solid rgba(26,108,255,.3);}
+.cb-purple{background:rgba(124,58,237,.2);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.article-wrap{max-width:1000px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+/* Quick answer */
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.2) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* TCP vs UDP cards */
+.proto-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+@media(max-width:580px){.proto-grid{grid-template-columns:1fr;}}
+.proto-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--card-shadow);border-top:4px solid var(--blue);}
+.proto-card.udp{border-top-color:var(--purple);}
+.proto-title{font-family:'Outfit',sans-serif;font-size:17px;font-weight:800;color:var(--navy);margin-bottom:8px;}
+.proto-subtitle{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;}
+.proto-card.udp .proto-subtitle{color:var(--purple);}
+.proto-desc{font-size:13px;color:var(--text);line-height:1.65;margin-bottom:10px;}
+.proto-examples{font-size:12px;font-family:'DM Mono',monospace;color:var(--muted);background:var(--light);border-radius:6px;padding:8px 10px;line-height:1.8;}
+/* Main port table */
+.port-table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:48px;}
+.port-table{width:100%;border-collapse:collapse;background:var(--white);min-width:560px;}
+.port-table thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:13px 16px;text-align:left;font-family:'DM Mono',monospace;white-space:nowrap;}
+.port-table thead th:first-child{color:var(--white);}
+.port-table tbody td{padding:10px 16px;border-bottom:1px solid var(--border);font-size:13px;color:var(--text);vertical-align:middle;line-height:1.45;}
+.port-table tbody tr:last-child td{border-bottom:none;}
+.port-table tbody tr:hover td{background:var(--light);}
+.port-num{font-family:'DM Mono',monospace;font-weight:700;font-size:14px;color:var(--navy);white-space:nowrap;}
+.port-name{font-weight:700;color:var(--navy);}
+.tag-tcp{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(26,108,255,.1);color:var(--blue);text-transform:uppercase;letter-spacing:.3px;}
+.tag-udp{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(124,58,237,.1);color:var(--purple);text-transform:uppercase;letter-spacing:.3px;}
+.tag-both{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(0,194,168,.1);color:var(--teal);text-transform:uppercase;letter-spacing:.3px;}
+.cert-dot{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;margin-right:3px;}
+.dot-a{background:rgba(0,194,168,.1);color:var(--teal);}
+.dot-n{background:rgba(26,108,255,.1);color:var(--blue);}
+.dot-s{background:rgba(124,58,237,.1);color:var(--purple);}
+.section-divider td{background:linear-gradient(90deg,rgba(26,108,255,.06) 0%,transparent 70%);font-family:'Outfit',sans-serif;font-size:13px;font-weight:800;color:var(--navy);padding:10px 16px;border-bottom:1px solid var(--border);letter-spacing:.3px;}
+/* Quick reference grid */
+.qref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:40px;}
+.qref-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 14px;box-shadow:0 2px 8px rgba(10,22,40,.05);display:flex;align-items:center;gap:10px;}
+.qref-port{font-family:'DM Mono',monospace;font-size:16px;font-weight:700;color:var(--navy);min-width:44px;}
+.qref-info{}
+.qref-name{font-size:13px;font-weight:700;color:var(--navy);}
+.qref-proto{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);}
+/* Exam tip */
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+/* Callout */
+.callout{background:rgba(26,108,255,.04);border:1px solid rgba(26,108,255,.18);border-left:4px solid var(--blue);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+/* CTA */
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-blue{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--blue);color:var(--white);box-shadow:0 6px 20px rgba(26,108,255,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(26,108,255,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.35);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="security-plus-cheat-sheet.html">Security+ Cheat Sheet</a>
+      <a href="best-network-plus.html" class="nav-cta">Network+ Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <span>Ports & Protocols</span>
+    </nav>
+    <div class="page-hero-badge">A+ · Network+ · Security+ Reference</div>
+    <h1>CompTIA <span>Port Numbers</span> Cheat Sheet</h1>
+    <p class="page-hero-sub">Every port number tested on CompTIA A+, Network+, and Security+ — with TCP vs UDP, what each protocol does, which ports are encrypted alternatives to which, and the exam traps to avoid.</p>
+    <div class="cert-badges">
+      <span class="cert-badge cb-teal">A+ 220-1202</span>
+      <span class="cert-badge cb-blue">Network+ N10-009</span>
+      <span class="cert-badge cb-purple">Security+ SY0-701</span>
+    </div>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ The 15 Ports You Must Know Cold</div>
+      <div class="quick-answer-text">
+        <strong>20/21 FTP · 22 SSH · 23 Telnet · 25 SMTP · 53 DNS · 67/68 DHCP · 80 HTTP · 110 POP3 · 143 IMAP · 443 HTTPS · 445 SMB · 3389 RDP · 389 LDAP · 636 LDAPS · 161/162 SNMP</strong> — these are the ports that appear on every CompTIA exam. Know the port number, the protocol name, TCP or UDP, and whether there's an encrypted alternative (Telnet→SSH, HTTP→HTTPS, LDAP→LDAPS, IMAP→993, POP3→995).
+      </div>
+    </div>
+
+    <h2>TCP vs UDP — Know the Difference</h2>
+
+    <div class="proto-grid">
+      <div class="proto-card">
+        <div class="proto-title">TCP — Transmission Control Protocol</div>
+        <div class="proto-subtitle">Connection-oriented · Reliable</div>
+        <div class="proto-desc">Establishes a connection with a <strong>3-way handshake</strong> (SYN → SYN-ACK → ACK) before transferring data. Guarantees delivery, ordering, and error checking. Slower than UDP due to overhead — used when data integrity matters.</div>
+        <div class="proto-examples">HTTP · HTTPS · FTP · SSH · Telnet · SMTP · POP3 · IMAP · RDP · SMB · LDAP</div>
+      </div>
+      <div class="proto-card udp">
+        <div class="proto-title">UDP — User Datagram Protocol</div>
+        <div class="proto-subtitle">Connectionless · Fast</div>
+        <div class="proto-desc">Sends data without establishing a connection first. <strong>No guaranteed delivery</strong>, no ordering, no error recovery. Fast and low-overhead — used when speed matters more than reliability (live video, voice, DNS lookups).</div>
+        <div class="proto-examples">DNS · DHCP · SNMP · TFTP · NTP · Syslog · VoIP (RTP) · RADIUS · streaming</div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 DNS Uses Both TCP and UDP — Know When</div>
+      <p><strong>DNS uses UDP port 53</strong> for standard queries — fast, low overhead, fits in one packet. <strong>DNS uses TCP port 53</strong> for zone transfers (replicating the full DNS database between servers) and responses larger than 512 bytes. The exam may ask which protocol DNS uses — answer UDP for lookups, TCP for zone transfers.</p>
+    </div>
+
+    <h2>Quick Reference — Most Tested Ports</h2>
+
+    <div class="qref-grid">
+      <div class="qref-card"><div class="qref-port">20</div><div class="qref-info"><div class="qref-name">FTP Data</div><div class="qref-proto">TCP</div></div></div>
+      <div class="qref-card"><div class="qref-port">21</div><div class="qref-info"><div class="qref-name">FTP Control</div><div class="qref-proto">TCP</div></div></div>
+      <div class="qref-card"><div class="qref-port">22</div><div class="qref-info"><div class="qref-name">SSH / SFTP / SCP</div><div class="qref-proto">TCP</div></div></div>
+      <div class="qref-card"><div class="qref-port">23</div><div class="qref-info"><div class="qref-name">Telnet</div><div class="qref-proto">TCP</div></div></div>
+      <div class="qref-card"><div class="qref-port">25</div><div class="qref-info"><div class="qref-name">SMTP</div><div class="qref-proto">TCP</div></div></div>
+      <div class="qref-card"><div class="qref-port">53</div><div class="qref-info"><div class="qref-name">DNS</div><div class="qref-proto">TCP/UDP</div></div></div>
+      <div class="qref-card"><div class="qref-port">67</div><div class="qref-info"><div class="qref-name">DHCP Server</div><div class="qref-proto">UDP</div></div></div>
+      <div class="qref-card"><div class="qref-port">68</div><div class="qref-info"><div class="qref-name">DHCP Client</div><div class="qref-proto">UDP</div></div></div>
+      <div class="qref-card"><div class="qref-port">69</div><div class="qref-info"><div class="qref-name">TFTP</div><div class="qref-proto">UDP</div></div></div>
+      <div class="qref-card"><div class="qref-port">80</div><div class="qref-info"><div class="qref-name">HTTP</div><div class="qref-proto">TCP</div></div></div>
+      <div class="qref-card"><div class="qref-port">110</div><div class="qref-info"><div class="qref-name">POP3</div><div class="qref-proto">TCP</div></div></div>
+      <div class="qref-card"><div class="qref-port">119</div><div class="qref-info"><div class="qref-name">NNTP</div><div class="qref-proto">TCP</div></div></div>
+      <div class="qref-card"><div class="qref-port">123</div><div class="qref-info"><div class="qref-name">NTP</div><div class="qref-proto">UDP</div></div></div>
+      <div class="qref-card"><div class="qref-port">137–139</div><div class="qref-info"><div class="qref-name">NetBIOS</div><div class="qref-proto">TCP/UDP</div></div></div>
+      <div class="qref-card"><div class="qref-port">143</div><div class="qref-info"><div class="qref-name">IMAP</div><div class="qref-proto">TCP</div></div></div>
+      <div class="qref-card"><div class="qref-port">161</div><div class="qref-info"><div class="qref-name">SNMP</div><div class="qref-proto">UDP</div></div></div>
+      <div class="qref-card"><div class="qref-port">162</div><div class="qref-info"><div class="qref-name">SNMP Trap</div><div class="qref-proto">UDP</div></div></div>
+      <div class="qref-card"><div class="qref-port">389</div><div class="qref-info"><div class="qref-name">LDAP</div><div class="qref-proto">TCP/UDP</div></div></div>
+      <div class="qref-card"><div class="qref-port">443</div><div class="qref-info"><div class="qref-name">HTTPS</div><div class="qref-proto">TCP</div></div></div>
+      <div class="qref-card"><div class="qref-port">445</div><div class="qref-info"><div class="qref-name">SMB</div><div class="qref-proto">TCP</div></div></div>
+      <div class="qref-card"><div class="qref-port">465/587</div><div class="qref-info"><div class="qref-name">SMTPS</div><div class="qref-proto">TCP</div></div></div>
+      <div class="qref-card"><div class="qref-port">514</div><div class="qref-info"><div class="qref-name">Syslog</div><div class="qref-proto">UDP</div></div></div>
+      <div class="qref-card"><div class="qref-port">636</div><div class="qref-info"><div class="qref-name">LDAPS</div><div class="qref-proto">TCP</div></div></div>
+      <div class="qref-card"><div class="qref-port">993</div><div class="qref-info"><div class="qref-name">IMAPS</div><div class="qref-proto">TCP</div></div></div>
+      <div class="qref-card"><div class="qref-port">995</div><div class="qref-info"><div class="qref-name">POP3S</div><div class="qref-proto">TCP</div></div></div>
+      <div class="qref-card"><div class="qref-port">1433</div><div class="qref-info"><div class="qref-name">MS SQL Server</div><div class="qref-proto">TCP</div></div></div>
+      <div class="qref-card"><div class="qref-port">1723</div><div class="qref-info"><div class="qref-name">PPTP VPN</div><div class="qref-proto">TCP</div></div></div>
+      <div class="qref-card"><div class="qref-port">3306</div><div class="qref-info"><div class="qref-name">MySQL</div><div class="qref-proto">TCP</div></div></div>
+      <div class="qref-card"><div class="qref-port">3389</div><div class="qref-info"><div class="qref-name">RDP</div><div class="qref-proto">TCP</div></div></div>
+      <div class="qref-card"><div class="qref-port">5060/5061</div><div class="qref-info"><div class="qref-name">SIP / VoIP</div><div class="qref-proto">TCP/UDP</div></div></div>
+    </div>
+
+    <h2>Full Port Reference Table</h2>
+
+    <div class="port-table-wrap">
+      <table class="port-table">
+        <thead>
+          <tr>
+            <th>Port</th>
+            <th>Protocol</th>
+            <th>TCP/UDP</th>
+            <th>Description</th>
+            <th>Exams</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="section-divider"><td colspan="5">📁 File Transfer</td></tr>
+          <tr>
+            <td class="port-num">20</td>
+            <td class="port-name">FTP Data</td>
+            <td><span class="tag-tcp">TCP</span></td>
+            <td>FTP active mode data transfer. The server initiates the data connection back to the client on port 20. Passive mode FTP uses a negotiated high port instead.</td>
+            <td><span class="cert-dot dot-a">A+</span><span class="cert-dot dot-n">N+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">21</td>
+            <td class="port-name">FTP Control</td>
+            <td><span class="tag-tcp">TCP</span></td>
+            <td>FTP command/control channel — login, directory listing, file commands. Unencrypted — credentials sent in cleartext. Use SFTP (port 22) or FTPS (port 990) instead.</td>
+            <td><span class="cert-dot dot-a">A+</span><span class="cert-dot dot-n">N+</span><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">22</td>
+            <td class="port-name">SSH / SFTP / SCP</td>
+            <td><span class="tag-tcp">TCP</span></td>
+            <td>Secure Shell — encrypted remote terminal access, replacing Telnet. Also used by SFTP (Secure FTP over SSH) and SCP (Secure Copy). The most important "secure replacement" port to know.</td>
+            <td><span class="cert-dot dot-a">A+</span><span class="cert-dot dot-n">N+</span><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">69</td>
+            <td class="port-name">TFTP</td>
+            <td><span class="tag-udp">UDP</span></td>
+            <td>Trivial FTP — simple, no authentication, no directory listing. Used to transfer OS images to network devices (Cisco IOS), PXE boot, and firmware updates. Never used for sensitive files.</td>
+            <td><span class="cert-dot dot-n">N+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">445</td>
+            <td class="port-name">SMB</td>
+            <td><span class="tag-tcp">TCP</span></td>
+            <td>Server Message Block — Windows file and printer sharing. Used by Windows mapped drives, Active Directory, and network printing. WannaCry ransomware exploited SMBv1 vulnerability. EternalBlue exploit targets this port.</td>
+            <td><span class="cert-dot dot-a">A+</span><span class="cert-dot dot-n">N+</span><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+
+          <tr class="section-divider"><td colspan="5">📧 Email</td></tr>
+          <tr>
+            <td class="port-num">25</td>
+            <td class="port-name">SMTP</td>
+            <td><span class="tag-tcp">TCP</span></td>
+            <td>Simple Mail Transfer Protocol — sends email between mail servers (server to server). Also used by email clients to send outgoing mail. Unencrypted — credentials visible in transit.</td>
+            <td><span class="cert-dot dot-a">A+</span><span class="cert-dot dot-n">N+</span><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">110</td>
+            <td class="port-name">POP3</td>
+            <td><span class="tag-tcp">TCP</span></td>
+            <td>Post Office Protocol v3 — downloads email from server to client and typically deletes it from the server. Unencrypted. Use POP3S (port 995) for encrypted version. Key difference from IMAP: email is removed from server.</td>
+            <td><span class="cert-dot dot-a">A+</span><span class="cert-dot dot-n">N+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">143</td>
+            <td class="port-name">IMAP</td>
+            <td><span class="tag-tcp">TCP</span></td>
+            <td>Internet Message Access Protocol — syncs email with server, leaving messages on the server. Multiple devices see the same inbox. Unencrypted. Use IMAPS (port 993) for encrypted version. Key difference from POP3: email stays on server.</td>
+            <td><span class="cert-dot dot-a">A+</span><span class="cert-dot dot-n">N+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">465 / 587</td>
+            <td class="port-name">SMTPS</td>
+            <td><span class="tag-tcp">TCP</span></td>
+            <td>Encrypted SMTP. Port 465 uses implicit TLS (SSL). Port 587 uses STARTTLS (upgrades plaintext connection to encrypted). Modern email clients typically use 587. Both replace unencrypted SMTP (25) for client-to-server submission.</td>
+            <td><span class="cert-dot dot-a">A+</span><span class="cert-dot dot-n">N+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">993</td>
+            <td class="port-name">IMAPS</td>
+            <td><span class="tag-tcp">TCP</span></td>
+            <td>IMAP over SSL/TLS — encrypted version of IMAP. Mail stays on server, synced across devices, connection is encrypted. The recommended replacement for plaintext IMAP (143).</td>
+            <td><span class="cert-dot dot-a">A+</span><span class="cert-dot dot-n">N+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">995</td>
+            <td class="port-name">POP3S</td>
+            <td><span class="tag-tcp">TCP</span></td>
+            <td>POP3 over SSL/TLS — encrypted version of POP3. Downloads and typically deletes from server, connection is encrypted. Replacement for plaintext POP3 (110).</td>
+            <td><span class="cert-dot dot-a">A+</span><span class="cert-dot dot-n">N+</span></td>
+          </tr>
+
+          <tr class="section-divider"><td colspan="5">🌐 Web & Remote Access</td></tr>
+          <tr>
+            <td class="port-num">23</td>
+            <td class="port-name">Telnet</td>
+            <td><span class="tag-tcp">TCP</span></td>
+            <td>Remote terminal access — unencrypted. Everything including passwords is sent in cleartext. Replaced by SSH (port 22). Still tested because it's a classic example of an insecure protocol that should be disabled.</td>
+            <td><span class="cert-dot dot-a">A+</span><span class="cert-dot dot-n">N+</span><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">80</td>
+            <td class="port-name">HTTP</td>
+            <td><span class="tag-tcp">TCP</span></td>
+            <td>Hypertext Transfer Protocol — unencrypted web traffic. Traffic is visible in transit. Should be replaced by HTTPS (443) for any site handling sensitive data. Still used for initial redirect to HTTPS.</td>
+            <td><span class="cert-dot dot-a">A+</span><span class="cert-dot dot-n">N+</span><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">443</td>
+            <td class="port-name">HTTPS</td>
+            <td><span class="tag-tcp">TCP</span></td>
+            <td>HTTP over TLS/SSL — encrypted web traffic. The "S" means encrypted with a TLS certificate. URL shows https:// and browser shows padlock. The standard for all modern web traffic.</td>
+            <td><span class="cert-dot dot-a">A+</span><span class="cert-dot dot-n">N+</span><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">3389</td>
+            <td class="port-name">RDP</td>
+            <td><span class="tag-tcp">TCP</span></td>
+            <td>Remote Desktop Protocol — graphical remote access to Windows desktops. Requires Windows Pro or higher on the host. Commonly targeted by attackers — brute-force and credential stuffing attacks on exposed RDP are extremely common. Should not be exposed directly to the internet.</td>
+            <td><span class="cert-dot dot-a">A+</span><span class="cert-dot dot-n">N+</span><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+
+          <tr class="section-divider"><td colspan="5">🗂️ Directory & Authentication</td></tr>
+          <tr>
+            <td class="port-num">389</td>
+            <td class="port-name">LDAP</td>
+            <td><span class="tag-both">TCP/UDP</span></td>
+            <td>Lightweight Directory Access Protocol — queries Active Directory and other directory services. Unencrypted. Used for authentication lookups, user searches, group membership queries.</td>
+            <td><span class="cert-dot dot-n">N+</span><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">636</td>
+            <td class="port-name">LDAPS</td>
+            <td><span class="tag-tcp">TCP</span></td>
+            <td>LDAP over SSL/TLS — encrypted version of LDAP. Same function as LDAP but traffic is encrypted. Required when LDAP is used for authentication in security-sensitive environments.</td>
+            <td><span class="cert-dot dot-n">N+</span><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">88</td>
+            <td class="port-name">Kerberos</td>
+            <td><span class="tag-both">TCP/UDP</span></td>
+            <td>Authentication protocol used by Active Directory for SSO (Single Sign-On). Issues tickets (TGT, service tickets) that prove identity without sending passwords over the network.</td>
+            <td><span class="cert-dot dot-n">N+</span><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">1812 / 1813</td>
+            <td class="port-name">RADIUS</td>
+            <td><span class="tag-udp">UDP</span></td>
+            <td>Remote Authentication Dial-In User Service — centralised authentication for network access (VPN, Wi-Fi 802.1X). Port 1812 for authentication/authorisation, 1813 for accounting. Used with WPA2/WPA3 Enterprise wireless.</td>
+            <td><span class="cert-dot dot-n">N+</span><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+
+          <tr class="section-divider"><td colspan="5">🔧 Network Services</td></tr>
+          <tr>
+            <td class="port-num">53</td>
+            <td class="port-name">DNS</td>
+            <td><span class="tag-both">TCP/UDP</span></td>
+            <td>Domain Name System — resolves hostnames to IP addresses. UDP for standard queries (fast, small responses). TCP for zone transfers and large responses. Port 53 is one of the most critical ports — blocking it breaks internet connectivity.</td>
+            <td><span class="cert-dot dot-a">A+</span><span class="cert-dot dot-n">N+</span><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">67</td>
+            <td class="port-name">DHCP Server</td>
+            <td><span class="tag-udp">UDP</span></td>
+            <td>DHCP server listens on UDP 67 for DISCOVER messages from clients. The DORA process: Discover (client, broadcast) → Offer (server) → Request (client) → Acknowledge (server).</td>
+            <td><span class="cert-dot dot-a">A+</span><span class="cert-dot dot-n">N+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">68</td>
+            <td class="port-name">DHCP Client</td>
+            <td><span class="tag-udp">UDP</span></td>
+            <td>DHCP client port — receives DHCP offers and acknowledgements from the server. A client without a DHCP address broadcasts on port 68 to port 67 to find a server.</td>
+            <td><span class="cert-dot dot-a">A+</span><span class="cert-dot dot-n">N+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">123</td>
+            <td class="port-name">NTP</td>
+            <td><span class="tag-udp">UDP</span></td>
+            <td>Network Time Protocol — synchronises clocks across network devices. Critical for Kerberos authentication (tickets have timestamps — clock skew of more than 5 minutes breaks AD auth) and log correlation in SIEM.</td>
+            <td><span class="cert-dot dot-n">N+</span><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">161</td>
+            <td class="port-name">SNMP</td>
+            <td><span class="tag-udp">UDP</span></td>
+            <td>Simple Network Management Protocol — polls network devices for status, performance counters, and configuration data. SNMPv1 and v2c use community strings (no encryption). SNMPv3 adds authentication and encryption.</td>
+            <td><span class="cert-dot dot-n">N+</span><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">162</td>
+            <td class="port-name">SNMP Trap</td>
+            <td><span class="tag-udp">UDP</span></td>
+            <td>Devices send unsolicited SNMP Trap messages to the management station (NMS) when an alert condition occurs — instead of waiting to be polled. Used for real-time alerts like link down, high CPU, or threshold exceeded.</td>
+            <td><span class="cert-dot dot-n">N+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">514</td>
+            <td class="port-name">Syslog</td>
+            <td><span class="tag-udp">UDP</span></td>
+            <td>Sends log messages from network devices (routers, switches, firewalls) to a central syslog server. UDP means logs can be lost if the network is congested — use TCP syslog (port 6514 with TLS) for critical logs.</td>
+            <td><span class="cert-dot dot-n">N+</span><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+
+          <tr class="section-divider"><td colspan="5">🔒 VPN & Tunneling</td></tr>
+          <tr>
+            <td class="port-num">500</td>
+            <td class="port-name">IKE / IPSec</td>
+            <td><span class="tag-udp">UDP</span></td>
+            <td>Internet Key Exchange — negotiates IPSec VPN sessions. Used for site-to-site and client VPN tunnels. IKEv2 is the modern standard. IPSec also uses IP protocol 50 (ESP) and 51 (AH) — not port-based.</td>
+            <td><span class="cert-dot dot-n">N+</span><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">1194</td>
+            <td class="port-name">OpenVPN</td>
+            <td><span class="tag-both">TCP/UDP</span></td>
+            <td>Open-source VPN protocol. Typically uses UDP 1194 for performance, can also use TCP 443 to bypass firewalls that block VPN traffic.</td>
+            <td><span class="cert-dot dot-n">N+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">1723</td>
+            <td class="port-name">PPTP</td>
+            <td><span class="tag-tcp">TCP</span></td>
+            <td>Point-to-Point Tunneling Protocol — legacy VPN. Considered insecure — known vulnerabilities in MS-CHAPv2 authentication. Should not be used. Still tested as an example of a deprecated/insecure protocol.</td>
+            <td><span class="cert-dot dot-n">N+</span><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+
+          <tr class="section-divider"><td colspan="5">🖨️ Printing & Windows</td></tr>
+          <tr>
+            <td class="port-num">137–139</td>
+            <td class="port-name">NetBIOS</td>
+            <td><span class="tag-both">TCP/UDP</span></td>
+            <td>Legacy Windows name resolution and session services. Largely replaced by DNS and SMB direct (445). Port 137: NetBIOS Name Service. 138: Datagram. 139: Session. Often disabled in modern environments.</td>
+            <td><span class="cert-dot dot-n">N+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">9100</td>
+            <td class="port-name">RAW Print / JetDirect</td>
+            <td><span class="tag-tcp">TCP</span></td>
+            <td>HP JetDirect / raw printing — sends print jobs directly to a network printer without a print server. Common in enterprise environments with networked printers.</td>
+            <td><span class="cert-dot dot-a">A+</span></td>
+          </tr>
+
+          <tr class="section-divider"><td colspan="5">📡 VoIP</td></tr>
+          <tr>
+            <td class="port-num">5060 / 5061</td>
+            <td class="port-name">SIP</td>
+            <td><span class="tag-both">TCP/UDP</span></td>
+            <td>Session Initiation Protocol — sets up, manages, and tears down VoIP calls. Port 5060: unencrypted SIP. Port 5061: SIP over TLS (encrypted). The actual voice data travels over RTP (dynamic ports).</td>
+            <td><span class="cert-dot dot-n">N+</span></td>
+          </tr>
+
+          <tr class="section-divider"><td colspan="5">🗄️ Database</td></tr>
+          <tr>
+            <td class="port-num">1433</td>
+            <td class="port-name">Microsoft SQL Server</td>
+            <td><span class="tag-tcp">TCP</span></td>
+            <td>Default port for Microsoft SQL Server database connections. Should not be exposed to the internet — commonly targeted by automated scanners. Firewall rules should limit access to application servers only.</td>
+            <td><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+          <tr>
+            <td class="port-num">3306</td>
+            <td class="port-name">MySQL / MariaDB</td>
+            <td><span class="tag-tcp">TCP</span></td>
+            <td>Default port for MySQL and MariaDB database connections. Common in LAMP/LEMP web stacks. Like MSSQL, should be firewalled to allow access only from application servers.</td>
+            <td><span class="cert-dot dot-s">S+</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Encrypted vs Unencrypted — The Upgrade Pairs</h2>
+
+    <div class="callout">
+      <div class="callout-label">Know Your Secure Replacements</div>
+      <p>The Security+ exam frequently tests whether you can identify which protocols are insecure and what their encrypted replacements are. These pairs are the most tested:</p>
+      <p><strong>Telnet (23) → SSH (22)</strong> — Remote terminal access. Telnet sends everything in cleartext. SSH encrypts the session.</p>
+      <p><strong>FTP (20/21) → SFTP or FTPS</strong> — SFTP runs over SSH (port 22). FTPS is FTP with TLS (port 990/21). Both encrypt credentials and data.</p>
+      <p><strong>HTTP (80) → HTTPS (443)</strong> — Web traffic. HTTPS uses TLS to encrypt the connection.</p>
+      <p><strong>SMTP (25) → SMTPS (465/587)</strong> — Email sending. Port 587 with STARTTLS is the modern standard.</p>
+      <p><strong>IMAP (143) → IMAPS (993)</strong> — Email retrieval (leaves on server). Encrypted with TLS.</p>
+      <p><strong>POP3 (110) → POP3S (995)</strong> — Email retrieval (downloads to client). Encrypted with TLS.</p>
+      <p><strong>LDAP (389) → LDAPS (636)</strong> — Directory queries. LDAPS encrypts the connection.</p>
+      <p><strong>SNMP v1/v2c → SNMPv3</strong> — Not a port change — same port 161, but v3 adds authentication and encryption.</p>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 The Three Biggest Port Exam Traps</div>
+      <p><strong>FTP uses two ports</strong> — 20 for data, 21 for control. A firewall rule blocking port 21 blocks the login/commands. A rule blocking port 20 blocks the actual file transfer. Both need to be open for active mode FTP to work.</p>
+      <p><strong>RDP (3389) is TCP, not UDP</strong> — Many candidates assume it's UDP because it streams a graphical display. It's TCP. Exposing RDP directly to the internet is a major security risk — attackers constantly scan for open port 3389.</p>
+      <p><strong>DHCP uses UDP, not TCP</strong> — DHCP discovery is a broadcast — the client doesn't have an IP yet so it can't establish a TCP connection. DHCP uses UDP 67 (server) and 68 (client) specifically because it doesn't require a prior connection.</p>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Ready to put this into practice?</h3>
+        <p>See the best practice exams and study resources for Network+ and Security+.</p>
+      </div>
+      <a href="best-network-plus.html" class="btn-blue">Best Network+ Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
+      <a href="dns-record-types.html" class="related-link">DNS Record Types</a>
+      <a href="wireless-security-protocols.html" class="related-link">Wireless Security Protocols</a>
+      <a href="network-segmentation.html" class="related-link">Network Segmentation</a>
+      <a href="encryption-types.html" class="related-link">Encryption Types</a>
+      <a href="firewall-types.html" class="related-link">Firewall Types</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="security-plus-cheat-sheet.html" class="related-link">Security+ Cheat Sheet</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="comptia-network-plus-domains.html" class="related-link">Network+ Exam Domains</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Network+</div>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-network-plus.html">How to Pass Network+</a>
+      <a href="best-network-plus.html">Best Network+ Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Related</div>
+      <a href="dns-record-types.html">DNS Record Types</a>
+      <a href="network-segmentation.html">Network Segmentation</a>
+      <a href="encryption-types.html">Encryption Types</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>

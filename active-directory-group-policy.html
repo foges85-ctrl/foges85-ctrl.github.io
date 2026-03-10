@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/active-directory-group-policy.html">
+<title>Group Policy Explained — GPOs, Inheritance & Security Policies | CompTIA A+ 220-1202</title>
+<meta name="description" content="Group Policy Objects (GPOs) explained for CompTIA A+ — GPO creation, linking, inheritance, enforcement, filtering, common security policies, gpupdate, and exam scenarios.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.18) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(0,194,168,.06) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-teal{background:rgba(0,194,168,.2);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.cb-blue{background:rgba(26,108,255,.2);color:#93c5fd;border:1px solid rgba(26,108,255,.3);}
+.cb-purple{background:rgba(124,58,237,.2);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.2) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* GPO flow */
+.gpo-flow{display:flex;flex-direction:column;gap:0;margin-bottom:40px;}
+.gpo-level{display:grid;grid-template-columns:140px 1fr;gap:0;border-radius:0;background:var(--white);border:1px solid var(--border);border-bottom:none;}
+.gpo-level:first-child{border-radius:14px 14px 0 0;}
+.gpo-level:last-child{border-radius:0 0 14px 14px;border-bottom:1px solid var(--border);}
+.gpo-level-label{padding:16px 18px;display:flex;align-items:center;justify-content:center;text-align:center;font-family:'DM Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border-right:1px solid var(--border);}
+.gl-local{background:rgba(0,194,168,.08);color:var(--teal);}
+.gl-site{background:rgba(26,108,255,.06);color:var(--blue);}
+.gl-domain{background:rgba(26,108,255,.1);color:var(--blue);}
+.gl-ou{background:rgba(124,58,237,.08);color:var(--purple);}
+.gpo-level-content{padding:14px 18px;}
+.gpo-level-title{font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:var(--navy);margin-bottom:4px;}
+.gpo-level-desc{font-size:13px;color:var(--muted);line-height:1.5;}
+.gpo-arrow{text-align:center;color:var(--muted);font-size:20px;line-height:1.2;padding:2px 0;}
+/* Concept cards */
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:40px;}
+@media(max-width:600px){.concept-grid{grid-template-columns:1fr;}}
+.concept-card{background:var(--white);border:1px solid var(--border);border-radius:13px;padding:18px 20px;box-shadow:var(--card-shadow);}
+.concept-title{font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.concept-mono{font-family:'DM Mono',monospace;font-size:12px;color:var(--blue);margin-bottom:8px;display:block;}
+.concept-desc{font-size:13px;color:var(--text);line-height:1.6;}
+.concept-desc strong{color:var(--navy);}
+/* Policy table */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:400px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#eff6ff;}
+.td-term{font-weight:700;color:var(--navy);}
+.mono{font-family:'DM Mono',monospace;font-size:13px;}
+/* Callout */
+.callout{background:rgba(26,108,255,.04);border:1px solid rgba(26,108,255,.18);border-left:4px solid var(--blue);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+/* Exam tip */
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+/* Command blocks */
+.cmd-block{background:var(--navy);border-radius:12px;padding:18px 22px;margin-bottom:28px;font-family:'DM Mono',monospace;font-size:13px;position:relative;overflow:hidden;}
+.cmd-block::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 40% 70% at 90% 30%,rgba(26,108,255,.12) 0%,transparent 70%);pointer-events:none;}
+.cmd-label{font-size:11px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:10px;}
+.cmd-line{color:#93c5fd;line-height:2;}
+.cmd-comment{color:rgba(255,255,255,.3);font-size:12px;}
+/* Scenarios */
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+/* CTA */
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-blue{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--blue);color:var(--white);box-shadow:0 6px 20px rgba(26,108,255,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(26,108,255,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.35);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="active-directory-basics.html">Active Directory</a>
+      <a href="windows-command-line.html">Windows CLI</a>
+      <a href="aplus-cheat-sheet.html">Cheat Sheet</a>
+      <a href="best-a-plus.html" class="nav-cta">A+ Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="active-directory-basics.html">Active Directory</a><span>›</span>
+      <span>Group Policy</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ 220-1202 · Windows Server</div>
+    <h1>Group Policy <span>Objects (GPOs) Explained</span></h1>
+    <p class="page-hero-sub">What Group Policy is, how GPOs are created, linked, and applied — inheritance, enforcement, filtering, the LSDOU processing order, common security policies, and the gpupdate command.</p>
+    <div class="cert-badges">
+      <span class="cert-badge cb-teal">A+ 220-1202</span>
+      <span class="cert-badge cb-blue">Network+ N10-009</span>
+      <span class="cert-badge cb-purple">Security+ SY0-701</span>
+    </div>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Quick Answer</div>
+      <div class="quick-answer-text">
+        A <strong>Group Policy Object (GPO)</strong> is a collection of settings that controls the configuration of users and computers in an Active Directory environment. GPOs are created in the <strong>Group Policy Management Console (GPMC)</strong> and linked to Sites, Domains, or Organizational Units (OUs). They apply in a specific order — <strong>Local → Site → Domain → OU (LSDOU)</strong> — with later policies overwriting earlier ones by default. GPOs are the primary way Windows domain administrators enforce <strong>security settings, software deployment, and desktop configuration</strong> across hundreds or thousands of machines.
+      </div>
+    </div>
+
+    <h2>What Group Policy Does</h2>
+
+    <p>Group Policy lets an administrator define a setting once and have it automatically apply to every machine or user in scope — without touching each machine individually. Common uses include enforcing password complexity, mapping network drives, restricting USB access, deploying software, configuring Windows Firewall, and setting the desktop wallpaper.</p>
+
+    <p>Group Policy settings are split into two categories: <strong>Computer Configuration</strong> (applies to the computer regardless of who logs in) and <strong>User Configuration</strong> (applies to the user account regardless of which computer they log into).</p>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-title">Computer Configuration</div>
+        <span class="concept-mono">Applies at computer startup</span>
+        <div class="concept-desc">Settings that apply to the machine itself — <strong>regardless of which user logs in</strong>. Processed when the computer boots and joins the domain. Examples: Windows Firewall rules, software installation, startup scripts, BitLocker enforcement, disabling USB ports.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-title">User Configuration</div>
+        <span class="concept-mono">Applies at user logon</span>
+        <div class="concept-desc">Settings that follow the <strong>user account</strong> — wherever they log in on the domain. Processed when the user logs on. Examples: mapped drives, folder redirection, browser homepage, desktop wallpaper, logon scripts, restricting Control Panel access.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-title">GPMC</div>
+        <span class="concept-mono">gpmc.msc</span>
+        <div class="concept-desc">The <strong>Group Policy Management Console</strong> — the primary tool for creating, editing, linking, and troubleshooting GPOs. Available on domain controllers and on machines with Remote Server Administration Tools (RSAT) installed.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-title">Local Group Policy</div>
+        <span class="concept-mono">gpedit.msc</span>
+        <div class="concept-desc">Every Windows machine has a <strong>local Group Policy</strong> that applies even without a domain. Only available in Windows Pro and above (not Home). Settings here apply only to the local machine and are overridden by domain GPOs if the machine is joined to a domain.</div>
+      </div>
+    </div>
+
+    <h2>GPO Processing Order — LSDOU</h2>
+
+    <p>When a machine boots or a user logs on, Windows applies GPOs in a specific order. Each level can override the previous one — so the last policy applied wins (unless enforcement is used).</p>
+
+    <div class="gpo-flow">
+      <div class="gpo-level">
+        <div class="gpo-level-label gl-local">Local</div>
+        <div class="gpo-level-content">
+          <div class="gpo-level-title">1. Local GPO</div>
+          <div class="gpo-level-desc">Applied first. Settings defined in gpedit.msc on the local machine. Lowest priority — overridden by all domain policies. Still applied if the machine is not domain-joined.</div>
+        </div>
+      </div>
+      <div class="gpo-arrow">↓ applied next, can override Local</div>
+      <div class="gpo-level">
+        <div class="gpo-level-label gl-site">Site</div>
+        <div class="gpo-level-content">
+          <div class="gpo-level-title">2. Site GPO</div>
+          <div class="gpo-level-desc">Applied second. Site GPOs are linked to Active Directory Sites (physical network locations). Rarely used — typically for location-specific settings like time zones or regional printers.</div>
+        </div>
+      </div>
+      <div class="gpo-arrow">↓ applied next, can override Site</div>
+      <div class="gpo-level">
+        <div class="gpo-level-label gl-domain">Domain</div>
+        <div class="gpo-level-content">
+          <div class="gpo-level-title">3. Domain GPO</div>
+          <div class="gpo-level-desc">Applied third. Linked to the entire domain — applies to all users and computers in the domain. The Default Domain Policy lives here and sets baseline password and account lockout policies.</div>
+        </div>
+      </div>
+      <div class="gpo-arrow">↓ applied last, highest priority (without enforcement)</div>
+      <div class="gpo-level">
+        <div class="gpo-level-label gl-ou">OU</div>
+        <div class="gpo-level-content">
+          <div class="gpo-level-title">4. OU GPO</div>
+          <div class="gpo-level-desc">Applied last — highest priority by default. Linked to an Organizational Unit (e.g., Sales OU, IT OU). Nested OUs inherit from parent OUs. The most specific OU wins. This is where most role-specific policies are applied.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 LSDOU — The Most Tested GPO Fact</div>
+      <p><strong>Local → Site → Domain → OU</strong> — memorise this order. The A+ and Security+ both test it directly. Remember: later = higher priority. An OU policy overrides a Domain policy on the same setting. If two GPOs at the same level conflict, the one with the <strong>lower link order number</strong> (higher priority in GPMC) wins.</p>
+      <p>The exam may also ask: which GPO wins when there's a conflict? The answer is always the one that applies <strong>last</strong> in the LSDOU order — unless Enforcement is set, which inverts this.</p>
+    </div>
+
+    <h2>Inheritance, Blocking, and Enforcement</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>What It Does</th><th>Who Can Set It</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="td-term">Inheritance</td>
+            <td>GPOs linked to a parent OU automatically apply to all child OUs below it. A policy linked to the domain flows down to all OUs unless blocked.</td>
+            <td>Default behaviour — no configuration needed</td>
+          </tr>
+          <tr>
+            <td class="td-term">Block Inheritance</td>
+            <td>An OU administrator can block GPOs from flowing down from parent OUs. Useful when a department needs different settings from the rest of the domain.</td>
+            <td>OU admins (set on the OU)</td>
+          </tr>
+          <tr>
+            <td class="td-term">Enforcement (No Override)</td>
+            <td>A domain admin can mark a GPO as Enforced — it <strong>cannot be blocked</strong> by child OUs and takes priority over all conflicting policies below it. Overrides Block Inheritance.</td>
+            <td>Domain admins (set on the GPO link)</td>
+          </tr>
+          <tr>
+            <td class="td-term">Security Filtering</td>
+            <td>By default, a GPO applies to "Authenticated Users" (everyone). Security filtering restricts the GPO to specific users, computers, or groups — only they receive the policy.</td>
+            <td>Admins with GPO edit rights</td>
+          </tr>
+          <tr>
+            <td class="td-term">WMI Filtering</td>
+            <td>Applies a GPO only to computers matching a WMI query (e.g., only Windows 11 machines, only machines with more than 8 GB RAM). More granular than security filtering.</td>
+            <td>Domain admins</td>
+          </tr>
+          <tr>
+            <td class="td-term">Loopback Processing</td>
+            <td>Normally, user settings follow the user. Loopback processing makes the computer's OU-linked GPOs apply to all users who log into that computer — useful for kiosks and shared computers.</td>
+            <td>Computer Configuration → Group Policy settings</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Enforcement vs Block Inheritance</div>
+      <p><strong>Block Inheritance</strong> is set on an OU — it prevents GPOs from parent levels flowing in. <strong>Enforcement</strong> is set on a GPO link — it forces the GPO through even if an OU has Block Inheritance enabled. Enforcement always wins. A domain admin using Enforcement can guarantee a policy applies everywhere, regardless of OU-level blocking.</p>
+    </div>
+
+    <h2>Common Security Policies Configured via GPO</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Policy Area</th><th>Common Settings</th><th>GPO Path</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="td-term">Password Policy</td>
+            <td>Minimum length (8+ chars), complexity requirements, maximum age (90 days), history (remember last 24)</td>
+            <td class="mono">Computer Config → Policies → Windows Settings → Security Settings → Account Policies → Password Policy</td>
+          </tr>
+          <tr>
+            <td class="td-term">Account Lockout</td>
+            <td>Lockout threshold (5 invalid attempts), lockout duration (30 min), observation window</td>
+            <td class="mono">Computer Config → … → Account Policies → Account Lockout Policy</td>
+          </tr>
+          <tr>
+            <td class="td-term">Audit Policy</td>
+            <td>Log successful/failed logons, object access, privilege use — feeds into Event Viewer and SIEM</td>
+            <td class="mono">Computer Config → … → Local Policies → Audit Policy</td>
+          </tr>
+          <tr>
+            <td class="td-term">User Rights Assignment</td>
+            <td>Who can log on locally, who can shut down the system, who can manage audit logs</td>
+            <td class="mono">Computer Config → … → Local Policies → User Rights Assignment</td>
+          </tr>
+          <tr>
+            <td class="td-term">Windows Firewall</td>
+            <td>Enable/disable firewall profiles, create inbound/outbound rules, block specific ports</td>
+            <td class="mono">Computer Config → Policies → Windows Settings → Security Settings → Windows Firewall</td>
+          </tr>
+          <tr>
+            <td class="td-term">Software Restriction / AppLocker</td>
+            <td>Whitelist or blacklist applications by path, hash, publisher, or zone</td>
+            <td class="mono">Computer Config → … → Application Control Policies → AppLocker</td>
+          </tr>
+          <tr>
+            <td class="td-term">BitLocker</td>
+            <td>Require BitLocker on OS drives, set encryption method, configure TPM requirements</td>
+            <td class="mono">Computer Config → Administrative Templates → Windows Components → BitLocker</td>
+          </tr>
+          <tr>
+            <td class="td-term">Drive Mapping</td>
+            <td>Map network drives (e.g., H: → \\fileserver\home\%username%) at logon</td>
+            <td class="mono">User Config → Preferences → Windows Settings → Drive Maps</td>
+          </tr>
+          <tr>
+            <td class="td-term">Folder Redirection</td>
+            <td>Redirect Desktop, Documents, Downloads to a network share — keeps user data on server, not local disk</td>
+            <td class="mono">User Config → Policies → Windows Settings → Folder Redirection</td>
+          </tr>
+          <tr>
+            <td class="td-term">Restrict Control Panel</td>
+            <td>Prevent standard users from accessing Control Panel or specific applets</td>
+            <td class="mono">User Config → Administrative Templates → Control Panel</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>GPO Commands — gpupdate and gpresult</h2>
+
+    <p>GPOs are normally applied at startup (Computer Configuration) and logon (User Configuration), then refreshed every 90 minutes (± 30 minutes random offset) in the background. To force an immediate refresh without rebooting or logging off:</p>
+
+    <div class="cmd-block">
+      <div class="cmd-label">Windows Command Prompt / PowerShell</div>
+      <div class="cmd-line">gpupdate /force<span class="cmd-comment">  ← refresh all GPOs immediately (Computer + User)</span></div>
+      <div class="cmd-line">gpupdate /target:computer<span class="cmd-comment">  ← refresh computer policies only</span></div>
+      <div class="cmd-line">gpupdate /target:user<span class="cmd-comment">  ← refresh user policies only</span></div>
+      <div class="cmd-line">&nbsp;</div>
+      <div class="cmd-line">gpresult /r<span class="cmd-comment">  ← show which GPOs applied to current user and computer</span></div>
+      <div class="cmd-line">gpresult /h report.html<span class="cmd-comment">  ← generate full HTML report of applied GPOs</span></div>
+      <div class="cmd-line">gpresult /scope computer /v<span class="cmd-comment">  ← verbose computer policy results</span></div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">RSoP — Resultant Set of Policy</div>
+      <p>When multiple GPOs apply to a user or computer, the final merged result is the <strong>Resultant Set of Policy (RSoP)</strong>. This is what the machine actually enforces after all inheritance, filtering, and conflicts are resolved. You can view the RSoP using <span class="mono">gpresult /r</span>, the RSoP snap-in (<span class="mono">rsop.msc</span>), or the Group Policy Results wizard in GPMC. RSoP is the primary troubleshooting tool when a user says "the policy isn't applying."</p>
+    </div>
+
+    <h2>Default Domain Policy vs Default Domain Controllers Policy</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>GPO</th><th>Linked To</th><th>Purpose</th><th>Should You Edit It?</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="td-term">Default Domain Policy</td>
+            <td>Domain root</td>
+            <td>Sets baseline password policy, account lockout policy, and Kerberos settings for all domain users and computers. Best practice: <strong>only edit password/lockout/Kerberos settings here.</strong></td>
+            <td>Only for password/lockout/Kerberos — create new GPOs for everything else</td>
+          </tr>
+          <tr>
+            <td class="td-term">Default Domain Controllers Policy</td>
+            <td>Domain Controllers OU</td>
+            <td>Applies to all domain controller computers. Sets security settings specific to DCs — audit policies, user rights, security options. Applies only to DC machines.</td>
+            <td>Sparingly — create new GPOs for DC-specific settings</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "An administrator needs to enforce a password policy requiring a minimum of 12 characters and complexity for all users in the domain. Where should this GPO be configured?" → <strong>The Default Domain Policy, linked to the domain root — password policies must be configured at the domain level to apply to all domain user accounts. Password policy settings in OUs below the domain level do not affect domain account passwords (they only affect local accounts). The setting path is Computer Configuration → Policies → Windows Settings → Security Settings → Account Policies → Password Policy.</strong></div>
+      <div class="scenario-item">💬 "A GPO is linked to the domain and configured to set the desktop wallpaper. An administrator in the Sales OU applies Block Inheritance to prevent domain policies from flowing in. A domain admin then sets the wallpaper GPO as Enforced. What wallpaper do Sales users see?" → <strong>The enforced domain GPO wallpaper — Enforcement overrides Block Inheritance. Once a GPO link is marked as Enforced, it cannot be blocked by any child OU. Domain admins use Enforcement to guarantee critical policies (like security baselines) apply everywhere regardless of OU-level blocking.</strong></div>
+      <div class="scenario-item">💬 "A technician applies a new GPO to the IT OU but users in the OU are not receiving the settings after logging off and back on. What command should the technician run to force the policy to apply immediately and confirm it is being received?" → <strong>gpupdate /force — this triggers an immediate refresh of all GPOs without waiting for the background refresh interval. Follow up with gpresult /r to see which GPOs are listed as applied and confirm the new GPO appears in the output. If it doesn't, check the GPO link, security filtering, and whether the OU is correct.</strong></div>
+      <div class="scenario-item">💬 "A company needs to prevent users in the Finance OU from accessing Control Panel while users in other OUs retain access. What is the correct approach?" → <strong>Create a new GPO that restricts Control Panel access (User Config → Administrative Templates → Control Panel → Prohibit access to Control Panel and PC Settings → Enabled), and link it only to the Finance OU. Do not link it at the domain level. Security filtering can further restrict it to specific groups within the OU if needed.</strong></div>
+      <div class="scenario-item">💬 "An administrator wants a GPO to apply only to Windows 11 computers, not Windows 10 computers, even though both are in the same OU. What should they configure?" → <strong>WMI filtering — create a WMI filter that queries for Windows 11 (Win32_OperatingSystem where Version >= "10.0.22000") and attach it to the GPO. The GPO will only apply on machines where the WMI query returns true. Security filtering alone cannot target by OS version — WMI filtering is the correct tool.</strong></div>
+      <div class="scenario-item">💬 "A user reports that they cannot access a mapped network drive (H:) on a new computer in a different office. The drive maps are configured via GPO. What should the technician check first?" → <strong>GPO scope and OU placement — confirm the new computer's user account is in an OU where the drive mapping GPO is linked, or that the user is in a security group included in the GPO's security filtering. Also verify with gpresult /r that the drive mapping GPO appears in the applied policy list for that user. If the computer is in a different site, check whether site-based GPOs are interfering.</strong></div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for the CompTIA A+?</h3>
+        <p>See the best courses, practice exams, and study guides for 220-1201 and 220-1202.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn-blue">See Best A+ Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="active-directory-basics.html" class="related-link">Active Directory Basics</a>
+      <a href="windows-command-line.html" class="related-link">Windows Command Line</a>
+      <a href="identity-and-access-management.html" class="related-link">Identity & Access Management</a>
+      <a href="windows-10-vs-11.html" class="related-link">Windows 10 vs Windows 11</a>
+      <a href="comptia-aplus-domains.html" class="related-link">A+ Exam Domains</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="encryption-types.html" class="related-link">Encryption Types</a>
+      <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">A+</div>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-aplus.html">How to Pass A+</a>
+      <a href="best-a-plus.html">Best A+ Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Related</div>
+      <a href="active-directory-basics.html">Active Directory</a>
+      <a href="windows-command-line.html">Windows CLI</a>
+      <a href="identity-and-access-management.html">IAM</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>
