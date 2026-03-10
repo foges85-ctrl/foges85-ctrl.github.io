@@ -481,6 +481,21 @@ tbody tr:hover td{background:#eff6ff;}
       <a href="best-network-plus.html" class="btn-blue">Best Network+ Resources →</a>
     </div>
 
+    
+    <h2>Why Subnetting Matters Beyond the Exam</h2>
+    <p>Subnetting is the single most important practical skill in networking, not just an exam topic. Every network engineer, system administrator, and IT support professional who deals with TCP/IP networks needs to subnet. In the real world you subnet to: isolate network segments for security (VLANs + subnets keep the finance department's traffic separate from the guest Wi-Fi), design efficient address space allocation for a new office or cloud VPC, troubleshoot connectivity issues where hosts can't communicate because they're on different subnets, and configure firewall rules that apply to specific network ranges. Passing Network+ is the short-term goal; being able to subnet quickly in your head is the career-long payoff.</p>
+
+    <h2>Subnetting Practice Problems — Work Through These</h2>
+    <p>The only way to get fast at subnetting is repetition. Here are worked examples at increasing difficulty.</p>
+    <p><strong>Problem 1 (basic):</strong> Given 192.168.5.0/24, divide into 4 equal subnets. You need 4 subnets from a /24. 2^2 = 4, so borrow 2 bits → /26. Block size: 256 − 192 = 64. Subnets: 192.168.5.0/26 (hosts .1–.62, broadcast .63), 192.168.5.64/26 (hosts .65–.126, broadcast .127), 192.168.5.128/26 (hosts .129–.190, broadcast .191), 192.168.5.192/26 (hosts .193–.254, broadcast .255). Each subnet has 62 usable hosts.</p>
+    <p><strong>Problem 2 (exam style):</strong> A host has IP address 172.16.45.200/20. What is its network address? /20 means the first 20 bits are network. In the third octet, 20 − 16 = 4 bits are network bits. The subnet boundary in the third octet: 256/2^4 = 16. 45 ÷ 16 = 2 remainder 13. Network starts at 2×16 = 32. Network address: <strong>172.16.32.0</strong>. Broadcast: 172.16.47.255. Host range: 172.16.32.1 – 172.16.47.254.</p>
+    <p><strong>Problem 3 (VLSM):</strong> You have 10.0.0.0/24. Allocate subnets for: Engineering (100 hosts), Sales (50 hosts), Management (20 hosts), WAN link (2 hosts). Largest first: Engineering needs /25 (126 usable) → 10.0.0.0/25. Sales needs /26 (62 usable) → 10.0.0.128/26. Management needs /27 (30 usable) → 10.0.0.192/27. WAN link needs /30 (2 usable) → 10.0.0.224/30.</p>
+
+    <h2>Common Subnetting Mistakes on the Exam</h2>
+    <p><strong>Forgetting the network and broadcast addresses.</strong> A /24 has 256 addresses but only 254 usable hosts — .0 is the network address, .255 is the broadcast. This is always 2 addresses lost per subnet, regardless of size. A /30 has 4 addresses: network (.0), two usable hosts (.1 and .2), and broadcast (.3). The minimum usable subnet is /30 for a point-to-point link needing exactly 2 hosts. (/31 is a special case for point-to-point links that eliminates the network/broadcast overhead, but this is rarely tested at A+/Network+ level.)</p>
+    <p><strong>Miscounting subnets created.</strong> When the question asks "how many subnets does /26 create from a /24?", the answer is 4 (you borrowed 2 bits, 2^2 = 4). When it asks "how many /26 subnets exist in a /8?", that requires more care: a /8 has 2^(26−8) = 2^18 = 262,144 /26 subnets. Know which question is being asked.</p>
+    <p><strong>CIDR notation confusion.</strong> /24 is the prefix length (the number of network bits), not the subnet mask. The subnet mask for /24 is 255.255.255.0. The subnet mask for /26 is 255.255.255.192 (because 11000000 in the fourth octet = 128+64 = 192). Practice converting between CIDR notation and dotted-decimal subnet masks until it's automatic.</p>
+
     <h2>Related Articles</h2>
     <div class="related-grid">
       <a href="subnetting.html" class="related-link">Subnetting Basics</a>

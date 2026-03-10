@@ -382,6 +382,23 @@ tbody tr:hover td{background:#f0fdf9;}
       <a href="best-a-plus.html" class="btn-teal">See A+ Resources →</a>
     </div>
 
+    
+    <h2>Classful vs Classless Addressing — Why Classes Are Now Legacy</h2>
+    <p>IP address classes (A, B, C, D, E) were the original system for allocating IP address space, defined in RFC 791 in 1981. The system assigned blocks based on the first octet: Class A for large organisations needing millions of hosts, Class B for medium networks, Class C for small networks. In practice, this was extremely wasteful — a company needing 300 hosts had to receive a full Class B block (65,534 hosts) because Class C only provided 254. The resulting address exhaustion drove the shift to <strong>CIDR (Classless Inter-Domain Routing)</strong> in 1993.</p>
+    <p>CIDR replaced classful addressing by allowing any prefix length (e.g. /22, /26, /29) rather than forcing /8, /16, or /24 boundaries. A company needing 300 hosts can now be assigned a /23 (510 usable hosts) rather than a /16. This is why classful addressing is considered legacy — real networks use CIDR — but CompTIA A+ and Network+ still test classful knowledge because it underlies the private IP ranges, default gateway behaviour, and APIPA concepts that appear on every exam.</p>
+
+    <h2>APIPA — Automatic Private IP Addressing</h2>
+    <p>When a device cannot reach a DHCP server, Windows automatically assigns itself an address in the <strong>169.254.0.0/16</strong> range (169.254.0.1 through 169.254.255.254). This is APIPA (Automatic Private IP Addressing). A device with an APIPA address can communicate with other APIPA devices on the same segment but cannot reach the internet or default gateway because 169.254.x.x is not routable.</p>
+    <p>On the exam: if a user reports they cannot access the internet and you run <span style="font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 5px;border-radius:4px;">ipconfig</span> and see a 169.254.x.x address, the problem is that the device failed to get a DHCP lease. Troubleshoot the DHCP server, network connectivity to the DHCP server, or the DHCP client service on the device itself. The 169.254.x.x address is a symptom, not the root cause.</p>
+
+    <h2>Loopback and Localhost</h2>
+    <p>The <strong>127.0.0.0/8</strong> range is reserved for loopback — testing the local TCP/IP stack without sending traffic to the network. <span style="font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 5px;border-radius:4px;">ping 127.0.0.1</span> (or <span style="font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 5px;border-radius:4px;">ping localhost</span>) is always the first step in network troubleshooting — if this fails, the TCP/IP stack on the local machine is broken. If it succeeds, the stack works and the problem is elsewhere (physical cable, switch, router, DNS, or remote server).</p>
+    <p>The address <strong>0.0.0.0</strong> has a special meaning: in routing tables it represents the default route (send traffic here if no specific route matches). In a server binding context it means "listen on all available interfaces." You won't be assigned 0.0.0.0 as a host address, but you'll see it in routing tables and firewall rules on the exam.</p>
+
+    <h2>IPv4 Exhaustion and the Transition to IPv6</h2>
+    <p>The IPv4 address space (approximately 4.3 billion addresses) was officially exhausted at the IANA level in 2011. Regional internet registries have since allocated their remaining pools. NAT (Network Address Translation) has extended the life of IPv4 by allowing thousands of private IP addresses to share a single public IP, but IPv6 is the long-term solution. IPv6 uses 128-bit addresses (compared to IPv4's 32-bit), providing approximately 3.4 × 10^38 addresses — enough that every device on Earth can have a globally unique address.</p>
+    <p>For exam purposes: know that IPv4 uses 32-bit dotted decimal notation, IPv6 uses 128-bit hexadecimal colon notation, and that the coexistence mechanisms (dual-stack, tunnelling, NAT64) exist for the transition period. The private IP ranges (10.x.x.x, 172.16–31.x.x, 192.168.x.x) are used internally and translated to public IPs at the network boundary via NAT.</p>
+
     <h2>Related Articles</h2>
     <div class="related-grid">
       <a href="subnetting.html" class="related-link">Subnetting Guide</a>
