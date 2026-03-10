@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/linux-file-system.html">
+<title>Linux File System Explained — Directory Structure & File Types | CompTIA A+ 220-1202</title>
+<meta name="description" content="Linux file system for CompTIA A+ 220-1202 — directory structure (/etc, /var, /home, /bin, /tmp), file system types (ext4, FAT32, XFS), permissions, inodes, and exam scenarios.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--teal2:#00a891;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(0,194,168,.13) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(0,194,168,.06) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(0,194,168,.12);border:1px solid rgba(0,194,168,.3);color:#5eead4;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#5eead4;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(0,194,168,.15) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#5eead4;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* Directory tree */
+.dir-tree{background:var(--navy);border-radius:14px;padding:24px 28px;font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,.7);line-height:2;margin-bottom:40px;position:relative;overflow:hidden;}
+.dir-tree::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 40% 60% at 90% 20%,rgba(0,194,168,.12) 0%,transparent 70%);pointer-events:none;}
+.dir-tree-title{font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:14px;letter-spacing:.5px;text-transform:uppercase;}
+.dt-root{color:#5eead4;font-weight:700;font-size:15px;}
+.dt-dir{color:#93c5fd;}
+.dt-imp{color:#fde68a;font-weight:700;}
+.dt-label{color:rgba(255,255,255,.35);font-size:11px;margin-left:12px;}
+/* Directory cards */
+.dir-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:40px;}
+@media(max-width:600px){.dir-grid{grid-template-columns:1fr;}}
+.dir-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 18px;box-shadow:var(--card-shadow);}
+.dir-path{font-family:'DM Mono',monospace;font-size:14px;font-weight:700;color:var(--teal);margin-bottom:6px;}
+.dir-name{font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.dir-desc{font-size:13px;color:var(--text);line-height:1.6;}
+.dir-desc strong{color:var(--navy);}
+.dir-example{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:6px;padding:4px 8px;background:var(--light);border-radius:5px;display:inline-block;}
+/* Permission table */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:400px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#f0fdf9;}
+.td-term{font-weight:700;color:var(--navy);}
+.mono{font-family:'DM Mono',monospace;font-size:13px;}
+/* Permission visual */
+.perm-box{background:var(--navy);border-radius:14px;padding:22px 26px;margin-bottom:40px;font-family:'DM Mono',monospace;position:relative;overflow:hidden;}
+.perm-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 40% 60% at 95% 50%,rgba(0,194,168,.1) 0%,transparent 70%);pointer-events:none;}
+.perm-box-title{font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:16px;text-transform:uppercase;letter-spacing:.5px;}
+.perm-row{display:flex;align-items:center;gap:0;margin-bottom:14px;flex-wrap:wrap;gap:2px;}
+.perm-segment{padding:8px 10px;font-size:13px;font-weight:700;border-radius:6px;text-align:center;min-width:36px;}
+.ps-type{background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);}
+.ps-owner{background:rgba(0,194,168,.25);color:#5eead4;}
+.ps-group{background:rgba(26,108,255,.2);color:#93c5fd;}
+.ps-other{background:rgba(124,58,237,.2);color:#c4b5fd;}
+.perm-sep{color:rgba(255,255,255,.2);padding:0 6px;font-size:18px;}
+.perm-labels{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;}
+.perm-label{font-size:11px;padding:3px 8px;border-radius:4px;font-weight:700;}
+.pl-type{background:rgba(255,255,255,.08);color:rgba(255,255,255,.4);}
+.pl-owner{background:rgba(0,194,168,.15);color:#5eead4;}
+.pl-group{background:rgba(26,108,255,.12);color:#93c5fd;}
+.pl-other{background:rgba(124,58,237,.12);color:#c4b5fd;}
+/* Callout */
+.callout{background:rgba(0,194,168,.04);border:1px solid rgba(0,194,168,.2);border-left:4px solid var(--teal);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+/* Exam tip */
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+/* Scenarios */
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+/* CTA */
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(0,194,168,.2) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-teal{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--teal);color:var(--navy);box-shadow:0 6px 20px rgba(0,194,168,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-teal:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,194,168,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(0,194,168,.4);color:var(--teal);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--teal);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="linux-commands-basics.html">Linux Commands</a>
+      <a href="aplus-cheat-sheet.html">Cheat Sheet</a>
+      <a href="how-to-pass-comptia-aplus.html">How to Pass</a>
+      <a href="best-a-plus.html" class="nav-cta">A+ Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="linux-commands-basics.html">Linux</a><span>›</span>
+      <span>File System</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ 220-1202 — Operating Systems</div>
+    <h1>Linux <span>File System</span> Explained</h1>
+    <p class="page-hero-sub">Directory structure, file system types, permissions, inodes, and mount points — everything the CompTIA A+ 220-1202 Operating Systems domain tests about how Linux organises files.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Quick Answer</div>
+      <div class="quick-answer-text">
+        Linux uses a <strong>single unified directory tree</strong> rooted at <code style="font-family:'DM Mono',monospace;background:rgba(255,255,255,.1);padding:1px 6px;border-radius:4px;">/</code> (the root directory). Everything — files, devices, network connections — is represented as a file somewhere in this tree. Key directories to know for the A+: <strong>/etc</strong> (config files), <strong>/var</strong> (variable data/logs), <strong>/home</strong> (user files), <strong>/bin</strong> and <strong>/usr/bin</strong> (executables), <strong>/tmp</strong> (temporary files), <strong>/boot</strong> (kernel and bootloader). Linux uses <strong>ext4</strong> as its primary file system. Permissions are controlled with <strong>chmod</strong> using octal notation (755, 644) or symbolic notation (rwxr-xr-x).
+      </div>
+    </div>
+
+    <h2>The Linux Directory Tree</h2>
+
+    <p>Unlike Windows (which uses drive letters like <code class="mono">C:\</code> and <code class="mono">D:\</code>), Linux has a single hierarchical file system rooted at <code class="mono">/</code>. All storage devices — internal drives, USB drives, network shares — are mounted somewhere within this tree. This design is called the <strong>Filesystem Hierarchy Standard (FHS)</strong>.</p>
+
+    <div class="dir-tree">
+      <div class="dir-tree-title">Linux Directory Structure</div>
+      <div><span class="dt-root">/</span> <span class="dt-label">root of the entire file system</span></div>
+      <div>&nbsp;&nbsp;├── <span class="dt-imp">/etc</span> <span class="dt-label">system-wide configuration files</span></div>
+      <div>&nbsp;&nbsp;├── <span class="dt-imp">/var</span> <span class="dt-label">variable data — logs, databases, mail</span></div>
+      <div>&nbsp;&nbsp;├── <span class="dt-imp">/home</span> <span class="dt-label">user home directories (/home/username)</span></div>
+      <div>&nbsp;&nbsp;├── <span class="dt-imp">/bin</span> <span class="dt-label">essential user binaries (ls, cp, mv)</span></div>
+      <div>&nbsp;&nbsp;├── <span class="dt-imp">/sbin</span> <span class="dt-label">system binaries (ifconfig, fsck) — usually needs root</span></div>
+      <div>&nbsp;&nbsp;├── <span class="dt-imp">/tmp</span> <span class="dt-label">temporary files — cleared on reboot</span></div>
+      <div>&nbsp;&nbsp;├── <span class="dt-imp">/boot</span> <span class="dt-label">kernel, bootloader (GRUB), initrd</span></div>
+      <div>&nbsp;&nbsp;├── <span class="dt-dir">/usr</span> <span class="dt-label">user programs and data</span></div>
+      <div>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="dt-dir">/usr/bin</span> <span class="dt-label">non-essential user commands</span></div>
+      <div>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="dt-dir">/usr/share</span> <span class="dt-label">shared data, man pages, docs</span></div>
+      <div>&nbsp;&nbsp;├── <span class="dt-dir">/dev</span> <span class="dt-label">device files (sda, tty, null)</span></div>
+      <div>&nbsp;&nbsp;├── <span class="dt-dir">/proc</span> <span class="dt-label">virtual filesystem — running processes and kernel info</span></div>
+      <div>&nbsp;&nbsp;├── <span class="dt-dir">/sys</span> <span class="dt-label">virtual filesystem — hardware and kernel interfaces</span></div>
+      <div>&nbsp;&nbsp;├── <span class="dt-dir">/mnt</span> <span class="dt-label">manual mount point for temporary mounts</span></div>
+      <div>&nbsp;&nbsp;├── <span class="dt-dir">/media</span> <span class="dt-label">auto-mount point for removable media (USB, CD)</span></div>
+      <div>&nbsp;&nbsp;├── <span class="dt-dir">/opt</span> <span class="dt-label">optional/third-party software packages</span></div>
+      <div>&nbsp;&nbsp;└── <span class="dt-dir">/root</span> <span class="dt-label">home directory for the root user (not /home/root)</span></div>
+    </div>
+
+    <h2>Key Directories — What's Actually in Each</h2>
+
+    <div class="dir-grid">
+      <div class="dir-card">
+        <div class="dir-path">/etc</div>
+        <div class="dir-name">Configuration Files</div>
+        <div class="dir-desc">System-wide configuration for all services and applications. <strong>No executables</strong> — only text config files. If you need to change how a service behaves, the config file lives here. Readable by all users, writable only by root.</div>
+        <div class="dir-example">/etc/passwd · /etc/hosts · /etc/ssh/sshd_config · /etc/fstab · /etc/apt/sources.list</div>
+      </div>
+      <div class="dir-card">
+        <div class="dir-path">/var</div>
+        <div class="dir-name">Variable Data</div>
+        <div class="dir-desc">Data that changes as the system runs — <strong>log files, mail spools, databases, cache</strong>. If a service writes data while running, it goes in /var. The most important subdirectory for troubleshooting is /var/log.</div>
+        <div class="dir-example">/var/log/syslog · /var/log/auth.log · /var/log/kern.log · /var/www (web files)</div>
+      </div>
+      <div class="dir-card">
+        <div class="dir-path">/home</div>
+        <div class="dir-name">User Home Directories</div>
+        <div class="dir-desc">Each user has a subdirectory here — <code class="mono">/home/sean</code>, <code class="mono">/home/alice</code>. Contains the user's personal files, desktop, downloads, and user-specific config files (dotfiles like .bashrc). <strong>Users own and control their own home directory.</strong></div>
+        <div class="dir-example">/home/username/Desktop · /home/username/.bashrc · /home/username/Documents</div>
+      </div>
+      <div class="dir-card">
+        <div class="dir-path">/bin &amp; /usr/bin</div>
+        <div class="dir-name">Executables / Binaries</div>
+        <div class="dir-desc">/bin contains <strong>essential commands</strong> needed for basic system operation — available even if /usr is not mounted (e.g., in recovery mode). /usr/bin contains general user commands installed with the OS. Most commands you use daily live here.</div>
+        <div class="dir-example">/bin/ls · /bin/cp · /bin/bash · /usr/bin/grep · /usr/bin/python3</div>
+      </div>
+      <div class="dir-card">
+        <div class="dir-path">/tmp</div>
+        <div class="dir-name">Temporary Files</div>
+        <div class="dir-desc">Writable by <strong>all users</strong> — applications store temporary files here. <strong>Contents are typically cleared on reboot.</strong> Attackers sometimes use /tmp to stage malware because it's world-writable. Files here should never be considered permanent.</div>
+        <div class="dir-example">Installer staging files · Temp browser downloads · Application session files</div>
+      </div>
+      <div class="dir-card">
+        <div class="dir-path">/boot</div>
+        <div class="dir-name">Boot Files</div>
+        <div class="dir-desc">The Linux kernel, initial RAM disk (initrd/initramfs), and bootloader configuration (GRUB). <strong>Do not delete files from /boot</strong> — the system will not boot. Usually on a separate partition to ensure the bootloader can always access it.</div>
+        <div class="dir-example">/boot/vmlinuz (kernel) · /boot/initrd.img · /boot/grub/grub.cfg</div>
+      </div>
+      <div class="dir-card">
+        <div class="dir-path">/dev</div>
+        <div class="dir-name">Device Files</div>
+        <div class="dir-desc">Every hardware device is represented as a file. Hard drives are <code class="mono">/dev/sda</code>, <code class="mono">/dev/sdb</code>; partitions are <code class="mono">/dev/sda1</code>. <strong>NVMe drives are /dev/nvme0n1.</strong> Special files like <code class="mono">/dev/null</code> (discard output) and <code class="mono">/dev/zero</code> (generate zeros) live here.</div>
+        <div class="dir-example">/dev/sda · /dev/sda1 · /dev/nvme0n1 · /dev/null · /dev/tty</div>
+      </div>
+      <div class="dir-card">
+        <div class="dir-path">/root</div>
+        <div class="dir-name">Root User's Home</div>
+        <div class="dir-desc">The home directory for the <strong>root (superuser) account</strong>. Note: this is NOT /home/root — it is its own top-level directory. Only accessible to the root user. Keeps root's personal files separate from the system and other users.</div>
+        <div class="dir-example">/root/.bashrc · /root/.ssh · /root/scripts</div>
+      </div>
+    </div>
+
+    <h2>Linux File System Types</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>File System</th><th>Used On</th><th>Key Features</th><th>A+ Relevance</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="td-term">ext4</td>
+            <td>Linux (primary)</td>
+            <td>Journaling, max file size 16 TB, max volume 1 EB. Default on most Linux distros. Backward compatible with ext3/ext2.</td>
+            <td>Know this is the standard Linux file system</td>
+          </tr>
+          <tr>
+            <td class="td-term">ext3</td>
+            <td>Linux (older)</td>
+            <td>Journaling added over ext2. Slower than ext4. Legacy — still found on older systems.</td>
+            <td>Know it preceded ext4</td>
+          </tr>
+          <tr>
+            <td class="td-term">XFS</td>
+            <td>Linux (enterprise)</td>
+            <td>High-performance journaling file system. Default on RHEL/CentOS. Excellent for large files and high I/O workloads.</td>
+            <td>Know it's a Linux enterprise option</td>
+          </tr>
+          <tr>
+            <td class="td-term">FAT32</td>
+            <td>USB drives, cross-platform</td>
+            <td>Compatible with Windows, macOS, Linux. Max file size 4 GB — cannot store files larger than 4 GB. No permissions or journaling.</td>
+            <td>Common on USB drives — 4 GB limit is exam-tested</td>
+          </tr>
+          <tr>
+            <td class="td-term">exFAT</td>
+            <td>USB, flash drives</td>
+            <td>FAT32 successor — no 4 GB file size limit. Cross-platform compatible. No journaling. Common on modern USB drives and SD cards.</td>
+            <td>Replacement for FAT32 for large files on removable media</td>
+          </tr>
+          <tr>
+            <td class="td-term">NTFS</td>
+            <td>Windows (primary)</td>
+            <td>Journaling, file-level permissions, encryption (EFS), compression, large file support. Linux can read NTFS natively with ntfs-3g driver.</td>
+            <td>Know Linux can read NTFS drives</td>
+          </tr>
+          <tr>
+            <td class="td-term">swap</td>
+            <td>Linux (virtual memory)</td>
+            <td>Not a traditional file system — a dedicated partition used as virtual memory overflow when RAM is full. Similar to Windows pagefile.</td>
+            <td>Know this is Linux's virtual memory partition</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 FAT32's 4 GB Limit — A Frequent Exam Trap</div>
+      <p><strong>FAT32 cannot store any single file larger than 4 GB.</strong> This is a hard limitation of the file system, not the drive size. A common A+ scenario: a user tries to copy a 6 GB video file to a USB drive and gets an error — the cause is FAT32 formatting. The fix is to reformat the drive as exFAT (cross-platform, no 4 GB limit) or NTFS (Windows/Linux only). The drive itself is not broken.</p>
+    </div>
+
+    <h2>Linux File Permissions</h2>
+
+    <p>Every file and directory in Linux has permissions assigned to three groups: the <strong>owner</strong>, the <strong>group</strong>, and <strong>others</strong> (everyone else). Each group gets three permission bits: <strong>read (r)</strong>, <strong>write (w)</strong>, and <strong>execute (x)</strong>.</p>
+
+    <div class="perm-box">
+      <div class="perm-box-title">Permission String Breakdown</div>
+      <div class="perm-row">
+        <span class="perm-segment ps-type">-</span>
+        <span class="perm-sep">│</span>
+        <span class="perm-segment ps-owner">r</span>
+        <span class="perm-segment ps-owner">w</span>
+        <span class="perm-segment ps-owner">x</span>
+        <span class="perm-sep">│</span>
+        <span class="perm-segment ps-group">r</span>
+        <span class="perm-segment ps-group">-</span>
+        <span class="perm-segment ps-group">x</span>
+        <span class="perm-sep">│</span>
+        <span class="perm-segment ps-other">r</span>
+        <span class="perm-segment ps-other">-</span>
+        <span class="perm-segment ps-other">x</span>
+      </div>
+      <div class="perm-labels">
+        <span class="perm-label pl-type">File type (- = file, d = dir, l = link)</span>
+        <span class="perm-label pl-owner">Owner: rwx = 7</span>
+        <span class="perm-label pl-group">Group: r-x = 5</span>
+        <span class="perm-label pl-other">Others: r-x = 5</span>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Octal</th><th>Binary</th><th>Symbolic</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term mono">7</td><td class="mono">111</td><td class="mono">rwx</td><td>Read + Write + Execute</td></tr>
+          <tr><td class="td-term mono">6</td><td class="mono">110</td><td class="mono">rw-</td><td>Read + Write (no execute)</td></tr>
+          <tr><td class="td-term mono">5</td><td class="mono">101</td><td class="mono">r-x</td><td>Read + Execute (no write)</td></tr>
+          <tr><td class="td-term mono">4</td><td class="mono">100</td><td class="mono">r--</td><td>Read only</td></tr>
+          <tr><td class="td-term mono">0</td><td class="mono">000</td><td class="mono">---</td><td>No permissions</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Common chmod Value</th><th>Who Can Do What</th><th>Typical Use</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term mono">755</td><td>Owner: rwx · Group: r-x · Others: r-x</td><td>Executable scripts, directories — owner can modify, everyone can read/execute</td></tr>
+          <tr><td class="td-term mono">644</td><td>Owner: rw- · Group: r-- · Others: r--</td><td>Regular files — owner can modify, everyone else read-only</td></tr>
+          <tr><td class="td-term mono">700</td><td>Owner: rwx · Group: --- · Others: ---</td><td>Private scripts — only the owner can access at all</td></tr>
+          <tr><td class="td-term mono">600</td><td>Owner: rw- · Group: --- · Others: ---</td><td>Private files (SSH keys) — only the owner can read or modify</td></tr>
+          <tr><td class="td-term mono">777</td><td>Owner: rwx · Group: rwx · Others: rwx</td><td>Everyone can do everything — avoid except /tmp-style directories</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">chmod, chown, and chgrp</div>
+      <p><strong>chmod</strong> changes the permission bits on a file or directory. <code class="mono">chmod 755 script.sh</code> sets the permissions using octal. <code class="mono">chmod +x script.sh</code> adds execute permission for all.</p>
+      <p><strong>chown</strong> changes the owner of a file. <code class="mono">chown sean file.txt</code> makes "sean" the owner. <code class="mono">chown sean:developers file.txt</code> sets both owner and group. Requires sudo/root to change another user's files.</p>
+      <p><strong>chgrp</strong> changes the group associated with a file. <code class="mono">chgrp developers file.txt</code> assigns the file to the "developers" group. Users in that group then have group-level permissions on the file.</p>
+    </div>
+
+    <h2>Inodes — What They Are</h2>
+
+    <p>Every file in a Linux file system has an <strong>inode</strong> — a data structure that stores metadata about the file: owner, permissions, timestamps, file size, and pointers to the actual data blocks on disk. <strong>The filename is not stored in the inode</strong> — it's stored in the directory that points to the inode.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Stored in Inode</th><th>NOT Stored in Inode</th></tr></thead>
+        <tbody>
+          <tr><td>File size</td><td>Filename</td></tr>
+          <tr><td>Owner (UID) and group (GID)</td><td>File path</td></tr>
+          <tr><td>Permissions (rwx bits)</td><td>File content</td></tr>
+          <tr><td>Timestamps (created, modified, accessed)</td><td>Hard link names</td></tr>
+          <tr><td>Pointers to data blocks on disk</td><td>Extended attributes (stored separately)</td></tr>
+          <tr><td>Number of hard links to this inode</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Mount Points</h2>
+
+    <p>In Linux, adding a new storage device doesn't give it a drive letter — it's <strong>mounted</strong> at a directory in the file system tree. The directory where a device's file system becomes accessible is the <strong>mount point</strong>.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Command</th><th>What It Does</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term mono">mount /dev/sdb1 /mnt/usb</td><td>Mounts partition sdb1 at the /mnt/usb directory — files on the USB now appear at /mnt/usb/</td></tr>
+          <tr><td class="td-term mono">umount /mnt/usb</td><td>Unmounts the device from /mnt/usb (must not be in use). Note: "umount" not "unmount"</td></tr>
+          <tr><td class="td-term mono">df -h</td><td>Shows all mounted file systems and their disk usage in human-readable format</td></tr>
+          <tr><td class="td-term mono">lsblk</td><td>Lists block devices (drives and partitions) with their mount points</td></tr>
+          <tr><td class="td-term mono">/etc/fstab</td><td>The file that defines which partitions/devices should be automatically mounted at boot and at which mount points</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Linux vs Windows File System Comparison</div>
+      <p><strong>Linux uses forward slashes</strong> (<code class="mono">/home/user/file</code>) — Windows uses backslashes (<code class="mono">C:\Users\user\file</code>). Linux is <strong>case-sensitive</strong> — <code class="mono">File.txt</code> and <code class="mono">file.txt</code> are different files. Windows is case-insensitive. Linux has <strong>no drive letters</strong> — everything is under /. The Linux equivalent of C:\ is /, the equivalent of the Windows Desktop is ~/Desktop or /home/username/Desktop.</p>
+    </div>
+
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "A Linux technician needs to find where a web server's configuration file is stored. Which directory should they look in?" → <strong>/etc — all system-wide configuration files are stored in /etc. For Apache, the config would be /etc/apache2/apache2.conf. For Nginx, /etc/nginx/nginx.conf. If you need to change how a service behaves, the config file is always in /etc.</strong></div>
+      <div class="scenario-item">💬 "A technician notices a Linux server is running low on disk space. Which directory should they check first for large log files that might be consuming space?" → <strong>/var/log — log files are stored in /var (variable data). Common large logs include /var/log/syslog, /var/log/auth.log, and application-specific logs. The du -sh /var/log/* command shows each log file's size. Old logs can often be safely compressed or rotated.</strong></div>
+      <div class="scenario-item">💬 "A user runs chmod 644 report.txt. Who can read the file?" → <strong>Everyone — chmod 644 gives the owner read+write (6), and both the group and others read-only (4). All users on the system can read the file, but only the owner can modify it. This is the standard permission for regular non-executable files.</strong></div>
+      <div class="scenario-item">💬 "A technician needs to make a shell script executable. Which command should they run?" → <strong>chmod +x scriptname.sh — this adds execute permission for the owner (and by default, group and others). Alternatively, chmod 755 scriptname.sh sets read+write+execute for the owner and read+execute for everyone else, which is the standard permission for shared scripts.</strong></div>
+      <div class="scenario-item">💬 "A user tries to copy a 5 GB ISO file to a USB drive and receives an error saying the file is too large. The USB drive has 16 GB free. What is most likely the cause?" → <strong>The USB drive is formatted as FAT32, which has a 4 GB maximum file size limit per file. Despite the drive having 16 GB free, it cannot store any single file over 4 GB. The solution is to reformat the USB drive as exFAT (retains cross-platform compatibility) or NTFS, both of which support large files.</strong></div>
+      <div class="scenario-item">💬 "After plugging in a USB drive on a Linux machine, the technician types ls /dev and sees /dev/sdb and /dev/sdb1. What is the difference?" → <strong>/dev/sdb is the entire physical USB drive. /dev/sdb1 is the first partition on that drive. In Linux, drives appear as /dev/sda, /dev/sdb, etc. — partitions are numbered: /dev/sda1, /dev/sda2. The technician would mount the partition (/dev/sdb1), not the raw device, to access the files on it.</strong></div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for the CompTIA A+?</h3>
+        <p>See the best study resources for 220-1201 and 220-1202.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn-teal">See Best A+ Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="linux-commands-basics.html" class="related-link">Linux Commands Basics</a>
+      <a href="windows-command-line.html" class="related-link">Windows Command Line</a>
+      <a href="comptia-aplus-domains.html" class="related-link">A+ Exam Domains</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="windows-10-vs-11.html" class="related-link">Windows 10 vs Windows 11</a>
+      <a href="storage-types.html" class="related-link">Storage Types Explained</a>
+      <a href="how-to-pass-comptia-aplus.html" class="related-link">How to Pass the A+</a>
+      <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">A+</div>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-aplus.html">How to Pass A+</a>
+      <a href="best-a-plus.html">Best A+ Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Related</div>
+      <a href="linux-commands-basics.html">Linux Commands</a>
+      <a href="windows-command-line.html">Windows CLI</a>
+      <a href="storage-types.html">Storage Types</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>
