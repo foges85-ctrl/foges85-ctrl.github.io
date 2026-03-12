@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MS0H78HR74');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/wifi-standards.html">
+<title>WiFi Standards Explained — 802.11 a/b/g/n/ac/ax | CompTIA A+ and Network+</title>
+<meta name="description" content="Complete guide to 802.11 WiFi standards for CompTIA A+ and Network+ — speeds, frequencies, channels, and exam scenarios for 802.11a through Wi-Fi 6E (802.11ax).">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.18) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(0,194,168,.1) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-teal{background:rgba(0,194,168,.2);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.cb-blue{background:rgba(26,108,255,.2);color:#93c5fd;border:1px solid rgba(26,108,255,.3);}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.article-body a{color:var(--blue);font-weight:600;}
+.article-body code{font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 6px;border-radius:4px;font-size:13px;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* Standards table */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:600px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:#fafbfd;}
+tbody tr:hover td{background:var(--light);}
+.td-label{font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;}
+.tag{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.4px;}
+.tag-24{background:rgba(0,194,168,.1);color:var(--teal);}
+.tag-5{background:rgba(26,108,255,.1);color:var(--blue);}
+.tag-6{background:rgba(124,58,237,.1);color:var(--purple);}
+/* Freq cards */
+.freq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+@media(max-width:580px){.freq-grid{grid-template-columns:1fr;}}
+.freq-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px;box-shadow:var(--card-shadow);}
+.freq-card.ghz24{border-top:4px solid var(--teal);}
+.freq-card.ghz5{border-top:4px solid var(--blue);}
+.freq-card.ghz6{border-top:4px solid var(--purple);}
+.freq-icon{font-size:30px;margin-bottom:10px;}
+.freq-title{font-family:'Outfit',sans-serif;font-size:17px;font-weight:800;color:var(--navy);margin-bottom:4px;}
+.freq-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;}
+.freq-card.ghz24 .freq-label{color:var(--teal);}
+.freq-card.ghz5 .freq-label{color:var(--blue);}
+.freq-card.ghz6 .freq-label{color:var(--purple);}
+.freq-pros,.freq-cons{margin-bottom:8px;}
+.freq-row-label{font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px;}
+.freq-list{font-size:13px;color:var(--text);line-height:1.7;}
+/* Channel diagram */
+.channel-block{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px;box-shadow:var(--card-shadow);margin-bottom:40px;}
+.channel-block h3{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:16px;}
+.channel-row{display:flex;gap:6px;margin-bottom:10px;align-items:center;flex-wrap:wrap;}
+.channel-label{font-family:'DM Mono',monospace;font-size:12px;font-weight:700;color:var(--muted);width:70px;flex-shrink:0;}
+.ch{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;font-family:'DM Mono',monospace;font-size:12px;font-weight:700;}
+.ch-overlap{background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;}
+.ch-nonoverlap{background:#d1fae5;color:#065f46;border:1px solid #6ee7b7;}
+.ch-note{font-size:12px;color:var(--muted);margin-top:6px;}
+/* Security comparison */
+.security-timeline{display:flex;flex-direction:column;gap:0;margin-bottom:40px;position:relative;}
+.security-timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;background:var(--border);}
+.stl-item{display:flex;gap:20px;padding-bottom:24px;position:relative;}
+.stl-dot{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;position:relative;z-index:1;}
+.stl-dot-bad{background:#fee2e2;border:2px solid #fca5a5;}
+.stl-dot-ok{background:#fff7ed;border:2px solid #fed7aa;}
+.stl-dot-good{background:#d1fae5;border:2px solid #6ee7b7;}
+.stl-dot-best{background:#eff6ff;border:2px solid #bfdbfe;}
+.stl-body{padding-top:8px;}
+.stl-title{font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:var(--navy);margin-bottom:4px;}
+.stl-desc{font-size:14px;color:var(--text);line-height:1.65;}
+.stl-desc strong{color:var(--navy);}
+/* Callout */
+.callout{border-radius:12px;padding:18px 22px;margin-bottom:32px;}
+.callout-blue{background:rgba(26,108,255,.05);border:1px solid rgba(26,108,255,.18);border-left:4px solid var(--blue);}
+.callout-teal{background:rgba(0,194,168,.05);border:1px solid rgba(0,194,168,.18);border-left:4px solid var(--teal);}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+.callout-blue .callout-label{color:var(--blue);}
+.callout-teal .callout-label{color:var(--teal);}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+/* Exam scenarios */
+.exam-scenarios{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-q{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.scenario-a{font-size:14px;color:var(--text);line-height:1.65;}
+.scenario-a strong{color:var(--navy);}
+/* Related */
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.35);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="wireless-networking.html">Wireless Networking</a>
+      <a href="network-cable-types.html">Cable Types</a>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="best-network-plus.html" class="nav-cta">Network+ Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="networking.html">Networking</a><span>›</span>
+      <span>WiFi Standards</span>
+    </nav>
+    <div class="page-hero-badge">📶 Wireless</div>
+    <h1>WiFi Standards — <span>802.11 a/b/g/n/ac/ax</span> Explained</h1>
+    <p class="page-hero-sub">Every 802.11 standard tested on CompTIA A+ and Network+ — speeds, frequencies, channels, range, and how to pick the right standard for a given scenario.</p>
+    <div class="cert-badges">
+      <span class="cert-badge cb-teal">A+ 220-1201</span>
+      <span class="cert-badge cb-blue">Network+ N10-009</span>
+    </div>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">Quick Reference</div>
+      <div class="quick-answer-text">The current standard is <strong>802.11ax (Wi-Fi 6/6E)</strong> — up to 9.6 Gbps theoretical, operates on 2.4 GHz, 5 GHz, and 6 GHz bands. For the exam: memorise each standard's max speed, frequency band(s), and the key differentiator. <strong>802.11ac</strong> is the most commonly deployed in enterprise today. <strong>802.11n</strong> was the first dual-band standard. <strong>802.11g</strong> was the first to hit 54 Mbps on 2.4 GHz.</div>
+    </div>
+
+    <h2>All 802.11 Standards — Full Comparison Table</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Standard</th>
+            <th>Wi-Fi Name</th>
+            <th>Year</th>
+            <th>Frequency</th>
+            <th>Max Speed</th>
+            <th>Range (indoor)</th>
+            <th>Key Feature</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-label">802.11a</td>
+            <td>Wi-Fi 1</td>
+            <td>1999</td>
+            <td><span class="tag tag-5">5 GHz</span></td>
+            <td>54 Mbps</td>
+            <td>~35 m</td>
+            <td>First 5 GHz standard — less interference, shorter range</td>
+          </tr>
+          <tr>
+            <td class="td-label">802.11b</td>
+            <td>Wi-Fi 2</td>
+            <td>1999</td>
+            <td><span class="tag tag-24">2.4 GHz</span></td>
+            <td>11 Mbps</td>
+            <td>~35 m</td>
+            <td>First widely adopted WiFi — cheapest, most compatible</td>
+          </tr>
+          <tr>
+            <td class="td-label">802.11g</td>
+            <td>Wi-Fi 3</td>
+            <td>2003</td>
+            <td><span class="tag tag-24">2.4 GHz</span></td>
+            <td>54 Mbps</td>
+            <td>~38 m</td>
+            <td>Same speed as 802.11a but on 2.4 GHz — backward compatible with b</td>
+          </tr>
+          <tr>
+            <td class="td-label">802.11n</td>
+            <td>Wi-Fi 4</td>
+            <td>2009</td>
+            <td><span class="tag tag-24">2.4 GHz</span> <span class="tag tag-5">5 GHz</span></td>
+            <td>600 Mbps</td>
+            <td>~70 m</td>
+            <td>First dual-band — introduced MIMO (multiple antennas)</td>
+          </tr>
+          <tr>
+            <td class="td-label">802.11ac</td>
+            <td>Wi-Fi 5</td>
+            <td>2013</td>
+            <td><span class="tag tag-5">5 GHz only</span></td>
+            <td>3.5 Gbps</td>
+            <td>~35 m</td>
+            <td>MU-MIMO, wider channels (80/160 MHz), beamforming</td>
+          </tr>
+          <tr>
+            <td class="td-label">802.11ax</td>
+            <td>Wi-Fi 6 / 6E</td>
+            <td>2019/2021</td>
+            <td><span class="tag tag-24">2.4</span> <span class="tag tag-5">5</span> <span class="tag tag-6">6 GHz</span></td>
+            <td>9.6 Gbps</td>
+            <td>~30 m</td>
+            <td>OFDMA, BSS Colouring, TWT — designed for dense environments</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>2.4 GHz vs 5 GHz vs 6 GHz — Which Band to Use</h2>
+    <p>The frequency band is the most important trade-off in wireless networking. Each band has distinct characteristics that determine when it's the right choice. This is one of the most tested concepts on both A+ and Network+.</p>
+
+    <div class="freq-grid">
+      <div class="freq-card ghz24">
+        <div class="freq-icon">📡</div>
+        <div class="freq-title">2.4 GHz</div>
+        <div class="freq-label">Longer range / more interference</div>
+        <div class="freq-pros">
+          <div class="freq-row-label">✅ Advantages</div>
+          <div class="freq-list">Better wall penetration and range<br>Works with older devices (b/g/n)<br>Longer signal propagation</div>
+        </div>
+        <div class="freq-cons" style="margin-top:10px;">
+          <div class="freq-row-label">❌ Disadvantages</div>
+          <div class="freq-list">Only 3 non-overlapping channels (1, 6, 11)<br>Crowded — microwaves, Bluetooth, neighbours<br>Lower max speeds</div>
+        </div>
+      </div>
+      <div class="freq-card ghz5">
+        <div class="freq-icon">⚡</div>
+        <div class="freq-title">5 GHz</div>
+        <div class="freq-label">Faster / shorter range</div>
+        <div class="freq-pros">
+          <div class="freq-row-label">✅ Advantages</div>
+          <div class="freq-list">23+ non-overlapping channels<br>Less interference and congestion<br>Much higher speeds (ac/ax)</div>
+        </div>
+        <div class="freq-cons" style="margin-top:10px;">
+          <div class="freq-row-label">❌ Disadvantages</div>
+          <div class="freq-list">Shorter range — walls absorb 5 GHz more<br>Doesn't penetrate obstacles as well<br>Not compatible with a/b/g only devices</div>
+        </div>
+      </div>
+      <div class="freq-card ghz6">
+        <div class="freq-icon">🚀</div>
+        <div class="freq-title">6 GHz</div>
+        <div class="freq-label">Wi-Fi 6E only — newest band</div>
+        <div class="freq-pros">
+          <div class="freq-row-label">✅ Advantages</div>
+          <div class="freq-list">Nearly 1,200 MHz of new spectrum<br>59 additional 20 MHz channels<br>No legacy device interference</div>
+        </div>
+        <div class="freq-cons" style="margin-top:10px;">
+          <div class="freq-row-label">❌ Disadvantages</div>
+          <div class="freq-list">Even shorter range than 5 GHz<br>Requires Wi-Fi 6E capable devices<br>Limited device support currently</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout callout-blue">
+      <div class="callout-label">Exam Tip — The Classic Scenario</div>
+      <p><strong>Scenario:</strong> Users in an open office with many wireless devices experience slow speeds and frequent disconnects despite strong signal. What is the most likely cause, and what should the administrator change?</p>
+      <p><strong>Answer:</strong> Channel congestion on 2.4 GHz. Switch devices to 5 GHz or configure the AP to use a less congested 2.4 GHz channel (1, 6, or 11). The key phrase in the scenario is "many devices" — this signals congestion, not signal strength (which would be described as weak signal or range issues).</p>
+    </div>
+
+    <h2>Non-Overlapping Channels — Why This Matters</h2>
+    <p>WiFi channels are subdivisions of the frequency band. When two access points use overlapping channels, their signals interfere with each other — degrading performance for both. Using non-overlapping channels in areas with multiple APs is essential for a well-designed wireless network.</p>
+
+    <div class="channel-block">
+      <h3>2.4 GHz Channel Layout (US)</h3>
+      <div class="channel-row">
+        <span class="channel-label">All channels:</span>
+        <span class="ch ch-nonoverlap">1</span>
+        <span class="ch ch-overlap">2</span>
+        <span class="ch ch-overlap">3</span>
+        <span class="ch ch-overlap">4</span>
+        <span class="ch ch-overlap">5</span>
+        <span class="ch ch-nonoverlap">6</span>
+        <span class="ch ch-overlap">7</span>
+        <span class="ch ch-overlap">8</span>
+        <span class="ch ch-overlap">9</span>
+        <span class="ch ch-overlap">10</span>
+        <span class="ch ch-nonoverlap">11</span>
+      </div>
+      <div class="ch-note">🟢 Channels 1, 6, and 11 are the only non-overlapping channels on 2.4 GHz in the US. Configure multiple APs to use these three channels to avoid co-channel interference. 🔴 All other channels overlap with at least one of these three.</div>
+      <div style="margin-top:16px;">
+        <h3>5 GHz Channels</h3>
+        <p style="font-size:14px;color:var(--text);line-height:1.7;margin-top:8px;">5 GHz has 23+ non-overlapping 20 MHz channels (and fewer when using wider 40/80/160 MHz channels). This is why 5 GHz handles dense environments so much better — more APs can operate simultaneously without interfering with each other. Channel selection on 5 GHz is less critical than on 2.4 GHz but still important in high-density deployments.</p>
+      </div>
+    </div>
+
+    <h2>MIMO and MU-MIMO — What the Abbreviations Mean</h2>
+    <p><strong>MIMO (Multiple Input, Multiple Output)</strong> was introduced with 802.11n. Instead of a single antenna transmitting and receiving, MIMO uses multiple antennas to send multiple data streams simultaneously — dramatically increasing throughput. An 802.11n access point with 4×4 MIMO (4 transmit, 4 receive antennas) can theoretically transmit four independent data streams at once. The 600 Mbps theoretical maximum of 802.11n comes from MIMO combined with wider 40 MHz channels.</p>
+    <p><strong>MU-MIMO (Multi-User MIMO)</strong>, introduced with 802.11ac Wave 2, extends MIMO to serve multiple clients simultaneously. With single-user MIMO (SU-MIMO), the AP talks to one device at a time and takes turns. With MU-MIMO, the AP can transmit to multiple devices at the same time using spatial streams. 802.11ac supports 4-user MU-MIMO (downlink only); 802.11ax extends this to 8-user MU-MIMO in both directions (uplink and downlink).</p>
+    <p>For the exam: MIMO = introduced in 802.11n, increases throughput via multiple antennas. MU-MIMO = introduced in 802.11ac, serves multiple clients simultaneously. The practical question is "which standard first supported multiple simultaneous client connections?" — the answer is 802.11ac with MU-MIMO.</p>
+
+    <h2>802.11ax — What Makes Wi-Fi 6 Different</h2>
+    <p>Wi-Fi 6 (802.11ax) isn't just faster than 802.11ac — it's architecturally redesigned for high-density environments. Three technologies drive this:</p>
+    <p><strong>OFDMA (Orthogonal Frequency Division Multiple Access)</strong> is the biggest architectural change. Previous WiFi standards allocated an entire channel to a single user during each transmission. OFDMA subdivides channels into smaller subcarriers called Resource Units (RUs) and serves multiple clients simultaneously within a single transmission. This dramatically improves efficiency when many devices are connected — the AP doesn't have to wait for one device to finish before serving another.</p>
+    <p><strong>BSS Colouring</strong> solves the overlapping network problem. When an 802.11ax device detects a signal, it checks a "colour" identifier to determine whether the signal is from its own network or a neighbouring network. If it's from a different network, the device can transmit anyway (if signal levels allow), reducing the dead time caused by deferring to nearby APs. This is particularly valuable in dense apartment buildings or office parks where many independent networks share the same channels.</p>
+    <p><strong>TWT (Target Wake Time)</strong> allows the AP to schedule when devices wake up to send or receive data. IoT devices and battery-powered clients can sleep between scheduled wake times, dramatically extending battery life. This is why 802.11ax is positioned as the standard for IoT deployments — smart home devices can participate in WiFi networks while consuming minimal power.</p>
+
+    <h2>Wireless Security Standards — WEP, WPA, WPA2, WPA3</h2>
+    <p>Wireless security is separate from the 802.11 physical/MAC layer standards but is heavily tested alongside them. The progression from WEP to WPA3 represents the history of wireless encryption vulnerabilities and their fixes.</p>
+
+    <div class="security-timeline">
+      <div class="stl-item">
+        <div class="stl-dot stl-dot-bad">❌</div>
+        <div class="stl-body">
+          <div class="stl-title">WEP (Wired Equivalent Privacy) — Broken, Never Use</div>
+          <div class="stl-desc">WEP was the original 802.11 security standard, using RC4 encryption with static 64-bit or 128-bit keys. It was broken in 2001 — an attacker can crack WEP keys in minutes using freely available tools. WEP is completely deprecated and should never be used. If you see WEP in an exam scenario, the answer is almost always to upgrade to WPA2 or WPA3.</div>
+        </div>
+      </div>
+      <div class="stl-item">
+        <div class="stl-dot stl-dot-ok">⚠️</div>
+        <div class="stl-body">
+          <div class="stl-title">WPA (Wi-Fi Protected Access) — Legacy, Insecure</div>
+          <div class="stl-desc">WPA was a transitional standard using TKIP (Temporal Key Integrity Protocol) to patch WEP's weaknesses without requiring new hardware. TKIP is also broken — WPA should be considered legacy and insecure. Not used in new deployments.</div>
+        </div>
+      </div>
+      <div class="stl-item">
+        <div class="stl-dot stl-dot-good">✅</div>
+        <div class="stl-body">
+          <div class="stl-title">WPA2 — Current Minimum Standard</div>
+          <div class="stl-desc">WPA2 uses <strong>AES-CCMP</strong> encryption — significantly stronger than TKIP. Two modes: <strong>WPA2-Personal (PSK)</strong> uses a pre-shared key (password) — suitable for home and small office networks. <strong>WPA2-Enterprise (802.1X)</strong> uses RADIUS authentication with individual credentials per user — required in corporate environments. WPA2-Enterprise is the exam-relevant answer whenever a scenario requires per-user authentication on a wireless network.</div>
+        </div>
+      </div>
+      <div class="stl-item">
+        <div class="stl-dot stl-dot-best">🏆</div>
+        <div class="stl-body">
+          <div class="stl-title">WPA3 — Current Best Practice</div>
+          <div class="stl-desc">WPA3 introduced <strong>SAE (Simultaneous Authentication of Equals)</strong> replacing PSK — this eliminates offline dictionary attacks against captured handshakes. WPA3-Enterprise adds 192-bit security mode for high-security environments. <strong>OWE (Opportunistic Wireless Encryption)</strong> encrypts open network traffic without requiring a password — relevant for public WiFi scenarios on Security+. WPA3 is the current recommendation for all new deployments.</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Site Surveys — Planning a Wireless Deployment</h2>
+    <p>A wireless site survey assesses the physical environment to plan AP placement, channel selection, and power levels. Two types appear on the exam: a <strong>passive survey</strong> listens to existing wireless traffic without transmitting — it maps signal strength, identifies neighbouring networks, and documents channel usage. An <strong>active survey</strong> connects to the wireless network and measures throughput, latency, and packet loss from the client's perspective — it tells you not just that signal is present, but whether it's good enough for the intended use.</p>
+    <p>Key site survey concepts: <strong>heat map</strong> — a visual overlay showing signal strength across a floor plan, used to identify coverage gaps and overlap zones. <strong>Co-channel interference</strong> — when two APs in range of each other use the same channel, causing performance degradation (solution: use different non-overlapping channels). <strong>Roaming</strong> — the process of a client moving from one AP to another as signal strength changes; poor roaming design causes clients to stay connected to a distant AP with weak signal rather than switching to a closer one.</p>
+
+    <h2>Wireless Troubleshooting — Common Problems and Causes</h2>
+    <p><strong>Slow speeds despite strong signal:</strong> Channel congestion (too many devices or APs on same channel), interference from other 2.4 GHz sources (microwaves, Bluetooth, baby monitors), or wrong frequency band (device connected to 2.4 GHz when 5 GHz is available). Check channel utilisation and frequency band.</p>
+    <p><strong>Intermittent disconnections:</strong> Roaming issues (client not switching APs cleanly), AP overload (too many clients per AP), DHCP lease exhaustion, or RF interference from intermittent sources (a microwave that runs at lunch). Use a wireless analyser to capture the environment over time.</p>
+    <p><strong>Cannot connect at all:</strong> Wrong password or SSID, MAC filtering blocking the device, security protocol mismatch (device only supports WPA but AP requires WPA2), or AP association table full (too many connected clients). Check client's wireless adapter settings against AP configuration.</p>
+    <p><strong>Range shorter than expected:</strong> 5 GHz has shorter range than 2.4 GHz — if a deployment switched from 802.11n (dual-band) to 802.11ac (5 GHz only), devices at the edge of the old coverage area may now struggle. Solutions: add APs, reduce transmit power on APs near the edge to force devices to connect to the nearest AP, or implement a mesh network.</p>
+
+    <h2>Exam Scenarios</h2>
+    <div class="exam-scenarios">
+      <div class="scenario">
+        <div class="scenario-q">A user's laptop connects to the office WiFi but only achieves 11 Mbps. Other users on the same network achieve 300+ Mbps. What is the most likely cause?</div>
+        <div class="scenario-a"><strong>Answer:</strong> The user's laptop is connecting using 802.11b (11 Mbps max) while other users connect via 802.11n or 802.11ac. The AP is backward compatible with 802.11b, and the older wireless adapter in the laptop is negotiating at the lowest supported speed. Solution: replace the wireless adapter or ensure the laptop's driver is current and supports newer standards.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">An administrator needs to deploy WiFi in a hospital with hundreds of IoT medical devices and strict requirements for device battery life. Which 802.11 standard should they deploy?</div>
+        <div class="scenario-a"><strong>Answer:</strong> <strong>802.11ax (Wi-Fi 6)</strong> — specifically for its TWT (Target Wake Time) feature, which allows IoT devices to sleep between scheduled wake times and dramatically extends battery life. Wi-Fi 6 also handles the density of hundreds of simultaneous devices better than 802.11ac through OFDMA.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">A company needs to provide wireless access where each user authenticates with their own domain credentials rather than a shared password. Which wireless security configuration is required?</div>
+        <div class="scenario-a"><strong>Answer:</strong> <strong>WPA2-Enterprise (or WPA3-Enterprise)</strong> with 802.1X authentication using a RADIUS server. WPA2/3-Personal uses a single pre-shared key shared by all users — it cannot provide individual user authentication. Enterprise mode integrates with Active Directory via RADIUS to authenticate each user independently.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">Users in a dense apartment building report that their 2.4 GHz WiFi is slow. A wireless survey shows many neighbouring networks. The administrator wants the least disruptive fix. What should they do?</div>
+        <div class="scenario-a"><strong>Answer:</strong> Configure the AP to use one of the three non-overlapping channels (1, 6, or 11) that has the least neighbour usage based on the survey. If 5 GHz capable devices are available, enabling 5 GHz and encouraging clients to use it is the longer-term solution — 5 GHz has far more non-overlapping channels and less neighbour interference in most residential environments.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">A technician discovers an AP using WEP on the network. What is the recommended action?</div>
+        <div class="scenario-a"><strong>Answer:</strong> Immediately upgrade to WPA2 or WPA3. WEP is completely broken and provides no meaningful security — an attacker can crack WEP keys in minutes. If the AP does not support WPA2, it should be replaced. This is a straightforward CompTIA exam answer: WEP = upgrade immediately, no exceptions.</div>
+      </div>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="wireless-networking.html" class="related-link">Wireless Networking Guide</a>
+      <a href="wireless-security-protocols.html" class="related-link">Wireless Security Protocols</a>
+      <a href="network-cable-types.html" class="related-link">Network Cable Types</a>
+      <a href="network-segmentation.html" class="related-link">Network Segmentation</a>
+      <a href="ports-and-protocols.html" class="related-link">Ports and Protocols</a>
+      <a href="comptia-network-plus-study-guide.html" class="related-link">Network+ Study Guide</a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Networking</div>
+      <a href="wireless-networking.html">Wireless Networking</a>
+      <a href="network-cable-types.html">Cable Types</a>
+      <a href="network-segmentation.html">Network Segmentation</a>
+      <a href="routing-protocols.html">Routing Protocols</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Certifications</div>
+      <a href="comptia-aplus-study-guide.html">A+ Study Guide</a>
+      <a href="comptia-network-plus-study-guide.html">Network+ Study Guide</a>
+      <a href="best-network-plus.html">Network+ Resources</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links may be affiliate links.</span>
+  </div>
+</footer>
+
+</body>
+</html>

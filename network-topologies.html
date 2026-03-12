@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MS0H78HR74');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="canonical" href="https://itstudyhub.org/network-topologies.html">
+<title>Network Topologies Explained — Star, Bus, Ring, Mesh | CompTIA Network+</title>
+<meta name="description" content="Star, bus, ring, mesh, and hybrid network topologies for CompTIA Network+ — advantages, disadvantages, failure modes, and exam scenarios.">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-teal{background:rgba(0,194,168,.2);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.cb-blue{background:rgba(26,108,255,.2);color:#93c5fd;border:1px solid rgba(26,108,255,.3);}
+.cb-purple{background:rgba(124,58,237,.2);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.article-body a{color:var(--blue);font-weight:600;}
+.article-body a:hover{text-decoration:underline;}
+.article-body code{font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 6px;border-radius:4px;font-size:13px;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:500px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:#fafbfd;}
+tbody tr:hover td{background:var(--light);}
+.td-label{font-weight:700;color:var(--navy);}
+.tag{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.4px;margin:1px;}
+.tag-aplus{background:rgba(0,194,168,.1);color:var(--teal);}
+.tag-net{background:rgba(26,108,255,.1);color:var(--blue);}
+.tag-sec{background:rgba(124,58,237,.1);color:var(--purple);}
+.callout{border-radius:12px;padding:18px 22px;margin-bottom:32px;}
+.callout-blue{background:rgba(26,108,255,.05);border:1px solid rgba(26,108,255,.18);border-left:4px solid var(--blue);}
+.callout-purple{background:rgba(124,58,237,.05);border:1px solid rgba(124,58,237,.18);border-left:4px solid var(--purple);}
+.callout-teal{background:rgba(0,194,168,.05);border:1px solid rgba(0,194,168,.18);border-left:4px solid var(--teal);}
+.callout-amber{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.25);border-left:4px solid #f59e0b;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+.callout-blue .callout-label{color:var(--blue);}.callout-purple .callout-label{color:var(--purple);}.callout-teal .callout-label{color:var(--teal);}.callout-amber .callout-label{color:#92400e;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}.callout p:last-child{margin-bottom:0;}.callout strong{color:var(--navy);}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--card-shadow);}
+.card-icon{font-size:28px;margin-bottom:10px;}
+.card-title{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.card-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.card-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.card-desc strong{color:var(--navy);}
+.exam-scenarios{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-q{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.scenario-a{font-size:14px;color:var(--text);line-height:1.65;}
+.scenario-a strong{color:var(--navy);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.35);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head><nav class="navbar"><div class="nav-inner">
+<a href="index.html" class="logo-link"><img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img"><span>IT Study Hub</span></a>
+<div class="nav-links"><a href="networking.html">Networking Guide</a><a href="osi-model.html">OSI Model</a><a href="network-segmentation.html">Network Segmentation</a><a href="best-network-plus.html" class="nav-cta">Network+ Resources</a></div>
+</div></nav><section class="page-hero"><div class="page-hero-inner">
+<nav class="breadcrumb"><a href="index.html">Home</a><span>›</span><a href="networking.html">Networking</a><span>›</span><span>Network Topologies</span></nav>
+<div class="page-hero-badge">🔗 Network+</div>
+<h1>Network Topologies — <span>Star, Bus, Ring, Mesh</span></h1>
+<p class="page-hero-sub">Every network topology tested on CompTIA Network+ — physical and logical designs, failure modes, scalability, and real-world use cases.</p>
+<div class="cert-badges"><span class="cert-badge cb-teal">A+ 220-1201</span><span class="cert-badge cb-blue">Network+ N10-009</span></div>
+</div></section>
+<div class="article-wrap"><div class="article-body">
+
+<div class="quick-answer">
+<div class="quick-answer-label">Quick Reference</div>
+<div class="quick-answer-text"><strong>Star</strong> = all devices connect to a central switch — most common in modern networks. <strong>Bus</strong> = all devices on a single cable — legacy, single point of failure. <strong>Ring</strong> = devices connected in a loop — legacy, one cable break disrupts the ring. <strong>Mesh</strong> = every device connects to every other — most redundant, used in WANs and wireless. <strong>Hybrid</strong> = combination, most real-world networks are hybrid star-mesh or star-bus.</div>
+</div>
+
+<h2>Why Network Topology Matters</h2>
+<p>Network topology describes how devices are physically or logically connected and how data flows between them. The topology determines the network's failure characteristics, scalability, cost, and performance. Understanding topologies is fundamental to troubleshooting — knowing that a network uses a star topology means a single device failure affects only that device, while a bus topology means a cable break anywhere brings down every device on the segment.</p>
+<p>The exam distinguishes between <strong>physical topology</strong> (how cables actually run — the physical layout of devices and connections) and <strong>logical topology</strong> (how data actually flows — the path traffic takes through the network). These don't always match. Token Ring networks used a physical star topology (all devices connected to a central hub called an MAU) but a logical ring topology (data flowed in a ring through the hub). Modern Ethernet uses a physical star but is logically a bus at the IP layer.</p>
+
+<h2>Star Topology</h2>
+<div class="card-grid">
+<div class="card"><div class="card-icon">⭐</div><div class="card-title">Star</div><div class="card-label" style="color:var(--blue);">Most common modern topology</div><div class="card-desc">All devices connect to a <strong>central switch or hub</strong>. Data flows through the central device. <strong>Single point of failure:</strong> the central switch. Device failure affects only that device.</div></div>
+</div>
+<p>Star is the dominant topology in modern Ethernet networks. Every workstation, server, and networked device connects via its own dedicated cable to a central switch. When a workstation's cable breaks or its NIC fails, only that one device is affected — all other devices continue operating normally. This isolation makes star topologies easy to troubleshoot and expand.</p>
+<p>The vulnerability of star topology is the central switch. If the switch fails, all devices on that switch lose connectivity. Enterprise networks address this by using redundant switches, stacking switches, or spanning tree protocol (STP) to create redundant paths between switches. The central device in a modern star network is always a <strong>switch</strong> (not a hub — hubs are legacy devices that broadcast all traffic to all ports, creating collisions).</p>
+<p><strong>Exam scenarios:</strong> "A user cannot connect to the network. Other users on the same floor are unaffected." — star topology, the problem is isolated to that user's cable, NIC, or switch port. "All users on a floor lose connectivity simultaneously." — the central switch has failed, or the uplink from that switch to the core has failed.</p>
+
+<h2>Bus Topology</h2>
+<div class="card-grid">
+<div class="card"><div class="card-icon">📏</div><div class="card-title">Bus</div><div class="card-label" style="color:var(--muted);">Legacy — Thinnet / Thicknet Ethernet</div><div class="card-desc">All devices connect to a <strong>single shared cable</strong> (the bus) via T-connectors. <strong>Single point of failure:</strong> any break in the cable. Terminators required at each end.</div></div>
+</div>
+<p>Bus topology connects all devices to a single coaxial cable called the backbone or bus. Each device taps into the cable using a T-connector (Thinnet/10BASE2) or vampire tap (Thicknet/10BASE5). Terminators at each end of the cable prevent signal reflection. When a device transmits, its signal travels the entire length of the cable in both directions and is received by all devices — the intended recipient accepts the packet, others ignore it.</p>
+<p>The critical failure characteristic: <strong>any break anywhere in the cable brings down the entire network segment</strong>. If a T-connector is accidentally disconnected, the bus is split into two unterminated segments, and all devices lose connectivity. This made bus topology extremely fragile in practice and is why it was replaced by star topology for all new installations.</p>
+<p>Bus topology is legacy — no modern networks use it. It appears on the exam as a historical reference point and as a contrast to star topology. If you see a scenario about "coaxial cable Ethernet" or "10BASE2" or "devices losing connectivity when one cable is disconnected," that's bus topology.</p>
+
+<h2>Ring Topology</h2>
+<div class="card-grid">
+<div class="card"><div class="card-icon">🔄</div><div class="card-title">Ring</div><div class="card-label" style="color:var(--muted);">Legacy — Token Ring / FDDI</div><div class="card-desc">Devices connect in a <strong>closed loop</strong>. Data passes from device to device around the ring. <strong>Single point of failure:</strong> any break disrupts the ring (unless dual-ring).</div></div>
+</div>
+<p>In a ring topology, each device connects to exactly two neighbours, forming a closed loop. Data travels in one direction around the ring, passing through each device until it reaches its destination. Token Ring (802.5) used a token-passing mechanism — only the device holding the token could transmit, eliminating collisions but also limiting throughput. FDDI (Fiber Distributed Data Interface) used a dual-ring design for redundancy — if the primary ring broke, the secondary ring took over.</p>
+<p>A single ring has the same fundamental weakness as bus topology — one break disrupts the entire ring. The dual-ring architecture (FDDI) addressed this by allowing the ring to "heal" around a break by connecting the two rings at either side of the break, forming a smaller ring. This concept of self-healing rings was ahead of its time and is echoed in modern SONET/SDH ring architectures used in carrier networks.</p>
+<p>Ring topology is legacy for LAN connections but appears on the exam in the context of historical Token Ring networks and WAN/carrier ring architectures. The key distinction from bus: in a ring, a break disrupts only one direction of travel (in a single ring), and dual-ring designs can survive a single break.</p>
+
+<h2>Mesh Topology</h2>
+<div class="card-grid">
+<div class="card"><div class="card-icon">🕸️</div><div class="card-title">Full Mesh</div><div class="card-label" style="color:var(--blue);">Maximum redundancy</div><div class="card-desc">Every device connects to <strong>every other device</strong>. n(n-1)/2 connections for n devices. No single point of failure. Used in WAN core and wireless mesh.</div></div>
+<div class="card"><div class="card-icon">🔀</div><div class="card-title">Partial Mesh</div><div class="card-label" style="color:var(--blue);">Balanced redundancy</div><div class="card-desc">Some but not all devices have multiple connections. <strong>Critical nodes</strong> are fully meshed; edge devices connect to one or two core nodes. Balances cost and redundancy.</div></div>
+</div>
+<p>In a full mesh topology, every device has a direct connection to every other device. With n devices, this requires n(n-1)/2 connections — 4 devices need 6 connections, 10 devices need 45. This provides maximum redundancy: any single link or device can fail and traffic simply takes an alternate path. The internet's backbone is a partial mesh of interconnected ISPs using BGP to route around failures.</p>
+<p>Full mesh is impractical for LAN environments because of the exponential connection count, but it's used in WAN core routers and wireless mesh networks (where each access point connects to multiple other APs as backhaul). Partial mesh is the practical compromise — critical devices like core routers and distribution switches are fully meshed, while access-layer devices connect to two or more distribution switches for redundancy without the cost of full mesh.</p>
+
+<h2>Hybrid Topology</h2>
+<p>Almost all real-world enterprise networks use hybrid topologies — combinations of two or more basic topologies. The most common hybrid is <strong>star-bus</strong> (multiple star networks connected via a common backbone) and <strong>star-mesh</strong> (a core of meshed switches with star-connected access layer devices). A typical three-tier enterprise network uses star topology at the access layer (user devices connecting to access switches), partial mesh at the distribution layer (distribution switches connecting to multiple access and core switches), and full mesh at the core layer (core routers and switches fully interconnected for maximum performance and redundancy).</p>
+<p>For the exam: when a question asks "what topology provides the most redundancy?" the answer is mesh. When it asks "what topology is most commonly used in modern LANs?" the answer is star. Hybrid isn't usually a direct answer to a topology question but describes how real enterprise networks combine multiple topologies.</p>
+
+<h2>Physical vs Logical Topology</h2>
+<p>The exam specifically distinguishes these two concepts. <strong>Physical topology</strong> is the actual physical layout — where the cables run, where the devices are located, what the network looks like if you walked through the building and mapped every cable. <strong>Logical topology</strong> is how data actually flows — the path that frames and packets take through the network, regardless of physical layout.</p>
+<p>The classic example: modern Ethernet is physically a star (all devices connect to a switch) but logically behaves like a bus (all devices share a broadcast domain and can see each other's broadcasts). VLANs change the logical topology without changing the physical cabling — the same physical star can be logically divided into multiple isolated segments. Understanding this distinction explains why "the physical and logical topologies are different" can be a correct answer for a question about VLAN implementation.</p>
+
+<h2>Exam Scenarios</h2>
+<div class="exam-scenarios">
+<div class="scenario"><div class="scenario-q">A technician notices that when one workstation's network cable is disconnected, all other devices on the same segment lose connectivity. What topology is being used?</div>
+<div class="scenario-a"><strong>Answer: Bus topology.</strong> In a bus topology, a single cable carries all traffic. Disconnecting any device's T-connector breaks the bus and disrupts all devices. In a star topology, disconnecting one device's cable affects only that device.</div></div>
+<div class="scenario"><div class="scenario-q">A company needs to connect four branch offices such that if any single WAN link fails, all offices can still communicate. What topology should the WAN use?</div>
+<div class="scenario-a"><strong>Answer: Mesh topology</strong> (full or partial). Each office needs at least two connections to other offices so that losing any single link doesn't isolate any branch. Full mesh (each office to every other office) provides maximum redundancy. Partial mesh (each office to at least two others) provides acceptable redundancy at lower cost.</div></div>
+<div class="scenario"><div class="scenario-q">An administrator implements VLANs on an existing switched network. The physical cabling is not changed. What has changed?</div>
+<div class="scenario-a"><strong>Answer: The logical topology has changed.</strong> The physical topology (star — devices connected to switches) remains identical. VLANs create separate logical broadcast domains within the same physical infrastructure, changing how traffic flows without moving any cables.</div></div>
+</div>
+
+<h2>Related Articles</h2>
+<div class="related-grid">
+<a href="vlan-explained.html" class="related-link">VLANs Explained</a>
+<a href="network-segmentation.html" class="related-link">Network Segmentation</a>
+<a href="osi-model.html" class="related-link">OSI Model</a>
+<a href="routing-protocols.html" class="related-link">Routing Protocols</a>
+<a href="network-cable-types.html" class="related-link">Network Cable Types</a>
+<a href="comptia-network-plus-study-guide.html" class="related-link">Network+ Study Guide</a>
+</div>
+</div></div><footer class="footer"><div class="footer-inner">
+<div class="footer-brand"><div class="footer-logo">IT Study Hub</div><div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div></div>
+<div class="footer-links"><div class="footer-links-title">Networking</div><a href="networking.html">Networking Guide</a><a href="vlan-explained.html">VLANs</a><a href="osi-model.html">OSI Model</a><a href="subnetting.html">Subnetting</a></div>
+<div class="footer-links"><div class="footer-links-title">Certifications</div><a href="comptia-network-plus-study-guide.html">Network+ Study Guide</a><a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a><a href="best-network-plus.html">Best Network+ Resources</a></div>
+</div><div class="footer-bottom"><span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+<span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links may be affiliate links.</span></div></footer>
+</body>
+</html>

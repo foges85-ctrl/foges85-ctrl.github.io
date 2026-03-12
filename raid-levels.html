@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MS0H78HR74');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="canonical" href="https://itstudyhub.org/raid-levels.html">
+<title>RAID Levels Explained — RAID 0, 1, 5, 10 | CompTIA A+ Study Guide</title>
+<meta name="description" content="RAID 0, 1, 5, 6, and 10 explained for CompTIA A+ — minimum disks, fault tolerance, read/write speeds, use cases, and exam scenarios.">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(0,194,168,.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(0,194,168,.15);border:1px solid rgba(0,194,168,.35);color:#5eead4;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#5eead4;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-teal{background:rgba(0,194,168,.2);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.article-body a{color:var(--teal);font-weight:600;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(0,194,168,.2) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#5eead4;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:600px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:#fafbfd;}
+tbody tr:hover td{background:var(--light);}
+.td-label{font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;}
+.yes{color:#16a34a;font-weight:700;}
+.no{color:#dc2626;font-weight:700;}
+.partial{color:#d97706;font-weight:700;}
+/* RAID visual cards */
+.raid-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-bottom:40px;}
+.raid-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:22px;box-shadow:var(--card-shadow);}
+.raid-card-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.raid-badge{font-family:'DM Mono',monospace;font-size:20px;font-weight:800;width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.rb-0{background:rgba(239,68,68,.1);color:#dc2626;border:2px solid rgba(239,68,68,.25);}
+.rb-1{background:rgba(34,197,94,.1);color:#16a34a;border:2px solid rgba(34,197,94,.25);}
+.rb-5{background:rgba(26,108,255,.1);color:var(--blue);border:2px solid rgba(26,108,255,.25);}
+.rb-6{background:rgba(124,58,237,.1);color:var(--purple);border:2px solid rgba(124,58,237,.25);}
+.rb-10{background:rgba(0,194,168,.1);color:var(--teal);border:2px solid rgba(0,194,168,.25);}
+.raid-name{font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:var(--navy);}
+.raid-aka{font-size:12px;color:var(--muted);margin-top:2px;}
+.raid-stat-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.raid-stat-row:last-child{border-bottom:none;}
+.raid-stat-key{color:var(--muted);}
+.raid-stat-val{font-weight:700;color:var(--navy);}
+/* Disk diagrams */
+.disk-diagram{display:flex;gap:4px;align-items:flex-end;margin:12px 0;flex-wrap:wrap;}
+.disk{width:36px;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:6px;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;color:var(--white);}
+.disk-stripe{background:var(--blue);height:60px;}
+.disk-mirror{background:var(--teal);height:60px;}
+.disk-parity{background:var(--purple);height:60px;}
+.disk-failed{background:#9ca3af;height:60px;opacity:.4;}
+/* Callout */
+.callout{border-radius:12px;padding:18px 22px;margin-bottom:32px;}
+.callout-teal{background:rgba(0,194,168,.05);border:1px solid rgba(0,194,168,.18);border-left:4px solid var(--teal);}
+.callout-red{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.18);border-left:4px solid #ef4444;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+.callout-teal .callout-label{color:var(--teal);}
+.callout-red .callout-label{color:#dc2626;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+.exam-scenarios{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-q{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.scenario-a{font-size:14px;color:var(--text);line-height:1.65;}
+.scenario-a strong{color:var(--navy);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(0,194,168,.35);color:var(--teal);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--teal);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link"><img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img"><span>IT Study Hub</span></a>
+    <div class="nav-links">
+      <a href="storage-types.html">Storage Types</a>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="best-a-plus.html" class="nav-cta">A+ Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>RAID Levels</span></nav>
+    <div class="page-hero-badge">💾 Hardware</div>
+    <h1>RAID Levels Explained — <span>0, 1, 5, 6, and 10</span></h1>
+    <p class="page-hero-sub">RAID concepts for CompTIA A+ — minimum disks, fault tolerance, usable capacity, read/write performance, and when to use each level.</p>
+    <div class="cert-badges"><span class="cert-badge cb-teal">A+ 220-1201 Core 1</span></div>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">Quick Reference</div>
+      <div class="quick-answer-text"><strong>RAID 0</strong> = speed, no fault tolerance. <strong>RAID 1</strong> = mirroring, survives 1 disk failure. <strong>RAID 5</strong> = striping with parity, survives 1 failure, needs 3+ disks. <strong>RAID 6</strong> = survives 2 failures, needs 4+ disks. <strong>RAID 10</strong> = mirror + stripe, best performance + redundancy, needs 4+ disks. <strong>RAID is not a backup</strong> — it protects against disk failure, not data loss from deletion or corruption.</div>
+    </div>
+
+    <h2>What Is RAID?</h2>
+    <p>RAID stands for <strong>Redundant Array of Independent Disks</strong> (originally "Inexpensive Disks"). It's a technology that combines multiple physical hard drives or SSDs into a single logical unit to achieve one or more of three goals: increased performance (faster reads/writes by spreading data across multiple disks), fault tolerance (surviving one or more disk failures without data loss), or a combination of both. RAID is controlled either by a dedicated hardware RAID controller card or by software RAID built into the operating system (Windows Storage Spaces, Linux mdadm, macOS Disk Utility).</p>
+    <p>The most important thing to understand about RAID before the exam: <strong>RAID is not a substitute for backup</strong>. RAID protects against physical disk failure — if a drive dies, the array keeps running. But RAID does not protect against accidental file deletion, ransomware encryption, controller failure, or site disasters. A file deleted from a RAID 1 mirror is deleted from both mirrors simultaneously. Backup is a separate discipline that must be implemented alongside RAID, not instead of it.</p>
+
+    <h2>RAID Levels at a Glance</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>RAID Level</th><th>Min Disks</th><th>Fault Tolerance</th><th>Read Speed</th><th>Write Speed</th><th>Usable Capacity</th><th>Best For</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-label">RAID 0</td><td>2</td><td class="no">None</td><td class="yes">Excellent</td><td class="yes">Excellent</td><td>100% of all disks</td><td>Speed-critical, non-critical data</td></tr>
+          <tr><td class="td-label">RAID 1</td><td>2</td><td class="yes">1 disk failure</td><td class="yes">Good</td><td class="partial">Moderate</td><td>50% (n/2)</td><td>OS drives, small critical data</td></tr>
+          <tr><td class="td-label">RAID 5</td><td>3</td><td class="yes">1 disk failure</td><td class="yes">Good</td><td class="partial">Moderate</td><td>(n−1)/n</td><td>General purpose — best balance</td></tr>
+          <tr><td class="td-label">RAID 6</td><td>4</td><td class="yes">2 disk failures</td><td class="yes">Good</td><td class="no">Slower</td><td>(n−2)/n</td><td>Large arrays, high-availability</td></tr>
+          <tr><td class="td-label">RAID 10</td><td>4</td><td class="yes">Up to n/2 failures</td><td class="yes">Excellent</td><td class="yes">Good</td><td>50% (n/2)</td><td>Databases, highest performance + redundancy</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>RAID 0 — Striping (Speed Only)</h2>
+    <div class="raid-grid">
+      <div class="raid-card">
+        <div class="raid-card-head">
+          <div class="raid-badge rb-0">0</div>
+          <div><div class="raid-name">RAID 0 — Striping</div><div class="raid-aka">No redundancy</div></div>
+        </div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Minimum disks</span><span class="raid-stat-val">2</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Fault tolerance</span><span class="raid-stat-val" style="color:#dc2626">None — 1 failure = total loss</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Usable capacity</span><span class="raid-stat-val">100% of all disks</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Read performance</span><span class="raid-stat-val" style="color:#16a34a">Excellent</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Write performance</span><span class="raid-stat-val" style="color:#16a34a">Excellent</span></div>
+      </div>
+    </div>
+    <p>RAID 0 stripes data across all disks — each block of data is split and written to multiple disks simultaneously. Two 4 TB disks in RAID 0 give you 8 TB of usable storage and roughly double the read/write speed of a single disk. The catastrophic trade-off: if <strong>any single disk fails</strong>, all data is lost. There is no redundancy whatsoever — in fact, RAID 0 is statistically more likely to fail than a single disk because any of multiple disks can cause total data loss.</p>
+    <p>Use cases: scratch disks for video editing or rendering where speed matters and data is temporary, gaming storage where load times matter more than data safety, or any scenario where maximum performance is needed and the data is reproducible. Never use RAID 0 for anything you can't afford to lose.</p>
+
+    <h2>RAID 1 — Mirroring (Perfect Copies)</h2>
+    <div class="raid-grid">
+      <div class="raid-card">
+        <div class="raid-card-head">
+          <div class="raid-badge rb-1">1</div>
+          <div><div class="raid-name">RAID 1 — Mirroring</div><div class="raid-aka">Identical copies on each disk</div></div>
+        </div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Minimum disks</span><span class="raid-stat-val">2</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Fault tolerance</span><span class="raid-stat-val" style="color:#16a34a">1 disk failure (any disk)</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Usable capacity</span><span class="raid-stat-val">50% — 2×4TB = 4TB usable</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Read performance</span><span class="raid-stat-val" style="color:#16a34a">Good (can read from either disk)</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Write performance</span><span class="raid-stat-val" style="color:#d97706">Moderate (writes to both disks)</span></div>
+      </div>
+    </div>
+    <p>RAID 1 writes identical data to every disk in the array — with two disks, every write goes to both simultaneously. If one disk fails, the other contains a complete copy of all data. The array continues operating normally on the surviving disk, and the failed disk can be replaced and rebuilt (resilvered) while the system remains online.</p>
+    <p>The trade-off is storage efficiency — you pay for two disks but only get one disk's worth of storage. RAID 1 is ideal for operating system drives and boot volumes where reliability is paramount and the data set is relatively small. A server's OS on a 2-disk RAID 1 array can survive a drive failure without going down, giving the administrator time to replace the failed drive without an emergency outage.</p>
+
+    <h2>RAID 5 — Striping with Parity</h2>
+    <div class="raid-grid">
+      <div class="raid-card">
+        <div class="raid-card-head">
+          <div class="raid-badge rb-5">5</div>
+          <div><div class="raid-name">RAID 5 — Striping + Parity</div><div class="raid-aka">Best balance of performance, redundancy, and capacity</div></div>
+        </div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Minimum disks</span><span class="raid-stat-val">3</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Fault tolerance</span><span class="raid-stat-val" style="color:#16a34a">1 disk failure</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Usable capacity</span><span class="raid-stat-val">(n−1)/n — 3×4TB = 8TB usable</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Read performance</span><span class="raid-stat-val" style="color:#16a34a">Good</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Write performance</span><span class="raid-stat-val" style="color:#d97706">Moderate (parity calculation overhead)</span></div>
+      </div>
+    </div>
+    <p>RAID 5 stripes data across all disks like RAID 0, but adds a rotating parity block that allows any single disk to be reconstructed if it fails. Parity is distributed evenly across all disks — no single disk holds all the parity information. With three 4 TB disks, you get (3−1) × 4 TB = 8 TB of usable storage with the ability to lose any one disk without data loss.</p>
+    <p>The parity calculation introduces write overhead — every write requires calculating and writing parity data, which is slower than RAID 0. This overhead is typically handled by the RAID controller in hardware implementations. RAID 5 is the most commonly deployed RAID level in enterprise environments because it offers the best balance of usable capacity, performance, and redundancy for general-purpose file servers and NAS devices.</p>
+    <p>Important limitation: RAID 5 is vulnerable during rebuild. When a disk fails, the array operates in degraded mode using parity calculations to reconstruct the missing data — this is slower and stresses the remaining disks. If a second disk fails during rebuild (increasingly likely as disks age together), all data is lost. RAID 6 was developed specifically to address this risk.</p>
+
+    <h2>RAID 6 — Striping with Double Parity</h2>
+    <div class="raid-grid">
+      <div class="raid-card">
+        <div class="raid-card-head">
+          <div class="raid-badge rb-6">6</div>
+          <div><div class="raid-name">RAID 6 — Double Parity</div><div class="raid-aka">Survives 2 simultaneous failures</div></div>
+        </div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Minimum disks</span><span class="raid-stat-val">4</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Fault tolerance</span><span class="raid-stat-val" style="color:#16a34a">2 simultaneous disk failures</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Usable capacity</span><span class="raid-stat-val">(n−2)/n — 4×4TB = 8TB usable</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Read performance</span><span class="raid-stat-val" style="color:#16a34a">Good</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Write performance</span><span class="raid-stat-val" style="color:#dc2626">Slower (two parity calculations)</span></div>
+      </div>
+    </div>
+    <p>RAID 6 extends RAID 5 by maintaining two independent parity blocks, allowing the array to survive any two simultaneous disk failures. This directly addresses RAID 5's weakness during rebuild — even if a second disk fails while the array is recovering from the first failure, no data is lost. RAID 6 is recommended for large arrays (8+ disks) where rebuild times are long and the risk of a second failure during rebuild is statistically significant.</p>
+
+    <h2>RAID 10 — Mirrored Stripes (RAID 1+0)</h2>
+    <div class="raid-grid">
+      <div class="raid-card">
+        <div class="raid-card-head">
+          <div class="raid-badge rb-10">10</div>
+          <div><div class="raid-name">RAID 10 — Mirror + Stripe</div><div class="raid-aka">Highest performance + redundancy</div></div>
+        </div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Minimum disks</span><span class="raid-stat-val">4 (in pairs)</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Fault tolerance</span><span class="raid-stat-val" style="color:#16a34a">Up to n/2 failures (if spread across pairs)</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Usable capacity</span><span class="raid-stat-val">50% — 4×4TB = 8TB usable</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Read performance</span><span class="raid-stat-val" style="color:#16a34a">Excellent</span></div>
+        <div class="raid-stat-row"><span class="raid-stat-key">Write performance</span><span class="raid-stat-val" style="color:#16a34a">Good</span></div>
+      </div>
+    </div>
+    <p>RAID 10 combines RAID 1 (mirroring) and RAID 0 (striping). Disks are first mirrored in pairs, then the mirrored pairs are striped together. With four disks: disks 1 and 2 are mirrored, disks 3 and 4 are mirrored, and data is striped across both pairs. This gives you RAID 0's read performance across the pairs, RAID 1's per-pair redundancy, and the ability to lose one disk from each pair simultaneously without data loss.</p>
+    <p>RAID 10 is the preferred choice for high-transaction workloads — database servers (SQL Server, MySQL, Oracle), email servers, and any application that requires both high IOPS and guaranteed availability. The 50% storage efficiency is the main trade-off — it's expensive, but the performance and reliability combination is unmatched by single-level RAID.</p>
+
+    <div class="callout callout-red">
+      <div class="callout-label">⚠️ Critical Exam Trap — RAID Is Not Backup</div>
+      <p>CompTIA specifically tests whether candidates understand that RAID provides <strong>availability</strong> (surviving disk failure) but not <strong>backup</strong> (protecting against data loss from other causes). A scenario might describe a company that uses RAID 1 and asks whether they need a backup strategy — the answer is always <strong>yes</strong>. RAID does not protect against: accidental deletion, ransomware, fire/flood destroying the server, controller failure corrupting the array, or software bugs overwriting data. Backup and RAID address different risks and are both necessary.</p>
+    </div>
+
+    <h2>Hot Spare — Automatic Disk Replacement</h2>
+    <p>A <strong>hot spare</strong> is an additional disk in a RAID array that sits idle until a disk fails. When the controller detects a failure, it automatically begins rebuilding the failed disk's data onto the hot spare — without any human intervention. Hot spares significantly reduce the window of vulnerability in RAID 5 and 6 arrays because the rebuild begins immediately rather than waiting for an administrator to notice the failure and manually insert a replacement disk.</p>
+    <p>Hot spares are distinct from the disks that make up the RAID array — they don't contribute to usable storage while in standby. An enterprise server might have a 6-disk RAID 5 array plus one hot spare drive, for 7 physical disks total.</p>
+
+    <h2>Exam Scenarios</h2>
+    <div class="exam-scenarios">
+      <div class="scenario">
+        <div class="scenario-q">A video production company needs maximum storage performance for editing 4K footage. Data loss is acceptable because files are backed up to external drives nightly. Which RAID level should they use?</div>
+        <div class="scenario-a"><strong>Answer: RAID 0.</strong> Maximum read/write performance, 100% capacity utilisation, and since data is backed up externally, the lack of fault tolerance is acceptable for this use case. This is the textbook RAID 0 scenario — speed priority, data recoverable from backup.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">A database server needs the highest possible IOPS with the ability to survive a disk failure. Cost is not a constraint. Which RAID level is most appropriate?</div>
+        <div class="scenario-a"><strong>Answer: RAID 10.</strong> Combines striping (performance) with mirroring (fault tolerance). Databases are the canonical RAID 10 use case — high transaction rates require excellent read/write IOPS, and the data is too critical to risk RAID 0's vulnerability. RAID 5 is an alternative if cost is a constraint, but RAID 10 is the preferred answer when cost is not mentioned.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">A file server has a RAID 5 array with 5 disks of 2 TB each. How much usable storage does it have?</div>
+        <div class="scenario-a"><strong>Answer: 8 TB.</strong> RAID 5 uses one disk's worth of capacity for parity, regardless of array size. Formula: (n−1) × disk size = (5−1) × 2 TB = 8 TB. One disk's capacity (2 TB) is consumed by the distributed parity blocks across all drives.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">A RAID 5 array with 4 disks experiences its first disk failure. During the rebuild, a second disk also fails. What happens?</div>
+        <div class="scenario-a"><strong>Answer: All data is lost.</strong> RAID 5 can only tolerate one disk failure at a time. A second failure during rebuild results in complete data loss — this is why RAID 6 was developed. For high-value data on large arrays with long rebuild times, RAID 6 (which tolerates two simultaneous failures) is recommended over RAID 5.</div>
+      </div>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="storage-types.html" class="related-link">Storage Types (HDD, SSD, NVMe)</a>
+      <a href="comptia-aplus-domains.html" class="related-link">CompTIA A+ Domains</a>
+      <a href="troubleshooting-methodology.html" class="related-link">Troubleshooting Methodology</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="virtualization-explained.html" class="related-link">Virtualisation Explained</a>
+      <a href="comptia-aplus-study-guide.html" class="related-link">A+ Complete Study Guide</a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">A+ Topics</div>
+      <a href="storage-types.html">Storage Types</a>
+      <a href="virtualization-explained.html">Virtualisation</a>
+      <a href="troubleshooting-methodology.html">Troubleshooting</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Certifications</div>
+      <a href="comptia-aplus-study-guide.html">A+ Study Guide</a>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="best-a-plus.html">Best A+ Resources</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>

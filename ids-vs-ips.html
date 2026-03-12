@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MS0H78HR74');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="canonical" href="https://itstudyhub.org/ids-vs-ips.html">
+<title>IDS vs IPS Explained — Intrusion Detection vs Prevention | CompTIA Security+</title>
+<meta name="description" content="IDS vs IPS for CompTIA Security+ — how intrusion detection and prevention systems work, HIDS vs NIDS, signature vs anomaly detection, and exam scenarios.">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(124,58,237,.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.35);color:#c4b5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#c4b5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-teal{background:rgba(0,194,168,.2);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.cb-blue{background:rgba(26,108,255,.2);color:#93c5fd;border:1px solid rgba(26,108,255,.3);}
+.cb-purple{background:rgba(124,58,237,.2);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.article-body a{color:var(--blue);font-weight:600;}
+.article-body a:hover{text-decoration:underline;}
+.article-body code{font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 6px;border-radius:4px;font-size:13px;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(124,58,237,.22) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#c4b5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:500px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:#fafbfd;}
+tbody tr:hover td{background:var(--light);}
+.td-label{font-weight:700;color:var(--navy);}
+.tag{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.4px;margin:1px;}
+.tag-aplus{background:rgba(0,194,168,.1);color:var(--teal);}
+.tag-net{background:rgba(26,108,255,.1);color:var(--blue);}
+.tag-sec{background:rgba(124,58,237,.1);color:var(--purple);}
+.callout{border-radius:12px;padding:18px 22px;margin-bottom:32px;}
+.callout-blue{background:rgba(26,108,255,.05);border:1px solid rgba(26,108,255,.18);border-left:4px solid var(--blue);}
+.callout-purple{background:rgba(124,58,237,.05);border:1px solid rgba(124,58,237,.18);border-left:4px solid var(--purple);}
+.callout-teal{background:rgba(0,194,168,.05);border:1px solid rgba(0,194,168,.18);border-left:4px solid var(--teal);}
+.callout-amber{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.25);border-left:4px solid #f59e0b;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+.callout-blue .callout-label{color:var(--blue);}.callout-purple .callout-label{color:var(--purple);}.callout-teal .callout-label{color:var(--teal);}.callout-amber .callout-label{color:#92400e;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}.callout p:last-child{margin-bottom:0;}.callout strong{color:var(--navy);}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--card-shadow);}
+.card-icon{font-size:28px;margin-bottom:10px;}
+.card-title{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.card-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.card-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.card-desc strong{color:var(--navy);}
+.exam-scenarios{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-q{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.scenario-a{font-size:14px;color:var(--text);line-height:1.65;}
+.scenario-a strong{color:var(--navy);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.35);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head><nav class="navbar"><div class="nav-inner">
+<a href="index.html" class="logo-link"><img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img"><span>IT Study Hub</span></a>
+<div class="nav-links"><a href="network-attacks.html">Network Security</a><a href="firewall-basics.html">Firewall Basics</a><a href="security-plus-cheat-sheet.html">Security+ Cheat Sheet</a><a href="best-security-plus.html" class="nav-cta">Security+ Resources</a></div>
+</div></nav><section class="page-hero"><div class="page-hero-inner">
+<nav class="breadcrumb"><a href="index.html">Home</a><span>›</span><a href="network-attacks.html">Security</a><span>›</span><span>IDS vs IPS</span></nav>
+<div class="page-hero-badge">🛡️ Security+</div>
+<h1>IDS vs IPS — <span>Detection vs Prevention</span></h1>
+<p class="page-hero-sub">Intrusion detection and prevention systems for CompTIA Security+ — how they work, where they sit in the network, and how to choose the right one for a scenario.</p>
+<div class="cert-badges"><span class="cert-badge cb-blue">Network+ N10-009</span><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
+</div></section>
+<div class="article-wrap"><div class="article-body">
+
+<div class="quick-answer">
+<div class="quick-answer-label">Quick Reference</div>
+<div class="quick-answer-text"><strong>IDS (Intrusion Detection System)</strong> monitors traffic and <strong>alerts</strong> on suspicious activity — it does not block. <strong>IPS (Intrusion Prevention System)</strong> monitors traffic and <strong>blocks</strong> malicious traffic in real time. IDS is passive (out-of-band), IPS is inline (in-band). On the exam: if the scenario asks which system "blocks" or "prevents" attacks, the answer is IPS. If it asks which system "detects" or "alerts" without disrupting traffic, the answer is IDS.</div>
+</div>
+
+<h2>The Core Difference — Detection vs Prevention</h2>
+<p>The fundamental distinction between IDS and IPS is what they do when they identify a threat. An <strong>IDS (Intrusion Detection System)</strong> passively monitors network traffic or host activity, compares it against known threat signatures or behavioural baselines, and generates alerts when suspicious activity is detected. It does not interfere with traffic — it only observes and reports. A security analyst reviews the alerts and decides whether and how to respond.</p>
+<p>An <strong>IPS (Intrusion Prevention System)</strong> sits inline with traffic — all traffic flows through it — and can actively drop packets, terminate connections, or modify traffic in real time when a threat is detected. The IPS doesn't wait for human review; it acts automatically based on configured policies. This makes IPS more effective at stopping attacks but introduces risk: a misconfigured IPS or a false positive can block legitimate traffic, causing outages.</p>
+
+<h2>IDS vs IPS — Key Differences</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Characteristic</th><th>IDS</th><th>IPS</th></tr></thead>
+<tbody>
+<tr><td class="td-label">Response to threats</td><td>Alerts / logs only</td><td>Blocks, drops, or modifies traffic</td></tr>
+<tr><td class="td-label">Network placement</td><td>Out-of-band (tap or mirror port)</td><td>Inline — all traffic passes through</td></tr>
+<tr><td class="td-label">Impact on traffic</td><td>None — passive monitoring</td><td>Adds latency; can block legitimate traffic</td></tr>
+<tr><td class="td-label">False positive risk</td><td>Low impact — generates alert only</td><td>High impact — blocks legitimate traffic</td></tr>
+<tr><td class="td-label">Response speed</td><td>Human review required</td><td>Automated real-time response</td></tr>
+<tr><td class="td-label">Failure mode</td><td>Fails open — traffic continues</td><td>Fail-open or fail-closed (configurable)</td></tr>
+<tr><td class="td-label">Primary use case</td><td>Forensics, compliance, visibility</td><td>Active threat prevention, blocking attacks</td></tr>
+</tbody>
+</table></div>
+
+<h2>Network-Based vs Host-Based</h2>
+<p>Both IDS and IPS come in two deployment variants that the exam tests separately:</p>
+<p><strong>NIDS/NIPS (Network-based)</strong> monitors traffic flowing across a network segment — either by connecting to a span/mirror port on a switch (NIDS) or by sitting inline between network segments (NIPS). Network-based systems provide visibility into all traffic traversing that network segment, regardless of which hosts are communicating. They're blind to encrypted traffic (unless combined with TLS inspection) and cannot see traffic that doesn't cross the monitored segment.</p>
+<p><strong>HIDS/HIPS (Host-based)</strong> runs as software on an individual endpoint — a server, workstation, or cloud instance. It monitors activity on that specific host: process execution, file system changes, registry modifications, system calls, and local network connections. Host-based systems can inspect encrypted traffic (because they see it before encryption and after decryption on the endpoint) and can detect attacks that originate from local processes. The trade-off is that they only protect the host they're installed on and consume endpoint resources.</p>
+<p>A comprehensive security architecture uses both: NIDS/NIPS at network chokepoints (internet perimeter, between network zones, before critical servers) and HIDS/HIPS on critical endpoints (domain controllers, database servers, privileged workstations).</p>
+
+<h2>Detection Methods — Signature vs Anomaly vs Policy</h2>
+<p><strong>Signature-based detection</strong> compares observed traffic or activity against a database of known attack signatures. If traffic matches a signature (a known SQL injection pattern, a specific malware command-and-control beacon, a recognisable exploit attempt), an alert is triggered or the traffic is blocked. Signature-based detection is highly accurate for known threats and generates few false positives — but it cannot detect novel (zero-day) attacks for which no signature exists yet. Signatures must be updated regularly to remain effective.</p>
+<p><strong>Anomaly-based detection</strong> (also called behaviour-based or heuristic detection) establishes a baseline of normal activity and alerts on deviations from that baseline. A user who normally downloads 10 MB of data per day suddenly transferring 10 GB would trigger an anomaly alert. This approach can detect zero-day attacks and insider threats that signature-based systems miss, but it generates significantly more false positives — normal behaviour changes (end of quarter data exports, system updates) can look like anomalies.</p>
+<p><strong>Policy-based detection</strong> evaluates traffic against administrator-defined rules — not signatures of known attacks, but explicit policies. "No SSH traffic should leave the network" is a policy — any SSH connection going outbound triggers a policy violation alert. Policy-based detection requires the administrator to define the rules explicitly, but generates very precise alerts for specific policy violations.</p>
+
+<div class="callout callout-amber">
+<div class="callout-label">⚠️ Exam Trap — False Positives vs False Negatives</div>
+<p><strong>False positive:</strong> the IDS/IPS flags legitimate traffic as malicious — the attack didn't happen but the system said it did. Impact on IPS: blocks legitimate traffic, potential outage. <strong>False negative:</strong> the IDS/IPS misses a real attack — the attack happened but the system didn't detect it. False negatives with IDS = missed alerts, analyst doesn't know to investigate. False negatives with IPS = attack succeeds undetected. The scenario "which is more dangerous, a false positive or false negative?" has no universal answer — it depends on context. For an IPS protecting a critical system, false negatives are catastrophic. For an IPS on a production network, false positives can cause outages.</p>
+</div>
+
+<h2>Where IDS and IPS Sit in the Network</h2>
+<p>Network placement determines what traffic each system sees. A common enterprise architecture: an <strong>NIPS at the internet perimeter</strong>, inline between the firewall and the DMZ, inspects all inbound and outbound internet traffic for known attack patterns. A <strong>NIDS on a span port</strong> of the core switch monitors internal east-west traffic for lateral movement and insider threats — it's out-of-band to avoid affecting production traffic. <strong>HIPS on servers</strong> (especially domain controllers and database servers) provides host-level protection and can detect attacks that arrive via encrypted channels or originate from internal networks.</p>
+<p>The distinction between firewall and IPS is important for the exam. A firewall enforces access control based on rules (allow or deny traffic based on source/destination IP, port, protocol) — it doesn't analyse the content of traffic. An IPS performs deep packet inspection — it looks inside packets at the payload and application-layer content. A next-generation firewall (NGFW) combines both functions.</p>
+
+<h2>Fail-Open vs Fail-Closed</h2>
+<p>When an inline IPS device fails (hardware failure, software crash, power loss), it must decide what to do with the traffic it can no longer inspect. <strong>Fail-open</strong> means the device passes all traffic uninspected — network connectivity is maintained but threat detection stops. <strong>Fail-closed</strong> means the device drops all traffic — the network goes down but no uninspected traffic passes.</p>
+<p>The right choice depends on context. A hospital network might choose fail-open to maintain life-critical network connectivity even at the cost of security. A financial institution with extreme security requirements might choose fail-closed to ensure no uninspected traffic reaches its core systems. On the exam, "fail-open prioritises availability" and "fail-closed prioritises security" is the framework for choosing between them in scenarios.</p>
+
+<h2>Exam Scenarios</h2>
+<div class="exam-scenarios">
+<div class="scenario"><div class="scenario-q">A security administrator wants to monitor traffic between internal VLANs for signs of lateral movement without risking disruption to production traffic. Which system should they deploy?</div>
+<div class="scenario-a"><strong>Answer: NIDS</strong> connected to a span/mirror port. Because the requirement is "without risking disruption," an inline IPS is inappropriate — false positives could block inter-VLAN traffic. An out-of-band NIDS provides visibility without any risk to production traffic.</div></div>
+<div class="scenario"><div class="scenario-q">An organisation needs to automatically block SQL injection attempts against its web application in real time. Which system addresses this requirement?</div>
+<div class="scenario-a"><strong>Answer: IPS</strong> (specifically a web application firewall / WAF, which is a specialised form of application-layer IPS). The key word is "automatically block" — IDS only alerts. The IPS must be inline to intercept and drop the attack before it reaches the web server.</div></div>
+<div class="scenario"><div class="scenario-q">An IDS generates an alert for an attack that did not actually occur. What type of result is this?</div>
+<div class="scenario-a"><strong>Answer: False positive.</strong> A false positive is when the system reports a threat that doesn't exist. The inverse — a real attack that the IDS misses — is a false negative. Both false positives and false negatives reduce the effectiveness of an IDS: false positives cause alert fatigue, false negatives allow attacks to go undetected.</div></div>
+<div class="scenario"><div class="scenario-q">A company's IDS successfully detects known malware signatures but fails to detect a new zero-day attack. What type of detection method is it using, and what should be added?</div>
+<div class="scenario-a"><strong>Answer: Signature-based detection</strong> — effective for known threats but blind to novel attacks. Adding <strong>anomaly-based detection</strong> would allow the IDS to flag unusual behaviour patterns that might indicate a zero-day attack, even without a matching signature. The combination of signature and anomaly detection provides broader coverage.</div></div>
+</div>
+
+<h2>Related Articles</h2>
+<div class="related-grid">
+<a href="firewall-basics.html" class="related-link">Firewall Types Explained</a>
+<a href="network-attacks.html" class="related-link">Network Attacks</a>
+<a href="network-segmentation.html" class="related-link">Network Segmentation</a>
+<a href="zero-trust-security.html" class="related-link">Zero Trust Security</a>
+<a href="incident-response-playbook.html" class="related-link">Incident Response Playbook</a>
+<a href="comptia-security-plus-study-guide.html" class="related-link">Security+ Study Guide</a>
+</div>
+</div></div><footer class="footer"><div class="footer-inner">
+<div class="footer-brand"><div class="footer-logo">IT Study Hub</div><div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div></div>
+<div class="footer-links"><div class="footer-links-title">Security</div><a href="network-attacks.html">Network Attacks</a><a href="firewall-basics.html">Firewall Basics</a><a href="zero-trust-security.html">Zero Trust</a><a href="incident-response-playbook.html">Incident Response</a></div>
+<div class="footer-links"><div class="footer-links-title">Certifications</div><a href="comptia-security-plus-study-guide.html">Security+ Study Guide</a><a href="security-plus-cheat-sheet.html">Security+ Cheat Sheet</a><a href="best-security-plus.html">Best Security+ Resources</a></div>
+</div><div class="footer-bottom"><span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+<span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links may be affiliate links.</span></div></footer>
+</body>
+</html>

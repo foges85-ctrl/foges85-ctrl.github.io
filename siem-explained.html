@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MS0H78HR74');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="canonical" href="https://itstudyhub.org/siem-explained.html">
+<title>SIEM Explained — Security Information and Event Management | CompTIA Security+</title>
+<meta name="description" content="SIEM explained for CompTIA Security+ SY0-701 — log aggregation, correlation rules, alerting, SOAR, use cases, and exam scenarios for Domain 4.">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(124,58,237,.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.35);color:#c4b5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#c4b5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-teal{background:rgba(0,194,168,.2);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.cb-blue{background:rgba(26,108,255,.2);color:#93c5fd;border:1px solid rgba(26,108,255,.3);}
+.cb-purple{background:rgba(124,58,237,.2);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.article-body a{color:var(--blue);font-weight:600;}
+.article-body a:hover{text-decoration:underline;}
+.article-body code{font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 6px;border-radius:4px;font-size:13px;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(124,58,237,.22) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#c4b5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:500px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:#fafbfd;}
+tbody tr:hover td{background:var(--light);}
+.td-label{font-weight:700;color:var(--navy);}
+.tag{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.4px;margin:1px;}
+.tag-aplus{background:rgba(0,194,168,.1);color:var(--teal);}
+.tag-net{background:rgba(26,108,255,.1);color:var(--blue);}
+.tag-sec{background:rgba(124,58,237,.1);color:var(--purple);}
+.callout{border-radius:12px;padding:18px 22px;margin-bottom:32px;}
+.callout-blue{background:rgba(26,108,255,.05);border:1px solid rgba(26,108,255,.18);border-left:4px solid var(--blue);}
+.callout-purple{background:rgba(124,58,237,.05);border:1px solid rgba(124,58,237,.18);border-left:4px solid var(--purple);}
+.callout-teal{background:rgba(0,194,168,.05);border:1px solid rgba(0,194,168,.18);border-left:4px solid var(--teal);}
+.callout-amber{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.25);border-left:4px solid #f59e0b;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+.callout-blue .callout-label{color:var(--blue);}.callout-purple .callout-label{color:var(--purple);}.callout-teal .callout-label{color:var(--teal);}.callout-amber .callout-label{color:#92400e;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}.callout p:last-child{margin-bottom:0;}.callout strong{color:var(--navy);}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--card-shadow);}
+.card-icon{font-size:28px;margin-bottom:10px;}
+.card-title{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.card-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.card-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.card-desc strong{color:var(--navy);}
+.exam-scenarios{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-q{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.scenario-a{font-size:14px;color:var(--text);line-height:1.65;}
+.scenario-a strong{color:var(--navy);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.35);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head><nav class="navbar"><div class="nav-inner">
+<a href="index.html" class="logo-link"><img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img"><span>IT Study Hub</span></a>
+<div class="nav-links"><a href="incident-response-playbook.html">Security Operations</a><a href="network-attacks.html">Network Attacks</a><a href="security-plus-cheat-sheet.html">Security+ Cheat Sheet</a><a href="best-security-plus.html" class="nav-cta">Security+ Resources</a></div>
+</div></nav><section class="page-hero"><div class="page-hero-inner">
+<nav class="breadcrumb"><a href="index.html">Home</a><span>›</span><a href="incident-response-playbook.html">Security Operations</a><span>›</span><span>SIEM</span></nav>
+<div class="page-hero-badge">📊 Security+</div>
+<h1>SIEM Explained — <span>Security Information and Event Management</span></h1>
+<p class="page-hero-sub">How SIEM works, what it's used for, and how it appears on CompTIA Security+ SY0-701 — the 28% Security Operations domain's central tool.</p>
+<div class="cert-badges"><span class="cert-badge cb-purple">Security+ SY0-701 Domain 4</span></div>
+</div></section>
+<div class="article-wrap"><div class="article-body">
+
+<div class="quick-answer">
+<div class="quick-answer-label">Quick Reference</div>
+<div class="quick-answer-text"><strong>SIEM</strong> = centralised platform that <strong>collects logs from all sources</strong>, correlates events across them, and generates alerts when patterns indicate a threat. It's the hub of a security operations centre (SOC). Key capabilities: <strong>log aggregation</strong> (collect), <strong>normalisation</strong> (standardise formats), <strong>correlation</strong> (connect related events), <strong>alerting</strong> (notify analysts), <strong>dashboards</strong> (visualise), <strong>forensics</strong> (investigate). SOAR adds automated response on top of SIEM.</div>
+</div>
+
+<h2>What Problem SIEM Solves</h2>
+<p>An enterprise network generates millions of log entries every day — firewall logs, authentication logs, DNS query logs, endpoint protection logs, application logs, cloud audit logs, and more. Each source uses its own format, timestamp convention, and severity classification. Reviewing logs from a single source is manageable; making sense of the relationships across dozens of sources simultaneously is impossible for a human analyst without tooling.</p>
+<p>SIEM solves this by centralising all log collection into a single platform, normalising different formats into a common schema, and applying correlation rules that identify patterns across multiple sources simultaneously. A single failed login doesn't warrant attention. A thousand failed logins from the same IP address across multiple accounts within two minutes does — and a SIEM correlation rule fires an alert the moment that pattern is detected, rather than waiting for an analyst to manually review authentication logs.</p>
+
+<h2>Core SIEM Functions</h2>
+<div class="card-grid">
+<div class="card"><div class="card-icon">📥</div><div class="card-title">Log Aggregation</div><div class="card-label" style="color:var(--purple);">Collect everything</div><div class="card-desc">Collects logs from <strong>all network sources</strong> — firewalls, switches, servers, endpoints, cloud platforms, applications — into a central repository. Agents installed on endpoints forward logs; network devices send syslog or SNMP traps.</div></div>
+<div class="card"><div class="card-icon">🔄</div><div class="card-title">Normalisation</div><div class="card-label" style="color:var(--purple);">Standardise formats</div><div class="card-desc">Converts logs from different sources and formats (Windows Event Log, syslog, CEF, JSON) into a <strong>common schema</strong> so correlation rules can work across all sources regardless of origin.</div></div>
+<div class="card"><div class="card-icon">🔗</div><div class="card-title">Correlation</div><div class="card-label" style="color:var(--purple);">Connect the dots</div><div class="card-desc">Applies <strong>correlation rules</strong> that match patterns across multiple log sources and time windows. Detects attack sequences that individual logs would never reveal — the key capability that justifies SIEM's cost.</div></div>
+<div class="card"><div class="card-icon">🔔</div><div class="card-title">Alerting</div><div class="card-label" style="color:var(--purple);">Notify analysts</div><div class="card-desc">Generates <strong>tickets or alerts</strong> when correlation rules fire. Alerts are prioritised by severity, assigned to analysts, and tracked through resolution. Reduces the needle-in-haystack problem of manual log review.</div></div>
+<div class="card"><div class="card-icon">🔍</div><div class="card-title">Forensic Investigation</div><div class="card-label" style="color:var(--purple);">Investigate incidents</div><div class="card-desc">Provides historical log search for <strong>incident investigation</strong>. After a breach is detected, analysts use SIEM to reconstruct the attack timeline — when the attacker arrived, how they moved laterally, what they accessed.</div></div>
+<div class="card"><div class="card-icon">📋</div><div class="card-title">Compliance Reporting</div><div class="card-label" style="color:var(--purple);">Audit evidence</div><div class="card-desc">Generates <strong>audit reports</strong> for compliance frameworks (PCI-DSS, HIPAA, SOC 2) demonstrating that logging is in place, events are monitored, and incident response procedures were followed.</div></div>
+</div>
+
+<h2>How Correlation Rules Work</h2>
+<p>A correlation rule defines a pattern that, when matched, should generate a security alert. Rules are defined by security engineers and threat intelligence teams based on known attack techniques (MITRE ATT&CK is the primary reference framework). A simple correlation rule might be: "If more than 10 failed authentication attempts occur for the same account within 5 minutes, generate a Brute Force alert." A more complex rule might detect a lateral movement pattern: "If a workstation authenticates to more than 5 different internal servers within 30 minutes after a failed external login attempt, generate a Lateral Movement alert."</p>
+<p>The quality of a SIEM's detection capability is largely determined by the quality of its correlation rules and threat intelligence feeds. Out-of-the-box SIEM rules catch common attack patterns; organisations tune these rules over time and add custom rules specific to their environment. A SIEM with poor rule quality generates either too many false positives (alert fatigue — analysts start ignoring alerts) or too many false negatives (missed attacks).</p>
+
+<h2>SIEM vs SOAR — Understanding the Difference</h2>
+<p><strong>SIEM</strong> detects threats and notifies analysts. The analyst then decides what to do and takes manual action — blocks an IP in the firewall, disables an account in Active Directory, quarantines an endpoint via EDR. This human-in-the-loop response introduces latency: an attack can progress significantly in the minutes or hours between alert generation and analyst response.</p>
+<p><strong>SOAR (Security Orchestration, Automation, and Response)</strong> adds automated response playbooks on top of SIEM alerts. When a SIEM alert fires, a SOAR playbook can automatically: enrich the alert with threat intelligence, check the affected account's history, disable the account if a confidence threshold is met, quarantine the endpoint, create a ticket with all context pre-populated, and notify the on-call analyst — all within seconds of the initial alert. SOAR doesn't replace human analysts; it handles repetitive, time-sensitive response tasks automatically and provides analysts with context-rich tickets for complex decisions.</p>
+<p>On the exam: SIEM = detect and alert. SOAR = detect, alert, AND automate response. A question asking which technology "automatically responds to security incidents" is asking for SOAR. A question asking which technology "aggregates and correlates logs" is asking for SIEM.</p>
+
+<h2>Common SIEM Use Cases</h2>
+<p><strong>Brute force and credential stuffing detection:</strong> Correlation rules fire when authentication failure counts exceed thresholds. The SIEM correlates failed logins across multiple systems — the same IP attempting to log into the VPN, web application, and email simultaneously is a stronger signal than attempts on one system alone.</p>
+<p><strong>Lateral movement detection:</strong> After an initial compromise, attackers move laterally through the network using legitimate credentials and tools. SIEM correlation rules detect patterns like a single account authenticating to an unusual number of internal systems in a short time window, or an account accessing resources it has never accessed before at an unusual hour.</p>
+<p><strong>Data exfiltration detection:</strong> Large data transfers to external destinations — especially to unusual geographic locations or at unusual times — trigger exfiltration alerts. DLP (Data Loss Prevention) integration adds context about whether the transferred data included sensitive content.</p>
+<p><strong>Compliance logging and reporting:</strong> PCI-DSS requires logging of all access to cardholder data. HIPAA requires audit trails for PHI access. SIEM provides centralised logging that satisfies these requirements and generates the audit reports auditors request, demonstrating continuous monitoring is in place.</p>
+
+
+    <h2>SIEM Architecture — How Logs Actually Flow</h2>
+    <p>Understanding how data flows into and through a SIEM demystifies what the platform does and how it's managed. Log collection uses several mechanisms depending on the source type. <strong>Agents</strong> — lightweight software installed on endpoints and servers — forward logs to the SIEM in real time. Windows events, application logs, and endpoint protection telemetry are typically agent-collected. <strong>Agentless collection</strong> uses protocols like syslog (UDP/TCP port 514), SNMP traps (port 162), and API integrations to pull logs from network devices, cloud platforms, and applications that can't run agents. Firewalls, switches, routers, and SaaS applications are typically collected agentlessly.</p>
+    <p>Once logs arrive at the SIEM, a <strong>parsing and normalisation</strong> engine processes each log entry into a common schema. A Windows Event ID 4625 (failed logon) and a Linux PAM authentication failure are fundamentally the same event — an authentication failure — but they look completely different in their raw formats. Normalisation converts both into a standardised "authentication_failure" event type with consistent field names (source_ip, username, timestamp, target_system) that correlation rules can work with regardless of source.</p>
+    <p>Normalised events flow into the <strong>correlation engine</strong>, where rules evaluate incoming events against time windows and conditions. The correlation engine is essentially a real-time database query engine that continuously asks: "has this pattern appeared in the last N minutes?" When a pattern matches, an alert is generated and routed to the ticketing system and analyst dashboard. Events that don't match any rules are stored in the log database for forensic search — most SIEM implementations retain logs for 90 days to 7 years depending on compliance requirements.</p>
+
+    <h2>Alert Fatigue — The Biggest SIEM Operations Challenge</h2>
+    <p>Alert fatigue is the operational enemy of effective SIEM. When a SIEM generates hundreds or thousands of alerts per day — many of them false positives — analysts quickly learn to skim alerts rather than investigate them thoroughly. The result is that real threats are missed because they're buried in noise. Managing alert fatigue is a critical SIEM operations skill that the Security+ exam tests indirectly through questions about tuning and false positives.</p>
+    <p>Reducing alert fatigue requires tuning correlation rules to reduce false positives, implementing alert prioritisation (Critical alerts get immediate attention, Informational alerts are reviewed in batch), suppressing known-good activity (whitelisting authorised administrative accounts that trigger brute force rules, excluding known vulnerability scanners from IDS alerts), and using threat intelligence feeds to automatically prioritise alerts involving known malicious IPs or domains. A well-tuned SIEM generates tens of meaningful alerts per day that all warrant investigation — not thousands of alerts that analysts learn to ignore.</p>
+
+    <h2>Key SIEM Use Cases for the Exam</h2>
+    <p><strong>Account compromise detection:</strong> SIEM correlates failed logins (from the authentication logs), successful login after failures (from authentication logs), and subsequent unusual activity (from access logs) — individually innocuous events that together indicate credential compromise. The correlation rule fires when a pattern match is detected across all three log types within a configurable time window.</p>
+    <p><strong>Insider threat detection:</strong> Behaviour that deviates from a user's baseline triggers anomaly alerts. A user who downloads 500 MB of files at 2am on a Sunday when they've never worked outside business hours is statistically anomalous. SIEM User and Entity Behaviour Analytics (UEBA) builds behavioural baselines and alerts on deviations without requiring a specific signature for the attack technique.</p>
+    <p><strong>Compliance evidence:</strong> Every major compliance framework (PCI-DSS Requirement 10, HIPAA, SOC 2 CC7) requires centralised logging and monitoring. A SIEM provides the audit trail that auditors examine to verify that logging is active, events are reviewed, and incidents are responded to within required timeframes. The SIEM's reports become the primary evidence that compliance obligations are being met.</p>
+
+    <h2>Exam Scenarios</h2>
+<div class="exam-scenarios">
+<div class="scenario"><div class="scenario-q">A SOC analyst needs a single interface to view security events from the firewall, domain controller, email gateway, and endpoint protection platform simultaneously. Which technology provides this?</div>
+<div class="scenario-a"><strong>Answer: SIEM.</strong> SIEM aggregates logs from all sources into a centralised platform with a unified interface. Without SIEM, an analyst would need to log into each system separately and manually correlate events — impractical at enterprise scale.</div></div>
+<div class="scenario"><div class="scenario-q">An organisation wants to automatically quarantine endpoints when their SIEM detects indicators of compromise, without requiring manual analyst action. What technology should they add to their SIEM?</div>
+<div class="scenario-a"><strong>Answer: SOAR</strong> (Security Orchestration, Automation, and Response). SIEM detects and alerts; SOAR automates the response. A SOAR playbook can receive the SIEM alert, query the endpoint via EDR, and quarantine it automatically — all within seconds.</div></div>
+<div class="scenario"><div class="scenario-q">During a forensic investigation of a data breach, analysts need to reconstruct exactly what files were accessed and when over the past 90 days. Which tool provides this capability?</div>
+<div class="scenario-a"><strong>Answer: SIEM.</strong> The SIEM's historical log storage and search capability enables retrospective investigation. Security teams can query logs for specific user, IP, or resource activity across any time period within the SIEM's retention window. This is why log retention policies (how long SIEM stores logs) are a compliance requirement — 90-day, 1-year, and 7-year retention are all required by different frameworks.</div></div>
+</div>
+
+<h2>Related Articles</h2>
+<div class="related-grid">
+<a href="incident-response-playbook.html" class="related-link">Incident Response Playbook</a>
+<a href="ids-vs-ips.html" class="related-link">IDS vs IPS</a>
+<a href="network-attacks.html" class="related-link">Network Attacks</a>
+<a href="identity-and-access-management.html" class="related-link">Identity and Access Management</a>
+<a href="cloud-security.html" class="related-link">Cloud Security</a>
+<a href="comptia-security-plus-study-guide.html" class="related-link">Security+ Study Guide</a>
+</div>
+</div></div><footer class="footer"><div class="footer-inner">
+<div class="footer-brand"><div class="footer-logo">IT Study Hub</div><div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div></div>
+<div class="footer-links"><div class="footer-links-title">Security Ops</div><a href="incident-response-playbook.html">Incident Response</a><a href="ids-vs-ips.html">IDS vs IPS</a><a href="network-attacks.html">Network Attacks</a><a href="zero-trust-security.html">Zero Trust</a></div>
+<div class="footer-links"><div class="footer-links-title">Certifications</div><a href="comptia-security-plus-study-guide.html">Security+ Study Guide</a><a href="security-plus-cheat-sheet.html">Security+ Cheat Sheet</a><a href="best-security-plus.html">Best Security+ Resources</a></div>
+</div><div class="footer-bottom"><span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+<span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links may be affiliate links.</span></div></footer>
+</body>
+</html>
