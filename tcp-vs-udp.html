@@ -1,1146 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-MS0H78HR74');
-</script>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MS0H78HR74');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/tcp-vs-udp.html">
-
-<title>What Is TCP? TCP vs UDP Explained for CompTIA A+ (2026)</title>
-<meta name="description" content="TCP vs UDP explained simply — what TCP is, how the three-way handshake works, when UDP is used instead, real-world examples, and exam scenarios for CompTIA A+ and Network+.">
-
+<title>TCP vs UDP — Connection-Oriented vs Connectionless | CompTIA A+ and Network+</title>
+<meta name="description" content="TCP vs UDP for CompTIA A+ and Network+ — 3-way handshake, reliability, SYN flood attacks, which protocols use TCP vs UDP, and exam scenarios.">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-
 <style>
-:root {
-  --navy:    #0a1628;
-  --navy2:   #0f2040;
-  --teal:    #00c2a8;
-  --teal2:   #00a892;
-  --blue:    #1a6cff;
-  --slate:   #8a9bb5;
-  --light:   #f0f4fa;
-  --lighter: #f8fafd;
-  --white:   #ffffff;
-  --border:  #e2e8f4;
-  --text:    #1c2a3e;
-  --muted:   #5c6f87;
-  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--lighter);
-  color: var(--text);
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-}
-
-a { color: var(--teal2); text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-/* ── NAVBAR ── */
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(255,255,255,0.94);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border);
-}
-
-.nav-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 28px;
-  height: 68px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.logo-link {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: 'Outfit', sans-serif;
-  font-weight: 800;
-  font-size: 17px;
-  color: var(--navy);
-  letter-spacing: -0.3px;
-  flex-shrink: 0;
-  text-decoration: none;
-}
-
-.logo-img { height: 52px; width: auto; }
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.nav-links a {
-  font-size: 14px;
-  font-weight: 600;
-  padding: 8px 14px;
-  border-radius: 8px;
-  color: var(--muted);
-  transition: color 0.15s, background 0.15s;
-  text-decoration: none;
-}
-
-.nav-links a:hover { color: var(--navy); background: var(--light); }
-.nav-links a.active { color: var(--navy); background: var(--light); }
-
-.nav-links a.nav-cta {
-  background: var(--navy);
-  color: var(--white) !important;
-  padding: 8px 18px;
-  border-radius: 8px;
-  margin-left: 6px;
-  transition: background 0.15s, transform 0.1s;
-}
-.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
-
-@media (max-width: 768px) {
-  .nav-inner { padding: 0 16px; height: 60px; }
-  .logo-img { height: 44px; }
-  .logo-link span { font-size: 15px; }
-  .nav-links { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
-  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
-  .nav-links a.nav-cta { padding: 6px 14px; }
-}
-
-/* ── PAGE HERO ── */
-.page-hero {
-  background: var(--navy);
-  position: relative;
-  overflow: hidden;
-  padding: 52px 28px 60px;
-}
-
-.page-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(0,194,168,0.1) 0%, transparent 70%),
-    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.12) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-.page-hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 48px 48px;
-  pointer-events: none;
-}
-
-.page-hero-inner {
-  max-width: 860px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-
-.breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  color: rgba(255,255,255,0.4);
-  margin-bottom: 18px;
-  font-family: 'DM Mono', monospace;
-}
-
-.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; text-decoration: none; }
-.breadcrumb a:hover { color: var(--teal); text-decoration: none; }
-.breadcrumb span { color: rgba(255,255,255,0.25); }
-
-.page-hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: rgba(0,194,168,0.15);
-  border: 1px solid rgba(0,194,168,0.3);
-  color: var(--teal);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  padding: 5px 12px;
-  border-radius: 100px;
-  margin-bottom: 16px;
-}
-
-.page-hero h1 {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(24px, 4vw, 38px);
-  font-weight: 800;
-  color: var(--white);
-  line-height: 1.18;
-  letter-spacing: -0.6px;
-  margin-bottom: 12px;
-}
-
-.page-hero h1 span { color: var(--teal); }
-
-.page-hero-sub {
-  font-size: 15px;
-  color: rgba(255,255,255,0.6);
-  max-width: 560px;
-  line-height: 1.7;
-}
-
-/* ── ARTICLE LAYOUT ── */
-.article-wrap {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 52px 28px 80px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
-}
-
-@media (max-width: 768px) { .article-wrap { padding: 32px 16px 60px; } }
-
-/* ── ARTICLE PROSE ── */
-.article-body h2 {
-  font-family: 'Outfit', sans-serif;
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--navy);
-  letter-spacing: -0.3px;
-  margin: 40px 0 14px;
-}
-
-.article-body h2:first-child { margin-top: 0; }
-
-.article-body p {
-  font-size: 15px;
-  color: var(--text);
-  line-height: 1.75;
-  margin-bottom: 14px;
-}
-
-.article-body strong { color: var(--navy); font-weight: 700; }
-
-.article-body ul {
-  list-style: none;
-  margin: 0 0 18px 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.article-body ul li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 15px;
-  color: var(--text);
-  line-height: 1.6;
-}
-
-.article-body ul li::before {
-  content: '▸';
-  color: var(--teal2);
-  font-size: 12px;
-  margin-top: 4px;
-  flex-shrink: 0;
-  font-weight: 700;
-}
-
-.divider {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 36px 0;
-}
-
-/* ── PROTOCOL CARDS (TCP vs UDP) ── */
-.protocol-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin: 4px 0 28px;
-}
-
-@media (max-width: 560px) { .protocol-grid { grid-template-columns: 1fr; } }
-
-.protocol-card {
-  border-radius: 14px;
-  padding: 22px;
-  border: 1px solid var(--border);
-}
-
-.protocol-card.tcp {
-  background: linear-gradient(135deg, #eef6ff, #f0f8ff);
-  border-color: rgba(26,108,255,0.2);
-}
-
-.protocol-card.udp {
-  background: linear-gradient(135deg, #f0faf8, #edfaf7);
-  border-color: rgba(0,194,168,0.2);
-}
-
-.protocol-card-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-
-.protocol-card.tcp .protocol-card-label { color: var(--blue); }
-.protocol-card.udp .protocol-card-label { color: var(--teal2); }
-
-.protocol-card h3 {
-  font-family: 'Outfit', sans-serif;
-  font-size: 17px;
-  font-weight: 800;
-  color: var(--navy);
-  margin-bottom: 12px;
-}
-
-.protocol-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.protocol-card ul li {
-  font-size: 13.5px;
-  color: var(--text);
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-}
-
-.protocol-card ul li::before {
-  content: '✓';
-  font-size: 11px;
-  font-weight: 700;
-  margin-top: 2px;
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-}
-
-.protocol-card.tcp ul li::before { color: var(--blue); background: rgba(26,108,255,0.1); }
-.protocol-card.udp ul li::before { color: var(--teal2); background: rgba(0,194,168,0.12); }
-
-.protocol-analogy {
-  font-size: 13px;
-  color: var(--muted);
-  font-style: italic;
-  border-top: 1px solid rgba(0,0,0,0.06);
-  padding-top: 10px;
-  margin-top: 4px;
-}
-
-/* ── COMPARISON TABLE ── */
-.table-wrap {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  box-shadow: var(--card-shadow);
-  margin-bottom: 28px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--white);
-  min-width: 420px;
-}
-
-thead th {
-  background: var(--navy);
-  color: rgba(255,255,255,0.7);
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.7px;
-  padding: 13px 18px;
-  text-align: left;
-  font-family: 'DM Mono', monospace;
-}
-
-thead th:first-child { color: var(--white); }
-thead th.tcp-col { color: #7eb8ff; }
-thead th.udp-col { color: var(--teal); }
-
-tbody td {
-  padding: 13px 18px;
-  border-bottom: 1px solid var(--border);
-  font-size: 14px;
-  color: var(--text);
-  vertical-align: middle;
-}
-
-tbody tr:last-child td { border-bottom: none; }
-tbody tr:hover td { background: #f6f9ff; }
-.td-feature { font-weight: 600; color: var(--navy); }
-
-/* ── PORT GRID ── */
-.port-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 28px;
-}
-
-@media (max-width: 560px) { .port-grid { grid-template-columns: 1fr; } }
-
-.port-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 20px;
-  box-shadow: var(--card-shadow);
-}
-
-.port-card-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--border);
-}
-
-.port-card.tcp-card .port-card-label { color: var(--blue); }
-.port-card.udp-card .port-card-label { color: var(--teal2); }
-
-.port-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 7px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 14px;
-}
-
-.port-row:last-child { border-bottom: none; }
-
-.port-name { font-weight: 600; color: var(--navy); }
-
-.port-num {
-  font-family: 'DM Mono', monospace;
-  font-size: 13px;
-  font-weight: 500;
-  padding: 2px 8px;
-  border-radius: 6px;
-}
-
-.tcp-card .port-num { background: rgba(26,108,255,0.1); color: var(--blue); }
-.udp-card .port-num { background: rgba(0,194,168,0.1); color: var(--teal2); }
-
-/* ── EXAM TIP ── */
-.exam-tip {
-  background: linear-gradient(135deg, #fffbeb, #fef9e0);
-  border: 1px solid #f0d060;
-  border-left: 4px solid #f0c000;
-  border-radius: 12px;
-  padding: 20px 22px;
-  margin: 4px 0 28px;
-}
-
-.exam-tip-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  color: #b08000;
-  margin-bottom: 10px;
-}
-
-.exam-tip p {
-  font-size: 14px;
-  color: #5a4000;
-  margin-bottom: 8px;
-  line-height: 1.65;
-}
-
-.exam-tip p:last-child { margin-bottom: 0; }
-
-.exam-tip strong { color: #3a2800; }
-
-/* ── THREE-WAY HANDSHAKE ── */
-.handshake-flow {
-  background: var(--navy); border-radius: 14px;
-  padding: 24px 22px; margin-bottom: 28px;
-  display: flex; flex-direction: column; gap: 0;
-}
-.handshake-step {
-  display: flex; align-items: flex-start; gap: 16px;
-  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 10px; padding: 16px 18px;
-}
-.handshake-num {
-  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
-  background: rgba(0,194,168,0.2); border: 1px solid rgba(0,194,168,0.4);
-  color: var(--teal); font-family: 'Outfit', sans-serif; font-weight: 800;
-  font-size: 15px; display: flex; align-items: center; justify-content: center;
-}
-.handshake-title {
-  font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 700;
-  color: var(--white); margin-bottom: 6px;
-}
-.handshake-from {
-  font-size: 11px; color: rgba(255,255,255,0.35);
-  font-weight: 400; margin-left: 10px;
-}
-.handshake-desc { font-size: 13.5px; color: rgba(255,255,255,0.55); line-height: 1.6; }
-.handshake-arrow {
-  text-align: center; color: rgba(0,194,168,0.4);
-  font-size: 16px; padding: 4px 0; line-height: 1;
-}
-
-/* ── USE CASE GRID ── */
-.use-case-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px;
-}
-@media (max-width: 560px) { .use-case-grid { grid-template-columns: 1fr; } }
-.use-case-card {
-  border-radius: 12px; padding: 18px 20px;
-  display: flex; flex-direction: column; gap: 8px;
-}
-.use-case-tcp {
-  background: rgba(26,108,255,0.04); border: 1px solid rgba(26,108,255,0.2);
-}
-.use-case-udp {
-  background: rgba(0,194,168,0.04); border: 1px solid rgba(0,194,168,0.2);
-}
-.use-case-label {
-  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 4px;
-}
-.use-case-tcp .use-case-label { color: #1a4cc0; }
-.use-case-udp .use-case-label { color: var(--teal2); }
-.use-case-item { font-size: 13.5px; color: var(--text); line-height: 1.5; }
-
-/* ── SCENARIO LIST ── */
-.scenario-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
-.scenario-item {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 10px; padding: 13px 16px;
-  font-size: 14px; color: var(--text); line-height: 1.6;
-  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
-}
-.scenario-item strong { color: var(--navy); }
-
-/* ── SUMMARY LIST ── */
-.summary-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
-.summary-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 10px; padding: 13px 16px;
-  font-size: 14px; box-shadow: 0 2px 8px rgba(10,22,40,0.05);
-}
-.summary-item::before {
-  content: '✓';
-  display: flex; align-items: center; justify-content: center;
-  width: 20px; height: 20px; min-width: 20px;
-  background: rgba(0,194,168,0.12); color: var(--teal2);
-  border-radius: 50%; font-size: 11px; font-weight: 700; margin-top: 1px;
-}
-
-/* ── RELATED ARTICLES ── */
-.related-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 36px;
-}
-
-@media (max-width: 560px) { .related-grid { grid-template-columns: 1fr; } }
-
-.related-link {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 13px 16px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--navy);
-  text-decoration: none;
-  transition: border-color 0.15s, transform 0.15s, color 0.15s;
-  box-shadow: var(--card-shadow);
-}
-
-.related-link:hover {
-  border-color: rgba(0,194,168,0.3);
-  color: var(--teal2);
-  transform: translateY(-2px);
-  text-decoration: none;
-}
-
-.related-link::before {
-  content: '→';
-  color: var(--teal2);
-  font-size: 13px;
-  flex-shrink: 0;
-}
-
-/* ── CTA BOX ── */
-.cta-box {
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
-  border-radius: 16px;
-  padding: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-box::before {
-  content: '';
-  position: absolute;
-  top: -40px; right: -40px;
-  width: 180px; height: 180px;
-  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.cta-box-text h3 {
-  font-family: 'Outfit', sans-serif;
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--white);
-  margin-bottom: 4px;
-}
-
-.cta-box-text p {
-  font-size: 14px;
-  color: rgba(255,255,255,0.6);
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 22px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  transition: transform 0.15s, box-shadow 0.15s;
-  white-space: nowrap;
-  flex-shrink: 0;
-  text-decoration: none;
-}
-
-.btn:hover { transform: translateY(-2px); text-decoration: none; }
-
-.btn-teal {
-  background: var(--teal);
-  color: var(--navy);
-  box-shadow: 0 6px 20px rgba(0,194,168,0.3);
-}
-.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
-
-/* ── FOOTER ── */
-.footer {
-  background: var(--navy);
-  color: rgba(255,255,255,0.5);
-  padding: 40px 28px;
-}
-
-.footer-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 32px;
-  flex-wrap: wrap;
-}
-
-.footer-brand { display: flex; flex-direction: column; gap: 8px; }
-.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
-.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
-
-.footer-links { display: flex; flex-direction: column; gap: 8px; }
-.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
-.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; text-decoration: none; }
-.footer-links a:hover { color: var(--teal); }
-
-.footer-bottom {
-  max-width: 1100px;
-  margin: 28px auto 0;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  font-size: 12px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-@media (max-width: 600px) {
-  .footer { padding: 36px 16px; }
-  .footer-bottom { flex-direction: column; }
-  .cta-box { flex-direction: column; align-items: flex-start; }
-}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.page-hero-inner { animation: fadeUp 0.6s ease both; }
-
-.footer-email { color:rgba(255,255,255,0.4); }
-.footer-pp { color:rgba(255,255,255,0.4); }
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-teal{background:rgba(0,194,168,.2);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.cb-blue{background:rgba(26,108,255,.2);color:#93c5fd;border:1px solid rgba(26,108,255,.3);}
+.cb-purple{background:rgba(124,58,237,.2);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:48px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body ul{margin:0 0 16px 20px;}
+.article-body li{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:6px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.article-body a{color:var(--blue);font-weight:600;}
+.article-body a:hover{text-decoration:underline;}
+.article-body code{font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 6px;border-radius:4px;font-size:13px;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:480px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:#fafbfd;}
+tbody tr:hover td{background:var(--light);}
+.td-label{font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;}
+.tag{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.4px;margin:1px;}
+.tag-aplus{background:rgba(0,194,168,.1);color:var(--teal);}
+.tag-net{background:rgba(26,108,255,.1);color:var(--blue);}
+.tag-sec{background:rgba(124,58,237,.1);color:var(--purple);}
+.callout{border-radius:12px;padding:18px 22px;margin-bottom:32px;}
+.callout-blue{background:rgba(26,108,255,.05);border:1px solid rgba(26,108,255,.18);border-left:4px solid var(--blue);}
+.callout-purple{background:rgba(124,58,237,.05);border:1px solid rgba(124,58,237,.18);border-left:4px solid var(--purple);}
+.callout-teal{background:rgba(0,194,168,.05);border:1px solid rgba(0,194,168,.18);border-left:4px solid var(--teal);}
+.callout-amber{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.25);border-left:4px solid #f59e0b;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+.callout-blue .callout-label{color:var(--blue);}.callout-purple .callout-label{color:var(--purple);}.callout-teal .callout-label{color:var(--teal);}.callout-amber .callout-label{color:#92400e;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}.callout p:last-child{margin-bottom:0;}.callout strong{color:var(--navy);}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--card-shadow);}
+.card.accent-teal{border-top:3px solid var(--teal);}.card.accent-blue{border-top:3px solid var(--blue);}.card.accent-purple{border-top:3px solid var(--purple);}
+.card-icon{font-size:28px;margin-bottom:10px;}
+.card-title{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.card-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.card-label-teal{color:var(--teal);}.card-label-blue{color:var(--blue);}.card-label-purple{color:var(--purple);}
+.card-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.card-desc strong{color:var(--navy);}
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-q{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.scenario-a{font-size:14px;color:var(--text);line-height:1.65;}
+.scenario-a strong{color:var(--navy);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.35);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 </style>
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
-     crossorigin="anonymous"></script>
 </head>
-
 <body>
-
-<!-- NAVBAR -->
 <nav class="navbar">
   <div class="nav-inner">
-    <a href="index.html" class="logo-link">
-      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
-      <span>IT Study Hub</span>
-    </a>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="networking-roadmap.html">Networking Roadmap</a>
-      <a href="networking.html">Networking Guide</a>
-      <a href="home-lab.html">Home Lab</a>
-      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
-    </div>
+    <a href="index.html" class="logo-link"><img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img"><span>IT Study Hub</span></a>
+    <div class="nav-links"><a href="ports-and-protocols.html">Ports & Protocols</a><a href="osi-model.html">OSI Model</a><a href="network-attacks.html">Network Attacks</a><a href="best-network-plus.html" class="nav-cta">Network+ Resources</a></div>
   </div>
 </nav>
-
-<!-- PAGE HERO -->
 <section class="page-hero">
   <div class="page-hero-inner">
-    <nav class="breadcrumb">
-      <a href="index.html">Home</a>
-      <span>›</span>
-      <a href="networking-roadmap.html">Networking Roadmap</a>
-      <span>›</span>
-      <span>TCP vs UDP</span>
-    </nav>
-    <div class="page-hero-badge">CompTIA A+ · Network+ · Security+</div>
-    <h1>What Is TCP? <span>TCP vs UDP Explained</span></h1>
-    <p class="page-hero-sub">
-      TCP and UDP are the two transport layer protocols that carry almost all internet traffic. Understanding exactly how each works — and why the A+ exam cares — starts here.
-    </p>
+    <nav class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Networking</span></nav>
+    <div class="page-hero-badge">📡 Networking</div>
+    <h1>TCP vs UDP — <span>Connection-Oriented vs Connectionless</span></h1>
+    <p class="page-hero-sub">How TCP and UDP differ, when to use each, which exam protocols use which transport, and the SYN flood attack that exploits the TCP handshake.</p>
+    <div class="cert-badges"><span class="cert-badge cb-teal">A+ 220-1201</span><span class="cert-badge cb-blue">Network+ N10-009</span></div>
   </div>
 </section>
-
-<!-- ARTICLE -->
 <div class="article-wrap">
   <div class="article-body">
 
-    <p>Almost every piece of data traveling across a network uses one of two transport layer protocols: <strong>TCP</strong> (Transmission Control Protocol) or <strong>UDP</strong> (User Datagram Protocol). They both move data from one device to another, but they do it in fundamentally different ways — and knowing which protocol a service uses, and why, is core CompTIA A+ exam knowledge.</p>
-
-    <hr class="divider">
-
-    <!-- PROTOCOL CARDS -->
-    <div class="protocol-grid">
-      <div class="protocol-card tcp">
-        <div class="protocol-card-label">TCP</div>
-        <h3>Transmission Control Protocol</h3>
-        <ul>
-          <li>Establishes a connection before sending data</li>
-          <li>Guarantees every packet arrives</li>
-          <li>Re-sends any lost or corrupted packets</li>
-          <li>Delivers data in the correct order</li>
-          <li>Slower — more overhead, more reliable</li>
-        </ul>
-        <div class="protocol-analogy">📬 Like a certified letter — you get a confirmation it arrived, and if it didn't, it gets sent again.</div>
-      </div>
-
-      <div class="protocol-card udp">
-        <div class="protocol-card-label">UDP</div>
-        <h3>User Datagram Protocol</h3>
-        <ul>
-          <li>No connection established — fire and forget</li>
-          <li>No delivery guarantee</li>
-          <li>No retransmission of lost packets</li>
-          <li>No ordering of packets</li>
-          <li>Faster — less overhead, less reliable</li>
-        </ul>
-        <div class="protocol-analogy">📢 Like a radio broadcast — fast and reaches everyone, but no way to know if anyone actually received it.</div>
-      </div>
+    <div class="quick-answer">
+      <div class="quick-answer-label">Quick Reference</div>
+      <div class="quick-answer-text"><strong>TCP (Transmission Control Protocol)</strong> — connection-oriented, reliable, ordered delivery, error-checked. Uses 3-way handshake (SYN → SYN-ACK → ACK). Slower due to overhead. Use when every byte must arrive correctly: HTTP/S, email, file transfers, SSH. <strong>UDP (User Datagram Protocol)</strong> — connectionless, no guaranteed delivery, no ordering, no handshake. Faster, lower overhead. Use when speed matters more than perfection: DNS, streaming, VoIP, gaming, DHCP.</div>
     </div>
 
-    <hr class="divider">
+    <h2>The Fundamental Trade-off</h2>
+    <p>TCP and UDP both operate at Layer 4 (Transport layer) of the OSI model and both use port numbers to direct traffic to the correct application. The difference is reliability versus speed. TCP guarantees that every segment arrives at the destination in the correct order, with corrupted segments retransmitted automatically. UDP sends packets and doesn't check whether they arrived — it's fire-and-forget. This reliability comes at a cost: TCP's handshake, acknowledgements, and retransmissions add overhead and latency. UDP's lack of overhead makes it faster and lower-latency, at the expense of reliability.</p>
 
-    <h2>TCP vs UDP — Full Comparison</h2>
+    <h2>TCP — Reliability Through Connection</h2>
+    <p>TCP establishes a connection before any data is sent using the <strong>three-way handshake</strong>: the client sends a SYN (synchronise) segment → the server responds with SYN-ACK (synchronise-acknowledge) → the client sends ACK (acknowledge). Only after this handshake is complete does data flow. The handshake establishes sequence numbers that both sides use to track which segments have been received and which need retransmission. When the connection ends, a four-way FIN-ACK sequence tears it down gracefully.</p>
+    <p><strong>TCP reliability features:</strong> <strong>Sequencing</strong> — each segment is numbered so the receiver can reassemble them in order even if they arrive out-of-order (common in networks where packets take different paths). <strong>Acknowledgements</strong> — the receiver sends ACKs confirming received segments; if an ACK isn't received within a timeout, the sender retransmits. <strong>Flow control</strong> — the receiver advertises a window size (how much data it can buffer) to prevent the sender from overwhelming it. <strong>Congestion control</strong> — TCP reduces its send rate when it detects network congestion (dropped packets), preventing network meltdown. These features make TCP ideal for applications where data integrity is paramount — downloading a file, sending email, browsing a website. A missing byte in an HTML page or a corrupted block in a downloaded file would break the application.</p>
 
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Feature</th>
-            <th class="tcp-col">TCP</th>
-            <th class="udp-col">UDP</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="td-feature">Connection type</td>
-            <td>Connection-oriented — handshake required</td>
-            <td>Connectionless — no handshake</td>
-          </tr>
-          <tr>
-            <td class="td-feature">Reliability</td>
-            <td>Guaranteed delivery — every packet confirmed</td>
-            <td>No guarantee — packets may be lost</td>
-          </tr>
-          <tr>
-            <td class="td-feature">Order</td>
-            <td>Data arrives in correct sequence</td>
-            <td>Packets may arrive out of order</td>
-          </tr>
-          <tr>
-            <td class="td-feature">Error checking</td>
-            <td>Yes — detects and retransmits errors</td>
-            <td>Minimal — checksums only, no retransmit</td>
-          </tr>
-          <tr>
-            <td class="td-feature">Speed</td>
-            <td>Slower — overhead from handshaking and ACKs</td>
-            <td>Faster — no connection setup delay</td>
-          </tr>
-          <tr>
-            <td class="td-feature">OSI Layer</td>
-            <td>Layer 4 — Transport</td>
-            <td>Layer 4 — Transport</td>
-          </tr>
-          <tr>
-            <td class="td-feature">Best for</td>
-            <td>Accuracy-critical data — web, email, files</td>
-            <td>Speed-critical data — video, VoIP, DNS</td>
-          </tr>
-          <tr>
-            <td class="td-feature">Header size</td>
-            <td>20 bytes minimum</td>
-            <td>8 bytes — much lighter</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <h2>The TCP SYN Flood Attack</h2>
+    <p>The TCP handshake creates a vulnerability: during a <strong>SYN flood attack</strong>, an attacker sends thousands of SYN packets to a server with spoofed source IP addresses. The server responds with SYN-ACK to each and waits for the final ACK — but the ACK never comes (the source IP is fake). The server's half-open connection table fills up, and it can no longer accept legitimate connections. This is a DoS (Denial of Service) attack that exploits TCP's reliability mechanism. Mitigation: SYN cookies (the server doesn't allocate state until the ACK arrives), rate limiting SYN packets, and firewall rules detecting abnormal SYN rates. SYN flood attacks appear directly on Security+ and Network+ exam scenarios.</p>
 
-    <hr class="divider">
+    <h2>UDP — Speed Through Simplicity</h2>
+    <p>UDP has no handshake, no sequencing, no acknowledgements, and no retransmission. A UDP datagram is sent and immediately forgotten by the sender. If a packet is lost, dropped by a congested router, or arrives out of order, UDP doesn't know and doesn't care. This sounds like a weakness — and for some applications it is — but for many applications UDP's speed and simplicity are exactly what's needed.</p>
+    <p><strong>DNS queries</strong> use UDP port 53. A DNS query is a single small packet and its response — there's no need for the overhead of a three-way handshake for a sub-millisecond lookup. If the UDP query is lost, the DNS client simply retransmits after a short timeout — the application handles reliability at a higher level. <strong>VoIP and video conferencing</strong> use UDP because audio and video are delay-sensitive. A retransmitted voice packet that arrives 500ms late is useless — by the time it arrives, the conversation has moved on. A slightly choppy call is far better than a perfectly reliable call that's a second behind the speaker. <strong>Online gaming</strong> uses UDP for the same reason — position updates for a player must be current; an old position retransmitted after a delay is worse than no update at all. <strong>DHCP</strong> uses UDP (ports 67/68) because it operates before the client has an IP address — a TCP connection requires both parties to have IP addresses.</p>
 
-    <h2>The TCP Three-Way Handshake</h2>
+    <h2>TCP vs UDP Protocol Reference</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Protocol</th><th>Transport</th><th>Port(s)</th><th>Why That Transport?</th></tr></thead>
+      <tbody>
+        <tr><td class="td-label">HTTP</td><td>TCP</td><td>80</td><td>Web pages must be complete and correct</td></tr>
+        <tr><td class="td-label">HTTPS</td><td>TCP</td><td>443</td><td>Encrypted web — reliability required</td></tr>
+        <tr><td class="td-label">FTP</td><td>TCP</td><td>20/21</td><td>File transfers — no bytes can be lost</td></tr>
+        <tr><td class="td-label">SSH</td><td>TCP</td><td>22</td><td>Remote shell — every keystroke must arrive</td></tr>
+        <tr><td class="td-label">SMTP</td><td>TCP</td><td>25</td><td>Email delivery — must not lose messages</td></tr>
+        <tr><td class="td-label">DNS</td><td>UDP (primarily)</td><td>53</td><td>Small query/response — speed over reliability; TCP for zone transfers</td></tr>
+        <tr><td class="td-label">DHCP</td><td>UDP</td><td>67/68</td><td>No IP address yet — can't establish TCP</td></tr>
+        <tr><td class="td-label">TFTP</td><td>UDP</td><td>69</td><td>Simple file transfer — no auth, minimal overhead</td></tr>
+        <tr><td class="td-label">SNMP</td><td>UDP</td><td>161/162</td><td>Monitoring — speed over guaranteed delivery</td></tr>
+        <tr><td class="td-label">VoIP/RTP</td><td>UDP</td><td>Various</td><td>Real-time audio — latency-sensitive</td></tr>
+        <tr><td class="td-label">NTP</td><td>UDP</td><td>123</td><td>Time sync — fire and forget</td></tr>
+        <tr><td class="td-label">RDP</td><td>TCP</td><td>3389</td><td>Remote desktop — screen data must be reliable</td></tr>
+      </tbody>
+    </table></div>
 
-    <p>Before TCP sends any data, it establishes a connection using a <strong>three-way handshake</strong>. This is one of the most tested concepts on the CompTIA A+ exam — know the three steps and what each one means.</p>
+    <h2>TCP vs UDP Summary</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Property</th><th>TCP</th><th>UDP</th></tr></thead>
+      <tbody>
+        <tr><td class="td-label">Connection</td><td>Connection-oriented (3-way handshake)</td><td>Connectionless — no handshake</td></tr>
+        <tr><td class="td-label">Reliability</td><td>Guaranteed delivery and ordering</td><td>Best-effort — no guarantees</td></tr>
+        <tr><td class="td-label">Error handling</td><td>Retransmits lost segments automatically</td><td>No retransmission — app must handle</td></tr>
+        <tr><td class="td-label">Speed</td><td>Slower — handshake and ACK overhead</td><td>Faster — minimal overhead</td></tr>
+        <tr><td class="td-label">Header size</td><td>20 bytes minimum</td><td>8 bytes</td></tr>
+        <tr><td class="td-label">Use cases</td><td>HTTP/S, email, SSH, file transfer, RDP</td><td>DNS, DHCP, VoIP, streaming, gaming</td></tr>
+      </tbody>
+    </table></div>
 
-    <div class="handshake-flow">
-      <div class="handshake-step">
-        <div class="handshake-num">1</div>
-        <div class="handshake-content">
-          <div class="handshake-title">SYN <span class="handshake-from">Client → Server</span></div>
-          <div class="handshake-desc">The client sends a <strong>SYN</strong> (synchronize) packet to the server, saying: "I want to establish a connection."</div>
-        </div>
-      </div>
-      <div class="handshake-arrow">↓</div>
-      <div class="handshake-step">
-        <div class="handshake-num">2</div>
-        <div class="handshake-content">
-          <div class="handshake-title">SYN-ACK <span class="handshake-from">Server → Client</span></div>
-          <div class="handshake-desc">The server responds with a <strong>SYN-ACK</strong> (synchronize-acknowledge), saying: "I received your request and I'm ready."</div>
-        </div>
-      </div>
-      <div class="handshake-arrow">↓</div>
-      <div class="handshake-step">
-        <div class="handshake-num">3</div>
-        <div class="handshake-content">
-          <div class="handshake-title">ACK <span class="handshake-from">Client → Server</span></div>
-          <div class="handshake-desc">The client sends an <strong>ACK</strong> (acknowledge), saying: "Confirmed. Connection established — let's transfer data."</div>
-        </div>
-      </div>
-    </div>
+    
+    <h2>QoS and Traffic Priority</h2>
+    <p><strong>QoS (Quality of Service)</strong> is a network mechanism that prioritises certain traffic types over others when the network is congested. UDP-based real-time traffic (VoIP, video conferencing) is highly sensitive to delay and packet loss — even brief congestion causing 200ms of additional latency degrades voice quality noticeably. QoS marks VoIP packets with a higher priority using DSCP (Differentiated Services Code Point) values in the IP header, and network devices service higher-priority queues first during congestion. A properly configured QoS policy guarantees that VoIP packets are forwarded before email and file transfer traffic, even when all are competing for the same link. This is why VoIP deployments always require QoS configuration alongside the phones and call manager — without it, congested networks degrade voice quality unpredictably.</p>
+    <p>For the Network+ exam: QoS is configured at Layer 3 (DSCP markings in the IP header) and enforced at Layer 2 (802.1p class of service in Ethernet frames). The most common exam scenario: "users report choppy VoIP calls during peak hours when network utilisation is high — what should the administrator configure?" → QoS with higher priority for VoIP traffic.</p>
 
-    <div class="exam-tip">
-      <div class="exam-tip-label">⚡ A+ Exam — Three-Way Handshake</div>
-      <p>The sequence is always <strong>SYN → SYN-ACK → ACK</strong>. The exam may ask you to identify what happens at each step, or which step fails when a connection can't be established. If a server is unreachable, the SYN is sent but the SYN-ACK never arrives — the connection times out at step 1.</p>
-    </div>
-
-    <hr class="divider">
-
-    <h2>Which protocol uses which ports?</h2>
-
-    <p>Knowing whether a service uses TCP or UDP is high-value exam content — it's often tested by asking which protocol a specific port uses, or what protocol you'd expect to see for a given problem.</p>
-
-    <div class="port-grid">
-      <div class="port-card tcp-card">
-        <div class="port-card-label">TCP Ports — reliability required</div>
-        <div class="port-row"><span class="port-name">HTTP</span><span class="port-num">80</span></div>
-        <div class="port-row"><span class="port-name">HTTPS</span><span class="port-num">443</span></div>
-        <div class="port-row"><span class="port-name">FTP</span><span class="port-num">20 / 21</span></div>
-        <div class="port-row"><span class="port-name">SSH</span><span class="port-num">22</span></div>
-        <div class="port-row"><span class="port-name">Telnet</span><span class="port-num">23</span></div>
-        <div class="port-row"><span class="port-name">SMTP</span><span class="port-num">25</span></div>
-        <div class="port-row"><span class="port-name">POP3</span><span class="port-num">110</span></div>
-        <div class="port-row"><span class="port-name">IMAP</span><span class="port-num">143</span></div>
-        <div class="port-row"><span class="port-name">RDP</span><span class="port-num">3389</span></div>
-        <div class="port-row"><span class="port-name">SMB</span><span class="port-num">445</span></div>
-      </div>
-
-      <div class="port-card udp-card">
-        <div class="port-card-label">UDP Ports — speed required</div>
-        <div class="port-row"><span class="port-name">DNS</span><span class="port-num">53</span></div>
-        <div class="port-row"><span class="port-name">DHCP</span><span class="port-num">67 / 68</span></div>
-        <div class="port-row"><span class="port-name">SNMP</span><span class="port-num">161 / 162</span></div>
-        <div class="port-row"><span class="port-name">TFTP</span><span class="port-num">69</span></div>
-        <div class="port-row"><span class="port-name">NTP</span><span class="port-num">123</span></div>
-        <div class="port-row"><span class="port-name">Syslog</span><span class="port-num">514</span></div>
-        <div class="port-row"><span class="port-name">VoIP / RTP</span><span class="port-num">varies</span></div>
-        <div class="port-row"><span class="port-name">Video streaming</span><span class="port-num">varies</span></div>
-      </div>
-    </div>
-
-    <p style="font-size:13px;color:var(--muted);margin-top:8px;">Note: DNS uses UDP for standard queries (fast, small packets) but switches to TCP for large responses and zone transfers.</p>
-
-    <hr class="divider">
-
-    <h2>When to use TCP vs UDP</h2>
-
-    <p>The choice between TCP and UDP comes down to one question: <strong>is it worse to be slow or to lose data?</strong></p>
-
-    <p><strong>Use TCP</strong> when the data must arrive complete and correct — loading a webpage, downloading a file, sending an email, accessing a remote desktop. A missing chunk of a file or a half-loaded webpage is useless, so TCP's retransmission guarantees are worth the extra overhead.</p>
-
-    <p><strong>Use UDP</strong> when speed matters more than perfection — live video calls, online gaming, DNS lookups, streaming. In a video call, a dropped frame is barely noticeable. But a 2-second pause while TCP retransmits a lost packet would make the call unusable. UDP just moves on and keeps the stream flowing.</p>
-
-    <div class="use-case-grid">
-      <div class="use-case-card use-case-tcp">
-        <div class="use-case-label">TCP — Use when</div>
-        <div class="use-case-item">🌐 Loading websites (HTTP/HTTPS)</div>
-        <div class="use-case-item">📁 Downloading or uploading files (FTP)</div>
-        <div class="use-case-item">📧 Sending or receiving email (SMTP, IMAP)</div>
-        <div class="use-case-item">🖥️ Remote desktop sessions (RDP)</div>
-        <div class="use-case-item">🔐 Secure shell access (SSH)</div>
-        <div class="use-case-item">🗂️ Windows file sharing (SMB)</div>
-      </div>
-      <div class="use-case-card use-case-udp">
-        <div class="use-case-label">UDP — Use when</div>
-        <div class="use-case-item">📹 Live video streaming</div>
-        <div class="use-case-item">📞 VoIP and video calls</div>
-        <div class="use-case-item">🎮 Online gaming</div>
-        <div class="use-case-item">🔍 DNS lookups (port 53)</div>
-        <div class="use-case-item">📡 DHCP address assignment</div>
-        <div class="use-case-item">📊 Network monitoring (SNMP)</div>
-      </div>
-    </div>
-
-    <hr class="divider">
-
-    <h2>A+ Exam Scenarios</h2>
-
+    <h2>TCP Port States — netstat and Troubleshooting</h2>
+    <p>The <code>netstat</code> command (or <code>ss</code> on modern Linux) displays active TCP connections and their states, which is essential for network troubleshooting. Key states: <strong>LISTEN</strong> — the application is waiting for incoming connections on that port (a web server listening on port 443). <strong>ESTABLISHED</strong> — an active connection exists between two endpoints. <strong>TIME_WAIT</strong> — the connection has ended but the OS is waiting to ensure all packets have been delivered before releasing the port. <strong>CLOSE_WAIT</strong> — the remote end has closed the connection but the local application hasn't yet. A large number of TIME_WAIT connections is normal under load. A large number of CLOSE_WAIT connections may indicate an application that's not closing connections cleanly. <strong>SYN_SENT</strong> — a connection attempt has been made and the three-way handshake is in progress. Running <code>netstat -an</code> and identifying which ports are in LISTEN state confirms which services are running and accessible — a key step in port-based firewall troubleshooting.</p>
+    <h2>Exam Scenarios</h2>
     <div class="scenario-list">
-      <div class="scenario-item">💬 "Which protocol guarantees delivery of packets?" → <strong>TCP</strong></div>
-      <div class="scenario-item">💬 "A user's video call is choppy but functional. Which protocol is most likely being used?" → <strong>UDP</strong> — dropped packets cause choppiness but the call continues</div>
-      <div class="scenario-item">💬 "Which protocol requires a three-way handshake before transmitting data?" → <strong>TCP</strong></div>
-      <div class="scenario-item">💬 "DNS uses which protocol for standard queries?" → <strong>UDP</strong> (port 53) — fast, small packets</div>
-      <div class="scenario-item">💬 "A file transfer fails halfway through and must restart. Which protocol is being used?" → <strong>TCP</strong> — it detects the failure and retransmits</div>
-      <div class="scenario-item">💬 "Which protocol operates at the Transport layer?" → <strong>Both TCP and UDP</strong> — Layer 4</div>
-      <div class="scenario-item">💬 "What are the three steps of the TCP handshake in order?" → <strong>SYN, SYN-ACK, ACK</strong></div>
-      <div class="scenario-item">💬 "DHCP uses which protocol?" → <strong>UDP</strong> (ports 67/68) — broadcast-based, no prior connection</div>
-    </div>
-
-    <hr class="divider">
-
-    <h2>Key Takeaways</h2>
-
-    <div class="summary-list">
-      <div class="summary-item"><strong>TCP = reliable, ordered, connection-based.</strong> Uses a three-way handshake (SYN → SYN-ACK → ACK) before any data transfers</div>
-      <div class="summary-item"><strong>UDP = fast, connectionless, no guarantees.</strong> Sends data without establishing a connection — packets may arrive out of order or not at all</div>
-      <div class="summary-item">Both operate at <strong>Layer 4 (Transport)</strong> of the OSI model</div>
-      <div class="summary-item">TCP ports: HTTP (80), HTTPS (443), FTP (20/21), SSH (22), SMTP (25), RDP (3389)</div>
-      <div class="summary-item">UDP ports: DNS (53), DHCP (67/68), SNMP (161/162), TFTP (69)</div>
-      <div class="summary-item">DNS uses <strong>UDP for queries</strong> but <strong>TCP for zone transfers</strong> — the exam tests this distinction</div>
-    </div>
-
-    <hr class="divider">
-
-    <h2>TCP and UDP in Network+ — Ports, Flags, and Flow Control</h2>
-
-    <p>The Network+ exam goes deeper than just "TCP is reliable, UDP is fast." You need to understand TCP flags, flow control mechanisms, and how the protocol behaves at scale.</p>
-
-    <h3>TCP Flags</h3>
-    <p>Every TCP segment has a 6-bit flags field. These flags control the state of a connection and appear directly in Network+ questions about connection setup, teardown, and port scanning.</p>
-
-    <table class="info-table">
-      <thead><tr><th>Flag</th><th>Name</th><th>Purpose</th></tr></thead>
-      <tbody>
-        <tr><td><code>SYN</code></td><td>Synchronise</td><td>Initiates a connection — first step of three-way handshake</td></tr>
-        <tr><td><code>ACK</code></td><td>Acknowledge</td><td>Confirms receipt of data or SYN — used in most segments</td></tr>
-        <tr><td><code>FIN</code></td><td>Finish</td><td>Graceful connection close — four-way teardown uses FIN/ACK</td></tr>
-        <tr><td><code>RST</code></td><td>Reset</td><td>Abrupt connection termination — port closed or error</td></tr>
-        <tr><td><code>PSH</code></td><td>Push</td><td>Send buffered data immediately without waiting</td></tr>
-        <tr><td><code>URG</code></td><td>Urgent</td><td>Prioritise this data — rarely used in modern networks</td></tr>
-      </tbody>
-    </table>
-
-    <div class="callout callout-amber">
-      <strong>⚡ Network+ exam tip:</strong> RST vs FIN — RST abruptly kills the connection (port closed or error). FIN is a polite goodbye that goes through a four-way teardown (FIN → ACK → FIN → ACK). A port scanner receiving RST means port is closed; no response means filtered by firewall.
-    </div>
-
-    <h3>TCP Flow Control — Windowing</h3>
-    <p>TCP uses a <strong>sliding window</strong> to control how much data can be in-flight at once without waiting for an ACK. A larger window = more throughput. If packets are dropped, the window size shrinks. This is why a congested network causes TCP to slow down automatically.</p>
-
-    <h3>The Four-Way TCP Teardown</h3>
-    <div class="code-block" style="background:#0d1b2a;border-radius:10px;padding:18px 22px;font-family:'DM Mono',monospace;font-size:13px;line-height:1.8;overflow-x:auto;margin-bottom:16px;">
-      <span style="color:#c4b5fd;">Client →</span> <span style="color:#a5f3fc;">FIN</span> <span style="color:rgba(255,255,255,0.4);"># Client done sending</span><br>
-      <span style="color:#c4b5fd;">Server →</span> <span style="color:#a5f3fc;">ACK</span> <span style="color:rgba(255,255,255,0.4);"># Server acknowledges</span><br>
-      <span style="color:#c4b5fd;">Server →</span> <span style="color:#a5f3fc;">FIN</span> <span style="color:rgba(255,255,255,0.4);"># Server also done sending</span><br>
-      <span style="color:#c4b5fd;">Client →</span> <span style="color:#a5f3fc;">ACK</span> <span style="color:rgba(255,255,255,0.4);"># Client acknowledges — connection closed</span>
-    </div>
-
-    <h2>TCP and UDP in Security+ — Attacks and Defences</h2>
-
-    <p>Security+ tests how attackers exploit both protocols and how defenders protect against them.</p>
-
-    <table class="info-table">
-      <thead><tr><th>Attack</th><th>Protocol</th><th>How It Works</th><th>Defence</th></tr></thead>
-      <tbody>
-        <tr><td><strong>SYN Flood</strong></td><td>TCP</td><td>Sends thousands of SYN packets without completing handshake — exhausts server connection table</td><td>SYN cookies, rate limiting, firewall</td></tr>
-        <tr><td><strong>UDP Flood</strong></td><td>UDP</td><td>Sends massive volume of UDP packets to random ports — forces target to process and reply with ICMP unreachable</td><td>Rate limiting, DDoS scrubbing</td></tr>
-        <tr><td><strong>TCP Session Hijacking</strong></td><td>TCP</td><td>Attacker predicts sequence numbers and injects packets into an active session</td><td>Encrypted sessions (TLS), randomised ISNs</td></tr>
-        <tr><td><strong>DNS Amplification</strong></td><td>UDP</td><td>Spoofs victim's IP in small DNS query — large response sent to victim (amplification factor 28–54x)</td><td>Disable open resolvers, BCP38 filtering</td></tr>
-        <tr><td><strong>Fragmentation Attack</strong></td><td>IP/UDP</td><td>Splits malicious payload across fragments to evade IDS inspection</td><td>Stateful reassembly at firewall/IDS</td></tr>
-        <tr><td><strong>Replay Attack</strong></td><td>TCP/UDP</td><td>Captures valid packets and retransmits them to repeat an action</td><td>Sequence numbers, timestamps, nonces</td></tr>
-      </tbody>
-    </table>
-
-    <div class="callout callout-amber">
-      <strong>⚡ Security+ exam tip:</strong> SYN flood is the classic TCP DoS attack — the half-open connection table fills up. SYN cookies defeat this by encoding session info in the sequence number so the server doesn't need to store state until the handshake completes. Expect a scenario question on this.
-    </div>
-
-    <h2>Network+ and Security+ Exam Scenarios</h2>
-
-    <div class="exam-scenarios">
-      <div class="scenario-card">
-        <div class="scenario-q">A server is receiving thousands of SYN packets from random source IPs and becomes unreachable. What type of attack is this?</div>
-        <div class="scenario-a"><strong>SYN flood (TCP DoS attack).</strong> The attacker sends SYN packets but never completes the three-way handshake. The server's half-open connection table fills up, preventing legitimate connections. Defences include SYN cookies and rate limiting.</div>
+      <div class="scenario">
+        <div class="scenario-q">A server is receiving thousands of SYN packets per second from various source IPs but never completing the handshake. What type of attack is this, and which protocol does it exploit?</div>
+        <div class="scenario-a"><strong>Answer: SYN flood attack</strong> exploiting <strong>TCP's</strong> three-way handshake. Each half-open connection consumes server resources. The server allocates state waiting for the final ACK that never arrives. Mitigations include SYN cookies, which defer state allocation until the ACK is received.</div>
       </div>
-      <div class="scenario-card">
-        <div class="scenario-q">A port scan returns RST on port 443 and no response on port 22. What does this tell you?</div>
-        <div class="scenario-a"><strong>Port 443 is closed (RST = port actively rejected the connection). Port 22 is filtered (no response = firewall dropped the packet silently).</strong> An open port would return SYN-ACK.</div>
+      <div class="scenario">
+        <div class="scenario-q">A VoIP application is experiencing choppy audio. A packet capture shows some UDP packets are being dropped by a congested router. Why does VoIP use UDP instead of TCP, and would switching to TCP fix the audio quality?</div>
+        <div class="scenario-a"><strong>Answer:</strong> VoIP uses UDP because audio is <strong>latency-sensitive</strong> — a retransmitted audio packet that arrives 200ms+ late is useless. TCP's retransmission would make the audio worse, not better, by introducing variable latency. The fix for choppy VoIP is addressing the network congestion (QoS policies, more bandwidth, jitter buffers) — not switching to TCP.</div>
       </div>
-      <div class="scenario-card">
-        <div class="scenario-q">Why does a video streaming application use UDP instead of TCP?</div>
-        <div class="scenario-a"><strong>Latency tolerance over reliability.</strong> A dropped video frame is acceptable — a brief glitch is less noticeable than the stutter caused by TCP's retransmission delay. UDP keeps the stream flowing at the cost of occasional lost frames.</div>
+      <div class="scenario">
+        <div class="scenario-q">Which transport protocol and port does DNS use, and when does DNS use the other transport protocol?</div>
+        <div class="scenario-a"><strong>Answer: DNS primarily uses UDP port 53</strong> for standard queries and responses — these are small and latency-sensitive. DNS uses <strong>TCP port 53</strong> for zone transfers (copying entire DNS zone databases between primary and secondary DNS servers) and for responses exceeding 512 bytes (which exceed the traditional UDP payload limit). DNS over TLS (DoT) and DNS over HTTPS (DoH) also use TCP.</div>
       </div>
     </div>
 
-    <h2>Related Networking Articles</h2>
-
+    <h2>Related Articles</h2>
     <div class="related-grid">
-      <a href="osi-model.html" class="related-link">OSI Model — All 7 Layers</a>
-      <a href="ports.html" class="related-link">CompTIA A+ Port Numbers</a>
-      <a href="firewall-basics.html" class="related-link">Firewall Basics</a>
-      <a href="dhcp.html" class="related-link">What Is DHCP?</a>
-      <a href="dns.html" class="related-link">What Is DNS?</a>
-      <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
-      <a href="router-vs-switch.html" class="related-link">Router vs Switch</a>
-      <a href="networking.html" class="related-link">Networking Master Guide</a>
+      <a href="ports-and-protocols.html" class="related-link">Ports and Protocols</a>
+      <a href="osi-model.html" class="related-link">OSI Model</a>
+      <a href="tcp-ip-model.html" class="related-link">TCP/IP Model</a>
+      <a href="network-attacks.html" class="related-link">Network Attacks (SYN Flood)</a>
+      <a href="dhcp.html" class="related-link">DHCP Explained</a>
+      <a href="comptia-network-plus-study-guide.html" class="related-link">Network+ Study Guide</a>
     </div>
-      <a href="ports.html" class="related-link">Common Port Numbers</a>
-      <a href="apipa.html" class="related-link">What Is APIPA?</a>
-      <a href="osi-model.html" class="related-link">OSI Model Explained</a>
-      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
-      <a href="security-plus-cheat-sheet.html" class="related-link">Security+ Cheat Sheet</a>
-      <a href="home-lab-setup-guide.html" class="related-link">Build Your First Home Lab</a>
-    </div>
-
-    <!-- CTA -->
-    <div class="cta-box">
-      <div class="cta-box-text">
-        <h3>Preparing for the A+ Exam?</h3>
-        <p>See the books, practice exams, and free resources that actually work.</p>
-      </div>
-      <a href="best-a-plus.html" class="btn btn-teal">See Best Study Resources →</a>
-    </div>
-
   </div>
 </div>
-
-<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="footer-logo">IT Study Hub</div>
-      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
     </div>
     <div class="footer-links">
-      <div class="footer-links-title">Pages</div>
-      <a href="index.html">Home</a>
-      <a href="networking-roadmap.html">Networking Roadmap</a>
-      <a href="networking.html">Networking Guide</a>
-      <a href="best-a-plus.html">Best Study Resources</a>
+      <div class="footer-links-title">Networking</div>
+      <a href="ports-and-protocols.html">Ports & Protocols</a><a href="osi-model.html">OSI Model</a><a href="tcp-ip-model.html">TCP/IP Model</a><a href="network-attacks.html">Network Attacks</a>
     </div>
     <div class="footer-links">
-      <div class="footer-links-title">Topics</div>
-      <a href="osi-model.html">OSI Model</a>
-      <a href="tcp-vs-udp.html">TCP vs UDP</a>
-      <a href="dhcp.html">DHCP</a>
-      <a href="dns.html">DNS</a>
-      <a href="ports.html">Port Numbers</a>
+      <div class="footer-links-title">Certifications</div>
+      <a href="comptia-aplus-study-guide.html">A+ Study Guide</a><a href="comptia-network-plus-study-guide.html">Network+ Study Guide</a><a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
     </div>
   </div>
   <div class="footer-bottom">
     <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
-    <span class="footer-email"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+        <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
   </div>
 </footer>
-
 </body>
 </html>

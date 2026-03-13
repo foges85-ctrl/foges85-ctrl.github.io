@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MS0H78HR74');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/firewall-types.html">
+<title>Firewall Types Explained — Packet Filter, Stateful, NGFW, WAF | CompTIA Security+</title>
+<meta name="description" content="Packet filtering, stateful inspection, NGFW, WAF, and proxy firewalls explained for CompTIA Security+ — OSI layers, capabilities, limitations, and exam scenarios.">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(124,58,237,.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.35);color:#c4b5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#c4b5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-teal{background:rgba(0,194,168,.2);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.cb-blue{background:rgba(26,108,255,.2);color:#93c5fd;border:1px solid rgba(26,108,255,.3);}
+.cb-purple{background:rgba(124,58,237,.2);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:48px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body ul{margin:0 0 16px 20px;}
+.article-body li{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:6px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.article-body a{color:var(--blue);font-weight:600;}
+.article-body a:hover{text-decoration:underline;}
+.article-body code{font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 6px;border-radius:4px;font-size:13px;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(124,58,237,.22) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#c4b5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:480px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:#fafbfd;}
+tbody tr:hover td{background:var(--light);}
+.td-label{font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;}
+.tag{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.4px;margin:1px;}
+.tag-aplus{background:rgba(0,194,168,.1);color:var(--teal);}
+.tag-net{background:rgba(26,108,255,.1);color:var(--blue);}
+.tag-sec{background:rgba(124,58,237,.1);color:var(--purple);}
+.callout{border-radius:12px;padding:18px 22px;margin-bottom:32px;}
+.callout-blue{background:rgba(26,108,255,.05);border:1px solid rgba(26,108,255,.18);border-left:4px solid var(--blue);}
+.callout-purple{background:rgba(124,58,237,.05);border:1px solid rgba(124,58,237,.18);border-left:4px solid var(--purple);}
+.callout-teal{background:rgba(0,194,168,.05);border:1px solid rgba(0,194,168,.18);border-left:4px solid var(--teal);}
+.callout-amber{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.25);border-left:4px solid #f59e0b;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+.callout-blue .callout-label{color:var(--blue);}.callout-purple .callout-label{color:var(--purple);}.callout-teal .callout-label{color:var(--teal);}.callout-amber .callout-label{color:#92400e;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}.callout p:last-child{margin-bottom:0;}.callout strong{color:var(--navy);}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--card-shadow);}
+.card.accent-teal{border-top:3px solid var(--teal);}.card.accent-blue{border-top:3px solid var(--blue);}.card.accent-purple{border-top:3px solid var(--purple);}
+.card-icon{font-size:28px;margin-bottom:10px;}
+.card-title{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.card-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.card-label-teal{color:var(--teal);}.card-label-blue{color:var(--blue);}.card-label-purple{color:var(--purple);}
+.card-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.card-desc strong{color:var(--navy);}
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-q{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.scenario-a{font-size:14px;color:var(--text);line-height:1.65;}
+.scenario-a strong{color:var(--navy);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.35);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link"><img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img"><span>IT Study Hub</span></a>
+    <div class="nav-links"><a href="firewall-basics.html">Firewall Basics</a><a href="ids-vs-ips.html">IDS vs IPS</a><a href="network-segmentation.html">Network Segmentation</a><a href="best-security-plus.html" class="nav-cta">Security+ Resources</a></div>
+  </div>
+</nav>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Security</span></nav>
+    <div class="page-hero-badge">🔥 Security</div>
+    <h1>Firewall Types — <span>Packet Filter, Stateful, NGFW, WAF</span></h1>
+    <p class="page-hero-sub">Every firewall type tested on CompTIA — what layer each operates at, what it can and cannot inspect, and how to choose the right type for every exam scenario.</p>
+    <div class="cert-badges"><span class="cert-badge cb-blue">Network+ N10-009</span><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
+  </div>
+</section>
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">Quick Reference</div>
+      <div class="quick-answer-text"><strong>Packet filtering</strong> = Layer 3/4, stateless, fastest, weakest. <strong>Stateful inspection</strong> = tracks connection state, blocks unsolicited inbound — industry standard. <strong>NGFW (Next-Generation Firewall)</strong> = deep packet inspection, application awareness, IPS built in — current enterprise standard. <strong>WAF (Web Application Firewall)</strong> = Layer 7, protects web apps from SQLi, XSS, OWASP Top 10. <strong>Proxy firewall</strong> = intercepts and rebuilds connections, full content inspection. On the exam: match the firewall type to what layer and what threat it addresses.</div>
+    </div>
+
+    <h2>Why Firewall Types Matter for the Exam</h2>
+    <p>The CompTIA exams don't just ask "what is a firewall" — they present scenarios requiring you to choose the correct firewall type for a specific requirement. Protecting a web application from SQL injection requires a WAF, not a stateful firewall. Blocking outbound connections to known malicious domains requires an NGFW with threat intelligence, not a packet filter. Understanding what each type can and cannot do is the key to answering these scenario questions correctly.</p>
+
+    <h2>Packet Filtering Firewall — Layer 3/4, Stateless</h2>
+    <p>The oldest and simplest firewall type, packet filtering inspects each packet in isolation against a rule set. Rules match on: source IP address, destination IP address, source port, destination port, and protocol (TCP/UDP/ICMP). If a packet matches a permit rule, it passes; if it matches a deny rule or no rule, it's dropped. "Stateless" means the firewall has no memory of previous packets — it evaluates every packet independently, with no awareness of whether it belongs to an established connection.</p>
+    <p>The critical weakness: a packet filter cannot distinguish between a legitimate response to an outbound request and an unsolicited inbound packet using the same port. If you allow inbound TCP port 80, you allow all TCP port 80 packets — including attack traffic. Packet filters are fast (hardware can implement them at line rate) and appropriate for high-speed interfaces where basic ACL filtering is needed, but they've been largely replaced by stateful firewalls for perimeter security. Router ACLs are essentially packet filters.</p>
+
+    <h2>Stateful Inspection Firewall — Tracks Connection State</h2>
+    <p>Stateful inspection (also called stateful packet inspection or SPI) tracks the state of network connections. The firewall maintains a state table — a record of all active connections including source IP, destination IP, source port, destination port, protocol, and connection state (SYN sent, established, FIN wait, etc.). When a packet arrives, the firewall first checks whether it belongs to an established, permitted connection in the state table. If it does, the packet is allowed through without re-evaluating the full rule set. If it doesn't match any established connection, it's evaluated against the rule set.</p>
+    <p>The key capability: stateful firewalls automatically allow return traffic for outbound connections. When a user's browser connects to a web server, the firewall creates a state table entry. The web server's response packets are automatically permitted because they match the established connection — you don't need an explicit inbound allow rule for the return traffic. This dramatically simplifies rule management and eliminates the packet filter's inability to distinguish legitimate responses from attack traffic. Stateful inspection is the baseline for all modern firewalls — every firewall sold today is at minimum stateful.</p>
+
+    <h2>Next-Generation Firewall (NGFW)</h2>
+    <p>NGFWs extend stateful inspection with capabilities that operate at Layer 7 (Application layer): <strong>Deep Packet Inspection (DPI)</strong> examines packet payloads, not just headers — it can identify applications regardless of port (identifying Facebook traffic on port 443 even though it looks like HTTPS). <strong>Application awareness</strong> allows rules like "block Netflix but allow YouTube" rather than just "block port X." <strong>Integrated IPS</strong> detects and blocks attack signatures inline. <strong>TLS/SSL inspection</strong> decrypts encrypted traffic for inspection, then re-encrypts it — essential since most web traffic is now HTTPS. <strong>Threat intelligence feeds</strong> automatically block connections to known malicious IP addresses and domains.</p>
+    <p>NGFWs are the current enterprise standard for perimeter firewalls. Major vendors include Palo Alto Networks, Fortinet, Cisco Firepower, and Check Point. The exam distinguishes NGFWs from traditional firewalls primarily through application awareness and DPI — if a scenario requires controlling applications by name or inspecting traffic content, the answer is NGFW.</p>
+
+    <h2>Web Application Firewall (WAF)</h2>
+    <p>A WAF operates at Layer 7 and specialises in protecting web applications from application-layer attacks. It understands HTTP/HTTPS and inspects web requests and responses for attack patterns: SQL injection, cross-site scripting (XSS), cross-site request forgery (CSRF), path traversal, command injection, and other OWASP Top 10 vulnerabilities. A traditional stateful firewall sees a web request as "TCP port 443 traffic from an allowed IP" — it cannot tell the difference between a legitimate login attempt and one containing a SQL injection payload. A WAF inspects the payload of every HTTP request and blocks those containing attack patterns.</p>
+    <p>WAFs are deployed in front of web servers and web application servers. Cloud WAF services (AWS WAF, Cloudflare WAF, Azure Application Gateway WAF) protect internet-facing applications without requiring on-premises hardware. The exam question trigger for WAF: any scenario involving protecting a web application from application-layer attacks — especially SQL injection or XSS. "Which firewall protects against OWASP Top 10 attacks?" → WAF.</p>
+
+    <h2>Proxy Firewall</h2>
+    <p>A proxy firewall acts as an intermediary for all traffic — clients connect to the proxy, the proxy inspects the content, and the proxy makes a new connection to the destination. Unlike stateful firewalls that inspect packet headers, a proxy firewall terminates the client connection, fully reassembles and inspects the application-layer content, then originates a new connection to the server. This provides the most complete inspection but introduces latency. Forward proxies handle outbound client requests (filtering what users can access). Reverse proxies handle inbound requests to servers (protecting web applications, similar to WAF functionality). Application-layer proxies that reconstruct content provide protection against protocol-level evasion techniques that can bypass packet-based inspection.</p>
+
+    <h2>Firewall Types Comparison</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Type</th><th>OSI Layer</th><th>State Awareness</th><th>App Awareness</th><th>Best For</th></tr></thead>
+      <tbody>
+        <tr><td class="td-label">Packet Filter</td><td>3–4</td><td>No — stateless</td><td>No</td><td>Router ACLs, high-speed basic filtering</td></tr>
+        <tr><td class="td-label">Stateful</td><td>3–4</td><td>Yes — connection tracking</td><td>No</td><td>Perimeter baseline — all modern firewalls</td></tr>
+        <tr><td class="td-label">NGFW</td><td>3–7</td><td>Yes</td><td>Yes — DPI</td><td>Enterprise perimeter, threat prevention</td></tr>
+        <tr><td class="td-label">WAF</td><td>7</td><td>Yes</td><td>Yes — HTTP/HTTPS</td><td>Web application protection, OWASP Top 10</td></tr>
+        <tr><td class="td-label">Proxy</td><td>7</td><td>Yes — full reconstruction</td><td>Yes</td><td>Full content inspection, URL filtering</td></tr>
+      </tbody>
+    </table></div>
+
+    
+    <h2>Implicit Deny — The Foundation of Firewall Rules</h2>
+    <p>A core firewall concept tested on both Network+ and Security+ is <strong>implicit deny</strong>: any traffic not explicitly permitted by a firewall rule is denied by default. Most firewalls are configured with a final rule of "deny all" at the bottom of the rule set — traffic that doesn't match any permit rule is dropped. This is the correct security posture: the default is to block, and specific traffic is explicitly allowed. The opposite — implicit permit — would allow all traffic by default unless specifically blocked, which is far too permissive for a security boundary.</p>
+    <p>Firewall rules are evaluated in order — the first matching rule is applied and evaluation stops. This creates the critical concept of <strong>rule ordering</strong>: more specific rules must appear before more general rules. A specific deny rule placed after a broad permit rule will never be reached — the broad permit matches first. This is a classic exam trap: "why is the more specific deny rule not working?" — because a broader permit rule appears before it in the list.</p>
+
+    <h2>Stateful Firewall and NAT — Why They Work Together</h2>
+    <p>Network Address Translation (NAT) is commonly implemented on the same device as a stateful firewall. NAT translates private IP addresses to a public IP address for outbound traffic, and the state table maintains the mapping of which internal host made which outbound connection — so when the response comes back, it knows which internal host to forward it to. This state tracking is fundamentally the same mechanism as stateful firewall connection tracking: both track the source, destination, port, and state of each connection. NAT on a home router provides a degree of firewall-like protection simply because inbound packets that don't match an existing NAT state table entry have no internal address to be forwarded to — they're dropped by default. This "NAT as firewall" effect is not true firewall protection but is why home routers provide some protection even without explicit firewall rules.</p>
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario">
+        <div class="scenario-q">A company's web application is being attacked with SQL injection attempts through port 443. The existing stateful firewall is not blocking the attacks. What should they deploy?</div>
+        <div class="scenario-a"><strong>Answer: A WAF (Web Application Firewall).</strong> The stateful firewall allows all HTTPS traffic on port 443 — it cannot inspect the HTTP payload to detect SQL injection patterns. A WAF specifically inspects web application traffic for OWASP Top 10 attacks including SQL injection, operating at Layer 7 where it can see and block malicious payloads.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">An administrator needs a firewall rule that allows outbound web browsing but automatically blocks unsolicited inbound connections. Which firewall type provides this without requiring separate inbound allow rules?</div>
+        <div class="scenario-a"><strong>Answer: Stateful inspection firewall.</strong> The state table automatically permits return traffic for established outbound connections — the browser's outbound request creates a state entry, and the web server's response is automatically allowed. A stateless packet filter would require an explicit inbound rule allowing TCP 80/443 responses, which would also allow unsolicited inbound traffic on those ports.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">An organisation wants to allow Zoom but block other video conferencing applications, and detect exploit attempts in encrypted traffic. Which firewall type is required?</div>
+        <div class="scenario-a"><strong>Answer: NGFW (Next-Generation Firewall).</strong> Application-level control (allow Zoom, block others) requires deep packet inspection and application awareness — capabilities only NGFWs provide. Inspecting encrypted traffic requires TLS inspection, which is also an NGFW feature. A stateful firewall sees all HTTPS traffic identically regardless of the application.</div>
+      </div>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="firewall-basics.html" class="related-link">Firewall Basics</a>
+      <a href="ids-vs-ips.html" class="related-link">IDS vs IPS</a>
+      <a href="network-segmentation.html" class="related-link">Network Segmentation</a>
+      <a href="zero-trust-security.html" class="related-link">Zero Trust Security</a>
+      <a href="ports-and-protocols.html" class="related-link">Ports and Protocols</a>
+      <a href="comptia-security-plus-study-guide.html" class="related-link">Security+ Study Guide</a>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Security</div>
+      <a href="firewall-basics.html">Firewall Basics</a><a href="ids-vs-ips.html">IDS vs IPS</a><a href="zero-trust-security.html">Zero Trust</a><a href="network-segmentation.html">Network Segmentation</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Certifications</div>
+      <a href="comptia-security-plus-study-guide.html">Security+ Study Guide</a><a href="comptia-network-plus-study-guide.html">Network+ Study Guide</a><a href="security-plus-cheat-sheet.html">Security+ Cheat Sheet</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+        <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>

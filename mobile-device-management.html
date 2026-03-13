@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MS0H78HR74');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/mobile-device-management.html">
+<title>Mobile Device Management — MDM, MAM, BYOD, COPE | CompTIA A+ and Security+</title>
+<meta name="description" content="MDM and MAM explained for CompTIA A+ and Security+ — BYOD vs COPE, remote wipe, geofencing, containerisation, and mobile security exam scenarios.">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(124,58,237,.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.35);color:#c4b5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#c4b5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-teal{background:rgba(0,194,168,.2);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.cb-blue{background:rgba(26,108,255,.2);color:#93c5fd;border:1px solid rgba(26,108,255,.3);}
+.cb-purple{background:rgba(124,58,237,.2);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:48px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body ul{margin:0 0 16px 20px;}
+.article-body li{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:6px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.article-body a{color:var(--blue);font-weight:600;}
+.article-body a:hover{text-decoration:underline;}
+.article-body code{font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 6px;border-radius:4px;font-size:13px;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(124,58,237,.22) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#c4b5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:480px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:#fafbfd;}
+tbody tr:hover td{background:var(--light);}
+.td-label{font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;}
+.tag{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.4px;margin:1px;}
+.tag-aplus{background:rgba(0,194,168,.1);color:var(--teal);}
+.tag-net{background:rgba(26,108,255,.1);color:var(--blue);}
+.tag-sec{background:rgba(124,58,237,.1);color:var(--purple);}
+.callout{border-radius:12px;padding:18px 22px;margin-bottom:32px;}
+.callout-blue{background:rgba(26,108,255,.05);border:1px solid rgba(26,108,255,.18);border-left:4px solid var(--blue);}
+.callout-purple{background:rgba(124,58,237,.05);border:1px solid rgba(124,58,237,.18);border-left:4px solid var(--purple);}
+.callout-teal{background:rgba(0,194,168,.05);border:1px solid rgba(0,194,168,.18);border-left:4px solid var(--teal);}
+.callout-amber{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.25);border-left:4px solid #f59e0b;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+.callout-blue .callout-label{color:var(--blue);}.callout-purple .callout-label{color:var(--purple);}.callout-teal .callout-label{color:var(--teal);}.callout-amber .callout-label{color:#92400e;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}.callout p:last-child{margin-bottom:0;}.callout strong{color:var(--navy);}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--card-shadow);}
+.card.accent-teal{border-top:3px solid var(--teal);}.card.accent-blue{border-top:3px solid var(--blue);}.card.accent-purple{border-top:3px solid var(--purple);}
+.card-icon{font-size:28px;margin-bottom:10px;}
+.card-title{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.card-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.card-label-teal{color:var(--teal);}.card-label-blue{color:var(--blue);}.card-label-purple{color:var(--purple);}
+.card-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.card-desc strong{color:var(--navy);}
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-q{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.scenario-a{font-size:14px;color:var(--text);line-height:1.65;}
+.scenario-a strong{color:var(--navy);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.35);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link"><img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img"><span>IT Study Hub</span></a>
+    <div class="nav-links"><a href="identity-and-access-management.html">IAM</a><a href="zero-trust-security.html">Zero Trust</a><a href="cloud-security.html">Cloud Security</a><a href="best-security-plus.html" class="nav-cta">Security+ Resources</a></div>
+  </div>
+</nav>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>A+ / Security+</span></nav>
+    <div class="page-hero-badge">📱 A+ / Security+</div>
+    <h1>Mobile Device Management — <span>MDM, MAM, and BYOD</span></h1>
+    <p class="page-hero-sub">MDM vs MAM, BYOD vs COPE, remote wipe, geofencing, containerisation, and app management — everything about mobile security tested on A+ and Security+.</p>
+    <div class="cert-badges"><span class="cert-badge cb-teal">A+ 220-1202</span><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
+  </div>
+</section>
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">Quick Reference</div>
+      <div class="quick-answer-text"><strong>MDM (Mobile Device Management)</strong> manages and secures entire mobile devices — enforce encryption, require PINs, remote wipe, push apps. <strong>MAM (Mobile Application Management)</strong> manages only specific corporate apps, not the whole device — better for BYOD. <strong>BYOD</strong> = employee-owned devices on corporate network. <strong>COPE</strong> = corporate-owned, personal use enabled. <strong>CYOD</strong> = choose your own device from approved list. Key MDM capabilities: remote wipe, geofencing, screen lock enforcement, certificate deployment, app whitelisting/blacklisting.</div>
+    </div>
+
+    <h2>The Mobile Security Challenge</h2>
+    <p>Mobile devices present a unique security challenge: they leave the office, connect to untrusted networks, can be lost or stolen, and may be used for both work and personal purposes. Without MDM, each employee's phone is an unmanaged endpoint that can access corporate email, cloud storage, and internal systems with no visibility or control from IT. A lost phone without full-disk encryption and a PIN exposes all its data to whoever finds it. MDM closes this gap by giving IT centralised management and security enforcement over mobile devices, regardless of where those devices are located.</p>
+
+    <h2>MDM vs MAM — The Key Distinction</h2>
+    <p><strong>MDM (Mobile Device Management)</strong> manages the entire device. An MDM solution enrolls the device, installs a management profile, and then IT can: enforce screen lock PINs and biometrics, require full-device encryption, remotely wipe all data if the device is lost, push and remove apps, restrict camera or screenshot capabilities, configure WiFi and VPN profiles automatically, and track device location. MDM gives IT full control — but that full control extends to personal data on personal devices, which creates privacy concerns and employee resistance.</p>
+    <p><strong>MAM (Mobile Application Management)</strong> manages specific corporate apps rather than the entire device. A MAM solution creates a managed container around corporate apps — the corporate email client, document editor, and VPN client are managed and secured, while personal apps are completely untouched by IT. Corporate data within managed apps can be encrypted and remotely wiped; personal photos and messages are never accessible to IT. MAM is the preferred approach for BYOD scenarios because it respects employee privacy while still protecting corporate data.</p>
+    <p>Many modern solutions are described as EMM (Enterprise Mobility Management) or UEM (Unified Endpoint Management) — these terms describe platforms that handle both MDM and MAM capabilities alongside laptop and desktop management in a single console. On the exam, MDM vs MAM is the key distinction to understand — match the solution to the ownership model and privacy requirements of the scenario.</p>
+
+    <h2>Device Ownership Models</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Model</th><th>Who Owns Device</th><th>Personal Use</th><th>IT Control Level</th><th>Best Management Approach</th></tr></thead>
+      <tbody>
+        <tr><td class="td-label">BYOD</td><td>Employee</td><td>Yes — primary use</td><td>Low — privacy concerns</td><td>MAM — manage apps, not device</td></tr>
+        <tr><td class="td-label">COPE</td><td>Corporate</td><td>Yes — allowed</td><td>High — company owns device</td><td>MDM with personal space separation</td></tr>
+        <tr><td class="td-label">CYOD</td><td>Corporate</td><td>Limited</td><td>High</td><td>MDM — full device management</td></tr>
+        <tr><td class="td-label">COBO</td><td>Corporate</td><td>No — work only</td><td>Full — locked down</td><td>MDM — maximum restrictions</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>Key MDM Capabilities for the Exam</h2>
+    <p><strong>Remote wipe:</strong> Erase all data on a lost or stolen device remotely. Full device wipe removes everything; selective wipe removes only corporate data while preserving personal content (MAM capability). Remote wipe is the primary data protection control for mobile devices — the exam frequently asks "what should an administrator do when an employee reports their company phone lost?" → initiate a remote wipe.</p>
+    <p><strong>Screen lock and PIN enforcement:</strong> MDM can require a PIN, password, or biometric to unlock the device and set maximum inactivity timeout. A device without a screen lock is an open door to corporate data if lost. MDM policies can require minimum PIN complexity (6-digit minimum, no simple patterns) and maximum attempts before wipe.</p>
+    <p><strong>Encryption enforcement:</strong> MDM verifies that full-disk encryption is enabled and can block device enrollment if it's not. Modern Android and iOS devices enable encryption automatically when a screen lock is set, but MDM provides verification and compliance reporting.</p>
+    <p><strong>Geofencing:</strong> Location-based policies that trigger actions when a device enters or leaves a defined geographic boundary. A device that leaves the country might automatically have corporate app access revoked. A device on the corporate campus might automatically connect to the internal WiFi profile. Geofencing requires location services to be enabled on the device.</p>
+    <p><strong>App management:</strong> MDM can push required apps automatically to enrolled devices, remove apps when a device is unenrolled or an employee leaves, and maintain whitelists (only approved apps allowed) or blacklists (specific apps prohibited). Enterprise app stores allow distributing custom internal apps that aren't in public app stores.</p>
+    <p><strong>Certificate deployment:</strong> MDM can automatically deploy authentication certificates to devices for WiFi (WPA2-Enterprise), VPN, and email (S/MIME). Users don't need to manually install certificates — they're pushed silently during enrollment.</p>
+
+    <h2>Mobile Device Security Best Practices</h2>
+    <p><strong>OS and app updates:</strong> Mobile OS updates frequently patch security vulnerabilities. MDM can report which devices are running outdated OS versions and can block network access for devices below a minimum version threshold. This compliance checking is a key MDM value proposition beyond just device configuration.</p>
+    <p><strong>Jailbreaking and rooting detection:</strong> Jailbroken iOS devices and rooted Android devices have bypassed security controls and can run unapproved software. MDM platforms detect jailbroken/rooted devices and can automatically quarantine them — blocking corporate email and VPN access until the device is restored to a compliant state.</p>
+    <p><strong>Containerisation:</strong> Rather than managing the entire device, containerisation creates an encrypted, isolated partition for corporate data and apps. Corporate content cannot be copied out of the container (no copy-paste to personal apps, no screenshots in corporate apps). This is MAM in practice — the container is managed by IT, everything outside it is untouched.</p>
+
+    
+    <h2>Mobile Device Security — Beyond MDM</h2>
+    <p>MDM is the management layer, but mobile device security includes several additional concepts tested on A+ and Security+. <strong>Sideloading</strong> — installing apps from sources other than the official app store (Google Play, Apple App Store) — bypasses the store's security review process and significantly increases malware risk. MDM policies can disable sideloading on enrolled devices. <strong>Carrier unlocking</strong> vs <strong>jailbreaking/rooting</strong>: carrier unlocking allows a phone to be used on different cellular networks — this is legal and doesn't affect security. Jailbreaking (iOS) and rooting (Android) bypass the OS security model and allow apps to gain system-level access — this compromises the device's security posture and should be detected and quarantined by MDM.</p>
+    <p><strong>Bring Your Own Application (BYOA)</strong> extends the BYOD concept to applications — employees use their preferred applications (personal Dropbox, WhatsApp) for work alongside corporate-approved apps. This creates data leakage risk: work files saved to personal Dropbox leave corporate control. DLP integrated with MAM addresses this by preventing corporate data from being opened in or shared with non-managed applications. The container model is the technical enforcement: corporate apps can only share data with other corporate apps within the managed container, not with personal apps outside it.</p>
+    <p><strong>GPS tracking and remote location:</strong> MDM can use the device's GPS to track location. For company-owned devices this is standard practice — enabling recovery of lost/stolen devices and enforcement of geofencing policies. For BYOD devices, GPS tracking raises significant privacy concerns and should be disclosed clearly in the BYOD policy and employee agreement. Some MDM platforms allow location tracking to be disabled for BYOD while still enforcing security policies on managed apps.</p>
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario">
+        <div class="scenario-q">A company allows employees to use personal smartphones for corporate email. The security team needs to protect corporate data without accessing employees' personal content. Which solution is most appropriate?</div>
+        <div class="scenario-a"><strong>Answer: MAM (Mobile Application Management)</strong> with containerisation. MAM manages only the corporate email and collaboration apps, creating an encrypted container that IT can wipe independently of personal data. Full MDM would give IT access to the entire personal device, which is inappropriate for BYOD scenarios with privacy requirements.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">An employee reports their company-issued phone stolen. What is the first action the administrator should take?</div>
+        <div class="scenario-a"><strong>Answer: Initiate a remote wipe</strong> through the MDM console. A company-issued (COPE or COBO) device contains corporate data and the company has both the right and responsibility to erase it. The remote wipe should happen immediately — before the thief can bypass the screen lock or extract data. The administrator should also revoke any VPN certificates and disable the user's mobile email profile.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">An MDM policy requires that all enrolled devices have a 6-digit PIN. An employee enrolls a device that currently has no PIN set. What happens?</div>
+        <div class="scenario-a"><strong>Answer:</strong> The MDM profile enforces the policy — the device prompts the user to set a 6-digit PIN before it completes enrollment and gains access to corporate resources. If the user removes the PIN later, the MDM detects the policy violation and can quarantine the device, sending an alert to IT and blocking corporate app access until compliance is restored.</div>
+      </div>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="identity-and-access-management.html" class="related-link">Identity and Access Management</a>
+      <a href="zero-trust-security.html" class="related-link">Zero Trust Security</a>
+      <a href="physical-security.html" class="related-link">Physical Security</a>
+      <a href="cloud-security.html" class="related-link">Cloud Security</a>
+      <a href="comptia-aplus-study-guide.html" class="related-link">A+ Study Guide</a>
+      <a href="comptia-security-plus-study-guide.html" class="related-link">Security+ Study Guide</a>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Security</div>
+      <a href="identity-and-access-management.html">IAM</a><a href="zero-trust-security.html">Zero Trust</a><a href="physical-security.html">Physical Security</a><a href="cloud-security.html">Cloud Security</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Certifications</div>
+      <a href="comptia-aplus-study-guide.html">A+ Study Guide</a><a href="comptia-security-plus-study-guide.html">Security+ Study Guide</a><a href="best-a-plus.html">A+ Resources</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+        <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>

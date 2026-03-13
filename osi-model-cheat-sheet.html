@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MS0H78HR74');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/osi-model-cheat-sheet.html">
+<title>OSI Model Cheat Sheet — All 7 Layers with Devices and Protocols | CompTIA</title>
+<meta name="description" content="OSI model cheat sheet for CompTIA A+, Network+, and Security+ — all 7 layers with PDUs, devices, protocols, mnemonics, and exam scenarios.">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-teal{background:rgba(0,194,168,.2);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.cb-blue{background:rgba(26,108,255,.2);color:#93c5fd;border:1px solid rgba(26,108,255,.3);}
+.cb-purple{background:rgba(124,58,237,.2);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:48px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body ul{margin:0 0 16px 20px;}
+.article-body li{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:6px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.article-body a{color:var(--blue);font-weight:600;}
+.article-body a:hover{text-decoration:underline;}
+.article-body code{font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 6px;border-radius:4px;font-size:13px;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:480px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:#fafbfd;}
+tbody tr:hover td{background:var(--light);}
+.td-label{font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;}
+.tag{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.4px;margin:1px;}
+.tag-aplus{background:rgba(0,194,168,.1);color:var(--teal);}
+.tag-net{background:rgba(26,108,255,.1);color:var(--blue);}
+.tag-sec{background:rgba(124,58,237,.1);color:var(--purple);}
+.callout{border-radius:12px;padding:18px 22px;margin-bottom:32px;}
+.callout-blue{background:rgba(26,108,255,.05);border:1px solid rgba(26,108,255,.18);border-left:4px solid var(--blue);}
+.callout-purple{background:rgba(124,58,237,.05);border:1px solid rgba(124,58,237,.18);border-left:4px solid var(--purple);}
+.callout-teal{background:rgba(0,194,168,.05);border:1px solid rgba(0,194,168,.18);border-left:4px solid var(--teal);}
+.callout-amber{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.25);border-left:4px solid #f59e0b;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+.callout-blue .callout-label{color:var(--blue);}.callout-purple .callout-label{color:var(--purple);}.callout-teal .callout-label{color:var(--teal);}.callout-amber .callout-label{color:#92400e;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}.callout p:last-child{margin-bottom:0;}.callout strong{color:var(--navy);}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--card-shadow);}
+.card.accent-teal{border-top:3px solid var(--teal);}.card.accent-blue{border-top:3px solid var(--blue);}.card.accent-purple{border-top:3px solid var(--purple);}
+.card-icon{font-size:28px;margin-bottom:10px;}
+.card-title{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.card-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.card-label-teal{color:var(--teal);}.card-label-blue{color:var(--blue);}.card-label-purple{color:var(--purple);}
+.card-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.card-desc strong{color:var(--navy);}
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-q{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.scenario-a{font-size:14px;color:var(--text);line-height:1.65;}
+.scenario-a strong{color:var(--navy);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.35);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link"><img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img"><span>IT Study Hub</span></a>
+    <div class="nav-links"><a href="osi-model.html">OSI Model</a><a href="tcp-ip-model.html">TCP/IP Model</a><a href="tcp-vs-udp.html">TCP vs UDP</a><a href="best-network-plus.html" class="nav-cta">Network+ Resources</a></div>
+  </div>
+</nav>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Networking</span></nav>
+    <div class="page-hero-badge">📋 Networking</div>
+    <h1>OSI Model Cheat Sheet — <span>All 7 Layers, Devices, and Protocols</span></h1>
+    <p class="page-hero-sub">Every OSI layer memorised — PDUs, devices, protocols, mnemonics, and the bottom-up troubleshooting approach that answers most network scenario questions.</p>
+    <div class="cert-badges"><span class="cert-badge cb-teal">A+ 220-1201</span><span class="cert-badge cb-blue">Network+ N10-009</span><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
+  </div>
+</section>
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">Quick Reference — All 7 Layers</div>
+      <div class="quick-answer-text"><strong>7 Application</strong> — HTTP, FTP, DNS, SMTP. <strong>6 Presentation</strong> — SSL/TLS, JPEG, encryption/compression. <strong>5 Session</strong> — NetBIOS, RPC, session management. <strong>4 Transport</strong> — TCP, UDP, ports, segmentation. <strong>3 Network</strong> — IP, ICMP, routing, logical addressing. <strong>2 Data Link</strong> — Ethernet, MAC addresses, switches, frames. <strong>1 Physical</strong> — Cables, hubs, bits, voltages. Mnemonic top-to-bottom: <strong>All People Seem To Need Data Processing</strong>. Bottom-to-top: <strong>Please Do Not Throw Sausage Pizza Away</strong>.</div>
+    </div>
+
+    <h2>Why OSI Is the #1 Exam Topic</h2>
+    <p>The OSI (Open Systems Interconnection) model is the single most tested concept across CompTIA A+, Network+, and Security+. Every troubleshooting scenario, device identification, and protocol question on the exam connects back to OSI. A question about "which layer does a switch operate at?" is an OSI question. "Which layer does encryption occur at in TLS?" is an OSI question. "A technician is troubleshooting a connectivity issue — which layer should they check first?" is an OSI question. Internalising the OSI model — not just memorising the layer names, but understanding what happens at each layer and what devices and protocols live there — is the single highest-value study investment for all three exams.</p>
+
+    <h2>Layer 7 — Application</h2>
+    <p>The Application layer is where network-aware applications interact with the network stack. It provides network services directly to end-user applications — not the applications themselves, but the interfaces that applications use to communicate over the network. Protocols: <strong>HTTP/HTTPS</strong> (web browsing), <strong>FTP/SFTP</strong> (file transfer), <strong>SMTP/POP3/IMAP</strong> (email), <strong>DNS</strong> (name resolution), <strong>DHCP</strong> (IP assignment), <strong>SSH</strong> (secure shell), <strong>Telnet</strong> (legacy remote access), <strong>SNMP</strong> (network management), <strong>LDAP</strong> (directory services). The PDU (Protocol Data Unit) at Layer 7 is called a <strong>message</strong> or <strong>data</strong>. Troubleshooting at Layer 7: can the application connect? Is the server responding on the correct port? Is the DNS name resolving correctly?</p>
+
+    <h2>Layer 6 — Presentation</h2>
+    <p>The Presentation layer translates data between the application format and the network format. It handles three functions: <strong>translation</strong> — converting character encoding (ASCII to EBCDIC, Unicode), data formats (JSON to XML), and file formats; <strong>encryption/decryption</strong> — SSL/TLS operates at this layer, encrypting data before transmission and decrypting it on receipt; <strong>compression</strong> — reducing data size for efficient transmission (JPEG, MPEG, GIF compression happen here). In practice, Layers 5, 6, and 7 are often collapsed together in real protocol stacks — the TCP/IP model combines them all into a single Application layer. On the exam, Layer 6 is most commonly tested by identifying that SSL/TLS and encryption live here.</p>
+
+    <h2>Layer 5 — Session</h2>
+    <p>The Session layer manages the establishment, maintenance, and termination of communication sessions between applications. A session is a persistent logical connection between two communicating applications — beyond just sending packets, a session maintains state (which side is talking, where we are in a multi-step exchange, how to recover if interrupted). Protocols and services: <strong>NetBIOS</strong> (Windows network resource sharing), <strong>RPC</strong> (Remote Procedure Call — used by Active Directory, NFS, and many enterprise applications), <strong>SQL</strong> session management, <strong>SIP</strong> (VoIP session establishment). The Session layer is the least-tested of the seven layers on CompTIA exams — most questions focus on Layers 1–4 and Layer 7. When it does appear, it's usually in the context of "which layer manages sessions between applications?"</p>
+
+    <h2>Layer 4 — Transport</h2>
+    <p>The Transport layer is responsible for end-to-end communication between applications on different hosts. Key functions: <strong>segmentation</strong> — breaking large messages into segments small enough to transmit; <strong>port numbers</strong> — identifying which application on the destination host should receive the data (port 80 = HTTP, port 443 = HTTPS, port 22 = SSH); <strong>multiplexing</strong> — allowing multiple applications to share the same network connection simultaneously; <strong>reliability</strong> (TCP only) — sequencing, acknowledgements, and retransmission. The two Transport layer protocols are <strong>TCP</strong> (reliable, connection-oriented) and <strong>UDP</strong> (fast, connectionless). The PDU at Layer 4 is called a <strong>segment</strong> (TCP) or <strong>datagram</strong> (UDP). Devices: firewalls operating on ports are Layer 4 devices.</p>
+
+    <h2>Layer 3 — Network</h2>
+    <p>The Network layer handles logical addressing and routing — moving packets between different networks. Key functions: <strong>IP addressing</strong> — assigning and reading logical (IP) addresses; <strong>routing</strong> — determining the best path for packets to travel from source to destination across multiple networks; <strong>packet forwarding</strong> — each router reads the destination IP, consults its routing table, and forwards the packet toward the destination. Key protocols: <strong>IP (IPv4 and IPv6)</strong>, <strong>ICMP</strong> (ping, traceroute, unreachable messages), <strong>OSPF, BGP, EIGRP</strong> (routing protocols). The PDU at Layer 3 is called a <strong>packet</strong>. Devices: <strong>routers</strong> and <strong>Layer 3 switches</strong>. Troubleshooting at Layer 3: can you ping the destination? Is the routing table correct? Is the default gateway configured?</p>
+
+    <h2>Layer 2 — Data Link</h2>
+    <p>The Data Link layer handles communication within a single network segment — node-to-node delivery using physical addresses. Key functions: <strong>MAC addressing</strong> — each NIC has a unique 48-bit MAC address burned in at manufacture; <strong>framing</strong> — wrapping packets in frames with source and destination MAC addresses and error-checking (CRC); <strong>error detection</strong> — CRC (Cyclic Redundancy Check) detects frames corrupted in transit; <strong>media access control</strong> — CSMA/CD (Ethernet) and CSMA/CA (WiFi) govern which device can transmit at a given time. Layer 2 is divided into two sublayers: <strong>LLC (Logical Link Control)</strong> — interfaces with the Network layer above; <strong>MAC (Media Access Control)</strong> — interfaces with the Physical layer below. The PDU at Layer 2 is called a <strong>frame</strong>. Devices: <strong>switches</strong> (forward frames by MAC address), <strong>bridges</strong> (legacy). Troubleshooting: can you see the device's MAC in the ARP table? Is the switch port active?</p>
+
+    <h2>Layer 1 — Physical</h2>
+    <p>The Physical layer defines everything about the physical transmission of raw bits — electrical signals, light pulses, or radio waves. This includes: <strong>cable specifications</strong> — Cat5e, Cat6, Cat6a, fiber optic (SMF vs MMF); <strong>connector types</strong> — RJ-45, LC, SC, ST; <strong>signal encoding</strong> — how 0s and 1s are represented as voltage levels, light pulses, or radio frequencies; <strong>data rates</strong> — 100 Mbps, 1 Gbps, 10 Gbps; <strong>wireless frequencies</strong> — 2.4 GHz and 5 GHz bands. The PDU at Layer 1 is simply <strong>bits</strong>. Devices: <strong>hubs</strong> (legacy), <strong>repeaters</strong>, <strong>wireless access point radios</strong>, <strong>cables and connectors</strong>. Troubleshooting at Layer 1: is the cable connected? Are the link lights on? Is there a cable break? Is the cable the right type for the required speed?</p>
+
+    <h2>OSI Troubleshooting — Bottom-Up Approach</h2>
+    <p>The standard CompTIA troubleshooting methodology for network issues follows the OSI model from the bottom up. <strong>Layer 1 first</strong> — check physical connectivity: cable plugged in? Link light? Correct cable type? <strong>Layer 2</strong> — is the MAC address in the switch's ARP table? Is the VLAN correct? <strong>Layer 3</strong> — does the device have an IP address? Can it ping the default gateway? Are routes correct? <strong>Layer 4</strong> — is the correct port open? Is a firewall blocking the port? <strong>Layer 7</strong> — is the application configured correctly? Is the server responding? This layered approach systematically eliminates potential causes rather than randomly checking settings. The exam presents troubleshooting scenarios specifically to test whether candidates apply this structured approach.</p>
+
+    <h2>Device and Protocol Quick Reference</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Layer</th><th>Name</th><th>PDU</th><th>Devices</th><th>Key Protocols</th></tr></thead>
+      <tbody>
+        <tr><td class="td-label">7</td><td>Application</td><td>Data/Message</td><td>Proxy, WAF, Load balancer</td><td>HTTP, FTP, DNS, SMTP, SSH, DHCP</td></tr>
+        <tr><td class="td-label">6</td><td>Presentation</td><td>Data</td><td>—</td><td>SSL/TLS, JPEG, MPEG, ASCII</td></tr>
+        <tr><td class="td-label">5</td><td>Session</td><td>Data</td><td>—</td><td>NetBIOS, RPC, SIP, SQL</td></tr>
+        <tr><td class="td-label">4</td><td>Transport</td><td>Segment/Datagram</td><td>Firewall (ports)</td><td>TCP, UDP</td></tr>
+        <tr><td class="td-label">3</td><td>Network</td><td>Packet</td><td>Router, Layer 3 switch</td><td>IP, ICMP, OSPF, BGP</td></tr>
+        <tr><td class="td-label">2</td><td>Data Link</td><td>Frame</td><td>Switch, Bridge, NIC</td><td>Ethernet, 802.11 (WiFi), ARP</td></tr>
+        <tr><td class="td-label">1</td><td>Physical</td><td>Bits</td><td>Hub, Repeater, Cable, AP</td><td>Ethernet (physical), 802.11 (radio)</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario">
+        <div class="scenario-q">A technician troubleshoots a workstation that cannot access the network. The link light on the switch port is off. At which OSI layer is the problem?</div>
+        <div class="scenario-a"><strong>Answer: Layer 1 — Physical.</strong> A link light off indicates no physical connection — the cable may be unplugged, broken, or the wrong type. Troubleshooting always starts at Layer 1. No higher-layer troubleshooting is productive until physical connectivity is confirmed.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">A switch forwards frames based on destination MAC addresses. At which OSI layer does this operation occur?</div>
+        <div class="scenario-a"><strong>Answer: Layer 2 — Data Link.</strong> MAC addresses are Layer 2 addresses. Switches read Layer 2 headers (destination MAC) and forward frames accordingly. Routers read Layer 3 headers (destination IP). This distinction — switch = Layer 2, router = Layer 3 — is one of the most frequently tested OSI concepts.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">SSL/TLS encrypts data before it is transmitted. At which OSI layer does encryption occur?</div>
+        <div class="scenario-a"><strong>Answer: Layer 6 — Presentation.</strong> The Presentation layer handles data translation, encryption, and compression. SSL/TLS encryption operates at Layer 6 before data is passed to lower layers for transmission. However, note that some reference models place TLS at the Session layer (Layer 5) — if both options aren't available, Layer 4 (Transport) is also sometimes listed as TLS operates within the transport session.</div>
+      </div>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="osi-model.html" class="related-link">OSI Model Deep Dive</a>
+      <a href="tcp-ip-model.html" class="related-link">TCP/IP Model</a>
+      <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP</a>
+      <a href="ports-and-protocols.html" class="related-link">Ports and Protocols</a>
+      <a href="hub-vs-switch-vs-router.html" class="related-link">Hub vs Switch vs Router</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Networking</div>
+      <a href="osi-model.html">OSI Model</a><a href="tcp-ip-model.html">TCP/IP Model</a><a href="tcp-vs-udp.html">TCP vs UDP</a><a href="hub-vs-switch-vs-router.html">Hub vs Switch vs Router</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Certifications</div>
+      <a href="comptia-network-plus-study-guide.html">Network+ Study Guide</a><a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a><a href="comptia-aplus-study-guide.html">A+ Study Guide</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+        <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>

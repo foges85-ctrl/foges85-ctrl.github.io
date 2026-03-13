@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MS0H78HR74');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/spanning-tree-protocol.html">
+<title>Spanning Tree Protocol Explained — STP, RSTP, Root Bridge | CompTIA Network+</title>
+<meta name="description" content="STP and RSTP explained for CompTIA Network+ — root bridge election, port states, convergence, PortFast, BPDU Guard, and broadcast storm prevention.">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-teal{background:rgba(0,194,168,.2);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.cb-blue{background:rgba(26,108,255,.2);color:#93c5fd;border:1px solid rgba(26,108,255,.3);}
+.cb-purple{background:rgba(124,58,237,.2);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:48px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body ul{margin:0 0 16px 20px;}
+.article-body li{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:6px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.article-body a{color:var(--blue);font-weight:600;}
+.article-body a:hover{text-decoration:underline;}
+.article-body code{font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 6px;border-radius:4px;font-size:13px;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:480px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:#fafbfd;}
+tbody tr:hover td{background:var(--light);}
+.td-label{font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;}
+.tag{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.4px;margin:1px;}
+.tag-aplus{background:rgba(0,194,168,.1);color:var(--teal);}
+.tag-net{background:rgba(26,108,255,.1);color:var(--blue);}
+.tag-sec{background:rgba(124,58,237,.1);color:var(--purple);}
+.callout{border-radius:12px;padding:18px 22px;margin-bottom:32px;}
+.callout-blue{background:rgba(26,108,255,.05);border:1px solid rgba(26,108,255,.18);border-left:4px solid var(--blue);}
+.callout-purple{background:rgba(124,58,237,.05);border:1px solid rgba(124,58,237,.18);border-left:4px solid var(--purple);}
+.callout-teal{background:rgba(0,194,168,.05);border:1px solid rgba(0,194,168,.18);border-left:4px solid var(--teal);}
+.callout-amber{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.25);border-left:4px solid #f59e0b;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+.callout-blue .callout-label{color:var(--blue);}.callout-purple .callout-label{color:var(--purple);}.callout-teal .callout-label{color:var(--teal);}.callout-amber .callout-label{color:#92400e;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}.callout p:last-child{margin-bottom:0;}.callout strong{color:var(--navy);}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--card-shadow);}
+.card.accent-teal{border-top:3px solid var(--teal);}.card.accent-blue{border-top:3px solid var(--blue);}.card.accent-purple{border-top:3px solid var(--purple);}
+.card-icon{font-size:28px;margin-bottom:10px;}
+.card-title{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.card-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.card-label-teal{color:var(--teal);}.card-label-blue{color:var(--blue);}.card-label-purple{color:var(--purple);}
+.card-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.card-desc strong{color:var(--navy);}
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-q{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.scenario-a{font-size:14px;color:var(--text);line-height:1.65;}
+.scenario-a strong{color:var(--navy);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.35);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link"><img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img"><span>IT Study Hub</span></a>
+    <div class="nav-links"><a href="vlan-explained.html">VLANs</a><a href="network-topologies.html">Network Topologies</a><a href="routing-protocols.html">Routing Protocols</a><a href="best-network-plus.html" class="nav-cta">Network+ Resources</a></div>
+  </div>
+</nav>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Network+</span></nav>
+    <div class="page-hero-badge">🌳 Network+</div>
+    <h1>Spanning Tree Protocol — <span>STP, RSTP, and Root Bridge Election</span></h1>
+    <p class="page-hero-sub">How STP prevents broadcast storms, the root bridge election process, port states and convergence, RSTP improvements, and PortFast — all for CompTIA Network+.</p>
+    <div class="cert-badges"><span class="cert-badge cb-blue">Network+ N10-009</span></div>
+  </div>
+</section>
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">Quick Reference</div>
+      <div class="quick-answer-text"><strong>STP (Spanning Tree Protocol — 802.1D)</strong> prevents broadcast storms by blocking redundant switch links. Elects a <strong>Root Bridge</strong> (lowest Bridge ID = lowest priority + lowest MAC). Each non-root switch finds its <strong>Root Port</strong> (best path to root). Each segment elects a <strong>Designated Port</strong> (forwarding). All others become <strong>Blocked Ports</strong>. <strong>RSTP (802.1w)</strong> = faster convergence (seconds vs 30–50 seconds for STP). <strong>Per-VLAN Spanning Tree (PVST+)</strong> = Cisco's STP per VLAN.</div>
+    </div>
+
+    <h2>Why STP Exists — The Broadcast Storm Problem</h2>
+    <p>Redundant switch links are a good idea for availability — if one link fails, traffic can still flow through the backup link. But Ethernet has a fundamental problem with redundant paths: <strong>broadcast storms</strong>. When a switch receives a broadcast frame (destined for FF:FF:FF:FF:FF:FF), it floods the frame out every port except the one it came in on. With two switches connected by two links, a broadcast frame received by Switch A gets flooded out both links to Switch B, which floods it back to Switch A on both links, which floods it back again — infinitely. Within seconds, the network is saturated with broadcast frames and all legitimate traffic stops. Ethernet frames have no TTL field (unlike IP packets), so there's no mechanism to kill a looping frame.</p>
+    <p>STP solves this by logically blocking one of the redundant links. The blocked link carries no traffic normally — but if the active link fails, STP detects the failure and unblocks the redundant link, restoring connectivity. This gives the network both redundancy (the backup path exists) and loop prevention (only one active path at a time).</p>
+
+    <h2>STP Election Process</h2>
+    <p><strong>Step 1 — Root Bridge Election:</strong> All switches begin believing they are the Root Bridge and send BPDU (Bridge Protocol Data Unit) frames advertising their Bridge ID. Bridge ID = Priority (default 32768) + MAC address. Switches compare Bridge IDs and the switch with the <strong>lowest Bridge ID</strong> wins the Root Bridge election. If priorities are equal (which they are by default), the switch with the <strong>lowest MAC address</strong> becomes Root. Administrators can manually set the priority to 0 or 4096 to guarantee a specific switch becomes root — you always want your most central, highest-capacity switch to be Root, not whichever one happened to have the lowest MAC.</p>
+    <p><strong>Step 2 — Root Port Selection:</strong> Every non-root switch selects one <strong>Root Port</strong> — the port with the lowest-cost path to the Root Bridge. STP path cost is based on link speed: 10 Mbps = cost 100, 100 Mbps = cost 19, 1 Gbps = cost 4, 10 Gbps = cost 2. If two paths have equal cost, the switch prefers the path through the neighbour with the lower Bridge ID. Each non-root switch has exactly one Root Port, which is always in forwarding state.</p>
+    <p><strong>Step 3 — Designated Port Selection:</strong> For every network segment, one port is elected the <strong>Designated Port</strong> — the port on that segment with the lowest-cost path to the Root Bridge. The Designated Port forwards traffic toward the root and receives traffic from devices on that segment. On links between two switches, one switch's port is Designated (forwarding) and the other's is Blocked (non-designated).</p>
+    <p><strong>Step 4 — Blocking Non-Designated Ports:</strong> Any port that is neither a Root Port nor a Designated Port is placed in <strong>Blocked state</strong>. It receives BPDUs (to monitor for topology changes) but does not forward data frames. This breaks the loop while preserving the physical redundant link.</p>
+
+    <h2>STP Port States</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>State</th><th>Forwards Data?</th><th>Learns MACs?</th><th>Duration</th></tr></thead>
+      <tbody>
+        <tr><td class="td-label">Blocking</td><td>No</td><td>No</td><td>Up to 20 sec (Max Age timer)</td></tr>
+        <tr><td class="td-label">Listening</td><td>No</td><td>No</td><td>15 sec (Forward Delay)</td></tr>
+        <tr><td class="td-label">Learning</td><td>No</td><td>Yes</td><td>15 sec (Forward Delay)</td></tr>
+        <tr><td class="td-label">Forwarding</td><td>Yes</td><td>Yes</td><td>Indefinite (normal operation)</td></tr>
+        <tr><td class="td-label">Disabled</td><td>No</td><td>No</td><td>Admin shutdown</td></tr>
+      </tbody>
+    </table></div>
+    <p>When a link failure is detected or a new link is connected, STP must reconverge — ports transition through these states before forwarding. In classic 802.1D STP, convergence takes <strong>30–50 seconds</strong> (20 second Max Age + two 15-second Forward Delay timers). During this period, no traffic flows on the recovering path. For modern networks, this is unacceptable — which is why RSTP was developed.</p>
+
+    <h2>RSTP — Rapid Spanning Tree Protocol (802.1w)</h2>
+    <p>RSTP (IEEE 802.1w) reduces convergence time from 30–50 seconds to <strong>1–3 seconds</strong> by replacing the timer-based state machine with an active negotiation mechanism. Instead of waiting for timers to expire, switches actively negotiate with their neighbours to confirm it's safe to begin forwarding. RSTP also pre-selects an <strong>Alternate Port</strong> (backup to the Root Port) and a <strong>Backup Port</strong> (backup to the Designated Port) — these can transition to forwarding almost immediately when the active port fails, without full reconvergence. RSTP is backward compatible with STP and is now the default on virtually all modern switches. When you configure spanning tree on a Cisco switch, you're using RSTP (or PVST+/Rapid-PVST+) — classic 802.1D STP is rarely used in new deployments.</p>
+
+    <h2>PortFast and BPDU Guard</h2>
+    <p><strong>PortFast</strong> is a Cisco feature (also available as Edge Port in RSTP) that allows an access port connected to an end device (workstation, printer, IP phone) to skip the Listening and Learning states and go directly to Forwarding when the link comes up. This eliminates the 30-second delay that users experience when plugging in their computer. PortFast should only be enabled on ports connected to end devices — never on ports connecting to other switches, as a looping switch connection on a PortFast port would create a broadcast storm before STP could detect and block it.</p>
+    <p><strong>BPDU Guard</strong> protects PortFast-enabled ports from rogue switch connections. If a BPDU is received on a BPDU Guard-protected port (indicating a switch has been connected), the port is immediately placed in error-disabled state (shut down). This prevents an unauthorised switch from being plugged into an access port and potentially disrupting the STP topology. PortFast + BPDU Guard is the standard configuration for all switch access ports in enterprise environments.</p>
+
+    
+    <h2>Per-VLAN Spanning Tree (PVST+) and Multiple Spanning Tree (MST)</h2>
+    <p>Standard 802.1D STP runs one instance for the entire network — one Root Bridge is elected and all VLANs use the same topology. This creates an inefficiency: all traffic must flow through the single Root Bridge path, leaving redundant links idle. <strong>PVST+ (Per-VLAN Spanning Tree Plus)</strong> is Cisco's proprietary enhancement that runs a separate STP instance for each VLAN. This allows different VLANs to have different Root Bridges and use different links — effectively load-balancing traffic across redundant links by having VLAN 10 prefer one uplink and VLAN 20 prefer another. Rapid-PVST+ combines PVST+ with RSTP's faster convergence.</p>
+    <p><strong>MST (Multiple Spanning Tree — IEEE 802.1s)</strong> is the standards-based alternative to PVST+. Rather than one instance per VLAN (which becomes unmanageable with hundreds of VLANs), MST maps multiple VLANs to a smaller number of STP instances. VLANs with similar topology requirements share an MST instance. MST is more scalable than PVST+ for large networks but requires careful planning. On the exam, PVST+ is Cisco-specific and per-VLAN; MST is standards-based and groups VLANs into instances.</p>
+
+    <h2>Common STP Exam Keywords</h2>
+    <p>The exam uses specific terms to signal STP scenarios. <strong>"Broadcast storm"</strong> — STP is not functioning or a loop exists; BPDUs are not being exchanged. <strong>"Intermittent connectivity"</strong> — STP reconvergence is disrupting traffic; a link is flapping, causing repeated STP state changes. <strong>"30-second delay when connecting"</strong> — STP is running on an access port without PortFast; enable PortFast on end-device ports. <strong>"Unauthorised switch connected to access port"</strong> — enable BPDU Guard to shut down the port when a BPDU is received. <strong>"Which switch is the Root Bridge?"</strong> — lowest priority wins, then lowest MAC as tiebreaker; configure the priority explicitly to control Root Bridge placement rather than relying on MAC address luck.</p>
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario">
+        <div class="scenario-q">Users experience 30–50 second connectivity delays every time they plug their laptop into a switch port. What feature should be enabled to fix this?</div>
+        <div class="scenario-a"><strong>Answer: PortFast</strong> (or Edge Port in RSTP). PortFast allows access ports to skip the Listening and Learning states and go directly to Forwarding, eliminating the 30-second STP convergence delay for end-device ports. BPDU Guard should be enabled on the same ports to prevent accidental switch connections.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">A network suddenly floods with traffic, utilisation hits 100%, and all communication stops. Rebooting switches temporarily resolves it. What is the most likely cause?</div>
+        <div class="scenario-a"><strong>Answer: A broadcast storm caused by a switching loop.</strong> STP has either failed or is misconfigured, allowing a loop to form. A looping broadcast frame multiplies until it saturates the network. Check for a newly added switch or cable that created a redundant path, and verify STP is enabled and operating correctly on all switches.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">An administrator wants a specific core switch to always be elected Root Bridge. What should they configure?</div>
+        <div class="scenario-a"><strong>Answer: Set the switch's STP priority to 0</strong> (or the lowest available value — typically 0 or 4096 in increments of 4096 on Cisco switches). The switch with the lowest Bridge ID (priority + MAC) wins the Root Bridge election. Setting priority to 0 guarantees this switch wins regardless of MAC addresses.</div>
+      </div>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="vlan-explained.html" class="related-link">VLANs Explained</a>
+      <a href="network-topologies.html" class="related-link">Network Topologies</a>
+      <a href="hub-vs-switch-vs-router.html" class="related-link">Hub vs Switch vs Router</a>
+      <a href="network-segmentation.html" class="related-link">Network Segmentation</a>
+      <a href="routing-protocols.html" class="related-link">Routing Protocols</a>
+      <a href="comptia-network-plus-study-guide.html" class="related-link">Network+ Study Guide</a>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Networking</div>
+      <a href="vlan-explained.html">VLANs</a><a href="hub-vs-switch-vs-router.html">Hub vs Switch vs Router</a><a href="network-topologies.html">Network Topologies</a><a href="routing-protocols.html">Routing Protocols</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Certifications</div>
+      <a href="comptia-network-plus-study-guide.html">Network+ Study Guide</a><a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a><a href="best-network-plus.html">Best Network+ Resources</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+        <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>

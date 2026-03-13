@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MS0H78HR74');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/hub-vs-switch-vs-router.html">
+<title>Hub vs Switch vs Router — What's the Difference? | CompTIA A+ and Network+</title>
+<meta name="description" content="Hub vs switch vs router explained for CompTIA A+ and Network+ — OSI layers, collision domains, broadcast domains, MAC tables, and how to answer every exam scenario.">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-teal{background:rgba(0,194,168,.2);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.cb-blue{background:rgba(26,108,255,.2);color:#93c5fd;border:1px solid rgba(26,108,255,.3);}
+.cb-purple{background:rgba(124,58,237,.2);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:48px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body ul{margin:0 0 16px 20px;}
+.article-body li{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:6px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.article-body a{color:var(--blue);font-weight:600;}
+.article-body a:hover{text-decoration:underline;}
+.article-body code{font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 6px;border-radius:4px;font-size:13px;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:480px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:#fafbfd;}
+tbody tr:hover td{background:var(--light);}
+.td-label{font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;}
+.tag{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.4px;margin:1px;}
+.tag-aplus{background:rgba(0,194,168,.1);color:var(--teal);}
+.tag-net{background:rgba(26,108,255,.1);color:var(--blue);}
+.tag-sec{background:rgba(124,58,237,.1);color:var(--purple);}
+.callout{border-radius:12px;padding:18px 22px;margin-bottom:32px;}
+.callout-blue{background:rgba(26,108,255,.05);border:1px solid rgba(26,108,255,.18);border-left:4px solid var(--blue);}
+.callout-purple{background:rgba(124,58,237,.05);border:1px solid rgba(124,58,237,.18);border-left:4px solid var(--purple);}
+.callout-teal{background:rgba(0,194,168,.05);border:1px solid rgba(0,194,168,.18);border-left:4px solid var(--teal);}
+.callout-amber{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.25);border-left:4px solid #f59e0b;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+.callout-blue .callout-label{color:var(--blue);}.callout-purple .callout-label{color:var(--purple);}.callout-teal .callout-label{color:var(--teal);}.callout-amber .callout-label{color:#92400e;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}.callout p:last-child{margin-bottom:0;}.callout strong{color:var(--navy);}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--card-shadow);}
+.card.accent-teal{border-top:3px solid var(--teal);}.card.accent-blue{border-top:3px solid var(--blue);}.card.accent-purple{border-top:3px solid var(--purple);}
+.card-icon{font-size:28px;margin-bottom:10px;}
+.card-title{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.card-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.card-label-teal{color:var(--teal);}.card-label-blue{color:var(--blue);}.card-label-purple{color:var(--purple);}
+.card-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.card-desc strong{color:var(--navy);}
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-q{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.scenario-a{font-size:14px;color:var(--text);line-height:1.65;}
+.scenario-a strong{color:var(--navy);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.35);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link"><img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img"><span>IT Study Hub</span></a>
+    <div class="nav-links"><a href="osi-model.html">OSI Model</a><a href="network-topologies.html">Network Topologies</a><a href="vlan-explained.html">VLANs</a><a href="best-network-plus.html" class="nav-cta">Network+ Resources</a></div>
+  </div>
+</nav>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Networking</span></nav>
+    <div class="page-hero-badge">🔀 Networking</div>
+    <h1>Hub vs Switch vs Router — <span>What's the Difference?</span></h1>
+    <p class="page-hero-sub">The three most fundamental networking devices explained for CompTIA — OSI layers, forwarding logic, collision vs broadcast domains, and exactly when to use each.</p>
+    <div class="cert-badges"><span class="cert-badge cb-teal">A+ 220-1201</span><span class="cert-badge cb-blue">Network+ N10-009</span></div>
+  </div>
+</section>
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">Quick Reference</div>
+      <div class="quick-answer-text"><strong>Hub</strong> = layer 1, broadcasts to all ports, creates one collision domain. <strong>Switch</strong> = layer 2, forwards by MAC address, each port is its own collision domain. <strong>Router</strong> = layer 3, forwards by IP address, separates broadcast domains. On the exam: if a scenario mentions "all devices receiving all traffic," that's a hub. If it mentions "forwarding based on MAC," that's a switch. If it mentions "connecting two different networks or subnets," that's a router.</div>
+    </div>
+
+    <h2>The OSI Layer Connection</h2>
+    <p>The easiest way to remember the difference is by OSI layer. Each device operates at a specific layer and can only understand information up to that layer. A <strong>hub</strong> operates at <strong>Layer 1 (Physical)</strong> — it only understands electrical signals. It has no awareness of MAC addresses or IP addresses, so when a frame arrives on any port, it blindly repeats that signal out every other port. A <strong>switch</strong> operates at <strong>Layer 2 (Data Link)</strong> — it reads the destination MAC address in each Ethernet frame and forwards it only to the port where that MAC address is located. A <strong>router</strong> operates at <strong>Layer 3 (Network)</strong> — it reads the destination IP address in each packet and makes forwarding decisions based on its routing table.</p>
+    <p>This layer distinction determines what each device can and cannot do. A hub cannot filter traffic because it cannot read addresses. A switch cannot route between subnets because it cannot read IP addresses. A router can do everything a switch can do, plus inter-network routing — but dedicated switches handle Layer 2 forwarding faster and cheaper at scale.</p>
+
+    <h2>Hub vs Switch vs Router — Full Comparison</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Feature</th><th>Hub</th><th>Switch</th><th>Router</th></tr></thead>
+      <tbody>
+        <tr><td class="td-label">OSI Layer</td><td>Layer 1 — Physical</td><td>Layer 2 — Data Link</td><td>Layer 3 — Network</td></tr>
+        <tr><td class="td-label">Forwarding basis</td><td>None — floods all ports</td><td>MAC address table</td><td>IP routing table</td></tr>
+        <tr><td class="td-label">Collision domains</td><td>One shared domain</td><td>One per port</td><td>One per port/interface</td></tr>
+        <tr><td class="td-label">Broadcast domains</td><td>One shared domain</td><td>One per VLAN</td><td>One per interface</td></tr>
+        <tr><td class="td-label">Connects</td><td>Devices on same segment</td><td>Devices on same network</td><td>Different networks/subnets</td></tr>
+        <tr><td class="td-label">Intelligence</td><td>None — dumb repeater</td><td>Learns MAC-to-port mappings</td><td>Dynamic routing protocols</td></tr>
+        <tr><td class="td-label">Status today</td><td>Obsolete — never used in new installs</td><td>Ubiquitous — every LAN</td><td>Every network edge and WAN</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>How a Hub Works — and Why It Was Replaced</h2>
+    <p>A hub is a multiport repeater. Every frame that arrives on any port is immediately retransmitted out every other port simultaneously. The hub has no memory, no address table, and no filtering capability whatsoever. All devices connected to a hub share a single collision domain — if two devices transmit simultaneously, their signals collide and both transmissions must be retried. This is why 10BASE-T Ethernet (which used hubs) required CSMA/CD (Carrier Sense Multiple Access with Collision Detection) to manage collisions. As more devices joined a hub-based network, collisions increased exponentially, degrading performance for everyone.</p>
+    <p>Hubs also create significant security concerns. Because every frame is flooded to every port, any device connected to the hub can capture all traffic by putting its NIC into promiscuous mode — a trivial network sniffing attack. Switches eliminated this vulnerability by only forwarding frames to the intended destination port. Hubs were completely replaced by switches in professional installations by the early 2000s. They appear on CompTIA exams exclusively as a historical reference and as the wrong answer in scenarios that require intelligent traffic forwarding.</p>
+
+    <h2>How a Switch Works — MAC Address Tables</h2>
+    <p>A switch learns which device is connected to which port by examining the <strong>source MAC address</strong> of every incoming frame. When a frame arrives, the switch records the source MAC address and the port it came in on in its MAC address table (also called the CAM table — Content Addressable Memory). The next time a frame arrives destined for that MAC address, the switch looks it up in the table and forwards the frame only to the specific port where that device lives — never to other ports.</p>
+    <p>When a switch receives a frame for a MAC address it hasn't seen yet, it <strong>floods</strong> the frame to all ports except the one it came in on — exactly like a hub. Once the destination device responds, the switch learns its MAC-to-port mapping and subsequent frames are forwarded intelligently. A switch also floods frames addressed to the broadcast address (FF:FF:FF:FF:FF:FF) to all ports in the same VLAN, which is why switches do not break up broadcast domains — only routers do.</p>
+    <p><strong>VLANs</strong> extend the switch's capabilities by creating logical segments within a single physical switch. Each VLAN is its own broadcast domain — a broadcast sent in VLAN 10 never reaches devices in VLAN 20. Traffic between VLANs requires a router (or a Layer 3 switch), because crossing from one VLAN to another is crossing from one broadcast domain to another — a Layer 3 operation.</p>
+
+    <h2>How a Router Works — Routing Tables and IP Forwarding</h2>
+    <p>A router maintains a <strong>routing table</strong> — a database of known networks and the next hop or interface to use to reach each one. When a packet arrives, the router extracts the destination IP address, looks it up in the routing table using longest prefix match, and forwards the packet out the appropriate interface. Unlike a switch's MAC table which is learned automatically, routing tables are populated through a combination of directly connected networks (automatic), static routes (manually configured), and dynamic routing protocols (OSPF, BGP, EIGRP) that exchange route information between routers.</p>
+    <p>Routers perform <strong>Network Address Translation (NAT)</strong>, translating private IP addresses to public IP addresses for internet-bound traffic. Every home router and most enterprise edge routers use NAT. Routers also implement <strong>access control lists (ACLs)</strong> to filter traffic between networks based on source/destination IP, port, and protocol — a basic form of firewall functionality. Routers connect networks that may use different technologies — a router might have one Ethernet interface connected to a LAN and one fiber interface connected to a WAN provider.</p>
+
+    <h2>Layer 3 Switches — The Hybrid</h2>
+    <p>Modern enterprise networks use <strong>Layer 3 switches</strong> (also called multilayer switches) at the distribution and core layers. A Layer 3 switch combines high-speed Layer 2 switching with hardware-accelerated Layer 3 routing. It can forward packets between VLANs at wire speed without the latency of sending traffic to a dedicated router. Layer 3 switches handle inter-VLAN routing inside the building, while dedicated routers handle WAN connectivity and complex routing policies at the perimeter. On the exam, a question asking "which device allows communication between two VLANs?" accepts both "router" and "Layer 3 switch" as correct answers.</p>
+
+    
+    <h2>Collision Domains vs Broadcast Domains — The Exam Distinction</h2>
+    <p>Two terms that constantly trip up exam candidates: collision domains and broadcast domains. A <strong>collision domain</strong> is the set of devices that could cause a collision if they transmit simultaneously. In a hub, all connected devices share one collision domain — if two devices transmit at once, their signals collide. Each port on a switch is its own collision domain — a device on port 1 and a device on port 2 can transmit simultaneously without collision. A router interface is also its own collision domain. The rule: <strong>hubs don't break collision domains; switches and routers do</strong>.</p>
+    <p>A <strong>broadcast domain</strong> is the set of devices that receive a Layer 2 broadcast (destination MAC FF:FF:FF:FF:FF:FF). Every device connected to a switch (in the same VLAN) receives broadcasts sent to that VLAN. A switch does not break broadcast domains — all devices in the same VLAN share one broadcast domain. A router does break broadcast domains — broadcasts cannot cross a router (unless explicitly relayed, as DHCP relay does). VLANs on a switch also create separate broadcast domains. The rule: <strong>only routers and VLANs break broadcast domains; switches and hubs do not</strong>.</p>
+    <p>Quick test: a network has 1 hub with 4 devices and 1 switch with 4 devices, connected together through a router. How many collision domains and broadcast domains? Answer: the hub's 4 devices share 1 collision domain, each of the switch's 4 ports is its own collision domain = 5 total collision domains. The hub side is 1 broadcast domain, the switch side is 1 broadcast domain, the router separates them = 2 broadcast domains.</p>
+
+    <h2>When Would You Still See a Hub?</h2>
+    <p>Hubs are obsolete for network access, but they appear in one specific legitimate use case: <strong>network monitoring via a tap</strong>. A passive network tap or a hub can be used to connect a packet analyser (Wireshark) to monitor all traffic on a segment without being in the traffic path. More commonly, a switch's <strong>SPAN port</strong> (port mirroring) accomplishes this without the collision domain problem. The exam question "a technician needs to capture all traffic between two devices — which device allows this?" accepts both hub and SPAN port as correct answers depending on context. In modern environments, SPAN is always preferred.</p>
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario">
+        <div class="scenario-q">All devices on a network segment can see each other's traffic using a packet analyser. Which device is connecting them?</div>
+        <div class="scenario-a"><strong>Answer: A hub.</strong> Hubs flood all traffic to all ports, making every connected device able to capture all traffic. A switch forwards frames only to the destination port, so a device on one switch port cannot normally capture traffic destined for a different port.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">A workstation in the 192.168.1.0/24 subnet needs to communicate with a server in the 192.168.2.0/24 subnet. Which device is required?</div>
+        <div class="scenario-a"><strong>Answer: A router (or Layer 3 switch).</strong> These are two different subnets — different broadcast domains. A switch operates only within a single broadcast domain and cannot forward traffic between subnets. Only a Layer 3 device (router or Layer 3 switch) can forward packets between different IP networks.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">A switch receives a frame destined for MAC address AA:BB:CC:DD:EE:FF, which it has not seen before. What does it do?</div>
+        <div class="scenario-a"><strong>Answer: It floods the frame to all ports except the one it arrived on.</strong> This is called an unknown unicast flood. The switch hasn't learned which port that MAC is connected to yet, so it behaves like a hub for that specific frame. When the destination device responds, the switch learns its port and adds it to the MAC address table.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">An administrator wants to reduce the number of collision domains on a network currently using hubs. What should they replace the hubs with?</div>
+        <div class="scenario-a"><strong>Answer: Switches.</strong> Each port on a switch is its own collision domain — two devices connected to different switch ports never compete for the same medium. A switch with 24 ports creates 24 separate collision domains. Replacing a hub with a switch eliminates collisions entirely for full-duplex connections, dramatically improving network performance.</div>
+      </div>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="osi-model.html" class="related-link">OSI Model</a>
+      <a href="network-topologies.html" class="related-link">Network Topologies</a>
+      <a href="vlan-explained.html" class="related-link">VLANs Explained</a>
+      <a href="network-segmentation.html" class="related-link">Network Segmentation</a>
+      <a href="routing-protocols.html" class="related-link">Routing Protocols</a>
+      <a href="comptia-network-plus-study-guide.html" class="related-link">Network+ Study Guide</a>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Networking</div>
+      <a href="osi-model.html">OSI Model</a><a href="network-topologies.html">Network Topologies</a><a href="vlan-explained.html">VLANs</a><a href="routing-protocols.html">Routing Protocols</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Certifications</div>
+      <a href="comptia-aplus-study-guide.html">A+ Study Guide</a><a href="comptia-network-plus-study-guide.html">Network+ Study Guide</a><a href="best-network-plus.html">Network+ Resources</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+        <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>

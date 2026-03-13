@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MS0H78HR74');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/authentication-protocols.html">
+<title>Authentication Protocols — Kerberos, NTLM, RADIUS, TACACS+ | CompTIA Security+</title>
+<meta name="description" content="Kerberos, NTLM, RADIUS, TACACS+, and LDAP explained for CompTIA A+, Network+, and Security+ — ports, use cases, security properties, and exam scenarios.">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(124,58,237,.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.35);color:#c4b5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#c4b5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-teal{background:rgba(0,194,168,.2);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.cb-blue{background:rgba(26,108,255,.2);color:#93c5fd;border:1px solid rgba(26,108,255,.3);}
+.cb-purple{background:rgba(124,58,237,.2);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:48px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body ul{margin:0 0 16px 20px;}
+.article-body li{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:6px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.article-body a{color:var(--blue);font-weight:600;}
+.article-body a:hover{text-decoration:underline;}
+.article-body code{font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 6px;border-radius:4px;font-size:13px;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(124,58,237,.22) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#c4b5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:480px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:#fafbfd;}
+tbody tr:hover td{background:var(--light);}
+.td-label{font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;}
+.tag{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.4px;margin:1px;}
+.tag-aplus{background:rgba(0,194,168,.1);color:var(--teal);}
+.tag-net{background:rgba(26,108,255,.1);color:var(--blue);}
+.tag-sec{background:rgba(124,58,237,.1);color:var(--purple);}
+.callout{border-radius:12px;padding:18px 22px;margin-bottom:32px;}
+.callout-blue{background:rgba(26,108,255,.05);border:1px solid rgba(26,108,255,.18);border-left:4px solid var(--blue);}
+.callout-purple{background:rgba(124,58,237,.05);border:1px solid rgba(124,58,237,.18);border-left:4px solid var(--purple);}
+.callout-teal{background:rgba(0,194,168,.05);border:1px solid rgba(0,194,168,.18);border-left:4px solid var(--teal);}
+.callout-amber{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.25);border-left:4px solid #f59e0b;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+.callout-blue .callout-label{color:var(--blue);}.callout-purple .callout-label{color:var(--purple);}.callout-teal .callout-label{color:var(--teal);}.callout-amber .callout-label{color:#92400e;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}.callout p:last-child{margin-bottom:0;}.callout strong{color:var(--navy);}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--card-shadow);}
+.card.accent-teal{border-top:3px solid var(--teal);}.card.accent-blue{border-top:3px solid var(--blue);}.card.accent-purple{border-top:3px solid var(--purple);}
+.card-icon{font-size:28px;margin-bottom:10px;}
+.card-title{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.card-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.card-label-teal{color:var(--teal);}.card-label-blue{color:var(--blue);}.card-label-purple{color:var(--purple);}
+.card-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.card-desc strong{color:var(--navy);}
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-q{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.scenario-a{font-size:14px;color:var(--text);line-height:1.65;}
+.scenario-a strong{color:var(--navy);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.35);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link"><img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img"><span>IT Study Hub</span></a>
+    <div class="nav-links"><a href="identity-and-access-management.html">Identity & Access Mgmt</a><a href="active-directory-basics.html">Active Directory</a><a href="ports-and-protocols.html">Ports & Protocols</a><a href="best-security-plus.html" class="nav-cta">Security+ Resources</a></div>
+  </div>
+</nav>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Security</span></nav>
+    <div class="page-hero-badge">🔑 Security</div>
+    <h1>Authentication Protocols — <span>Kerberos, NTLM, RADIUS, TACACS+</span></h1>
+    <p class="page-hero-sub">Every authentication protocol tested across CompTIA A+, Network+, and Security+ — how each works, its port, its weakness, and exactly when the exam expects you to choose it.</p>
+    <div class="cert-badges"><span class="cert-badge cb-teal">A+ 220-1201</span><span class="cert-badge cb-blue">Network+ N10-009</span><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
+  </div>
+</section>
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">Quick Reference</div>
+      <div class="quick-answer-text"><strong>Kerberos</strong> = Windows domain authentication — tickets, KDC, port 88. <strong>NTLM</strong> = legacy Windows auth — challenge/response, no KDC required. <strong>RADIUS</strong> = centralised AAA for network access — VPN, WiFi 802.1X, port 1812/1813. <strong>TACACS+</strong> = Cisco's AAA protocol — separates authentication/authorisation/accounting, port 49. <strong>LDAP</strong> = directory lookup protocol — queries Active Directory, port 389 (636 for LDAPS).</div>
+    </div>
+
+    <h2>Why Authentication Protocols Matter</h2>
+    <p>Authentication protocols define how a system proves that a user or device is who they claim to be. Different environments use different protocols depending on the scale, the type of access being controlled, and the vendor ecosystem involved. CompTIA tests authentication protocols across all three exams — A+ focuses on Windows domain authentication (Kerberos, NTLM), Network+ adds network access protocols (RADIUS, 802.1X), and Security+ expects understanding of the security properties and weaknesses of each protocol.</p>
+
+    <h2>Kerberos — Windows Domain Authentication</h2>
+    <p>Kerberos is the default authentication protocol for Windows Active Directory domains (and modern Linux/macOS in enterprise environments). It uses a <strong>ticket-based</strong> system that allows users to prove their identity without sending their password across the network repeatedly. Three components: the <strong>KDC (Key Distribution Centre)</strong> — runs on every domain controller and issues tickets; the <strong>TGT (Ticket Granting Ticket)</strong> — a time-limited credential issued after initial login that proves identity; and <strong>service tickets</strong> — issued by the KDC in exchange for the TGT to grant access to specific services.</p>
+    <p>The Kerberos flow: a user logs in → their client requests a TGT from the KDC (Authentication Service) using their password hash → the KDC issues a TGT valid for typically 10 hours → when the user accesses a file server, their client presents the TGT to the KDC's Ticket Granting Service → the KDC issues a service ticket for that specific server → the client presents the service ticket to the file server → access granted. The user's password never traverses the network after initial TGT acquisition. Kerberos uses <strong>port 88</strong> (TCP and UDP). Mutual authentication: both the client and server prove identity to each other, preventing man-in-the-middle attacks.</p>
+    <p>Key weakness: Kerberos requires both parties to trust the KDC and requires network access to the KDC for ticket issuance. <strong>Kerberoasting</strong> is a modern attack where an attacker requests service tickets for service accounts and attempts to crack them offline — service account passwords are often weak and rarely rotated, making this attack highly effective.</p>
+
+    <h2>NTLM — Legacy Windows Authentication</h2>
+    <p>NTLM (NT LAN Manager) is the predecessor to Kerberos, used when Kerberos is unavailable — when a client authenticates using an IP address instead of a hostname, when accessing resources in untrusted domains, or in older environments. NTLM uses a <strong>challenge-response</strong> mechanism: the server sends a random challenge → the client encrypts the challenge with their password hash and sends the response → the server (or a domain controller) verifies the response. The password itself never traverses the network, but the hash is used, which introduces vulnerability.</p>
+    <p><strong>Pass-the-Hash</strong> is the critical NTLM attack: if an attacker captures an NTLM hash (from memory using Mimikatz, from a captured network authentication, or from a compromised SAM database), they can use that hash directly to authenticate as that user without knowing the plaintext password. This is a fundamental design weakness of NTLM. Organisations should disable NTLMv1 entirely, restrict NTLMv2, and prefer Kerberos wherever possible. Windows environments still rely on NTLM for legacy compatibility — disabling it entirely often breaks something.</p>
+
+    <h2>RADIUS — Network Access AAA</h2>
+    <p>RADIUS (Remote Authentication Dial-In User Service) provides centralised <strong>AAA — Authentication, Authorisation, and Accounting</strong> — for network access. Originally designed for dial-up modem authentication, RADIUS is now the standard protocol for: WiFi authentication (WPA2/3-Enterprise with 802.1X), VPN authentication, wired 802.1X port authentication on switches, and remote access services. Ports: <strong>UDP 1812</strong> for authentication/authorisation, <strong>UDP 1813</strong> for accounting (some legacy systems use 1645/1646).</p>
+    <p>The RADIUS model: a user connects to a network access device (wireless AP, VPN gateway, switch) → the access device acts as a RADIUS client and forwards credentials to the RADIUS server → the RADIUS server checks credentials against its database (or proxies to Active Directory via LDAP) → the server returns Access-Accept, Access-Reject, or Access-Challenge → the access device grants or denies network access. The access device never handles credentials directly — it only forwards them to the central RADIUS server, enabling centralised policy management across all access points.</p>
+    <p>For the exam: <strong>WPA2-Enterprise</strong> requires RADIUS. Any scenario involving "per-user authentication for WiFi" or "centralised network access control" points to RADIUS. RADIUS encrypts only the password in the access-request packet — the rest of the packet is unencrypted, which is a known limitation addressed by RADSEC (RADIUS over TLS).</p>
+
+    <h2>TACACS+ — Cisco AAA</h2>
+    <p>TACACS+ (Terminal Access Controller Access-Control System Plus) is Cisco's proprietary AAA protocol, used primarily for authenticating administrators to network devices — routers, switches, and firewalls. Key difference from RADIUS: TACACS+ separates authentication, authorisation, and accounting into three independent processes that can be handled by different servers. RADIUS combines authentication and authorisation. TACACS+ uses <strong>TCP port 49</strong> and encrypts the entire packet body (not just the password, like RADIUS). This makes TACACS+ more appropriate for device administration where the full session needs protection.</p>
+    <p>When to use TACACS+ vs RADIUS: <strong>TACACS+</strong> for authenticating network device administrators (SSH/Telnet to routers and switches), <strong>RADIUS</strong> for authenticating end users accessing the network (WiFi, VPN, 802.1X). This distinction appears directly on exam questions.</p>
+
+    <h2>LDAP — Directory Lookup</h2>
+    <p>LDAP (Lightweight Directory Access Protocol) is not an authentication protocol per se — it's a protocol for querying and modifying directory services like Active Directory. When RADIUS needs to verify a user's credentials against Active Directory, it queries AD using LDAP. When an application needs to look up a user's group memberships or email address, it queries AD using LDAP. Port <strong>389</strong> for LDAP (unencrypted), port <strong>636</strong> for LDAPS (LDAP over TLS — encrypted). A third option is LDAP with STARTTLS, which upgrades an unencrypted port 389 connection to encrypted using the STARTTLS command.</p>
+
+    
+    <h2>802.1X Port-Based Authentication — Where RADIUS Meets the Switch</h2>
+    <p>802.1X is the IEEE standard for port-based network access control — it defines how RADIUS integrates with network devices to authenticate endpoints before allowing network access. Three roles: the <strong>supplicant</strong> (the device requesting access — a laptop, phone, or IP camera), the <strong>authenticator</strong> (the network device enforcing access — a switch port or wireless AP), and the <strong>authentication server</strong> (the RADIUS server that validates credentials). When a device connects to an 802.1X-enabled switch port, the port blocks all traffic except the EAP (Extensible Authentication Protocol) authentication exchange. The supplicant provides credentials, the switch forwards them to the RADIUS server, and if authentication succeeds, the switch opens the port to normal traffic. If authentication fails, the port remains blocked — even a physically connected device gets no network access without valid credentials.</p>
+    <p>802.1X on wired networks eliminates the risk of someone plugging a laptop into an Ethernet port in a conference room and accessing the corporate network without credentials. On wireless networks, WPA2/3-Enterprise requires 802.1X — connecting to the SSID requires authentication through the RADIUS server rather than a shared password. The EAP methods used within 802.1X vary: EAP-TLS (mutual certificate authentication — the strongest), PEAP (the client authenticates with a username/password, the server authenticates with a certificate — most common in enterprise WiFi), and EAP-TTLS are the most common exam-relevant methods.</p>
+    <h2>Comparison Table</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Protocol</th><th>Port</th><th>Transport</th><th>Primary Use</th><th>Encryption</th></tr></thead>
+      <tbody>
+        <tr><td class="td-label">Kerberos</td><td>88</td><td>TCP/UDP</td><td>Windows domain authentication</td><td>Tickets encrypted with shared secrets</td></tr>
+        <tr><td class="td-label">NTLM</td><td>N/A (embedded)</td><td>TCP</td><td>Legacy Windows auth, workgroups</td><td>Challenge/response — hash vulnerable</td></tr>
+        <tr><td class="td-label">RADIUS</td><td>1812/1813 UDP</td><td>UDP</td><td>Network access — WiFi, VPN, 802.1X</td><td>Password only</td></tr>
+        <tr><td class="td-label">TACACS+</td><td>49 TCP</td><td>TCP</td><td>Network device admin (Cisco)</td><td>Full packet body</td></tr>
+        <tr><td class="td-label">LDAP</td><td>389 / 636</td><td>TCP</td><td>Directory queries and lookups</td><td>None (389) / TLS (636)</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario">
+        <div class="scenario-q">A company wants employees to authenticate to the corporate WiFi using their Active Directory username and password rather than a shared passphrase. Which protocols are required?</div>
+        <div class="scenario-a"><strong>Answer: RADIUS with 802.1X (WPA2-Enterprise or WPA3-Enterprise).</strong> The wireless access points act as RADIUS clients, forwarding credentials to a RADIUS server. The RADIUS server queries Active Directory via LDAP to verify credentials. WPA2/3-Personal uses a shared pre-shared key — it cannot provide per-user authentication.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">A security analyst discovers that an attacker has used a captured hash to access a server without knowing the plaintext password. Which authentication protocol is being exploited?</div>
+        <div class="scenario-a"><strong>Answer: NTLM</strong>, and the attack is <strong>Pass-the-Hash</strong>. NTLM's challenge-response mechanism uses the password hash directly, meaning a captured hash can authenticate without cracking it. Kerberos tickets are not reusable in the same way — the attack is called Pass-the-Ticket for Kerberos and is more complex to execute.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">An organisation uses Cisco routers and needs administrators to authenticate using individual usernames with different privilege levels, and needs a full audit trail of every command entered. Which AAA protocol is most appropriate?</div>
+        <div class="scenario-a"><strong>Answer: TACACS+.</strong> TACACS+ separates authentication, authorisation, and accounting — allowing fine-grained control over what each administrator can do (authorisation) and a complete record of every command entered (accounting). RADIUS combines authentication and authorisation and offers less granular per-command auditing for device management.</div>
+      </div>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="identity-and-access-management.html" class="related-link">Identity and Access Management</a>
+      <a href="active-directory-basics.html" class="related-link">Active Directory Basics</a>
+      <a href="wifi-standards.html" class="related-link">WiFi Standards and Security</a>
+      <a href="network-segmentation.html" class="related-link">Network Segmentation</a>
+      <a href="ports-and-protocols.html" class="related-link">Ports and Protocols</a>
+      <a href="comptia-security-plus-study-guide.html" class="related-link">Security+ Study Guide</a>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Security</div>
+      <a href="identity-and-access-management.html">IAM</a><a href="active-directory-basics.html">Active Directory</a><a href="wifi-standards.html">WiFi Standards</a><a href="ports-and-protocols.html">Ports & Protocols</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Certifications</div>
+      <a href="comptia-security-plus-study-guide.html">Security+ Study Guide</a><a href="comptia-network-plus-study-guide.html">Network+ Study Guide</a><a href="comptia-aplus-study-guide.html">A+ Study Guide</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+        <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>

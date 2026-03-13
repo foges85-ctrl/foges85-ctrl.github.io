@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MS0H78HR74');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/cloud-deployment-models.html">
+<title>Cloud Deployment Models — Public, Private, Hybrid, Community | CompTIA</title>
+<meta name="description" content="Public, private, hybrid, and community cloud deployment models for CompTIA A+, Network+, and Security+ — trade-offs, use cases, and exam scenarios.">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-teal{background:rgba(0,194,168,.2);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.cb-blue{background:rgba(26,108,255,.2);color:#93c5fd;border:1px solid rgba(26,108,255,.3);}
+.cb-purple{background:rgba(124,58,237,.2);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:48px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body ul{margin:0 0 16px 20px;}
+.article-body li{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:6px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.article-body a{color:var(--blue);font-weight:600;}
+.article-body a:hover{text-decoration:underline;}
+.article-body code{font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 6px;border-radius:4px;font-size:13px;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:480px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:#fafbfd;}
+tbody tr:hover td{background:var(--light);}
+.td-label{font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;}
+.tag{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.4px;margin:1px;}
+.tag-aplus{background:rgba(0,194,168,.1);color:var(--teal);}
+.tag-net{background:rgba(26,108,255,.1);color:var(--blue);}
+.tag-sec{background:rgba(124,58,237,.1);color:var(--purple);}
+.callout{border-radius:12px;padding:18px 22px;margin-bottom:32px;}
+.callout-blue{background:rgba(26,108,255,.05);border:1px solid rgba(26,108,255,.18);border-left:4px solid var(--blue);}
+.callout-purple{background:rgba(124,58,237,.05);border:1px solid rgba(124,58,237,.18);border-left:4px solid var(--purple);}
+.callout-teal{background:rgba(0,194,168,.05);border:1px solid rgba(0,194,168,.18);border-left:4px solid var(--teal);}
+.callout-amber{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.25);border-left:4px solid #f59e0b;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+.callout-blue .callout-label{color:var(--blue);}.callout-purple .callout-label{color:var(--purple);}.callout-teal .callout-label{color:var(--teal);}.callout-amber .callout-label{color:#92400e;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}.callout p:last-child{margin-bottom:0;}.callout strong{color:var(--navy);}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--card-shadow);}
+.card.accent-teal{border-top:3px solid var(--teal);}.card.accent-blue{border-top:3px solid var(--blue);}.card.accent-purple{border-top:3px solid var(--purple);}
+.card-icon{font-size:28px;margin-bottom:10px;}
+.card-title{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.card-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.card-label-teal{color:var(--teal);}.card-label-blue{color:var(--blue);}.card-label-purple{color:var(--purple);}
+.card-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.card-desc strong{color:var(--navy);}
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-q{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.scenario-a{font-size:14px;color:var(--text);line-height:1.65;}
+.scenario-a strong{color:var(--navy);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.35);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link"><img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img"><span>IT Study Hub</span></a>
+    <div class="nav-links"><a href="cloud-concepts.html">Cloud Concepts</a><a href="cloud-security.html">Cloud Security</a><a href="virtualization-explained.html">Virtualisation</a><a href="best-network-plus.html" class="nav-cta">Network+ Resources</a></div>
+  </div>
+</nav>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Cloud</span></nav>
+    <div class="page-hero-badge">☁️ Cloud</div>
+    <h1>Cloud Deployment Models — <span>Public, Private, Hybrid, Community</span></h1>
+    <p class="page-hero-sub">How to choose between public, private, hybrid, and community cloud — trade-offs, real-world use cases, and how to answer every exam scenario correctly.</p>
+    <div class="cert-badges"><span class="cert-badge cb-teal">A+ 220-1201</span><span class="cert-badge cb-blue">Network+ N10-009</span><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
+  </div>
+</section>
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">Quick Reference</div>
+      <div class="quick-answer-text"><strong>Public cloud</strong> — provider-owned, shared infrastructure, on-demand, pay-as-you-go (AWS, Azure, GCP). <strong>Private cloud</strong> — dedicated infrastructure for one organisation, on-premises or hosted. <strong>Hybrid cloud</strong> — public + private connected, data moves between them. <strong>Community cloud</strong> — shared by organisations with common requirements (government agencies, healthcare). On the exam: match the model to the requirement — regulatory data → private, scalability + cost → public, both → hybrid, shared compliance industry → community.</div>
+    </div>
+
+    <h2>Why Cloud Deployment Models Matter</h2>
+    <p>Cloud deployment models define who owns and controls the infrastructure, who can use it, and where it resides. Choosing the wrong model for a given requirement creates security, compliance, or cost problems. A healthcare organisation storing patient records on a shared public cloud without proper controls may violate HIPAA. A startup refusing to use public cloud and building its own private infrastructure wastes capital on hardware instead of product development. The exam tests whether candidates understand the trade-offs well enough to recommend the correct model for a described scenario.</p>
+
+    <h2>Public Cloud</h2>
+    <p>Public cloud infrastructure is owned, operated, and maintained by a third-party provider — Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP), IBM Cloud, and Oracle Cloud are the major providers. Compute, storage, networking, and managed services are delivered over the internet on a pay-as-you-go, on-demand basis. The infrastructure is shared among millions of customers — a concept called <strong>multi-tenancy</strong> — though each customer's data is logically isolated from others through virtualisation and access controls.</p>
+    <p>Public cloud advantages: <strong>elasticity</strong> — scale up and down on demand without hardware procurement lead times; <strong>global reach</strong> — deploy in data centres across the world in minutes; <strong>no capital expenditure</strong> — pay only for what you use, no server hardware, no data centre facility costs; <strong>managed services</strong> — databases, AI/ML, monitoring, and security services operated by the provider reduce operational burden. The primary concern is that you don't control the underlying infrastructure — you trust the provider's security controls and availability SLAs.</p>
+    <p>Public cloud is appropriate for: development and test environments, workloads with variable demand, startups without capital for infrastructure, global applications requiring geographic distribution, and organisations that prefer operational expense over capital expense.</p>
+
+    <h2>Private Cloud</h2>
+    <p>A private cloud provides cloud-like capabilities (self-service provisioning, elasticity, resource pooling) on infrastructure dedicated exclusively to one organisation. Private cloud can be: <strong>on-premises</strong> — hardware owned and operated by the organisation in their own data centre (VMware vSphere, OpenStack, Microsoft Azure Stack); <strong>hosted private cloud</strong> — dedicated hardware in a third-party data centre but not shared with other customers. The defining characteristic is exclusive use — no other organisation shares the infrastructure.</p>
+    <p>Private cloud advantages: <strong>full control</strong> — the organisation manages all aspects of the environment; <strong>regulatory compliance</strong> — sensitive data stays within controlled boundaries, meeting requirements that prohibit public cloud; <strong>customisation</strong> — hardware and software can be configured to specific requirements that public cloud standardised offerings don't accommodate; <strong>predictable costs</strong> — hardware depreciation and operational costs are fixed, not variable. The trade-off is capital cost (hardware purchase), operational overhead (staff to manage it), and limited elasticity compared to public cloud.</p>
+    <p>Private cloud is appropriate for: regulated industries with data sovereignty requirements (government, defence, some healthcare), organisations with large, stable workloads that justify hardware investment, and environments requiring physical security controls that public cloud cannot guarantee.</p>
+
+    <h2>Hybrid Cloud</h2>
+    <p>Hybrid cloud combines public and private cloud resources that remain distinct but are connected and can share data and workloads. The defining feature of true hybrid cloud is the ability to move workloads and data between the environments — not just having both environments exist independently. A company running its customer-facing web application on AWS while keeping its SQL database on-premises is hybrid cloud. An organisation bursting computation to AWS during peak periods while keeping base capacity in their private data centre is hybrid cloud with <strong>cloud bursting</strong>.</p>
+    <p>Hybrid cloud use cases: keeping sensitive data on private infrastructure while running web tiers on public cloud (compliance + cost balance); disaster recovery using public cloud as the recovery site for on-premises systems; migrating workloads progressively to public cloud while maintaining on-premises during transition; and leveraging public cloud services (AI/ML, big data analytics) that aren't economical to run privately, while keeping operational databases on-premises.</p>
+    <p>The complexity of hybrid cloud is its management overhead — two or more environments with different tools, security models, and networking configurations. Consistent identity management (single sign-on across both environments), network connectivity (VPN or dedicated links like AWS Direct Connect / Azure ExpressRoute), and unified monitoring are required to operate hybrid environments effectively.</p>
+
+    <h2>Community Cloud</h2>
+    <p>Community cloud is shared infrastructure used exclusively by a group of organisations with common interests, requirements, or compliance obligations. The community shares costs but not with the general public. Examples: a cloud environment built specifically for US federal government agencies (FedRAMP-authorised, meeting federal security requirements), a healthcare community cloud where member hospitals share infrastructure that meets HIPAA requirements, or a financial services community cloud meeting PCI-DSS and financial regulatory requirements for all member banks.</p>
+    <p>Community cloud benefits from economies of scale compared to each organisation building its own private cloud, while maintaining the compliance posture and access controls that would be difficult to achieve or verify on a general-purpose public cloud. Community clouds are managed by one of the member organisations, a third-party provider, or a consortium. This is the least common deployment model and the one candidates most frequently confuse with private cloud — the key distinction is that multiple organisations share the community cloud.</p>
+
+    <h2>Comparison Table</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Model</th><th>Who Uses It</th><th>Who Owns Hardware</th><th>Elasticity</th><th>Cost Model</th><th>Best For</th></tr></thead>
+      <tbody>
+        <tr><td class="td-label">Public</td><td>Anyone — multi-tenant</td><td>Cloud provider</td><td>Unlimited</td><td>Pay-as-you-go</td><td>Variable workloads, cost optimisation</td></tr>
+        <tr><td class="td-label">Private</td><td>One organisation</td><td>Organisation or provider</td><td>Limited by hardware</td><td>CapEx + OpEx</td><td>Regulated data, full control</td></tr>
+        <tr><td class="td-label">Hybrid</td><td>One organisation</td><td>Both</td><td>High — bursting to public</td><td>Mixed</td><td>Compliance + scalability balance</td></tr>
+        <tr><td class="td-label">Community</td><td>Specific group</td><td>Member or provider</td><td>Moderate</td><td>Shared costs</td><td>Shared compliance requirements</td></tr>
+      </tbody>
+    </table></div>
+
+    
+    <h2>Shared Responsibility Model</h2>
+    <p>The shared responsibility model defines which security controls are the customer's responsibility vs the cloud provider's responsibility — and it varies by deployment model and service model. In <strong>public cloud IaaS</strong> (renting virtual machines): the provider secures the physical infrastructure, hypervisor, and network; the customer is responsible for the OS, applications, data, and network configuration within their VMs. In <strong>public cloud PaaS</strong> (using a managed database service): the provider also manages the OS and database engine; the customer is responsible for data and application configuration. In <strong>SaaS</strong> (using Office 365 or Salesforce): the provider manages everything from infrastructure through the application; the customer is responsible for user account management, data governance, and access controls.</p>
+    <p>In a <strong>private cloud</strong>, the organisation is responsible for the entire stack — physical infrastructure, hypervisor, OS, application, and data. There is no provider to share responsibility with. In a <strong>hybrid cloud</strong>, the shared responsibility model applies differently to the public and private components. This model is a Security+ exam topic, and the exam tests whether candidates understand that "moving to the cloud" doesn't transfer all security responsibility to the provider — the customer always retains responsibility for their data and access controls regardless of deployment model.</p>
+
+    <h2>Cloud Service Models — IaaS, PaaS, SaaS</h2>
+    <p>Cloud deployment models (public/private/hybrid/community) describe who uses the infrastructure. Cloud service models describe what the provider delivers. <strong>IaaS (Infrastructure as a Service)</strong> — virtual machines, storage, and networking; the customer manages OS and above. <strong>PaaS (Platform as a Service)</strong> — managed runtime environment (managed databases, serverless compute, container platforms); the customer manages applications and data. <strong>SaaS (Software as a Service)</strong> — complete applications delivered over the internet (email, CRM, productivity suites); the customer manages only data and user access. These service models can be deployed in any of the four deployment models — a private cloud can offer IaaS, PaaS, or SaaS to internal teams; a community cloud can deliver SaaS to member organisations.</p>
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario">
+        <div class="scenario-q">A government agency needs cloud infrastructure that meets federal security requirements and can only be accessed by authorised federal agencies. Which deployment model fits?</div>
+        <div class="scenario-a"><strong>Answer: Community cloud.</strong> Multiple federal agencies sharing FedRAMP-authorised infrastructure is the textbook community cloud scenario. The infrastructure is not open to the public (eliminating public cloud), is not owned by a single agency (eliminating private cloud), and is not a combination of public and private (eliminating hybrid).</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">A hospital must keep patient records on infrastructure it directly controls for HIPAA compliance, but wants to use cloud services for its public-facing patient portal. Which deployment model should it use?</div>
+        <div class="scenario-a"><strong>Answer: Hybrid cloud.</strong> Sensitive PHI stays on the private (on-premises or hosted private) environment for compliance. The public-facing patient portal runs on public cloud for scalability and cost efficiency. The two environments are connected, allowing the portal to query the private data store through a secure API.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">A startup needs to launch a web application globally and scale from zero to millions of users without predicting traffic. Which deployment model is most appropriate?</div>
+        <div class="scenario-a"><strong>Answer: Public cloud.</strong> Public cloud's on-demand elasticity and global reach are exactly suited to unpredictable startup workloads. No capital expenditure required — pay only for actual usage. Private cloud would require large upfront hardware investment with no guarantee it matches the actual load.</div>
+      </div>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="cloud-concepts.html" class="related-link">Cloud Concepts</a>
+      <a href="cloud-security.html" class="related-link">Cloud Security</a>
+      <a href="virtualization-explained.html" class="related-link">Virtualisation Explained</a>
+      <a href="business-continuity.html" class="related-link">Business Continuity</a>
+      <a href="comptia-network-plus-study-guide.html" class="related-link">Network+ Study Guide</a>
+      <a href="comptia-security-plus-study-guide.html" class="related-link">Security+ Study Guide</a>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Cloud</div>
+      <a href="cloud-concepts.html">Cloud Concepts</a><a href="cloud-security.html">Cloud Security</a><a href="virtualization-explained.html">Virtualisation</a><a href="business-continuity.html">Business Continuity</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Certifications</div>
+      <a href="comptia-network-plus-study-guide.html">Network+ Study Guide</a><a href="comptia-security-plus-study-guide.html">Security+ Study Guide</a><a href="comptia-aplus-study-guide.html">A+ Study Guide</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+        <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>

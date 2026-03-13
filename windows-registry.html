@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MS0H78HR74');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/windows-registry.html">
+<title>Windows Registry Explained — Hives, Keys, and regedit | CompTIA A+</title>
+<meta name="description" content="Windows Registry for CompTIA A+ — five root hives, key startup paths, data types, regedit navigation, malware persistence, and exam scenarios for 220-1202.">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(0,194,168,.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,194,168,.15);border:1px solid rgba(0,194,168,.35);color:#5eead4;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#5eead4;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-teal{background:rgba(0,194,168,.2);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.cb-blue{background:rgba(26,108,255,.2);color:#93c5fd;border:1px solid rgba(26,108,255,.3);}
+.cb-purple{background:rgba(124,58,237,.2);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:48px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body ul{margin:0 0 16px 20px;}
+.article-body li{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:6px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.article-body a{color:var(--blue);font-weight:600;}
+.article-body a:hover{text-decoration:underline;}
+.article-body code{font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 6px;border-radius:4px;font-size:13px;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(0,194,168,.2) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#5eead4;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:480px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:#fafbfd;}
+tbody tr:hover td{background:var(--light);}
+.td-label{font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;}
+.tag{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.4px;margin:1px;}
+.tag-aplus{background:rgba(0,194,168,.1);color:var(--teal);}
+.tag-net{background:rgba(26,108,255,.1);color:var(--blue);}
+.tag-sec{background:rgba(124,58,237,.1);color:var(--purple);}
+.callout{border-radius:12px;padding:18px 22px;margin-bottom:32px;}
+.callout-blue{background:rgba(26,108,255,.05);border:1px solid rgba(26,108,255,.18);border-left:4px solid var(--blue);}
+.callout-purple{background:rgba(124,58,237,.05);border:1px solid rgba(124,58,237,.18);border-left:4px solid var(--purple);}
+.callout-teal{background:rgba(0,194,168,.05);border:1px solid rgba(0,194,168,.18);border-left:4px solid var(--teal);}
+.callout-amber{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.25);border-left:4px solid #f59e0b;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+.callout-blue .callout-label{color:var(--blue);}.callout-purple .callout-label{color:var(--purple);}.callout-teal .callout-label{color:var(--teal);}.callout-amber .callout-label{color:#92400e;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}.callout p:last-child{margin-bottom:0;}.callout strong{color:var(--navy);}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--card-shadow);}
+.card.accent-teal{border-top:3px solid var(--teal);}.card.accent-blue{border-top:3px solid var(--blue);}.card.accent-purple{border-top:3px solid var(--purple);}
+.card-icon{font-size:28px;margin-bottom:10px;}
+.card-title{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.card-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.card-label-teal{color:var(--teal);}.card-label-blue{color:var(--blue);}.card-label-purple{color:var(--purple);}
+.card-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.card-desc strong{color:var(--navy);}
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-q{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.scenario-a{font-size:14px;color:var(--text);line-height:1.65;}
+.scenario-a strong{color:var(--navy);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.35);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link"><img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img"><span>IT Study Hub</span></a>
+    <div class="nav-links"><a href="windows-10-vs-11.html">Windows 10 vs 11</a><a href="troubleshooting-methodology.html">Troubleshooting</a><a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a><a href="best-a-plus.html" class="nav-cta">A+ Resources</a></div>
+  </div>
+</nav>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>A+ Core 2</span></nav>
+    <div class="page-hero-badge">🗂️ A+ Core 2</div>
+    <h1>Windows Registry — <span>Hives, Keys, and regedit</span></h1>
+    <p class="page-hero-sub">The Windows Registry for CompTIA A+ — five root hives, the key paths technicians actually use, data types, safe editing practices, and malware persistence.</p>
+    <div class="cert-badges"><span class="cert-badge cb-teal">A+ 220-1202</span></div>
+  </div>
+</section>
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">Quick Reference</div>
+      <div class="quick-answer-text">The Windows Registry is a hierarchical database storing configuration settings for Windows and installed applications. Five root hives: <strong>HKEY_LOCAL_MACHINE (HKLM)</strong> — system-wide settings. <strong>HKEY_CURRENT_USER (HKCU)</strong> — current user settings. <strong>HKEY_CLASSES_ROOT (HKCR)</strong> — file associations and COM objects. <strong>HKEY_USERS (HKU)</strong> — all user profiles. <strong>HKEY_CURRENT_CONFIG (HKCC)</strong> — current hardware profile. Tool: <code>regedit.exe</code> or <code>reg.exe</code> from the command line.</div>
+    </div>
+
+    <h2>What the Registry Is and Why It Matters for A+</h2>
+    <p>The Windows Registry is the central configuration database for Windows operating systems. Every setting that Windows and most applications need — hardware configuration, user preferences, installed software paths, startup programs, security policies, file type associations — is stored in the registry. Before the registry existed (Windows 3.x era), settings were scattered across hundreds of .INI files, making management difficult and inconsistent. The registry consolidated all of this into a structured, searchable, hierarchical database.</p>
+    <p>For CompTIA A+ technicians, the registry is relevant in several contexts: removing malware that persists through registry run keys, troubleshooting application failures caused by corrupt registry entries, understanding where Windows stores configuration that Group Policy can manage, and performing forensic investigation of what software has been installed or what a user has accessed. Registry editing is a routine task in IT support — and registry corruption or accidental deletion of critical keys can render a system unbootable, which is why backing up registry keys before editing is essential practice.</p>
+
+    <h2>The Five Registry Hives</h2>
+    <div class="card-grid">
+      <div class="card accent-teal">
+        <div class="card-title">HKEY_LOCAL_MACHINE</div>
+        <div class="card-label card-label-teal">HKLM</div>
+        <div class="card-desc">System-wide settings that apply to <strong>all users</strong>. Hardware configuration, installed drivers, system services, and software installed for all users live here. Requires administrator privileges to modify. The most security-critical hive.</div>
+      </div>
+      <div class="card accent-blue">
+        <div class="card-title">HKEY_CURRENT_USER</div>
+        <div class="card-label card-label-blue">HKCU</div>
+        <div class="card-desc">Settings for the <strong>currently logged-in user</strong>. Desktop preferences, user-specific application settings, per-user startup programs. Changes here affect only the current user. Writable by standard users without elevation.</div>
+      </div>
+      <div class="card accent-purple">
+        <div class="card-title">HKEY_CLASSES_ROOT</div>
+        <div class="card-label card-label-purple">HKCR</div>
+        <div class="card-desc">File type associations and COM object registrations. When you double-click a .pdf file, Windows looks here to find which application to open it with. A merge of HKLM\Software\Classes and HKCU\Software\Classes.</div>
+      </div>
+      <div class="card accent-teal">
+        <div class="card-title">HKEY_USERS</div>
+        <div class="card-label card-label-teal">HKU</div>
+        <div class="card-desc">Contains registry hives for <strong>all user profiles</strong> loaded on the system — both logged-in users and the default profile. HKCU is a pointer to the current user's subkey within HKU. Useful for modifying settings for other users.</div>
+      </div>
+      <div class="card accent-blue">
+        <div class="card-title">HKEY_CURRENT_CONFIG</div>
+        <div class="card-label card-label-blue">HKCC</div>
+        <div class="card-desc">The current hardware profile — display settings, printer connections, and hardware configuration active at boot. A pointer to a subkey of HKLM\SYSTEM. Less commonly accessed by technicians directly.</div>
+      </div>
+    </div>
+
+    <h2>Key Registry Paths — What A+ Technicians Actually Use</h2>
+    <p><strong>Startup programs (all users):</strong> <code>HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run</code><br>
+    Any value in this key is a program that launches for all users at login. Malware commonly adds persistence entries here. This is the first place to check when investigating unwanted programs running at startup.</p>
+    <p><strong>Startup programs (current user):</strong> <code>HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run</code><br>
+    Same as above but per-user. Standard users can add entries here without elevation. Malware installed by a non-admin user uses this key for persistence.</p>
+    <p><strong>Installed software list:</strong> <code>HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall</code><br>
+    Every installed program has a subkey here containing its display name, version, publisher, and uninstall command string. This is what Programs and Features (Control Panel) reads to display the installed application list.</p>
+    <p><strong>Environment variables:</strong> <code>HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment</code><br>
+    System-wide environment variables like PATH are stored here. User-level environment variables are at <code>HKCU\Environment</code>.</p>
+    <p><strong>Services:</strong> <code>HKLM\SYSTEM\CurrentControlSet\Services</code><br>
+    Every Windows service has a subkey here defining its executable path, start type (automatic/manual/disabled), and dependencies. Malware services are often found here during forensic investigation.</p>
+
+    <h2>Registry Data Types</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Type</th><th>Name</th><th>Stores</th></tr></thead>
+      <tbody>
+        <tr><td class="td-label">REG_SZ</td><td>String</td><td>Plain text strings — most common type, used for paths, names, and settings</td></tr>
+        <tr><td class="td-label">REG_DWORD</td><td>32-bit integer</td><td>Numeric values — enable/disable flags (0 or 1), port numbers, counts</td></tr>
+        <tr><td class="td-label">REG_QWORD</td><td>64-bit integer</td><td>Large numbers — file sizes, timestamps in some applications</td></tr>
+        <tr><td class="td-label">REG_BINARY</td><td>Binary data</td><td>Raw binary — hardware settings, security descriptors, complex configuration</td></tr>
+        <tr><td class="td-label">REG_EXPAND_SZ</td><td>Expandable string</td><td>Strings containing environment variable references like <code>%SystemRoot%</code></td></tr>
+        <tr><td class="td-label">REG_MULTI_SZ</td><td>Multi-string</td><td>List of strings — used for ordered lists of values</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>regedit.exe — Navigating the Registry</h2>
+    <p>The primary tool for viewing and editing the registry is <code>regedit.exe</code> (Registry Editor), launched by typing <code>regedit</code> in Run (Win+R) or the Start menu search. The left panel shows the registry tree — hives expand into keys (folders) and subkeys. The right panel shows values within the selected key — each value has a name, a data type, and data. To navigate directly to a specific path, use Edit → Find or Ctrl+F to search, or in Windows 10/11 paste the full path into the address bar at the top.</p>
+    <p><strong>Always back up before editing.</strong> Right-click any key and select Export to save a .reg file of that key and all subkeys. If an edit causes problems, double-click the .reg file to restore. For system-critical keys, create a System Restore point before editing. The registry has no undo — a deleted key is gone immediately. Exporting first is the A+ best practice answer to any question about safe registry editing.</p>
+    <p>The command-line alternative is <code>reg.exe</code>. Common uses: <code>reg query HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run</code> lists startup entries. <code>reg add</code> and <code>reg delete</code> add and remove values. <code>reg export</code> and <code>reg import</code> back up and restore. PowerShell's <code>Get-ItemProperty</code> and <code>Set-ItemProperty</code> cmdlets also access the registry and are preferred in scripts.</p>
+
+    <h2>Registry and Malware — The A+ Technician's Perspective</h2>
+    <p>Malware uses the registry for two primary purposes: <strong>persistence</strong> (ensuring the malware restarts after reboot) and <strong>configuration storage</strong> (storing command-and-control server addresses, encryption keys, or operational settings). The Run and RunOnce keys under both HKLM and HKCU are the most common persistence locations and should be reviewed during any malware investigation. Beyond Run keys, malware also hides in: <code>HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon</code> (Userinit and Shell values can be hijacked), scheduled tasks stored at <code>HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache</code>, and service entries under <code>HKLM\SYSTEM\CurrentControlSet\Services</code>.</p>
+    <p>When removing malware, always delete registry persistence keys after removing the malicious executable — otherwise Windows will attempt to re-launch the removed malware on next boot and generate errors. Tools like Autoruns from Sysinternals display every registry-based and scheduled-task-based autostart entry in a single interface, making it far faster to audit startup entries than navigating the registry manually.</p>
+
+    
+    <h2>Registry Hives on Disk — Where the Files Live</h2>
+    <p>The registry is stored as binary hive files on disk. When Windows boots, it loads these files into memory and presents them through the registry editor interface. The main hive files: <strong>SYSTEM</strong> — stores hardware and boot configuration, loaded before user login. <strong>SOFTWARE</strong> — stores installed software settings for all users. <strong>SAM (Security Accounts Manager)</strong> — stores local user accounts and hashed passwords. The SAM file is locked during normal system operation — attackers use offline attacks (booting to another OS) or exploit techniques like Mimikatz to extract credentials from the SAM or from memory. <strong>SECURITY</strong> — stores security policies and audit settings. <strong>DEFAULT</strong> — the default user profile registry settings applied to new users.</p>
+    <p>Registry hive files are located in <code>C:\Windows\System32\config\</code> for system hives and in each user's profile at <code>C:\Users\username\NTUSER.DAT</code> for the HKCU hive. The NTUSER.DAT file is the user's registry hive — it's loaded when the user logs in and unloaded when they log off. Group Policy also stores its settings in the registry — policy settings applied by a domain controller write to specific registry keys and are re-enforced at each login, preventing users from permanently modifying settings that Group Policy controls.</p>
+
+    <h2>Registry vs Group Policy — How They Interact</h2>
+    <p>Group Policy Objects (GPOs) in Active Directory domains enforce settings by writing values to specific registry keys at login. Many Group Policy settings map directly to registry values — a GPO that disables the Control Panel writes a DWORD value to a specific HKCU key. If a user attempts to change that setting directly in the registry, the GPO re-applies at the next login or policy refresh (every 90 minutes by default) and overwrites the user's change. This is why "the setting keeps reverting" is a common symptom of Group Policy enforcement rather than a technical error — the admin is fighting a GPO without realising it. The <code>gpresult /r</code> command shows which GPOs are applied to a user and computer, and is the first diagnostic tool when registry changes don't persist.</p>
+    <h2>Exam Scenarios</h2>
+    <div class="scenario-list">
+      <div class="scenario">
+        <div class="scenario-q">A technician removes a malware executable but the malware re-appears after each reboot. Where should the technician look next?</div>
+        <div class="scenario-a"><strong>Answer:</strong> Check the registry Run keys — <code>HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run</code> and <code>HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run</code>. The malware has a persistence entry that relaunches it after each reboot. Deleting the malware executable without removing its Run key entry causes Windows to attempt relaunch on every login.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">A technician needs to make a registry change and wants to be able to undo it if something goes wrong. What should they do before making the change?</div>
+        <div class="scenario-a"><strong>Answer:</strong> Export the registry key to a .reg file (right-click the key in regedit → Export) before making any changes. If the change causes problems, double-clicking the exported .reg file restores the original values. Creating a System Restore point is an additional precaution for major changes.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-q">Which registry hive stores settings that apply only to the currently logged-in user?</div>
+        <div class="scenario-a"><strong>Answer: HKEY_CURRENT_USER (HKCU).</strong> This hive contains user-specific settings — desktop wallpaper, application preferences, per-user startup programs, and user-level environment variables. HKEY_LOCAL_MACHINE (HKLM) stores system-wide settings that apply to all users regardless of who is logged in.</div>
+      </div>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="windows-10-vs-11.html" class="related-link">Windows 10 vs Windows 11</a>
+      <a href="troubleshooting-methodology.html" class="related-link">Troubleshooting Methodology</a>
+      <a href="malware-types.html" class="related-link">Malware Types</a>
+      <a href="active-directory-basics.html" class="related-link">Active Directory Basics</a>
+      <a href="comptia-aplus-study-guide.html" class="related-link">A+ Study Guide</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">A+ Topics</div>
+      <a href="windows-10-vs-11.html">Windows 10 vs 11</a><a href="malware-types.html">Malware Types</a><a href="troubleshooting-methodology.html">Troubleshooting</a><a href="active-directory-basics.html">Active Directory</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Certifications</div>
+      <a href="comptia-aplus-study-guide.html">A+ Study Guide</a><a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a><a href="best-a-plus.html">Best A+ Resources</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+        <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>
