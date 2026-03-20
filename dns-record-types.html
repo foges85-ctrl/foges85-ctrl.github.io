@@ -15,8 +15,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/dns-record-types.html">
-<title>DNS Record Types Explained — A, AAAA, MX, CNAME, PTR, NS, TXT, CAA | CompTIA Network+</title>
-<meta name="description" content="Complete DNS record types guide for CompTIA Network+ and Security+ — A, AAAA, MX, CNAME, PTR, NS, SOA, TXT, CAA, SRV records explained with exam scenarios and real-world use cases.">
+<title>DNS Record Types Explained — A, MX, CNAME, TXT & More | CompTIA Network+</title>
+<meta name="description" content="Know your DNS records cold before the exam — what each record type does, when you use it, and how A, AAAA, MX, CNAME, PTR, TXT, and CAA records appear in Network+ and Security+ scenarios.">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -198,7 +198,7 @@ mail.example.com.   IN  A    93.184.216.35</div>
           <div class="record-tag email">Email Routing</div>
         </div>
         <div class="record-body">
-          <div class="record-desc">Specifies the <strong>mail server responsible for accepting email for a domain</strong>. MX records include a priority value — lower number means higher priority. When email is sent to user@example.com, the sending server queries DNS for MX records to find where to deliver it. MX records point to hostnames (not IPs directly) — the hostname must have its own A record.</div>
+          <div class="record-desc">Specifies the <strong>mail server responsible for accepting email for a domain</strong>. MX records include a priority value — lower number means higher priority. When email is sent to <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="097c7a6c7b496c71686479656c276a6664">[email&#160;protected]</a>, the sending server queries DNS for MX records to find where to deliver it. MX records point to hostnames (not IPs directly) — the hostname must have its own A record.</div>
           <div class="record-example">example.com.    IN  MX  10  mail1.example.com.
 example.com.    IN  MX  20  mail2.example.com.  ; backup</div>
           <div class="record-exam"><strong>Exam use case:</strong> "Email to the domain is not being delivered. Which DNS record type should be checked?" → MX. Also: "Which server receives email for a domain?" → the server pointed to by the MX record with the lowest priority number.</div>
@@ -277,7 +277,7 @@ example.com.    IN  NS  ns2.exampledns.com.</div>
 example.com.  IN  TXT  "v=spf1 ip4:93.184.216.34 ip4:93.184.216.35 -all"
 
 ; DMARC policy
-_dmarc.example.com.  IN  TXT  "v=DMARC1; p=reject; rua=mailto:dmarc@example.com"</div>
+_dmarc.example.com.  IN  TXT  "v=DMARC1; p=reject; rua=mailto:<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c7a3aaa6b5a487a2bfa6aab7aba2e9a4a8aa">[email&#160;protected]</a>"</div>
           <div class="record-exam"><strong>Exam use case:</strong> "An organisation wants to prevent email spoofing — attackers sending email that appears to come from their domain. Which DNS records should be configured?" → SPF (TXT record), DKIM (TXT record), DMARC (TXT record). All three live in TXT records. SPF = who can send. DKIM = prove the email wasn't tampered with. DMARC = what to do when SPF/DKIM fail.</div>
         </div>
       </div>
@@ -428,8 +428,4 @@ _sip._tcp.example.com.       IN  SRV  10 100 5060  voip.example.com.</div>
   </div>
   <div class="footer-bottom">
     <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
-    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
-  </div>
-</footer>
-</body>
-</html>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a hre
