@@ -71,8 +71,9 @@ def classify_link(href, source_file, root):
     if href.startswith("mailto:") or href.startswith("javascript:") or href == "#":
         return None, "skip"
 
-    if href.startswith("#"):
-        return None, "anchor"
+    # Skip all anchor links and Cloudflare email protection — not real broken links
+    if href.startswith("#") or "cdn-cgi" in href:
+        return None, "skip"
 
     if href.startswith("http://") or href.startswith("https://"):
         parsed = urlparse(href)
@@ -355,7 +356,7 @@ def send_email(html, broken_count):
     try:
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
             server.login(GMAIL_ADDRESS, GMAIL_APP_PW)
-            server.sendmail(GMAIL_ADDRESS, EMAIL_TO, msg.as_string())
+            server.sendmail(GMAIL_ADDRESS, EMAIL_TO, msg.as_bytes())
         print(f"✅ Email sent to {EMAIL_TO}")
     except Exception as e:
         print(f"❌ Failed to send email: {e}")
