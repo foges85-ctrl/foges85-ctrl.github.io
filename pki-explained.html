@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/pki-explained.html">
+
+<title>PKI Explained — Public Key Infrastructure for Security+ (2026)</title>
+<meta name="description" content="PKI explained for CompTIA Security+. Covers certificate authorities, digital certificates, the trust chain, CRL, OCSP, and every PKI concept tested on SY0-701.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="PKI Explained — Public Key Infrastructure for Security+">
+<meta property="og:description" content="PKI explained for CompTIA Security+. Covers certificate authorities, digital certificates, trust chains, CRL, and OCSP.">
+<meta property="og:url" content="https://itstudyhub.org/pki-explained.html">
+<meta property="og:type" content="article">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --purple:  #7c3aed;
+  --purple2: #6d28d9;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--lighter); color: var(--text); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+
+.navbar { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 28px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo-link { display: flex; align-items: center; gap: 10px; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 17px; color: var(--navy); letter-spacing: -0.3px; flex-shrink: 0; }
+.logo-img { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a { font-size: 14px; font-weight: 600; padding: 8px 14px; border-radius: 8px; color: var(--muted); transition: color 0.15s, background 0.15s; }
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta { background: var(--navy); color: var(--white) !important; padding: 8px 18px; border-radius: 8px; margin-left: 6px; transition: background 0.15s, transform 0.1s; }
+.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+@media (max-width: 768px) { .nav-inner { padding: 0 16px; height: 60px; } .logo-img { height: 44px; } .logo-link span { font-size: 15px; } .nav-links { overflow-x: auto; flex-wrap: nowrap; } .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; } .nav-links a.nav-cta { padding: 6px 14px; } }
+
+.page-hero { background: var(--navy); position: relative; overflow: hidden; padding: 60px 28px 70px; }
+.page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 100% at 90% 50%, rgba(124,58,237,0.12) 0%, transparent 70%), radial-gradient(ellipse 30% 60% at 5% 90%, rgba(0,194,168,0.08) 0%, transparent 60%); pointer-events: none; }
+.page-hero::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none; }
+.page-hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; animation: fadeUp 0.6s ease both; }
+.breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 20px; font-family: 'DM Mono', monospace; }
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.35); color: #c4b5fd; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 18px; }
+.page-hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(26px, 4vw, 42px); font-weight: 800; color: var(--white); line-height: 1.15; letter-spacing: -0.8px; margin-bottom: 14px; }
+.page-hero h1 span { color: #c4b5fd; }
+.page-hero-sub { font-size: 16px; color: rgba(255,255,255,0.6); max-width: 620px; line-height: 1.7; }
+
+.article-wrap { max-width: 860px; margin: 0 auto; padding: 52px 28px 80px; animation: fadeUp 0.5s ease both; }
+@media (max-width: 768px) { .article-wrap { padding: 36px 16px 60px; } }
+.article-body h2 { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800; color: var(--navy); letter-spacing: -0.3px; margin: 48px 0 16px; }
+.article-body h2:first-child { margin-top: 0; }
+.article-body p { font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 16px; }
+.article-body strong { color: var(--navy); font-weight: 700; }
+
+.quick-answer { background: var(--navy); border-radius: 14px; padding: 24px 26px; margin-bottom: 40px; position: relative; overflow: hidden; }
+.quick-answer::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(124,58,237,0.15) 0%, transparent 70%); pointer-events: none; }
+.quick-answer-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #c4b5fd; margin-bottom: 10px; position: relative; }
+.quick-answer-text { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; position: relative; }
+.quick-answer-text strong { color: var(--white); }
+
+.code-block { background: var(--navy); border-radius: 12px; overflow: hidden; margin-bottom: 24px; border: 1px solid rgba(255,255,255,0.08); }
+.code-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; color: #c4b5fd; padding: 10px 18px 8px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.code-block pre { font-family: 'DM Mono', monospace; font-size: 13.5px; color: rgba(255,255,255,0.85); line-height: 1.8; padding: 16px 18px; overflow-x: auto; margin: 0; }
+.code-hl { color: #c4b5fd; font-weight: 700; }
+.code-teal { color: var(--teal); font-weight: 700; }
+.code-comment { color: rgba(255,255,255,0.35); }
+
+.table-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--border); box-shadow: var(--card-shadow); margin-bottom: 40px; }
+table { width: 100%; border-collapse: collapse; background: var(--white); min-width: 500px; }
+thead th { background: var(--navy); color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; padding: 14px 18px; text-align: left; font-family: 'DM Mono', monospace; }
+thead th:first-child { color: var(--white); }
+tbody td { padding: 13px 18px; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text); vertical-align: top; line-height: 1.5; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #f6f9ff; }
+.td-name { font-weight: 700; color: var(--navy); font-family: 'DM Mono', monospace; font-size: 13px; }
+
+.exam-tip { background: linear-gradient(135deg, #fffbeb, #fef9e0); border: 1px solid #f0d060; border-left: 4px solid #f0c000; border-radius: 12px; padding: 18px 22px; margin-bottom: 40px; }
+.exam-tip-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px; }
+.exam-tip p { font-size: 14px; color: #3a2800; line-height: 1.7; margin-bottom: 8px; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #1a1000; }
+
+.scenario-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+.scenario-item { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--text); line-height: 1.65; box-shadow: 0 2px 8px rgba(10,22,40,0.05); }
+.scenario-item strong { color: var(--navy); }
+
+.cta-box { background: linear-gradient(135deg, var(--navy), #1a0a3e); border-radius: 16px; padding: 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; position: relative; overflow: hidden; margin-bottom: 40px; }
+.cta-box::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; background: radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 70%); pointer-events: none; }
+.cta-box-text h3 { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 10px; font-size: 14px; font-weight: 600; transition: transform 0.15s, box-shadow 0.15s; white-space: nowrap; flex-shrink: 0; }
+.btn:hover { transform: translateY(-2px); }
+.btn-purple { background: var(--purple); color: var(--white); box-shadow: 0 6px 20px rgba(124,58,237,0.3); }
+.btn-purple:hover { box-shadow: 0 10px 28px rgba(124,58,237,0.4); background: var(--purple2); }
+
+.related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px; }
+.related-link { display: flex; align-items: center; gap: 8px; background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; font-size: 14px; font-weight: 600; color: var(--navy); transition: border-color 0.15s, color 0.15s, transform 0.15s; box-shadow: 0 2px 8px rgba(10,22,40,0.05); }
+.related-link:hover { border-color: rgba(124,58,237,0.3); color: var(--purple); transform: translateY(-1px); }
+.related-link::before { content: '->'; color: var(--purple); font-size: 13px; }
+
+.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
+
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom { max-width: 1100px; margin: 28px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+@media (max-width: 600px) { .footer { padding: 36px 16px; } .footer-bottom { flex-direction: column; } }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.footer-email { color:rgba(255,255,255,0.4); }
+.footer-pp { color:rgba(255,255,255,0.4); }
+</style>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span>PKI Explained</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Security+ · Core Concept</div>
+    <h1>PKI <span>Explained</span></h1>
+    <p class="page-hero-sub">Public Key Infrastructure — certificate authorities, digital certificates, trust chains, CRL, and OCSP — every PKI concept tested on CompTIA Security+ SY0-701.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">What is PKI?</div>
+      <div class="quick-answer-text">
+        Public Key Infrastructure (PKI) is the framework of policies, hardware, software, and procedures used to create, manage, distribute, and revoke digital certificates. It answers the fundamental trust problem of asymmetric encryption: "How do I know this public key actually belongs to who they say they are?" PKI is the system that lets your browser trust a website's HTTPS certificate, and it is a heavily tested topic on Security+ SY0-701.
+      </div>
+    </div>
+
+    <h2>The trust problem PKI solves</h2>
+
+    <p>Asymmetric encryption uses a public/private key pair. Anyone can have a public key — but how do you know a public key actually belongs to the person or organization claiming to own it? Without a trust system, an attacker could create a fake public key and impersonate a legitimate website or person.</p>
+
+    <p>PKI solves this by introducing a trusted third party called a <strong>Certificate Authority (CA)</strong>. The CA verifies an entity's identity and then digitally signs their public key, creating a <strong>digital certificate</strong>. Anyone who trusts the CA can then trust the certificate it signed.</p>
+
+    <h2>The PKI hierarchy — root CA, intermediate CA, and end-entity</h2>
+
+    <div class="code-block">
+      <div class="code-label">PKI trust chain</div>
+      <pre><span class="code-hl">Root CA</span>
+  The ultimate trust anchor. Self-signed certificate. Kept offline for security.
+  Pre-installed in operating systems and browsers.
+      |
+      |  signs
+      v
+<span class="code-hl">Intermediate CA</span>
+  Issues certificates on behalf of the root CA.
+  Stays online to handle day-to-day certificate signing.
+  If compromised, can be revoked without touching the root.
+      |
+      |  signs
+      v
+<span class="code-hl">End-Entity Certificate</span>
+  <span class="code-teal">The certificate on a website, user, device, or application.</span>
+  This is what your browser validates when you visit an HTTPS site.</pre>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">Exam tip — why intermediate CAs exist</div>
+      <p>Root CAs are kept <strong>offline</strong> to protect them. If a root CA is compromised, the entire trust chain collapses. Intermediate CAs take on the online work of issuing certificates. If an intermediate CA is compromised, it can be revoked without affecting the root CA.</p>
+    </div>
+
+    <h2>Digital certificates — what they contain</h2>
+
+    <p>A digital certificate is a file in <strong>X.509 format</strong> that binds a public key to an identity. It is signed by a CA, which is what makes it trustworthy. When your browser sees a certificate, it checks the CA's signature to confirm the certificate is legitimate.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Certificate Field</th><th>What it contains</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-name">Subject</td><td>The entity the certificate belongs to — domain name, organization, or person</td></tr>
+          <tr><td class="td-name">Public Key</td><td>The entity's public key — what clients use to encrypt data or verify signatures</td></tr>
+          <tr><td class="td-name">Issuer</td><td>The CA that signed and issued the certificate</td></tr>
+          <tr><td class="td-name">Validity Period</td><td>The start and expiry dates — certificates expire and must be renewed</td></tr>
+          <tr><td class="td-name">Serial Number</td><td>Unique identifier assigned by the CA — used for revocation tracking</td></tr>
+          <tr><td class="td-name">Digital Signature</td><td>The CA's signature — proves the certificate was issued by a trusted CA</td></tr>
+          <tr><td class="td-name">Subject Alt Names</td><td>Additional domain names the certificate covers (e.g. www.example.com and example.com)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Key PKI terms — full reference</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Term</th><th>What it means</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-name">CA (Certificate Authority)</td><td>Trusted entity that issues and signs digital certificates — e.g. DigiCert, Let's Encrypt, Entrust</td></tr>
+          <tr><td class="td-name">Root CA</td><td>Top-level CA with a self-signed certificate. Pre-trusted by browsers and operating systems. Kept offline.</td></tr>
+          <tr><td class="td-name">Intermediate CA</td><td>CA that sits between root and end-entity. Does day-to-day certificate signing. Can be revoked if compromised.</td></tr>
+          <tr><td class="td-name">CSR</td><td>Certificate Signing Request — a file generated by the entity requesting a certificate. Contains their public key and identity info. Sent to the CA for signing.</td></tr>
+          <tr><td class="td-name">CRL</td><td>Certificate Revocation List — a list published by the CA of certificates that have been revoked before their expiry date.</td></tr>
+          <tr><td class="td-name">OCSP</td><td>Online Certificate Status Protocol — allows real-time checking of whether a specific certificate has been revoked. Faster than downloading a full CRL.</td></tr>
+          <tr><td class="td-name">OCSP Stapling</td><td>The web server fetches and caches the OCSP response and serves it directly to clients, reducing latency and load on the CA's OCSP server.</td></tr>
+          <tr><td class="td-name">Certificate Pinning</td><td>An application hard-codes which certificate or CA it trusts, rejecting any other certificate even if it is technically valid.</td></tr>
+          <tr><td class="td-name">Self-Signed Certificate</td><td>A certificate signed by the same entity that owns it — not by a CA. Trusted only if manually installed. Common in internal/dev environments.</td></tr>
+          <tr><td class="td-name">Wildcard Certificate</td><td>Covers a domain and all its subdomains — e.g. *.example.com covers mail.example.com, app.example.com, etc.</td></tr>
+          <tr><td class="td-name">SAN Certificate</td><td>Subject Alternative Name — a single certificate that covers multiple specific domain names.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Certificate revocation — CRL vs OCSP</h2>
+
+    <p>Certificates can be revoked before they expire — for example, if a private key is compromised. There are two mechanisms the exam tests for checking revocation status:</p>
+
+    <div class="code-block">
+      <div class="code-label">CRL vs OCSP</div>
+      <pre><span class="code-hl">CRL (Certificate Revocation List)</span>
+  CA publishes a list of revoked certificate serial numbers
+  Client downloads the full list and checks it locally
+  <span class="code-comment">Downside: list can be large and may be out of date between updates</span>
+
+<span class="code-hl">OCSP (Online Certificate Status Protocol)</span>
+  Client sends a real-time query to the CA's OCSP responder
+  CA responds: "Good", "Revoked", or "Unknown"
+  <span class="code-teal">Faster and more current than CRL — preferred in modern systems</span>
+
+<span class="code-hl">OCSP Stapling</span>
+  Server pre-fetches and caches the OCSP response
+  Serves it directly to clients during the TLS handshake
+  <span class="code-teal">Reduces latency and takes load off the CA's OCSP server</span></pre>
+    </div>
+
+    <h2>How the certificate trust chain is validated</h2>
+
+    <p>When your browser connects to an HTTPS website, it performs a chain validation to confirm the certificate is legitimate:</p>
+
+    <div class="code-block">
+      <div class="code-label">Certificate chain validation — step by step</div>
+      <pre><span class="code-hl">1.</span> Browser receives the site's end-entity certificate
+<span class="code-hl">2.</span> Browser checks the certificate's issuer (Intermediate CA)
+<span class="code-hl">3.</span> Browser checks the Intermediate CA's certificate issuer (Root CA)
+<span class="code-hl">4.</span> Browser checks if the Root CA is in its trusted root store
+<span class="code-hl">5.</span> Browser verifies signatures at each level of the chain
+<span class="code-hl">6.</span> Browser checks the certificate has not expired
+<span class="code-hl">7.</span> Browser checks OCSP or CRL to confirm certificate is not revoked
+<span class="code-teal">If all checks pass → connection is trusted (padlock shown)</span>
+<span class="code-comment">If any check fails → browser shows a security warning</span></pre>
+    </div>
+
+    <h2>Exam scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "Which entity issues and signs digital certificates?" → <strong>Certificate Authority (CA)</strong></div>
+      <div class="scenario-item">💬 "A private key was compromised. Which mechanism allows real-time checking of the certificate's revocation status?" → <strong>OCSP</strong></div>
+      <div class="scenario-item">💬 "Why are root CAs kept offline?" → <strong>To protect the root of trust — if compromised, the entire PKI hierarchy collapses</strong></div>
+      <div class="scenario-item">💬 "What does a CSR contain?" → <strong>The entity's public key and identity information, sent to a CA to request a certificate</strong></div>
+      <div class="scenario-item">💬 "A web server pre-fetches its OCSP response and serves it to clients. What is this called?" → <strong>OCSP Stapling</strong></div>
+      <div class="scenario-item">💬 "Which certificate type covers a domain and all its subdomains?" → <strong>Wildcard certificate (*.example.com)</strong></div>
+      <div class="scenario-item">💬 "An internal lab server uses a certificate not signed by a public CA. What type is this?" → <strong>Self-signed certificate</strong></div>
+      <div class="scenario-item">💬 "What is the format used by digital certificates?" → <strong>X.509</strong></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for Security+?</h3>
+        <p>See the best study guides, practice exams, and free resources for SY0-701.</p>
+      </div>
+      <a href="best-security-plus.html" class="btn btn-purple">See Security+ Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="cryptography.html" class="related-link">What is Cryptography?</a>
+      <a href="cryptography-basics.html" class="related-link">Cryptography Basics</a>
+      <a href="symmetric-vs-asymmetric-encryption.html" class="related-link">Symmetric vs Asymmetric Encryption</a>
+      <a href="encryption-types.html" class="related-link">Encryption Types (AES, RSA, SHA)</a>
+      <a href="network-attacks.html" class="related-link">Common Network Attacks</a>
+      <a href="best-security-plus.html" class="related-link">Best Security+ Study Resources</a>
+      <a href="identity-and-access-management.html" class="related-link">Identity and Access Management</a>
+      <a href="comptia-security-plus-domains.html" class="related-link">Security+ Exam Domains</a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+, Network+, and Security+ resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Security+</div>
+      <a href="cryptography.html">What is Cryptography?</a>
+      <a href="network-attacks.html">Common Network Attacks</a>
+      <a href="best-security-plus.html">Best Security+ Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="subnetting.html">Subnetting</a>
+      <a href="firewall-basics.html">Firewall Basics</a>
+      <a href="ports.html">Port Numbers</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span class="footer-email"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>

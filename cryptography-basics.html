@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/cryptography-basics.html">
+
+<title>Cryptography Basics — Encryption, Hashing & Keys Explained (2026)</title>
+<meta name="description" content="Learn cryptography basics for CompTIA Security+. Covers symmetric vs asymmetric encryption, hashing algorithms, public and private keys, and how they are tested on the SY0-701 exam.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Cryptography Basics — Encryption, Hashing & Keys Explained">
+<meta property="og:description" content="Learn cryptography basics for CompTIA Security+. Covers symmetric vs asymmetric encryption, hashing, and public/private keys.">
+<meta property="og:url" content="https://itstudyhub.org/cryptography-basics.html">
+<meta property="og:type" content="article">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --purple:  #7c3aed;
+  --purple2: #6d28d9;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--lighter); color: var(--text); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+
+.navbar { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 28px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo-link { display: flex; align-items: center; gap: 10px; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 17px; color: var(--navy); letter-spacing: -0.3px; flex-shrink: 0; }
+.logo-img { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a { font-size: 14px; font-weight: 600; padding: 8px 14px; border-radius: 8px; color: var(--muted); transition: color 0.15s, background 0.15s; }
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta { background: var(--navy); color: var(--white) !important; padding: 8px 18px; border-radius: 8px; margin-left: 6px; transition: background 0.15s, transform 0.1s; }
+.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+@media (max-width: 768px) { .nav-inner { padding: 0 16px; height: 60px; } .logo-img { height: 44px; } .logo-link span { font-size: 15px; } .nav-links { overflow-x: auto; flex-wrap: nowrap; } .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; } .nav-links a.nav-cta { padding: 6px 14px; } }
+
+.page-hero { background: var(--navy); position: relative; overflow: hidden; padding: 60px 28px 70px; }
+.page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 100% at 90% 50%, rgba(124,58,237,0.12) 0%, transparent 70%), radial-gradient(ellipse 30% 60% at 5% 90%, rgba(0,194,168,0.08) 0%, transparent 60%); pointer-events: none; }
+.page-hero::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none; }
+.page-hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; animation: fadeUp 0.6s ease both; }
+.breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 20px; font-family: 'DM Mono', monospace; }
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.35); color: #c4b5fd; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 18px; }
+.page-hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(26px, 4vw, 42px); font-weight: 800; color: var(--white); line-height: 1.15; letter-spacing: -0.8px; margin-bottom: 14px; }
+.page-hero h1 span { color: #c4b5fd; }
+.page-hero-sub { font-size: 16px; color: rgba(255,255,255,0.6); max-width: 620px; line-height: 1.7; }
+
+.article-wrap { max-width: 860px; margin: 0 auto; padding: 52px 28px 80px; animation: fadeUp 0.5s ease both; }
+@media (max-width: 768px) { .article-wrap { padding: 36px 16px 60px; } }
+.article-body h2 { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800; color: var(--navy); letter-spacing: -0.3px; margin: 48px 0 16px; }
+.article-body h2:first-child { margin-top: 0; }
+.article-body p { font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 16px; }
+.article-body strong { color: var(--navy); font-weight: 700; }
+
+.quick-answer { background: var(--navy); border-radius: 14px; padding: 24px 26px; margin-bottom: 40px; position: relative; overflow: hidden; }
+.quick-answer::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(124,58,237,0.15) 0%, transparent 70%); pointer-events: none; }
+.quick-answer-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #c4b5fd; margin-bottom: 10px; position: relative; }
+.quick-answer-text { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; position: relative; }
+.quick-answer-text strong { color: var(--white); }
+
+.code-block { background: var(--navy); border-radius: 12px; overflow: hidden; margin-bottom: 24px; border: 1px solid rgba(255,255,255,0.08); }
+.code-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; color: #c4b5fd; padding: 10px 18px 8px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.code-block pre { font-family: 'DM Mono', monospace; font-size: 13.5px; color: rgba(255,255,255,0.85); line-height: 1.8; padding: 16px 18px; overflow-x: auto; margin: 0; }
+.code-hl { color: #c4b5fd; font-weight: 700; }
+.code-teal { color: var(--teal); font-weight: 700; }
+.code-comment { color: rgba(255,255,255,0.35); }
+
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 40px; }
+@media (max-width: 580px) { .compare-grid { grid-template-columns: 1fr; } }
+.compare-card { border-radius: 12px; padding: 20px 22px; }
+.compare-sym { background: rgba(26,108,255,0.04); border: 1px solid rgba(26,108,255,0.2); }
+.compare-asym { background: rgba(124,58,237,0.04); border: 1px solid rgba(124,58,237,0.2); }
+.compare-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 8px; }
+.compare-sym .compare-label { color: #1a6cff; }
+.compare-asym .compare-label { color: var(--purple); }
+.compare-title { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+.compare-item { display: flex; align-items: flex-start; gap: 8px; font-size: 13.5px; color: var(--text); margin-bottom: 6px; line-height: 1.45; }
+.compare-item::before { content: ''; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+.compare-sym .compare-item::before { background: #1a6cff; }
+.compare-asym .compare-item::before { background: var(--purple); }
+
+.table-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--border); box-shadow: var(--card-shadow); margin-bottom: 40px; }
+table { width: 100%; border-collapse: collapse; background: var(--white); min-width: 500px; }
+thead th { background: var(--navy); color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; padding: 14px 18px; text-align: left; font-family: 'DM Mono', monospace; }
+thead th:first-child { color: var(--white); }
+tbody td { padding: 13px 18px; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text); vertical-align: top; line-height: 1.5; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #f6f9ff; }
+.td-name { font-weight: 700; color: var(--navy); font-family: 'DM Mono', monospace; font-size: 13px; }
+
+.exam-tip { background: linear-gradient(135deg, #fffbeb, #fef9e0); border: 1px solid #f0d060; border-left: 4px solid #f0c000; border-radius: 12px; padding: 18px 22px; margin-bottom: 40px; }
+.exam-tip-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px; }
+.exam-tip p { font-size: 14px; color: #3a2800; line-height: 1.7; margin-bottom: 8px; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #1a1000; }
+
+.scenario-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+.scenario-item { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--text); line-height: 1.65; box-shadow: 0 2px 8px rgba(10,22,40,0.05); }
+.scenario-item strong { color: var(--navy); }
+
+.cta-box { background: linear-gradient(135deg, var(--navy), #1a0a3e); border-radius: 16px; padding: 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; position: relative; overflow: hidden; margin-bottom: 40px; }
+.cta-box::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; background: radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 70%); pointer-events: none; }
+.cta-box-text h3 { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 10px; font-size: 14px; font-weight: 600; transition: transform 0.15s, box-shadow 0.15s; white-space: nowrap; flex-shrink: 0; }
+.btn:hover { transform: translateY(-2px); }
+.btn-purple { background: var(--purple); color: var(--white); box-shadow: 0 6px 20px rgba(124,58,237,0.3); }
+.btn-purple:hover { box-shadow: 0 10px 28px rgba(124,58,237,0.4); background: var(--purple2); }
+
+.related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px; }
+.related-link { display: flex; align-items: center; gap: 8px; background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; font-size: 14px; font-weight: 600; color: var(--navy); transition: border-color 0.15s, color 0.15s, transform 0.15s; box-shadow: 0 2px 8px rgba(10,22,40,0.05); }
+.related-link:hover { border-color: rgba(124,58,237,0.3); color: var(--purple); transform: translateY(-1px); }
+.related-link::before { content: '->'; color: var(--purple); font-size: 13px; }
+
+.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
+
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom { max-width: 1100px; margin: 28px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+@media (max-width: 600px) { .footer { padding: 36px 16px; } .footer-bottom { flex-direction: column; } }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.footer-email { color:rgba(255,255,255,0.4); }
+.footer-pp { color:rgba(255,255,255,0.4); }
+</style>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span>Cryptography Basics</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Security+ · Core Concept</div>
+    <h1>Cryptography <span>Basics</span></h1>
+    <p class="page-hero-sub">Encryption, hashing, and public/private keys explained clearly — every fundamental cryptography concept you need for CompTIA Security+ SY0-701.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">What is cryptography?</div>
+      <div class="quick-answer-text">
+        Cryptography is the science of securing information by transforming it so only authorized parties can read it. It is the foundation of modern IT security — HTTPS, VPNs, password storage, digital signatures, and certificates all rely on cryptographic techniques. Mastering cryptography basics is essential for the Security+ exam, where it is one of the highest-weighted domains.
+      </div>
+    </div>
+
+    <h2>Why cryptography matters in IT security</h2>
+
+    <p>Every time you log into a website, send an email, or connect to a VPN, cryptography is working in the background to protect your data. Without it, anyone on the network could read your passwords, intercept your messages, or tamper with files in transit.</p>
+
+    <p>Cryptography provides three core security properties that you will see repeatedly on the Security+ exam:</p>
+
+    <div class="code-block">
+      <div class="code-label">The three goals of cryptography</div>
+      <pre><span class="code-hl">Confidentiality</span>  <span class="code-comment">→ Only the intended recipient can read the data (encryption)</span>
+<span class="code-hl">Integrity</span>        <span class="code-comment">→ Data has not been altered in transit (hashing)</span>
+<span class="code-hl">Authentication</span>  <span class="code-comment">→ The sender is who they claim to be (digital signatures)</span></pre>
+    </div>
+
+    <h2>The two types of encryption</h2>
+
+    <p>All encryption algorithms fall into one of two categories. Knowing the difference — and when each is used — is the most important cryptography concept on the Security+ exam.</p>
+
+    <div class="compare-grid">
+      <div class="compare-card compare-sym">
+        <div class="compare-label">Symmetric Encryption</div>
+        <div class="compare-title">One shared key</div>
+        <div class="compare-item">Same key encrypts and decrypts</div>
+        <div class="compare-item">Fast — ideal for large data sets</div>
+        <div class="compare-item">Key must be shared securely in advance</div>
+        <div class="compare-item">Key distribution is the main weakness</div>
+        <div class="compare-item">Examples: AES, DES, 3DES, RC4</div>
+      </div>
+      <div class="compare-card compare-asym">
+        <div class="compare-label">Asymmetric Encryption</div>
+        <div class="compare-title">Public + private key pair</div>
+        <div class="compare-item">Public key encrypts; private key decrypts</div>
+        <div class="compare-item">Slower — used for key exchange and signatures</div>
+        <div class="compare-item">Public key can be shared openly</div>
+        <div class="compare-item">Solves the key distribution problem</div>
+        <div class="compare-item">Examples: RSA, ECC, Diffie-Hellman</div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">Exam tip</div>
+      <p><strong>Speed question:</strong> "Which type of encryption is faster?" — Always symmetric.</p>
+      <p><strong>Key exchange question:</strong> "Which solves the key distribution problem?" — Always asymmetric.</p>
+      <p>Real-world systems use both together: asymmetric encryption to securely exchange a symmetric key, then symmetric encryption for the actual data. This is exactly how TLS/HTTPS works.</p>
+    </div>
+
+    <h2>Common encryption algorithms</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Algorithm</th><th>Type</th><th>Key Size</th><th>What to know for the exam</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-name">AES</td><td>Symmetric</td><td>128, 192, 256-bit</td><td>Current gold standard for symmetric encryption. AES-256 is used in government and enterprise.</td></tr>
+          <tr><td class="td-name">DES</td><td>Symmetric</td><td>56-bit</td><td>Outdated and broken — 56-bit key is too short. Replaced by 3DES, then AES.</td></tr>
+          <tr><td class="td-name">3DES</td><td>Symmetric</td><td>112 or 168-bit</td><td>Applies DES three times. Deprecated — slower than AES and considered weak.</td></tr>
+          <tr><td class="td-name">RSA</td><td>Asymmetric</td><td>2048-bit minimum</td><td>Most common asymmetric algorithm. Used in TLS certificates and digital signatures.</td></tr>
+          <tr><td class="td-name">ECC</td><td>Asymmetric</td><td>256-bit typical</td><td>Same security as RSA with much smaller key sizes. Preferred for mobile and IoT.</td></tr>
+          <tr><td class="td-name">Diffie-Hellman</td><td>Asymmetric</td><td>Varies</td><td>Used for key exchange only — not encryption. Allows two parties to establish a shared secret over an unsecured channel.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Hashing — integrity, not encryption</h2>
+
+    <p>Hashing is often confused with encryption but they are fundamentally different. Encryption is reversible — you can decrypt ciphertext back to plaintext with the right key. Hashing is a <strong>one-way function</strong> — it produces a fixed-length output called a digest, and you cannot reverse it to get the original input.</p>
+
+    <div class="code-block">
+      <div class="code-label">How hashing works</div>
+      <pre><span class="code-hl">Input (any size)</span>  →  Hash function  →  <span class="code-teal">Fixed-length digest</span>
+
+"password123"     →  SHA-256  →  ef92b778...  (64 hex characters)
+"password124"     →  SHA-256  →  9f7b3c2a...  (completely different)
+
+<span class="code-comment">Even a 1-character change produces a completely different hash (avalanche effect)</span></pre>
+    </div>
+
+    <p>Hashing is used to verify <strong>integrity</strong> — that data has not been changed. Common uses include verifying file downloads, storing passwords securely, and detecting tampering.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Hash Algorithm</th><th>Output Size</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-name">MD5</td><td>128-bit (32 hex)</td><td>Broken — collision vulnerabilities. Do not use for security purposes.</td></tr>
+          <tr><td class="td-name">SHA-1</td><td>160-bit (40 hex)</td><td>Deprecated — collision attacks demonstrated. Being phased out.</td></tr>
+          <tr><td class="td-name">SHA-256</td><td>256-bit (64 hex)</td><td>Current standard. Part of SHA-2 family. Widely used in TLS and certificates.</td></tr>
+          <tr><td class="td-name">SHA-3</td><td>Variable</td><td>Newer standard with different internal design. Not yet as widely deployed.</td></tr>
+          <tr><td class="td-name">bcrypt</td><td>60 characters</td><td>Designed specifically for password hashing. Slow by design to resist brute force.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Public and private keys — how the key pair works</h2>
+
+    <p>Asymmetric encryption uses a mathematically linked key pair. What one key encrypts, only the other can decrypt. Understanding which key does what is a frequent exam question.</p>
+
+    <div class="code-block">
+      <div class="code-label">Public vs private key — rules</div>
+      <pre><span class="code-hl">Encrypting data to send someone:</span>
+  Encrypt with their <span class="code-teal">PUBLIC key</span>  →  only their private key can decrypt
+
+<span class="code-hl">Creating a digital signature:</span>
+  Sign with your <span class="code-teal">PRIVATE key</span>  →  anyone with your public key can verify
+
+<span class="code-comment">Public key:  share freely — it is meant to be public
+Private key: never share — keep it secret at all times</span></pre>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">Exam tip — key pair rules</div>
+      <p><strong>Encrypting to someone:</strong> use their public key. Only their private key can decrypt it.</p>
+      <p><strong>Digital signature:</strong> sign with your private key. Anyone with your public key can verify the signature.</p>
+      <p>These rules are tested constantly on Security+. Memorize them.</p>
+    </div>
+
+    <h2>Salting — protecting hashed passwords</h2>
+
+    <p>When passwords are stored, they should never be stored in plaintext — they are hashed first. But identical passwords produce identical hashes, which makes them vulnerable to <strong>rainbow table attacks</strong> (pre-computed lists of hash values).</p>
+
+    <p>A <strong>salt</strong> is a random value added to the password before hashing. This ensures that even two users with the same password end up with completely different stored hashes, defeating rainbow table attacks.</p>
+
+    <div class="code-block">
+      <div class="code-label">Salting in practice</div>
+      <pre><span class="code-comment">Without salt:</span>
+"password123"  →  SHA-256  →  ef92b778...  <span class="code-comment">(same for every user)</span>
+
+<span class="code-comment">With salt:</span>
+"password123" + "xK9p2m"  →  SHA-256  →  a3f9c12e...
+"password123" + "q7rT4n"  →  SHA-256  →  7b2d8f1c...  <span class="code-comment">(different every time)</span></pre>
+    </div>
+
+    <h2>Exam scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item">💬 "Which encryption type is faster for encrypting large amounts of data?" → <strong>Symmetric</strong></div>
+      <div class="scenario-item">💬 "A user needs to send an encrypted message to a colleague. Which key should they use to encrypt it?" → <strong>The recipient's public key</strong></div>
+      <div class="scenario-item">💬 "Which hashing algorithm is considered broken due to collision vulnerabilities?" → <strong>MD5</strong></div>
+      <div class="scenario-item">💬 "What is added to a password before hashing to prevent rainbow table attacks?" → <strong>A salt</strong></div>
+      <div class="scenario-item">💬 "Which algorithm provides asymmetric encryption with smaller key sizes than RSA?" → <strong>ECC</strong></div>
+      <div class="scenario-item">💬 "A company wants to verify a downloaded file has not been tampered with. Which technique should they use?" → <strong>Hashing — compare the file hash to the published hash</strong></div>
+      <div class="scenario-item">💬 "Which protocol allows two parties to securely establish a shared secret over an unsecured network?" → <strong>Diffie-Hellman</strong></div>
+      <div class="scenario-item">💬 "Which is a one-way function — encryption or hashing?" → <strong>Hashing</strong></div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for Security+?</h3>
+        <p>See the best study guides, practice exams, and free resources for SY0-701.</p>
+      </div>
+      <a href="best-security-plus.html" class="btn btn-purple">See Security+ Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="cryptography.html" class="related-link">What is Cryptography?</a>
+      <a href="pki-explained.html" class="related-link">PKI Explained</a>
+      <a href="symmetric-vs-asymmetric-encryption.html" class="related-link">Symmetric vs Asymmetric Encryption</a>
+      <a href="encryption-types.html" class="related-link">Encryption Types (AES, RSA, SHA)</a>
+      <a href="network-attacks.html" class="related-link">Common Network Attacks</a>
+      <a href="best-security-plus.html" class="related-link">Best Security+ Study Resources</a>
+      <a href="firewall-basics.html" class="related-link">Firewall Basics</a>
+      <a href="osi-model.html" class="related-link">OSI Model Explained</a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+, Network+, and Security+ resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Security+</div>
+      <a href="cryptography.html">What is Cryptography?</a>
+      <a href="network-attacks.html">Common Network Attacks</a>
+      <a href="best-security-plus.html">Best Security+ Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="subnetting.html">Subnetting</a>
+      <a href="firewall-basics.html">Firewall Basics</a>
+      <a href="ports.html">Port Numbers</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span class="footer-email"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>
