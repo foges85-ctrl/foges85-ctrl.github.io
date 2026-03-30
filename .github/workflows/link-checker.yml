@@ -1,0 +1,29 @@
+name: Weekly Link Checker
+
+on:
+  schedule:
+    - cron: '0 13 * * 1'  # Every Monday at 9am EST (13:00 UTC)
+  workflow_dispatch:        # Also allows manual trigger from GitHub
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Run link checker
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PW: ${{ secrets.GMAIL_APP_PW }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python link_checker.py
