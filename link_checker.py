@@ -6,6 +6,7 @@ Dion Training / UpPromote links, and all external links.
 Emails an HTML report only when broken links are found.
 """
 
+import os
 import re
 import sys
 import smtplib
@@ -16,6 +17,8 @@ from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
+import os
 
 try:
     import requests
@@ -30,9 +33,9 @@ SITE_ROOT = "."
 BASE_URL  = "https://itstudyhub.org"
 
 # ── Email config — fill these in ──────────────────────────────────────────────
-GMAIL_ADDRESS = "contact@itstudyhub.org"
-GMAIL_APP_PW  = "zfoy rafe svbx mpxo"
-EMAIL_TO      = "contact@itstudyhub.org"
+GMAIL_ADDRESS = os.environ.get("GMAIL_ADDRESS", "")
+GMAIL_APP_PW  = os.environ.get("GMAIL_APP_PW", "")
+EMAIL_TO      = os.environ.get("EMAIL_TO", "")
 
 TIMEOUT    = 10
 WORKERS    = 8
