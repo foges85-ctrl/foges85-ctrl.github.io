@@ -3,18 +3,22 @@
 IT Study Hub — Link Checker
 Scans all HTML files for broken internal links, Amazon Associates links,
 Dion Training / UpPromote links, and all external links.
-Outputs a self-contained HTML report.
+Emails an HTML report only when broken links are found.
 """
 
 import os
 import re
 import sys
-import time
+import smtplib
 import argparse
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
 
 try:
     import requests
@@ -25,9 +29,14 @@ except ImportError:
 
 # ── Configuration ────────────────────────────────────────────────────────────
 
-SITE_ROOT = "."           # Path to your local site repo (change if needed)
-BASE_URL   = "https://itstudyhub.org"  # Live base URL for resolving internal links
-OUTPUT     = "link_report.html"
+SITE_ROOT = "."
+BASE_URL  = "https://itstudyhub.org"
+
+# ── Email config — fill these in ─────────────────────────────────────────────
+GMAIL_ADDRESS  = "contact@itstudyhub.org"   # Your Gmail address
+GMAIL_APP_PW   = "zfoy rafe svbx mpxo"    # Your Gmail App Password (see setup steps)
+EMAIL_TO       = "contact@itstudyhub.org"   # Where to send the report (can be same address)
+
 TIMEOUT    = 10            # Seconds per request
 WORKERS    = 8             # Parallel HTTP threads
 USER_AGENT = "Mozilla/5.0 (compatible; ITStudyHubLinkChecker/1.0)"
@@ -194,7 +203,7 @@ def status_label(status, error):
         return "broken", f"{status} Error"
     return "ok", str(status)
 
-def build_report(all_links, html_files, output_path):
+def build_report(all_links, html_files):
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     total = len(all_links)
@@ -319,16 +328,52 @@ def build_report(all_links, html_files, output_path):
 </body>
 </html>"""
 
-    Path(output_path).write_text(html, encoding="utf-8")
-    print(f"\n✅ Report saved to: {output_path}")
+    return html
+
+# ── Email sender ──────────────────────────────────────────────────────────────
+
+def send_email(html, broken_count):
+    now = datetime.now().strftime("%Y-%m-%d")
+    subject = f"⚠️ IT Study Hub — {broken_count} Broken Link(s) Found ({now})"
+
+    msg = MIMEMultipart("alternative")
+    msg["Subject"] = subject
+    msg["From"]    = GMAIL_ADDRESS
+    msg["To"]      = EMAIL_TO
+
+    # Plain text fallback
+    plain = f"IT Study Hub link checker found {broken_count} broken link(s) on {now}.\nSee the attached HTML report for details."
+    msg.attach(MIMEText(plain, "plain"))
+
+    # Attach the HTML report as a file
+    attachment = MIMEBase("text", "html")
+    attachment.set_payload(html.encode("utf-8"))
+    encoders.encode_base64(attachment)
+    attachment.add_header("Content-Disposition", f"attachment; filename=link_report_{now}.html")
+    msg.attach(attachment)
+
+    try:
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+            server.login(GMAIL_ADDRESS, GMAIL_APP_PW)
+            server.sendmail(GMAIL_ADDRESS, EMAIL_TO, msg.as_string())
+        print(f"✅ Email sent to {EMAIL_TO}")
+    except Exception as e:
+        print(f"❌ Failed to send email: {e}")
 
 # ── Entry point ───────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="IT Study Hub Link Checker")
     parser.add_argument("--root", default=SITE_ROOT, help="Path to site root (default: current dir)")
-    parser.add_argument("--output", default=OUTPUT, help="Output HTML file name")
     args = parser.parse_args()
 
     all_links, html_files = run_scan(args.root)
-    build_report(all_links, html_files, args.output)
+
+    broken = [l for l in all_links if status_label(l["status"], l["error"])[0] in ("broken", "error")]
+
+    if not broken:
+        print("✅ No broken links found. No email sent.")
+    else:
+        print(f"⚠️  {len(broken)} broken link(s) found. Sending email...")
+        html = build_report(all_links, html_files)
+        send_email(html, len(broken))
