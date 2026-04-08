@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MS0H78HR74');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/application-security.html">
+<title>Application Security Explained — OWASP Top 10, Secure SDLC & Input Validation | Security+</title>
+<meta name="description" content="Application security for CompTIA Security+ SY0-701 — OWASP Top 10 vulnerabilities, secure SDLC phases, input validation, SQL injection, XSS, CSRF, and static vs dynamic analysis.">
+<meta property="og:type" content="article"><meta property="og:url" content="https://itstudyhub.org/application-security.html">
+<meta property="og:title" content="Application Security — OWASP Top 10, Secure SDLC & Input Validation">
+<meta property="og:description" content="OWASP Top 10, secure SDLC, SQL injection, XSS, CSRF, and code analysis techniques for CompTIA Security+ SY0-701.">
+<meta property="og:image" content="https://itstudyhub.org/favicon-512x512.png">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(124,58,237,.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.35);color:#c4b5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#c4b5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-purple{background:rgba(124,58,237,.2);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.article-body a{color:var(--blue);font-weight:600;}
+.article-body a:hover{text-decoration:underline;}
+.article-body code{font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 6px;border-radius:4px;font-size:13px;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(124,58,237,.22) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#c4b5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:500px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:#fafbfd;}
+tbody tr:hover td{background:var(--light);}
+.td-label{font-weight:700;color:var(--navy);}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--card-shadow);}
+.card-icon{font-size:28px;margin-bottom:10px;}
+.card-title{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.card-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.card-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.card-desc strong{color:var(--navy);}
+.callout{border-radius:12px;padding:18px 22px;margin-bottom:32px;}
+.callout-purple{background:rgba(124,58,237,.05);border:1px solid rgba(124,58,237,.18);border-left:4px solid var(--purple);}
+.callout-amber{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.25);border-left:4px solid #f59e0b;}
+.callout-teal{background:rgba(0,194,168,.05);border:1px solid rgba(0,194,168,.18);border-left:4px solid var(--teal);}
+.callout-red{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.2);border-left:4px solid #ef4444;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+.callout-purple .callout-label{color:var(--purple);}.callout-amber .callout-label{color:#92400e;}.callout-teal .callout-label{color:var(--teal);}.callout-red .callout-label{color:#dc2626;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}.callout p:last-child{margin-bottom:0;}.callout strong{color:var(--navy);}
+.owasp-list{display:flex;flex-direction:column;gap:8px;margin-bottom:40px;}
+.owasp-item{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 18px;box-shadow:0 2px 8px rgba(10,22,40,.05);display:flex;gap:14px;align-items:flex-start;}
+.owasp-num{font-family:'DM Mono',monospace;font-size:12px;font-weight:700;color:var(--purple);background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.15);border-radius:6px;padding:3px 8px;white-space:nowrap;flex-shrink:0;margin-top:1px;}
+.owasp-content{}
+.owasp-title{font-family:'Outfit',sans-serif;font-size:14px;font-weight:800;color:var(--navy);margin-bottom:3px;}
+.owasp-desc{font-size:13px;color:var(--text);line-height:1.55;}
+.owasp-desc strong{color:var(--navy);}
+.exam-scenarios{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-q{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.scenario-a{font-size:14px;color:var(--text);line-height:1.65;}
+.scenario-a strong{color:var(--navy);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.35);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-inner">
+<a href="index.html" class="logo-link"><img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img"><span>IT Study Hub</span></a>
+<div class="nav-links"><a href="network-attacks.html">Network Attacks</a><a href="penetration-testing.html">Pen Testing</a><a href="security-plus-cheat-sheet.html">Security+ Cheat Sheet</a><a href="best-security-plus.html" class="nav-cta">Security+ Resources</a></div>
+</div></nav>
+
+<section class="page-hero"><div class="page-hero-inner">
+<nav class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Application Security</span></nav>
+<div class="page-hero-badge">🛡️ Security+</div>
+<h1>Application Security — <span>OWASP Top 10, Secure SDLC &amp; Input Validation</span></h1>
+<p class="page-hero-sub">The most critical web application vulnerabilities, how to build security into the software development lifecycle, and the code analysis techniques that stop them — all tested on Security+ SY0-701.</p>
+<div class="cert-badges"><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
+</div></section>
+
+<div class="article-wrap"><div class="article-body">
+
+<div class="quick-answer">
+<div class="quick-answer-label">Quick Reference</div>
+<div class="quick-answer-text"><strong>OWASP Top 10</strong> = the most critical web app security risks (SQL injection, XSS, broken auth, etc.). <strong>SQL injection</strong> = attacker inserts SQL commands through user input. <strong>XSS</strong> = injects malicious scripts into web pages viewed by others. <strong>CSRF</strong> = tricks an authenticated user into making unwanted requests. <strong>Secure SDLC</strong> = integrating security at every phase of software development. <strong>SAST</strong> = static analysis (source code, no execution). <strong>DAST</strong> = dynamic analysis (running application). <strong>Input validation</strong> = rejecting unexpected data before it reaches the application.</div>
+</div>
+
+<h2>Why Application Security Matters</h2>
+<p>Applications are now the most common attack surface in organizations. The network perimeter has shrunk while web applications, APIs, and cloud-native services have exploded in number. According to breach data, the majority of successful attacks target the application layer — not the network. The Security+ exam covers application security across multiple domains, particularly Domain 2 (Threats and Vulnerabilities) and Domain 3 (Security Architecture).</p>
+<p>Application security (AppSec) means building and maintaining software in a way that protects it against threats. It encompasses secure development practices, vulnerability testing, code review, and runtime protection. The most important framework for understanding common web application vulnerabilities is the OWASP Top 10.</p>
+
+<h2>OWASP Top 10 (2021)</h2>
+<p>OWASP (Open Worldwide Application Security Project) publishes the Top 10 Web Application Security Risks — a consensus list of the most critical vulnerabilities, updated based on real-world breach data. The current version is from 2021.</p>
+
+<div class="owasp-list">
+<div class="owasp-item"><span class="owasp-num">A01</span><div class="owasp-content"><div class="owasp-title">Broken Access Control</div><div class="owasp-desc">Users can act outside their intended permissions — e.g., accessing another user's data by changing a URL parameter. <strong>Moved to #1 in 2021.</strong> Fix: enforce access control server-side on every request.</div></div></div>
+<div class="owasp-item"><span class="owasp-num">A02</span><div class="owasp-content"><div class="owasp-title">Cryptographic Failures</div><div class="owasp-desc">Sensitive data exposed due to weak or missing encryption — storing passwords in plaintext, using MD5 for hashing, transmitting data over HTTP. Fix: use TLS everywhere, bcrypt/Argon2 for passwords, AES-256 for data at rest.</div></div></div>
+<div class="owasp-item"><span class="owasp-num">A03</span><div class="owasp-content"><div class="owasp-title">Injection (SQL, LDAP, OS Command)</div><div class="owasp-desc">Untrusted data is sent to an interpreter as part of a command or query. <strong>SQL injection</strong> is the classic example — attacker enters <code>' OR '1'='1</code> to bypass login. Fix: parameterized queries/prepared statements, input validation.</div></div></div>
+<div class="owasp-item"><span class="owasp-num">A04</span><div class="owasp-content"><div class="owasp-title">Insecure Design</div><div class="owasp-desc">Architectural flaws — missing threat modeling during design, no security requirements. Unlike implementation bugs, insecure design can't be fixed by good coding alone. Fix: threat modeling, security design reviews, security requirements.</div></div></div>
+<div class="owasp-item"><span class="owasp-num">A05</span><div class="owasp-content"><div class="owasp-title">Security Misconfiguration</div><div class="owasp-desc">Default credentials, open cloud storage buckets, unnecessary features enabled, verbose error messages exposing stack traces. The most commonly seen in practice. Fix: hardening guides, configuration management, disable defaults.</div></div></div>
+<div class="owasp-item"><span class="owasp-num">A06</span><div class="owasp-content"><div class="owasp-title">Vulnerable & Outdated Components</div><div class="owasp-desc">Using libraries, frameworks, or platforms with known vulnerabilities (e.g., Log4Shell). Fix: software composition analysis (SCA), dependency management, patch management program.</div></div></div>
+<div class="owasp-item"><span class="owasp-num">A07</span><div class="owasp-content"><div class="owasp-title">Identification & Authentication Failures</div><div class="owasp-desc">Weak passwords allowed, no MFA, session tokens not invalidated on logout, credential stuffing not prevented. Fix: MFA, strong password policies, session management best practices.</div></div></div>
+<div class="owasp-item"><span class="owasp-num">A08</span><div class="owasp-content"><div class="owasp-title">Software & Data Integrity Failures</div><div class="owasp-desc">Code and infrastructure updates without integrity verification — e.g., insecure CI/CD pipelines, unsigned software updates. Includes <strong>supply chain attacks</strong> (SolarWinds-style). Fix: code signing, verify checksums, secure pipelines.</div></div></div>
+<div class="owasp-item"><span class="owasp-num">A09</span><div class="owasp-content"><div class="owasp-title">Security Logging & Monitoring Failures</div><div class="owasp-desc">Insufficient logging means attacks go undetected. No alerts on login failures, high-value transactions, or privilege escalations. Fix: centralized logging (SIEM), monitoring, incident response procedures.</div></div></div>
+<div class="owasp-item"><span class="owasp-num">A10</span><div class="owasp-content"><div class="owasp-title">Server-Side Request Forgery (SSRF)</div><div class="owasp-desc">Application fetches a remote resource based on user-supplied URL — attacker can make the server request internal resources (cloud metadata, internal APIs). New in 2021. Fix: allowlist permitted destinations, disable HTTP redirections.</div></div></div>
+</div>
+
+<h2>SQL Injection Deep Dive</h2>
+<p>SQL injection (SQLi) is consistently one of the most tested application security topics on Security+. It occurs when an application builds SQL queries by concatenating user input without sanitization, allowing an attacker to inject their own SQL commands.</p>
+
+<div class="callout callout-red">
+<div class="callout-label">⚠️ SQL Injection Example</div>
+<p>Vulnerable query: <code>SELECT * FROM users WHERE username='<em>input</em>' AND password='<em>input</em>'</code></p>
+<p>Attacker enters: <code>' OR '1'='1' --</code> as the username.</p>
+<p>Resulting query: <code>SELECT * FROM users WHERE username='' OR '1'='1' --' AND password='x'</code></p>
+<p>The <code>--</code> comments out the rest, and <code>'1'='1'</code> is always true — the attacker bypasses authentication entirely without knowing any credentials.</p>
+</div>
+
+<p><strong>Defenses against SQL injection:</strong> The primary fix is <strong>parameterized queries</strong> (also called prepared statements) — the query structure is defined separately from the data, so user input can never be interpreted as SQL commands. Secondary defenses include input validation, stored procedures, and least-privilege database accounts.</p>
+
+<h2>Cross-Site Scripting (XSS)</h2>
+<p>XSS occurs when an application includes unvalidated, unsanitized user input in its web page output, allowing attackers to inject client-side scripts that execute in other users' browsers. There are three types:</p>
+
+<div class="table-wrap"><table>
+<thead><tr><th>XSS Type</th><th>How It Works</th><th>Persistence</th></tr></thead>
+<tbody>
+<tr><td class="td-label">Stored (Persistent)</td><td>Malicious script is saved in the database and served to every user who views the affected page — e.g., script in a comment field</td><td>Persistent — affects all users until removed</td></tr>
+<tr><td class="td-label">Reflected (Non-persistent)</td><td>Malicious script is in the URL — attacker tricks victim into clicking a crafted link; script reflects off the server and runs in victim's browser</td><td>One-time per link click</td></tr>
+<tr><td class="td-label">DOM-Based</td><td>Vulnerability is in client-side JavaScript — browser modifies DOM based on user-controlled input without sending data to the server</td><td>Client-side only; no server interaction</td></tr>
+</tbody>
+</table></div>
+
+<p><strong>Defenses against XSS:</strong> Output encoding (HTML-encode user-supplied data before rendering), Content Security Policy (CSP) headers that restrict which scripts can execute, and input validation. The key insight: it's about encoding <em>output</em>, not just validating input.</p>
+
+<h2>Cross-Site Request Forgery (CSRF)</h2>
+<p>CSRF tricks an authenticated user's browser into making a request to a web application they're already logged into — without their knowledge. If a user is logged into their bank, a malicious page can load an invisible image whose URL is a bank transfer request. The browser automatically includes the session cookie, and the bank executes the transfer.</p>
+
+<div class="callout callout-amber">
+<div class="callout-label">💡 XSS vs CSRF — Easy Confusion</div>
+<p><strong>XSS</strong>: Attacker injects scripts that run in the victim's browser — attacker exploits the user's <em>trust in the website</em>.</p>
+<p><strong>CSRF</strong>: Attacker tricks the victim's browser into making requests — exploits the website's <em>trust in the user's browser</em>.</p>
+<p><strong>Primary defense for CSRF</strong>: Anti-CSRF tokens (unique, unpredictable tokens included in forms and validated server-side). SameSite cookie attribute also helps significantly.</p>
+</div>
+
+<h2>Secure Software Development Lifecycle (SDLC)</h2>
+<p>The Secure SDLC integrates security activities into every phase of software development — rather than bolting security on at the end. The Security+ exam tests which activities happen in which phase.</p>
+
+<div class="table-wrap"><table>
+<thead><tr><th>SDLC Phase</th><th>Security Activities</th></tr></thead>
+<tbody>
+<tr><td class="td-label">Planning / Requirements</td><td>Define security requirements; identify regulatory compliance needs; establish security acceptance criteria</td></tr>
+<tr><td class="td-label">Design</td><td>Threat modeling (STRIDE, PASTA); security architecture review; define trust boundaries; data flow analysis</td></tr>
+<tr><td class="td-label">Development / Coding</td><td>Secure coding standards; code review; static analysis (SAST); developer security training</td></tr>
+<tr><td class="td-label">Testing / QA</td><td>Dynamic analysis (DAST); penetration testing; vulnerability scanning; fuzzing; security regression testing</td></tr>
+<tr><td class="td-label">Deployment</td><td>Secure configuration; change management; infrastructure hardening; secrets management</td></tr>
+<tr><td class="td-label">Maintenance / Operations</td><td>Patch management; continuous monitoring; incident response; security updates for dependencies</td></tr>
+</tbody>
+</table></div>
+
+<h2>Code Analysis Techniques</h2>
+<div class="card-grid">
+<div class="card">
+<div class="card-icon">📋</div>
+<div class="card-title">SAST</div>
+<div class="card-label" style="color:var(--purple);">Static Application Security Testing</div>
+<div class="card-desc">Analyzes <strong>source code, bytecode, or binaries without executing the application</strong>. Finds vulnerabilities like SQL injection and buffer overflows early in development. Also called "white-box testing." Examples: SonarQube, Checkmarx, Semgrep.</div>
+</div>
+<div class="card">
+<div class="card-icon">🔄</div>
+<div class="card-title">DAST</div>
+<div class="card-label" style="color:var(--blue);">Dynamic Application Security Testing</div>
+<div class="card-desc">Tests the <strong>running application by sending crafted inputs</strong> and observing responses. Finds issues that only appear at runtime (authentication flaws, injection). Also called "black-box testing." Examples: OWASP ZAP, Burp Suite.</div>
+</div>
+<div class="card">
+<div class="card-icon">💉</div>
+<div class="card-title">Fuzzing</div>
+<div class="card-label" style="color:var(--teal);">Fuzz Testing</div>
+<div class="card-desc">Sends <strong>random, unexpected, or malformed input</strong> to an application to find crashes, exceptions, and memory errors that indicate vulnerabilities. Effective at finding buffer overflows and input validation issues. Can be dumb (random) or smart (mutation-based).</div>
+</div>
+<div class="card">
+<div class="card-icon">🔍</div>
+<div class="card-title">Code Review</div>
+<div class="card-label" style="color:var(--navy);">Manual / Peer Review</div>
+<div class="card-desc">Human review of source code to find logic flaws, insecure design patterns, and issues automated tools miss. More thorough than automated SAST for complex business logic. Often combined with SAST for best coverage.</div>
+</div>
+</div>
+
+<div class="callout callout-teal">
+<div class="callout-label">💡 SAST vs DAST — Exam Tip</div>
+<p><strong>SAST</strong>: analyzes code <em>without running it</em> — finds issues early (shift left), but can't find runtime issues. Used by developers during coding.</p>
+<p><strong>DAST</strong>: tests the <em>running application</em> — finds runtime issues (authentication, session management) but can't see source code. Used by testers and security teams.</p>
+<p><strong>IAST</strong> (Interactive AST) = hybrid that instruments the running app and analyzes from inside — you may see this as a distractor on the exam.</p>
+</div>
+
+<h2>Input Validation</h2>
+<p>Input validation is the practice of ensuring that all input received by an application conforms to expected format, type, length, and range before it's processed. It's the foundational defense against injection attacks, buffer overflows, and many other vulnerabilities.</p>
+
+<div class="table-wrap"><table>
+<thead><tr><th>Technique</th><th>What It Does</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td class="td-label">Allowlist (Whitelist)</td><td>Only permit known-good values; reject everything else</td><td>Phone number field only accepts digits and hyphens — letters rejected</td></tr>
+<tr><td class="td-label">Denylist (Blacklist)</td><td>Reject known-bad values; allow everything else</td><td>Block <code>&lt;script&gt;</code> tags in input — weaker than allowlisting</td></tr>
+<tr><td class="td-label">Type checking</td><td>Ensure input matches expected data type</td><td>Age field must be an integer; reject strings</td></tr>
+<tr><td class="td-label">Length/range checks</td><td>Ensure input within expected bounds</td><td>Zip code: exactly 5 digits; reject longer values</td></tr>
+<tr><td class="td-label">Parameterized queries</td><td>Separate code from data — data can never be interpreted as SQL</td><td>Use <code>?</code> placeholders in SQL statements, pass values separately</td></tr>
+<tr><td class="td-label">Output encoding</td><td>Encode data before rendering to prevent script injection</td><td>Convert <code>&lt;</code> to <code>&amp;lt;</code> before displaying user content in HTML</td></tr>
+</tbody>
+</table></div>
+
+<h2>Exam Scenarios</h2>
+<div class="exam-scenarios">
+<div class="scenario">
+<div class="scenario-q">A developer wants to identify SQL injection vulnerabilities in the source code before the application is deployed. What type of testing should they use?</div>
+<div class="scenario-a"><strong>SAST (Static Application Security Testing).</strong> SAST analyzes source code without executing the application, making it appropriate for finding vulnerabilities during development before deployment. It's the right tool when you have access to source code and want to "shift left" — find vulnerabilities early when they're cheapest to fix. DAST would require the application to be running.</div>
+</div>
+<div class="scenario">
+<div class="scenario-q">A web application displays user-submitted comments on a public page. An attacker submits a comment containing JavaScript code, and other users who view the page have the script execute in their browsers, stealing their session cookies. What type of attack is this?</div>
+<div class="scenario-a"><strong>Stored (Persistent) XSS.</strong> The malicious script was saved to the database and served to every user who viewed the comment — this is stored XSS. The attack steals session cookies to hijack authenticated sessions. The fix is output encoding: HTML-encode the comment content before rendering it in the page, and implement a Content Security Policy (CSP) header.</div>
+</div>
+<div class="scenario">
+<div class="scenario-q">A security team wants to test their web application by sending random, unexpected inputs including extremely long strings, special characters, and null bytes to find crashes and unexpected behavior. What technique are they using?</div>
+<div class="scenario-a"><strong>Fuzzing (fuzz testing).</strong> Fuzzing sends random or semi-random inputs to an application to discover crashes, exceptions, and boundary condition failures that may indicate buffer overflows, format string vulnerabilities, or improper input handling. It's particularly effective at finding memory safety issues that static analysis might miss.</div>
+</div>
+<div class="scenario">
+<div class="scenario-q">An attacker sends a victim an email with a link. When the victim (who is logged into their bank) clicks the link, the bank automatically transfers $5,000 without the victim's awareness. What attack is this, and what is the primary defense?</div>
+<div class="scenario-a"><strong>CSRF (Cross-Site Request Forgery).</strong> The attacker exploited the bank's trust in the victim's authenticated browser session. The primary defense is <strong>anti-CSRF tokens</strong> — unique, unpredictable values included in each form and validated server-side. Since the attacker's page can't read the token (same-origin policy), the forged request is rejected. The SameSite cookie attribute also mitigates CSRF by preventing cross-site cookie submission.</div>
+</div>
+</div>
+
+<h2>Related Articles</h2>
+<div class="related-grid">
+<a href="network-attacks.html" class="related-link">Network Attacks & Defenses</a>
+<a href="penetration-testing.html" class="related-link">Penetration Testing Phases & Types</a>
+<a href="vulnerability-scanning.html" class="related-link">Vulnerability Scanning — CVE & CVSS</a>
+<a href="cryptography.html" class="related-link">Cryptography Explained</a>
+<a href="identity-and-access-management.html" class="related-link">Identity & Access Management (IAM)</a>
+<a href="best-security-plus.html" class="related-link">Best Security+ Study Resources</a>
+</div>
+
+</div></div>
+
+<footer class="footer"><div class="footer-inner">
+<div class="footer-brand">
+<div class="footer-logo">IT Study Hub</div>
+<div class="footer-tagline">Free CompTIA study guides for A+, Network+, Security+, CySA+, and CASP+.</div>
+</div>
+<div class="footer-links">
+<div class="footer-links-title">Security+</div>
+<a href="best-security-plus.html">Best Security+ Resources</a>
+<a href="security-plus-cheat-sheet.html">Security+ Cheat Sheet</a>
+<a href="penetration-testing.html">Penetration Testing</a>
+<a href="network-attacks.html">Network Attacks</a>
+<a href="vulnerability-scanning.html">Vulnerability Scanning</a>
+</div>
+<div class="footer-links">
+<div class="footer-links-title">Other Certs</div>
+<a href="best-network-plus.html">Network+ Resources</a>
+<a href="best-a-plus.html">A+ Resources</a>
+<a href="comptia-cysa-plus.html">CySA+ Guide</a>
+<a href="comptia-casp-plus.html">CASP+ Guide</a>
+</div>
+</div>
+<div class="footer-bottom">
+<span>© 2025 IT Study Hub. Not affiliated with CompTIA.</span>
+<a href="privacy-policy.html" class="footer-pp">Privacy Policy</a>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MS0H78HR74');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/email-security.html">
+<title>Email Security Explained — SPF, DKIM, DMARC & S/MIME | CompTIA Security+</title>
+<meta name="description" content="Email security for CompTIA Security+ SY0-701 — SPF, DKIM, DMARC explained with how each works, how they work together, S/MIME, STARTTLS, and exam scenarios.">
+<meta property="og:type" content="article"><meta property="og:url" content="https://itstudyhub.org/email-security.html">
+<meta property="og:title" content="Email Security — SPF, DKIM, DMARC & S/MIME for Security+">
+<meta property="og:description" content="SPF, DKIM, DMARC, S/MIME, and STARTTLS explained for CompTIA Security+ SY0-701 — how each works, how they combine, and exam scenarios.">
+<meta property="og:image" content="https://itstudyhub.org/favicon-512x512.png">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(124,58,237,.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.35);color:#c4b5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#c4b5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-purple{background:rgba(124,58,237,.2);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.article-body a{color:var(--blue);font-weight:600;}
+.article-body a:hover{text-decoration:underline;}
+.article-body code{font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 6px;border-radius:4px;font-size:13px;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(124,58,237,.22) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#c4b5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:500px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:#fafbfd;}
+tbody tr:hover td{background:var(--light);}
+.td-label{font-weight:700;color:var(--navy);}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--card-shadow);}
+.card-icon{font-size:28px;margin-bottom:10px;}
+.card-title{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.card-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.card-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.card-desc strong{color:var(--navy);}
+.callout{border-radius:12px;padding:18px 22px;margin-bottom:32px;}
+.callout-purple{background:rgba(124,58,237,.05);border:1px solid rgba(124,58,237,.18);border-left:4px solid var(--purple);}
+.callout-amber{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.25);border-left:4px solid #f59e0b;}
+.callout-teal{background:rgba(0,194,168,.05);border:1px solid rgba(0,194,168,.18);border-left:4px solid var(--teal);}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+.callout-purple .callout-label{color:var(--purple);}.callout-amber .callout-label{color:#92400e;}.callout-teal .callout-label{color:var(--teal);}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}.callout p:last-child{margin-bottom:0;}.callout strong{color:var(--navy);}
+.flow-steps{display:flex;flex-direction:column;gap:4px;margin-bottom:40px;}
+.flow-step{display:flex;align-items:flex-start;gap:14px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 18px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.flow-num{font-family:'DM Mono',monospace;font-size:13px;font-weight:700;color:var(--purple);min-width:28px;padding-top:1px;}
+.flow-content{font-size:14px;color:var(--text);line-height:1.6;}
+.flow-content strong{color:var(--navy);}
+.exam-scenarios{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-q{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.scenario-a{font-size:14px;color:var(--text);line-height:1.65;}
+.scenario-a strong{color:var(--navy);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.35);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-inner">
+<a href="index.html" class="logo-link"><img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img"><span>IT Study Hub</span></a>
+<div class="nav-links"><a href="network-attacks.html">Network Attacks</a><a href="cryptography.html">Cryptography</a><a href="security-plus-cheat-sheet.html">Security+ Cheat Sheet</a><a href="best-security-plus.html" class="nav-cta">Security+ Resources</a></div>
+</div></nav>
+
+<section class="page-hero"><div class="page-hero-inner">
+<nav class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Email Security</span></nav>
+<div class="page-hero-badge">📧 Security+</div>
+<h1>Email Security — <span>SPF, DKIM, DMARC &amp; S/MIME</span></h1>
+<p class="page-hero-sub">How SPF verifies senders, DKIM adds a cryptographic signature, DMARC enforces policy, and S/MIME encrypts the message itself — all tested on CompTIA Security+ SY0-701.</p>
+<div class="cert-badges"><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
+</div></section>
+
+<div class="article-wrap"><div class="article-body">
+
+<div class="quick-answer">
+<div class="quick-answer-label">Quick Reference</div>
+<div class="quick-answer-text"><strong>SPF</strong> = TXT DNS record listing IPs authorized to send email for your domain. <strong>DKIM</strong> = cryptographic signature in email headers — proves the message wasn't tampered with. <strong>DMARC</strong> = policy that tells receiving servers what to do with emails that fail SPF/DKIM (none / quarantine / reject). <strong>S/MIME</strong> = encrypts email content end-to-end and adds a digital signature. SPF + DKIM + DMARC work together to stop spoofing; S/MIME protects content confidentiality.</div>
+</div>
+
+<h2>Why Email Is a Prime Attack Vector</h2>
+<p>Email was designed without authentication in mind. The Simple Mail Transfer Protocol (SMTP) that has carried email since 1982 allows any server to claim to be sending from any domain — meaning a criminal can trivially send an email that appears to come from your CEO, your bank, or a government agency. Without additional controls, there's nothing in the protocol to stop it.</p>
+<p>This is why phishing remains the most common initial access technique in breaches — email spoofing is trivially easy without protective controls. SPF, DKIM, and DMARC are the three DNS-based standards that, when deployed together, make domain spoofing dramatically harder. The Security+ exam tests each one and expects you to understand what each does and how they complement each other.</p>
+
+<h2>SPF — Sender Policy Framework</h2>
+<p>SPF is a DNS TXT record that lists every IP address and mail server authorized to send email on behalf of your domain. When a receiving mail server gets an email claiming to be from <code>@company.com</code>, it checks the SPF record in DNS for <code>company.com</code> and verifies that the sending server's IP is in the authorized list.</p>
+
+<div class="callout callout-purple">
+<div class="callout-label">📝 Example SPF Record</div>
+<p><code>v=spf1 ip4:203.0.113.10 include:sendgrid.net ~all</code></p>
+<p>This authorizes IP 203.0.113.10 and SendGrid's servers to send email for this domain. The <code>~all</code> (softfail) means emails from unauthorized IPs should be marked suspicious but not outright rejected. <code>-all</code> (hardfail) means reject emails from unauthorized sources entirely.</p>
+</div>
+
+<p><strong>SPF limitation:</strong> SPF only checks the envelope sender (the technical "from" address used during SMTP delivery), not the header "From" address that users see in their email client. An attacker can pass SPF while still displaying a spoofed visible From address — this is why DKIM and DMARC are also needed.</p>
+
+<h2>DKIM — DomainKeys Identified Mail</h2>
+<p>DKIM adds a cryptographic digital signature to outgoing emails. The sending mail server signs the email headers and body with a private key, and includes the signature in a <code>DKIM-Signature</code> email header. The corresponding public key is published in a DNS TXT record. When the receiving server gets the email, it retrieves the public key from DNS and verifies the signature — proving that the email was actually sent by the domain's mail server and that the content wasn't modified in transit.</p>
+
+<div class="callout callout-amber">
+<div class="callout-label">💡 DKIM vs SPF — the key difference</div>
+<p><strong>SPF</strong> verifies that the sending server is authorized to send for the domain — it's about the server identity. <strong>DKIM</strong> verifies that the email content wasn't modified after it was sent — it's about message integrity. Both can pass independently while a spoofed visible From address still appears. DMARC ties them together and adds the human-visible From address check.</p>
+</div>
+
+<h2>DMARC — Domain-based Message Authentication, Reporting and Conformance</h2>
+<p>DMARC is the policy layer that ties SPF and DKIM together and tells receiving mail servers what to do with emails that fail authentication. It also requires that the authenticated domain (from SPF or DKIM) aligns with the visible From address — closing the gap where an attacker could pass SPF while displaying a spoofed From.</p>
+
+<div class="table-wrap"><table>
+<thead><tr><th>DMARC Policy</th><th>What Happens to Failing Emails</th><th>When to Use</th></tr></thead>
+<tbody>
+<tr><td class="td-label">p=none</td><td>No action — emails are delivered regardless. Failures are logged and reported to the domain owner. Used for monitoring before enforcement.</td><td>Initial deployment — gather data without risking legitimate email</td></tr>
+<tr><td class="td-label">p=quarantine</td><td>Failing emails are sent to the spam/junk folder. Reduces user exposure without hard rejection.</td><td>Intermediate step during tightening</td></tr>
+<tr><td class="td-label">p=reject</td><td>Failing emails are rejected outright and not delivered. Strongest protection against spoofing.</td><td>Mature deployments with all legitimate senders properly configured</td></tr>
+</tbody>
+</table></div>
+
+<p>DMARC also generates aggregate and forensic reports — the domain owner receives regular reports from receiving mail servers showing how much email is passing and failing authentication, which helps identify legitimate senders that need to be added to SPF records.</p>
+
+<h2>How SPF + DKIM + DMARC Work Together</h2>
+<div class="flow-steps">
+<div class="flow-step"><div class="flow-num">01</div><div class="flow-content"><strong>Email sent</strong> — a mail server sends an email claiming to be from <code>ceo@company.com</code></div></div>
+<div class="flow-step"><div class="flow-num">02</div><div class="flow-content"><strong>SPF check</strong> — the receiving server checks if the sending IP is in company.com's SPF record. Pass or Fail.</div></div>
+<div class="flow-step"><div class="flow-num">03</div><div class="flow-content"><strong>DKIM check</strong> — the receiving server retrieves the DKIM public key from DNS and verifies the email signature. Pass or Fail.</div></div>
+<div class="flow-step"><div class="flow-num">04</div><div class="flow-content"><strong>DMARC alignment check</strong> — did the authenticated domain (from SPF or DKIM) align with the visible From: address? If not, even a SPF/DKIM pass can still fail DMARC.</div></div>
+<div class="flow-step"><div class="flow-num">05</div><div class="flow-content"><strong>DMARC policy applied</strong> — based on company.com's DMARC policy (none/quarantine/reject), the receiving server decides what to do with the email.</div></div>
+</div>
+
+<h2>S/MIME — Secure/Multipurpose Internet Mail Extensions</h2>
+<p>S/MIME operates independently of SPF/DKIM/DMARC and solves a different problem: encrypting email content end-to-end and digitally signing messages. While SPF/DKIM/DMARC protect against domain spoofing at the server level, S/MIME protects the email content itself.</p>
+<p>S/MIME uses public-key cryptography: to send an encrypted email, you encrypt with the recipient's public key — only the recipient's private key can decrypt it. Digital signatures use the sender's private key to sign — any recipient can verify with the sender's public key that the message came from the claimed sender and wasn't modified.</p>
+
+<div class="table-wrap"><table>
+<thead><tr><th>Technology</th><th>What It Protects</th><th>How It Works</th><th>Key Point for Exam</th></tr></thead>
+<tbody>
+<tr><td class="td-label">SPF</td><td>Prevents unauthorized servers from sending as your domain</td><td>DNS TXT record listing authorized IPs</td><td>Checks envelope sender / sending server IP</td></tr>
+<tr><td class="td-label">DKIM</td><td>Proves message integrity — wasn't modified in transit</td><td>Cryptographic signature in email headers, public key in DNS</td><td>Signs message with private key; verify with DNS public key</td></tr>
+<tr><td class="td-label">DMARC</td><td>Enforces SPF/DKIM and aligns with visible From address</td><td>DNS TXT policy record: none / quarantine / reject</td><td>Ties SPF + DKIM to visible From; generates reports</td></tr>
+<tr><td class="td-label">S/MIME</td><td>Encrypts email content; verifies sender identity</td><td>Public-key cryptography using X.509 certificates</td><td>End-to-end encryption; requires certificate exchange</td></tr>
+<tr><td class="td-label">STARTTLS</td><td>Encrypts SMTP traffic in transit between servers</td><td>Upgrades plain SMTP connection to TLS</td><td>Protects email in transit, not end-to-end</td></tr>
+</tbody>
+</table></div>
+
+<h2>Exam Scenarios</h2>
+<div class="exam-scenarios">
+<div class="scenario"><div class="scenario-q">A company is receiving reports that external parties are getting emails that appear to come from the company's domain but were never sent by the company. Which DNS records should the security team check and configure?</div>
+<div class="scenario-a"><strong>Answer: SPF, DKIM, and DMARC.</strong> The company's domain is being spoofed. SPF will restrict which servers can send as the domain, DKIM will add cryptographic signatures, and DMARC will enforce policy and provide visibility through reporting. All three are needed for comprehensive anti-spoofing protection.</div></div>
+<div class="scenario"><div class="scenario-q">A security analyst wants to ensure that emails from the company domain are rejected if they fail SPF or DKIM verification. Which DMARC policy setting achieves this?</div>
+<div class="scenario-a"><strong>Answer: p=reject.</strong> The DMARC policy <code>p=reject</code> instructs receiving mail servers to outright reject emails that fail authentication, preventing them from being delivered at all. Start with <code>p=none</code> to monitor, move to <code>p=quarantine</code>, then <code>p=reject</code> once all legitimate senders are properly configured.</div></div>
+<div class="scenario"><div class="scenario-q">A user wants to send a confidential email to a partner so that only the partner can read it, and the partner can verify it genuinely came from the user. Which email security technology provides both confidentiality and sender authentication?</div>
+<div class="scenario-a"><strong>Answer: S/MIME.</strong> S/MIME provides both encryption (using the recipient's public key for confidentiality) and digital signatures (using the sender's private key for authentication). SPF/DKIM/DMARC only protect at the server level — S/MIME protects the actual message content.</div></div>
+</div>
+
+<h2>Related Articles</h2>
+<div class="related-grid">
+<a href="network-attacks.html" class="related-link">Common Network Attacks</a>
+<a href="social-engineering-attacks.html" class="related-link">Social Engineering Attacks</a>
+<a href="cryptography.html" class="related-link">Cryptography Explained</a>
+<a href="pki-and-certificates.html" class="related-link">PKI and Certificates</a>
+<a href="threat-intelligence.html" class="related-link">Threat Intelligence</a>
+<a href="comptia-security-plus-study-guide.html" class="related-link">Security+ Study Guide</a>
+</div>
+
+</div></div>
+<footer class="footer"><div class="footer-inner">
+<div class="footer-brand"><div class="footer-logo">IT Study Hub</div><div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div></div>
+<div class="footer-links"><div class="footer-links-title">Security</div><a href="network-attacks.html">Network Attacks</a><a href="social-engineering-attacks.html">Social Engineering</a><a href="cryptography.html">Cryptography</a></div>
+<div class="footer-links"><div class="footer-links-title">Security+</div><a href="comptia-security-plus-study-guide.html">Study Guide</a><a href="security-plus-cheat-sheet.html">Cheat Sheet</a><a href="best-security-plus.html">Best Resources</a></div>
+</div><div class="footer-bottom"><span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+<span><a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links may be affiliate links.</span></div></footer>
+</body></html>

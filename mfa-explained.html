@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MS0H78HR74');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/mfa-explained.html">
+<title>MFA Explained — Multi-Factor Authentication Types, TOTP & MFA Fatigue | Security+</title>
+<meta name="description" content="Multi-factor authentication explained for CompTIA Security+ SY0-701 — the three factors, TOTP vs HOTP, push notifications, hardware tokens, FIDO2, MFA fatigue attacks, and exam scenarios.">
+<meta property="og:type" content="article"><meta property="og:url" content="https://itstudyhub.org/mfa-explained.html">
+<meta property="og:title" content="MFA Explained — Multi-Factor Authentication for Security+">
+<meta property="og:description" content="The three authentication factors, TOTP vs HOTP, push notifications, FIDO2, MFA fatigue attacks, and every MFA concept tested on Security+ SY0-701.">
+<meta property="og:image" content="https://itstudyhub.org/favicon-512x512.png">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(124,58,237,.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.35);color:#c4b5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#c4b5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-purple{background:rgba(124,58,237,.2);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.article-body a{color:var(--blue);font-weight:600;}
+.article-body a:hover{text-decoration:underline;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(124,58,237,.22) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#c4b5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:500px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:#fafbfd;}
+tbody tr:hover td{background:var(--light);}
+.td-label{font-weight:700;color:var(--navy);}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--card-shadow);}
+.card-icon{font-size:28px;margin-bottom:10px;}
+.card-title{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.card-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.card-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.card-desc strong{color:var(--navy);}
+.callout{border-radius:12px;padding:18px 22px;margin-bottom:32px;}
+.callout-purple{background:rgba(124,58,237,.05);border:1px solid rgba(124,58,237,.18);border-left:4px solid var(--purple);}
+.callout-amber{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.25);border-left:4px solid #f59e0b;}
+.callout-teal{background:rgba(0,194,168,.05);border:1px solid rgba(0,194,168,.18);border-left:4px solid var(--teal);}
+.callout-red{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.2);border-left:4px solid #ef4444;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+.callout-purple .callout-label{color:var(--purple);}.callout-amber .callout-label{color:#92400e;}.callout-teal .callout-label{color:var(--teal);}.callout-red .callout-label{color:#b91c1c;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}.callout p:last-child{margin-bottom:0;}.callout strong{color:var(--navy);}
+.exam-scenarios{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-q{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.scenario-a{font-size:14px;color:var(--text);line-height:1.65;}
+.scenario-a strong{color:var(--navy);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.35);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-inner">
+<a href="index.html" class="logo-link"><img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img"><span>IT Study Hub</span></a>
+<div class="nav-links"><a href="identity-and-access-management.html">IAM</a><a href="authentication-protocols.html">Auth Protocols</a><a href="security-plus-cheat-sheet.html">Security+ Cheat Sheet</a><a href="best-security-plus.html" class="nav-cta">Security+ Resources</a></div>
+</div></nav>
+
+<section class="page-hero"><div class="page-hero-inner">
+<nav class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>MFA Explained</span></nav>
+<div class="page-hero-badge">🔐 Security+</div>
+<h1>Multi-Factor Authentication — <span>MFA Explained</span></h1>
+<p class="page-hero-sub">The three authentication factors, TOTP vs HOTP, push notifications, hardware tokens, FIDO2, MFA fatigue attacks, and every MFA concept tested on CompTIA Security+ SY0-701.</p>
+<div class="cert-badges"><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
+</div></section>
+
+<div class="article-wrap"><div class="article-body">
+
+<div class="quick-answer">
+<div class="quick-answer-label">Quick Reference</div>
+<div class="quick-answer-text"><strong>MFA requires two or more factors from different categories</strong> to authenticate: <strong>something you know</strong> (password, PIN), <strong>something you have</strong> (authenticator app, hardware token, smart card), <strong>something you are</strong> (fingerprint, face, iris). The key word is <em>different</em> — two passwords is not MFA. MFA defeats credential theft attacks because a stolen password alone cannot satisfy the second factor.</div>
+</div>
+
+<h2>The Three Authentication Factors</h2>
+<p>Authentication factors are categories of proof that verify your identity. MFA works because compromising one factor category does not compromise another — a stolen password doesn't give an attacker your fingerprint, and stealing your phone doesn't reveal your password.</p>
+
+<div class="card-grid">
+<div class="card"><div class="card-icon">🧠</div><div class="card-title">Something You Know</div><div class="card-label" style="color:var(--purple);">Knowledge factor</div><div class="card-desc"><strong>Passwords, PINs, passphrases, security questions.</strong> The most common factor — and the weakest when used alone. Susceptible to phishing, credential stuffing, brute force, and password reuse attacks. Must always be combined with at least one other factor.</div></div>
+<div class="card"><div class="card-icon">📱</div><div class="card-title">Something You Have</div><div class="card-label" style="color:var(--purple);">Possession factor</div><div class="card-desc"><strong>Authenticator apps, hardware tokens (YubiKey), smart cards, OTP via SMS.</strong> Requires physical possession of a device or object. An attacker who steals your password still can't authenticate without also stealing your phone or token.</div></div>
+<div class="card"><div class="card-icon">👆</div><div class="card-title">Something You Are</div><div class="card-label" style="color:var(--purple);">Inherence factor</div><div class="card-desc"><strong>Fingerprint, face recognition, iris scan, voice recognition, vein pattern.</strong> Biometric factors are highly convenient but raise privacy concerns and can occasionally be spoofed — high-quality photos can fool some face recognition systems.</div></div>
+<div class="card"><div class="card-icon">📍</div><div class="card-title">Somewhere You Are</div><div class="card-label" style="color:var(--purple);">Location factor</div><div class="card-desc"><strong>GPS location, IP geolocation, network location.</strong> A fourth factor sometimes cited on the exam. Restricts access to users within a physical location or network range. Common in Zero Trust — "deny access from outside the corporate network unless VPN connected."</div></div>
+</div>
+
+<h2>MFA Types — TOTP, HOTP, Push, and Hardware Tokens</h2>
+
+<div class="table-wrap"><table>
+<thead><tr><th>Type</th><th>How It Works</th><th>Strength</th><th>Exam Key Point</th></tr></thead>
+<tbody>
+<tr><td class="td-label">TOTP</td><td>Time-based one-time password — generates a 6-digit code every 30 seconds using a shared secret + current time. Google Authenticator, Authy.</td><td>Strong</td><td>Code expires in 30 seconds — replay attacks fail</td></tr>
+<tr><td class="td-label">HOTP</td><td>HMAC-based one-time password — generates a code based on a counter that increments with each use. Older RSA SecurID tokens use this.</td><td>Moderate</td><td>Counter-based, not time-based — codes don't expire automatically</td></tr>
+<tr><td class="td-label">Push Notification</td><td>App on your phone receives a push asking "Approve this login?" — you tap Approve or Deny. Microsoft Authenticator, Duo.</td><td>Strong</td><td>Vulnerable to MFA fatigue attacks (push bombing)</td></tr>
+<tr><td class="td-label">Hardware Token</td><td>Physical device (YubiKey, RSA SecurID) generates codes or uses USB/NFC to authenticate. Cannot be phished remotely.</td><td>Very Strong</td><td>Most phishing-resistant MFA — code never entered manually</td></tr>
+<tr><td class="td-label">SMS OTP</td><td>One-time code sent via text message. Weakest MFA option — susceptible to SIM swapping.</td><td>Weak</td><td>Better than no MFA, but weakest option on exam questions</td></tr>
+<tr><td class="td-label">FIDO2 / Passkeys</td><td>Cryptographic key pair — private key stays on device, public key with server. No password transmitted. WebAuthn standard.</td><td>Strongest</td><td>Phishing-resistant by design — no shared secret to steal</td></tr>
+</tbody>
+</table></div>
+
+<h2>FIDO2 and Passkeys — the Future of Authentication</h2>
+<p>FIDO2 (Fast IDentity Online 2) is the authentication standard behind passkeys. Instead of transmitting a password or OTP code, FIDO2 uses public-key cryptography: your device holds a private key that never leaves it, and the server holds the corresponding public key. When you authenticate, your device signs a challenge with the private key — the server verifies the signature without ever seeing the private key or anything that could be stolen and replayed.</p>
+<p>This makes FIDO2 inherently phishing-resistant. Even if an attacker tricks you into visiting a fake login page, there's no password or code to capture — the private key never leaves your device, and the cryptographic challenge is domain-specific (a fake site can't use the signature generated for the real site). The exam doesn't test FIDO2 implementation details deeply, but you should know it's the most phishing-resistant authentication method available.</p>
+
+<h2>MFA Fatigue Attacks — Push Bombing</h2>
+<div class="callout callout-red">
+<div class="callout-label">⚠️ Attack to Know for the Exam</div>
+<p><strong>MFA fatigue (push bombing)</strong> is an attack where an adversary who has stolen valid credentials repeatedly sends MFA push notifications to the victim's phone, hoping the victim approves one out of frustration, confusion, or distraction. The Uber breach in 2022 succeeded largely through MFA fatigue — the attacker sent continuous Duo pushes until the victim approved one.</p>
+<p><strong>Mitigations:</strong> Number matching (the push shows a number you must match to a number on screen — prevents blind approval), phishing-resistant MFA (FIDO2/hardware tokens eliminate push notifications entirely), rate limiting push notifications, and user awareness training.</p>
+</div>
+
+<h2>Smart Cards and PIV</h2>
+<p>Smart cards combine something you have (the physical card with an embedded chip) and something you know (the PIN to unlock it), making them inherently two-factor. The US government's PIV (Personal Identity Verification) card is a smart card standard used for physical and logical access to federal facilities and systems. CAC (Common Access Card) is the DoD equivalent. Smart cards are covered on Security+ because they appear in enterprise and government access control scenarios — the exam expects you to know that a smart card requires a PIN to activate, making it two-factor by itself.</p>
+
+<div class="callout callout-amber">
+<div class="callout-label">💡 Exam Trap: Two Passwords ≠ MFA</div>
+<p>MFA requires factors from <strong>different categories</strong>. A password plus a security question is <strong>not</strong> MFA — both are knowledge factors. A password plus an authenticator app code is MFA — knowledge + possession. The exam will test this distinction with answer choices designed to trip up candidates who confuse "two steps" with "two factors."</p>
+</div>
+
+<h2>Where MFA Fits in Zero Trust and IAM</h2>
+<p>MFA is a foundational control in Zero Trust architecture — "never trust, always verify" means every authentication attempt must be verified with strong factors regardless of network location. Even users inside the corporate network must MFA. Zero Trust policies often add additional context — if a user's location, device posture, or access pattern is unusual, step-up authentication can require a stronger second factor or re-authentication. MFA also directly satisfies compliance requirements: PCI-DSS requires MFA for remote access to the cardholder data environment, and HIPAA guidance recommends MFA for systems storing PHI.</p>
+
+<h2>Exam Scenarios</h2>
+<div class="exam-scenarios">
+<div class="scenario"><div class="scenario-q">An attacker obtained an employee's username and password through phishing. They are now unable to access the corporate VPN. What control is preventing access?</div>
+<div class="scenario-a"><strong>Answer: Multi-factor authentication (MFA).</strong> The stolen password alone satisfies only the knowledge factor. Without the second factor (possession or inherence), authentication fails. This is the core value proposition of MFA — credential theft alone is insufficient.</div></div>
+<div class="scenario"><div class="scenario-q">A security team reports that employees are receiving dozens of unexpected MFA push notifications they did not initiate, and one employee approved a push by mistake. What attack is occurring?</div>
+<div class="scenario-a"><strong>Answer: MFA fatigue attack (push bombing).</strong> The attacker has valid credentials and is flooding the victim with push notifications hoping for accidental approval. Mitigations include switching to number-matching MFA or phishing-resistant FIDO2/hardware tokens.</div></div>
+<div class="scenario"><div class="scenario-q">A company requires the most phishing-resistant authentication method available for privileged accounts. Which MFA type should they implement?</div>
+<div class="scenario-a"><strong>Answer: FIDO2 hardware security keys (such as YubiKey).</strong> FIDO2 is phishing-resistant by design — the private key never leaves the device and authentication is domain-bound. No secret can be captured by a phishing page. Hardware tokens are the strongest option on the exam when phishing resistance is the requirement.</div></div>
+<div class="scenario"><div class="scenario-q">A user is issued a government-issued card with an embedded chip that requires a PIN before granting access to workstations. How many authentication factors does this represent?</div>
+<div class="scenario-a"><strong>Answer: Two factors.</strong> The smart card (PIV/CAC) represents something you have; the PIN represents something you know. A smart card used with a PIN is MFA by itself — you need both the physical card and knowledge of the PIN.</div></div>
+</div>
+
+<h2>Related Articles</h2>
+<div class="related-grid">
+<a href="identity-and-access-management.html" class="related-link">Identity and Access Management (IAM)</a>
+<a href="authentication-protocols.html" class="related-link">Authentication Protocols</a>
+<a href="kerberos-explained.html" class="related-link">Kerberos Explained</a>
+<a href="zero-trust-security.html" class="related-link">Zero Trust Security</a>
+<a href="security-frameworks.html" class="related-link">Security Frameworks</a>
+<a href="comptia-security-plus-study-guide.html" class="related-link">Security+ Study Guide</a>
+</div>
+
+</div></div>
+<footer class="footer"><div class="footer-inner">
+<div class="footer-brand"><div class="footer-logo">IT Study Hub</div><div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div></div>
+<div class="footer-links"><div class="footer-links-title">Security</div><a href="identity-and-access-management.html">IAM</a><a href="authentication-protocols.html">Auth Protocols</a><a href="zero-trust-security.html">Zero Trust</a><a href="kerberos-explained.html">Kerberos</a></div>
+<div class="footer-links"><div class="footer-links-title">Security+</div><a href="comptia-security-plus-study-guide.html">Study Guide</a><a href="security-plus-cheat-sheet.html">Cheat Sheet</a><a href="best-security-plus.html">Best Resources</a></div>
+</div><div class="footer-bottom"><span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+<span><a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links may be affiliate links.</span></div></footer>
+</body></html>
