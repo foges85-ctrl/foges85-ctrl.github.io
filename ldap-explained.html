@@ -489,6 +489,27 @@ tbody tr:hover td { background: #faf4ff; }
   ]
 }
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "How LDAP Works — Directory Queries, Active Directory & LDAP",
+      "item": "https://itstudyhub.org/ldap-explained.html"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -647,7 +668,7 @@ tbody tr:hover td { background: #faf4ff; }
       <div class="callout-label">📌 DN components — what the abbreviations mean</div>
       <p><strong>DN (Distinguished Name)</strong> — the full unique path to an object. Example: <code style="font-family:'DM Mono',monospace;font-size:12px;background:var(--light);padding:2px 6px;border-radius:4px;">CN=John Smith,OU=Users,DC=company,DC=com</code></p>
       <p><strong>CN (Common Name)</strong> — the name of the object itself (a user, group, or computer).</p>
-      <p><strong>OU (Organisational Unit)</strong> — a container for grouping objects. Like a folder. You apply Group Policy at the OU level in Active Directory.</p>
+      <p><strong>OU (Organisational Unit)</strong> — a container for grouping objects. Like a folder. You apply <a href="active-directory-group-policy.html">Group Policy</a> at the OU level in Active Directory.</p>
       <p><strong>DC (Domain Component)</strong> — one label of the domain name. <code style="font-family:'DM Mono',monospace;font-size:12px;background:var(--light);padding:2px 6px;border-radius:4px;">company.com</code> becomes <code style="font-family:'DM Mono',monospace;font-size:12px;background:var(--light);padding:2px 6px;border-radius:4px;">DC=company,DC=com</code>.</p>
     </div>
 

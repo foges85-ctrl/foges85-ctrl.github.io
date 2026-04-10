@@ -551,6 +551,27 @@ a:hover { text-decoration: underline; }
   ]
 }
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "How NAT Works — Why Your Home Network Shares One Public IP",
+      "item": "https://itstudyhub.org/nat-explained.html"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -699,7 +720,7 @@ a:hover { text-decoration: underline; }
 
     <p>PAT (also called <strong>NAT overload</strong>) is the type of NAT used on virtually every home and small business network. It's what allows dozens of devices to share a single public IP address simultaneously — and it's heavily tested on both A+ and Network+.</p>
 
-    <p>The trick is port numbers. Each outbound connection gets a unique source port number assigned by the router. The router maintains a <strong>NAT translation table</strong> that maps each private IP + port to the public IP + port, so it knows exactly which device to send the response back to.</p>
+    <p>The trick is <a href="ports-and-protocols.html">port numbers</a>. Each outbound connection gets a unique source port number assigned by the router. The router maintains a <strong>NAT translation table</strong> that maps each private IP + port to the public IP + port, so it knows exactly which device to send the response back to.</p>
 
     <div class="code-block" style="background:var(--navy);border-radius:12px;overflow:hidden;margin-bottom:28px;border:1px solid rgba(255,255,255,0.08);">
       <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.7px;text-transform:uppercase;color:var(--teal);padding:10px 18px 8px;border-bottom:1px solid rgba(255,255,255,0.08);">PAT translation table — example</div>
@@ -714,7 +735,7 @@ a:hover { text-decoration: underline; }
 
     <h2>NAT types comparison — Network+ table</h2>
 
-    <div style="overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:28px;">
+    <div style="overflow-x:auto;border-<a href="radius-explained.html">radius</a>:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:28px;">
       <table style="width:100%;border-collapse:collapse;background:var(--white);min-width:400px;">
         <thead>
           <tr>

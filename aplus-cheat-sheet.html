@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/aplus-cheat-sheet.html">
 
-<title>CompTIA A+ Cheat Sheet 2026 — Every Port, Command & Concept for 220-1201/1202</title>
-<meta name="description" content="The only A+ cheat sheet you need — every port number, OSI layer, Windows command, connector type, and exam trap on one page. Updated for 220-1201 and 220-1202.">
+<title>CompTIA A+ Cheat Sheet 2026 — Every Port, Command & Concept</title>
+<meta name="description" content="The only A+ cheat sheet you need — every port number, OSI layer, Windows command, connector type, and exam trap on one page.">
 
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -227,6 +227,27 @@ tbody tr:hover td { background: #f0fbf9; }
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "CompTIA A+ Cheat Sheet 2026 — Every Port, Command & Concept",
+      "item": "https://itstudyhub.org/aplus-cheat-sheet.html"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -298,7 +319,7 @@ tbody tr:hover td { background: #f0fbf9; }
 
   <!-- PORTS -->
   <div id="ports" class="section-title"><span class="s-icon">🔌</span> Ports &amp; Protocols</div>
-  <p class="section-intro">The A+ exam tests port numbers in scenario questions — "a user can't send email" maps to ports 25/587. Know the port, protocol (TCP/UDP), and what breaks when it's blocked.</p>
+  <p class="section-intro">The A+ exam tests <a href="ports-and-protocols.html">port numbers</a> in scenario questions — "a user can't send email" maps to ports 25/587. Know the port, protocol (TCP/UDP), and what breaks when it's blocked.</p>
 
   <div class="table-wrap">
     <table>
@@ -416,7 +437,7 @@ tbody tr:hover td { background: #f0fbf9; }
   <div class="exam-tip">
     <div class="exam-tip-label">⚡ M.2 keying — B key vs M key vs B+M key</div>
     <p>M.2 slots have physical keys (notch positions) that determine which drives are compatible. <strong>M key</strong> supports NVMe (PCIe) drives. <strong>B+M key</strong> supports SATA drives (and some NVMe). A drive that is M-keyed only will not fit in a B+M slot. Check the motherboard spec before purchasing an M.2 drive.</p>
-    <p><strong>RAID basics:</strong> RAID 0 = striping (speed, no redundancy). RAID 1 = mirroring (redundancy, half capacity). RAID 5 = striping with parity (3+ drives, one drive fault tolerance). RAID 10 = mirroring + striping (4+ drives, best of both).</p>
+    <p><strong>RAID basics:</strong> <a href="raid-levels.html">RAID 0</a> = striping (speed, no redundancy). RAID 1 = mirroring (redundancy, half capacity). RAID 5 = striping with parity (3+ drives, one drive fault tolerance). RAID 10 = mirroring + striping (4+ drives, best of both).</p>
   </div>
 
   <!-- DISPLAY -->
@@ -492,7 +513,7 @@ tbody tr:hover td { background: #f0fbf9; }
 
   <!-- WIRELESS -->
   <div id="wireless" class="section-title"><span class="s-icon">📶</span> Wireless Standards</div>
-  <p class="section-intro">Know each 802.11 standard's frequency, maximum speed, and key distinguishing feature. The exam distinguishes between 2.4 GHz (range) and 5 GHz (speed).</p>
+  <p class="section-intro">Know each <a href="wifi-standards.html">802.11</a> standard's frequency, maximum speed, and key distinguishing feature. The exam distinguishes between 2.4 GHz (range) and 5 GHz (speed).</p>
 
   <div class="table-wrap">
     <table>
@@ -514,7 +535,7 @@ tbody tr:hover td { background: #f0fbf9; }
   <div class="exam-tip">
     <div class="exam-tip-label">⚡ Wireless security protocols — know the order</div>
     <p><strong>WEP</strong> — broken, never use. Static keys, RC4 encryption, crackable in minutes.</p>
-    <p><strong>WPA</strong> — TKIP encryption. Better than WEP but still has vulnerabilities.</p>
+    <p><strong>WPA</strong> — TKIP encryption. Better than <a href="wireless-security-protocols.html">WEP</a> but still has vulnerabilities.</p>
     <p><strong>WPA2</strong> — AES/CCMP encryption. Current minimum standard. Personal (PSK) vs Enterprise (802.1X/RADIUS).</p>
     <p><strong>WPA3</strong> — Strongest. SAE replaces PSK (eliminates offline dictionary attacks). Forward secrecy. Mandatory for Wi-Fi 6 certified devices.</p>
     <p>Exam scenario: "Which wireless security protocol uses AES encryption?" → <strong>WPA2 or WPA3</strong>. "Which is the most secure?" → <strong>WPA3</strong>.</p>

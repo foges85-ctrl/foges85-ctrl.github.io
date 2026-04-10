@@ -791,6 +791,27 @@ a:hover { text-decoration: underline; }
   ]
 }
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "How DHCP Works — DORA Process, Scopes & Troubleshooting",
+      "item": "https://itstudyhub.org/dhcp.html"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -847,7 +868,7 @@ a:hover { text-decoration: underline; }
 <div class="article-wrap">
   <div class="article-body">
 
-    <p><strong>DHCP</strong> stands for <strong>Dynamic Host Configuration Protocol</strong>. It automatically assigns network settings to devices so they can communicate on a network and access the internet — without you having to manually type an IP address, subnet mask, gateway, or DNS server.</p>
+    <p><strong>DHCP</strong> stands for <strong>Dynamic Host Configuration Protocol</strong>. It automatically assigns network settings to devices so they can communicate on a network and access the internet — without you having to manually type an IP address, <a href="subnet-mask.html">subnet mask</a>, gateway, or DNS server.</p>
 
     <p>On most home networks, your <strong>router</strong> is the DHCP server.</p>
 
@@ -1042,7 +1063,7 @@ a:hover { text-decoration: underline; }
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ CompTIA A+ Exam Tip</div>
-      <p>If you still get a 169.254 address after running /release and /renew, focus troubleshooting on the <strong>path to the DHCP server</strong>: router → switch → cable → Wi-Fi authentication.</p>
+      <p>If you still get a <a href="apipa.html">169.254</a> address after running /release and /renew, focus troubleshooting on the <strong>path to the DHCP server</strong>: router → switch → cable → Wi-Fi authentication.</p>
       <p>The device is trying — the network path is blocked.</p>
     </div>
 
@@ -1124,7 +1145,7 @@ Client          <span class="dhcp-teal">◄──unicast──</span> Router</pr
     <div class="dhcp-callout">
       <div class="dhcp-callout-label">📌 ip helper-address — the Cisco command</div>
       <p>On Cisco routers, the relay agent is configured per interface with <strong>ip helper-address [DHCP server IP]</strong>. This is the most commonly tested implementation detail for Network+.</p>
-      <p>The relay agent forwards not just DHCP traffic but also several other broadcast-based protocols by default — DNS, TFTP, NTP, and others on their standard ports.</p>
+      <p>The relay agent forwards not just DHCP traffic but also several other broadcast-based protocols by default — DNS, TFTP, <a href="ntp-explained.html">NTP</a>, and others on their standard ports.</p>
     </div>
 
     <div class="exam-tip" style="background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:18px 22px;margin-bottom:28px;">
@@ -1153,11 +1174,11 @@ Client          <span class="dhcp-teal">◄──unicast──</span> Router</pr
     <hr class="divider">
 
     <h2>Rogue DHCP Servers</h2>
-    <p>A rogue DHCP server is an unauthorised device on the network that responds to DHCP Discover messages. Because DHCP is first-come-first-served, if the rogue server responds faster than the legitimate one, it wins — and can hand out false IP addresses, a wrong default gateway (routing traffic through an attacker's machine), or a malicious DNS server (redirecting web traffic).</p>
+    <p>A rogue DHCP server is an unauthorised device on the network that responds to DHCP Discover messages. Because DHCP is first-come-first-served, if the rogue server responds faster than the legitimate one, it wins — and can hand out false IP addresses, a wrong <a href="default-gateway.html">default gateway</a> (routing traffic through an attacker's machine), or a malicious DNS server (redirecting web traffic).</p>
 
     <div class="dhcp-warning">
       <div class="dhcp-warning-label">⚠️ Rogue DHCP — a common attack vector</div>
-      <p><strong>What the attacker controls:</strong> Default gateway (enabling man-in-the-middle), DNS server (enabling phishing via DNS hijacking), or simply an incorrect subnet — causing a denial of service.</p>
+      <p><strong>What the attacker controls:</strong> Default gateway (enabling <a href="network-attacks.html">man-in-the-middle</a>), DNS server (enabling <a href="social-engineering-attacks.html">phishing</a> via DNS hijacking), or simply an incorrect subnet — causing a denial of service.</p>
       <p><strong>Defence — DHCP snooping:</strong> A managed switch feature that designates only certain ports as "trusted" DHCP sources. Any DHCP Offer or Acknowledge arriving on an untrusted port is dropped. This is the primary mitigation and is tested on Network+.</p>
       <p><strong>Also tested:</strong> On Windows Server networks, the DHCP server must be <strong>authorised in Active Directory</strong> before it can respond to clients — a built-in rogue server prevention mechanism.</p>
     </div>

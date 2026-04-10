@@ -326,6 +326,27 @@ tbody tr:hover td { background: #f4f8ff; }
   ]
 }
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "How RADIUS Works — AAA Authentication for WiFi and VPN",
+      "item": "https://itstudyhub.org/radius-explained.html"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -429,7 +450,7 @@ tbody tr:hover td { background: #f4f8ff; }
      │                        │                        │ Checks credentials
      │                        │                        │ against directory
      │                        │◀─── Access-Accept ─────│
-     │                        │    (+ VLAN, policies)   │
+     │                        │    (+ <a href="vlan-explained.html">VLAN</a>, policies)   │
      │◀─── Network access ────│                        │
      │                        │                        │
      │                        │──── Accounting-Start ──▶│ (session begins)
@@ -438,7 +459,7 @@ tbody tr:hover td { background: #f4f8ff; }
      │                        │──── Accounting-Stop ───▶│ (session logged)</pre>
     </div>
 
-    <p>The key insight is that the NAS never makes the access decision itself — it just <strong>proxies</strong> the credentials to the RADIUS server. The RADIUS server checks those credentials against a backend directory (Active Directory via LDAP, a local user database, or another source) and returns Access-Accept or Access-Reject. The NAS enforces whatever the RADIUS server decides.</p>
+    <p>The key insight is that the NAS never makes the access decision itself — it just <strong>proxies</strong> the credentials to the RADIUS server. The RADIUS server checks those credentials against a backend directory (<a href="active-directory-basics.html">Active Directory</a> via LDAP, a local user database, or another source) and returns Access-Accept or Access-Reject. The NAS enforces whatever the RADIUS server decides.</p>
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ RADIUS ports — cold recall</div>

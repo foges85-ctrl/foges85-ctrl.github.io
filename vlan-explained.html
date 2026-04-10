@@ -482,6 +482,27 @@ tbody tr:hover td { background: #f4f8ff; }
   ]
 }
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "What Is a VLAN and Why Does Every Enterprise Network Use",
+      "item": "https://itstudyhub.org/vlan-explained.html"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -678,7 +699,7 @@ tbody tr:hover td { background: #f4f8ff; }
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ Router on a stick — what the exam tests</div>
-      <p>"Router on a stick" is the classic Network+ inter-VLAN routing scenario. The setup: one trunk link connects a switch to a router. The router has sub-interfaces (e.g. Gi0/0.10 for VLAN 10, Gi0/0.20 for VLAN 20), each configured with an IP address that becomes the default gateway for devices in that VLAN.</p>
+      <p>"Router on a stick" is the classic Network+ inter-VLAN routing scenario. The setup: one trunk link connects a switch to a router. The router has sub-interfaces (e.g. Gi0/0.10 for VLAN 10, Gi0/0.20 for VLAN 20), each configured with an IP address that becomes the <a href="default-gateway.html">default gateway</a> for devices in that VLAN.</p>
       <p>The name comes from the fact that all inter-VLAN traffic flows through a single physical link — the "stick."</p>
     </div>
 

@@ -581,6 +581,27 @@ a:hover { text-decoration: underline; }
   ]
 }
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "What Is a MAC Address and How Is It Different from an IP",
+      "item": "https://itstudyhub.org/mac-address.html"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -892,7 +913,7 @@ a:hover { text-decoration: underline; }
 
     <div style="background:rgba(26,108,255,0.04);border:1px solid rgba(26,108,255,0.2);border-left:4px solid #1a6cff;border-radius:12px;padding:16px 20px;margin-bottom:28px;">
       <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#1a6cff;margin-bottom:8px;">📌 Why MAC filtering is weak security</div>
-      <p style="font-size:14px;color:var(--text);line-height:1.7;margin-bottom:0;">MAC filtering is easily defeated by spoofing and should never be relied on as a primary security control. The Security+ exam expects you to recognise it as <strong>security through obscurity</strong> — it adds friction but provides no real protection against a determined attacker. Use 802.1X (RADIUS authentication) instead for genuine network access control.</p>
+      <p style="font-size:14px;color:var(--text);line-height:1.7;margin-bottom:0;">MAC filtering is easily defeated by spoofing and should never be relied on as a primary security control. The Security+ exam expects you to recognise it as <strong>security through obscurity</strong> — it adds friction but provides no real protection against a determined attacker. Use 802.1X (<a href="radius-explained.html">RADIUS</a> authentication) instead for genuine network access control.</p>
     </div>
 
     <h2>CAM table overflow attack</h2>
@@ -923,7 +944,7 @@ Attacker receives a copy of every frame → <span style="color:#ef4444;font-weig
     <div style="background:var(--navy);border-radius:12px;overflow:hidden;margin-bottom:28px;border:1px solid rgba(255,255,255,0.08);">
       <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.7px;text-transform:uppercase;color:var(--teal);padding:10px 18px 8px;border-bottom:1px solid rgba(255,255,255,0.08);">Port security — violation modes</div>
       <pre style="font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,0.85);line-height:1.8;padding:14px 18px;overflow-x:auto;margin:0;"><span style="color:var(--teal);font-weight:700;">Protect</span>   Drop frames from unknown MACs. No alert, port stays up.
-<span style="color:#fcd34d;font-weight:700;">Restrict</span>  Drop frames + increment violation counter + send SNMP trap.
+<span style="color:#fcd34d;font-weight:700;">Restrict</span>  Drop frames + increment violation counter + send <a href="snmp-explained.html">SNMP</a> trap.
 <span style="color:#ef4444;font-weight:700;">Shutdown</span>  Put port into err-disabled state immediately. Requires manual re-enable.
            ← Default and most secure. The exam answer when asked "most restrictive mode".</pre>
     </div>

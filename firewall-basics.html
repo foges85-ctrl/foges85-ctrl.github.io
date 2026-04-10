@@ -637,6 +637,27 @@ a:hover { text-decoration: underline; }
   ]
 }
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "How Firewalls Work — Stateful, NGFW, WAF & DMZ Explained",
+      "item": "https://itstudyhub.org/firewall-basics.html"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -928,7 +949,7 @@ a:hover { text-decoration: underline; }
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ A+ Exam — Three Firewall Profiles</div>
-      <p><strong>Domain profile</strong> — applies when the PC is connected to a corporate Active Directory domain. Usually configured by IT policy.</p>
+      <p><strong>Domain profile</strong> — applies when the PC is connected to a corporate <a href="active-directory-basics.html">Active Directory</a> domain. Usually configured by IT policy.</p>
       <p><strong>Private profile</strong> — applies on trusted networks like home. More permissive than Public.</p>
       <p><strong>Public profile</strong> — applies on unknown networks. Most restrictive — blocks most inbound connections to protect the device on untrusted networks.</p>
     </div>
@@ -939,7 +960,7 @@ a:hover { text-decoration: underline; }
 
     <p>Traditional firewalls operate at Layers 3 and 4 — they see IP addresses, ports, and protocols. A <strong>Next-Generation Firewall</strong> goes further, performing <strong>deep packet inspection (DPI)</strong> to examine the actual contents of traffic at Layer 7 (the application layer).</p>
 
-    <p>This matters because modern attacks don't respect port numbers. Malware can tunnel over port 443 (HTTPS) to bypass traditional firewalls. An NGFW can identify the actual application — not just the port — and make decisions based on content, user identity, and threat intelligence.</p>
+    <p>This matters because modern attacks don't respect <a href="ports-and-protocols.html">port numbers</a>. Malware can tunnel over port 443 (HTTPS) to bypass traditional firewalls. An <a href="firewall-types.html">NGFW</a> can identify the actual application — not just the port — and make decisions based on content, user identity, and <a href="threat-intelligence.html">threat intelligence</a>.</p>
 
     <div class="fw-compare-grid">
       <div class="fw-compare-card">
@@ -1095,7 +1116,7 @@ a:hover { text-decoration: underline; }
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ WAF exam shortcut</div>
-      <p>If the question mentions protecting a <strong>web application</strong> from <strong>SQL injection, XSS, or OWASP Top 10 attacks</strong> — the answer is <strong>WAF (Web Application Firewall)</strong>, not a regular firewall or IPS.</p>
+      <p>If the question mentions protecting a <strong>web application</strong> from <strong>SQL injection, XSS, or <a href="application-security.html">OWASP</a> Top 10 attacks</strong> — the answer is <strong>WAF (Web Application Firewall)</strong>, not a regular firewall or IPS.</p>
       <p>A regular firewall sees "HTTPS traffic on port 443 — allow." A WAF opens that HTTPS traffic and reads the HTTP request content to decide if it's an attack.</p>
     </div>
 

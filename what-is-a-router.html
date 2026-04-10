@@ -440,6 +440,27 @@ tbody tr:hover td { background: #f0fbf9; }
   ]
 }
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "How a Router Works — Routing Tables, NAT & Default Gateway",
+      "item": "https://itstudyhub.org/what-is-a-router.html"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -533,7 +554,7 @@ tbody tr:hover td { background: #f0fbf9; }
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ Longest prefix match</div>
-      <p>When multiple routes match a destination, the router always uses the <strong>most specific route</strong> — the one with the longest subnet mask (highest prefix length). A /28 route beats a /24 route beats the default route /0.</p>
+      <p>When multiple routes match a destination, the router always uses the <strong>most specific route</strong> — the one with the longest <a href="subnet-mask.html">subnet mask</a> (highest prefix length). A /28 route beats a /24 route beats the default route /0.</p>
       <p>The default route (0.0.0.0/0) matches everything and is used as a last resort when no more specific route exists — typically pointing toward the internet gateway.</p>
     </div>
 
@@ -605,7 +626,7 @@ tbody tr:hover td { background: #f0fbf9; }
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ PAT is what your home router does</div>
-      <p>Port Address Translation (PAT), also called NAT Overload, is the type of NAT used in virtually every home and small office router. All devices share one public IP, and the router tracks which internal device initiated each connection by assigning unique port numbers. When the reply comes back, the router uses the port number to route the response to the correct internal device.</p>
+      <p>Port Address Translation (PAT), also called NAT Overload, is the type of NAT used in virtually every home and small office router. All devices share one public IP, and the router tracks which internal device initiated each connection by assigning unique <a href="ports-and-protocols.html">port numbers</a>. When the reply comes back, the router uses the port number to route the response to the correct internal device.</p>
     </div>
 
     <h2>Router vs wireless router vs access point</h2>

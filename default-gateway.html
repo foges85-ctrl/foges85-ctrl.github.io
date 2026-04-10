@@ -596,6 +596,27 @@ a:hover { text-decoration: underline; }
   ]
 }
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "What Is a Default Gateway and Why Does It Matter?",
+      "item": "https://itstudyhub.org/default-gateway.html"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -824,7 +845,7 @@ Default Gateway: <span class="blank">(blank)</span></pre>
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ Network+ — IPv6 gateway facts</div>
       <p>IPv6 default gateways are <strong>link-local addresses</strong> (starting with fe80::) rather than full global unicast addresses. This is because link-local addresses are always reachable on the local segment regardless of global prefix changes.</p>
-      <p><strong>SLAAC</strong> (Stateless Address Autoconfiguration) — devices generate their own IPv6 address from the router-advertised prefix + their MAC address (EUI-64). No DHCP server needed for basic IPv6 connectivity.</p>
+      <p><strong>SLAAC</strong> (Stateless Address Autoconfiguration) — devices generate their own IPv6 address from the router-advertised prefix + their <a href="mac-address.html">MAC address</a> (EUI-64). No DHCP server needed for basic IPv6 connectivity.</p>
     </div>
 
     <h2>Exam scenarios</h2>

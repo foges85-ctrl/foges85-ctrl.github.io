@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/cryptography.html">
 
-<title>Cryptography for CompTIA Security+ — Encryption, Hashing & PKI Explained (2026)</title>
-<meta name="description" content="Cryptography does not have to be confusing. Learn symmetric vs asymmetric encryption, hashing, PKI, and digital signatures the way the Security+ exam actually tests them.">
+<title>Cryptography for CompTIA Security+ — Encryption, Hashing &</title>
+<meta name="description" content="Cryptography does not have to be confusing. Learn symmetric vs asymmetric encryption, hashing, PKI, and digital signatures the way the Security+ exam…">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -439,6 +439,84 @@ tbody tr:hover td { background: #f6f9ff; }
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
      crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "The two types of encryption — symmetric and asymmetric",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every encryption algorithm falls into one of two categories. Understanding the difference between them — and when each is used — is the foundation of everything else in cryptography. Speed question: \"Which encryption type is faster?\" → Symmetric. Always. Key exchange question: \"Which solves the key distribution problem?\" → Asymmetric."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How HTTPS uses both types together",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HTTPS is the clearest real-world example of asymmetric and symmetric encryption working together. Understanding this flow is directly tested on Security+: From this point on, all traffic is encrypted with the fast symmetric session key. Asymmetric encryption was only used to safely exchange it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hashing — proving integrity, not confidentiality",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hashing is fundamentally different from encryption. Encryption is a two-way process — you encrypt data, then decrypt it later. Hashing is one-way — you put data in, get a fixed-length output (called a hash or digest), and you cannot reverse it to get the original data back. Hashing is used to verify integrity — that data hasn't been altered. Password storage, file verification, and digital signatures all rely on hashing. \"hello\" → SHA-256 → 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 \"Hello\" → SHA-256 → 185f8db32921bd46d35cc8b2a3e2c6e8e2e89f1e1f2c3d4e5f6a7b8c9d0e1f2a Ch…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Digital signatures — proving authenticity and non-repudiation",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A digital signature uses asymmetric cryptography in reverse. Instead of the sender encrypting with the recipient's public key, the sender encrypts a hash of the message with their own private key . Anyone with the sender's public key can decrypt it and verify the hash matches — proving the message came from that sender and hasn't been altered. Signing (sender): Message → Hash → Digest → Encrypt with private key → Signature Verifying (recipient): Signature → Decrypt with sender's public key → Digest Message → Hash → Digest If both digests match → message is authentic and unaltered Digital si…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "PKI — the trust system behind certificates",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Public Key Infrastructure (PKI) is the framework of policies, roles, and technology that manages digital certificates and public keys. It answers the question that asymmetric encryption creates: \"How do I know this public key actually belongs to who they say they are?\""
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See the study guide, practice exams, and free course worth your time for SY0-701."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cryptography for CompTIA Security+ — Encryption, Hashing &",
+      "item": "https://itstudyhub.org/cryptography.html"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -527,7 +605,7 @@ tbody tr:hover td { background: #f6f9ff; }
       <div class="exam-tip-label">⚡ Exam tip — symmetric vs asymmetric</div>
       <p><strong>Speed question:</strong> "Which encryption type is faster?" → Symmetric. Always.</p>
       <p><strong>Key exchange question:</strong> "Which solves the key distribution problem?" → Asymmetric.</p>
-      <p>In practice, most secure systems use both — asymmetric encryption to securely exchange a symmetric key, then symmetric encryption for the actual data. This is exactly how HTTPS/TLS works.</p>
+      <p>In practice, most secure systems use both — asymmetric encryption to securely exchange a symmetric key, then <a href="symmetric-vs-asymmetric-encryption.html">symmetric encryption</a> for the actual data. This is exactly how HTTPS/TLS works.</p>
     </div>
 
     <h2>How HTTPS uses both types together</h2>

@@ -465,6 +465,27 @@ tbody tr:hover td { background: #f6f9ff; }
   ]
 }
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Identity & Access Management Explained — MFA, SSO, PAM &",
+      "item": "https://itstudyhub.org/identity-and-access-management.html"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -540,7 +561,7 @@ tbody tr:hover td { background: #f6f9ff; }
 
 <span class="code-hl">Accounting</span>      <span class="code-comment">→ Tracking what you actually did</span>
                 <span class="code-comment">   "What did Sean do and when?"</span>
-                <span class="code-comment">   Methods: audit logs, SIEM, usage reports</span></pre>
+                <span class="code-comment">   Methods: audit logs, <a href="siem-explained.html">SIEM</a>, usage reports</span></pre>
     </div>
 
     <h2>Authentication factors</h2>
@@ -755,15 +776,15 @@ tbody tr:hover td { background: #f6f9ff; }
     <h2>Exam scenarios</h2>
 
     <div class="scenario-list">
-      <div class="scenario-item">💬 "A user enters a password and then approves a push notification on their phone. What type of authentication is this?" → <strong>MFA (Multi-factor authentication)</strong> — knowledge factor + possession factor</div>
+      <div class="scenario-item">💬 "A user enters a password and then approves a push notification on their phone. What type of authentication is this?" → <strong>MFA (<a href="mfa-explained.html">Multi-factor authentication</a>)</strong> — knowledge factor + possession factor</div>
       <div class="scenario-item">💬 "Which access control model assigns permissions based on job function rather than individual users?" → <strong>RBAC (Role-Based Access Control)</strong></div>
       <div class="scenario-item">💬 "A government system uses classification labels (Top Secret, Secret, Unclassified) to control access. Which model is this?" → <strong>MAC (Mandatory Access Control)</strong></div>
-      <div class="scenario-item">💬 "Which protocol is used by Windows Active Directory for ticket-based authentication?" → <strong>Kerberos</strong></div>
+      <div class="scenario-item">💬 "Which protocol is used by Windows <a href="active-directory-basics.html">Active Directory</a> for ticket-based authentication?" → <strong>Kerberos</strong></div>
       <div class="scenario-item">💬 "An organisation wants to allow employees to log in once and access all internal applications. What should they implement?" → <strong>SSO (Single Sign-On)</strong></div>
       <div class="scenario-item">💬 "Which Zero Trust principle states that users should only have access to what they need for a specific task?" → <strong>Least privilege access</strong></div>
       <div class="scenario-item">💬 "An employee leaves the company. Their account is not disabled. What type of account risk does this create?" → <strong>Orphaned account</strong></div>
       <div class="scenario-item">💬 "Which AAA component tracks what actions a user performed and when?" → <strong>Accounting</strong></div>
-      <div class="scenario-item">💬 "RADIUS vs TACACS+ — which encrypts the entire authentication packet?" → <strong>TACACS+</strong> (RADIUS only encrypts the password)</div>
+      <div class="scenario-item">💬 "RADIUS vs TACACS+ — which encrypts the entire authentication packet?" → <strong>TACACS+</strong> (<a href="radius-explained.html">RADIUS</a> only encrypts the password)</div>
       <div class="scenario-item">💬 "Which access control model is most flexible and evaluates multiple attributes like user role, device compliance, and time of day?" → <strong>ABAC (Attribute-Based Access Control)</strong></div>
     </div>
 
