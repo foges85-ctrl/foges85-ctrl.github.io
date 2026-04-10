@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/cloud-security.html">
-<title>How to Secure Cloud Environments — CASB, CSPM & Shared Responsibility | Security+</title>
+<title>How to Secure Cloud Environments — CASB, CSPM & Shared</title>
 <meta name="description" content="What does "the customer is responsible for security" actually mean in practice? Learn cloud security for CompTIA Security+ — CASB, CSPM, misconfigurations, and the shared responsibility model.">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -193,6 +193,84 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "The Shared Responsibility Model — Who Owns What",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The shared responsibility model defines the boundary between what the cloud provider secures and what the customer must secure. This boundary shifts depending on the service model. The most common exam scenario: a company stores sensitive data in an S3 bucket that is publicly accessible. Who is responsible for the misconfiguration? The customer — configuring access controls is always the customer's responsibility. Data is always the customer's responsibility — regardless of service model. Even in SaaS, you are responsible for what data you put in the application, who has access to it, and h…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Top Cloud Misconfigurations — The Most Common Attack Vectors",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cloud breaches are disproportionately caused by misconfigurations rather than sophisticated attacks. Security+ scenarios frequently describe a cloud environment and ask you to identify the security flaw. These are the most commonly tested misconfigurations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Serverless Security",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Serverless functions (AWS Lambda, Azure Functions, Google Cloud Functions) run code without managing servers. The cloud provider handles the OS and runtime — but you still own the function's code, its permissions, and the data it processes. The attack surface shifts from infrastructure to function configuration and code vulnerabilities . Each function should have its own IAM role with minimum permissions. Giving all functions the same broad role means a vulnerable function can access resources it never needs. Injection attacks still apply. If a serverless function passes user input to a dat…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Container Security",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Containers (Docker, Kubernetes) package applications and their dependencies into isolated units. Security+ SY0-701 tests containers primarily in the context of image security, container escape, and Kubernetes misconfigurations . Image vulnerabilities — containers are built from images. A vulnerable base image propagates the vulnerability to every container built from it. Scan images before deployment using tools like Trivy or Snyk. Container escape — a vulnerability that allows malicious code in a container to break out and access the host OS or other containers. Running containers as root …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cloud Security Architecture — Key Concepts",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "IaC tools (Terraform, CloudFormation) define infrastructure in configuration files. Misconfigurations in IaC templates deploy insecure infrastructure at scale. Scanning IaC templates before deployment (using tools like Checkov or tfsec) catches misconfigurations before they reach production — this is \"shift left\" security applied to infrastructure. Cloud providers offer virtual firewalls as security groups (AWS) or network security groups (Azure). Unlike traditional firewalls, these are stateful and attached to individual resources rather than network segments. Each resource should have its…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam Scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cloud security is 18% of Domain 3. See the full Security+ study guide for all 5 domains."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "How to Secure Cloud Environments — CASB, CSPM & Shared",
+      "item": "https://itstudyhub.org/cloud-security.html"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

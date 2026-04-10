@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/apipa.html">
 
-<title>Why Is My IP 169.254.x.x? APIPA Explained — CompTIA A+ Troubleshooting Guide</title>
-<meta name="description" content="That 169.254.x.x address means DHCP failed. Learn exactly why APIPA kicks in, what it tells you about the network problem, and how to fix it — plus the A+ exam scenarios that test this.">
+<title>Why Is My IP 169.254.x.x? APIPA Explained — CompTIA A+</title>
+<meta name="description" content="That 169.254.x.x address means DHCP failed. Learn exactly why APIPA kicks in, what it tells you about the network problem, and how to fix it — plus the A+…">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -882,6 +882,100 @@ a:hover { text-decoration: underline; }
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
      crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What Does APIPA Stand For?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "APIPA stands for Automatic Private IP Addressing . It is a Windows feature that automatically assigns a temporary IP address when a DHCP server cannot be reached — rather than leaving the device with no IP address at all."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When Does APIPA Happen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "APIPA activates when these three things happen in sequence:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What Does an APIPA Address Look Like?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "APIPA addresses always fall within the 169.254.0.0/16 range. If you run ipconfig and see this — your system failed to reach a DHCP server: IP Address: 169.254.88.12 Subnet Mask: 255.255.0.0 Gateway: (blank) Notice the gateway is blank — the device has no route to the internet or local resources."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why Is This Important for the A+ Exam?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On the A+ exam, seeing a 169.254 address in a scenario question signals one of these causes:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to Fix an APIPA Address",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This troubleshooting sequence is commonly tested on the CompTIA A+ exam:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why Does Windows Use the 169.254 Range?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The 169.254.0.0/16 range is reserved by IANA for link-local addressing . Devices assigned an APIPA address can still communicate with other APIPA devices on the same physical network — but they have no internet access and cannot reach resources on other subnets. Think of APIPA as a safety net: it keeps the device \"on the network\" in a limited way rather than going completely offline."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Real-World Example",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ipconfig Output IP Address: 169.254.88.12 Subnet Mask: 255.255.0.0 Gateway: (blank) What you now know: The router isn't assigning IP addresses — the DHCP service has likely failed or the connection to the DHCP server is broken. That's real troubleshooting — and exactly the kind of thinking the A+ exam tests. ⚡ CompTIA A+ Exam Tip 169.254 = DHCP failed. This is one of the most reliable \"instant diagnosis\" facts on the exam. The fix sequence the exam expects: check physical connection → restart router → ipconfig /release → ipconfig /renew"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Drill APIPA and DHCP Scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Practice exams are the fastest way to make 169.254 troubleshooting automatic."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Why Is My IP 169.254.x.x? APIPA Explained — CompTIA A+",
+      "item": "https://itstudyhub.org/apipa.html"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>

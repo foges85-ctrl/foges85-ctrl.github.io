@@ -7,8 +7,8 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="canonical" href="https://itstudyhub.org/business-continuity.html">
-<title>BCP vs DRP, RTO vs RPO — Business Continuity Explained | CompTIA Security+</title>
-<meta name="description" content="Confused by BCP, DRP, RTO, and RPO? This guide untangles every acronym, explains backup types and recovery site options, and shows you how to answer any continuity scenario on Security+.">
+<title>BCP vs DRP, RTO vs RPO — Business Continuity Explained</title>
+<meta name="description" content="Confused by BCP, DRP, RTO, and RPO? This guide untangles every acronym, explains backup types and recovery site options, and shows you how to answer any…">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -163,6 +163,76 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "BCP vs DRP — What Each Covers",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "These two plans are closely related but cover different scopes. The Business Continuity Plan (BCP) is the broader document — it covers how the entire organisation continues operating during a disruption, including non-IT functions. Staff communication, temporary office locations, manual business processes when systems are unavailable, vendor relationships, and customer communication all fall under BCP. The BCP exists to answer: \"If our building is unavailable or our systems are down, how do we keep the business running?\" The Disaster Recovery Plan (DRP) is specifically about IT systems rest…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "RTO and RPO — The Two Critical Metrics",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RTO determines how fast recovery must happen. An RTO of 4 hours for email means that if email goes down at 9am, it must be restored by 1pm. This drives decisions about hot vs warm vs cold standby systems — a very short RTO requires systems that can take over immediately (hot standby), while a longer RTO allows time to provision replacement systems (cold standby). RPO determines how much data can be lost. An RPO of 1 hour means backup frequency must be at most 1 hour — if the system fails at 10am and the last backup was at 9am, that's 1 hour of potential data loss, which just meets the RPO. …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Backup Types — Full, Incremental, Differential",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The exam tests this in calculation scenarios: \"A company runs a full backup Sunday, incremental backups Monday through Saturday. The system fails Saturday evening. How many backup sets are needed for recovery?\" Answer: 7 — the Sunday full plus all 6 daily incrementals. If they used differential instead: only 2 — the Sunday full plus Saturday's differential (which contains all changes since Sunday)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Recovery Site Types",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hot site: A fully operational duplicate of the primary data centre, with all systems running and data replicated in real time. When a disaster occurs, traffic is redirected to the hot site and operations continue with minimal interruption. Hot sites are extremely expensive because they require maintaining a full duplicate infrastructure indefinitely, but they provide the shortest possible RTO. Warm site: Equipment is present and powered but systems aren't fully configured or running production workloads. When a disaster occurs, administrators activate and configure the warm site systems, re…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "The 3-2-1 Backup Rule",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The 3-2-1 backup rule is the industry-standard guideline for backup strategy: keep 3 copies of data (the production copy plus 2 backups), on 2 different types of media (disk and tape, or local and cloud), with 1 copy stored off-site. This protects against: single backup failure (3 copies), a storage type failure like NAS controller failure affecting all connected drives (2 media types), and site-level disasters like fire or flood (1 off-site copy). Ransomware has updated this to the 3-2-1-1-0 rule: the additional \"1\" is an immutable or air-gapped copy that ransomware cannot reach (offline t…"
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "BCP vs DRP, RTO vs RPO — Business Continuity Explained",
+      "item": "https://itstudyhub.org/business-continuity.html"
+    }
+  ]
+}
+</script>
 </head><!-- CERTFLASH APP BANNER -->
 <div class="app-banner" id="certflashBanner">
   <div class="app-banner-inner">

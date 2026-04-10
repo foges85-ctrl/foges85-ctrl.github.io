@@ -9,8 +9,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/application-security.html">
-<title>Application Security Explained — OWASP Top 10, Secure SDLC & Input Validation | Security+</title>
-<meta name="description" content="Application security for CompTIA Security+ SY0-701 — OWASP Top 10 vulnerabilities, secure SDLC phases, input validation, SQL injection, XSS, CSRF, and static vs dynamic analysis.">
+<title>Application Security Explained — OWASP Top 10, Secure SDLC &</title>
+<meta name="description" content="Application security for CompTIA Security+ SY0-701 — OWASP Top 10 vulnerabilities, secure SDLC phases, input validation, SQL injection, XSS, CSRF, and…">
 <meta property="og:type" content="article"><meta property="og:url" content="https://itstudyhub.org/application-security.html">
 <meta property="og:title" content="Application Security — OWASP Top 10, Secure SDLC & Input Validation">
 <meta property="og:description" content="OWASP Top 10, secure SDLC, SQL injection, XSS, CSRF, and code analysis techniques for CompTIA Security+ SY0-701.">
@@ -170,6 +170,100 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why Application Security Matters",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Applications are now the most common attack surface in organizations. The network perimeter has shrunk while web applications, APIs, and cloud-native services have exploded in number. According to breach data, the majority of successful attacks target the application layer — not the network. The Security+ exam covers application security across multiple domains, particularly Domain 2 (Threats and Vulnerabilities) and Domain 3 (Security Architecture). Application security (AppSec) means building and maintaining software in a way that protects it against threats. It encompasses secure develop…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "OWASP Top 10 (2021)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "OWASP (Open Worldwide Application Security Project) publishes the Top 10 Web Application Security Risks — a consensus list of the most critical vulnerabilities, updated based on real-world breach data. The current version is from 2021."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "SQL Injection Deep Dive",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SQL injection (SQLi) is consistently one of the most tested application security topics on Security+. It occurs when an application builds SQL queries by concatenating user input without sanitization, allowing an attacker to inject their own SQL commands. Vulnerable query: SELECT * FROM users WHERE username=' input ' AND password=' input ' Attacker enters: ' OR '1'='1' -- as the username."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cross-Site Scripting (XSS)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "XSS occurs when an application includes unvalidated, unsanitized user input in its web page output, allowing attackers to inject client-side scripts that execute in other users' browsers. There are three types: Defenses against XSS: Output encoding (HTML-encode user-supplied data before rendering), Content Security Policy (CSP) headers that restrict which scripts can execute, and input validation. The key insight: it's about encoding output , not just validating input."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cross-Site Request Forgery (CSRF)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CSRF tricks an authenticated user's browser into making a request to a web application they're already logged into — without their knowledge. If a user is logged into their bank, a malicious page can load an invisible image whose URL is a bank transfer request. The browser automatically includes the session cookie, and the bank executes the transfer. XSS : Attacker injects scripts that run in the victim's browser — attacker exploits the user's trust in the website . CSRF : Attacker tricks the victim's browser into making requests — exploits the website's trust in the user's browser ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Secure Software Development Lifecycle (SDLC)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Secure SDLC integrates security activities into every phase of software development — rather than bolting security on at the end. The Security+ exam tests which activities happen in which phase."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Code Analysis Techniques",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SAST : analyzes code without running it — finds issues early (shift left), but can't find runtime issues. Used by developers during coding. DAST : tests the running application — finds runtime issues (authentication, session management) but can't see source code. Used by testers and security teams. IAST (Interactive AST) = hybrid that instruments the running app and analyzes from inside — you may see this as a distractor on the exam."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Input Validation",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Input validation is the practice of ensuring that all input received by an application conforms to expected format, type, length, and range before it's processed. It's the foundational defense against injection attacks, buffer overflows, and many other vulnerabilities."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Application Security Explained — OWASP Top 10, Secure SDLC &",
+      "item": "https://itstudyhub.org/application-security.html"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

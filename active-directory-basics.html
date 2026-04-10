@@ -15,8 +15,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/active-directory-basics.html">
-<title>What Is Active Directory? Domains, OUs, GPOs & Kerberos Explained | CompTIA A+</title>
-<meta name="description" content="Understand Active Directory from scratch — how domains, OUs, Group Policy, and Kerberos work together, what technicians configure day-to-day, and exactly what A+, Network+, and Security+ test.">
+<title>What Is Active Directory? Domains, OUs, GPOs & Kerberos</title>
+<meta name="description" content="Understand Active Directory from scratch — how domains, OUs, Group Policy, and Kerberos work together, what technicians configure day-to-day, and exactly…">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -171,6 +171,100 @@ tbody tr:hover td{background:#eff6ff;}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Active Directory vs Workgroup — Why Domains Exist",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In a workgroup (peer-to-peer), each computer manages its own local user accounts. If you have 200 computers and need to update a password policy, you update it on 200 machines individually. That's unmanageable at scale. In a domain , all user accounts, passwords, and policies are stored centrally on a Domain Controller (DC) . Users log in with domain credentials that authenticate against the DC. An admin changes a policy once and it applies everywhere. This is the fundamental reason Active Directory exists."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Active Directory Structure — Forests, Trees, Domains, and OUs",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Active Directory is hierarchical. Understanding the structure is critical for A+ Core 2 and Network+ — exam questions frequently ask which level a particular object belongs to. The forest is the security boundary , not the domain. Two domains in the same forest automatically trust each other. Two domains in different forests do not have an automatic trust — a trust relationship must be manually created. Security+ uses this in scenarios about inter-organisational access. The domain is the replication and administrative boundary . Group Policy Objects apply at the domain or OU level — not the…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "The Domain Controller — AD's Central Server",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Domain Controller (DC) is a Windows Server running Active Directory Domain Services (AD DS). It stores the AD database, authenticates users via Kerberos, and applies Group Policy. Every domain needs at least one DC — enterprises use multiple for redundancy and load distribution. Key roles that run on Domain Controllers:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Users, Groups, and Computers",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Domain user accounts are stored in AD and allow users to log in from any domain-joined computer. Each account has a User Principal Name (UPN) in the format [email protected] and a legacy SAM account name in the format DOMAIN\\username . AGDLP is Microsoft's recommended group nesting strategy: A ccounts → G lobal groups → D omain L ocal groups → P ermissions. Put users into Global groups (by role), put Global groups into Domain Local groups (by resource), assign permissions to Domain Local groups. This keeps management scalable — if a user changes role, you only update their Global group memb…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Group Policy (GPO)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Group Policy Objects (GPOs) are collections of settings applied to users and computers in a domain. They're the primary tool for enforcing security baselines, deploying software, and configuring user desktops at scale. GPOs are the most commonly tested AD concept on the A+ Core 2 exam. GPOs are applied in order — later policies override earlier ones (unless enforced). The order is: Local → Site → Domain → OU (remembered as LSDOU ). OU GPOs are the most granular and applied last, so they win most conflicts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Domain Join — How a Computer Joins AD",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When a computer joins a domain, it creates a computer account object in Active Directory and establishes a trust relationship with the DC. After joining, users can log in with domain credentials from that machine."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How Active Directory Uses LDAP and Kerberos",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Active Directory is built on two open protocols — LDAP for querying the directory and Kerberos for authentication:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Active Directory and Security+ — Attack Surface",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because AD controls authentication and authorisation for the entire domain, it's a prime target for attackers. Security+ tests AD-specific attack scenarios regularly."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "What Is Active Directory? Domains, OUs, GPOs & Kerberos",
+      "item": "https://itstudyhub.org/active-directory-basics.html"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 

@@ -8,8 +8,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/cloud-deployment-models.html">
-<title>Public vs Private vs Hybrid vs Community Cloud — Which Model When? | CompTIA</title>
-<meta name="description" content="Know which cloud deployment model to pick for any exam scenario — why a hospital uses private cloud, why a startup uses public, and what community cloud actually means in practice.">
+<title>Public vs Private vs Hybrid vs Community Cloud — Which Model</title>
+<meta name="description" content="Know which cloud deployment model to pick for any exam scenario — why a hospital uses private cloud, why a startup uses public, and what community cloud…">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -169,6 +169,92 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why Cloud Deployment Models Matter",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cloud deployment models define who owns and controls the infrastructure, who can use it, and where it resides. Choosing the wrong model for a given requirement creates security, compliance, or cost problems. A healthcare organisation storing patient records on a shared public cloud without proper controls may violate HIPAA. A startup refusing to use public cloud and building its own private infrastructure wastes capital on hardware instead of product development. The exam tests whether candidates understand the trade-offs well enough to recommend the correct model for a described scenario."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Public Cloud",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Public cloud infrastructure is owned, operated, and maintained by a third-party provider — Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP), IBM Cloud, and Oracle Cloud are the major providers. Compute, storage, networking, and managed services are delivered over the internet on a pay-as-you-go, on-demand basis. The infrastructure is shared among millions of customers — a concept called multi-tenancy — though each customer's data is logically isolated from others through virtualisation and access controls. Public cloud advantages: elasticity — scale up and down on dem…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Private Cloud",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A private cloud provides cloud-like capabilities (self-service provisioning, elasticity, resource pooling) on infrastructure dedicated exclusively to one organisation. Private cloud can be: on-premises — hardware owned and operated by the organisation in their own data centre (VMware vSphere, OpenStack, Microsoft Azure Stack); hosted private cloud — dedicated hardware in a third-party data centre but not shared with other customers. The defining characteristic is exclusive use — no other organisation shares the infrastructure. Private cloud advantages: full control — the organisation manage…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hybrid Cloud",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hybrid cloud combines public and private cloud resources that remain distinct but are connected and can share data and workloads. The defining feature of true hybrid cloud is the ability to move workloads and data between the environments — not just having both environments exist independently. A company running its customer-facing web application on AWS while keeping its SQL database on-premises is hybrid cloud. An organisation bursting computation to AWS during peak periods while keeping base capacity in their private data centre is hybrid cloud with cloud bursting . Hybrid cloud use case…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Community Cloud",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Community cloud is shared infrastructure used exclusively by a group of organisations with common interests, requirements, or compliance obligations. The community shares costs but not with the general public. Examples: a cloud environment built specifically for US federal government agencies (FedRAMP-authorised, meeting federal security requirements), a healthcare community cloud where member hospitals share infrastructure that meets HIPAA requirements, or a financial services community cloud meeting PCI-DSS and financial regulatory requirements for all member banks. Community cloud benefi…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Shared Responsibility Model",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The shared responsibility model defines which security controls are the customer's responsibility vs the cloud provider's responsibility — and it varies by deployment model and service model. In public cloud IaaS (renting virtual machines): the provider secures the physical infrastructure, hypervisor, and network; the customer is responsible for the OS, applications, data, and network configuration within their VMs. In public cloud PaaS (using a managed database service): the provider also manages the OS and database engine; the customer is responsible for data and application configuration…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cloud Service Models — IaaS, PaaS, SaaS",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cloud deployment models (public/private/hybrid/community) describe who uses the infrastructure. Cloud service models describe what the provider delivers. IaaS (Infrastructure as a Service) — virtual machines, storage, and networking; the customer manages OS and above. PaaS (Platform as a Service) — managed runtime environment (managed databases, serverless compute, container platforms); the customer manages applications and data. SaaS (Software as a Service) — complete applications delivered over the internet (email, CRM, productivity suites); the customer manages only data and user access.…"
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Public vs Private vs Hybrid vs Community Cloud — Which Model",
+      "item": "https://itstudyhub.org/cloud-deployment-models.html"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->
