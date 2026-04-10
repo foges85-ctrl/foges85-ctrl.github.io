@@ -15,8 +15,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/pki-and-certificates.html">
-<title>How PKI and Digital Certificates Work — CA, X.509 & TLS Handshake | CompTIA Security+</title>
-<meta name="description" content="What actually happens when your browser shows a padlock? Learn PKI from the ground up — certificate authorities, X.509 certificates, the TLS handshake, and every PKI concept on Security+ SY0-701.">
+<title>How PKI and Digital Certificates Work — CA, X.509 & TLS</title>
+<meta name="description" content="What actually happens when your browser shows a padlock? Learn PKI from the ground up — certificate authorities, X.509 certificates, the TLS handshake,…">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -174,6 +174,71 @@ tbody tr:hover td{background:#fdf4ff;}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "The Problem PKI Solves",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Asymmetric encryption works by pairing a public key (shared freely) with a private key (kept secret). Anyone can encrypt a message with your public key; only you can decrypt it with your private key. But there's a fundamental problem: if Alice sends Bob her public key, how does Bob know it's actually Alice's key — and not an attacker who intercepted the message and substituted their own key? This is the man-in-the-middle problem . PKI solves it by having a trusted Certificate Authority sign Alice's public key along with her identity information. That signed package is a digital certificate …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "PKI Hierarchy — Root CA, Intermediate CA, End-Entity",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PKI uses a chain of trust — a hierarchy of Certificate Authorities where each level vouches for the one below it: Public PKI: Certificate Authorities like DigiCert, Let's Encrypt, and Sectigo are trusted by browsers and operating systems by default — their root certificates are pre-installed. Use for public-facing websites. Private/Internal PKI: Organisations run their own CA hierarchy (Microsoft Active Directory Certificate Services is common) for issuing certificates to internal systems, VPN clients, and users. Clients must explicitly trust the internal root CA — typically deployed via Gr…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "X.509 — The Certificate Standard",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All modern digital certificates follow the X.509 standard . An X.509 certificate contains:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "The TLS Handshake — How HTTPS Works",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every HTTPS connection starts with a TLS handshake that uses PKI to authenticate the server and negotiate encryption. Understanding each step is tested on Security+: TLS uses asymmetric cryptography to establish trust and exchange keys , then switches to symmetric encryption for the actual data . Asymmetric is used because it enables authentication without prior shared secrets. Symmetric is used for data because it's much faster. The handshake is slow; the data transfer is fast. Forward secrecy (perfect forward secrecy / PFS): Using ephemeral Diffie-Hellman means the session key is never tr…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Certificate Revocation — CRL and OCSP",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Certificates can be revoked before they expire — if the private key is compromised, the certificate is mis-issued, or the organisation no longer exists. Two mechanisms handle revocation:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Certificate Pinning",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Certificate pinning (also called public key pinning) is a defence against rogue or compromised CAs. Normally, a browser trusts any certificate signed by any CA in its trust store — meaning if any CA is compromised, an attacker could get a fraudulent cert for any domain. With pinning, an application hardcodes (pins) the expected certificate or public key for a specific server. If the presented certificate doesn't match the pin, the connection is rejected — even if the certificate is otherwise valid and CA-signed. Used by high-security applications like banking apps and mobile applications to…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam Scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See the study guides and practice exams that cover the full SY0-701 exam."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 

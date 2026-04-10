@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/subnet-mask.html">
 
-<title>What Is a Subnet Mask and What Does It Actually Do? | CompTIA A+</title>
-<meta name="description" content="A subnet mask is not just a setting you ignore — it tells your device which IPs are local and which need the router. Learn how subnet masks work and the A+ troubleshooting scenarios built around them.">
+<title>What Is a Subnet Mask and What Does It Actually Do?</title>
+<meta name="description" content="A subnet mask is not just a setting you ignore — it tells your device which IPs are local and which need the router.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -857,6 +857,79 @@ tbody tr:hover td { background: #f6f9ff; }
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
      crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What Does a Subnet Mask Do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A subnet mask works alongside an IP address to determine two things: Think of it as the \"local neighborhood boundary\" for your IP address — anything inside the boundary is local, everything outside goes through the router."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Most Common Subnet Mask",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most common subnet mask you'll see on home and small office networks is 255.255.255.0 . Here's a typical IP configuration: IP Address: 192.168.1.50 Subnet Mask: 255.255.255.0 Gateway: 192.168.1.1 On a /24 network like this, all devices sharing the first three octets are on the same local network:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How Your PC Decides Where to Send Traffic",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The device is \"local\" — traffic goes straight to it without passing through the router. The device is \"remote\" — traffic is forwarded to the router, which handles delivery. Wrong subnet mask causes classic \"partial connectivity\" symptoms: local works but internet fails, or internet works but local devices are missing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to View Your Subnet Mask in Windows",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open Command Prompt and run either of these commands: ipconfig ← shows basic IP info ipconfig /all ← shows full details including subnet mask Look for the line labeled Subnet Mask in the output."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Common Subnet Masks to Recognize",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Quick mental shortcut: More 255s at the start = a bigger network portion, fewer available host addresses. More zeros = more device addresses available."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Subnet Mask vs Default Gateway",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tells your device which addresses are on the same network and can be reached directly. Where traffic goes when the destination is outside the local subnet — usually your router. If either is wrong, you may get: no internet, inability to reach printers or servers, or intermittent unexplained connectivity issues."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Subnet Masks Show Up on Every A+ Exam",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Practice exams make \"why can't this device communicate?\" questions automatic."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "CIDR Notation — The Network+ Way to Write Subnet Masks",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The A+ exam uses dotted-decimal subnet masks like 255.255.255.0 . The Network+ exam adds CIDR notation (Classless Inter-Domain Routing), which expresses the same mask as a prefix length — a slash followed by the number of network bits."
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>

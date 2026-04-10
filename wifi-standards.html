@@ -9,8 +9,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/wifi-standards.html">
-<title>802.11 WiFi Standards — Which One Is Faster, Further, and Why? | CompTIA A+ & Network+</title>
-<meta name="description" content="802.11ac is faster than 802.11n — but which one has better range? Learn every WiFi standard from a/b/g through Wi-Fi 6E, the 2.4 GHz vs 5 GHz trade-off, and what CompTIA tests on each.">
+<title>802.11 WiFi Standards — Which One Is Faster, Further, and</title>
+<meta name="description" content="802.11ac is faster than 802.11n — but which one has better range? Learn every WiFi standard from a/b/g through Wi-Fi 6E, the 2.4 GHz vs 5 GHz trade-off,…">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -201,6 +201,71 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "2.4 GHz vs 5 GHz vs 6 GHz — Which Band to Use",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The frequency band is the most important trade-off in wireless networking. Each band has distinct characteristics that determine when it's the right choice. This is one of the most tested concepts on both A+ and Network+. Scenario: Users in an open office with many wireless devices experience slow speeds and frequent disconnects despite strong signal. What is the most likely cause, and what should the administrator change? Answer: Channel congestion on 2.4 GHz. Switch devices to 5 GHz or configure the AP to use a less congested 2.4 GHz channel (1, 6, or 11). The key phrase in the scenario i…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Non-Overlapping Channels — Why This Matters",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WiFi channels are subdivisions of the frequency band. When two access points use overlapping channels, their signals interfere with each other — degrading performance for both. Using non-overlapping channels in areas with multiple APs is essential for a well-designed wireless network. 5 GHz has 23+ non-overlapping 20 MHz channels (and fewer when using wider 40/80/160 MHz channels). This is why 5 GHz handles dense environments so much better — more APs can operate simultaneously without interfering with each other. Channel selection on 5 GHz is less critical than on 2.4 GHz but still importa…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "MIMO and MU-MIMO — What the Abbreviations Mean",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MIMO (Multiple Input, Multiple Output) was introduced with 802.11n. Instead of a single antenna transmitting and receiving, MIMO uses multiple antennas to send multiple data streams simultaneously — dramatically increasing throughput. An 802.11n access point with 4×4 MIMO (4 transmit, 4 receive antennas) can theoretically transmit four independent data streams at once. The 600 Mbps theoretical maximum of 802.11n comes from MIMO combined with wider 40 MHz channels. MU-MIMO (Multi-User MIMO) , introduced with 802.11ac Wave 2, extends MIMO to serve multiple clients simultaneously. With single-…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "802.11ax — What Makes Wi-Fi 6 Different",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wi-Fi 6 (802.11ax) isn't just faster than 802.11ac — it's architecturally redesigned for high-density environments. Three technologies drive this: OFDMA (Orthogonal Frequency Division Multiple Access) is the biggest architectural change. Previous WiFi standards allocated an entire channel to a single user during each transmission. OFDMA subdivides channels into smaller subcarriers called Resource Units (RUs) and serves multiple clients simultaneously within a single transmission. This dramatically improves efficiency when many devices are connected — the AP doesn't have to wait for one devi…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wireless Security Standards — WEP, WPA, WPA2, WPA3",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wireless security is separate from the 802.11 physical/MAC layer standards but is heavily tested alongside them. The progression from WEP to WPA3 represents the history of wireless encryption vulnerabilities and their fixes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Site Surveys — Planning a Wireless Deployment",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A wireless site survey assesses the physical environment to plan AP placement, channel selection, and power levels. Two types appear on the exam: a passive survey listens to existing wireless traffic without transmitting — it maps signal strength, identifies neighbouring networks, and documents channel usage. An active survey connects to the wireless network and measures throughput, latency, and packet loss from the client's perspective — it tells you not just that signal is present, but whether it's good enough for the intended use. Key site survey concepts: heat map — a visual overlay sho…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wireless Troubleshooting — Common Problems and Causes",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Slow speeds despite strong signal: Channel congestion (too many devices or APs on same channel), interference from other 2.4 GHz sources (microwaves, Bluetooth, baby monitors), or wrong frequency band (device connected to 2.4 GHz when 5 GHz is available). Check channel utilisation and frequency band. Intermittent disconnections: Roaming issues (client not switching APs cleanly), AP overload (too many clients per AP), DHCP lease exhaustion, or RF interference from intermittent sources (a microwave that runs at lunch). Use a wireless analyser to capture the environment over time. Cannot conne…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 

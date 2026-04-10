@@ -7,8 +7,8 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="canonical" href="https://itstudyhub.org/siem-explained.html">
-<title>How SIEM Works — Log Aggregation, Correlation & SOAR Explained | CompTIA Security+</title>
-<meta name="description" content="A SIEM is the nerve centre of a security operations centre — but how does it actually catch attacks? Learn log aggregation, correlation rules, alert fatigue, and SOAR for Security+ Domain 4.">
+<title>How SIEM Works — Log Aggregation, Correlation & SOAR</title>
+<meta name="description" content="A SIEM is the nerve centre of a security operations centre — but how does it actually catch attacks? Learn log aggregation, correlation rules, alert…">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -163,6 +163,71 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What Problem SIEM Solves",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An enterprise network generates millions of log entries every day — firewall logs, authentication logs, DNS query logs, endpoint protection logs, application logs, cloud audit logs, and more. Each source uses its own format, timestamp convention, and severity classification. Reviewing logs from a single source is manageable; making sense of the relationships across dozens of sources simultaneously is impossible for a human analyst without tooling. SIEM solves this by centralising all log collection into a single platform, normalising different formats into a common schema, and applying corr…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How Correlation Rules Work",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A correlation rule defines a pattern that, when matched, should generate a security alert. Rules are defined by security engineers and threat intelligence teams based on known attack techniques (MITRE ATT&CK is the primary reference framework). A simple correlation rule might be: \"If more than 10 failed authentication attempts occur for the same account within 5 minutes, generate a Brute Force alert.\" A more complex rule might detect a lateral movement pattern: \"If a workstation authenticates to more than 5 different internal servers within 30 minutes after a failed external login attempt, …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "SIEM vs SOAR — Understanding the Difference",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SIEM detects threats and notifies analysts. The analyst then decides what to do and takes manual action — blocks an IP in the firewall, disables an account in Active Directory, quarantines an endpoint via EDR. This human-in-the-loop response introduces latency: an attack can progress significantly in the minutes or hours between alert generation and analyst response. SOAR (Security Orchestration, Automation, and Response) adds automated response playbooks on top of SIEM alerts. When a SIEM alert fires, a SOAR playbook can automatically: enrich the alert with threat intelligence, check the a…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Common SIEM Use Cases",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Brute force and credential stuffing detection: Correlation rules fire when authentication failure counts exceed thresholds. The SIEM correlates failed logins across multiple systems — the same IP attempting to log into the VPN, web application, and email simultaneously is a stronger signal than attempts on one system alone. Lateral movement detection: After an initial compromise, attackers move laterally through the network using legitimate credentials and tools. SIEM correlation rules detect patterns like a single account authenticating to an unusual number of internal systems in a short t…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "SIEM Architecture — How Logs Actually Flow",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Understanding how data flows into and through a SIEM demystifies what the platform does and how it's managed. Log collection uses several mechanisms depending on the source type. Agents — lightweight software installed on endpoints and servers — forward logs to the SIEM in real time. Windows events, application logs, and endpoint protection telemetry are typically agent-collected. Agentless collection uses protocols like syslog (UDP/TCP port 514), SNMP traps (port 162), and API integrations to pull logs from network devices, cloud platforms, and applications that can't run agents. Firewalls…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Alert Fatigue — The Biggest SIEM Operations Challenge",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Alert fatigue is the operational enemy of effective SIEM. When a SIEM generates hundreds or thousands of alerts per day — many of them false positives — analysts quickly learn to skim alerts rather than investigate them thoroughly. The result is that real threats are missed because they're buried in noise. Managing alert fatigue is a critical SIEM operations skill that the Security+ exam tests indirectly through questions about tuning and false positives. Reducing alert fatigue requires tuning correlation rules to reduce false positives, implementing alert prioritisation (Critical alerts ge…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Key SIEM Use Cases for the Exam",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Account compromise detection: SIEM correlates failed logins (from the authentication logs), successful login after failures (from authentication logs), and subsequent unusual activity (from access logs) — individually innocuous events that together indicate credential compromise. The correlation rule fires when a pattern match is detected across all three log types within a configurable time window. Insider threat detection: Behaviour that deviates from a user's baseline triggers anomaly alerts. A user who downloads 500 MB of files at 2am on a Sunday when they've never worked outside busine…"
+      }
+    }
+  ]
+}
+</script>
 </head><!-- CERTFLASH APP BANNER -->
 <div class="app-banner" id="certflashBanner">
   <div class="app-banner-inner">

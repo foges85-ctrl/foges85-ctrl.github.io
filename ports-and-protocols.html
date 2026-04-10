@@ -15,8 +15,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/ports-and-protocols.html">
-<title>CompTIA Port Numbers You Must Memorise — Every Port on A+, Network+ & Security+</title>
-<meta name="description" content="Port numbers are guaranteed on every CompTIA exam. Here are all of them — FTP, SSH, DNS, HTTP, HTTPS, RDP, SMTP, and more — with TCP vs UDP, what each protocol does, and the exam traps to avoid.">
+<title>CompTIA Port Numbers You Must Memorise — Every Port on A+,</title>
+<meta name="description" content="Port numbers are guaranteed on every CompTIA exam. Here are all of them — FTP, SSH, DNS, HTTP, HTTPS, RDP, SMTP, and more — with TCP vs UDP, what each…">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -193,6 +193,31 @@ a{color:inherit;text-decoration:none;}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "TCP vs UDP — Know the Difference",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DNS uses UDP port 53 for standard queries — fast, low overhead, fits in one packet. DNS uses TCP port 53 for zone transfers (replicating the full DNS database between servers) and responses larger than 512 bytes. The exam may ask which protocol DNS uses — answer UDP for lookups, TCP for zone transfers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Encrypted vs Unencrypted — The Upgrade Pairs",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Security+ exam frequently tests whether you can identify which protocols are insecure and what their encrypted replacements are. These pairs are the most tested: Telnet (23) → SSH (22) — Remote terminal access. Telnet sends everything in cleartext. SSH encrypts the session. FTP (20/21) → SFTP or FTPS — SFTP runs over SSH (port 22). FTPS is FTP with TLS (port 990/21). Both encrypt credentials and data."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

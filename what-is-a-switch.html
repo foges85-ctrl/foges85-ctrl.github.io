@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/what-is-a-switch.html">
 
-<title>How a Network Switch Works — MAC Tables, VLANs & STP | CompTIA A+ & Network+</title>
-<meta name="description" content="A switch is smarter than a hub but simpler than a router — and it is in every network. Learn how MAC address tables work, how VLANs divide traffic, and what A+ and Network+ test on switches.">
+<title>How a Network Switch Works — MAC Tables, VLANs & STP</title>
+<meta name="description" content="A switch is smarter than a hub but simpler than a router — and it is in every network.">
 
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -406,6 +406,63 @@ tbody tr:hover td { background: #f4f8ff; }
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How a switch works — the MAC address table",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every switch maintains a MAC address table (also called a CAM table — Content Addressable Memory). This table maps MAC addresses to the physical ports they were learned from. When a frame arrives, the switch checks this table to decide where to send it. Switches learn MAC addresses automatically by inspecting the source address of every frame that arrives. If a device sends traffic from port 3, the switch records that MAC address against port 3. Over time the table fills up with all the devices on the network. 1. Frame arrives → Switch receives frame on a port 2. Learn source MAC → Records …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Switch vs router — the key difference",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This is one of the most tested distinctions across both A+ and Network+. The difference comes down to what address each device uses and which layer it operates at."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "VLANs — virtual LANs",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A VLAN (Virtual Local Area Network) logically segments a physical switch into multiple separate networks. Devices on different VLANs cannot communicate with each other directly — they need a router or Layer 3 switch to route between them. VLANs are one of the most tested switch topics on Network+. The main reasons to use VLANs are security (isolating sensitive systems), performance (reducing broadcast traffic), and flexibility (grouping devices by function rather than physical location). Access port → Carries traffic for ONE VLAN — connects to end devices (PCs, printers) Trunk port → Carrie…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Spanning Tree Protocol (STP)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When you connect multiple switches together for redundancy, you create loops — and Layer 2 loops are catastrophic. A broadcast frame in a loop circulates forever, consuming all bandwidth in seconds (called a broadcast storm). STP prevents this by automatically blocking redundant paths while keeping them available as backup."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Port security",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Port security is a managed switch feature that restricts which MAC addresses are allowed on a given port. It's used to prevent unauthorised devices from connecting to the network — plugging an unknown laptop into a network port can be blocked by port security. Protect: Drops frames from unauthorised MACs silently — no alert, no shutdown. Restrict: Drops frames and increments a violation counter — generates a log but port stays up."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The study guides, practice exams, and free resources worth your time for both exams."
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>

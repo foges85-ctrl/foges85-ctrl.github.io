@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/vlan-explained.html">
 
-<title>What Is a VLAN and Why Does Every Enterprise Network Use Them? | CompTIA Network+</title>
-<meta name="description" content="VLANs let one physical switch act like many — separating HR from engineering without extra hardware. Learn how 802.1Q tagging, trunk ports, and inter-VLAN routing work for CompTIA Network+.">
+<title>What Is a VLAN and Why Does Every Enterprise Network Use</title>
+<meta name="description" content="VLANs let one physical switch act like many — separating HR from engineering without extra hardware.">
 
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -433,6 +433,55 @@ tbody tr:hover td { background: #f4f8ff; }
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How VLANs work — the basics",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Without VLANs, every device connected to a switch is in the same network — they can all talk to each other and they all receive each other's broadcast traffic. As networks grow, this becomes a performance and security problem. A managed switch lets you assign each port to a VLAN. Port 1–8 might be VLAN 10 (Staff), ports 9–16 might be VLAN 20 (Servers), and ports 17–24 might be VLAN 30 (Guest Wi-Fi). Devices on VLAN 10 can only send traffic to other devices on VLAN 10. Traffic between VLANs has to be routed — it must leave the switch, pass through a router or Layer 3 switch, and return."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Access ports vs trunk ports",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This is one of the most tested VLAN concepts on Network+. The two port types serve completely different purposes and the exam regularly asks you to identify which one should be used in a given scenario. If the scenario describes a connection to an end user device (PC, laptop, printer, IP phone, wireless AP) → access port . If the scenario describes a connection between two switches , or between a switch and a router → trunk port ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "802.1Q tagging",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "802.1Q is the IEEE standard that makes VLANs work across trunk links. When a frame crosses a trunk port, the switch inserts a 4-byte 802.1Q tag into the Ethernet frame header. This tag contains the VLAN ID (0–4094), allowing the receiving switch to know which VLAN the frame belongs to and forward it to the correct ports. Standard Ethernet frame: [ Dest MAC ] [ Src MAC ] [ EtherType ] [ Payload ] [ FCS ] 802.1Q tagged frame (trunk link): [ Dest MAC ] [ Src MAC ] [ 802.1Q Tag (4 bytes) ] [ EtherType ] [ Payload ] [ FCS ] ↳ TPID (0x8100) ↳ PCP (priority bits) ↳ VLAN ID (12 bits = 0–4094) 📌 Nat…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Inter-VLAN routing",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Devices on different VLANs cannot communicate directly — that's the whole point of VLANs. But sometimes you need them to. Inter-VLAN routing is how traffic moves between VLANs, and there are three common ways to implement it: \"Router on a stick\" is the classic Network+ inter-VLAN routing scenario. The setup: one trunk link connects a switch to a router. The router has sub-interfaces (e.g. Gi0/0.10 for VLAN 10, Gi0/0.20 for VLAN 20), each configured with an IP address that becomes the default gateway for devices in that VLAN. The name comes from the fact that all inter-VLAN traffic flows thr…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The N10-009 study guide, Dion Training practice exams, and Professor Messer's free course."
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>

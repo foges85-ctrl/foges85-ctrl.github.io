@@ -15,8 +15,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/routing-protocols.html">
-<title>RIP vs OSPF vs EIGRP vs BGP — Which Routing Protocol Does What? | CompTIA Network+</title>
-<meta name="description" content="Why does the internet use BGP instead of OSPF? Learn how each routing protocol works, when you would use it, and how administrative distance and convergence time appear on Network+ exam scenarios.">
+<title>RIP vs OSPF vs EIGRP vs BGP — Which Routing Protocol Does</title>
+<meta name="description" content="Why does the internet use BGP instead of OSPF? Learn how each routing protocol works, when you would use it, and how administrative distance and…">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -179,6 +179,79 @@ tbody tr:hover td{background:#eff6ff;}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Static vs Dynamic Routing",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Before diving into protocols, understand the fundamental choice every network uses:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Administrative Distance — How Routers Choose Between Protocols",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When a router learns the same route from multiple sources (static config, OSPF, and EIGRP all know about 192.168.1.0/24), it uses Administrative Distance (AD) to decide which route to prefer. Lower AD = more trusted = preferred. This is one of the most tested routing concepts on the Network+ exam. Remember: lower AD wins . \"0 = connected, 1 = static, 90 = EIGRP, 110 = OSPF, 120 = RIP.\" The exam often asks \"A router has a route to 10.0.0.0/8 learned from both OSPF and RIP — which route goes in the table?\" Answer: OSPF (AD 110) beats RIP (AD 120) ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "The Routing Protocols — In Depth",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RIP is the oldest and simplest dynamic routing protocol. It uses hop count as its only metric — the number of routers a packet must pass through to reach the destination. Maximum hop count is 15 — any destination more than 15 hops away is considered unreachable. This hard limit makes RIP unsuitable for large networks. RIP routers broadcast their entire routing table to all neighbours every 30 seconds . This wastes bandwidth and causes slow convergence — it can take minutes for the entire network to learn about a topology change. RIPv2 added subnet mask support (VLSM) and multicast updates; …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quick Comparison — All Four Protocols",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "IGP (Interior Gateway Protocol) — routes traffic within a single Autonomous System (one organisation's network). RIP, OSPF, and EIGRP are all IGPs. EGP (Exterior Gateway Protocol) — routes traffic between Autonomous Systems. BGP is the only EGP in use today. An Autonomous System (AS) is a network under a single administrative control, identified by an AS number (ASN). Every ISP has one or more ASNs. Large enterprises that connect to multiple ISPs (multi-homed) also have their own ASN."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam Scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See the best study guides and practice exams for the N10-009 exam."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Distance-Vector vs Link-State — The Core Distinction",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All dynamic routing protocols fall into two fundamental categories based on how they make routing decisions. Distance-vector protocols (RIP, EIGRP) make decisions based on hop count or a composite metric, and each router knows only what its directly connected neighbours have told it — routers share their entire routing table with neighbours on a schedule. This is sometimes called \"routing by rumour\" because a router's view of the network is based on second-hand information. The advantage is simplicity; the disadvantage is slow convergence and susceptibility to routing loops. Link-state prot…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "RIP — Why It's Still Tested Despite Being Legacy",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RIP (Routing Information Protocol) is rarely used in modern networks but remains heavily tested on Network+ because its simplicity makes it an ideal teaching tool for routing concepts. RIP uses hop count as its sole metric — the \"best\" path is always the one with fewest routers between source and destination, regardless of link bandwidth. A 100 Mbps path through 2 hops beats a 10 Gbps path through 3 hops. This is RIP's fundamental limitation — it has no concept of bandwidth, delay, or reliability. Key RIP facts for the exam: maximum hop count is 15 (16 = infinity, meaning unreachable), rout…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "OSPF — The Enterprise Standard",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "OSPF (Open Shortest Path First) is the most widely deployed interior gateway protocol in enterprise networks and a major Network+ topic. Key characteristics: link-state (builds complete topology map), uses cost as its metric (calculated from interface bandwidth — higher bandwidth = lower cost, meaning OSPF prefers faster links), supports VLSM and CIDR (classless routing), fast convergence (detects failures in seconds and recalculates routes immediately), and scales to large networks through hierarchical area design . OSPF organises networks into areas. Area 0 (the backbone area) is required…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 

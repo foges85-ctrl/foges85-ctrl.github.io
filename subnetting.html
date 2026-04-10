@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/subnetting.html">
 
-<title>How to Subnet — CIDR Notation, Network Ranges & Exam Practice | CompTIA A+ and Network+</title>
-<meta name="description" content="Subnetting confuses almost every CompTIA candidate at first. This guide walks through CIDR notation, how to calculate host ranges, and worked examples that prepare you for real exam scenarios.">
+<title>How to Subnet — CIDR Notation, Network Ranges & Exam</title>
+<meta name="description" content="Subnetting confuses almost every CompTIA candidate at first. This guide walks through CIDR notation, how to calculate host ranges, and worked examples…">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -495,6 +495,71 @@ tbody tr:hover td { background: #f6f9ff; }
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
      crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Before you subnet — understand CIDR notation",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every IP address you see in subnetting problems comes with a prefix length written as a slash followed by a number — for example 192.168.1.0/24 . This is called CIDR notation (Classless Inter-Domain Routing), and the number after the slash tells you how many bits are used for the network portion of the address. An IPv4 address has 32 bits total. If 24 bits are the network, the remaining 8 bits are available for hosts. The larger the prefix number, the smaller the network. 192.168.1.0 /24 ↑ 24 bits = network portion 32 - 24 = 8 bits left for hosts 2⁸ = 256 addresses, 254 usable hosts 📌 CIDR …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "The binary foundation — why the math works",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Subnetting math is based on binary. Each octet of an IP address is 8 bits, and each bit has a value: 128, 64, 32, 16, 8, 4, 2, 1. You don't need to memorize binary to subnet, but understanding where the numbers come from makes the patterns stick. A subnet mask works by setting network bits to 1 and host bits to 0 . Here's what 255.255.255.0 looks like in binary: Teal bits = network (fixed). Grey bits = host (variable — these are where your device addresses live)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "The CIDR reference table — memorise /24 to /30",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For A+ you need a solid understanding of /24. For Network+ you need to be comfortable across the full range, especially /25 through /30. This table is your foundation: Usable hosts = 2ⁿ − 2, where n = host bits. Two addresses are always reserved: the network address (all host bits 0) and the broadcast address (all host bits 1)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to calculate a subnet — the method",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Given any IP address and prefix length, you need to be able to find four things: the network address , the first usable host , the last usable host , and the broadcast address . Here's the reliable method that works on every problem:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "The two formulas you must know",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usable hosts per subnet = 2ⁿ − 2 where n = number of host bits (32 − prefix length) Number of subnets = 2ˢ where s = number of subnet bits borrowed from the host portion Block size = 256 − last non-255 subnet mask octet also equals: 2ⁿ where n = host bits in the interesting octet ⚡ Why subtract 2 from host count? Two addresses in every subnet are reserved and can't be assigned to devices. The network address (all host bits set to 0) identifies the subnet itself. The broadcast address (all host bits set to 1) sends traffic to every device on the subnet simultaneously. Everything in between i…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Private IP ranges — what they are and why they matter",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most subnetting you encounter in the real world uses private IP address ranges — addresses that are not routed on the public internet. You'll see these constantly in both exam questions and actual networks:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Key things to memorise for exam day",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "/24 → 255.255.255.0 → 254 hosts block: 256 /25 → 255.255.255.128 → 126 hosts block: 128 /26 → 255.255.255.192 → 62 hosts block: 64 /27 → 255.255.255.224 → 30 hosts block: 32 /28 → 255.255.255.240 → 14 hosts block: 16 /29 → 255.255.255.248 → 6 hosts block: 8 /30 → 255.255.255.252 → 2 hosts block: 4 Ready to sit the exam? Pair these guides with a study book and practice exams for the highest chance of passing first try."
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>

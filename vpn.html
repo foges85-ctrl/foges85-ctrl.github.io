@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/vpn.html">
 
-<title>How VPNs Work — Tunnelling Protocols, Split Tunnelling & Types Explained | CompTIA</title>
-<meta name="description" content="A VPN is more than a privacy tool — it is core infrastructure for remote access. Learn how tunnelling works, the difference between site-to-site and remote access VPNs, and what CompTIA tests.">
+<title>How VPNs Work — Tunnelling Protocols, Split Tunnelling &</title>
+<meta name="description" content="A VPN is more than a privacy tool — it is core infrastructure for remote access. Learn how tunnelling works, the difference between site-to-site and…">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -464,6 +464,55 @@ tbody tr:hover td { background: #f6f9ff; }
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
      crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How a VPN works",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Without a VPN, your traffic travels from your device to its destination in a way that your ISP, network administrators, and potentially attackers on the same network can see. A VPN changes this by wrapping your traffic in an encrypted tunnel to a VPN server — everything between you and that server is encrypted and unreadable to outside observers. The key concept here is tunneling — encapsulating one network protocol inside another. The original packet becomes the payload inside an outer encrypted packet. This is why VPNs can traverse the public internet securely."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "VPN tunneling protocols — the exam table",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PPTP appears frequently on Security+ as the answer to \"which VPN protocol is considered insecure?\" Its encryption (MPPE) has known weaknesses and it should never be used on modern networks. If a question asks which VPN protocol to avoid or replace, PPTP is the answer. Contrast with IPsec and OpenVPN — both are considered secure and current standards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "IPsec modes and components — Security+ detail",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "IPsec is the most heavily tested VPN technology on both Network+ and Security+. You need to know its two modes and two core protocols:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Split tunneling",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Split tunneling determines whether all of a user's traffic goes through the VPN, or only traffic destined for the corporate network. The Security+ exam frequently frames split tunneling as a security risk . The concern is that a remote employee's device connects to both the corporate VPN and the public internet simultaneously — if the device is compromised, an attacker could potentially use it as a pivot point into the corporate network. Exam question pattern: \"Which VPN configuration poses the greatest security risk?\" → Split tunneling ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See the study guides and practice exams worth your time for both certifications."
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>

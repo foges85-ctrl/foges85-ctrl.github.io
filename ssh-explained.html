@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/ssh-explained.html">
 
-<title>SSH vs Telnet — Why SSH Won and How It Actually Works | CompTIA A+, Network+, Security+</title>
-<meta name="description" content="Telnet sends your password in plaintext — SSH encrypts the whole session. Learn how SSH authentication works, what key pairs do, how tunnelling is used, and what CompTIA tests on port 22.">
+<title>SSH vs Telnet — Why SSH Won and How It Actually Works</title>
+<meta name="description" content="Telnet sends your password in plaintext — SSH encrypts the whole session. Learn how SSH authentication works, what key pairs do, how tunnelling is used,…">
 
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -428,6 +428,39 @@ tbody tr:hover td { background: #f0fbf9; }
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "SSH vs Telnet — the core exam distinction",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both SSH and Telnet give you a remote command-line interface to a network device. The difference is everything that happens to the data in transit — and this distinction is one of the most reliably tested comparisons across A+, Network+, and Security+. \"A network administrator needs to remotely manage a switch securely. Which protocol should they use?\" → SSH (port 22) — not Telnet (port 23), which transmits credentials in plaintext. \"A technician captures network traffic and can read the administrator's username and password in the packet capture. Which remote access protocol is being used?…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How SSH works — the connection process",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When you connect via SSH, several things happen before you ever type a command. The protocol establishes an encrypted channel and authenticates both the server and the client before any data is exchanged."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Password authentication vs public key authentication",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SSH supports two main ways to prove your identity to a server. Password authentication is simpler but weaker. Public key authentication is more secure and is the standard for servers and network equipment in professional environments. Your machine: private key (id_rsa — never leaves your machine) Remote server: public key (~/.ssh/authorized_keys — placed there once) During login: 1. Server sends a random challenge message 2. Your client signs it with your private key 3. Server verifies the signature using your public key 4. Signature valid → authenticated — no password ever sent ⚡ Public ke…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>

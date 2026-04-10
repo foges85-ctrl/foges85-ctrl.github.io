@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/what-is-a-router.html">
 
-<title>How a Router Works — Routing Tables, NAT & Default Gateway | CompTIA A+ & Network+</title>
-<meta name="description" content="Routers make the internet possible by deciding where every packet goes. Learn how routing tables work, what a default gateway does, how NAT fits in, and what A+ and Network+ test on routers.">
+<title>How a Router Works — Routing Tables, NAT & Default Gateway</title>
+<meta name="description" content="Routers make the internet possible by deciding where every packet goes. Learn how routing tables work, what a default gateway does, how NAT fits in, and…">
 
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -391,6 +391,55 @@ tbody tr:hover td { background: #f0fbf9; }
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What a router actually does",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When a device on your network wants to communicate with something outside its own network — a website, a server in another office, a cloud service — the traffic has to cross network boundaries. That's the router's job. A router receives a packet, reads the destination IP address, looks up that address in its routing table , and forwards the packet out of the appropriate interface toward the destination. It does this for every single packet, millions of times per second in enterprise environments. The key distinction to understand for the exam: switches use MAC addresses and operate at Layer…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "The routing table",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The routing table is the router's map of the network. It stores known routes — destination networks, the next-hop router to send traffic to, and which interface to use. When a packet arrives, the router finds the most specific matching route and forwards accordingly. Destination Next Hop Interface Source 192.168.1.0/24 directly connected eth0 Connected 10.0.0.0/8 192.168.1.1 eth0 Static 172.16.0.0/12 192.168.1.254 eth0 OSPF 0.0.0.0/0 203.0.113.1 eth1 Default route ⚡ Longest prefix match When multiple routes match a destination, the router always uses the most specific route — the one with t…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Default gateway",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The default gateway is the IP address of the router interface that a device uses to reach destinations outside its own subnet. When your laptop wants to load a website, it sends the traffic to the default gateway — the router — which then forwards it toward the internet. If a device has no default gateway configured, it can only communicate with other devices on its own subnet. Any traffic destined for a different network simply has nowhere to go and is dropped. This is one of the most common causes of connectivity problems and appears regularly in troubleshooting scenarios on both A+ and N…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "NAT — Network Address Translation",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NAT is one of the most important functions a router performs. It allows multiple devices on a private network to share a single public IP address when communicating with the internet. Without NAT, every device would need its own public IP address — and with only around 4 billion IPv4 addresses available globally, this would have been exhausted long ago. NAT is why your home network can have 20 devices all using 192.168.x.x addresses while appearing to the internet as a single public IP. Port Address Translation (PAT), also called NAT Overload, is the type of NAT used in virtually every home…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The study guides, practice exams, and free courses worth your time for both exams."
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>

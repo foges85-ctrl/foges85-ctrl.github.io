@@ -7,8 +7,8 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="canonical" href="https://itstudyhub.org/raid-levels.html">
-<title>RAID 0 vs 1 vs 5 vs 10 — Which Level for What Situation? | CompTIA A+</title>
-<meta name="description" content="RAID is not backup — and mixing them up is a common exam trap. Learn exactly what each RAID level does, how many disks each needs, which survives a failure, and when to use each one.">
+<title>RAID 0 vs 1 vs 5 vs 10 — Which Level for What Situation?</title>
+<meta name="description" content="RAID is not backup — and mixing them up is a common exam trap. Learn exactly what each RAID level does, how many disks each needs, which survives a…">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -175,6 +175,71 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What Is RAID?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RAID stands for Redundant Array of Independent Disks (originally \"Inexpensive Disks\"). It's a technology that combines multiple physical hard drives or SSDs into a single logical unit to achieve one or more of three goals: increased performance (faster reads/writes by spreading data across multiple disks), fault tolerance (surviving one or more disk failures without data loss), or a combination of both. RAID is controlled either by a dedicated hardware RAID controller card or by software RAID built into the operating system (Windows Storage Spaces, Linux mdadm, macOS Disk Utility). The most…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "RAID 0 — Striping (Speed Only)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RAID 0 stripes data across all disks — each block of data is split and written to multiple disks simultaneously. Two 4 TB disks in RAID 0 give you 8 TB of usable storage and roughly double the read/write speed of a single disk. The catastrophic trade-off: if any single disk fails , all data is lost. There is no redundancy whatsoever — in fact, RAID 0 is statistically more likely to fail than a single disk because any of multiple disks can cause total data loss. Use cases: scratch disks for video editing or rendering where speed matters and data is temporary, gaming storage where load times …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "RAID 1 — Mirroring (Perfect Copies)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RAID 1 writes identical data to every disk in the array — with two disks, every write goes to both simultaneously. If one disk fails, the other contains a complete copy of all data. The array continues operating normally on the surviving disk, and the failed disk can be replaced and rebuilt (resilvered) while the system remains online. The trade-off is storage efficiency — you pay for two disks but only get one disk's worth of storage. RAID 1 is ideal for operating system drives and boot volumes where reliability is paramount and the data set is relatively small. A server's OS on a 2-disk R…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "RAID 5 — Striping with Parity",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RAID 5 stripes data across all disks like RAID 0, but adds a rotating parity block that allows any single disk to be reconstructed if it fails. Parity is distributed evenly across all disks — no single disk holds all the parity information. With three 4 TB disks, you get (3−1) × 4 TB = 8 TB of usable storage with the ability to lose any one disk without data loss. The parity calculation introduces write overhead — every write requires calculating and writing parity data, which is slower than RAID 0. This overhead is typically handled by the RAID controller in hardware implementations. RAID …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "RAID 6 — Striping with Double Parity",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RAID 6 extends RAID 5 by maintaining two independent parity blocks, allowing the array to survive any two simultaneous disk failures. This directly addresses RAID 5's weakness during rebuild — even if a second disk fails while the array is recovering from the first failure, no data is lost. RAID 6 is recommended for large arrays (8+ disks) where rebuild times are long and the risk of a second failure during rebuild is statistically significant."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "RAID 10 — Mirrored Stripes (RAID 1+0)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RAID 10 combines RAID 1 (mirroring) and RAID 0 (striping). Disks are first mirrored in pairs, then the mirrored pairs are striped together. With four disks: disks 1 and 2 are mirrored, disks 3 and 4 are mirrored, and data is striped across both pairs. This gives you RAID 0's read performance across the pairs, RAID 1's per-pair redundancy, and the ability to lose one disk from each pair simultaneously without data loss. RAID 10 is the preferred choice for high-transaction workloads — database servers (SQL Server, MySQL, Oracle), email servers, and any application that requires both high IOPS…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hot Spare — Automatic Disk Replacement",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A hot spare is an additional disk in a RAID array that sits idle until a disk fails. When the controller detects a failure, it automatically begins rebuilding the failed disk's data onto the hot spare — without any human intervention. Hot spares significantly reduce the window of vulnerability in RAID 5 and 6 arrays because the rebuild begins immediately rather than waiting for an administrator to notice the failure and manually insert a replacement disk. Hot spares are distinct from the disks that make up the RAID array — they don't contribute to usable storage while in standby. An enterpr…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

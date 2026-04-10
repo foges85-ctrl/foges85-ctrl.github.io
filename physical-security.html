@@ -15,8 +15,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/physical-security.html">
-<title>Physical Security Controls — What Stops Someone From Walking Into Your Server Room? | Security+</title>
-<meta name="description" content="Badges, mantraps, cameras, and biometrics — learn how physical security layers work, the difference between tailgating and piggybacking, and how to securely dispose of old drives for Security+.">
+<title>Physical Security Controls — What Stops Someone From Walking</title>
+<meta name="description" content="Badges, mantraps, cameras, and biometrics — learn how physical security layers work, the difference between tailgating and piggybacking, and how to…">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -179,6 +179,63 @@ tbody tr:hover td{background:#fdf4ff;}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Secure Data Disposal",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Physical security isn't just about keeping people out — it's also about ensuring data cannot be recovered from decommissioned hardware. The exam tests specific disposal methods for different media types. Degaussing only works on magnetic media — HDDs and tape drives. It does NOT work on SSDs, USB drives, CDs/DVDs, or any flash/optical media because those don't use magnetic storage. The exam will try to trick you into choosing degaussing for an SSD — the correct answer for SSD disposal is physical destruction (shredding) or cryptographic erase. Physical security is most effective when layere…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam Scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See the best courses, practice exams, and study guides for SY0-701."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Layered Physical Security — Defence in Depth Applied to Space",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Physical security follows the same defence-in-depth principle as cybersecurity — multiple overlapping controls so that an attacker who defeats one layer still faces additional barriers. A well-designed physical security architecture has concentric rings: perimeter security (fencing, vehicle barriers, lighting), building access (badge readers, security guards, visitor logs), internal zones (separate badge access for different floors or departments), server room access (biometric + badge + PIN, mantrap entry), and equipment-level security (cable locks, rack locks, chassis intrusion detection)…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Access Control Vestibules (Mantraps)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An access control vestibule (commonly called a mantrap) is a physical security control consisting of a small room with two interlocked doors — the first door must close and lock before the second door can open. This prevents tailgating (an unauthorised person following an authorised person through a secured door). Mantraps are used at the entrance to high-security areas like server rooms, datacenter floors, and secure research facilities. Some implementations include biometric verification in the vestibule itself, weighing the occupant to confirm only one person is present, or video monitor…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Data Destruction Methods — What the Exam Tests",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Physical security extends to how data is destroyed when storage media is retired. CompTIA tests specific destruction methods and when each is appropriate. Shredding physically destroys the storage media (shredded hard drives, SSDs, optical discs) — appropriate for media that must be completely destroyed and cannot be reused. Degaussing exposes magnetic storage (HDDs, magnetic tape) to a powerful magnetic field that scrambles all data — effective for traditional hard drives but does not work on SSDs, USB drives, or optical media (which are not magnetic). This distinction is a common exam que…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Environmental Controls in Physical Security",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Datacenters and server rooms require environmental controls that are themselves a form of physical security — protecting equipment from environmental threats. Temperature monitoring and cooling (HVAC) prevents hardware failure from overheating; most server equipment operates safely at 65–80°F (18–27°C). Humidity controls prevent static electricity buildup (too dry) and condensation damage (too humid); target range is 40–60% relative humidity. Fire suppression in server rooms uses clean agent systems (FM-200, Halon alternatives, NOVEC 1230) rather than water sprinklers — water destroys serve…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

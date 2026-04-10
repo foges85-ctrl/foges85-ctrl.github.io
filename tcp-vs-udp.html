@@ -8,8 +8,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/tcp-vs-udp.html">
-<title>TCP vs UDP — Why VoIP Uses UDP and Why Web Browsing Uses TCP | CompTIA A+</title>
-<meta name="description" content="TCP guarantees delivery. UDP just fires and forgets. Learn why that difference matters, which protocols use each transport, how the 3-way handshake works, and what CompTIA tests on both.">
+<title>TCP vs UDP — Why VoIP Uses UDP and Why Web Browsing Uses TCP</title>
+<meta name="description" content="TCP guarantees delivery. UDP just fires and forgets. Learn why that difference matters, which protocols use each transport, how the 3-way handshake works,…">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -169,6 +169,63 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "The Fundamental Trade-off",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TCP and UDP both operate at Layer 4 (Transport layer) of the OSI model and both use port numbers to direct traffic to the correct application. The difference is reliability versus speed. TCP guarantees that every segment arrives at the destination in the correct order, with corrupted segments retransmitted automatically. UDP sends packets and doesn't check whether they arrived — it's fire-and-forget. This reliability comes at a cost: TCP's handshake, acknowledgements, and retransmissions add overhead and latency. UDP's lack of overhead makes it faster and lower-latency, at the expense of re…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "TCP — Reliability Through Connection",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TCP establishes a connection before any data is sent using the three-way handshake : the client sends a SYN (synchronise) segment → the server responds with SYN-ACK (synchronise-acknowledge) → the client sends ACK (acknowledge). Only after this handshake is complete does data flow. The handshake establishes sequence numbers that both sides use to track which segments have been received and which need retransmission. When the connection ends, a four-way FIN-ACK sequence tears it down gracefully. TCP reliability features: Sequencing — each segment is numbered so the receiver can reassemble th…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "The TCP SYN Flood Attack",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The TCP handshake creates a vulnerability: during a SYN flood attack , an attacker sends thousands of SYN packets to a server with spoofed source IP addresses. The server responds with SYN-ACK to each and waits for the final ACK — but the ACK never comes (the source IP is fake). The server's half-open connection table fills up, and it can no longer accept legitimate connections. This is a DoS (Denial of Service) attack that exploits TCP's reliability mechanism. Mitigation: SYN cookies (the server doesn't allocate state until the ACK arrives), rate limiting SYN packets, and firewall rules de…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "UDP — Speed Through Simplicity",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "UDP has no handshake, no sequencing, no acknowledgements, and no retransmission. A UDP datagram is sent and immediately forgotten by the sender. If a packet is lost, dropped by a congested router, or arrives out of order, UDP doesn't know and doesn't care. This sounds like a weakness — and for some applications it is — but for many applications UDP's speed and simplicity are exactly what's needed. DNS queries use UDP port 53. A DNS query is a single small packet and its response — there's no need for the overhead of a three-way handshake for a sub-millisecond lookup. If the UDP query is los…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "QoS and Traffic Priority",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "QoS (Quality of Service) is a network mechanism that prioritises certain traffic types over others when the network is congested. UDP-based real-time traffic (VoIP, video conferencing) is highly sensitive to delay and packet loss — even brief congestion causing 200ms of additional latency degrades voice quality noticeably. QoS marks VoIP packets with a higher priority using DSCP (Differentiated Services Code Point) values in the IP header, and network devices service higher-priority queues first during congestion. A properly configured QoS policy guarantees that VoIP packets are forwarded b…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "TCP Port States — netstat and Troubleshooting",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The netstat command (or ss on modern Linux) displays active TCP connections and their states, which is essential for network troubleshooting. Key states: LISTEN — the application is waiting for incoming connections on that port (a web server listening on port 443). ESTABLISHED — an active connection exists between two endpoints. TIME_WAIT — the connection has ended but the OS is waiting to ensure all packets have been delivered before releasing the port. CLOSE_WAIT — the remote end has closed the connection but the local application hasn't yet. A large number of TIME_WAIT connections is nor…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

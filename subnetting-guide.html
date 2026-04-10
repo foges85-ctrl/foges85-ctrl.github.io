@@ -15,8 +15,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/subnetting-guide.html">
-<title>Subnetting Made Simple — Magic Number Method, VLSM & Practice Questions | CompTIA Network+</title>
-<meta name="description" content="Subnetting is not as hard as it looks — if you learn the magic number method. Walk through the technique, practice with real examples, and get ready for the PBQ subnetting questions on Network+.">
+<title>Subnetting Made Simple — Magic Number Method, VLSM &</title>
+<meta name="description" content="Subnetting is not as hard as it looks — if you learn the magic number method. Walk through the technique, practice with real examples, and get ready for…">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -221,6 +221,79 @@ tbody tr:hover td{background:#eff6ff;}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "The Two Formulas (Memorise These First)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usable hosts per subnet = 2 h − 2   (where h = number of host bits) Subtract 2 because the first address (network address) and last address (broadcast) cannot be assigned to hosts. Number of subnets = 2 s   (where s = number of subnet bits borrowed from the host portion)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "The Magic Number Method",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The magic number is the block size of the subnet — how many IP addresses each subnet contains. Subnets always start at multiples of their block size. You never need to do binary conversion in your head once you know this method."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Complete CIDR Reference Table — /8 through /30",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The magic numbers for /25 through /30 are: 128 · 64 · 32 · 16 · 8 · 4 . Each one is half the previous. If you forget the block size for a prefix, just start at 128 for /25 and halve it for each step: /25=128, /26=64, /27=32, /28=16, /29=8, /30=4. /30 is the most important small subnet — 2 usable hosts, used for point-to-point WAN links between routers. The exam tests this frequently in router configuration scenarios."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "VLSM — Variable Length Subnet Masking",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "VLSM lets you use different subnet sizes within the same address space — so you're not wasting addresses by giving every department the same block size. Instead of one /24 = 8 equal /27 subnets, VLSM lets you give Sales a /25 (126 hosts), IT a /27 (30 hosts), and the WAN link a /30 (2 hosts). This is standard practice in real networks and is tested on Network+. Always allocate the largest subnet first. Start with the department that needs the most hosts, assign the smallest prefix that fits, then work down to smaller subnets. This prevents address space fragmentation. Example: Given 192.168…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Performance-Based Question (PBQ) Practice",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The network and broadcast addresses are not usable. A /26 has 64 addresses but only 62 usable hosts (subtract 2, always). Exam questions that give you \"64 hosts\" are testing whether you pick /26 (62 hosts — correct) or /25 (126 hosts — unnecessarily large). /31 is a special case. Technically 2² − 2 = 0 usable hosts, but RFC 3021 permits /31 for point-to-point links because no broadcast is needed. The exam occasionally includes /31 — know that it's used for P2P links and has 2 assignable addresses. Don't confuse subnets-from-/24 with total subnets. A /26 gives you 4 subnets when splitting a …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why Subnetting Matters Beyond the Exam",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Subnetting is the single most important practical skill in networking, not just an exam topic. Every network engineer, system administrator, and IT support professional who deals with TCP/IP networks needs to subnet. In the real world you subnet to: isolate network segments for security (VLANs + subnets keep the finance department's traffic separate from the guest Wi-Fi), design efficient address space allocation for a new office or cloud VPC, troubleshoot connectivity issues where hosts can't communicate because they're on different subnets, and configure firewall rules that apply to speci…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Subnetting Practice Problems — Work Through These",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The only way to get fast at subnetting is repetition. Here are worked examples at increasing difficulty. Problem 1 (basic): Given 192.168.5.0/24, divide into 4 equal subnets. You need 4 subnets from a /24. 2^2 = 4, so borrow 2 bits → /26. Block size: 256 − 192 = 64. Subnets: 192.168.5.0/26 (hosts .1–.62, broadcast .63), 192.168.5.64/26 (hosts .65–.126, broadcast .127), 192.168.5.128/26 (hosts .129–.190, broadcast .191), 192.168.5.192/26 (hosts .193–.254, broadcast .255). Each subnet has 62 usable hosts. Problem 2 (exam style): A host has IP address 172.16.45.200/20. What is its network addr…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Common Subnetting Mistakes on the Exam",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Forgetting the network and broadcast addresses. A /24 has 256 addresses but only 254 usable hosts — .0 is the network address, .255 is the broadcast. This is always 2 addresses lost per subnet, regardless of size. A /30 has 4 addresses: network (.0), two usable hosts (.1 and .2), and broadcast (.3). The minimum usable subnet is /30 for a point-to-point link needing exactly 2 hosts. (/31 is a special case for point-to-point links that eliminates the network/broadcast overhead, but this is rarely tested at A+/Network+ level.) Miscounting subnets created. When the question asks \"how many subne…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

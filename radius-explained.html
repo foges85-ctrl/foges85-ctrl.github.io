@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/radius-explained.html">
 
-<title>How RADIUS Works — AAA Authentication for WiFi and VPN | CompTIA Network+ & Security+</title>
-<meta name="description" content="WPA2-Enterprise requires a RADIUS server — but what does that actually mean? Learn how RADIUS handles authentication for WiFi and VPN, how it differs from TACACS+, and what CompTIA tests.">
+<title>How RADIUS Works — AAA Authentication for WiFi and VPN</title>
+<meta name="description" content="WPA2-Enterprise requires a RADIUS server — but what does that actually mean? Learn how RADIUS handles authentication for WiFi and VPN, how it differs from…">
 
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -261,6 +261,71 @@ tbody tr:hover td { background: #f4f8ff; }
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "AAA — the three functions RADIUS provides",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RADIUS is described as an AAA protocol. Before diving into the mechanics, it helps to understand what each A stands for — these are tested individually on both Network+ and Security+:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How RADIUS works",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RADIUS introduces a three-party model: the supplicant (the user or device trying to connect), the NAS/authenticator (the network device — VPN gateway, wireless AP, switch), and the RADIUS server (the central authority that makes the access decision). Supplicant NAS / Authenticator RADIUS Server (User / Device) (VPN gateway / AP / Switch) (Central auth) │ │ │ │──── Connect request ──▶│ │ │ │──── Access-Request ───▶│ │ │ (credentials, │ │ │ NAS IP, port) │ │ │ │ Checks credentials │ │ │ against directory │ │◀─── Access-Accept ─────│ │ │ (+ VLAN, policies) │ │◀─── Network access ────│ │ │ │ │ …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "RADIUS vs TACACS+",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RADIUS and TACACS+ are both AAA protocols but serve different primary use cases. This comparison is one of the most commonly tested distinctions on Network+ and Security+: RADIUS = network access control (who can connect to the network — VPN users, Wi-Fi clients). UDP. Encrypts password only. TACACS+ = device administration (which commands can an admin run on a router or switch). TCP 49. Fully encrypted. Cisco environments."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "802.1X — RADIUS for wired and wireless access control",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "802.1X is the IEEE standard for port-based network access control. It uses RADIUS as its backend authentication server. When a device plugs into a switch port or connects to a Wi-Fi network, 802.1X holds them in an unauthenticated state — a kind of quarantine — until RADIUS verifies their identity. Without 802.1X, anyone who physically plugs into a switch port gets network access. With 802.1X, every device must authenticate before any traffic is allowed — unauthenticated devices are placed in a quarantine VLAN or blocked entirely. This is the standard defence against rogue device attacks — …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "EAP methods — what the exam tests",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If the exam asks which EAP method provides the highest security, the answer is EAP-TLS — it uses certificates on both sides (mutual authentication), eliminates passwords entirely, and provides the strongest protection against MITM attacks. The tradeoff is infrastructure cost — you need a PKI to issue client certificates. PEAP is the practical middle ground: strong security without requiring client certificates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "RADIUS in enterprise deployments",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In production environments, RADIUS doesn't work in isolation. It connects to backend systems to check credentials and retrieve authorisation policies: User connects to Wi-Fi / VPN / switch port │ ▼ Authenticator (AP / VPN gateway / switch) │ EAP over RADIUS (UDP 1812) ▼ RADIUS Server (e.g. Microsoft NPS, FreeRADIUS, Cisco ISE) │ ├──▶ Active Directory / LDAP (verify credentials) │ ├──▶ Certificate Authority (validate client certs for EAP-TLS) │ └──▶ Policy engine (assign VLAN, ACL, time restrictions) │ └─▶ Access-Accept (+ VLAN tag, ACL) → user gets network access Access-Reject → user blocke…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The study guides, practice exams, and free resources worth your time."
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>

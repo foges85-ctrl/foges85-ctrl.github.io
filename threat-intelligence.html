@@ -9,8 +9,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/threat-intelligence.html">
-<title>Threat Intelligence Explained — IOCs, STIX/TAXII, MITRE ATT&CK & Threat Feeds | Security+</title>
-<meta name="description" content="Threat intelligence for CompTIA Security+ SY0-701 — IOCs vs IOAs, STIX and TAXII standards, MITRE ATT&CK framework, threat feeds, ISACs, and open vs closed intelligence sources.">
+<title>Threat Intelligence Explained — IOCs, STIX/TAXII, MITRE</title>
+<meta name="description" content="Threat intelligence for CompTIA Security+ SY0-701 — IOCs vs IOAs, STIX and TAXII standards, MITRE ATT&CK framework, threat feeds, ISACs, and open vs…">
 <meta property="og:type" content="article"><meta property="og:url" content="https://itstudyhub.org/threat-intelligence.html">
 <meta property="og:title" content="Threat Intelligence — IOCs, STIX/TAXII, MITRE ATT&CK for Security+">
 <meta property="og:description" content="IOCs, STIX/TAXII, MITRE ATT&CK, threat feeds, and ISACs explained for CompTIA Security+ SY0-701.">
@@ -173,6 +173,55 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What Is Threat Intelligence?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Threat intelligence (TI) is evidence-based knowledge about existing or emerging threats — including context, mechanisms, indicators, implications, and actionable advice about a threat. The goal is to make security decisions faster and with better information by knowing what adversaries are doing before (or while) they attack you. Raw threat data (an IP address, a domain name, a file hash) isn't intelligence by itself. Intelligence requires context — who is using this IP, what campaigns has this domain been linked to, what malware family uses this hash. The process of turning raw data into a…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "STIX and TAXII",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For threat intelligence to be useful at scale, organizations need a standard way to express it and a standard way to share it. That's where STIX and TAXII come in — they're complementary standards developed by MITRE and now maintained by OASIS. STIX and TAXII are almost always tested together. The key distinction: STIX is the format/language (what threat data looks like), TAXII is the transport (how that data gets shared). You describe a threat actor using STIX; you share that STIX data using TAXII. A common wrong answer is to conflate the two or assign the wrong role to each."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Threat Intelligence Sources",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Threat intelligence comes from a variety of sources, ranging from open and free to closed and expensive. The Security+ exam distinguishes between source types:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "MITRE ATT&CK Framework",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge) is a globally accessible knowledge base of adversary tactics and techniques based on real-world observations. It's organized as a matrix where columns represent tactics (the adversary's goal — the \"why\") and rows within each column represent techniques (how they achieve it — the \"how\"). The 14 ATT&CK Enterprise tactics in kill-chain order: Reconnaissance → Resource Development → Initial Access → Execution → Persistence → Privilege Escalation → Defense Evasion → Credential Access → Discovery → Lateral Movement → Collection …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pyramid of Pain",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Pyramid of Pain, developed by security researcher David Bianco, illustrates the relative difficulty for adversaries when defenders block different types of indicators. Higher up the pyramid = more pain for the attacker when you detect or block that indicator. The practical implication: blocking file hashes and IPs is cheap for defenders but also cheap for attackers to evade. Detecting and disrupting adversary TTPs (the techniques they use) is much harder for attackers to work around — they have to fundamentally change how they operate. This is why MITRE ATT&CK focuses on techniques rath…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

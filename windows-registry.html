@@ -8,8 +8,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/windows-registry.html">
-<title>How the Windows Registry Works — Hives, Run Keys & Malware Persistence | CompTIA A+</title>
-<meta name="description" content="Malware removes itself but comes back on every reboot? Check the Run keys. Learn how the Windows Registry is structured, where the dangerous locations are, and how to edit it safely for A+.">
+<title>How the Windows Registry Works — Hives, Run Keys & Malware</title>
+<meta name="description" content="Malware removes itself but comes back on every reboot? Check the Run keys. Learn how the Windows Registry is structured, where the dangerous locations…">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -169,6 +169,63 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What the Registry Is and Why It Matters for A+",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Windows Registry is the central configuration database for Windows operating systems. Every setting that Windows and most applications need — hardware configuration, user preferences, installed software paths, startup programs, security policies, file type associations — is stored in the registry. Before the registry existed (Windows 3.x era), settings were scattered across hundreds of .INI files, making management difficult and inconsistent. The registry consolidated all of this into a structured, searchable, hierarchical database. For CompTIA A+ technicians, the registry is relevant i…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Key Registry Paths — What A+ Technicians Actually Use",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Startup programs (all users): HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run Any value in this key is a program that launches for all users at login. Malware commonly adds persistence entries here. This is the first place to check when investigating unwanted programs running at startup. Startup programs (current user): HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run Same as above but per-user. Standard users can add entries here without elevation. Malware installed by a non-admin user uses this key for persistence. Installed software list: HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersi…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "regedit.exe — Navigating the Registry",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The primary tool for viewing and editing the registry is regedit.exe (Registry Editor), launched by typing regedit in Run (Win+R) or the Start menu search. The left panel shows the registry tree — hives expand into keys (folders) and subkeys. The right panel shows values within the selected key — each value has a name, a data type, and data. To navigate directly to a specific path, use Edit → Find or Ctrl+F to search, or in Windows 10/11 paste the full path into the address bar at the top. Always back up before editing. Right-click any key and select Export to save a .reg file of that key a…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Registry and Malware — The A+ Technician's Perspective",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Malware uses the registry for two primary purposes: persistence (ensuring the malware restarts after reboot) and configuration storage (storing command-and-control server addresses, encryption keys, or operational settings). The Run and RunOnce keys under both HKLM and HKCU are the most common persistence locations and should be reviewed during any malware investigation. Beyond Run keys, malware also hides in: HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon (Userinit and Shell values can be hijacked), scheduled tasks stored at HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Sch…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Registry Hives on Disk — Where the Files Live",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The registry is stored as binary hive files on disk. When Windows boots, it loads these files into memory and presents them through the registry editor interface. The main hive files: SYSTEM — stores hardware and boot configuration, loaded before user login. SOFTWARE — stores installed software settings for all users. SAM (Security Accounts Manager) — stores local user accounts and hashed passwords. The SAM file is locked during normal system operation — attackers use offline attacks (booting to another OS) or exploit techniques like Mimikatz to extract credentials from the SAM or from memo…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Registry vs Group Policy — How They Interact",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Group Policy Objects (GPOs) in Active Directory domains enforce settings by writing values to specific registry keys at login. Many Group Policy settings map directly to registry values — a GPO that disables the Control Panel writes a DWORD value to a specific HKCU key. If a user attempts to change that setting directly in the registry, the GPO re-applies at the next login or policy refresh (every 90 minutes by default) and overwrites the user's change. This is why \"the setting keeps reverting\" is a common symptom of Group Policy enforcement rather than a technical error — the admin is figh…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

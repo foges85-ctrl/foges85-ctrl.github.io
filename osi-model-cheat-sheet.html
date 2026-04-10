@@ -8,8 +8,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/osi-model-cheat-sheet.html">
-<title>OSI Model Cheat Sheet — All 7 Layers, Devices & Protocols at a Glance | CompTIA</title>
-<meta name="description" content="The OSI model is the most tested concept across all three CompTIA exams. Every layer with its PDU, devices, and protocols — plus the mnemonics and bottom-up troubleshooting approach that answers exam scenarios.">
+<title>OSI Model Cheat Sheet — All 7 Layers, Devices & Protocols at</title>
+<meta name="description" content="The OSI model is the most tested concept across all three CompTIA exams. Every layer with its PDU, devices, and protocols — plus the mnemonics and…">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -169,6 +169,79 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why OSI Is the #1 Exam Topic",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The OSI (Open Systems Interconnection) model is the single most tested concept across CompTIA A+, Network+, and Security+. Every troubleshooting scenario, device identification, and protocol question on the exam connects back to OSI. A question about \"which layer does a switch operate at?\" is an OSI question. \"Which layer does encryption occur at in TLS?\" is an OSI question. \"A technician is troubleshooting a connectivity issue — which layer should they check first?\" is an OSI question. Internalising the OSI model — not just memorising the layer names, but understanding what happens at each…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Layer 7 — Application",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Application layer is where network-aware applications interact with the network stack. It provides network services directly to end-user applications — not the applications themselves, but the interfaces that applications use to communicate over the network. Protocols: HTTP/HTTPS (web browsing), FTP/SFTP (file transfer), SMTP/POP3/IMAP (email), DNS (name resolution), DHCP (IP assignment), SSH (secure shell), Telnet (legacy remote access), SNMP (network management), LDAP (directory services). The PDU (Protocol Data Unit) at Layer 7 is called a message or data . Troubleshooting at Layer 7…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Layer 6 — Presentation",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Presentation layer translates data between the application format and the network format. It handles three functions: translation — converting character encoding (ASCII to EBCDIC, Unicode), data formats (JSON to XML), and file formats; encryption/decryption — SSL/TLS operates at this layer, encrypting data before transmission and decrypting it on receipt; compression — reducing data size for efficient transmission (JPEG, MPEG, GIF compression happen here). In practice, Layers 5, 6, and 7 are often collapsed together in real protocol stacks — the TCP/IP model combines them all into a sin…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Layer 5 — Session",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Session layer manages the establishment, maintenance, and termination of communication sessions between applications. A session is a persistent logical connection between two communicating applications — beyond just sending packets, a session maintains state (which side is talking, where we are in a multi-step exchange, how to recover if interrupted). Protocols and services: NetBIOS (Windows network resource sharing), RPC (Remote Procedure Call — used by Active Directory, NFS, and many enterprise applications), SQL session management, SIP (VoIP session establishment). The Session layer …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Layer 4 — Transport",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Transport layer is responsible for end-to-end communication between applications on different hosts. Key functions: segmentation — breaking large messages into segments small enough to transmit; port numbers — identifying which application on the destination host should receive the data (port 80 = HTTP, port 443 = HTTPS, port 22 = SSH); multiplexing — allowing multiple applications to share the same network connection simultaneously; reliability (TCP only) — sequencing, acknowledgements, and retransmission. The two Transport layer protocols are TCP (reliable, connection-oriented) and UD…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Layer 3 — Network",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Network layer handles logical addressing and routing — moving packets between different networks. Key functions: IP addressing — assigning and reading logical (IP) addresses; routing — determining the best path for packets to travel from source to destination across multiple networks; packet forwarding — each router reads the destination IP, consults its routing table, and forwards the packet toward the destination. Key protocols: IP (IPv4 and IPv6) , ICMP (ping, traceroute, unreachable messages), OSPF, BGP, EIGRP (routing protocols). The PDU at Layer 3 is called a packet . Devices: rou…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Layer 2 — Data Link",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Data Link layer handles communication within a single network segment — node-to-node delivery using physical addresses. Key functions: MAC addressing — each NIC has a unique 48-bit MAC address burned in at manufacture; framing — wrapping packets in frames with source and destination MAC addresses and error-checking (CRC); error detection — CRC (Cyclic Redundancy Check) detects frames corrupted in transit; media access control — CSMA/CD (Ethernet) and CSMA/CA (WiFi) govern which device can transmit at a given time. Layer 2 is divided into two sublayers: LLC (Logical Link Control) — inter…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Layer 1 — Physical",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Physical layer defines everything about the physical transmission of raw bits — electrical signals, light pulses, or radio waves. This includes: cable specifications — Cat5e, Cat6, Cat6a, fiber optic (SMF vs MMF); connector types — RJ-45, LC, SC, ST; signal encoding — how 0s and 1s are represented as voltage levels, light pulses, or radio frequencies; data rates — 100 Mbps, 1 Gbps, 10 Gbps; wireless frequencies — 2.4 GHz and 5 GHz bands. The PDU at Layer 1 is simply bits . Devices: hubs (legacy), repeaters , wireless access point radios , cables and connectors . Troubleshooting at Layer…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

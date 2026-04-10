@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/router-vs-switch.html">
 
-<title>Router vs Switch — What Is the Actual Difference? | CompTIA A+</title>
-<meta name="description" content="Routers and switches both sit in the network — but they do completely different jobs at different OSI layers. Learn the distinction that CompTIA A+ tests and why it matters in real networks.">
+<title>Router vs Switch — What Is the Actual Difference?</title>
+<meta name="description" content="Routers and switches both sit in the network — but they do completely different jobs at different OSI layers.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -496,6 +496,47 @@ a:hover { text-decoration: underline; }
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
      crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "The one-sentence version",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A switch connects devices within the same network and forwards traffic using MAC addresses . A router connects separate networks together and forwards traffic using IP addresses . That distinction — MAC vs IP, same network vs different networks — is the core of what the A+ exam tests."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How they fit together in a real network",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Routers and switches aren't competitors — they're partners. In almost every real network, both are present and each handles a different job. The router sits at the edge, facing the internet. The switch sits inside, connecting everything on the local network. When your PC wants to print to the office printer, that traffic never touches the router — the switch handles it entirely within the local network using MAC addresses. When your PC wants to reach a website, the traffic goes switch → router → internet, with the router handling the IP-level routing to the correct destination."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Routers vs switches — full comparison",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "* Managed switches with VLANs can segment broadcast domains — but that's a Network+ topic. Switch = Layer 2 = MAC addresses = same network. Router = Layer 3 = IP addresses = between networks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hub vs switch — why it matters",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A hub is an older Layer 1 device that blindly sends every incoming frame out to every single port — it has no intelligence. Every device on a hub receives every frame, whether it's meant for them or not. This wastes bandwidth and creates collisions. A switch is smarter — it learns which device is on which port (via the MAC address table) and sends frames only to the correct port. This is called unicast forwarding and it's why switches replaced hubs. On the A+ exam, hubs still appear as a concept — just remember: hub = Layer 1, broadcasts to all; switch = Layer 2, sends only to the destination."
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>

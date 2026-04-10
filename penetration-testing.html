@@ -7,8 +7,8 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="canonical" href="https://itstudyhub.org/penetration-testing.html">
-<title>How Penetration Testing Works — Phases, Black Box vs White Box, Rules of Engagement | Security+</title>
-<meta name="description" content="Pen testing is not just hacking with permission. Learn the five phases, what black, white, and grey box testing actually mean, and what must happen before any test begins — for Security+ SY0-701.">
+<title>How Penetration Testing Works — Phases, Black Box vs White</title>
+<meta name="description" content="Pen testing is not just hacking with permission. Learn the five phases, what black, white, and grey box testing actually mean, and what must happen before…">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -163,6 +163,71 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What Penetration Testing Is — and Is Not",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A penetration test (pen test) is an authorised simulated attack on an organisation's systems, networks, or applications. The goal is to identify vulnerabilities that are actually exploitable — not just theoretically present — and determine what business impact a real attacker could achieve. A pen tester thinks and acts like an attacker within defined boundaries, documenting every step so the organisation can understand and address the real risks they face. The critical distinction from vulnerability scanning: vulnerability scanning identifies weaknesses; penetration testing exploits them . …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Black Box, White Box, and Grey Box Testing",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Black box testing is the most realistic simulation of an external attacker — the pen tester starts with only the organisation's name and discovers everything else through reconnaissance. It's the most time-consuming approach because significant time is spent on information gathering that internal teams already know. Black box tests are good for validating the external perimeter but may miss internal vulnerabilities due to time constraints. White box testing provides the pen tester with complete information about the target — network diagrams, source code, infrastructure documentation, and s…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Rules of Engagement — What Must Be Agreed Before Testing",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rules of engagement (ROE) define the scope, boundaries, and conditions of a penetration test. They must be documented in writing and signed by an authorised representative of the target organisation before any testing begins. Key elements: Scope — which IP ranges, applications, physical locations, and systems are in scope versus explicitly out of scope. Timing — when testing can occur (business hours only? 24/7? specific maintenance windows?). Authorised techniques — is social engineering allowed? Physical access attempts? Denial of service testing? Emergency contacts — who to call if testi…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pen Testing Report Components",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A professional penetration test report contains two primary sections. The executive summary is written for non-technical leadership — it describes the overall risk posture, the most critical findings, and the business impact of what was discovered. It avoids technical jargon and focuses on business consequences. The technical findings section documents each discovered vulnerability in detail: severity rating, description, evidence (screenshots, output), step-by-step reproduction procedure, affected systems, and specific remediation recommendations. Each finding is prioritised so the remedia…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Reconnaissance Techniques — OSINT and Active Recon",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reconnaissance is the foundation of every penetration test — the quality of information gathered determines how efficiently the rest of the test proceeds. OSINT (Open Source Intelligence) uses publicly available information to map the target without touching their systems. Key OSINT sources: Shodan — a search engine for internet-connected devices that indexes banners, open ports, and services; a pen tester can discover a target's internet-facing infrastructure without sending a single packet to the target. WHOIS provides domain registration information including registrant contact details, …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Social Engineering in Penetration Testing",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Technical vulnerabilities are only one attack vector. Many penetration tests include a social engineering component that tests whether employees can be manipulated into providing access or information. Common social engineering techniques in pen tests: phishing campaigns — sending simulated phishing emails to employees and measuring click rates and credential submission rates. Vishing — calling employees posing as IT support or vendors to obtain passwords or facilitate access. Physical access attempts — attempting to tailgate into facilities, leave malicious USB drives, or access unlocked w…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Post-Exploitation — What Attackers Do After Getting In",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The post-exploitation phase is where penetration tests demonstrate real business impact. After gaining initial access to a system, a skilled attacker (and pen tester) works to expand their access through privilege escalation and lateral movement. Privilege escalation — moving from a low-privilege account (standard user) to a high-privilege account (local administrator, domain administrator) — is often achievable through misconfigured services, unpatched local vulnerabilities, or weak service account passwords. A single unprivileged user account is often sufficient initial access to eventual…"
+      }
+    }
+  ]
+}
+</script>
 </head><!-- CERTFLASH APP BANNER -->
 <div class="app-banner" id="certflashBanner">
   <div class="app-banner-inner">

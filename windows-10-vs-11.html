@@ -15,8 +15,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/windows-10-vs-11.html">
-<title>Windows 10 vs Windows 11 — TPM 2.0, New Features & What A+ Tests | CompTIA 220-1202</title>
-<meta name="description" content="Windows 11 requires TPM 2.0 — but what does that mean and why does it matter for your A+ exam? Learn the real differences between Windows 10 and 11 and the upgrade scenarios CompTIA tests.">
+<title>Windows 10 vs Windows 11 — TPM 2.0, New Features & What A+</title>
+<meta name="description" content="Windows 11 requires TPM 2.0 — but what does that mean and why does it matter for your A+ exam? Learn the real differences between Windows 10 and 11 and…">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -199,6 +199,79 @@ tbody tr:hover td{background:#eff6ff;}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "System Requirements — Side by Side",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TPM 2.0 — Required by Windows 11, not Windows 10. A machine without TPM 2.0 cannot upgrade to Windows 11 through normal means. TPM also enables BitLocker encryption. If a question mentions BitLocker failing or Windows 11 upgrade failing, TPM is usually involved. 64-bit only — Windows 11 dropped support for 32-bit processors entirely. Windows 10 still supports 32-bit. An older machine running a 32-bit CPU cannot run Windows 11 regardless of other specs. Windows 11 also requires a CPU from a specific compatibility list (Intel 8th gen+ or AMD Ryzen 2000+)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Editions — Windows 10 vs Windows 11",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "BitLocker — Pro and above only. Not available in Home edition. Requires TPM for the most secure mode. A scenario saying a user needs BitLocker but has Windows 10/11 Home → they need to upgrade to Pro. Remote Desktop (hosting) — Pro and above only. Home can be a Remote Desktop client (connect to other machines) but cannot be hosted (accept incoming connections). This is a very common A+ scenario question. Group Policy Editor (gpedit.msc) — Pro and above only. Not available in Home. If a scenario asks about applying Group Policy settings to a single machine, the user needs Pro or higher."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Upgrade Path — Windows 10 to Windows 11",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Windows 10 users can upgrade to Windows 11 for free via Windows Update — if their hardware meets the requirements . Microsoft provides the PC Health Check tool to verify compatibility. The most common upgrade blockers are: no TPM 2.0, CPU not on the supported list, or the system using legacy BIOS instead of UEFI. In-place upgrade preserves files, apps, and settings. A clean install wipes everything. For the A+ exam, know that upgrading Windows 10 Home → Windows 11 Home is free and in-place. Moving from Home to Pro requires a separate licence purchase (on either OS). Windows 10 end of suppor…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "TPM — What It Is and Why It Matters",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TPM (Trusted Platform Module) is a security chip on the motherboard that stores cryptographic keys and performs security functions. Windows 11 requires TPM 2.0 — the most commonly tested Windows 11 fact on the A+ exam. TPM is a hardware chip that stores keys and measures system integrity. Secure Boot is a UEFI feature that prevents unsigned operating systems from loading at boot. They work together but are different things. Windows 11 requires both. A machine with TPM but without UEFI (running legacy BIOS) still cannot run Windows 11. You can enable Secure Boot in UEFI settings — you cannot…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam Scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See the best courses, practice exams, and study guides for 220-1201 and 220-1202."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Windows 11 Hardware Requirements — The Exam Trap",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The CompTIA A+ exam specifically tests Windows 11's minimum hardware requirements because they represent a significant shift from Windows 10. Windows 11 requires: a 64-bit processor at 1 GHz or faster with 2 or more cores , 4 GB RAM minimum (8 GB recommended), 64 GB storage minimum , UEFI firmware with Secure Boot capable , TPM 2.0 , a DirectX 12-compatible graphics card , and an HD display (720p) at least 9 inches . The most commonly tested requirements are TPM 2.0 and UEFI — older machines that run Windows 10 fine may fail Windows 11 upgrade checks solely because they lack TPM 2.0 support…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Windows Editions — Home, Pro, Enterprise",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both Windows 10 and Windows 11 come in multiple editions. The A+ exam expects you to know which features are exclusive to Pro and Enterprise editions versus available in Home. Key Pro/Enterprise-only features: BitLocker Drive Encryption (full disk encryption — not available on Home), Domain Join (connecting to Active Directory — Home cannot join a corporate domain), Remote Desktop Host (Home can use Remote Desktop as a client to connect to other machines, but cannot accept incoming RD connections — that requires Pro or Enterprise), Group Policy Editor (gpedit.msc — not available on Home), a…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's New in Windows 11 — Exam Relevant Changes",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Windows 11 introduced several changes tested on current A+ exams. The Start menu moved to the centre of the taskbar by default (can be moved back to the left). Snap Layouts — hovering over the maximise button reveals predefined window arrangement layouts, making multi-window workflows more efficient. Android app support via the Amazon Appstore (Windows Subsystem for Android) allows running Android applications natively on Windows 11 — this is tested on the A+ as a mobile device integration feature. Teams integration was added to the taskbar, though Microsoft later made this easier to remove…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

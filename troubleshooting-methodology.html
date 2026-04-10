@@ -15,8 +15,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/troubleshooting-methodology.html">
-<title>CompTIA 6-Step Troubleshooting Methodology — How to Approach Any Exam Scenario</title>
-<meta name="description" content="CompTIA tests troubleshooting process as much as technical knowledge. Learn the 6-step methodology, how to apply it to hardware, network, OS, and security scenarios, and the mistakes that cost points.">
+<title>CompTIA 6-Step Troubleshooting Methodology — How to Approach</title>
+<meta name="description" content="CompTIA tests troubleshooting process as much as technical knowledge. Learn the 6-step methodology, how to apply it to hardware, network, OS, and security…">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -187,6 +187,47 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "The 6 Steps - In Detail",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Skipping to the fix - the most common wrong answer. Scenarios describe symptoms and ask what to do first. The correct answer is almost always gather information / identify the problem, not implement a solution. Making multiple changes at once - violates step 3. If you swap the RAM and reinstall the OS simultaneously and the problem goes away, you don't know which change fixed it. One variable at a time, always. Skipping documentation - step 6 is mandatory. When a scenario ends with \"the problem is fixed\" and asks what's next, the answer is document findings. CompTIA consistently tests that …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "The Loopback Ping Sequence",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ping 127.0.0.1 - tests the local TCP/IP stack. If this fails, the NIC driver or TCP/IP stack is corrupt. ping [own IP] - confirms the NIC has a valid IP configuration assigned. ping [default gateway] - tests Layer 3 reachability on the local subnet. If this fails, check subnet mask, cable, or VLAN."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Change Management and Troubleshooting",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In enterprise environments, step 4 intersects with change management . Any fix that changes a production system typically requires a change request approved by a change advisory board (CAB) before implementation. Exam scenarios that involve production systems often expect you to recognise that \"implement the fix immediately\" is wrong. The correct answer is: document the proposed change, get approval, schedule a maintenance window, then implement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam Scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The troubleshooting methodology appears on both 220-1201 and 220-1202. See the best A+ resources."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

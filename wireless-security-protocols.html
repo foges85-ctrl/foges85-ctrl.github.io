@@ -15,8 +15,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/wireless-security-protocols.html">
-<title>WEP vs WPA vs WPA2 vs WPA3 — Wireless Security Protocols Compared | CompTIA Security+</title>
-<meta name="description" content="WEP is broken — but do you know why? Learn how wireless security evolved from WEP through WPA3, what SAE fixes, why WPA2-Enterprise requires RADIUS, and what Security+ and Network+ test.">
+<title>WEP vs WPA vs WPA2 vs WPA3 — Wireless Security Protocols</title>
+<meta name="description" content="WEP is broken — but do you know why? Learn how wireless security evolved from WEP through WPA3, what SAE fixes, why WPA2-Enterprise requires RADIUS, and…">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -180,6 +180,55 @@ tbody tr:hover td{background:#fdf4ff;}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "WEP → WPA → WPA2 → WPA3 — The Evolution",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WEP = RC4 (static key, broken IVs) — completely insecure, never use. WPA = TKIP — transitional, deprecated, still RC4 underneath. WPA2 = AES/CCMP — current standard, strong encryption, acceptable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Personal vs Enterprise Mode",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both WPA2 and WPA3 come in two authentication modes with fundamentally different authentication mechanisms:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "802.1X — Port-Based Network Access Control",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "802.1X is an IEEE standard for port-based Network Access Control (NAC) — it requires devices to authenticate before being granted access to the network. Used in both wired (switch port authentication) and wireless (WPA2/WPA3 Enterprise) deployments. Three components make up the 802.1X framework: The authentication flow: Supplicant → Authenticator (AP) → RADIUS Server . The AP acts as a pass-through — it doesn't validate credentials itself, it forwards the authentication exchange to the RADIUS server and grants/denies access based on the response."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "EAP Types — How Credentials Are Carried",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "EAP (Extensible Authentication Protocol) is the framework that carries authentication credentials inside 802.1X. Different EAP types provide different levels of security: EAP-TLS: Both client and server have certificates. Mutual authentication. Most secure but most complex — requires PKI with certificates deployed to every client device. PEAP: Only the server has a certificate. The server proves its identity to the client via certificate; the client proves its identity with username/password inside the encrypted TLS tunnel. Easier to deploy (no client certificates), nearly as secure if the …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam Scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See the study guides and practice exams that cover the full SY0-701 exam."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

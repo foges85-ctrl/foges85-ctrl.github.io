@@ -9,8 +9,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/risk-management.html">
-<title>Risk Management Explained — Risk Register, ALE, SLE & Risk Responses | Security+</title>
-<meta name="description" content="Risk management for CompTIA Security+ SY0-701 — qualitative vs quantitative analysis, SLE, ALE, ARO, risk register, BIA, and the four risk response strategies with exam scenarios.">
+<title>Risk Management Explained — Risk Register, ALE, SLE & Risk</title>
+<meta name="description" content="Risk management for CompTIA Security+ SY0-701 — qualitative vs quantitative analysis, SLE, ALE, ARO, risk register, BIA, and the four risk response…">
 <meta property="og:type" content="article"><meta property="og:url" content="https://itstudyhub.org/risk-management.html">
 <meta property="og:title" content="Risk Management Explained — ALE, SLE, Risk Responses for Security+">
 <meta property="og:description" content="Qualitative vs quantitative risk, SLE, ALE, ARO, risk register, BIA, and the four risk responses — everything tested on Security+ SY0-701 Domain 5.">
@@ -166,6 +166,55 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What Is Risk?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In information security, risk is the potential for loss or harm resulting from a threat exploiting a vulnerability. Every risk has three components: a threat (the actor or event that could cause harm — ransomware, fire, insider), a vulnerability (the weakness that could be exploited — unpatched system, weak password, unlocked server room), and an impact (the consequence if the threat succeeds — data loss, downtime, regulatory fine). Risk management is the ongoing process of identifying, assessing, prioritizing, and responding to risks in a way that balances security investment against busin…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quantitative Risk Formulas — The Math You Need",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Asset Value (AV) — the monetary value of the asset at risk. A database server containing customer PII might be valued at $500,000 when replacement cost, data recreation, and regulatory exposure are included. Exposure Factor (EF) — the percentage of the asset's value that would be lost if the threat occurred. A fire that destroys a server room has an EF of 1.0 (100%). Ransomware that encrypts files but leaves hardware intact might have an EF of 0.5 (50%). Single Loss Expectancy (SLE) — the expected dollar loss from a single occurrence of the threat. SLE = AV × EF. If a server worth $500,000 …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Inherent Risk vs Residual Risk",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Inherent risk is the raw level of risk that exists before any controls are applied. If you run a public-facing web application, the inherent risk of SQL injection attacks is significant — it's simply the nature of the activity. Residual risk is the risk that remains after controls have been applied. After implementing input validation, a WAF, parameterized queries, and regular security testing, the residual risk of SQL injection is much lower — but it's never zero. Security programs aim to reduce risk to a residual level that the organization accepts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Risk Register",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A risk register is a document (or database) that records all identified risks, their likelihood and impact ratings, current controls, risk owners, and response decisions. It's the central artifact of a risk management program. The exam expects you to know that risk registers are maintained and updated continuously — risks change as the environment changes, controls are added or removed, and new threats emerge."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Business Impact Analysis (BIA)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A BIA identifies critical business functions and determines the maximum downtime each can tolerate. BIA outputs include RTO (Recovery Time Objective — how quickly a system must be restored) and RPO (Recovery Point Objective — how much data loss is acceptable). These values drive disaster recovery planning and system backup strategies. A payment processing system might have an RTO of 4 hours and an RPO of 15 minutes; an internal wiki might have an RTO of 1 week and an RPO of 24 hours."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

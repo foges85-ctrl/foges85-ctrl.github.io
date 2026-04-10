@@ -15,8 +15,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/virtualization-explained.html">
-<title>How Virtualisation Works — Type 1 vs Type 2 Hypervisors, VMs & Containers | CompTIA A+</title>
-<meta name="description" content="What is the difference between a Type 1 and Type 2 hypervisor — and does it matter for your exam? Learn how VMs and containers work, when to use each, and what A+ Core 2 actually tests.">
+<title>How Virtualisation Works — Type 1 vs Type 2 Hypervisors, VMs</title>
+<meta name="description" content="What is the difference between a Type 1 and Type 2 hypervisor — and does it matter for your exam? Learn how VMs and containers work, when to use each, and…">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -173,6 +173,79 @@ tbody tr:hover td{background:#f0fdf4;}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Type 1 vs Type 2 Hypervisors",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most tested virtualization concept on the A+ Core 2 exam is the distinction between Type 1 and Type 2 hypervisors. They differ in where they run relative to the host operating system: Type 1 = no host OS underneath (bare metal). Type 2 = runs on top of a host OS (hosted). The exam gives you a scenario — \"A company wants maximum performance for production VMs running 24/7 in a data centre.\" → Type 1. \"A developer wants to test software in different OS environments on their laptop.\" → Type 2. Remember: VMware ESXi = Type 1. VMware Workstation = Type 2. Both are VMware products but fundame…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "VMs vs Containers",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Containers are a lighter-weight alternative to full VMs. Both isolate workloads, but they do it differently:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cloud Service Models — IaaS, PaaS, SaaS",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cloud computing is virtualisation at scale — providers like AWS, Azure, and Google Cloud run massive hypervisor farms and rent virtual resources. The A+ Core 2 and Network+ exams test the three cloud service models: Public cloud: Resources shared among multiple customers on provider infrastructure (AWS, Azure, GCP). Most cost-effective, least control. Private cloud: Cloud infrastructure dedicated to a single organisation — either on-premises or hosted. Full control, higher cost."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam Scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See the best study guides and practice exams for the 220-1202 exam."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Virtualisation in the Enterprise — Why It Matters",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Before virtualisation, each physical server ran one operating system and one primary application. A web server, database server, and email server each needed dedicated hardware — which sat idle most of the time, wasting power, cooling, and rack space. Virtualisation solved this by running multiple VMs on a single physical host, each VM believing it has exclusive access to hardware resources that are actually shared. Modern enterprise datacentres routinely run dozens of VMs per physical host, with hardware utilisation rates of 60–80% instead of the 5–15% common with dedicated physical server…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "VM Components — What Makes Up a Virtual Machine",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A virtual machine consists of: a virtual CPU (vCPU) mapped to physical CPU cores, virtual RAM allocated from the host's physical RAM, a virtual disk (typically a .vmdk or .vhd file on the host's storage that the VM treats as a real hard drive), a virtual network adapter (the hypervisor creates a virtual switch that connects VMs to each other and to the physical network), and virtual I/O devices (graphics, USB controllers, etc.). The hypervisor manages resource allocation and prevents VMs from accessing each other's memory or storage without explicit configuration. Snapshots capture the exac…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Containers vs Virtual Machines",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Containers (Docker, Kubernetes pods) are a lighter-weight alternative to VMs. Where a VM runs a full guest OS on top of the hypervisor, a container shares the host OS kernel and runs only the application and its dependencies. This makes containers significantly faster to start (seconds vs minutes), much smaller (megabytes vs gigabytes), and more portable — a container that runs on a developer's laptop runs identically in production. The trade-off is weaker isolation: containers share the kernel, so a kernel vulnerability can potentially affect all containers on a host. VMs provide stronger …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cloud and Virtualisation — The Connection",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cloud computing is built on virtualisation. When you provision an EC2 instance on AWS or a VM on Azure, you're getting a virtual machine running on Amazon's or Microsoft's physical hypervisor infrastructure. The cloud provider manages the physical hardware and hypervisor (Type 1); you manage the guest OS and everything above it. This is exactly the IaaS shared responsibility model — the provider owns the virtualisation layer, the customer owns the OS. Understanding this connection makes cloud concepts on the exam easier to reason through. Questions about what a customer is responsible for i…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 

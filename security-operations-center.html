@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/security-operations-center.html">
-<title>Security Operations Center (SOC) Explained — Tiers, Tools & Alert Lifecycle | Security+</title>
+<title>Security Operations Center (SOC) Explained — Tiers, Tools &</title>
 <meta name="description" content="SOC tiers T1/T2/T3, MSSP vs in-house, SIEM, EDR, SOAR, alert triage lifecycle, and SOC metrics explained for CompTIA Security+ SY0-701.">
 <meta property="og:type" content="article"><meta property="og:url" content="https://itstudyhub.org/security-operations-center.html">
 <meta property="og:title" content="Security Operations Center (SOC) — Tiers, Tools & Alert Lifecycle">
@@ -178,6 +178,47 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What Is a SOC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Security Operations Center (SOC) is a centralized team and facility responsible for continuously monitoring, detecting, analyzing, and responding to cybersecurity threats. The SOC is the operational heart of an organization's security program — it's where alerts are triaged, incidents are investigated, and threats are hunted proactively. The SOC operates 24/7 in most mature organizations, working from a combination of automated tools (SIEM, EDR, IDS/IPS) and human analysis. The primary mission is to minimize the time between when an attack occurs and when it's detected and contained — oft…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "SOC Tiers — T1, T2, T3",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SOC analysts are organized into tiers based on skill level and the complexity of work they handle. Higher tiers don't take every alert — they receive escalations from lower tiers and focus on the most complex and critical investigations. True Positive (TP) : Alert fired AND there was a real attack. Good detection — take action. False Positive (FP) : Alert fired but NO real attack. Benign activity matched a detection rule. Wastes analyst time; too many FPs lead to alert fatigue."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "In-House SOC vs MSSP",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Organizations must decide whether to build their own SOC or outsource monitoring and response to a Managed Security Service Provider (MSSP) . This is a common exam scenario framing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "The Alert Lifecycle",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every alert that enters a SOC follows a lifecycle from detection to closure. Understanding this flow is important for the exam and for anyone pursuing a SOC analyst role. MTTD (Mean Time to Detect): Average time between when an attack occurs and when the SOC detects it. Longer = more damage. Reduced by better detection coverage and threat hunting. MTTR (Mean Time to Respond): Average time between detection and containment/resolution. Reduced by SOAR automation, practiced playbooks, and pre-authorized response actions."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->
