@@ -8,8 +8,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/data-loss-prevention.html">
-<title>How DLP Works — Endpoint, Network & Cloud Data Loss Prevention | CompTIA Security+</title>
-<meta name="description" content="What stops a disgruntled employee from walking out with your customer database? Learn how DLP works across endpoints, networks, and cloud platforms — and what Security+ tests on it.">
+<title>How DLP Works — Endpoint, Network & Cloud Data Loss</title>
+<meta name="description" content="What stops a disgruntled employee from walking out with your customer database? Learn how DLP works across endpoints, networks, and cloud platforms — and…">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -169,6 +169,63 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What DLP Solves",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Data loss happens in three main ways: accidental exposure (an employee emails a spreadsheet with customer PII to the wrong address), negligent handling (sensitive files copied to a personal USB drive), and malicious exfiltration (an attacker or insider deliberately stealing data). Traditional perimeter security controls don't address any of these — a firewall doesn't know whether an outbound HTTPS upload contains a quarterly report or a database of customer credit cards. DLP provides data-awareness that network controls lack, enabling policies like \"block any email attachment that contains …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How DLP Identifies Sensitive Data",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pattern matching (regex): DLP uses regular expressions to identify structured sensitive data formats — credit card numbers (16-digit patterns with Luhn check), Social Security Numbers (###-##-#### format), passport numbers, and similar structured identifiers. This is highly accurate for well-formatted data but misses sensitive data that doesn't follow a pattern (confidential strategy documents, source code). Data classification labels: When files are tagged with sensitivity labels (Public, Internal, Confidential, Restricted) by users or automated classification tools, DLP policies enforce h…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DLP and Data Classification",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DLP is only as effective as the organisation's data classification programme. If sensitive data isn't identified and labelled, DLP has nothing to enforce against — it can catch credit card numbers by pattern, but it cannot protect a Word document containing proprietary formulas unless that document is labelled Confidential. Effective DLP implementation requires: defining data classification levels, creating policies for how each classification level must be handled, training users to apply correct labels, and potentially deploying automated classification tools that scan existing data repos…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DLP in the Context of Compliance",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DLP is a technical control that directly addresses requirements from multiple compliance frameworks. PCI-DSS requires that cardholder data not leave the cardholder data environment — network DLP monitoring for credit card numbers in outbound traffic directly addresses this. HIPAA requires safeguards against unauthorised disclosure of PHI — endpoint and network DLP monitoring for patient health information prevents accidental emailing of PHI to unauthorised recipients. GDPR requires data breach notification within 72 hours — DLP alerts provide early detection of potential exfiltration events…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DLP Challenges and Limitations",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DLP is powerful but introduces operational challenges that appear in exam scenarios. False positives are the primary operational burden: a DLP policy blocking all emails containing 16-digit numbers will also block order confirmations, invoice numbers, and any other legitimate business data that happens to match the credit card number pattern. Tuning DLP policies to minimise false positives while maintaining effective coverage is an ongoing process. Too aggressive and the DLP system becomes a productivity obstacle; too permissive and it fails to catch real policy violations. Encrypted traffi…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DLP and Insider Threat Detection",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DLP is one of the most effective technical controls for insider threat detection — employees who are exfiltrating data before leaving, disgruntled staff sharing proprietary information with competitors, or accidental policy violations by well-intentioned employees who don't understand data handling requirements. Endpoint DLP generates detailed audit logs of every file access, copy, email attachment, and USB transfer involving sensitive data. These logs feed into SIEM systems, where user behaviour analytics can identify anomalous patterns: an employee suddenly downloading ten times their nor…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->
