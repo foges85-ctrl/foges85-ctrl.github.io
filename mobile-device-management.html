@@ -8,8 +8,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/mobile-device-management.html">
-<title>MDM vs MAM — How to Secure Mobile Devices at Work | CompTIA A+ and Security+</title>
-<meta name="description" content="BYOD creates real security risks — MDM and MAM are how organisations manage them. Learn what each does, when to use each, and how remote wipe, geofencing, and containerisation work on the exam.">
+<title>MDM vs MAM — How to Secure Mobile Devices at Work</title>
+<meta name="description" content="BYOD creates real security risks — MDM and MAM are how organisations manage them. Learn what each does, when to use each, and how remote wipe, geofencing,…">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -169,6 +169,55 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "The Mobile Security Challenge",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mobile devices present a unique security challenge: they leave the office, connect to untrusted networks, can be lost or stolen, and may be used for both work and personal purposes. Without MDM, each employee's phone is an unmanaged endpoint that can access corporate email, cloud storage, and internal systems with no visibility or control from IT. A lost phone without full-disk encryption and a PIN exposes all its data to whoever finds it. MDM closes this gap by giving IT centralised management and security enforcement over mobile devices, regardless of where those devices are located."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "MDM vs MAM — The Key Distinction",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MDM (Mobile Device Management) manages the entire device. An MDM solution enrolls the device, installs a management profile, and then IT can: enforce screen lock PINs and biometrics, require full-device encryption, remotely wipe all data if the device is lost, push and remove apps, restrict camera or screenshot capabilities, configure WiFi and VPN profiles automatically, and track device location. MDM gives IT full control — but that full control extends to personal data on personal devices, which creates privacy concerns and employee resistance. MAM (Mobile Application Management) manages …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Key MDM Capabilities for the Exam",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Remote wipe: Erase all data on a lost or stolen device remotely. Full device wipe removes everything; selective wipe removes only corporate data while preserving personal content (MAM capability). Remote wipe is the primary data protection control for mobile devices — the exam frequently asks \"what should an administrator do when an employee reports their company phone lost?\" → initiate a remote wipe. Screen lock and PIN enforcement: MDM can require a PIN, password, or biometric to unlock the device and set maximum inactivity timeout. A device without a screen lock is an open door to corpor…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mobile Device Security Best Practices",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "OS and app updates: Mobile OS updates frequently patch security vulnerabilities. MDM can report which devices are running outdated OS versions and can block network access for devices below a minimum version threshold. This compliance checking is a key MDM value proposition beyond just device configuration. Jailbreaking and rooting detection: Jailbroken iOS devices and rooted Android devices have bypassed security controls and can run unapproved software. MDM platforms detect jailbroken/rooted devices and can automatically quarantine them — blocking corporate email and VPN access until the …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mobile Device Security — Beyond MDM",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MDM is the management layer, but mobile device security includes several additional concepts tested on A+ and Security+. Sideloading — installing apps from sources other than the official app store (Google Play, Apple App Store) — bypasses the store's security review process and significantly increases malware risk. MDM policies can disable sideloading on enrolled devices. Carrier unlocking vs jailbreaking/rooting : carrier unlocking allows a phone to be used on different cellular networks — this is legal and doesn't affect security. Jailbreaking (iOS) and rooting (Android) bypass the OS se…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

@@ -15,8 +15,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/network-cable-types.html">
-<title>Network Cable Types — Cat5e vs Cat6 vs Fiber vs Coax — Which Cable for What? | CompTIA A+</title>
-<meta name="description" content="Plugging in the wrong cable type causes problems that are surprisingly hard to diagnose. Learn what separates Cat5e, Cat6, Cat6a, and fiber — and which connector goes where on your A+ exam.">
+<title>Network Cable Types — Cat5e vs Cat6 vs Fiber vs Coax — Which</title>
+<meta name="description" content="Plugging in the wrong cable type causes problems that are surprisingly hard to diagnose.">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -175,6 +175,79 @@ tbody tr:hover td{background:#f0fdf4;}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Twisted Pair — Copper Ethernet Cables",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Twisted pair is the standard for LAN wiring. Four pairs of copper wires are twisted together inside the cable — the twisting reduces electromagnetic interference (EMI) between pairs (crosstalk) and from external sources. The category (Cat) rating determines maximum speed and bandwidth. The most common cable exam question: \"A technician needs to run a cable 80 metres to support 10 Gbps. Which category is required?\" The answer is Cat6a — not Cat6. Cat6 only supports 10 Gbps up to 55 metres. At 80 metres, Cat6 falls back to 1 Gbps. Cat6a supports 10 Gbps for the full 100-metre standard run. Me…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Fiber Optic Cable",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Fiber optic cables transmit data as pulses of light through glass or plastic strands — immune to EMI, capable of much higher speeds and longer distances than copper. Two major types, differentiated by the diameter of the glass core:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Plenum vs Riser vs PVC — Fire Ratings",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cable jacket ratings determine where a cable can legally be installed based on fire safety. This is heavily tested on the A+ exam: You can always substitute a higher-rated cable in a lower-rated space but never the reverse. Plenum can go anywhere. Riser can replace PVC in riser spaces. PVC cannot be used in plenum or riser spaces. The A+ exam scenario: \"A technician needs to run cable above a drop ceiling in an office building. Which cable jacket is required?\" → Plenum — the space above drop ceilings is always a plenum space."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam Scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See the best study guides and practice exams for the 220-1201 exam."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Twisted Pair Categories — Specs You Must Memorise",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CompTIA A+ and Network+ both require you to know the specifications for each Ethernet cable category. Cat5e (Cat 5 enhanced): supports up to 1 Gbps at 100 MHz over 100 metres. This replaced original Cat5 for Gigabit Ethernet and remains common in older installations. Cat6 : supports up to 1 Gbps at 250 MHz and up to 10 Gbps at shorter distances (37–55 metres in 10GBASE-T applications). Cat6 has stricter crosstalk specifications than Cat5e and often includes a plastic divider (spline) between pairs. Cat6a (augmented): supports 10 Gbps at 500 MHz over the full 100-metre distance. Cat6a is phy…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Fibre Optic Cable — Single-Mode vs Multi-Mode",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Single-mode fibre (SMF) has a very thin core (8–10 microns) and carries light in a single path (mode) from a laser light source. Because there's only one light path, there's no modal dispersion — different light paths arriving at slightly different times — which allows single-mode to transmit data over extremely long distances (2–120 km depending on the application) at very high speeds. Single-mode is used for long-haul runs: between buildings on a campus, between datacenters, and in WAN links. The laser transceivers required for SMF are more expensive than multi-mode equipment. Multi-mode …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cable Connectors — What Goes on What",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The connector is as important as the cable on the exam. RJ-45 is the standard 8-pin connector used for Ethernet (twisted pair) connections. All Cat5e through Cat6a cables terminate in RJ-45 at patch panels, wall jacks, and network equipment. RJ-11 is the smaller 4 or 6-pin connector used for telephone lines — if you see an RJ-11, it's phone, not Ethernet. Confusing RJ-45 and RJ-11 is a classic A+ trap question. Fibre connectors vary by application. LC (Local Connector) is the most common in modern datacenter and enterprise applications — it's small, uses a latch mechanism, and is the connec…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cable Testing Tools",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The exam expects you to match the right tool to the right cable testing task. A cable tester (continuity tester) sends a signal through each wire in a cable and verifies all connections are correct — it can detect open circuits (broken wire), shorts (two wires touching), and miswiring (wires crossed). A basic cable tester won't tell you the cable's performance characteristics, just whether it's physically intact. A TDR (Time Domain Reflectometer) sends a pulse down the cable and measures reflections to precisely locate faults — it can tell you a break or impedance mismatch is at exactly 47 …"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

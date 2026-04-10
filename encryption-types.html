@@ -15,8 +15,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/encryption-types.html">
-<title>Symmetric vs Asymmetric vs Hashing — Encryption Types Explained | CompTIA Security+</title>
-<meta name="description" content="Know the difference between AES, RSA, ECC, SHA, and MD5 before your exam — what each one does, when to use it, and how to answer any encryption question on Security+ SY0-701.">
+<title>Symmetric vs Asymmetric vs Hashing — Encryption Types</title>
+<meta name="description" content="Know the difference between AES, RSA, ECC, SHA, and MD5 before your exam — what each one does, when to use it, and how to answer any encryption question…">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -203,6 +203,47 @@ tbody tr:hover td{background:#fdf4ff;}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "The Four Types at a Glance",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Symmetric = one key, fast, key distribution problem. Asymmetric = two keys, slow, solves key distribution. The exam loves to give a scenario and ask which type is appropriate. Rule of thumb: if the question involves securely sharing a key with someone you've never met — asymmetric. If it involves encrypting large amounts of data after a secure connection is established — symmetric."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hashing Algorithms",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hashing is not encryption — it's a one-way process that produces a fixed-length output (digest/hash) from any input. The same input always produces the same hash. Different inputs should produce different hashes (collision resistance). You cannot reverse a hash to get the original data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quick Reference — All Algorithms",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When your browser connects to an HTTPS site, the TLS handshake uses asymmetric encryption (RSA or ECDHE) to securely exchange a session key. Once both sides have the session key, all data is encrypted with symmetric AES because it's much faster. Hashing (SHA-256) is used for the MAC to verify message integrity. This is why hybrid encryption exists: RSA is too slow to encrypt your entire Netflix stream, but it's perfect for encrypting the 256-bit AES key that will. Once both sides share the AES key securely, speed wins. A digital signature uses asymmetric encryption in reverse : you encrypt …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam Scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See the best courses, practice exams, and study guides for SY0-701."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

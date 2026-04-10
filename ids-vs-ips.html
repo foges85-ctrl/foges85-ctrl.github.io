@@ -7,8 +7,8 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="canonical" href="https://itstudyhub.org/ids-vs-ips.html">
-<title>IDS vs IPS — What Is the Difference and When Do You Use Each? | CompTIA Security+</title>
-<meta name="description" content="IDS detects and alerts. IPS detects and blocks. But where does each sit in the network, what happens on a false positive, and which one does the exam want? This guide answers all of it.">
+<title>IDS vs IPS — What Is the Difference and When Do You Use</title>
+<meta name="description" content="IDS detects and alerts. IPS detects and blocks. But where does each sit in the network, what happens on a false positive, and which one does the exam…">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -163,6 +163,55 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "The Core Difference — Detection vs Prevention",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The fundamental distinction between IDS and IPS is what they do when they identify a threat. An IDS (Intrusion Detection System) passively monitors network traffic or host activity, compares it against known threat signatures or behavioural baselines, and generates alerts when suspicious activity is detected. It does not interfere with traffic — it only observes and reports. A security analyst reviews the alerts and decides whether and how to respond. An IPS (Intrusion Prevention System) sits inline with traffic — all traffic flows through it — and can actively drop packets, terminate conne…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Network-Based vs Host-Based",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both IDS and IPS come in two deployment variants that the exam tests separately: NIDS/NIPS (Network-based) monitors traffic flowing across a network segment — either by connecting to a span/mirror port on a switch (NIDS) or by sitting inline between network segments (NIPS). Network-based systems provide visibility into all traffic traversing that network segment, regardless of which hosts are communicating. They're blind to encrypted traffic (unless combined with TLS inspection) and cannot see traffic that doesn't cross the monitored segment. HIDS/HIPS (Host-based) runs as software on an in…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Detection Methods — Signature vs Anomaly vs Policy",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Signature-based detection compares observed traffic or activity against a database of known attack signatures. If traffic matches a signature (a known SQL injection pattern, a specific malware command-and-control beacon, a recognisable exploit attempt), an alert is triggered or the traffic is blocked. Signature-based detection is highly accurate for known threats and generates few false positives — but it cannot detect novel (zero-day) attacks for which no signature exists yet. Signatures must be updated regularly to remain effective. Anomaly-based detection (also called behaviour-based or …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where IDS and IPS Sit in the Network",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Network placement determines what traffic each system sees. A common enterprise architecture: an NIPS at the internet perimeter , inline between the firewall and the DMZ, inspects all inbound and outbound internet traffic for known attack patterns. A NIDS on a span port of the core switch monitors internal east-west traffic for lateral movement and insider threats — it's out-of-band to avoid affecting production traffic. HIPS on servers (especially domain controllers and database servers) provides host-level protection and can detect attacks that arrive via encrypted channels or originate f…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Fail-Open vs Fail-Closed",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When an inline IPS device fails (hardware failure, software crash, power loss), it must decide what to do with the traffic it can no longer inspect. Fail-open means the device passes all traffic uninspected — network connectivity is maintained but threat detection stops. Fail-closed means the device drops all traffic — the network goes down but no uninspected traffic passes. The right choice depends on context. A hospital network might choose fail-open to maintain life-critical network connectivity even at the cost of security. A financial institution with extreme security requirements migh…"
+      }
+    }
+  ]
+}
+</script>
 </head><!-- CERTFLASH APP BANNER -->
 <div class="app-banner" id="certflashBanner">
   <div class="app-banner-inner">

@@ -8,8 +8,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/hub-vs-switch-vs-router.html">
-<title>Hub vs Switch vs Router — The Difference Every IT Technician Must Know | CompTIA</title>
-<meta name="description" content="These three devices look similar but do completely different things. Learn exactly what separates a hub, switch, and router — the OSI layers, collision domains, and the exam scenarios that test each.">
+<title>Hub vs Switch vs Router — The Difference Every IT Technician</title>
+<meta name="description" content="These three devices look similar but do completely different things. Learn exactly what separates a hub, switch, and router — the OSI layers, collision…">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -169,6 +169,71 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "The OSI Layer Connection",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The easiest way to remember the difference is by OSI layer. Each device operates at a specific layer and can only understand information up to that layer. A hub operates at Layer 1 (Physical) — it only understands electrical signals. It has no awareness of MAC addresses or IP addresses, so when a frame arrives on any port, it blindly repeats that signal out every other port. A switch operates at Layer 2 (Data Link) — it reads the destination MAC address in each Ethernet frame and forwards it only to the port where that MAC address is located. A router operates at Layer 3 (Network) — it read…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How a Hub Works — and Why It Was Replaced",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A hub is a multiport repeater. Every frame that arrives on any port is immediately retransmitted out every other port simultaneously. The hub has no memory, no address table, and no filtering capability whatsoever. All devices connected to a hub share a single collision domain — if two devices transmit simultaneously, their signals collide and both transmissions must be retried. This is why 10BASE-T Ethernet (which used hubs) required CSMA/CD (Carrier Sense Multiple Access with Collision Detection) to manage collisions. As more devices joined a hub-based network, collisions increased expone…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How a Switch Works — MAC Address Tables",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A switch learns which device is connected to which port by examining the source MAC address of every incoming frame. When a frame arrives, the switch records the source MAC address and the port it came in on in its MAC address table (also called the CAM table — Content Addressable Memory). The next time a frame arrives destined for that MAC address, the switch looks it up in the table and forwards the frame only to the specific port where that device lives — never to other ports. When a switch receives a frame for a MAC address it hasn't seen yet, it floods the frame to all ports except the…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How a Router Works — Routing Tables and IP Forwarding",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A router maintains a routing table — a database of known networks and the next hop or interface to use to reach each one. When a packet arrives, the router extracts the destination IP address, looks it up in the routing table using longest prefix match, and forwards the packet out the appropriate interface. Unlike a switch's MAC table which is learned automatically, routing tables are populated through a combination of directly connected networks (automatic), static routes (manually configured), and dynamic routing protocols (OSPF, BGP, EIGRP) that exchange route information between routers…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Layer 3 Switches — The Hybrid",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Modern enterprise networks use Layer 3 switches (also called multilayer switches) at the distribution and core layers. A Layer 3 switch combines high-speed Layer 2 switching with hardware-accelerated Layer 3 routing. It can forward packets between VLANs at wire speed without the latency of sending traffic to a dedicated router. Layer 3 switches handle inter-VLAN routing inside the building, while dedicated routers handle WAN connectivity and complex routing policies at the perimeter. On the exam, a question asking \"which device allows communication between two VLANs?\" accepts both \"router\" …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Collision Domains vs Broadcast Domains — The Exam Distinction",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Two terms that constantly trip up exam candidates: collision domains and broadcast domains. A collision domain is the set of devices that could cause a collision if they transmit simultaneously. In a hub, all connected devices share one collision domain — if two devices transmit at once, their signals collide. Each port on a switch is its own collision domain — a device on port 1 and a device on port 2 can transmit simultaneously without collision. A router interface is also its own collision domain. The rule: hubs don't break collision domains; switches and routers do . A broadcast domain …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When Would You Still See a Hub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hubs are obsolete for network access, but they appear in one specific legitimate use case: network monitoring via a tap . A passive network tap or a hub can be used to connect a packet analyser (Wireshark) to monitor all traffic on a segment without being in the traffic path. More commonly, a switch's SPAN port (port mirroring) accomplishes this without the collision domain problem. The exam question \"a technician needs to capture all traffic between two devices — which device allows this?\" accepts both hub and SPAN port as correct answers depending on context. In modern environments, SPAN …"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

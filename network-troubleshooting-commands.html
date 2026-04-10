@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/network-troubleshooting-commands.html">
 
-<title>Network Troubleshooting Commands That Actually Get Used — ipconfig, ping, netstat & More</title>
-<meta name="description" content="These are the commands that show up on CompTIA exams and in real IT jobs. Learn ipconfig, ping, tracert, netstat, nslookup, and their Linux equivalents — with syntax and real troubleshooting scenarios.">
+<title>Network Troubleshooting Commands That Actually Get Used</title>
+<meta name="description" content="These are the commands that show up on CompTIA exams and in real IT jobs. Learn ipconfig, ping, tracert, netstat, nslookup, and their Linux equivalents —…">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -522,6 +522,79 @@ a:hover { text-decoration: underline; }
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
      crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "ipconfig — Check Your IP Configuration",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ipconfig shows your computer's current IP address, subnet mask, and default gateway. It's almost always the first command you run when diagnosing a network problem — it tells you immediately whether you have a valid IP address or an APIPA address (169.254.x.x)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ping — Test Connectivity",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ping sends test packets to a destination and measures the response. It tells you whether a device is reachable and how long packets take to get there. The sequence matters — ping loopback first, then your own IP, then the gateway, then an external IP, then a domain name. Each step isolates a different layer of the problem. ping 8.8.8.8 works → ping google.com fails = DNS problem. If an IP address works but a domain name doesn't, the internet connection is fine — DNS resolution is broken. Fix: try ipconfig /flushdns or change the DNS server to 8.8.8.8."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "tracert — Trace the Route",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "tracert (Trace Route) shows every hop a packet takes on its way to a destination. Where ping just tells you if something is reachable, tracert tells you where along the path things are breaking down. Each line is one router the packet passed through, with response times."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "nslookup — Query DNS",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "nslookup (Name Server Lookup) queries DNS servers directly and shows what IP address a domain resolves to. It's the go-to tool when you suspect a DNS problem — you can query your default DNS server or specify a different one to compare results."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "netstat — View Active Connections",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "netstat (Network Statistics) shows all active TCP connections and listening ports on your machine. It's useful for seeing what your computer is currently connected to, identifying unusual connections, and confirming which ports are open."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "nbtstat — NetBIOS Name Resolution",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "nbtstat displays NetBIOS over TCP/IP statistics and name tables. It's used in Windows environments to troubleshoot name resolution issues when devices can't find each other by computer name on a local network. Less common than the others but it does appear on the A+ exam."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "The Diagnostic Workflow — What Order to Run Them",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On the exam (and in real life), commands are most useful when run in a logical order. Each step confirms one layer is working before moving to the next:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Linux & macOS Network Commands",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Network+ and Security+ exams test Linux and macOS equivalents alongside Windows commands. In enterprise environments, servers and network devices almost always run Linux — knowing these commands is essential for both certifications and real-world IT work. The ip command is the current standard on Linux, replacing the older ifconfig . It controls IP addresses, routes, and interfaces. dig (Domain Information Groper) is the Linux/macOS equivalent of nslookup — and much more powerful. Security+ tests it for DNS reconnaissance and troubleshooting."
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>

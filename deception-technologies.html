@@ -9,8 +9,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/deception-technologies.html">
-<title>Deception Technologies Explained — Honeypots, Honeynets, Honeyfiles & Canary Tokens | Security+</title>
-<meta name="description" content="Deception technologies for CompTIA Security+ SY0-701 — honeypots, honeynets, honeyfiles, canary tokens, DNS sinkholes, and fake telemetry for detecting attackers.">
+<title>Deception Technologies Explained — Honeypots, Honeynets,</title>
+<meta name="description" content="Deception technologies for CompTIA Security+ SY0-701 — honeypots, honeynets, honeyfiles, canary tokens, DNS sinkholes, and fake telemetry for detecting…">
 <meta property="og:type" content="article"><meta property="og:url" content="https://itstudyhub.org/deception-technologies.html">
 <meta property="og:title" content="Deception Technologies — Honeypots, Honeynets, Honeyfiles & Canary Tokens">
 <meta property="og:description" content="Honeypots, honeynets, honeyfiles, canary tokens, and DNS sinkholes explained for CompTIA Security+ SY0-701.">
@@ -162,6 +162,55 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What Are Deception Technologies?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Deception technologies are security controls that use fake, decoy, or misleading assets to detect attackers, waste their time, and gather intelligence about their techniques. The core insight is powerful: legitimate users have no reason to interact with decoy assets . Any interaction with a honeypot, honeyfile, or canary token is inherently suspicious — it generates a high-fidelity, low-noise alert that an attacker is present. This makes deception technologies especially valuable for detecting attackers who have already bypassed perimeter defenses and are moving laterally — the exact scenar…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Honeyfiles",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A honeyfile is a fake file that contains no real sensitive data but is designed to look like something an attacker would want — \"passwords.xlsx,\" \"employee_ssns.csv,\" \"api_keys.txt.\" The file is placed in directories where an attacker doing lateral movement or data exfiltration would likely look. When the honeyfile is accessed, opened, or exfiltrated, an alert fires. This is a highly effective technique for detecting insider threats and attackers who have already compromised file systems, since legitimate users have no reason to open a file named \"passwords.xlsx\" sitting in a shared drive f…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Canary Tokens",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Canary tokens (popularized by the open-source canarytokens.org project) are unique identifiers embedded into documents, URLs, credentials, or other assets. When the token is triggered — a document opened, a URL fetched, credentials entered — it sends a notification to the defender, including the attacker's IP address, time, and sometimes additional context."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DNS Sinkhole",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A DNS sinkhole is a DNS server that intercepts queries for known malicious domains and returns a controlled IP address instead of the real one. When malware on an internal host tries to contact its command-and-control (C2) server by domain name, the sinkhole redirects that traffic to a controlled server — blocking the communication and revealing which internal hosts are infected. 1. Threat intel identifies malicious domain: evil-c2.example.com . 2. Internal DNS server (or a sinkhole service) is configured to return 10.0.0.99 (the sinkhole IP) for that domain instead of the real attacker IP."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Fake Telemetry and Breadcrumbs",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Advanced deception strategies go beyond static honeypots to create an entire deceptive layer throughout the network. Fake telemetry means planting realistic-looking but false data — fake credentials in memory, fake server listings in Active Directory, fake API keys in environment variables. An attacker enumerating the environment finds \"valuable\" assets that are all monitored traps. Breadcrumbs are planted clues that lead attackers toward honeypots and away from real assets. A honeytoken credential in a developer's environment points to a fake server — the attacker follows the trail and wal…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

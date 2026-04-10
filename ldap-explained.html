@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/ldap-explained.html">
 
-<title>How LDAP Works — Directory Queries, Active Directory & LDAP Injection | CompTIA</title>
-<meta name="description" content="LDAP is how applications talk to Active Directory — and it is also an injection attack target. Learn LDAP vs LDAPS, port 389 vs 636, and the Security+ scenarios that test both sides of it.">
+<title>How LDAP Works — Directory Queries, Active Directory & LDAP</title>
+<meta name="description" content="LDAP is how applications talk to Active Directory — and it is also an injection attack target.">
 
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -424,6 +424,71 @@ tbody tr:hover td { background: #faf4ff; }
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a directory service?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A directory service is a specialised database optimised for reading and searching rather than frequent writes. It stores objects — users, computers, printers, groups — and their attributes, organised in a hierarchical tree structure. Think of it as a company's phone book, but far more powerful. Instead of just names and numbers, it stores every attribute about every user and device: password hashes, group memberships, login times, email addresses, department, manager, certificate information, and more. LDAP is the protocol that lets applications query and update this directory."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "LDAP vs LDAPS — the port distinction",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This is the most reliably tested LDAP fact on Network+ and Security+. Know both ports and what the difference means: 389 = LDAP (plaintext). 636 = LDAPS (encrypted with TLS). Same relationship as HTTP (80) and HTTPS (443), or FTP (21) and FTPS (990). The exam will present a scenario where credentials are being transmitted insecurely over LDAP and ask how to fix it — the answer is always switch to LDAPS on port 636 ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "LDAP directory structure",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LDAP directories are organised as a hierarchical tree called the Directory Information Tree (DIT) . Every entry in the tree is called a Distinguished Name (DN) — a unique path that identifies exactly where an object sits in the hierarchy. Domain: company.com Tree root (DC = Domain Component): DC=company,DC=com ← root of the domain │ ├── OU=Users,DC=company,DC=com ← Organisational Unit │ ├── CN=John Smith,OU=Users,DC=company,DC=com │ └── CN=Jane Doe,OU=Users,DC=company,DC=com │ ├── OU=Computers,DC=company,DC=com │ └── CN=DESKTOP-01,OU=Computers,DC=company,DC=com │ └── OU=Groups,DC=company,DC…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How LDAP authentication works",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When an application needs to verify a user's credentials against a directory, it uses an LDAP bind operation — connecting to the directory server and authenticating. There are two types of bind:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "LDAP and Active Directory",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Active Directory is not the same as LDAP — AD is a directory service that uses LDAP as one of its access protocols. Active Directory also uses Kerberos for authentication, DNS for service location, and Group Policy for configuration management. LDAP is the query language AD speaks. In a Windows domain environment, applications that need to look up users or verify group memberships do so via LDAP queries to a Domain Controller. The Domain Controller listens on ports 389 (LDAP) and 636 (LDAPS) for these queries. \"Which protocol does Active Directory use to allow applications to query user and…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "LDAP injection — the Security+ attack",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LDAP injection is an attack that targets applications which build LDAP queries using unsanitised user input — the LDAP equivalent of SQL injection. If an application constructs an LDAP filter by directly concatenating user-supplied values, an attacker can manipulate the filter to bypass authentication or extract directory data. Vulnerable application builds this LDAP filter: (&(uid= [username input] )(password= [password input] ))"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The SY0-701 study guide, Dion Training practice exams, and Professor Messer's free course."
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>

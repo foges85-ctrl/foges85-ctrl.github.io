@@ -8,8 +8,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/honeypot-explained.html">
-<title>What Is a Honeypot? Deception Technology Explained | CompTIA Security+</title>
-<meta name="description" content="How do you catch an attacker who already has valid credentials? Honeypots, honeynets, honeyfiles, and canary tokens — how deception technology works and what Security+ tests on it.">
+<title>What Is a Honeypot? Deception Technology Explained</title>
+<meta name="description" content="How do you catch an attacker who already has valid credentials? Honeypots, honeynets, honeyfiles, and canary tokens — how deception technology works and…">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -169,6 +169,71 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What Honeypots Do and Why They Work",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A honeypot is a deliberately vulnerable or attractive-looking system placed in a network to lure attackers. It appears to be a legitimate target — a database server, a file share, a domain controller — but contains no real data and serves no production function. Because legitimate users have no reason to interact with a honeypot, any connection attempt, login, or access is almost certainly malicious activity. This makes honeypots remarkably low-noise detection systems — unlike SIEM alerts that generate thousands of events daily, a honeypot alert is nearly always genuine. Honeypots serve thr…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Honeynet — A Network of Honeypots",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A honeynet is a network of interconnected honeypots that creates a realistic-looking environment — multiple servers with different roles (web server, database, file server, domain controller) that an attacker can move between laterally. Honeynets are used primarily for threat intelligence research. By observing how attackers move through the honeynet, what tools they use, and what they're ultimately after, security researchers gain detailed insight into current attack campaigns and techniques. The Honeynet Project is the leading open-source honeypot research organisation and publishes threa…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Canary Tokens and Honeyfiles",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A honeyfile (or canary file) is a file placed in a file share or database that looks valuable — a file named passwords.xlsx or customer_data.csv — but contains no real data. When anyone opens or downloads the file, an alert is triggered. Any access to a honeyfile is almost certainly unauthorised — a legitimate user doesn't need to open a file called passwords.xlsx that isn't in any documented workflow. Honeyfiles are highly effective for detecting insider threats and attackers who have already established a foothold and are searching for data to exfiltrate. Canary tokens extend this concept…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Honeypot Types by Purpose",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Beyond the low/high interaction distinction, honeypots are categorised by what they're designed to detect. Research honeypots are deployed by security researchers and threat intelligence teams to study attacker behaviour, capture malware samples, and understand current attack campaigns. They're typically high-interaction, heavily monitored, and isolated from production networks. The data they collect — attack tools, techniques, command-and-control infrastructure — feeds threat intelligence reports that help the broader security community. Production honeypots are deployed within or alongsid…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Deception Technology at Scale",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Modern deception technology platforms (Attivo Networks, Illusive Networks, Cymulate) automate honeypot deployment at scale across the entire network. Rather than a few manually configured honeypots, these platforms deploy decoy systems, accounts, credentials, and files across every subnet — making deception pervasive. An attacker performing lateral movement in such an environment has a high probability of interacting with a decoy before reaching real assets. The decoy interaction triggers an immediate, high-confidence alert — far more actionable than SIEM correlations that might have dozens…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Honeypot Legal and Ethical Considerations",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Honeypots operate in a legal grey area that the Security+ exam occasionally touches. Deploying a honeypot on your own network to detect intruders is legal and unambiguous. The concern arises with entrapment — can an organisation be held liable for luring attackers into committing crimes against the honeypot? In practice, honeypots are considered legal as long as they don't actively solicit attacks (they're passive — attackers discover them through their own scanning) and the organisation doesn't manufacture the criminal intent. The attacker chose to probe and attack the honeypot; the organi…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Honeypot Placement Strategy",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Honeypot placement determines what activity they detect. A honeypot on the DMZ detects inbound attacks from the internet. A honeypot on the internal network detects lateral movement from an already-compromised internal host or a malicious insider — any internal system that connects to an internal honeypot is exhibiting suspicious behaviour. Placing honeypots in each VLAN segment provides early detection of lateral movement as attackers hop between segments. The key principle: legitimate traffic never touches a honeypot, so any interaction is an alert worth investigating immediately."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

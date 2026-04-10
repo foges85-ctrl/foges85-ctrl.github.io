@@ -9,8 +9,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/mfa-explained.html">
-<title>MFA Explained — Multi-Factor Authentication Types, TOTP & MFA Fatigue | Security+</title>
-<meta name="description" content="Multi-factor authentication explained for CompTIA Security+ SY0-701 — the three factors, TOTP vs HOTP, push notifications, hardware tokens, FIDO2, MFA fatigue attacks, and exam scenarios.">
+<title>MFA Explained — Multi-Factor Authentication Types, TOTP &</title>
+<meta name="description" content="Multi-factor authentication explained for CompTIA Security+ SY0-701 — the three factors, TOTP vs HOTP, push notifications, hardware tokens, FIDO2, MFA…">
 <meta property="og:type" content="article"><meta property="og:url" content="https://itstudyhub.org/mfa-explained.html">
 <meta property="og:title" content="MFA Explained — Multi-Factor Authentication for Security+">
 <meta property="og:description" content="The three authentication factors, TOTP vs HOTP, push notifications, FIDO2, MFA fatigue attacks, and every MFA concept tested on Security+ SY0-701.">
@@ -162,6 +162,55 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "The Three Authentication Factors",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Authentication factors are categories of proof that verify your identity. MFA works because compromising one factor category does not compromise another — a stolen password doesn't give an attacker your fingerprint, and stealing your phone doesn't reveal your password."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "FIDO2 and Passkeys — the Future of Authentication",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "FIDO2 (Fast IDentity Online 2) is the authentication standard behind passkeys. Instead of transmitting a password or OTP code, FIDO2 uses public-key cryptography: your device holds a private key that never leaves it, and the server holds the corresponding public key. When you authenticate, your device signs a challenge with the private key — the server verifies the signature without ever seeing the private key or anything that could be stolen and replayed. This makes FIDO2 inherently phishing-resistant. Even if an attacker tricks you into visiting a fake login page, there's no password or c…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "MFA Fatigue Attacks — Push Bombing",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MFA fatigue (push bombing) is an attack where an adversary who has stolen valid credentials repeatedly sends MFA push notifications to the victim's phone, hoping the victim approves one out of frustration, confusion, or distraction. The Uber breach in 2022 succeeded largely through MFA fatigue — the attacker sent continuous Duo pushes until the victim approved one. Mitigations: Number matching (the push shows a number you must match to a number on screen — prevents blind approval), phishing-resistant MFA (FIDO2/hardware tokens eliminate push notifications entirely), rate limiting push notif…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Smart Cards and PIV",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Smart cards combine something you have (the physical card with an embedded chip) and something you know (the PIN to unlock it), making them inherently two-factor. The US government's PIV (Personal Identity Verification) card is a smart card standard used for physical and logical access to federal facilities and systems. CAC (Common Access Card) is the DoD equivalent. Smart cards are covered on Security+ because they appear in enterprise and government access control scenarios — the exam expects you to know that a smart card requires a PIN to activate, making it two-factor by itself. MFA req…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where MFA Fits in Zero Trust and IAM",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MFA is a foundational control in Zero Trust architecture — \"never trust, always verify\" means every authentication attempt must be verified with strong factors regardless of network location. Even users inside the corporate network must MFA. Zero Trust policies often add additional context — if a user's location, device posture, or access pattern is unusual, step-up authentication can require a stronger second factor or re-authentication. MFA also directly satisfies compliance requirements: PCI-DSS requires MFA for remote access to the cardholder data environment, and HIPAA guidance recomme…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

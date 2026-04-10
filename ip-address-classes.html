@@ -15,8 +15,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/ip-address-classes.html">
-<title>IP Address Classes Explained — Class A, B, C and Why It Still Matters | CompTIA</title>
-<meta name="description" content="IP address classes seem outdated but still show up on CompTIA exams. Learn Class A, B, and C ranges, private vs public IPs, loopback, and APIPA — and exactly which scenarios test each.">
+<title>IP Address Classes Explained — Class A, B, C and Why It</title>
+<meta name="description" content="IP address classes seem outdated but still show up on CompTIA exams. Learn Class A, B, and C ranges, private vs public IPs, loopback, and APIPA — and…">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -193,6 +193,79 @@ tbody tr:hover td{background:#f0fdf9;}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "The Five IP Address Classes",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You'll notice Class A goes from 1–126, not 1–127. 127 is reserved for loopback (127.0.0.1 = localhost). The exam commonly asks \"which address tests the local TCP/IP stack?\" — the answer is always 127.0.0.1. The entire 127.0.0.0/8 range is loopback, but 127.0.0.1 is the specific address you need to know."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Private IP Address Ranges (RFC 1918)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Private addresses are not routable on the public internet. They are used inside LANs and translated to a public IP by NAT when accessing the internet. Knowing the three private ranges cold is non-negotiable for both A+ and Network+. The Class B private range doesn't cover all of 172.x.x.x — it only covers 172.16.x.x through 172.31.x.x . A common exam trick is to present 172.15.x.x or 172.32.x.x as a private address — both are public. If you see a 172.x address, check the second octet: it must be 16–31 to be private."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Public vs Private — How NAT Bridges Them",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Private addresses can't be routed on the internet — routers drop packets with RFC 1918 source addresses. When your device (192.168.1.50) sends traffic to google.com, your router performs Network Address Translation (NAT) : it replaces the private source IP with its own public IP before forwarding the packet. When the response comes back, it reverses the translation and delivers it to your device. IPv4 has approximately 4.3 billion addresses — far too few for every device on earth to have a unique public IP. Private ranges + NAT allow millions of devices to share a small pool of public IPs. …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam Scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See the best study guides, video courses, and practice tests for CompTIA A+ 220-1201/1202."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Classful vs Classless Addressing — Why Classes Are Now Legacy",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "IP address classes (A, B, C, D, E) were the original system for allocating IP address space, defined in RFC 791 in 1981. The system assigned blocks based on the first octet: Class A for large organisations needing millions of hosts, Class B for medium networks, Class C for small networks. In practice, this was extremely wasteful — a company needing 300 hosts had to receive a full Class B block (65,534 hosts) because Class C only provided 254. The resulting address exhaustion drove the shift to CIDR (Classless Inter-Domain Routing) in 1993. CIDR replaced classful addressing by allowing any p…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "APIPA — Automatic Private IP Addressing",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When a device cannot reach a DHCP server, Windows automatically assigns itself an address in the 169.254.0.0/16 range (169.254.0.1 through 169.254.255.254). This is APIPA (Automatic Private IP Addressing). A device with an APIPA address can communicate with other APIPA devices on the same segment but cannot reach the internet or default gateway because 169.254.x.x is not routable. On the exam: if a user reports they cannot access the internet and you run ipconfig and see a 169.254.x.x address, the problem is that the device failed to get a DHCP lease. Troubleshoot the DHCP server, network c…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Loopback and Localhost",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The 127.0.0.0/8 range is reserved for loopback — testing the local TCP/IP stack without sending traffic to the network. ping 127.0.0.1 (or ping localhost ) is always the first step in network troubleshooting — if this fails, the TCP/IP stack on the local machine is broken. If it succeeds, the stack works and the problem is elsewhere (physical cable, switch, router, DNS, or remote server). The address 0.0.0.0 has a special meaning: in routing tables it represents the default route (send traffic here if no specific route matches). In a server binding context it means \"listen on all available …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "IPv4 Exhaustion and the Transition to IPv6",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The IPv4 address space (approximately 4.3 billion addresses) was officially exhausted at the IANA level in 2011. Regional internet registries have since allocated their remaining pools. NAT (Network Address Translation) has extended the life of IPv4 by allowing thousands of private IP addresses to share a single public IP, but IPv6 is the long-term solution. IPv6 uses 128-bit addresses (compared to IPv4's 32-bit), providing approximately 3.4 × 10^38 addresses — enough that every device on Earth can have a globally unique address. For exam purposes: know that IPv4 uses 32-bit dotted decimal …"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/nat-explained.html">
 
-<title>How NAT Works — Why Your Home Network Shares One Public IP | CompTIA A+</title>
-<meta name="description" content="Every device in your house has a private IP, but your ISP only gave you one public one. Learn how NAT makes this work, what PAT adds, and the A+ exam scenarios built around it.">
+<title>How NAT Works — Why Your Home Network Shares One Public IP</title>
+<meta name="description" content="Every device in your house has a private IP, but your ISP only gave you one public one.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -494,6 +494,63 @@ a:hover { text-decoration: underline; }
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
      crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How NAT Works",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Here's a real example. Your home network looks like this:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "PAT — Port Address Translation in depth",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PAT (also called NAT overload ) is the type of NAT used on virtually every home and small business network. It's what allows dozens of devices to share a single public IP address simultaneously — and it's heavily tested on both A+ and Network+. The trick is port numbers. Each outbound connection gets a unique source port number assigned by the router. The router maintains a NAT translation table that maps each private IP + port to the public IP + port, so it knows exactly which device to send the response back to."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Port forwarding — punching holes in NAT",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NAT provides a natural firewall effect — unsolicited inbound traffic has nowhere to go because the router doesn't have a matching entry in its translation table. But sometimes you want inbound traffic to reach a specific internal device: a home server, a gaming console, a security camera. Port forwarding creates a static NAT rule that permanently maps a specific public port to an internal IP and port. When traffic arrives on that port, the router forwards it straight to the designated device without waiting for an outbound connection."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "NAT and security — the Security+ angle",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NAT has security implications that appear on Security+. Understanding both the protection it provides and its limitations is important: NAT acts as an implicit inbound firewall . Internal devices are hidden behind the public IP — their private addresses are not routable from the internet. Unsolicited inbound packets have no matching NAT entry and are dropped. This is not a substitute for a real firewall, but it does reduce the attack surface significantly compared to having every device publicly exposed. NAT does not inspect traffic content — it only translates addresses. Malware on an inte…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How NAT Appears on the A+ Exam",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The router performs NAT. That's the answer the A+ exam is looking for every time. Also know: PAT (Port Address Translation) is the specific type most home routers use — multiple devices share one public IP via different port numbers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Troubleshooting — When NAT Goes Wrong",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A device has all three settings configured correctly, but still can't reach the internet:"
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>

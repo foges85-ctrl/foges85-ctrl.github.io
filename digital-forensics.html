@@ -9,8 +9,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/digital-forensics.html">
-<title>Digital Forensics Explained — Chain of Custody, Acquisition & Forensic Tools | Security+</title>
-<meta name="description" content="Digital forensics for CompTIA Security+ SY0-701 — chain of custody, order of volatility, disk and memory acquisition, forensic tools, legal hold, and e-discovery.">
+<title>Digital Forensics Explained — Chain of Custody, Acquisition</title>
+<meta name="description" content="Digital forensics for CompTIA Security+ SY0-701 — chain of custody, order of volatility, disk and memory acquisition, forensic tools, legal hold, and…">
 <meta property="og:type" content="article"><meta property="og:url" content="https://itstudyhub.org/digital-forensics.html">
 <meta property="og:title" content="Digital Forensics — Chain of Custody, Acquisition & Forensic Tools">
 <meta property="og:description" content="Chain of custody, order of volatility, forensic acquisition, forensic tools, and legal hold explained for CompTIA Security+ SY0-701.">
@@ -168,6 +168,55 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What Is Digital Forensics?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Digital forensics is the process of identifying, preserving, collecting, analyzing, and presenting digital evidence in a manner that is legally admissible and scientifically sound. It's used in criminal investigations, civil litigation, insider threat investigations, and post-incident analysis after cyberattacks. The Security+ exam tests digital forensics primarily in Domain 4 (Security Operations). The key principle that underlies all forensic work is: preserve the integrity of evidence . Forensic investigators must be able to prove that evidence was not altered after collection — otherwis…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Chain of Custody",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Chain of custody is the documented record that tracks who collected, handled, transferred, and analyzed a piece of evidence — from the moment it was identified through its final disposition. It's a legal requirement: without an unbroken, well-documented chain of custody, evidence can be challenged and excluded in court. Who collected the evidence and when. What was collected (description, serial numbers, hash values). Where it was collected from (physical location, device identifier). How it was collected (tools and procedures used). Who had access to it at each step. Any transfers of custo…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Order of Volatility",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Evidence must be collected in order from most volatile (lost soonest) to least volatile (persists longest). This is called the order of volatility and is a foundational forensic principle — RFC 3227 defines it. If you collect the hard drive image first while ignoring RAM, you've already lost all the volatile in-memory evidence. Live acquisition : System is still running — necessary to capture volatile data (RAM, network connections, running processes). Risk: normal system activity may slightly alter disk data during collection. Required when volatile evidence matters. Dead (post-mortem) acq…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Forensic Acquisition and Write Blockers",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When imaging storage media, forensic investigators must prevent any writes to the source device — even the act of connecting a drive to a computer can cause the OS to modify it (updating last-accessed timestamps, writing swap data). This is why write blockers are essential."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Legal Hold and e-Discovery",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Digital forensics doesn't only happen after an attack — it's also triggered by legal proceedings. Two closely related concepts appear on Security+: Spoliation is the intentional or negligent destruction, alteration, or failure to preserve evidence that may be relevant to litigation. If an organization destroys data after receiving notice of a lawsuit (or when litigation was reasonably foreseeable), courts can impose sanctions — including adverse inference (telling the jury to assume the destroyed evidence was unfavorable) or default judgment. A legal hold is the primary mechanism to prevent…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

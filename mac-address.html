@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/mac-address.html">
 
-<title>What Is a MAC Address and How Is It Different from an IP Address? | CompTIA</title>
-<meta name="description" content="MAC addresses and IP addresses both identify devices — but they work at different layers and serve completely different purposes. Learn the distinction that CompTIA tests on A+, Network+, and Security+.">
+<title>What Is a MAC Address and How Is It Different from an IP</title>
+<meta name="description" content="MAC addresses and IP addresses both identify devices — but they work at different layers and serve completely different purposes.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -508,6 +508,79 @@ a:hover { text-decoration: underline; }
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
      crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "The simple answer",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A MAC address (Media Access Control address) is a unique identifier assigned to a network interface card (NIC) at the time it's manufactured. It's permanently embedded in the hardware — every Wi-Fi card, Ethernet adapter, and Bluetooth chip has one, and no two are supposed to be the same anywhere in the world. If an IP address is like your current home address (it can change when you move), a MAC address is like your fingerprint — it stays with the hardware forever regardless of where it connects."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What a MAC address looks like",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A MAC address is 48 bits long, written as six pairs of hexadecimal characters separated by colons or hyphens. It always looks something like this: Hexadecimal uses digits 0–9 and letters A–F, so each pair can represent values from 00 to FF. You don't need to memorize the math — just recognize the format on the exam. MAC addresses appear on the exam written with colons (A4:C3:F0:7B:2D:91) or hyphens (A4-C3-F0-7B-2D-91). Both are the same address — Windows tends to use hyphens, Linux and Mac use colons. Either format is valid."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "MAC address vs IP address — the key difference",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This is one of the most commonly tested comparisons on the A+ exam. The short version: a MAC address is a permanent hardware identity , while an IP address is a temporary logical assignment . They operate at different layers of the OSI model and serve different purposes. * MAC addresses can be spoofed in software, but the physical address burned into the hardware doesn't change."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to find your MAC address on Windows",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The fastest way is with ipconfig /all — the same command from the network troubleshooting commands guide . Look for the line labeled Physical Address . The Physical Address line is your MAC address. Windows displays it with hyphens. Notice it appears right alongside the IP address — both are shown by ipconfig /all but serve completely different purposes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How switches use MAC addresses",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This is where MAC addresses do their most important work. A switch operates at Layer 2 of the OSI model and uses MAC addresses — not IP addresses — to decide where to send frames on a local network. This is why switches are more efficient than hubs — a hub blindly sends every frame to every device, while a switch uses MAC addresses to deliver frames only where they need to go."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ARP — how IP addresses get matched to MAC addresses",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Here's a question worth thinking about: if switches use MAC addresses and routers use IP addresses, how does a device know the MAC address of another device it wants to talk to? The answer is ARP — Address Resolution Protocol . When Device A wants to send data to 192.168.1.30 but doesn't know its MAC address, it broadcasts an ARP request to the whole network: \"Who has 192.168.1.30? Tell me your MAC address.\" ARP Request (broadcast): \"Who has 192.168.1.30? Tell A4:C3:F0:7B:2D:91.\""
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What the A+ exam tests on MAC addresses",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DHCP servers can be configured to always assign the same IP address to a specific device by matching its MAC address. This is called a DHCP reservation (or static DHCP assignment). The server says: \"Whenever I see MAC address A4:C3:F0:7B:2D:91, always give it 192.168.1.50.\" This is how network printers and servers get consistent IP addresses without being manually configured with a static IP. It comes up on both A+ and Network+ exams."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "MAC spoofing — the Security+ attack",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Although MAC addresses are burned into hardware, the operating system can override what it transmits — this is called MAC spoofing . An attacker changes their device's reported MAC address to impersonate another device on the network. Bypass MAC filtering: Many wireless networks use MAC address filtering as an access control measure — only allowing known MAC addresses to connect. An attacker can capture a legitimate device's MAC address from wireless traffic (MACs are transmitted in plaintext) and spoof it to gain access. Identity impersonation: On wired networks, spoofing a MAC address can…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>

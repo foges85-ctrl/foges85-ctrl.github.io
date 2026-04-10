@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/ipv4-vs-ipv6.html">
 
-<title>IPv4 vs IPv6 — What Changed and Why It Matters for Your CompTIA Exam</title>
-<meta name="description" content="IPv4 is running out of addresses — that is why IPv6 exists. Learn the real differences between the two, how IPv6 addressing works, and what CompTIA A+ and Network+ actually test on both.">
+<title>IPv4 vs IPv6 — What Changed and Why It Matters for Your</title>
+<meta name="description" content="IPv4 is running out of addresses — that is why IPv6 exists. Learn the real differences between the two, how IPv6 addressing works, and what CompTIA A+ and…">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -493,6 +493,79 @@ a:hover { text-decoration: underline; }
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
      crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an IP address?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An IP address (Internet Protocol address) is a numerical label assigned to every device on a network. It's how devices find and communicate with each other — similar to a postal address, but for network traffic. Without an IP address, a device has no logical identity on the network. There are currently two versions of IP in use: IPv4 , the original standard that most people are familiar with, and IPv6 , the newer version designed to solve IPv4's biggest limitation — it's running out of addresses."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What the addresses look like",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most immediately obvious difference between IPv4 and IPv6 is the format. IPv4 addresses are short and familiar. IPv6 addresses are long, written in hexadecimal, and look intimidating at first — but the format has a clear logic to it. IPv4 uses 32 bits split into four groups of 8 bits (octets), each written as a decimal number from 0–255. IPv6 uses 128 bits split into eight groups of 16 bits, each written as four hexadecimal characters separated by colons. IPv6 addresses can be shortened using two rules the exam tests:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why IPv6 exists — the address exhaustion problem",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "IPv4 was designed in 1981, when the internet was a small research network. Nobody anticipated that billions of phones, laptops, servers, smart TVs, and IoT devices would eventually need unique addresses. To cope, the industry deployed workarounds like NAT (Network Address Translation) — which lets many devices share a single public IPv4 address. NAT bought time, but it added complexity and broke certain applications. IPv6 solves the problem at the root by providing an astronomically larger address space. IPv6's 128-bit address space provides approximately 340 undecillion unique addresses — …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "IPv4 vs IPv6 — full comparison",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "* SLAAC (Stateless Address Autoconfiguration) lets IPv6 devices configure their own address without a DHCP server, using the network prefix and their own MAC address."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Important IPv4 address ranges to know",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not all IPv4 addresses are used the same way. The exam tests several reserved ranges you need to recognize on sight."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Important IPv6 address types",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "::1 — IPv6 loopback. The compressed form of all zeros with a final 1. Equivalent to 127.0.0.1. fe80::/10 — Link-local. Every IPv6 interface gets one automatically. Not routable. Starts with fe80. Addresses starting with 2 or 3 — Global unicast (public). Routable on the internet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do both versions run at the same time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — most networks today run dual-stack , meaning devices have both an IPv4 and an IPv6 address simultaneously. Your Windows machine almost certainly has both right now. Run ipconfig /all and you'll see both listed under each adapter — an IPv4 address in the familiar 192.168.x.x format and an IPv6 address starting with fe80 (link-local) or a longer global address. The transition from IPv4 to IPv6 has been gradual and is still ongoing. IPv4 won't disappear overnight — the exam reflects this by testing both, and real-world networks will run dual-stack for years to come."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "IPv6 Transition Mechanisms — Network+ Deep Dive",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Network+ exam tests how organisations migrate from IPv4 to IPv6. Three transition mechanisms appear regularly: dual stack, tunnelling, and NAT64/translation."
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>

@@ -8,8 +8,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/firewall-types.html">
-<title>Packet Filter vs Stateful vs NGFW vs WAF — Which Firewall Does What? | CompTIA Security+</title>
-<meta name="description" content="SQL injection slipping past your stateful firewall? That is what a WAF is for. Learn which firewall type stops which attack — and how to pick the right one for any Security+ exam scenario.">
+<title>Packet Filter vs Stateful vs NGFW vs WAF — Which Firewall</title>
+<meta name="description" content="SQL injection slipping past your stateful firewall? That is what a WAF is for. Learn which firewall type stops which attack — and how to pick the right…">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -169,6 +169,79 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why Firewall Types Matter for the Exam",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The CompTIA exams don't just ask \"what is a firewall\" — they present scenarios requiring you to choose the correct firewall type for a specific requirement. Protecting a web application from SQL injection requires a WAF, not a stateful firewall. Blocking outbound connections to known malicious domains requires an NGFW with threat intelligence, not a packet filter. Understanding what each type can and cannot do is the key to answering these scenario questions correctly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Packet Filtering Firewall — Layer 3/4, Stateless",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The oldest and simplest firewall type, packet filtering inspects each packet in isolation against a rule set. Rules match on: source IP address, destination IP address, source port, destination port, and protocol (TCP/UDP/ICMP). If a packet matches a permit rule, it passes; if it matches a deny rule or no rule, it's dropped. \"Stateless\" means the firewall has no memory of previous packets — it evaluates every packet independently, with no awareness of whether it belongs to an established connection. The critical weakness: a packet filter cannot distinguish between a legitimate response to a…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Stateful Inspection Firewall — Tracks Connection State",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Stateful inspection (also called stateful packet inspection or SPI) tracks the state of network connections. The firewall maintains a state table — a record of all active connections including source IP, destination IP, source port, destination port, protocol, and connection state (SYN sent, established, FIN wait, etc.). When a packet arrives, the firewall first checks whether it belongs to an established, permitted connection in the state table. If it does, the packet is allowed through without re-evaluating the full rule set. If it doesn't match any established connection, it's evaluated …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Next-Generation Firewall (NGFW)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NGFWs extend stateful inspection with capabilities that operate at Layer 7 (Application layer): Deep Packet Inspection (DPI) examines packet payloads, not just headers — it can identify applications regardless of port (identifying Facebook traffic on port 443 even though it looks like HTTPS). Application awareness allows rules like \"block Netflix but allow YouTube\" rather than just \"block port X.\" Integrated IPS detects and blocks attack signatures inline. TLS/SSL inspection decrypts encrypted traffic for inspection, then re-encrypts it — essential since most web traffic is now HTTPS. Threa…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Web Application Firewall (WAF)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A WAF operates at Layer 7 and specialises in protecting web applications from application-layer attacks. It understands HTTP/HTTPS and inspects web requests and responses for attack patterns: SQL injection, cross-site scripting (XSS), cross-site request forgery (CSRF), path traversal, command injection, and other OWASP Top 10 vulnerabilities. A traditional stateful firewall sees a web request as \"TCP port 443 traffic from an allowed IP\" — it cannot tell the difference between a legitimate login attempt and one containing a SQL injection payload. A WAF inspects the payload of every HTTP requ…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Proxy Firewall",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A proxy firewall acts as an intermediary for all traffic — clients connect to the proxy, the proxy inspects the content, and the proxy makes a new connection to the destination. Unlike stateful firewalls that inspect packet headers, a proxy firewall terminates the client connection, fully reassembles and inspects the application-layer content, then originates a new connection to the server. This provides the most complete inspection but introduces latency. Forward proxies handle outbound client requests (filtering what users can access). Reverse proxies handle inbound requests to servers (p…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Implicit Deny — The Foundation of Firewall Rules",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A core firewall concept tested on both Network+ and Security+ is implicit deny : any traffic not explicitly permitted by a firewall rule is denied by default. Most firewalls are configured with a final rule of \"deny all\" at the bottom of the rule set — traffic that doesn't match any permit rule is dropped. This is the correct security posture: the default is to block, and specific traffic is explicitly allowed. The opposite — implicit permit — would allow all traffic by default unless specifically blocked, which is far too permissive for a security boundary. Firewall rules are evaluated in …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Stateful Firewall and NAT — Why They Work Together",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Network Address Translation (NAT) is commonly implemented on the same device as a stateful firewall. NAT translates private IP addresses to a public IP address for outbound traffic, and the state table maintains the mapping of which internal host made which outbound connection — so when the response comes back, it knows which internal host to forward it to. This state tracking is fundamentally the same mechanism as stateful firewall connection tracking: both track the source, destination, port, and state of each connection. NAT on a home router provides a degree of firewall-like protection …"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

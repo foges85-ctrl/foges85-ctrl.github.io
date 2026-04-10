@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/endpoint-detection-response.html">
-<title>EDR Explained — Endpoint Detection & Response vs Antivirus | Security+</title>
+<title>EDR Explained — Endpoint Detection & Response vs Antivirus</title>
 <meta name="description" content="EDR for CompTIA Security+ SY0-701 — how EDR differs from antivirus, telemetry collection, behavioral detection, response actions, XDR, and MDR explained.">
 <meta property="og:type" content="article"><meta property="og:url" content="https://itstudyhub.org/endpoint-detection-response.html">
 <meta property="og:title" content="EDR Explained — Endpoint Detection & Response vs Antivirus">
@@ -162,6 +162,55 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why Antivirus Isn't Enough",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Traditional antivirus (AV) works by scanning files for signatures — patterns that match known malware. When malware first emerged, this was highly effective: virus signatures were shared among AV vendors, and signature updates kept defenses current. But the threat landscape has shifted dramatically: Modern attacks use fileless malware that executes entirely in memory and never writes a file to disk — bypassing file-based AV scanning entirely. Attackers use living-off-the-land (LOTL) techniques that abuse legitimate system tools like PowerShell, WMI, and certutil rather than dropping custom …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How EDR Works",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "EDR consists of a lightweight agent installed on every endpoint (workstations, servers, laptops) that continuously records activity and streams telemetry to a central management platform. Unlike AV, which scans for bad things, EDR records everything and then hunts for suspicious patterns in that data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What EDR Telemetry Reveals",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The power of EDR lies in its telemetry richness. Here are key data points that EDR captures that AV never could: Host isolation : Completely cuts the endpoint from the network — blocks all inbound and outbound traffic except communication to the EDR management platform. Used when a host is confirmed compromised and you need to prevent lateral movement or data exfiltration. The machine stays on and the analyst can still investigate it remotely via the EDR agent. Process kill : Terminates a specific malicious process without isolating the whole machine. Used for less severe cases where you wa…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "XDR — Extended Detection and Response",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "XDR extends the EDR model beyond the endpoint to correlate telemetry across multiple security layers: endpoint, network, email, cloud workloads, and identity systems. Instead of investigating alerts in separate tools (EDR for endpoint, email gateway for phishing, CASB for cloud), XDR aggregates all telemetry into a single platform with unified detection and response. EDR : Endpoint Detection and Response — focused on endpoints only. Agent-based. Investigation and response at the endpoint layer. XDR : Extended Detection and Response — EDR + network + email + cloud + identity. Broader visibil…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Next-Gen Antivirus (NGAV)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You'll also see the term NGAV (Next-Generation Antivirus) on the exam and in vendor marketing. NGAV replaces signature-based scanning with machine learning and behavioral detection — it detects malicious behavior rather than matching known signatures. Many vendors bundle NGAV and EDR together in a single agent, which is why the terms are sometimes used interchangeably, but they're distinct: NGAV = detection capability (is this bad?). EDR = detection + investigation telemetry + response actions. An endpoint with NGAV but no EDR can block threats but can't help you understand the full scope o…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

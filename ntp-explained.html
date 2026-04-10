@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/ntp-explained.html">
 
-<title>Why Time Synchronisation Matters in IT — NTP Explained | CompTIA Network+ & Security+</title>
-<meta name="description" content="Kerberos authentication breaks if clocks are 5 minutes out of sync. Learn how NTP keeps your network time accurate, the stratum hierarchy, NTP security risks, and what CompTIA tests on it.">
+<title>Why Time Synchronisation Matters in IT — NTP Explained</title>
+<meta name="description" content="Kerberos authentication breaks if clocks are 5 minutes out of sync. Learn how NTP keeps your network time accurate, the stratum hierarchy, NTP security…">
 
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -420,6 +420,63 @@ tbody tr:hover td { background: #f4f8ff; }
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why accurate time matters in networking",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Time synchronisation sounds like a minor housekeeping task, but it underpins some of the most critical functions in a network. These are the real-world consequences of clocks being out of sync — and the reason the exam treats NTP as a significant protocol:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "NTP stratum levels",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NTP uses a hierarchical system called stratum levels to describe how far a clock is from a reference time source. Stratum 0 is the most accurate; each level further down introduces a small amount of additional drift. Lower stratum = more accurate. Stratum 0 is the reference source. Stratum 1 is closest to it. A device at Stratum 3 synchronises from a Stratum 2 server, which synchronises from Stratum 1. The exam may ask: \"An NTP server synchronises directly from an atomic clock. What stratum level is it?\" → Stratum 1 . Or: \"Which stratum level represents the most accurate time source?\" → Str…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How NTP synchronisation works",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NTP doesn't just set the clock once — it continuously monitors drift and makes small adjustments to keep clocks aligned. The protocol measures the round-trip delay to the time server and accounts for it when calculating the correct local time. 1. Client sends NTP request to server Client records: T1 = time request was sent 2. Server receives request, sends response Server records: T2 = time request was received T3 = time response was sent 3. Client receives response Client records: T4 = time response was received 4. Client calculates offset and delay: Round-trip delay = (T4 - T1) - (T3 - T2…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "NTP in enterprise networks",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In a well-designed enterprise network, NTP follows a hierarchy that mirrors the stratum model. Rather than having every device query a public internet NTP server directly — which wastes bandwidth and creates an external dependency — the network designates internal NTP servers that sync from public sources and serve time to everything internally. Internet │ ▼ Public NTP servers (Stratum 1 — pool.ntp.org, time.google.com) │ ▼ Internal NTP server (Stratum 2 — domain controller or dedicated server) │ ├── Core switches / routers (Stratum 3) ├── Access layer switches (Stratum 3) ├── Servers (Stra…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "NTP security risks",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NTP is a trusted but often overlooked attack surface. Three NTP-related attacks appear on Security+: NTP has a diagnostic command called monlist that returns a list of the last 600 clients that queried the server. An attacker can send a tiny spoofed request (just 8 bytes) to an NTP server with a victim's IP as the source — the server responds with up to 100× more data directed at the victim. This amplification factor makes NTP one of the most effective DDoS reflection vectors. Mitigation: Disable the monlist command on NTP servers, restrict NTP to known clients via ACLs, deploy NTPv4 with a…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The study guides, practice exams, and free resources worth your time."
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>

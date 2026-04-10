@@ -9,8 +9,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/email-security.html">
-<title>Email Security Explained — SPF, DKIM, DMARC & S/MIME | CompTIA Security+</title>
-<meta name="description" content="Email security for CompTIA Security+ SY0-701 — SPF, DKIM, DMARC explained with how each works, how they work together, S/MIME, STARTTLS, and exam scenarios.">
+<title>Email Security Explained — SPF, DKIM, DMARC & S/MIME</title>
+<meta name="description" content="Email security for CompTIA Security+ SY0-701 — SPF, DKIM, DMARC explained with how each works, how they work together, S/MIME, STARTTLS, and exam…">
 <meta property="og:type" content="article"><meta property="og:url" content="https://itstudyhub.org/email-security.html">
 <meta property="og:title" content="Email Security — SPF, DKIM, DMARC & S/MIME for Security+">
 <meta property="og:description" content="SPF, DKIM, DMARC, S/MIME, and STARTTLS explained for CompTIA Security+ SY0-701 — how each works, how they combine, and exam scenarios.">
@@ -167,6 +167,55 @@ tbody tr:hover td{background:var(--light);}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why Email Is a Prime Attack Vector",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Email was designed without authentication in mind. The Simple Mail Transfer Protocol (SMTP) that has carried email since 1982 allows any server to claim to be sending from any domain — meaning a criminal can trivially send an email that appears to come from your CEO, your bank, or a government agency. Without additional controls, there's nothing in the protocol to stop it. This is why phishing remains the most common initial access technique in breaches — email spoofing is trivially easy without protective controls. SPF, DKIM, and DMARC are the three DNS-based standards that, when deployed …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "SPF — Sender Policy Framework",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SPF is a DNS TXT record that lists every IP address and mail server authorized to send email on behalf of your domain. When a receiving mail server gets an email claiming to be from @company.com , it checks the SPF record in DNS for company.com and verifies that the sending server's IP is in the authorized list. v=spf1 ip4:203.0.113.10 include:sendgrid.net ~all This authorizes IP 203.0.113.10 and SendGrid's servers to send email for this domain. The ~all (softfail) means emails from unauthorized IPs should be marked suspicious but not outright rejected. -all (hardfail) means reject emails f…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DKIM — DomainKeys Identified Mail",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DKIM adds a cryptographic digital signature to outgoing emails. The sending mail server signs the email headers and body with a private key, and includes the signature in a DKIM-Signature email header. The corresponding public key is published in a DNS TXT record. When the receiving server gets the email, it retrieves the public key from DNS and verifies the signature — proving that the email was actually sent by the domain's mail server and that the content wasn't modified in transit. SPF verifies that the sending server is authorized to send for the domain — it's about the server identity…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DMARC — Domain-based Message Authentication, Reporting and Conformance",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DMARC is the policy layer that ties SPF and DKIM together and tells receiving mail servers what to do with emails that fail authentication. It also requires that the authenticated domain (from SPF or DKIM) aligns with the visible From address — closing the gap where an attacker could pass SPF while displaying a spoofed From. DMARC also generates aggregate and forensic reports — the domain owner receives regular reports from receiving mail servers showing how much email is passing and failing authentication, which helps identify legitimate senders that need to be added to SPF records."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "S/MIME — Secure/Multipurpose Internet Mail Extensions",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "S/MIME operates independently of SPF/DKIM/DMARC and solves a different problem: encrypting email content end-to-end and digitally signing messages. While SPF/DKIM/DMARC protect against domain spoofing at the server level, S/MIME protects the email content itself. S/MIME uses public-key cryptography: to send an encrypted email, you encrypt with the recipient's public key — only the recipient's private key can decrypt it. Digital signatures use the sender's private key to sign — any recipient can verify with the sender's public key that the message came from the claimed sender and wasn't modi…"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/dns.html">
 
-<title>How DNS Works — Domain Name System Explained for CompTIA A+ & Network+ (2026)</title>
-<meta name="description" content="DNS translates names to IPs — but how does it actually work? Learn the full DNS resolution process, record types, DNSSEC, nslookup troubleshooting, and everything A+ and Network+ test.">
+<title>How DNS Works — Domain Name System Explained for CompTIA A+</title>
+<meta name="description" content="DNS translates names to IPs — but how does it actually work? Learn the full DNS resolution process, record types, DNSSEC, nslookup troubleshooting, and…">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -608,6 +608,79 @@ a:hover { text-decoration: underline; }
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
      crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How Does DNS Work? (Step-by-Step)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This entire process typically happens in milliseconds:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What Is a DNS Server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A DNS server is a system that stores and provides domain name → IP address mappings. Most home routers automatically assign a DNS server via DHCP. Common public DNS servers you'll see on the A+ exam:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Common DNS Problems (A+ Exam Clues)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DNS failures produce a specific, recognizable pattern — websites fail even though the connection itself works: If you can ping 8.8.8.8 but NOT google.com — it's a DNS problem. The internet connection itself works (you can reach an IP), but name resolution is broken. This specific scenario appears frequently in A+ troubleshooting questions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DNS and DHCP — How They Work Together",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "These two protocols are closely linked and are often tested together on the A+ exam: Gives your device an IP address, subnet mask, gateway, and DNS server — automatically. Translates domain names into IP addresses so your browser knows where to connect."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DNS Record Types",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DNS record types are heavily tested on Network+. Each record type stores a different kind of information about a domain. Know every type below — the exam will describe a scenario and ask which record type is needed. A record = hostname to IPv4. AAAA record = hostname to IPv6. PTR record = IP to hostname (reverse — the opposite of A/AAAA). CNAME = alias to another name, never directly to an IP. The MX record is the one to check whenever an email delivery scenario appears. The TXT record is what SPF, DKIM, and DMARC email security policies use."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DNS Hierarchy",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DNS is a distributed, hierarchical system — no single server knows every domain. Resolution works by walking down the hierarchy from the top until an authoritative answer is found. Recursive query: Your device asks the resolver — the resolver does all the work and returns a final answer. Most client-to-resolver queries are recursive. Iterative query: The resolver asks a root server — the root server says \"ask this TLD server\" — the resolver asks the TLD server — and so on. Resolver-to-server queries are iterative."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "nslookup — The DNS Troubleshooting Tool",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "nslookup is the primary tool for DNS diagnostics and is tested on both A+ and Network+. It queries DNS servers directly and shows what records are returned — letting you pinpoint exactly where DNS resolution is failing. # Basic lookup — find the IP for a hostname nslookup google.com # Query a specific DNS server (bypass your default) nslookup google.com 8.8.8.8 # Look up a specific record type nslookup -type=MX gmail.com → Find mail servers nslookup -type=TXT example.com → Find SPF/DKIM records nslookup -type=NS example.com → Find authoritative name servers # Reverse lookup — find hostname …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Test Your Networking Knowledge",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Practice exams and structured review make DNS troubleshooting scenarios automatic."
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>

@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/kerberos-explained.html">
 
-<title>How Kerberos Works — Tickets, KDC & Kerberoasting Explained | CompTIA Security+</title>
-<meta name="description" content="Kerberos is how Windows authenticates domain users — but it is also the target of Kerberoasting and Golden Ticket attacks. Learn how it works and how it gets exploited for Security+.">
+<title>How Kerberos Works — Tickets, KDC & Kerberoasting Explained</title>
+<meta name="description" content="Kerberos is how Windows authenticates domain users — but it is also the target of Kerberoasting and Golden Ticket attacks.">
 
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -253,6 +253,55 @@ tbody tr:hover td { background: #faf4ff; }
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why Kerberos exists — the problem it solves",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Before Kerberos, authentication often meant sending a password across the network every time a user accessed a resource. That password could be intercepted and replayed by an attacker. Kerberos solves this with a fundamentally different model: you prove your identity once to a trusted third party, and they give you a ticket . You then present that ticket to each service you want to access — your actual password never travels to the service at all. It's the digital equivalent of showing your passport at a border once to get an entry stamp, then using that stamp to enter venues — you don't sh…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How Kerberos authentication works — step by step",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The full Kerberos flow involves six message exchanges across three parties. This sequence is tested on Security+ — understand each step and what it proves: Kerberos is built on mutual trust without sharing passwords . The user proves identity to the KDC once. Services trust tickets issued by the KDC without ever seeing the user's password. The KDC never has to be contacted for every resource access — just once per service per session. Port 88 — TCP and UDP. The KDC listens on 88. This is one of the most tested Kerberos facts alongside the 5-minute clock skew rule."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "The 5-minute clock skew rule",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every Kerberos ticket contains a timestamp. The KDC and all clients must have clocks synchronised within 5 minutes of each other. If the clock skew exceeds this threshold, the KDC rejects the ticket as potentially replayed — an attacker could theoretically capture a ticket and reuse it later, so the time window limits this risk. This is exactly why NTP is critical in Active Directory environments . If a domain-joined machine's clock drifts more than 5 minutes from the Domain Controller (which runs the KDC), all Kerberos authentication fails for that machine — users cannot log in, cannot acc…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kerberos attacks — Security+ exam targets",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kerberos attacks are high-frequency Security+ content. The exam expects you to recognise each attack by name, understand the mechanism, and know the defence. These attacks target different stages of the Kerberos ticket chain:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The SY0-701 study guide, Dion Training practice exams, and Professor Messer's free course."
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>

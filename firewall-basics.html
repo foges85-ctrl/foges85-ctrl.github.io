@@ -20,7 +20,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/firewall-basics.html">
 
-<title>How Firewalls Work — Stateful, NGFW, WAF & DMZ Explained | CompTIA A+, Network+, Security+</title>
+<title>How Firewalls Work — Stateful, NGFW, WAF & DMZ Explained</title>
 <meta name="description" content="Understand firewalls beyond just "they block things" — stateful vs stateless, NGFW deep packet inspection, WAF, DMZ design, and every firewall concept across all three CompTIA exams.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -564,6 +564,79 @@ a:hover { text-decoration: underline; }
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
      crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a firewall?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A firewall is a network security device — hardware, software, or both — that monitors incoming and outgoing network traffic and decides whether to allow or block it based on a set of rules. Think of it as a security checkpoint: every packet of data trying to enter or leave a network has to pass inspection first. Firewalls sit at the boundary between networks — most commonly between your internal private network and the public internet. Without one, any device on the internet could attempt to connect directly to any device on your network. Firewalls evaluate traffic based on characteristics …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How firewall rules work — allow and deny",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every firewall operates on a ruleset — an ordered list of conditions and actions. When a packet arrives, the firewall walks through the rules from top to bottom. The first rule that matches wins. If no rule matches, the firewall falls back to a default policy , which is almost always deny all . This ruleset allows web traffic (ports 80 and 443) but blocks remote access attempts over SSH and RDP. Rule 5 — the implicit deny — blocks everything not explicitly permitted. This is the most important concept in firewall design: if you don't explicitly allow something, it gets blocked. Implicit den…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Stateless vs stateful firewalls",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This is one of the most commonly tested distinctions on the A+ exam. The difference comes down to whether the firewall understands the context of a connection or just evaluates each packet in isolation. Most modern firewalls are stateful. The key advantage is that a stateful firewall can automatically allow return traffic for outbound connections without needing an explicit inbound rule — because it knows the connection was initiated internally. Stateless = examines each packet independently, no connection memory, faster but less secure, used in simple ACLs on routers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ports, protocols, and firewall rules",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Firewalls block and allow traffic by port number and protocol. Knowing which services run on which ports is essential for understanding firewall rules — and it's high-yield exam content. Here are the most important port-based rules to recognize: In practice, the \"typical rule\" depends on the network. A corporate mail server needs port 25 open. A web server only needs 80 and 443. The principle is to only open ports that the specific device or network actually needs — everything else stays closed. This is a classic firewall scenario on the exam. If users can reach websites (port 80/443 open) …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Windows Defender Firewall — what to know for the exam",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The A+ exam specifically tests your knowledge of Windows Defender Firewall , the built-in host-based firewall in Windows. Key things to know: It has three profiles — Domain (when connected to a corporate domain), Private (home or trusted networks), and Public (coffee shops, airports, unknown networks). The Public profile is the most restrictive by default, blocking most inbound connections. You access it through Control Panel → Windows Defender Firewall or by searching \"firewall\" in the Start menu. The advanced settings (Windows Defender Firewall with Advanced Security) let you create speci…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Next-Generation Firewalls (NGFW)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Traditional firewalls operate at Layers 3 and 4 — they see IP addresses, ports, and protocols. A Next-Generation Firewall goes further, performing deep packet inspection (DPI) to examine the actual contents of traffic at Layer 7 (the application layer). This matters because modern attacks don't respect port numbers. Malware can tunnel over port 443 (HTTPS) to bypass traditional firewalls. An NGFW can identify the actual application — not just the port — and make decisions based on content, user identity, and threat intelligence. If a question mentions application-aware , deep packet inspect…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "IDS vs IPS vs Firewall",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "These three are the most commonly confused security devices on Network+ and Security+. They are related but do fundamentally different things. IDS = passive. It watches and alerts — like a security camera. Traffic still flows through. Generates logs and alerts for a security team to investigate. IPS = active. It sits inline and can drop packets in real time — like a security guard who can physically stop someone. The tradeoff: a misconfigured IPS can block legitimate traffic (false positives)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DMZ — Demilitarised Zone",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A DMZ is a network segment that sits between the public internet and the internal private network — a middle ground for servers that need to be publicly accessible (web servers, email servers, DNS servers) without exposing the internal network to direct internet access. Internet │ ▼ [ Firewall — outer ] ← allows HTTP/HTTPS inbound to DMZ servers │ ▼ [ DMZ — public servers ] ← web server, email server, public DNS │ ▼ [ Firewall — inner ] ← strict rules, very little DMZ→internal allowed │ ▼ Internal network — private (databases, file servers, workstations) 📌 Why a DMZ matters If a web server …"
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>

@@ -15,8 +15,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/linux-file-system.html">
-<title>Linux File System Explained — Directory Structure, Permissions & ext4 | CompTIA A+</title>
-<meta name="description" content="Know your way around the Linux file system before your A+ exam — /etc, /var, /home, /bin explained, how permissions work, and the file system types that appear on 220-1202.">
+<title>Linux File System Explained — Directory Structure,</title>
+<meta name="description" content="Know your way around the Linux file system before your A+ exam — /etc, /var, /home, /bin explained, how permissions work, and the file system types that…">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -200,6 +200,63 @@ tbody tr:hover td{background:#f0fdf9;}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "The Linux Directory Tree",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Unlike Windows (which uses drive letters like C:\\ and D:\\ ), Linux has a single hierarchical file system rooted at / . All storage devices — internal drives, USB drives, network shares — are mounted somewhere within this tree. This design is called the Filesystem Hierarchy Standard (FHS) ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Linux File System Types",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "FAT32 cannot store any single file larger than 4 GB. This is a hard limitation of the file system, not the drive size. A common A+ scenario: a user tries to copy a 6 GB video file to a USB drive and gets an error — the cause is FAT32 formatting. The fix is to reformat the drive as exFAT (cross-platform, no 4 GB limit) or NTFS (Windows/Linux only). The drive itself is not broken."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Linux File Permissions",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every file and directory in Linux has permissions assigned to three groups: the owner , the group , and others (everyone else). Each group gets three permission bits: read (r) , write (w) , and execute (x) . chmod changes the permission bits on a file or directory. chmod 755 script.sh sets the permissions using octal. chmod +x script.sh adds execute permission for all. chown changes the owner of a file. chown sean file.txt makes \"sean\" the owner. chown sean:developers file.txt sets both owner and group. Requires sudo/root to change another user's files."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Inodes — What They Are",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every file in a Linux file system has an inode — a data structure that stores metadata about the file: owner, permissions, timestamps, file size, and pointers to the actual data blocks on disk. The filename is not stored in the inode — it's stored in the directory that points to the inode."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mount Points",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In Linux, adding a new storage device doesn't give it a drive letter — it's mounted at a directory in the file system tree. The directory where a device's file system becomes accessible is the mount point . Linux uses forward slashes ( /home/user/file ) — Windows uses backslashes ( C:\\Users\\user\\file ). Linux is case-sensitive — File.txt and file.txt are different files. Windows is case-insensitive. Linux has no drive letters — everything is under /. The Linux equivalent of C:\\ is /, the equivalent of the Windows Desktop is ~/Desktop or /home/username/Desktop."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam Scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See the best study resources for 220-1201 and 220-1202."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

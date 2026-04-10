@@ -15,8 +15,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/network-segmentation.html">
-<title>How Network Segmentation Works — VLANs, DMZ & Microsegmentation | CompTIA</title>
-<meta name="description" content="Why do hospitals put medical devices on a separate VLAN? Learn how network segmentation limits breach damage, how VLANs, DMZs, and microsegmentation each work, and what the exam tests.">
+<title>How Network Segmentation Works — VLANs, DMZ &</title>
+<meta name="description" content="Why do hospitals put medical devices on a separate VLAN? Learn how network segmentation limits breach damage, how VLANs, DMZs, and microsegmentation each…">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -204,6 +204,63 @@ tbody tr:hover td{background:#f5f3ff;}
   .app-banner-text { font-size: 12.5px; }
 }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why Segmentation Matters",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An unsegmented \"flat\" network treats every device as equally trusted — if ransomware infects a workstation, it can scan and spread to every other device on the same network. Segmentation creates blast radius containment : the attacker who compromises a guest Wi-Fi device cannot reach the finance server because they are on separate segments with a firewall between them. This concept connects directly to Zero Trust (never trust, always verify) and defence in depth (multiple layers of controls). Network segmentation is the architectural implementation of the principle that internal traffic sho…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DMZ Architecture — How It Works",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CompTIA Security+ SY0-701 uses the term \"screened subnet\" rather than \"DMZ\" — they describe the same concept. Both refer to a network zone between the internet and the internal network where public-facing servers are placed. If you see \"screened subnet\" on the exam, think DMZ. A dual-firewall DMZ (two separate firewalls) is more secure than a single firewall with three interfaces — if the outer firewall is compromised, the inner firewall still protects the internal network. This distinction may appear on Security+ scenario questions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "VLANs in Detail",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "VLANs are the primary tool for segmenting a switched network. They operate at Layer 2 and divide a physical switch into multiple logical switches. Key concepts:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Microsegmentation and East-West Traffic",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Traditional firewalls focus on north-south traffic — traffic entering and leaving the network perimeter. But in modern environments, most attacks move laterally through east-west traffic — server to server, workload to workload, inside the same network segment. North-South traffic crosses the network perimeter — a user requesting a website, a remote employee connecting via VPN, an attacker probing from the internet. Traditional firewalls inspect this. East-West traffic moves laterally within a network — a compromised web server talking to a database, ransomware spreading from workstation to…"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Segmentation Techniques Compared",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A jump server (also called a bastion host or jump box) is a hardened server that acts as the only access point for administrators to reach a restricted network segment. Instead of allowing direct SSH or RDP into production servers, admins connect to the jump server first, then connect onward from there. This creates a single audited chokepoint for all administrative traffic. If the jump server is compromised, the attacker still cannot reach production systems without additional credentials. Jump servers are tested on both Network+ (remote access) and Security+ (access control)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Exam Scenarios",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See the best courses, practice exams, and study resources."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->

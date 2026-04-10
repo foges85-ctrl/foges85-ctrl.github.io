@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/dhcp.html">
 
-<title>How DHCP Works — DORA Process, Scopes & Troubleshooting | CompTIA A+ & Network+</title>
-<meta name="description" content="Understand DHCP deeply — the DORA process step by step, how scopes and reservations work, what APIPA tells you when DHCP fails, and every DHCP scenario tested on A+ and Network+.">
+<title>How DHCP Works — DORA Process, Scopes & Troubleshooting</title>
+<meta name="description" content="Understand DHCP deeply — the DORA process step by step, how scopes and reservations work, what APIPA tells you when DHCP fails, and every DHCP scenario…">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -718,6 +718,79 @@ a:hover { text-decoration: underline; }
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
      crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What Does DHCP Assign?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When a device connects, DHCP hands it everything it needs to communicate:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How Does DHCP Work? (The DORA Process)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DHCP uses a 4-step handshake called DORA — good to recognize for the A+ exam: You don't need to memorize every packet detail for A+, but understanding the overall idea — DHCP is an automated \"handshake\" that assigns network settings — is exactly what the exam tests."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What Is a DHCP Lease?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The server assigns an IP address for a set time period (hours or days). Before it expires, the device tries to renew it automatically. This prevents two devices from accidentally sharing the same IP. Memory trick: Lease = \"you don't own the IP forever.\""
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to Check DHCP on Windows",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open Command Prompt and run ipconfig /all to see full DHCP details. Look for these key lines:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Common DHCP Problems (A+ Exam Clues)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If DHCP fails, watch for these symptoms — these appear regularly in A+ scenario questions:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to Troubleshoot DHCP Issues",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you still get a 169.254 address after running /release and /renew, focus troubleshooting on the path to the DHCP server : router → switch → cable → Wi-Fi authentication. The device is trying — the network path is blocked."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DHCP vs Static IP",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Best for: Laptops, phones, classroom PCs — anything that moves or doesn't need a fixed address. Automatic and scalable. No manual configuration needed. Best for: Servers, printers, network gear — devices that must always be reachable at the same address."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DHCP Scopes, Exclusions & Reservations",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "These three concepts define how a DHCP server controls address assignment. They are frequently tested together on Network+ in scenario-based questions. Exclusion: The DHCP server skips those addresses entirely — they're available for manual static assignment but DHCP will never touch them. Reservation: The DHCP server still manages the address — but always assigns that specific IP to that specific MAC address. The device uses DHCP; it just always gets the same answer."
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
