@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/serverless-computing.html">
+<title>Serverless Computing Explained — FaaS, Lambda & Event-Driven Architecture</title>
+<meta name="description" content="What serverless computing is, how Function-as-a-Service (FaaS) works, AWS Lambda explained, event-driven architecture patterns, and when to use serverless vs containers vs VMs.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.15) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(0,194,168,.07) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.18) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* Comparison table */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:400px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#eff6ff;}
+.td-term{font-weight:700;color:var(--navy);}
+/* Concept cards */
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+@media(max-width:600px){.concept-grid{grid-template-columns:1fr;}}
+.concept-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 22px;box-shadow:var(--card-shadow);}
+.concept-icon{font-size:24px;margin-bottom:10px;}
+.concept-name{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:8px;}
+.concept-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.concept-desc strong{color:var(--navy);}
+/* Callout */
+.callout{background:rgba(26,108,255,.04);border:1px solid rgba(26,108,255,.2);border-left:4px solid var(--blue);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+/* Exam tip */
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+/* Scenarios */
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+/* Use case cards */
+.usecase-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:40px;}
+@media(max-width:700px){.usecase-grid{grid-template-columns:1fr;}}
+.usecase-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px;box-shadow:var(--card-shadow);}
+.usecase-emoji{font-size:22px;margin-bottom:10px;}
+.usecase-title{font-family:'Outfit',sans-serif;font-size:14px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.usecase-desc{font-size:12px;color:var(--text);line-height:1.6;}
+/* CTA */
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-blue{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--blue);color:var(--white);box-shadow:0 6px 20px rgba(26,108,255,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(26,108,255,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.3);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+/* App banner */
+.app-banner{background:linear-gradient(90deg,#0d1f3c 0%,#0a2a50 100%);border-bottom:1px solid rgba(0,194,168,0.25);padding:9px 48px 9px 28px;text-align:center;position:relative;z-index:101;}
+.app-banner-inner{display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;}
+.app-banner-text{font-size:13.5px;font-weight:500;color:rgba(255,255,255,0.82);letter-spacing:0.1px;}
+.app-banner-text strong{color:var(--teal);font-weight:700;}
+.app-banner-cta{display:inline-flex;align-items:center;gap:6px;background:var(--teal);color:var(--navy)!important;font-size:12.5px;font-weight:700;padding:5px 15px;border-radius:100px;white-space:nowrap;transition:background 0.15s,transform 0.1s;}
+.app-banner-cta:hover{transform:translateY(-1px);}
+.app-banner-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.35);font-size:20px;line-height:1;cursor:pointer;padding:4px 6px;transition:color 0.15s;}
+.app-banner-close:hover{color:rgba(255,255,255,0.75);}
+@media(max-width:600px){.app-banner{padding:8px 40px 8px 16px;}.app-banner-text{font-size:12.5px;}}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is serverless computing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Serverless computing is a cloud execution model where the cloud provider dynamically manages the allocation and provisioning of servers. You write and deploy code (functions), and the provider handles all the infrastructure — servers, OS, scaling, and availability. You are billed only for the compute time your code actually uses, measured in milliseconds. The name is slightly misleading: there are still servers, but you don't see, manage, or pay for them when they're idle."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is FaaS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "FaaS (Function as a Service) is the core execution model of serverless computing. You deploy individual functions — small, single-purpose pieces of code — that are invoked in response to events. AWS Lambda is the most widely used FaaS platform. Azure Functions and Google Cloud Functions are the Azure and GCP equivalents. Each function invocation is independent, stateless, and runs in its own isolated environment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a cold start in serverless?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A cold start occurs when a serverless function is invoked after being idle — the provider needs to provision a new execution environment (download the code, initialise the runtime) before running the function. This adds latency, typically 100ms to a few seconds depending on the runtime and function size. Cold starts are the primary performance trade-off of serverless compared to always-on containers or VMs. Mitigation techniques include provisioned concurrency (AWS Lambda), keeping functions warm with scheduled pings, and choosing faster runtimes like Node.js or Python over Java."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is event-driven architecture?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Event-driven architecture is a design pattern where components communicate by producing and consuming events rather than making direct API calls. An event is a record of something that happened — a file was uploaded, a payment was processed, a sensor sent a reading. When an event occurs, it triggers one or more functions or services that process it. This decouples producers from consumers: the service that creates the event doesn't need to know what happens next. Serverless functions are a natural fit for event-driven architecture because they're designed to be triggered by events and scale automatically."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem","position": 1,"name": "IT Study Hub","item": "https://itstudyhub.org/"},
+    {"@type": "ListItem","position": 2,"name": "Serverless Computing Explained","item": "https://itstudyhub.org/serverless-computing.html"}
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- CERTFLASH APP BANNER -->
+<div class="app-banner" id="certflashBanner">
+  <div class="app-banner-inner">
+    <span class="app-banner-text">📱 New iOS App — <strong>CertFlash</strong>: CompTIA flashcards built for exam day.</span>
+    <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835"
+       class="app-banner-cta" target="_blank" rel="noopener noreferrer">
+      Get it on the App Store ↗
+    </a>
+  </div>
+  <button class="app-banner-close" aria-label="Dismiss"
+    onclick="document.getElementById('certflashBanner').style.display='none'">×</button>
+</div>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="cloud-concepts.html">Cloud Concepts</a>
+      <a href="containers-and-docker.html">Containers</a>
+      <a href="best-study-resources.html" class="nav-cta">Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="cloud-concepts.html">Cloud</a><span>›</span>
+      <span>Serverless Computing</span>
+    </nav>
+    <div class="page-hero-badge">Cloud · DevOps · AWS · Azure · GCP</div>
+    <h1>Serverless Computing <span>Explained</span></h1>
+    <p class="page-hero-sub">What serverless means, how FaaS and AWS Lambda work, event-driven architecture patterns, and when to choose serverless over containers or VMs — explained clearly.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Quick Answer</div>
+      <div class="quick-answer-text">
+        <strong>Serverless computing</strong> lets you run code without provisioning or managing servers — the cloud provider handles all the infrastructure. You write <strong>functions</strong> (small, single-purpose code units), deploy them, and are billed only for the milliseconds they actually run. <strong>FaaS (Function as a Service)</strong> is the core model: functions are triggered by <strong>events</strong> (an HTTP request, a file upload, a database change) and scale automatically from zero to millions of invocations. <strong>AWS Lambda</strong> is the most widely used FaaS platform; equivalents are <strong>Azure Functions</strong> and <strong>Google Cloud Functions</strong>.
+      </div>
+    </div>
+
+    <h2>What Does "Serverless" Actually Mean?</h2>
+
+    <p>The name "serverless" is a slight misnomer — there are absolutely still servers involved. What it means is that <strong>you don't see, manage, or pay for the servers</strong> when your code isn't running. The cloud provider owns and operates all the underlying infrastructure; you simply deploy your code and let the platform handle the rest.</p>
+
+    <p>In traditional cloud computing (IaaS), you provision a virtual machine, install an OS, configure software, and pay for that VM 24/7 whether it's doing anything or not. In serverless, the model flips: your code sleeps when there's nothing to do, wakes up in milliseconds when triggered, executes, and then goes dormant again. You pay only for the compute time consumed during execution — typically measured in 1-millisecond increments.</p>
+
+    <p>This model delivers three major advantages: <strong>no infrastructure management</strong> (no OS patching, no capacity planning, no server configuration), <strong>automatic scaling</strong> (the platform scales from 0 to thousands of concurrent executions instantly without any configuration), and <strong>pay-per-use billing</strong> (a function that runs 1,000 times per month costs a tiny fraction of a VM that runs idle 99.9% of the time).</p>
+
+    <h2>FaaS — Function as a Service</h2>
+
+    <p>FaaS is the compute model that underlies serverless. The key characteristics of a serverless function are:</p>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-icon">⚡</div>
+        <div class="concept-name">Event-triggered</div>
+        <div class="concept-desc">Functions don't run continuously. They execute <strong>in response to a trigger</strong> — an HTTP request, a file upload to object storage, a message in a queue, a database change, or a scheduled cron timer.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🔒</div>
+        <div class="concept-name">Stateless</div>
+        <div class="concept-desc">Each function invocation is <strong>independent and isolated</strong>. The function cannot assume any local state persists between invocations. Persistent data must be stored externally (database, object storage, cache).</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">⏱️</div>
+        <div class="concept-name">Short-lived</div>
+        <div class="concept-desc">Functions are designed for <strong>fast execution</strong>. AWS Lambda has a maximum timeout of 15 minutes. Azure Functions can run longer depending on the plan. Long-running processes (hours or days) are not suited for FaaS.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">📈</div>
+        <div class="concept-name">Auto-scaling</div>
+        <div class="concept-desc">The platform <strong>automatically provisions execution environments</strong> in parallel to handle concurrent invocations. A sudden spike from 1 to 10,000 requests per second is handled without any manual scaling action.</div>
+      </div>
+    </div>
+
+    <h2>AWS Lambda — The Most Widely Used FaaS Platform</h2>
+
+    <p>AWS Lambda, launched in 2014, popularised the serverless model and remains the most widely used FaaS platform. Understanding Lambda is essential for AWS certifications and gives you a solid mental model for Azure Functions and Google Cloud Functions, which work similarly.</p>
+
+    <p>A Lambda function consists of your <strong>code</strong> (uploaded as a ZIP file or container image), a <strong>runtime</strong> (the language environment — Node.js, Python, Java, Go, .NET, Ruby, and more are supported), and a <strong>handler</strong> (the entry point function within your code that Lambda calls). You configure the function's memory (128 MB to 10 GB), timeout (up to 15 minutes), and the IAM role that defines what AWS resources it can access.</p>
+
+    <p>Lambda functions are priced on two dimensions: <strong>invocation count</strong> (the first 1 million requests per month are free; $0.20 per million thereafter) and <strong>compute duration</strong> (charged in 1-millisecond increments based on memory allocation). For many workloads, Lambda is dramatically cheaper than running equivalent EC2 instances — a function that runs 100ms, 100,000 times per day, costs roughly $2/month.</p>
+
+    <div class="callout">
+      <div class="callout-label">Lambda equivalents across cloud providers</div>
+      <p><strong>AWS Lambda</strong> — the original FaaS service, launched 2014. Most widely used.<br>
+      <strong>Azure Functions</strong> — Microsoft's equivalent. Integrates tightly with Azure Event Grid, Service Bus, and Cosmos DB triggers.<br>
+      <strong>Google Cloud Functions</strong> (1st gen) and <strong>Cloud Run functions</strong> (2nd gen) — Google's FaaS offerings. Integrates with Pub/Sub, Firestore, and Cloud Storage triggers.<br>
+      <strong>Cloudflare Workers</strong> — a serverless edge computing platform that runs functions at CDN edge locations worldwide, not just in datacenters. Extremely low latency for globally distributed workloads.</p>
+    </div>
+
+    <h2>Event-Driven Architecture</h2>
+
+    <p>Serverless functions are naturally stateless and short-lived, which makes them a perfect fit for <strong>event-driven architecture (EDA)</strong> — a design pattern where application components communicate by producing and consuming events rather than by making direct, synchronous API calls.</p>
+
+    <p>In a traditional monolithic or microservices architecture, Service A calls Service B directly: "process this payment now." In an event-driven architecture, Service A emits an event: "payment submitted" — and any interested services (payment processor, notification service, inventory system, audit logger) independently consume and react to that event. The producer doesn't know or care who consumes it.</p>
+
+    <p>This decoupling has significant benefits: <strong>resilience</strong> (if the notification service is down, the payment still processes — the event is queued), <strong>scalability</strong> (each consumer scales independently based on its queue depth), and <strong>extensibility</strong> (add a new consumer without changing the producer). The trade-off is increased system complexity and the need for careful management of event ordering and delivery guarantees.</p>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-icon">📤</div>
+        <div class="concept-name">Event Producer</div>
+        <div class="concept-desc">The service or system that generates an event when something happens. A user uploads a file, a sensor reports temperature, a payment is submitted. The producer <strong>publishes the event and moves on</strong> — it doesn't wait for consumers to finish.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🚌</div>
+        <div class="concept-name">Event Bus / Message Queue</div>
+        <div class="concept-desc">The infrastructure that <strong>routes events from producers to consumers</strong>. AWS uses EventBridge (event bus) and SQS/SNS (queues/topics). Azure uses Event Grid and Service Bus. GCP uses Pub/Sub. These systems buffer, route, and deliver events durably.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">📥</div>
+        <div class="concept-name">Event Consumer</div>
+        <div class="concept-desc">A function or service that <strong>subscribes to and processes events</strong>. Multiple consumers can subscribe to the same event independently. A Lambda function triggered by an SQS message is a classic event consumer pattern.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🔗</div>
+        <div class="concept-name">Trigger</div>
+        <div class="concept-desc">The specific event source that invokes a serverless function. Common triggers: HTTP request (API Gateway), file upload (S3), database change (DynamoDB Streams), message in queue (SQS), scheduled time (EventBridge Scheduler / cron).</div>
+      </div>
+    </div>
+
+    <h2>Common Serverless Use Cases</h2>
+
+    <div class="usecase-grid">
+      <div class="usecase-card">
+        <div class="usecase-emoji">🌐</div>
+        <div class="usecase-title">REST APIs & Web Backends</div>
+        <div class="usecase-desc">API Gateway + Lambda is a classic pattern for building HTTP APIs. Each endpoint maps to a Lambda function. Scales to millions of requests with zero server management.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-emoji">🖼️</div>
+        <div class="usecase-title">Image & File Processing</div>
+        <div class="usecase-desc">Trigger a Lambda when a file is uploaded to S3 — resize an image, transcode a video, extract text from a PDF, or validate a document. Run only when there's work to do.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-emoji">⏰</div>
+        <div class="usecase-title">Scheduled Jobs</div>
+        <div class="usecase-desc">Replace cron jobs on EC2 with scheduled Lambda triggers. Run a nightly report, clean up old database records, or send a daily email digest — pay only for the seconds it runs.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-emoji">📊</div>
+        <div class="usecase-title">Real-Time Data Processing</div>
+        <div class="usecase-desc">Process streaming data from IoT sensors, application logs, or clickstreams in real time. Lambda integrates with Kinesis, DynamoDB Streams, and SQS for event-by-event processing.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-emoji">🤖</div>
+        <div class="usecase-title">Chatbots & Automation</div>
+        <div class="usecase-desc">Serverless functions are ideal for webhook handlers — Slack bots, GitHub Actions triggers, or Stripe webhook processors that run only when invoked and sleep the rest of the time.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-emoji">🔔</div>
+        <div class="usecase-title">Notifications & Alerts</div>
+        <div class="usecase-desc">Fan-out notifications at scale: one event triggers a Lambda that sends push notifications, emails, and SMS simultaneously via SNS — without managing a notification server.</div>
+      </div>
+    </div>
+
+    <h2>Serverless vs Containers vs VMs</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Serverless (FaaS)</th>
+            <th>Containers</th>
+            <th>Virtual Machines</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-term">Infrastructure management</td><td>None — fully managed</td><td>Low — manage container orchestration</td><td>High — manage OS, patching, scaling</td></tr>
+          <tr><td class="td-term">Scaling</td><td>Automatic, scales to zero</td><td>Automatic with orchestrator (K8s)</td><td>Manual or scheduled auto-scaling</td></tr>
+          <tr><td class="td-term">Billing model</td><td>Per invocation + duration (ms)</td><td>Per running container (seconds)</td><td>Per running VM (hours)</td></tr>
+          <tr><td class="td-term">Cold start</td><td>Yes — latency on first invocation</td><td>Minimal (containers start in ms)</td><td>Slow (minutes to boot OS)</td></tr>
+          <tr><td class="td-term">Max execution time</td><td>15 min (Lambda), varies by provider</td><td>Unlimited</td><td>Unlimited</td></tr>
+          <tr><td class="td-term">Stateful workloads</td><td>Poor — stateless by design</td><td>Good — with persistent volumes</td><td>Best — full persistent storage</td></tr>
+          <tr><td class="td-term">Best for</td><td>Irregular, event-driven, short tasks</td><td>Microservices, consistent workloads</td><td>Legacy apps, full OS control needed</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>The Cold Start Problem</h2>
+
+    <p>The most discussed performance trade-off of serverless is the <strong>cold start</strong>. When a serverless function hasn't been invoked for a period of time, the provider scales it down to zero — no execution environment is running. When the next request arrives, the provider must: (1) allocate compute resources, (2) download and initialise the function code, (3) start the language runtime, and (4) execute the handler. This process typically adds <strong>100ms to several seconds</strong> of latency on top of the normal execution time.</p>
+
+    <p>Cold starts are worst with runtimes that have slow initialisation — Java and .NET have significantly worse cold starts than Node.js or Python because of JVM/CLR startup overhead. Large deployment packages (ZIP files with many dependencies) also increase cold start time.</p>
+
+    <p><strong>Mitigation strategies:</strong> AWS Lambda Provisioned Concurrency keeps a specified number of execution environments pre-warmed, eliminating cold starts for latency-sensitive workloads (at additional cost). Keeping functions warm with periodic scheduled pings (every few minutes) is a cheaper but less reliable approach. Choosing lightweight runtimes (Node.js, Python) and minimising deployment package size also reduces cold start impact.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Key Concepts to Remember</div>
+      <p><strong>Serverless = no server management + pay-per-use + auto-scale.</strong></p>
+      <p><strong>FaaS = functions triggered by events, stateless, short-lived.</strong></p>
+      <p><strong>Cold start = latency on first invocation after idle period.</strong></p>
+      <p><strong>Event-driven = producers emit events, consumers react independently.</strong> The decoupling is the key architectural benefit.</p>
+    </div>
+
+    <h2>Serverless Security Considerations</h2>
+
+    <p>Serverless shifts the security boundary significantly toward the application layer. Since the provider manages the underlying infrastructure, you no longer need to patch OS vulnerabilities or harden server configurations — but you are fully responsible for your function code, dependencies, and IAM permissions.</p>
+
+    <p><strong>Overly permissive IAM roles</strong> are the most common serverless security mistake. Following the <strong>principle of least privilege</strong> is critical: each Lambda function should have its own IAM role with only the permissions it specifically needs. A function that reads from one S3 bucket should not have write access to other buckets or access to unrelated services.</p>
+
+    <p><strong>Dependency vulnerabilities</strong> in your function's package dependencies (npm packages, Python pip packages) are a significant risk. Serverless functions often pull in many third-party packages, each of which may contain known CVEs. Regular dependency scanning and updates are essential.</p>
+
+    <p><strong>Injection attacks</strong> remain relevant in serverless — SQL injection, command injection, and event data injection can all occur if function code processes user-supplied input without proper validation and sanitisation.</p>
+
+    <h2>Key Scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item"><strong>Scenario:</strong> A company wants to process images uploaded to cloud storage — resize them and generate thumbnails — without managing any servers. What is the best architecture? <strong>Answer: Serverless — a Lambda function triggered by S3 upload events</strong>. Runs only when an image is uploaded, scales automatically, and costs near zero for low volumes.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> An application needs to run a task that takes 45 minutes to complete. Is AWS Lambda appropriate? <strong>Answer: No — Lambda has a maximum execution timeout of 15 minutes</strong>. Use a container (ECS/Fargate) or a VM for long-running jobs.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> A serverless API has high p99 latency on the first request of the day. What is the likely cause and solution? <strong>Answer: Cold start latency</strong>. Solution: enable <strong>Provisioned Concurrency</strong> to keep execution environments pre-warmed.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> What is the main billing advantage of serverless over always-on VMs for a workload that runs 5 minutes per hour? <strong>Answer: Pay-per-use</strong> — serverless charges only for those 5 minutes of actual execution. A VM runs (and is billed) for the full 60 minutes even when idle.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> A Lambda function has been granted full S3 access, full DynamoDB access, and full EC2 access even though it only needs to read from one S3 bucket. What security principle is being violated? <strong>Answer: Principle of least privilege</strong>. The function should have an IAM role with only read access to the specific S3 bucket it needs.</div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Preparing for a Cloud Certification?</h3>
+        <p>Check out the best study resources for AWS, Azure, and CompTIA cloud exams.</p>
+      </div>
+      <a href="best-study-resources.html" class="btn-blue">View Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="cloud-concepts.html" class="related-link">Cloud Concepts (IaaS/PaaS/SaaS)</a>
+      <a href="containers-and-docker.html" class="related-link">Containers & Docker</a>
+      <a href="aws-vs-azure-vs-gcp.html" class="related-link">AWS vs Azure vs GCP</a>
+      <a href="cloud-deployment-models.html" class="related-link">Cloud Deployment Models</a>
+      <a href="cloud-security.html" class="related-link">Cloud Security (CASB, CSPM)</a>
+      <a href="virtualization-explained.html" class="related-link">Virtualisation Explained</a>
+      <a href="identity-and-access-management.html" class="related-link">IAM Explained</a>
+      <a href="best-study-resources.html" class="related-link">Best Study Resources</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Cloud</div>
+      <a href="cloud-concepts.html">Cloud Concepts</a>
+      <a href="containers-and-docker.html">Containers & Docker</a>
+      <a href="aws-vs-azure-vs-gcp.html">AWS vs Azure vs GCP</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Related</div>
+      <a href="virtualization-explained.html">Virtualisation</a>
+      <a href="cloud-security.html">Cloud Security</a>
+      <a href="best-study-resources.html">Study Resources</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>

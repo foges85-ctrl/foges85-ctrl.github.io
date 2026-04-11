@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/containers-and-docker.html">
+<title>Containers & Docker Explained — Images, Registries & Orchestration</title>
+<meta name="description" content="What containers are, how Docker images and registries work, container vs VM, and orchestration basics with Kubernetes — explained clearly for IT beginners and cloud cert candidates.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.15) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(0,194,168,.07) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.18) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* Comparison table */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:400px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#eff6ff;}
+.td-term{font-weight:700;color:var(--navy);}
+/* Concept cards */
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+@media(max-width:600px){.concept-grid{grid-template-columns:1fr;}}
+.concept-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 22px;box-shadow:var(--card-shadow);}
+.concept-icon{font-size:24px;margin-bottom:10px;}
+.concept-name{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:8px;}
+.concept-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.concept-desc strong{color:var(--navy);}
+/* Callout */
+.callout{background:rgba(26,108,255,.04);border:1px solid rgba(26,108,255,.2);border-left:4px solid var(--blue);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+/* Exam tip */
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+/* Scenarios */
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+/* CTA */
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-blue{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--blue);color:var(--white);box-shadow:0 6px 20px rgba(26,108,255,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(26,108,255,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.3);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+/* App banner */
+.app-banner{background:linear-gradient(90deg,#0d1f3c 0%,#0a2a50 100%);border-bottom:1px solid rgba(0,194,168,0.25);padding:9px 48px 9px 28px;text-align:center;position:relative;z-index:101;}
+.app-banner-inner{display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;}
+.app-banner-text{font-size:13.5px;font-weight:500;color:rgba(255,255,255,0.82);letter-spacing:0.1px;}
+.app-banner-text strong{color:var(--teal);font-weight:700;}
+.app-banner-cta{display:inline-flex;align-items:center;gap:6px;background:var(--teal);color:var(--navy)!important;font-size:12.5px;font-weight:700;padding:5px 15px;border-radius:100px;white-space:nowrap;transition:background 0.15s,transform 0.1s;}
+.app-banner-cta:hover{transform:translateY(-1px);}
+.app-banner-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.35);font-size:20px;line-height:1;cursor:pointer;padding:4px 6px;transition:color 0.15s;}
+.app-banner-close:hover{color:rgba(255,255,255,0.75);}
+@media(max-width:600px){.app-banner{padding:8px 40px 8px 16px;}.app-banner-text{font-size:12.5px;}}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a container?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A container is a lightweight, isolated environment that packages an application and all its dependencies — libraries, config files, and runtime — into a single portable unit. Containers share the host OS kernel, making them far faster to start and more resource-efficient than virtual machines, which each require a full OS."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a container and a virtual machine?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A virtual machine (VM) runs a full copy of an operating system on top of a hypervisor. A container shares the host OS kernel and only packages the application and its dependencies. Containers start in milliseconds and use far less RAM and disk space. VMs provide stronger isolation because each has its own kernel. The exam often presents a scenario requiring fast, consistent deployment across many servers — the answer is containers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Docker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Docker is the most widely used container platform. It provides the Docker Engine (the runtime that runs containers), the Dockerfile format (instructions for building images), and Docker Hub (the default public registry for sharing images). Docker made containers accessible to everyday developers and is the de facto standard for containerisation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Kubernetes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kubernetes (K8s) is an open-source container orchestration platform originally developed by Google. It automates deploying, scaling, and managing containerised applications across clusters of machines. Kubernetes handles scheduling containers onto nodes, restarting failed containers, scaling up when traffic spikes, and rolling updates with zero downtime."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem","position": 1,"name": "IT Study Hub","item": "https://itstudyhub.org/"},
+    {"@type": "ListItem","position": 2,"name": "Containers & Docker Explained","item": "https://itstudyhub.org/containers-and-docker.html"}
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- CERTFLASH APP BANNER -->
+<div class="app-banner" id="certflashBanner">
+  <div class="app-banner-inner">
+    <span class="app-banner-text">📱 New iOS App — <strong>CertFlash</strong>: CompTIA flashcards built for exam day.</span>
+    <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835"
+       class="app-banner-cta" target="_blank" rel="noopener noreferrer">
+      Get it on the App Store ↗
+    </a>
+  </div>
+  <button class="app-banner-close" aria-label="Dismiss"
+    onclick="document.getElementById('certflashBanner').style.display='none'">×</button>
+</div>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="cloud-concepts.html">Cloud Concepts</a>
+      <a href="virtualization-explained.html">Virtualisation</a>
+      <a href="best-study-resources.html" class="nav-cta">Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="cloud-concepts.html">Cloud</a><span>›</span>
+      <span>Containers & Docker</span>
+    </nav>
+    <div class="page-hero-badge">Cloud · DevOps · Security+</div>
+    <h1>Containers & Docker <span>Explained</span></h1>
+    <p class="page-hero-sub">What containers are, how Docker images and registries work, containers vs VMs, and orchestration with Kubernetes — the foundation of modern cloud deployment explained clearly.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Quick Answer</div>
+      <div class="quick-answer-text">
+        A <strong>container</strong> packages an application and all its dependencies into a portable, isolated unit that runs consistently anywhere. <strong>Docker</strong> is the platform that builds and runs containers. A <strong>Docker image</strong> is the read-only blueprint; a running instance of that image is a <strong>container</strong>. Images are stored in and pulled from <strong>registries</strong> (Docker Hub, AWS ECR, Azure ACR). When you have dozens or hundreds of containers to manage across multiple servers, <strong>Kubernetes</strong> orchestrates them — handling scheduling, scaling, and self-healing automatically.
+      </div>
+    </div>
+
+    <h2>What Is a Container?</h2>
+
+    <p>A container is a <strong>lightweight, isolated environment</strong> that packages an application together with everything it needs to run: libraries, configuration files, and the runtime environment. The key insight is that a container shares the host operating system's kernel rather than running a full OS of its own. This makes containers dramatically smaller and faster than virtual machines.</p>
+
+    <p>The core problem containers solve is the classic "it works on my machine" problem. Before containers, an application that worked perfectly in a developer's local environment might fail in production because of subtle differences in library versions, OS configuration, or installed software. A container bundles the application and its exact dependencies together, so it runs identically regardless of where it's deployed — a developer's laptop, a test server, or a production cloud environment.</p>
+
+    <p>Containers are <strong>ephemeral by design</strong>. When a container stops, any data written inside it is lost unless explicitly saved to external storage. This makes containers ideal for stateless services — web servers, APIs, microservices — where each instance is identical and disposable. For stateful applications like databases, you mount external persistent storage volumes.</p>
+
+    <h2>Containers vs Virtual Machines</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Container</th>
+            <th>Virtual Machine</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-term">OS kernel</td><td>Shares host kernel</td><td>Full OS per VM (own kernel)</td></tr>
+          <tr><td class="td-term">Startup time</td><td>Milliseconds</td><td>30 seconds to minutes</td></tr>
+          <tr><td class="td-term">Size</td><td>Megabytes</td><td>Gigabytes</td></tr>
+          <tr><td class="td-term">Isolation</td><td>Process-level isolation</td><td>Full hardware-level isolation</td></tr>
+          <tr><td class="td-term">Security boundary</td><td>Weaker (shared kernel)</td><td>Stronger (separate kernel)</td></tr>
+          <tr><td class="td-term">Portability</td><td>Very high — runs anywhere Docker runs</td><td>High — but larger and slower to move</td></tr>
+          <tr><td class="td-term">Density</td><td>Hundreds per host</td><td>Tens per host</td></tr>
+          <tr><td class="td-term">Best use case</td><td>Microservices, CI/CD, cloud-native apps</td><td>Full OS isolation, legacy apps, different OS</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Containers and VMs are not mutually exclusive</div>
+      <p>In practice, containers typically <strong>run inside VMs</strong> in production environments. You provision VMs from your cloud provider (IaaS), and then run many containers on each VM. This gives you the security boundary of VM isolation at the infrastructure level, combined with the density and speed advantages of containers at the application level.</p>
+    </div>
+
+    <h2>Docker: Images, Containers, and the Dockerfile</h2>
+
+    <p>Docker is the platform that standardised containers and made them accessible to developers. The Docker ecosystem has four key components you need to understand:</p>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-icon">📄</div>
+        <div class="concept-name">Dockerfile</div>
+        <div class="concept-desc">A plain-text file containing step-by-step instructions for building a Docker image. It specifies the base image, copies application code, installs dependencies, and sets the startup command. Think of it as a <strong>recipe</strong> for building the image.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🖼️</div>
+        <div class="concept-name">Image</div>
+        <div class="concept-desc">A <strong>read-only template</strong> built from a Dockerfile. Images are layered — each instruction in the Dockerfile adds a new layer on top of the previous one. Layers that don't change are cached and reused, making builds fast. An image is the blueprint; it doesn't run itself.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">📦</div>
+        <div class="concept-name">Container</div>
+        <div class="concept-desc">A <strong>running instance of an image</strong>. When you start a container from an image, Docker adds a thin writable layer on top of the read-only image layers. You can run many containers from the same image simultaneously — each gets its own writable layer.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🗄️</div>
+        <div class="concept-name">Registry</div>
+        <div class="concept-desc">A <strong>storage and distribution system</strong> for Docker images. Docker Hub is the default public registry — millions of pre-built images are hosted there. Private registries (AWS ECR, Azure ACR, Google Artifact Registry) let organisations store proprietary images securely.</div>
+      </div>
+    </div>
+
+    <p>The typical Docker workflow is: write a <strong>Dockerfile</strong> → run <code style="font-family:'DM Mono',monospace;background:var(--light);padding:2px 6px;border-radius:4px;font-size:13px;">docker build</code> to create an <strong>image</strong> → push the image to a <strong>registry</strong> → on any server, pull the image and run <code style="font-family:'DM Mono',monospace;background:var(--light);padding:2px 6px;border-radius:4px;font-size:13px;">docker run</code> to start a <strong>container</strong>.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Key Distinction to Remember</div>
+      <p><strong>Image = blueprint (read-only, stored in a registry).</strong> <strong>Container = running instance of an image (writable, ephemeral).</strong></p>
+      <p>Many exam questions and interview questions hinge on this distinction. You push/pull images to/from registries. You start/stop/delete containers on hosts.</p>
+    </div>
+
+    <h2>Container Registries</h2>
+
+    <p>A container registry is a repository for storing and distributing Docker images. Understanding the major registries is important for cloud certification exams:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Registry</th>
+            <th>Provider</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-term">Docker Hub</td><td>Docker, Inc.</td><td>Default public registry. Millions of official and community images. Free for public images; paid for private.</td></tr>
+          <tr><td class="td-term">Amazon ECR</td><td>AWS</td><td>Elastic Container Registry. Integrates with ECS and EKS. Private by default; IAM-controlled access.</td></tr>
+          <tr><td class="td-term">Azure Container Registry (ACR)</td><td>Microsoft</td><td>Integrates with AKS and Azure DevOps. Supports geo-replication for multi-region deployments.</td></tr>
+          <tr><td class="td-term">Google Artifact Registry</td><td>Google Cloud</td><td>Replaced Google Container Registry (GCR). Integrates with GKE. Supports multiple artifact types beyond containers.</td></tr>
+          <tr><td class="td-term">GitHub Container Registry</td><td>GitHub (Microsoft)</td><td>Store images alongside source code in GitHub. Common in CI/CD pipelines that build and test on push.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>In a secure enterprise environment, <strong>image scanning</strong> is performed at the registry level — every pushed image is automatically scanned for known vulnerabilities in its layers before it can be deployed. AWS ECR, ACR, and Google Artifact Registry all provide built-in vulnerability scanning.</p>
+
+    <h2>Container Orchestration and Kubernetes</h2>
+
+    <p>Running a single container on a single server is straightforward with Docker. But real production applications might require dozens or hundreds of containers spread across multiple servers, with requirements for automatic scaling, load balancing, rolling updates, and self-healing when a container crashes. This is the problem <strong>container orchestration</strong> solves.</p>
+
+    <p><strong>Kubernetes</strong> (abbreviated K8s — K, 8 letters, s) is the dominant container orchestration platform. Originally developed at Google and open-sourced in 2014, it is now maintained by the Cloud Native Computing Foundation (CNCF). Every major cloud provider offers a managed Kubernetes service: <strong>AWS EKS</strong> (Elastic Kubernetes Service), <strong>Azure AKS</strong> (Azure Kubernetes Service), and <strong>Google GKE</strong> (Google Kubernetes Engine).</p>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-icon">🏗️</div>
+        <div class="concept-name">Cluster</div>
+        <div class="concept-desc">The top-level Kubernetes unit. A cluster consists of a <strong>control plane</strong> (which manages the cluster) and one or more <strong>worker nodes</strong> (which run the actual containers).</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🖥️</div>
+        <div class="concept-name">Node</div>
+        <div class="concept-desc">A physical or virtual machine that runs containers. A cluster has many nodes. The control plane schedules containers (called Pods) onto nodes based on available resources.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">📦</div>
+        <div class="concept-name">Pod</div>
+        <div class="concept-desc">The smallest deployable unit in Kubernetes. A Pod wraps one or more containers that share storage and a network namespace. Most Pods contain a single container, but related containers that must run together can be co-located in one Pod.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">⚖️</div>
+        <div class="concept-name">Service</div>
+        <div class="concept-desc">A Kubernetes Service provides a stable network endpoint for a set of Pods. Since Pods are ephemeral and their IP addresses change, a Service gives a consistent DNS name and IP address that routes traffic to the correct Pods — enabling load balancing.</div>
+      </div>
+    </div>
+
+    <p>Kubernetes key capabilities include <strong>automatic scaling</strong> (add more Pods when CPU usage spikes), <strong>self-healing</strong> (automatically restart failed containers or reschedule Pods from failed nodes), <strong>rolling updates</strong> (update containers to a new version with zero downtime by gradually replacing old Pods), and <strong>rollbacks</strong> (revert to the previous version if a deployment fails).</p>
+
+    <div class="callout">
+      <div class="callout-label">Docker Swarm vs Kubernetes</div>
+      <p>Docker has its own built-in orchestration tool called <strong>Docker Swarm</strong>, which is simpler to set up than Kubernetes but less powerful and less widely adopted in production. For small deployments and teams new to orchestration, Swarm is easier to learn. For large-scale, production-grade workloads, Kubernetes is the industry standard. Most cloud certification exams focus on Kubernetes.</p>
+    </div>
+
+    <h2>Container Security</h2>
+
+    <p>Containers introduce specific security considerations that appear on Security+ and cloud security exams:</p>
+
+    <p><strong>Image vulnerabilities</strong> — container images are built on top of base OS images (e.g. Ubuntu, Alpine Linux) that may contain known CVEs. Regularly scanning images and rebuilding them against updated base images is essential. Use minimal base images (Alpine Linux is ~5MB vs Ubuntu's ~70MB) to reduce the attack surface.</p>
+
+    <p><strong>Container escape</strong> — a vulnerability that allows a process inside a container to break out of the container's namespace and access the host OS. This is the most serious container security risk. Running containers as non-root users and using read-only filesystems reduces this risk.</p>
+
+    <p><strong>Secrets management</strong> — application secrets (database passwords, API keys) should never be baked into Docker images. Use environment variables, Kubernetes Secrets, or dedicated secrets managers (AWS Secrets Manager, HashiCorp Vault) to inject secrets at runtime.</p>
+
+    <p><strong>Namespace isolation</strong> — Linux namespaces are the underlying technology that isolates containers from each other and from the host. Containers share the kernel but have separate process, network, and filesystem namespaces. This isolation is weaker than VM isolation — a kernel vulnerability can potentially affect all containers on a host simultaneously.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Security+ Exam — Container Security Points</div>
+      <p><strong>Container escape</strong> is the buzzword for the container-specific attack where a malicious process breaks out of container isolation. <strong>Image scanning</strong> is the control. <strong>Running containers as non-root</strong> is the hardening technique. These three points cover the majority of container security questions on Security+ SY0-701 Domain 3.</p>
+    </div>
+
+    <h2>Exam Scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item"><strong>Scenario:</strong> A team needs to deploy the same application across development, staging, and production and ensure it behaves identically in each environment. What technology is best suited? <strong>Answer: Containers (Docker)</strong> — the image ensures a consistent environment from dev to prod.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> An organisation runs 500 containers across 20 servers and needs automatic failover, rolling updates, and auto-scaling. What tool manages this? <strong>Answer: Kubernetes (or a managed service like EKS/AKS/GKE)</strong>.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> A security scan reveals that a container is running as root. Why is this a risk? <strong>Answer: If a container escape vulnerability exists, a root container process would have root-level access on the host OS</strong>. Containers should run as non-privileged users.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> A developer hardcoded a database password in a Dockerfile. What is the correct remediation? <strong>Answer: Remove the secret from the image and inject it at runtime</strong> using environment variables or a secrets manager. Never store secrets in images, as they are visible to anyone with image access.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> What is the difference between a Docker image and a Docker container? <strong>Answer: An image is the read-only blueprint stored in a registry. A container is a running instance of that image</strong> — you can run many containers from one image.</div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for a Cloud or DevOps Certification?</h3>
+        <p>Check out the best study resources for CompTIA, AWS, and Azure exams.</p>
+      </div>
+      <a href="best-study-resources.html" class="btn-blue">View Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="virtualization-explained.html" class="related-link">Virtualisation Explained</a>
+      <a href="cloud-concepts.html" class="related-link">Cloud Concepts (IaaS/PaaS/SaaS)</a>
+      <a href="cloud-security.html" class="related-link">Cloud Security (CASB, CSPM)</a>
+      <a href="serverless-computing.html" class="related-link">Serverless Computing</a>
+      <a href="aws-vs-azure-vs-gcp.html" class="related-link">AWS vs Azure vs GCP</a>
+      <a href="cloud-deployment-models.html" class="related-link">Cloud Deployment Models</a>
+      <a href="network-segmentation.html" class="related-link">Network Segmentation</a>
+      <a href="best-study-resources.html" class="related-link">Best Study Resources</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Cloud</div>
+      <a href="cloud-concepts.html">Cloud Concepts</a>
+      <a href="cloud-deployment-models.html">Deployment Models</a>
+      <a href="cloud-security.html">Cloud Security</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Related</div>
+      <a href="virtualization-explained.html">Virtualisation</a>
+      <a href="serverless-computing.html">Serverless Computing</a>
+      <a href="aws-vs-azure-vs-gcp.html">AWS vs Azure vs GCP</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>

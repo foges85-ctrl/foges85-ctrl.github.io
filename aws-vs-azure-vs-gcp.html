@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/aws-vs-azure-vs-gcp.html">
+<title>AWS vs Azure vs GCP — Cloud Provider Comparison for Beginners</title>
+<meta name="description" content="A clear comparison of Amazon Web Services, Microsoft Azure, and Google Cloud Platform — services, market share, certifications, and which to learn first.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--orange:#f97316;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.15) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(0,194,168,.07) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.18) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* Provider cards */
+.provider-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:40px;}
+@media(max-width:700px){.provider-grid{grid-template-columns:1fr;}}
+.provider-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--card-shadow);}
+.provider-header{padding:18px 20px 14px;}
+.provider-name{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--white);margin-bottom:2px;}
+.provider-full{font-size:12px;color:rgba(255,255,255,.65);font-family:'DM Mono',monospace;}
+.aws-h{background:linear-gradient(135deg,#f97316,#ea580c);}
+.azure-h{background:linear-gradient(135deg,#1a6cff,#0a4fd4);}
+.gcp-h{background:linear-gradient(135deg,#10b981,#059669);}
+.provider-body{padding:14px 20px 18px;}
+.provider-row{display:flex;flex-direction:column;gap:3px;padding:7px 0;border-bottom:1px solid var(--light);font-size:12px;}
+.provider-row:last-child{border-bottom:none;padding-bottom:0;}
+.provider-row-key{color:var(--muted);font-weight:600;font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.4px;}
+.provider-row-val{color:var(--navy);font-weight:500;line-height:1.4;font-size:13px;}
+/* Comparison table */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:400px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#eff6ff;}
+.td-term{font-weight:700;color:var(--navy);}
+.tag-aws{background:#fff4ed;color:#c2410c;font-weight:700;border-radius:5px;padding:2px 7px;font-size:12px;font-family:'DM Mono',monospace;}
+.tag-azure{background:#eff6ff;color:#1d4ed8;font-weight:700;border-radius:5px;padding:2px 7px;font-size:12px;font-family:'DM Mono',monospace;}
+.tag-gcp{background:#ecfdf5;color:#065f46;font-weight:700;border-radius:5px;padding:2px 7px;font-size:12px;font-family:'DM Mono',monospace;}
+/* Callout */
+.callout{background:rgba(26,108,255,.04);border:1px solid rgba(26,108,255,.2);border-left:4px solid var(--blue);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+/* Exam tip */
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+/* Cert cards */
+.cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:40px;}
+@media(max-width:600px){.cert-grid{grid-template-columns:1fr;}}
+.cert-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px;box-shadow:var(--card-shadow);}
+.cert-provider{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.cert-name{font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.cert-desc{font-size:13px;color:var(--text);line-height:1.6;}
+/* Scenarios */
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+/* CTA */
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-blue{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--blue);color:var(--white);box-shadow:0 6px 20px rgba(26,108,255,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(26,108,255,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.3);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+/* App banner */
+.app-banner{background:linear-gradient(90deg,#0d1f3c 0%,#0a2a50 100%);border-bottom:1px solid rgba(0,194,168,0.25);padding:9px 48px 9px 28px;text-align:center;position:relative;z-index:101;}
+.app-banner-inner{display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;}
+.app-banner-text{font-size:13.5px;font-weight:500;color:rgba(255,255,255,0.82);letter-spacing:0.1px;}
+.app-banner-text strong{color:var(--teal);font-weight:700;}
+.app-banner-cta{display:inline-flex;align-items:center;gap:6px;background:var(--teal);color:var(--navy)!important;font-size:12.5px;font-weight:700;padding:5px 15px;border-radius:100px;white-space:nowrap;transition:background 0.15s,transform 0.1s;}
+.app-banner-cta:hover{transform:translateY(-1px);}
+.app-banner-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.35);font-size:20px;line-height:1;cursor:pointer;padding:4px 6px;transition:color 0.15s;}
+.app-banner-close:hover{color:rgba(255,255,255,0.75);}
+@media(max-width:600px){.app-banner{padding:8px 40px 8px 16px;}.app-banner-text{font-size:12.5px;}}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which cloud provider has the largest market share?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AWS (Amazon Web Services) is the market leader with approximately 31% market share as of 2025. Microsoft Azure is second with around 25%, and Google Cloud Platform (GCP) is third with approximately 12%. AWS has held the top spot since it launched in 2006 — it had a multi-year head start over its competitors."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which cloud provider should I learn first?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For most people entering cloud, AWS is the best starting point because it has the largest job market, the widest range of services, and the most learning resources. However, if you already work at an organisation that uses Azure (especially a Microsoft-heavy shop running Office 365 and Active Directory), starting with Azure makes more practical sense. GCP is the best choice if you're specifically interested in data engineering, machine learning, or Kubernetes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the easiest cloud certification to start with?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The AWS Cloud Practitioner, Microsoft AZ-900 (Azure Fundamentals), and Google Cloud Digital Leader are all entry-level, vendor-specific foundational exams with no prerequisites. Of these, AZ-900 is widely considered the easiest. AWS Cloud Practitioner is the most recognised on job postings. All three are good starting points for cloud beginners."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem","position": 1,"name": "IT Study Hub","item": "https://itstudyhub.org/"},
+    {"@type": "ListItem","position": 2,"name": "AWS vs Azure vs GCP","item": "https://itstudyhub.org/aws-vs-azure-vs-gcp.html"}
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- CERTFLASH APP BANNER -->
+<div class="app-banner" id="certflashBanner">
+  <div class="app-banner-inner">
+    <span class="app-banner-text">📱 New iOS App — <strong>CertFlash</strong>: CompTIA flashcards built for exam day.</span>
+    <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835"
+       class="app-banner-cta" target="_blank" rel="noopener noreferrer">
+      Get it on the App Store ↗
+    </a>
+  </div>
+  <button class="app-banner-close" aria-label="Dismiss"
+    onclick="document.getElementById('certflashBanner').style.display='none'">×</button>
+</div>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="cloud-concepts.html">Cloud Concepts</a>
+      <a href="containers-and-docker.html">Containers</a>
+      <a href="best-study-resources.html" class="nav-cta">Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="cloud-concepts.html">Cloud</a><span>›</span>
+      <span>AWS vs Azure vs GCP</span>
+    </nav>
+    <div class="page-hero-badge">Cloud · AWS · Azure · GCP · Certifications</div>
+    <h1>AWS vs Azure vs GCP — <span>Cloud Provider Comparison</span></h1>
+    <p class="page-hero-sub">A practical comparison of Amazon Web Services, Microsoft Azure, and Google Cloud Platform — market share, core services, strengths, and which certification to pursue first.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Quick Answer</div>
+      <div class="quick-answer-text">
+        <strong>AWS</strong> is the market leader (~31% share) with the widest service catalog and the largest job market. <strong>Azure</strong> is #2 (~25%) and dominates enterprises already using Microsoft products (Office 365, Active Directory, Windows Server). <strong>GCP</strong> is #3 (~12%) and leads in data/ML and Kubernetes (Google invented it). For most beginners, <strong>start with AWS</strong> for maximum job opportunities, or <strong>Azure</strong> if your employer is Microsoft-heavy. All three are viable — the cloud skills are transferable.
+      </div>
+    </div>
+
+    <h2>The Three Major Cloud Providers at a Glance</h2>
+
+    <div class="provider-grid">
+      <div class="provider-card">
+        <div class="provider-header aws-h">
+          <div class="provider-name">AWS</div>
+          <div class="provider-full">Amazon Web Services</div>
+        </div>
+        <div class="provider-body">
+          <div class="provider-row"><span class="provider-row-key">Founded</span><span class="provider-row-val">2006 (first mover)</span></div>
+          <div class="provider-row"><span class="provider-row-key">Market share</span><span class="provider-row-val">~31% (largest)</span></div>
+          <div class="provider-row"><span class="provider-row-key">Compute</span><span class="provider-row-val">EC2, Lambda, ECS, EKS, Fargate</span></div>
+          <div class="provider-row"><span class="provider-row-key">Storage</span><span class="provider-row-val">S3, EBS, EFS, Glacier</span></div>
+          <div class="provider-row"><span class="provider-row-key">Database</span><span class="provider-row-val">RDS, DynamoDB, Aurora, Redshift</span></div>
+          <div class="provider-row"><span class="provider-row-key">Strength</span><span class="provider-row-val">Broadest service catalog, most regions, biggest ecosystem</span></div>
+          <div class="provider-row"><span class="provider-row-key">Entry cert</span><span class="provider-row-val">AWS Cloud Practitioner</span></div>
+        </div>
+      </div>
+
+      <div class="provider-card">
+        <div class="provider-header azure-h">
+          <div class="provider-name">Azure</div>
+          <div class="provider-full">Microsoft Azure</div>
+        </div>
+        <div class="provider-body">
+          <div class="provider-row"><span class="provider-row-key">Founded</span><span class="provider-row-val">2010</span></div>
+          <div class="provider-row"><span class="provider-row-key">Market share</span><span class="provider-row-val">~25% (second)</span></div>
+          <div class="provider-row"><span class="provider-row-key">Compute</span><span class="provider-row-val">Azure VMs, Functions, AKS, App Service</span></div>
+          <div class="provider-row"><span class="provider-row-key">Storage</span><span class="provider-row-val">Blob Storage, Disk Storage, Files, Archive</span></div>
+          <div class="provider-row"><span class="provider-row-key">Database</span><span class="provider-row-val">Azure SQL, Cosmos DB, Synapse Analytics</span></div>
+          <div class="provider-row"><span class="provider-row-key">Strength</span><span class="provider-row-val">Microsoft integration (AD, Office 365, Windows)</span></div>
+          <div class="provider-row"><span class="provider-row-key">Entry cert</span><span class="provider-row-val">AZ-900 Azure Fundamentals</span></div>
+        </div>
+      </div>
+
+      <div class="provider-card">
+        <div class="provider-header gcp-h">
+          <div class="provider-name">GCP</div>
+          <div class="provider-full">Google Cloud Platform</div>
+        </div>
+        <div class="provider-body">
+          <div class="provider-row"><span class="provider-row-key">Founded</span><span class="provider-row-val">2008</span></div>
+          <div class="provider-row"><span class="provider-row-key">Market share</span><span class="provider-row-val">~12% (third)</span></div>
+          <div class="provider-row"><span class="provider-row-key">Compute</span><span class="provider-row-val">Compute Engine, Cloud Run, GKE, Cloud Functions</span></div>
+          <div class="provider-row"><span class="provider-row-key">Storage</span><span class="provider-row-val">Cloud Storage, Persistent Disk, Filestore</span></div>
+          <div class="provider-row"><span class="provider-row-key">Database</span><span class="provider-row-val">Cloud SQL, Bigtable, BigQuery, Spanner</span></div>
+          <div class="provider-row"><span class="provider-row-key">Strength</span><span class="provider-row-val">Data/ML/AI, Kubernetes, global network</span></div>
+          <div class="provider-row"><span class="provider-row-key">Entry cert</span><span class="provider-row-val">Google Cloud Digital Leader</span></div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Service Name Equivalents</h2>
+
+    <p>Each cloud provider offers the same core service categories but under different names. Knowing the equivalent services across providers is frequently tested on cloud certification exams and useful for multi-cloud job roles.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Service Category</th>
+            <th>AWS</th>
+            <th>Azure</th>
+            <th>GCP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-term">Virtual Machines (IaaS)</td>
+            <td><span class="tag-aws">EC2</span></td>
+            <td><span class="tag-azure">Azure VMs</span></td>
+            <td><span class="tag-gcp">Compute Engine</span></td>
+          </tr>
+          <tr>
+            <td class="td-term">Serverless Functions</td>
+            <td><span class="tag-aws">Lambda</span></td>
+            <td><span class="tag-azure">Azure Functions</span></td>
+            <td><span class="tag-gcp">Cloud Functions</span></td>
+          </tr>
+          <tr>
+            <td class="td-term">Managed Kubernetes</td>
+            <td><span class="tag-aws">EKS</span></td>
+            <td><span class="tag-azure">AKS</span></td>
+            <td><span class="tag-gcp">GKE</span></td>
+          </tr>
+          <tr>
+            <td class="td-term">Object Storage</td>
+            <td><span class="tag-aws">S3</span></td>
+            <td><span class="tag-azure">Blob Storage</span></td>
+            <td><span class="tag-gcp">Cloud Storage</span></td>
+          </tr>
+          <tr>
+            <td class="td-term">Block Storage</td>
+            <td><span class="tag-aws">EBS</span></td>
+            <td><span class="tag-azure">Managed Disks</span></td>
+            <td><span class="tag-gcp">Persistent Disk</span></td>
+          </tr>
+          <tr>
+            <td class="td-term">Managed Relational DB</td>
+            <td><span class="tag-aws">RDS</span></td>
+            <td><span class="tag-azure">Azure SQL Database</span></td>
+            <td><span class="tag-gcp">Cloud SQL</span></td>
+          </tr>
+          <tr>
+            <td class="td-term">NoSQL / Document DB</td>
+            <td><span class="tag-aws">DynamoDB</span></td>
+            <td><span class="tag-azure">Cosmos DB</span></td>
+            <td><span class="tag-gcp">Firestore / Bigtable</span></td>
+          </tr>
+          <tr>
+            <td class="td-term">Data Warehouse</td>
+            <td><span class="tag-aws">Redshift</span></td>
+            <td><span class="tag-azure">Synapse Analytics</span></td>
+            <td><span class="tag-gcp">BigQuery</span></td>
+          </tr>
+          <tr>
+            <td class="td-term">Content Delivery (CDN)</td>
+            <td><span class="tag-aws">CloudFront</span></td>
+            <td><span class="tag-azure">Azure CDN</span></td>
+            <td><span class="tag-gcp">Cloud CDN</span></td>
+          </tr>
+          <tr>
+            <td class="td-term">DNS</td>
+            <td><span class="tag-aws">Route 53</span></td>
+            <td><span class="tag-azure">Azure DNS</span></td>
+            <td><span class="tag-gcp">Cloud DNS</span></td>
+          </tr>
+          <tr>
+            <td class="td-term">Identity & Access</td>
+            <td><span class="tag-aws">IAM</span></td>
+            <td><span class="tag-azure">Azure AD / Entra ID</span></td>
+            <td><span class="tag-gcp">Cloud IAM</span></td>
+          </tr>
+          <tr>
+            <td class="td-term">Virtual Private Network</td>
+            <td><span class="tag-aws">VPC</span></td>
+            <td><span class="tag-azure">Virtual Network (VNet)</span></td>
+            <td><span class="tag-gcp">VPC</span></td>
+          </tr>
+          <tr>
+            <td class="td-term">Container Registry</td>
+            <td><span class="tag-aws">ECR</span></td>
+            <td><span class="tag-azure">ACR</span></td>
+            <td><span class="tag-gcp">Artifact Registry</span></td>
+          </tr>
+          <tr>
+            <td class="td-term">Monitoring / Logging</td>
+            <td><span class="tag-aws">CloudWatch</span></td>
+            <td><span class="tag-azure">Azure Monitor</span></td>
+            <td><span class="tag-gcp">Cloud Monitoring</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Where Each Provider Excels</h2>
+
+    <p><strong>AWS</strong> has the broadest service catalog — over 200 services — and the most global regions (30+). It has been the market leader since 2006 and has the deepest ecosystem of third-party tools, partner integrations, and community knowledge. AWS tends to be the default choice for startups and new cloud-native projects because the hiring market and talent pool are largest. AWS is the top choice when you have no existing vendor dependencies and want maximum flexibility.</p>
+
+    <p><strong>Azure</strong> dominates enterprises that are already invested in Microsoft's ecosystem. If an organisation runs Active Directory on-premises, uses Office 365, has Windows Server workloads, or develops with .NET, Azure's native integrations make it the obvious choice. Azure Active Directory (now rebranded as Microsoft Entra ID) ties directly into enterprise identity management in a way AWS and GCP cannot match without significant additional configuration. Azure is also the leader in hybrid cloud deployments through Azure Arc, which extends Azure management to on-premises and other cloud environments.</p>
+
+    <p><strong>GCP</strong> is strongest in data analytics, machine learning, and Kubernetes. Google invented Kubernetes (and donated it to open source), so GKE (Google Kubernetes Engine) is widely considered the most mature managed Kubernetes offering. BigQuery, Google's serverless data warehouse, is beloved by data engineers for its speed and ease of use on massive datasets. GCP's global network — the same private fiber backbone Google uses for Search and YouTube — gives it a performance advantage for latency-sensitive global applications.</p>
+
+    <div class="callout">
+      <div class="callout-label">Multi-Cloud is the reality for enterprises</div>
+      <p>Most large organisations use <strong>more than one cloud provider</strong>. They might run production workloads on AWS, use Azure for Active Directory integration and Office 365 tooling, and use GCP for BigQuery analytics. Multi-cloud reduces vendor lock-in and lets organisations use each provider's best services. This is also why cloud skills transfer — the concepts of IaaS, PaaS, VPCs, object storage, IAM, and Kubernetes are the same across providers; only the service names differ.</p>
+    </div>
+
+    <h2>Cloud Certifications — Where to Start</h2>
+
+    <p>Each major cloud provider has a tiered certification track. Entry-level foundational certs require no prerequisites and test cloud concepts broadly. Associate-level certs go deeper into architecture and implementation. Professional and specialty certs require significant hands-on experience.</p>
+
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-provider">AWS — Entry Level</div>
+        <div class="cert-name">AWS Certified Cloud Practitioner</div>
+        <div class="cert-desc">Validates foundational AWS cloud knowledge. Covers core services, pricing, security basics, and the shared responsibility model. No prerequisites. The most recognised entry-level cloud cert on job postings.</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-provider">Azure — Entry Level</div>
+        <div class="cert-name">AZ-900: Microsoft Azure Fundamentals</div>
+        <div class="cert-desc">Microsoft's foundational Azure exam. Covers cloud concepts, core Azure services, pricing, SLAs, and compliance. No prerequisites. Widely considered the easiest entry-level cloud exam — a good starting point for non-technical roles.</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-provider">GCP — Entry Level</div>
+        <div class="cert-name">Google Cloud Digital Leader</div>
+        <div class="cert-desc">Google's foundational cloud certification. Covers GCP core products, digital transformation concepts, and data/ML at a high level. Non-technical cert designed for business and IT professionals rather than engineers.</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-provider">AWS — Associate Level</div>
+        <div class="cert-name">AWS Certified Solutions Architect – Associate</div>
+        <div class="cert-desc">The most popular AWS cert for IT professionals. Covers designing cost-effective, resilient, high-performance architectures on AWS. Recommended after the Cloud Practitioner. Strong ROI in terms of job market demand.</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-provider">Azure — Associate Level</div>
+        <div class="cert-name">AZ-104: Microsoft Azure Administrator</div>
+        <div class="cert-desc">Covers managing Azure subscriptions, identities, storage, compute, and networks. Practical and hands-on. Good for sysadmins and IT ops moving to Azure. Often paired with AZ-900 as a prerequisite.</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-provider">GCP — Associate Level</div>
+        <div class="cert-name">Associate Cloud Engineer</div>
+        <div class="cert-desc">GCP's practitioner-level cert. Covers deploying applications, monitoring operations, and managing GCP projects. More technically demanding than the Digital Leader. Good for engineers working with GKE and GCP infrastructure.</div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Which Cert Should You Pursue First?</div>
+      <p><strong>For maximum job opportunities:</strong> AWS Cloud Practitioner → AWS Solutions Architect Associate.</p>
+      <p><strong>If your employer uses Microsoft:</strong> AZ-900 → AZ-104 (Administrator) or AZ-204 (Developer).</p>
+      <p><strong>For data/ML/Kubernetes:</strong> Google Cloud Digital Leader → Associate Cloud Engineer or Professional Data Engineer.</p>
+      <p>CompTIA also offers <strong>CompTIA Cloud+</strong> as a vendor-neutral cloud certification that covers concepts applicable to all three providers.</p>
+    </div>
+
+    <h2>Pricing Models — Pay-As-You-Go</h2>
+
+    <p>All three cloud providers follow the same fundamental pricing model: <strong>pay only for what you use, when you use it</strong>. This replaces the traditional CapEx model of buying servers upfront with an OpEx model of monthly operational costs that scale with usage. There are no upfront commitments for on-demand pricing.</p>
+
+    <p>All three providers also offer <strong>reserved/committed use discounts</strong> — if you commit to using a service for 1 or 3 years, you get significant discounts (often 30–60%) compared to on-demand pricing. AWS calls these Reserved Instances; Azure calls them Reserved VM Instances or Azure Savings Plans; GCP calls them Committed Use Discounts. For predictable, steady-state workloads, committed pricing dramatically reduces cost.</p>
+
+    <p><strong>Spot/Preemptible pricing</strong> is another option: all three providers offer deeply discounted compute (70–90% cheaper) for workloads that can tolerate interruption. AWS calls these Spot Instances; Azure calls them Spot VMs; GCP calls them Preemptible VMs (now Spot VMs). These are ideal for batch processing, data analysis, and fault-tolerant distributed workloads.</p>
+
+    <div class="callout">
+      <div class="callout-label">Free Tiers</div>
+      <p>AWS, Azure, and GCP all offer free tiers that let you explore their services at no cost. <strong>AWS Free Tier</strong> includes 750 hours/month of t2.micro EC2, 5 GB of S3 storage, and many other services for 12 months. <strong>Azure Free Account</strong> gives $200 credit for 30 days plus 12 months of popular services free. <strong>GCP Free Tier</strong> provides $300 in credits for 90 days plus always-free limits on many services. All three are excellent ways to get hands-on experience before taking a certification exam.</p>
+    </div>
+
+    <h2>Key Scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item"><strong>Scenario:</strong> A startup wants to build a new cloud-native SaaS application with no existing vendor relationships. Which cloud provider is typically recommended? <strong>Answer: AWS</strong> — largest ecosystem, most documentation, most third-party integrations, and the easiest to hire for.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> An enterprise runs Windows Server on-premises, uses Office 365 for email, and manages users through Active Directory. They want to move workloads to cloud. Which provider is the best fit? <strong>Answer: Azure</strong> — native Azure AD/Entra ID integration, Hybrid AD join, and Windows Server licensing benefits (Azure Hybrid Benefit) make it the clear choice.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> A data engineering team needs to run SQL queries against petabyte-scale datasets without managing any infrastructure. Which GCP service is purpose-built for this? <strong>Answer: BigQuery</strong> — Google's serverless, fully-managed data warehouse. Pay per query with no cluster management required.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> What is the AWS equivalent of Azure Blob Storage? <strong>Answer: Amazon S3</strong> (Simple Storage Service) — both are object storage services for unstructured data. GCP's equivalent is Cloud Storage.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> An IT candidate wants to enter cloud with no prior experience and maximise job opportunities. Which certification path is recommended? <strong>Answer: AWS Cloud Practitioner, then AWS Solutions Architect Associate</strong> — AWS has the largest market share and hiring demand of any cloud provider.</div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Ready to Get Cloud Certified?</h3>
+        <p>Check out the best study resources to prepare for AWS, Azure, or CompTIA cloud exams.</p>
+      </div>
+      <a href="best-study-resources.html" class="btn-blue">View Resources →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="cloud-concepts.html" class="related-link">Cloud Concepts (IaaS/PaaS/SaaS)</a>
+      <a href="cloud-deployment-models.html" class="related-link">Cloud Deployment Models</a>
+      <a href="containers-and-docker.html" class="related-link">Containers & Docker</a>
+      <a href="serverless-computing.html" class="related-link">Serverless Computing</a>
+      <a href="cloud-security.html" class="related-link">Cloud Security (CASB, CSPM)</a>
+      <a href="virtualization-explained.html" class="related-link">Virtualisation Explained</a>
+      <a href="identity-and-access-management.html" class="related-link">IAM Explained</a>
+      <a href="best-study-resources.html" class="related-link">Best Study Resources</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Cloud</div>
+      <a href="cloud-concepts.html">Cloud Concepts</a>
+      <a href="containers-and-docker.html">Containers & Docker</a>
+      <a href="serverless-computing.html">Serverless Computing</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Certifications</div>
+      <a href="best-study-resources.html">Best Study Resources</a>
+      <a href="comptia-certifications-roadmap.html">CompTIA Roadmap</a>
+      <a href="cloud-security.html">Cloud Security</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>
