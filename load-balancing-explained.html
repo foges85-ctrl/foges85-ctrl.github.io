@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/load-balancing-explained.html">
+<title>Load Balancing Explained — Algorithms, L4 vs L7 & High Availability | Network+</title>
+<meta name="description" content="Round-robin, least connections, IP hash, L4 vs L7 load balancing, session persistence, and high availability — everything tested on CompTIA Network+ and Security+.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.15) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(0,194,168,.07) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.18) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+@media(max-width:600px){.tech-grid{grid-template-columns:1fr;}}
+.tech-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 22px;box-shadow:var(--card-shadow);}
+.tech-icon{font-size:22px;margin-bottom:10px;}
+.tech-name{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.tech-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.tech-desc strong{color:var(--navy);}
+.tech-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;}
+.tech-chip{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;background:var(--light);border:1px solid var(--border);border-radius:6px;padding:3px 8px;color:var(--navy);}
+.algo-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+@media(max-width:600px){.algo-grid{grid-template-columns:1fr;}}
+.algo-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 22px;box-shadow:var(--card-shadow);border-top:4px solid var(--blue);}
+.algo-card.green{border-top-color:#22c55e;}
+.algo-card.purple{border-top-color:var(--purple);}
+.algo-card.orange{border-top-color:#f97316;}
+.algo-card.teal{border-top-color:var(--teal);}
+.algo-name{font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.algo-badge{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:2px 8px;border-radius:5px;background:var(--light);color:var(--muted);margin-bottom:8px;}
+.algo-desc{font-size:13px;color:var(--text);line-height:1.6;}
+.algo-desc strong{color:var(--navy);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:400px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#eff6ff;}
+.td-term{font-weight:700;color:var(--navy);}
+.callout{background:rgba(26,108,255,.04);border:1px solid rgba(26,108,255,.2);border-left:4px solid var(--blue);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+.layer-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+@media(max-width:600px){.layer-compare{grid-template-columns:1fr;}}
+.layer-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 22px;box-shadow:var(--card-shadow);}
+.layer-card.l4{border-top:4px solid var(--teal);}
+.layer-card.l7{border-top:4px solid var(--purple);}
+.layer-title{font-family:'Outfit',sans-serif;font-size:17px;font-weight:800;color:var(--navy);margin-bottom:4px;}
+.layer-sub{font-size:12px;font-family:'DM Mono',monospace;color:var(--muted);margin-bottom:12px;}
+.layer-item{font-size:13px;color:var(--text);line-height:1.6;padding:6px 0;border-bottom:1px solid var(--border);}
+.layer-item:last-child{border-bottom:none;}
+.layer-item strong{color:var(--navy);}
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-blue{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--blue);color:var(--white);box-shadow:0 6px 20px rgba(26,108,255,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(26,108,255,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.3);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.app-banner{background:linear-gradient(90deg,#0d1f3c 0%,#0a2a50 100%);border-bottom:1px solid rgba(0,194,168,0.25);padding:9px 48px 9px 28px;text-align:center;position:relative;z-index:101;}
+.app-banner-inner{display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;}
+.app-banner-text{font-size:13.5px;font-weight:500;color:rgba(255,255,255,0.82);}
+.app-banner-text strong{color:var(--teal);font-weight:700;}
+.app-banner-cta{display:inline-flex;align-items:center;gap:6px;background:var(--teal);color:var(--navy)!important;font-size:12.5px;font-weight:700;padding:5px 15px;border-radius:100px;white-space:nowrap;}
+.app-banner-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.35);font-size:20px;line-height:1;cursor:pointer;padding:4px 6px;}
+@media(max-width:600px){.app-banner{padding:8px 40px 8px 16px;}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is load balancing?","acceptedAnswer":{"@type":"Answer","text":"Load balancing distributes incoming network traffic across multiple servers to prevent any single server from becoming a bottleneck. A load balancer sits in front of a server pool and forwards each new request to a server based on an algorithm (round-robin, least connections, IP hash, etc.). This improves application availability, scalability, and performance. If a server fails, the load balancer stops sending traffic to it — providing high availability."}},
+{"@type":"Question","name":"What is the difference between Layer 4 and Layer 7 load balancing?","acceptedAnswer":{"@type":"Answer","text":"Layer 4 load balancing operates at the transport layer and makes routing decisions based on IP address and TCP/UDP port only — it cannot inspect the content of requests. It is fast and efficient but less intelligent. Layer 7 load balancing operates at the application layer and can inspect the actual HTTP content — URL paths, headers, cookies, hostnames — to make smarter routing decisions, such as sending /api requests to API servers and /static requests to a CDN origin. L7 load balancers can also terminate SSL, perform content-based routing, and act as an application firewall."}},
+{"@type":"Question","name":"What is session persistence in load balancing?","acceptedAnswer":{"@type":"Answer","text":"Session persistence (also called sticky sessions or session affinity) ensures that all requests from the same client are always sent to the same server during a session. This is important for stateful applications that store session data locally on the server (shopping carts, login sessions). It is typically implemented using a cookie inserted by the load balancer, or by hashing the client's source IP address. The downside is that if the target server fails, that client's session data is lost."}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"IT Study Hub","item":"https://itstudyhub.org/"},{"@type":"ListItem","position":2,"name":"Load Balancing Explained","item":"https://itstudyhub.org/load-balancing-explained.html"}]}
+</script>
+</head>
+<body>
+<div class="app-banner" id="certflashBanner">
+  <div class="app-banner-inner">
+    <span class="app-banner-text">📱 New iOS App — <strong>CertFlash</strong>: CompTIA flashcards built for exam day.</span>
+    <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" class="app-banner-cta" target="_blank" rel="noopener noreferrer">Get it on the App Store ↗</a>
+  </div>
+  <button class="app-banner-close" aria-label="Dismiss" onclick="document.getElementById('certflashBanner').style.display='none'">×</button>
+</div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="vpn.html">VPN</a>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="best-study-resources.html" class="nav-cta">Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="networking.html">Networking</a><span>›</span>
+      <span>Load Balancing</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Network+ · Security+ · High Availability</div>
+    <h1>Load Balancing <span>Explained</span></h1>
+    <p class="page-hero-sub">Algorithms, Layer 4 vs Layer 7, session persistence, and high availability — everything you need to know about load balancing for CompTIA Network+ and Security+ exams.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Quick Answer</div>
+      <div class="quick-answer-text">
+        A <strong>load balancer</strong> distributes traffic across multiple servers so no single server is overwhelmed. Key algorithms: <strong>Round-robin</strong> = each server in turn (simple, equal distribution). <strong>Least connections</strong> = new request goes to whichever server has the fewest active connections. <strong>IP hash</strong> = client's IP determines which server handles all their requests (sticky). <strong>L4 load balancing</strong> = routes by IP/port only (fast). <strong>L7 load balancing</strong> = routes by HTTP content — URL, headers, cookies (smart, can do SSL termination). <strong>High availability</strong> = active/active or active/passive load balancer pairs so no single point of failure.
+      </div>
+    </div>
+
+    <h2>What Is Load Balancing?</h2>
+
+    <p>A <strong>load balancer</strong> is a device or software component that sits in front of a pool of servers and distributes incoming client requests across those servers according to a defined algorithm. Without load balancing, all traffic hits a single server — once that server is saturated, response times degrade and the application fails for users.</p>
+
+    <p>Load balancing solves three core problems simultaneously. <strong>Scalability</strong>: you can add more servers to the pool as demand grows without changing anything on the client side. <strong>Availability</strong>: if a server fails health checks, the load balancer stops routing to it and spreads traffic to the remaining healthy servers. <strong>Performance</strong>: requests are spread so each server operates within its optimal capacity, keeping response times low.</p>
+
+    <p>Load balancers perform <strong>health checks</strong> on pool members — periodically sending requests (TCP connection attempts, HTTP GET requests, or custom scripts) to verify each server is up and responding correctly. A server that fails a configurable number of consecutive health checks is marked <em>down</em> and removed from rotation until it recovers.</p>
+
+    <h2>Load Balancing Algorithms</h2>
+
+    <p>The algorithm determines which server receives each new connection. Different algorithms suit different workload types — no single algorithm is best for every scenario.</p>
+
+    <div class="algo-grid">
+      <div class="algo-card">
+        <div class="algo-name">Round-Robin</div>
+        <div class="algo-badge">Most Common</div>
+        <div class="algo-desc">Requests are distributed to servers in sequence — Server 1, Server 2, Server 3, Server 1, Server 2… <strong>Best when all servers have equal capacity and requests have similar processing time.</strong> Simple and predictable. Weighted round-robin assigns a ratio (e.g. 2:1) so higher-capacity servers receive proportionally more requests.</div>
+      </div>
+      <div class="algo-card green">
+        <div class="algo-name">Least Connections</div>
+        <div class="algo-badge">Dynamic Workloads</div>
+        <div class="algo-desc">Each new request goes to the server currently handling the fewest active connections. <strong>Best when requests vary significantly in processing time</strong> — long-running database queries or file uploads won't bottleneck one server while others sit idle. Weighted least connections factors in server capacity differences.</div>
+      </div>
+      <div class="algo-card purple">
+        <div class="algo-name">IP Hash (Source IP Affinity)</div>
+        <div class="algo-badge">Session Persistence</div>
+        <div class="algo-desc">The client's source IP address is hashed to always map to the same server. <strong>Provides built-in session persistence</strong> without needing application-level cookies. The same user always hits the same server unless that server goes down. Downside: uneven distribution if many clients share a NAT IP.</div>
+      </div>
+      <div class="algo-card orange">
+        <div class="algo-name">Random</div>
+        <div class="algo-badge">Simple</div>
+        <div class="algo-desc">Requests are forwarded to a randomly selected server. Statistically approaches round-robin at high request volumes. <strong>Good for large, homogeneous server pools</strong> where randomness provides natural distribution without tracking overhead.</div>
+      </div>
+      <div class="algo-card teal">
+        <div class="algo-name">Least Response Time</div>
+        <div class="algo-badge">Latency-Sensitive</div>
+        <div class="algo-desc">Combines least connections with lowest average response time — the server that responds fastest and has fewest connections wins. <strong>Best for latency-sensitive applications</strong> like real-time APIs or trading platforms. Requires the load balancer to actively measure server response times.</div>
+      </div>
+      <div class="algo-card">
+        <div class="algo-name">Resource-Based (Adaptive)</div>
+        <div class="algo-badge">Advanced</div>
+        <div class="algo-desc">Load balancer agents on each server report real-time CPU and memory utilization. The load balancer routes to whichever server has the most available resources. <strong>Most intelligent algorithm</strong> but requires additional agents and overhead. Used in enterprise ADC (Application Delivery Controller) platforms.</div>
+      </div>
+    </div>
+
+    <h2>Layer 4 vs Layer 7 Load Balancing</h2>
+
+    <p>The distinction between Layer 4 and Layer 7 is one of the most common exam topics. The key difference is <strong>what information the load balancer can see and act on</strong>.</p>
+
+    <div class="layer-compare">
+      <div class="layer-card l4">
+        <div class="layer-title">Layer 4 — Transport Layer</div>
+        <div class="layer-sub">Operates on IP address + TCP/UDP port</div>
+        <div class="layer-item"><strong>Sees:</strong> Source/destination IP and port only</div>
+        <div class="layer-item"><strong>Cannot see:</strong> HTTP headers, URLs, cookies, or payload content</div>
+        <div class="layer-item"><strong>Speed:</strong> Extremely fast — minimal processing overhead</div>
+        <div class="layer-item"><strong>SSL:</strong> Passes through encrypted traffic unchanged (no termination)</div>
+        <div class="layer-item"><strong>Use case:</strong> TCP load balancing, UDP (DNS, game servers), very high throughput scenarios</div>
+        <div class="layer-item"><strong>Example:</strong> AWS Network Load Balancer (NLB)</div>
+      </div>
+      <div class="layer-card l7">
+        <div class="layer-title">Layer 7 — Application Layer</div>
+        <div class="layer-sub">Operates on full HTTP/HTTPS content</div>
+        <div class="layer-item"><strong>Sees:</strong> URL paths, HTTP headers, host headers, cookies, request body</div>
+        <div class="layer-item"><strong>Can do:</strong> Content-based routing, A/B testing, canary deployments</div>
+        <div class="layer-item"><strong>Speed:</strong> Slower than L4 (must inspect content) but negligible for most apps</div>
+        <div class="layer-item"><strong>SSL:</strong> Terminates SSL/TLS — decrypts, inspects, re-encrypts (or sends plain HTTP to backend)</div>
+        <div class="layer-item"><strong>Use case:</strong> Web applications, microservices routing, WAF integration</div>
+        <div class="layer-item"><strong>Example:</strong> AWS Application Load Balancer (ALB), NGINX, HAProxy</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">📌 Content-Based Routing Example (L7)</div>
+      <p>A single L7 load balancer can route <strong>/api/*</strong> requests to the API server pool, <strong>/static/*</strong> requests to a CDN origin pool, and <strong>/admin/*</strong> requests to a restricted management pool — all based on the URL path in the HTTP request. An L4 load balancer cannot do this because it never sees the URL.</p>
+    </div>
+
+    <h2>Session Persistence (Sticky Sessions)</h2>
+
+    <p>Many web applications store session state locally on the server — user login tokens, shopping cart data, form progress. If a user's subsequent requests are routed to a different server, that server has no knowledge of their session and the user appears logged out or loses their cart.</p>
+
+    <p><strong>Session persistence</strong> (also called sticky sessions or session affinity) solves this by ensuring all requests from the same client always go to the same server. There are two main methods:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>How It Works</th>
+            <th>Pros</th>
+            <th>Cons</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-term">Cookie-based</td>
+            <td>Load balancer inserts a cookie identifying which server handled the first request. Subsequent requests include the cookie, so the LB always routes to the same server.</td>
+            <td>Works behind NAT; precise per-user targeting</td>
+            <td>Requires L7 LB; cookies can be cleared by user</td>
+          </tr>
+          <tr>
+            <td class="td-term">Source IP hash</td>
+            <td>Client's source IP is hashed to a consistent server. Same IP always maps to the same server.</td>
+            <td>No application changes needed; works at L4</td>
+            <td>NAT breaks it — all users behind one NAT IP hit the same server; poor distribution</td>
+          </tr>
+          <tr>
+            <td class="td-term">Application-managed</td>
+            <td>Session state is stored in a shared database or cache (Redis, Memcached) accessible to all servers. Any server can handle any request.</td>
+            <td>True scalability; no single-server dependency</td>
+            <td>Requires application architecture changes; shared cache is a new component to manage</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Exam Tip — Sticky Sessions Trade-off</div>
+      <p>The exam may present a scenario where <strong>users are randomly losing their sessions</strong>. This is the classic symptom of a stateful application running behind a load balancer <em>without</em> session persistence configured. The fix is either: (1) enable sticky sessions on the load balancer, or (2) refactor the application to use a shared session store.</p>
+      <p><strong>Also remember:</strong> if a sticky server fails, that client's session is lost regardless of persistence settings — the session data only existed on that server.</p>
+    </div>
+
+    <h2>High Availability — Active/Active vs Active/Passive</h2>
+
+    <p>The load balancer itself can become a single point of failure. If the load balancer goes down, all traffic is lost. High availability (HA) configurations deploy load balancers in pairs.</p>
+
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-icon">⚡</div>
+        <div class="tech-name">Active/Active</div>
+        <div class="tech-desc">Both load balancers are running simultaneously and each handles a portion of traffic. A shared <strong>virtual IP address (VIP)</strong> floats between them via protocols like VRRP (Virtual Router Redundancy Protocol) or HSRP. If one fails, the other takes over the VIP and handles all traffic. <strong>Better resource utilisation</strong> since both devices are actively working.</div>
+        <div class="tech-chips"><span class="tech-chip">VRRP / HSRP</span><span class="tech-chip">Shared VIP</span><span class="tech-chip">Full utilisation</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🛡️</div>
+        <div class="tech-name">Active/Passive (Standby)</div>
+        <div class="tech-desc">One load balancer handles all traffic; the second is on standby and does nothing until the primary fails. On failure, the standby detects the outage and assumes the VIP. <strong>Simpler to configure</strong> but the standby device is idle hardware — a cost without immediate return. Failover is typically sub-second with modern heartbeat protocols.</div>
+        <div class="tech-chips"><span class="tech-chip">Heartbeat</span><span class="tech-chip">VIP failover</span><span class="tech-chip">Hot standby</span></div>
+      </div>
+    </div>
+
+    <h2>Load Balancer Health Checks</h2>
+
+    <p>Health checks are what enable automatic failover. The load balancer continuously probes each server in the pool at a configurable interval. Common health check types:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Health Check Type</th>
+            <th>What It Tests</th>
+            <th>Use When</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-term">TCP check</td>
+            <td>Opens a TCP connection to the server's port. If the connection succeeds, the server is considered up.</td>
+            <td>Non-HTTP services; quick L4-level liveness check</td>
+          </tr>
+          <tr>
+            <td class="td-term">HTTP/HTTPS check</td>
+            <td>Sends an HTTP GET request to a specific path (e.g. /health) and expects a 200 OK response.</td>
+            <td>Web applications; ensures the app is actually responding, not just the TCP stack</td>
+          </tr>
+          <tr>
+            <td class="td-term">Custom script</td>
+            <td>Runs a script that performs a deeper check — e.g. verifies database connectivity, checks disk space, or tests a critical business function.</td>
+            <td>Critical applications where basic HTTP response isn't sufficient evidence of health</td>
+          </tr>
+          <tr>
+            <td class="td-term">SSL/TLS check</td>
+            <td>Performs an HTTPS health check and validates the certificate. Useful for detecting expired certificates before they cause user-facing errors.</td>
+            <td>HTTPS endpoints; certificate monitoring</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>SSL Termination and SSL Passthrough</h2>
+
+    <p>HTTPS traffic requires careful handling at the load balancer. Two approaches exist, each with different security and performance implications.</p>
+
+    <div class="callout">
+      <div class="callout-label">🔐 SSL Termination</div>
+      <p><strong>The load balancer decrypts HTTPS traffic</strong>, inspects the plain HTTP content (enabling L7 routing, cookie injection, WAF), and then forwards to backend servers either as plain HTTP or re-encrypted HTTPS. This offloads CPU-intensive TLS handshake processing from backend servers. The traffic between load balancer and backend servers is unencrypted — only acceptable if that network segment is trusted (e.g., private VPC).</p>
+      <p><strong>Also called: SSL offloading.</strong> The load balancer holds the TLS certificate and private key.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">🔒 SSL Passthrough</div>
+      <p><strong>The load balancer passes encrypted traffic straight to backend servers</strong> without decrypting it. Backend servers each hold the TLS certificate and handle decryption themselves. This provides end-to-end encryption and hides traffic from the load balancer — but the LB cannot do L7 content inspection, cookie insertion, or WAF filtering. This is an L4-only operation.</p>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Exam Tip — Key Terms to Know</div>
+      <p><strong>VIP (Virtual IP address)</strong> — the IP address clients connect to; floats between load balancers in HA configurations.</p>
+      <p><strong>Pool / server farm</strong> — the group of backend servers the load balancer distributes traffic to.</p>
+      <p><strong>VRRP</strong> — Virtual Router Redundancy Protocol; used between load balancer pairs to manage the VIP.</p>
+      <p><strong>ADC (Application Delivery Controller)</strong> — an enterprise load balancer with advanced features: SSL termination, WAF, compression, caching (e.g. F5 BIG-IP, Citrix ADC).</p>
+    </div>
+
+    <h2>Exam Scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item"><strong>Scenario 1:</strong> Users report they are randomly logged out when browsing an e-commerce site. The site uses a three-server web farm behind a load balancer. <em>Answer:</em> The load balancer does not have session persistence configured. Enable sticky sessions (cookie-based affinity) on the load balancer, or migrate session storage to a shared Redis cache.</div>
+      <div class="scenario-item"><strong>Scenario 2:</strong> A company wants to route requests to <strong>/api/</strong> to a separate pool of API servers while all other requests go to the main web server pool. <em>Answer:</em> This requires a <strong>Layer 7 (application layer) load balancer</strong> with content-based routing rules. An L4 load balancer cannot inspect URLs.</div>
+      <div class="scenario-item"><strong>Scenario 3:</strong> A load balancer fails and all web traffic goes down. How should the architecture be improved? <em>Answer:</em> Deploy a second load balancer in an <strong>active/active or active/passive HA pair</strong> using VRRP to share a virtual IP address. If the primary fails, the secondary takes over the VIP automatically.</div>
+      <div class="scenario-item"><strong>Scenario 4:</strong> One server in a four-server pool is significantly more powerful than the others. Traffic should reflect this difference. <em>Answer:</em> Use <strong>weighted round-robin</strong> (assign a higher weight to the more powerful server) or <strong>weighted least connections</strong> so the powerful server receives proportionally more requests.</div>
+      <div class="scenario-item"><strong>Scenario 5:</strong> A company wants to offload SSL processing from backend web servers to reduce their CPU load. <em>Answer:</em> Configure <strong>SSL termination (SSL offloading)</strong> on the load balancer. The load balancer decrypts HTTPS from clients and forwards plain HTTP (or re-encrypted HTTPS) to backend servers, centralising all TLS processing at the load balancer.</div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Nail your Network+ exam</h3>
+        <p>Free cheat sheets, study guides, and practice scenarios.</p>
+      </div>
+      <a href="network-plus-cheat-sheet.html" class="btn-blue">View Cheat Sheet →</a>
+    </div>
+
+    <h2>Related Topics</h2>
+    <div class="related-grid">
+      <a href="wan-technologies.html" class="related-link">WAN Technologies Explained</a>
+      <a href="proxy-server-explained.html" class="related-link">Proxy Servers Explained</a>
+      <a href="quality-of-service.html" class="related-link">Quality of Service (QoS)</a>
+      <a href="vpn.html" class="related-link">VPN Types & Protocols</a>
+      <a href="routing-protocols.html" class="related-link">Routing Protocols</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free study guides for CompTIA Network+, Security+, A+, and cloud certifications.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Quick Links</div>
+      <a href="index.html">Home</a>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="best-study-resources.html">Study Resources</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-pp">© 2026 IT Study Hub. All rights reserved.</span>
+    <a href="privacy.html" style="color:rgba(255,255,255,.4);">Privacy Policy</a>
+  </div>
+</footer>
+</body>
+</html>

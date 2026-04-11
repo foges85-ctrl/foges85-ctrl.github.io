@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/wan-technologies.html">
+<title>WAN Technologies Explained — MPLS, SD-WAN & Leased Lines | Network+</title>
+<meta name="description" content="MPLS, SD-WAN, leased lines, MPLS vs SD-WAN, frame relay, and every WAN technology tested on CompTIA Network+ — with clear explanations and exam scenarios.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.15) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(0,194,168,.07) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.18) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+@media(max-width:600px){.tech-grid{grid-template-columns:1fr;}}
+.tech-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 22px;box-shadow:var(--card-shadow);}
+.tech-icon{font-size:22px;margin-bottom:10px;}
+.tech-name{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.tech-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.tech-desc strong{color:var(--navy);}
+.tech-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;}
+.tech-chip{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;background:var(--light);border:1px solid var(--border);border-radius:6px;padding:3px 8px;color:var(--navy);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:400px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#eff6ff;}
+.td-term{font-weight:700;color:var(--navy);}
+.callout{background:rgba(26,108,255,.04);border:1px solid rgba(26,108,255,.2);border-left:4px solid var(--blue);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-blue{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--blue);color:var(--white);box-shadow:0 6px 20px rgba(26,108,255,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(26,108,255,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.3);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.app-banner{background:linear-gradient(90deg,#0d1f3c 0%,#0a2a50 100%);border-bottom:1px solid rgba(0,194,168,0.25);padding:9px 48px 9px 28px;text-align:center;position:relative;z-index:101;}
+.app-banner-inner{display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;}
+.app-banner-text{font-size:13.5px;font-weight:500;color:rgba(255,255,255,0.82);}
+.app-banner-text strong{color:var(--teal);font-weight:700;}
+.app-banner-cta{display:inline-flex;align-items:center;gap:6px;background:var(--teal);color:var(--navy)!important;font-size:12.5px;font-weight:700;padding:5px 15px;border-radius:100px;white-space:nowrap;}
+.app-banner-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.35);font-size:20px;line-height:1;cursor:pointer;padding:4px 6px;}
+@media(max-width:600px){.app-banner{padding:8px 40px 8px 16px;}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is MPLS?","acceptedAnswer":{"@type":"Answer","text":"MPLS (Multiprotocol Label Switching) is a WAN routing technique that forwards packets based on short fixed-length labels rather than long IP address lookups. Labels are assigned at the network edge and packets are switched through a provider's core network at high speed along pre-determined Label Switched Paths (LSPs). MPLS provides predictable performance, traffic engineering, and Quality of Service — making it ideal for voice and video traffic. It is a private, managed service provided by carriers."}},
+{"@type":"Question","name":"What is SD-WAN?","acceptedAnswer":{"@type":"Answer","text":"SD-WAN (Software-Defined WAN) applies software-defined networking principles to WAN connectivity. It abstracts the underlying transport — MPLS, broadband internet, LTE, or any combination — into a centrally managed overlay network. SD-WAN intelligently routes traffic across multiple links based on real-time performance metrics, automatically sending latency-sensitive traffic (voice, video) over the best path. SD-WAN dramatically reduces WAN costs compared to pure MPLS by leveraging cheaper internet connections."}},
+{"@type":"Question","name":"What is a leased line?","acceptedAnswer":{"@type":"Answer","text":"A leased line is a dedicated, symmetric, point-to-point connection between two locations provided by a carrier. Unlike broadband, a leased line is not shared with other customers — guaranteed bandwidth is available 24/7. Leased lines are used for connecting branch offices to headquarters, connecting to internet exchanges, and providing reliable low-latency connectivity. They are significantly more expensive than broadband but provide guaranteed SLAs for uptime and performance."}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"IT Study Hub","item":"https://itstudyhub.org/"},{"@type":"ListItem","position":2,"name":"WAN Technologies Explained","item":"https://itstudyhub.org/wan-technologies.html"}]}
+</script>
+</head>
+<body>
+<div class="app-banner" id="certflashBanner">
+  <div class="app-banner-inner">
+    <span class="app-banner-text">📱 New iOS App — <strong>CertFlash</strong>: CompTIA flashcards built for exam day.</span>
+    <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" class="app-banner-cta" target="_blank" rel="noopener noreferrer">Get it on the App Store ↗</a>
+  </div>
+  <button class="app-banner-close" aria-label="Dismiss" onclick="document.getElementById('certflashBanner').style.display='none'">×</button>
+</div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="vpn.html">VPN</a>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="best-study-resources.html" class="nav-cta">Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="networking.html">Networking</a><span>›</span>
+      <span>WAN Technologies</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Network+ · WAN · Enterprise Networking</div>
+    <h1>WAN Technologies <span>Explained</span></h1>
+    <p class="page-hero-sub">MPLS, SD-WAN, leased lines, broadband, and every WAN technology tested on CompTIA Network+ — with a clear MPLS vs SD-WAN comparison and real-world exam scenarios.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Quick Answer</div>
+      <div class="quick-answer-text">
+        A <strong>WAN (Wide Area Network)</strong> connects geographically separated sites. Key technologies: <strong>MPLS</strong> = carrier-managed private network that forwards packets by labels for predictable performance and QoS — expensive but reliable. <strong>SD-WAN</strong> = software-defined overlay that intelligently routes across any mix of links (MPLS + broadband + LTE), reducing costs while maintaining performance. <strong>Leased line</strong> = dedicated point-to-point circuit with guaranteed bandwidth and an SLA — not shared with anyone. <strong>Broadband (cable/DSL/fiber)</strong> = shared internet, cheap but variable performance. For Network+, know what each technology is used for and when to choose it.
+      </div>
+    </div>
+
+    <h2>WAN vs LAN — The Basics</h2>
+
+    <p>A <strong>LAN (Local Area Network)</strong> connects devices within a single building or campus — you own and control all the infrastructure. A <strong>WAN (Wide Area Network)</strong> connects sites across cities, countries, or continents — you typically lease connectivity from a carrier rather than building it yourself.</p>
+
+    <p>The key WAN challenge is balancing <strong>cost, performance, and reliability</strong>. Dedicated private circuits deliver predictable performance but cost significantly more than shared internet. Modern enterprises use a mix of technologies — private MPLS for critical traffic and cheaper internet connections for general traffic, managed intelligently by SD-WAN.</p>
+
+    <h2>MPLS — Multiprotocol Label Switching</h2>
+
+    <p>MPLS is a carrier-provided WAN technology that routes traffic based on <strong>short fixed-length labels</strong> rather than performing complex IP address lookups at every hop. When traffic enters the MPLS network at an <strong>edge router (PE router — Provider Edge)</strong>, the carrier assigns a label. Core routers (P routers — Provider core) forward packets purely by swapping labels, making forwarding extremely fast. When traffic exits the MPLS network, the label is removed and normal IP routing resumes.</p>
+
+    <p>MPLS supports <strong>traffic engineering</strong> — the ability to pre-determine the exact path packets take through the carrier's network, ensuring latency-sensitive traffic (voice, video conferencing) always takes the lowest-latency path. MPLS also supports multiple VPNs over the same infrastructure through <strong>MPLS VPNs (Layer 3 VPN)</strong>, where each customer's traffic is completely isolated from other customers despite sharing the carrier's physical infrastructure.</p>
+
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-icon">✅</div>
+        <div class="tech-name">MPLS Strengths</div>
+        <div class="tech-desc">Predictable, guaranteed performance. Supports QoS classes of service. Traffic engineering — control exact path. Low jitter for voice/video. Private — not shared with general internet traffic. Carrier-managed SLA.</div>
+        <div class="tech-chips"><span class="tech-chip">Predictable latency</span><span class="tech-chip">QoS support</span><span class="tech-chip">Private network</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">⚠️</div>
+        <div class="tech-name">MPLS Weaknesses</div>
+        <div class="tech-desc">Expensive — significantly more costly than broadband. Long provisioning lead times (weeks to months). Rigid topology — changes require carrier involvement. Poor for cloud-bound traffic (must hairpin through HQ). Declining relevance as cloud adoption grows.</div>
+        <div class="tech-chips"><span class="tech-chip">High cost</span><span class="tech-chip">Slow to provision</span><span class="tech-chip">Not cloud-optimised</span></div>
+      </div>
+    </div>
+
+    <h2>SD-WAN — Software-Defined Wide Area Network</h2>
+
+    <p>SD-WAN applies <strong>software-defined networking (SDN)</strong> principles to WAN connectivity. Instead of being locked into a single expensive MPLS circuit, SD-WAN creates an <strong>overlay network</strong> on top of any combination of underlying transport links — MPLS, broadband internet, LTE/5G, or satellite — and manages them through a centralised software controller.</p>
+
+    <p>SD-WAN constantly monitors the performance of every available link (latency, jitter, packet loss) and automatically routes each application's traffic over the best-performing path in real time. <strong>Latency-sensitive applications</strong> (VoIP, video conferencing) are sent over the lowest-latency link; <strong>bulk transfers</strong> (backups, software updates) can use cheaper broadband links. If a link degrades or fails, traffic is instantly rerouted to an alternate path — often without users noticing.</p>
+
+    <p>The result is a dramatic reduction in WAN costs (replacing expensive dedicated MPLS with commodity internet) while maintaining or improving performance for cloud-based applications. SD-WAN also provides <strong>centralised visibility and management</strong> — a single dashboard shows traffic flows, application performance, and security posture across all branch sites simultaneously.</p>
+
+    <div class="callout">
+      <div class="callout-label">MPLS vs SD-WAN — The Modern WAN Choice</div>
+      <p>Most enterprises today are not choosing between MPLS and SD-WAN — they're <strong>replacing or augmenting MPLS with SD-WAN</strong>. A common architecture: keep a lower-bandwidth MPLS circuit for the most critical traffic (real-time voice, financial transactions) while adding cheaper broadband and LTE connections. SD-WAN intelligently manages all three, giving you MPLS-level performance for critical apps at a fraction of the cost of pure MPLS.</p>
+      <p><strong>The tipping point:</strong> when most traffic is destined for cloud applications (Office 365, Salesforce, cloud ERP) rather than a corporate data centre, MPLS's hub-and-spoke model forces all that traffic through HQ — creating a bottleneck. SD-WAN enables direct internet breakout at each branch, dramatically improving cloud application performance.</p>
+    </div>
+
+    <h2>Leased Lines</h2>
+
+    <p>A <strong>leased line</strong> (also called a dedicated line or private circuit) is a <strong>dedicated, symmetric, point-to-point connection</strong> between two fixed locations, provided and maintained by a carrier. Unlike broadband, bandwidth is not shared with other customers — the full contracted capacity is available 24/7 with guaranteed uptime SLAs.</p>
+
+    <p>Common leased line standards include <strong>T1</strong> (1.544 Mbps, North America) and <strong>E1</strong> (2.048 Mbps, Europe), with higher-bandwidth options scaling through T3 (44.7 Mbps) and fiber-based services. Modern leased lines are typically delivered as <strong>Ethernet circuits</strong> (EoF — Ethernet over Fiber) at speeds from 10 Mbps to 10 Gbps.</p>
+
+    <p>Use cases: connecting headquarters to a data centre with guaranteed bandwidth, internet exchange connections for ISPs, point-to-point links between two buildings in the same city. Leased lines are significantly more expensive than broadband but provide the guaranteed performance and SLA that critical links require.</p>
+
+    <h2>Other WAN Technologies</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Technology</th><th>Type</th><th>Key Characteristics</th><th>Use Case</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">DSL</td><td>Broadband</td><td>Uses telephone copper lines. ADSL asymmetric (faster download). VDSL faster but shorter range. Shared last mile.</td><td>Small office, home office broadband</td></tr>
+          <tr><td class="td-term">Cable (DOCSIS)</td><td>Broadband</td><td>Uses coaxial TV cable. Shared neighbourhood segment — performance varies with congestion. High speeds available.</td><td>Home/SMB broadband</td></tr>
+          <tr><td class="td-term">Fiber (FTTH/FTTP)</td><td>Broadband</td><td>Fiber to the premises. Symmetrical speeds available. Lowest latency of broadband options. Gold standard for business.</td><td>Business broadband, ISP backhaul</td></tr>
+          <tr><td class="td-term">LTE / 5G</td><td>Cellular WAN</td><td>Wireless WAN. Used as primary connectivity in remote sites or as failover backup. High latency on LTE vs fiber.</td><td>Remote sites, WAN failover, IoT</td></tr>
+          <tr><td class="td-term">Satellite</td><td>Satellite</td><td>Global coverage. High latency (~600ms geostationary, ~40ms LEO/Starlink). LEO satellites dramatically improved usability.</td><td>Remote/rural sites with no terrestrial option</td></tr>
+          <tr><td class="td-term">Metro Ethernet</td><td>Carrier Ethernet</td><td>Ethernet connectivity across a metropolitan area via carrier fiber. Scalable bandwidth. Point-to-point or multipoint.</td><td>Connecting multiple sites in a city</td></tr>
+          <tr><td class="td-term">Frame Relay</td><td>Legacy packet-switched</td><td>Legacy WAN technology — largely replaced by MPLS and broadband. Uses permanent virtual circuits (PVCs). Still appears on older Network+ exam versions.</td><td>Legacy corporate WANs (historical)</td></tr>
+          <tr><td class="td-term">ATM</td><td>Legacy cell-switched</td><td>Uses fixed 53-byte cells. Very low latency. Legacy carrier backbone technology, largely replaced. May appear on older exams.</td><td>Legacy carrier backbones (historical)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Network+ WAN Key Points</div>
+      <p><strong>MPLS</strong> = label-based switching, traffic engineering, QoS, private carrier network. Key terms: PE router, P router, LSP (Label Switched Path), MPLS VPN.</p>
+      <p><strong>SD-WAN</strong> = software overlay over any WAN links, centralised controller, application-aware routing, reduces cost vs pure MPLS.</p>
+      <p><strong>T1 = 1.544 Mbps</strong> (24 DS0 channels × 64 Kbps). <strong>T3 = 44.7 Mbps</strong> (28 T1s). <strong>E1 = 2.048 Mbps</strong> (30 channels, used in Europe).</p>
+      <p><strong>Frame Relay</strong> and <strong>ATM</strong> are legacy technologies — they appear in older study materials and may appear on exams as "what did MPLS replace?"</p>
+    </div>
+
+    <h2>WAN Connectivity Concepts</h2>
+
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-icon">🌐</div>
+        <div class="tech-name">Point-to-Point</div>
+        <div class="tech-desc">A dedicated link between exactly two locations. Simple, reliable, and predictable. Examples: leased lines, MPLS point-to-point circuits. Higher cost because the circuit is exclusively yours.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🕸️</div>
+        <div class="tech-name">Hub-and-Spoke</div>
+        <div class="tech-desc">All branch sites connect to a central hub (headquarters or data centre). Simple to manage but all inter-branch traffic must transit through the hub — creates bottleneck and latency. Classic MPLS topology.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🔗</div>
+        <div class="tech-name">Full Mesh</div>
+        <div class="tech-desc">Every site connects directly to every other site. Best performance — no transit through hub. Very expensive: N sites requires N×(N-1)/2 circuits. Practical only for small numbers of critical sites.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">⚡</div>
+        <div class="tech-name">Last Mile</div>
+        <div class="tech-desc">The final segment of the network connecting the carrier's infrastructure to the customer's premises. Often the bottleneck in broadband — DSL performance degrades with distance from the exchange. Fiber eliminates this limitation.</div>
+      </div>
+    </div>
+
+    <h2>Exam Scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item"><strong>Scenario:</strong> A company has 50 branch offices connected via MPLS. Most traffic now goes to Office 365 and Salesforce rather than the corporate data centre, and users complain of slow cloud application performance. What solution should be recommended? <strong>Answer: SD-WAN with direct internet breakout.</strong> SD-WAN allows cloud-destined traffic to exit directly at each branch over internet connections rather than hairpinning through HQ via MPLS, dramatically improving cloud application performance.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> A small branch office needs a WAN connection with guaranteed 10 Mbps symmetric bandwidth and a contractual uptime SLA. Internet broadband exists but performance is inconsistent. What WAN technology meets these requirements? <strong>Answer: A leased line (dedicated Ethernet circuit).</strong> Leased lines provide guaranteed symmetric bandwidth and carrier SLAs — unlike broadband which is shared and variable.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> What is the bandwidth of a T1 line, and how many DS0 channels does it contain? <strong>Answer: T1 = 1.544 Mbps, consisting of 24 DS0 channels at 64 Kbps each.</strong></div>
+      <div class="scenario-item"><strong>Scenario:</strong> An organisation wants to use a mix of MPLS, broadband fiber, and LTE as WAN transport for its branches. Which technology enables centralised management and intelligent routing across all three links? <strong>Answer: SD-WAN.</strong> SD-WAN creates an overlay across all transport types and routes traffic intelligently based on application requirements and real-time link performance.</div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for CompTIA Network+?</h3>
+        <p>Check out the full Network+ study guide and cheat sheet.</p>
+      </div>
+      <a href="comptia-network-plus-study-guide.html" class="btn-blue">View Network+ Study Guide →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="vpn.html" class="related-link">VPNs Explained</a>
+      <a href="routing-protocols.html" class="related-link">Routing Protocols</a>
+      <a href="quality-of-service.html" class="related-link">Quality of Service (QoS)</a>
+      <a href="load-balancing-explained.html" class="related-link">Load Balancing Explained</a>
+      <a href="network-segmentation.html" class="related-link">Network Segmentation</a>
+      <a href="vlan-explained.html" class="related-link">VLANs Explained</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="best-network-plus.html" class="related-link">Best Network+ Resources</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Network+</div>
+      <a href="comptia-network-plus-study-guide.html">Network+ Study Guide</a>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="best-network-plus.html">Best Network+ Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Related</div>
+      <a href="vpn.html">VPNs</a>
+      <a href="routing-protocols.html">Routing Protocols</a>
+      <a href="quality-of-service.html">QoS</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>

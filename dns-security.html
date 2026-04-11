@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/dns-security.html">
+<title>DNS Security Explained — DNSSEC, DNS over HTTPS, Cache Poisoning | Security+</title>
+<meta name="description" content="DNSSEC, DNS over HTTPS (DoH), DNS over TLS (DoT), cache poisoning, DNS hijacking, and split-horizon DNS — complete coverage for CompTIA Security+ and Network+ exams.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.15) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(0,194,168,.07) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.18) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+@media(max-width:600px){.tech-grid{grid-template-columns:1fr;}}
+.tech-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 22px;box-shadow:var(--card-shadow);}
+.tech-icon{font-size:22px;margin-bottom:10px;}
+.tech-name{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.tech-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.tech-desc strong{color:var(--navy);}
+.tech-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;}
+.tech-chip{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;background:var(--light);border:1px solid var(--border);border-radius:6px;padding:3px 8px;color:var(--navy);}
+.attack-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+@media(max-width:600px){.attack-grid{grid-template-columns:1fr;}}
+.attack-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 22px;box-shadow:var(--card-shadow);border-left:4px solid #ef4444;}
+.attack-card.orange{border-left-color:#f97316;}
+.attack-card.yellow{border-left-color:#eab308;}
+.attack-card.purple{border-left-color:var(--purple);}
+.attack-name{font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.attack-badge{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:2px 7px;border-radius:5px;background:#fef2f2;color:#dc2626;margin-bottom:8px;}
+.attack-card.orange .attack-badge{background:#fff7ed;color:#c2410c;}
+.attack-card.yellow .attack-badge{background:#fefce8;color:#92400e;}
+.attack-card.purple .attack-badge{background:#f5f3ff;color:#7c3aed;}
+.attack-desc{font-size:13px;color:var(--text);line-height:1.6;}
+.attack-desc strong{color:var(--navy);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:400px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#eff6ff;}
+.td-term{font-weight:700;color:var(--navy);}
+.callout{background:rgba(26,108,255,.04);border:1px solid rgba(26,108,255,.2);border-left:4px solid var(--blue);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+.chain-steps{display:flex;flex-direction:column;gap:0;margin-bottom:40px;}
+.chain-step{display:flex;gap:16px;align-items:flex-start;padding:14px 0;}
+.chain-step:not(:last-child){border-bottom:1px solid var(--border);}
+.chain-num{width:32px;height:32px;border-radius:50%;background:var(--navy);color:var(--white);font-family:'Outfit',sans-serif;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.chain-content{}
+.chain-title{font-family:'Outfit',sans-serif;font-size:14px;font-weight:800;color:var(--navy);margin-bottom:3px;}
+.chain-desc{font-size:13px;color:var(--text);line-height:1.6;}
+.chain-desc strong{color:var(--navy);}
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-blue{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--blue);color:var(--white);box-shadow:0 6px 20px rgba(26,108,255,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(26,108,255,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.3);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.app-banner{background:linear-gradient(90deg,#0d1f3c 0%,#0a2a50 100%);border-bottom:1px solid rgba(0,194,168,0.25);padding:9px 48px 9px 28px;text-align:center;position:relative;z-index:101;}
+.app-banner-inner{display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;}
+.app-banner-text{font-size:13.5px;font-weight:500;color:rgba(255,255,255,0.82);}
+.app-banner-text strong{color:var(--teal);font-weight:700;}
+.app-banner-cta{display:inline-flex;align-items:center;gap:6px;background:var(--teal);color:var(--navy)!important;font-size:12.5px;font-weight:700;padding:5px 15px;border-radius:100px;white-space:nowrap;}
+.app-banner-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.35);font-size:20px;line-height:1;cursor:pointer;padding:4px 6px;}
+@media(max-width:600px){.app-banner{padding:8px 40px 8px 16px;}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is DNSSEC?","acceptedAnswer":{"@type":"Answer","text":"DNSSEC (DNS Security Extensions) adds digital signatures to DNS records to verify their authenticity. When a DNS resolver receives a response, it verifies the cryptographic signature using the zone's public key — if the signature doesn't validate, the response is rejected. This prevents DNS cache poisoning attacks where an attacker injects false DNS records. DNSSEC creates a chain of trust from the DNS root down through TLDs to individual domain zones."}},
+{"@type":"Question","name":"What is the difference between DNS over HTTPS and DNS over TLS?","acceptedAnswer":{"@type":"Answer","text":"Both DNS over HTTPS (DoH) and DNS over TLS (DoT) encrypt DNS queries to prevent eavesdropping and tampering. DoH sends encrypted DNS queries inside standard HTTPS traffic on port 443 — this makes DNS traffic indistinguishable from regular web traffic, preventing interception but also making it harder for network administrators to monitor or filter DNS. DoT uses TLS on a dedicated port 853 — DNS traffic is encrypted but identifiable as DNS, allowing network administrators to monitor and apply policies while still protecting against eavesdropping."}},
+{"@type":"Question","name":"What is DNS cache poisoning?","acceptedAnswer":{"@type":"Answer","text":"DNS cache poisoning (also called DNS spoofing) is an attack where an attacker injects malicious DNS records into a resolver's cache. When a victim queries the resolver for a domain, the resolver returns the attacker's fake IP address instead of the legitimate one, redirecting the victim to a malicious server — often a phishing site. Historically exploited using the Kaminsky attack (race condition in resolvers). DNSSEC cryptographic signatures and source port randomisation are the primary defences."}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"IT Study Hub","item":"https://itstudyhub.org/"},{"@type":"ListItem","position":2,"name":"DNS Security Explained","item":"https://itstudyhub.org/dns-security.html"}]}
+</script>
+</head>
+<body>
+<div class="app-banner" id="certflashBanner">
+  <div class="app-banner-inner">
+    <span class="app-banner-text">📱 New iOS App — <strong>CertFlash</strong>: CompTIA flashcards built for exam day.</span>
+    <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" class="app-banner-cta" target="_blank" rel="noopener noreferrer">Get it on the App Store ↗</a>
+  </div>
+  <button class="app-banner-close" aria-label="Dismiss" onclick="document.getElementById('certflashBanner').style.display='none'">×</button>
+</div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="vpn.html">VPN</a>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="best-study-resources.html" class="nav-cta">Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="networking.html">Networking</a><span>›</span>
+      <span>DNS Security</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Security+ · Network+ · DNS</div>
+    <h1>DNS Security <span>Explained</span></h1>
+    <p class="page-hero-sub">DNSSEC, DNS over HTTPS (DoH), DNS over TLS (DoT), cache poisoning, DNS hijacking, and split-horizon DNS — complete coverage for CompTIA Security+ and Network+ exams.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Quick Answer</div>
+      <div class="quick-answer-text">
+        <strong>DNSSEC</strong> = digital signatures on DNS records — verifies responses are authentic and haven't been tampered with (prevents cache poisoning). <strong>DoH (DNS over HTTPS)</strong> = encrypts DNS queries inside HTTPS on port 443 — hides DNS from ISPs/snoopers but harder for admins to filter. <strong>DoT (DNS over TLS)</strong> = encrypts DNS using TLS on port 853 — encrypted but identifiable as DNS traffic. <strong>Cache poisoning</strong> = attacker injects fake DNS records into a resolver. <strong>DNS hijacking</strong> = attacker changes where DNS queries are sent (via malware, rogue DHCP, or router compromise). DNSSEC prevents cache poisoning; DoH/DoT prevent eavesdropping and on-path manipulation.
+      </div>
+    </div>
+
+    <h2>Why DNS Security Matters</h2>
+
+    <p>DNS is the internet's phone book — it translates human-readable domain names into IP addresses. Nearly every internet connection starts with a DNS query. Because traditional DNS operates in plaintext over UDP port 53, it is vulnerable to <strong>eavesdropping</strong> (anyone on the network can see which domains you're visiting), <strong>tampering</strong> (responses can be modified in transit), and <strong>poisoning</strong> (fake records can be injected into caches).</p>
+
+    <p>A successful DNS attack is particularly dangerous because it operates invisibly to the user. The user types a legitimate URL, the browser shows no obvious warning, and they are seamlessly delivered to an attacker-controlled server. Credentials, sensitive data, and malware delivery can all follow.</p>
+
+    <h2>DNS Attack Types</h2>
+
+    <div class="attack-grid">
+      <div class="attack-card">
+        <div class="attack-name">DNS Cache Poisoning</div>
+        <div class="attack-badge">Spoofing / Injection</div>
+        <div class="attack-desc">Attacker sends forged DNS responses to a resolver before the legitimate response arrives, injecting a fake IP address into the resolver's cache. All subsequent clients querying that resolver get the malicious IP. <strong>Kaminsky attack</strong> (2008) demonstrated this at scale using transaction ID prediction. Defence: <strong>DNSSEC</strong>, randomise source ports and transaction IDs.</div>
+      </div>
+      <div class="attack-card orange">
+        <div class="attack-name">DNS Hijacking</div>
+        <div class="attack-badge">Redirection</div>
+        <div class="attack-desc">Attackers redirect DNS queries to a malicious DNS server that returns attacker-controlled IP addresses. Methods include: <strong>local hijacking</strong> (malware modifies /etc/hosts or DNS settings on the victim's device), <strong>router hijacking</strong> (attacker compromises home/office router to change its DNS settings), or <strong>rogue DHCP</strong> (attacker issues DHCP offers with a malicious DNS server IP).</div>
+      </div>
+      <div class="attack-card yellow">
+        <div class="attack-name">DNS Amplification (DDoS)</div>
+        <div class="attack-badge">DDoS / Reflection</div>
+        <div class="attack-desc">Attacker sends small DNS queries with a <strong>spoofed source IP (victim's IP)</strong> to many open DNS resolvers. The resolvers send large DNS responses to the victim, amplifying traffic. A query of 60 bytes can generate a 3,000-byte response — 50x amplification. Defence: <strong>Response Rate Limiting (RRL)</strong> on DNS servers, BCP38 (ISP-level source address filtering).</div>
+      </div>
+      <div class="attack-card purple">
+        <div class="attack-name">DNS Tunnelling</div>
+        <div class="attack-badge">Data Exfiltration</div>
+        <div class="attack-desc">Attacker encodes data inside DNS queries and responses to exfiltrate data or establish a covert command-and-control channel — bypassing firewalls that allow DNS traffic. Encoded payloads appear in subdomains: <code>exfiltrated-data.attacker.com</code>. Detection: unusually long DNS query names, high query frequency, non-existent TLD patterns. Defence: <strong>DNS monitoring and anomaly detection</strong>.</div>
+      </div>
+    </div>
+
+    <h2>DNSSEC — DNS Security Extensions</h2>
+
+    <p>DNSSEC adds <strong>cryptographic digital signatures</strong> to DNS records so that resolvers can verify that responses are authentic and have not been tampered with in transit. It does not encrypt DNS queries — it only validates their authenticity. DNSSEC creates a <strong>chain of trust</strong> starting from the DNS root zone.</p>
+
+    <div class="chain-steps">
+      <div class="chain-step">
+        <div class="chain-num">1</div>
+        <div class="chain-content">
+          <div class="chain-title">Zone Signing</div>
+          <div class="chain-desc">The DNS zone owner generates a <strong>key pair</strong>. The private key signs each DNS resource record set (RRSET) creating a <strong>RRSIG (Resource Record Signature)</strong> record. The public key is published in the zone as a <strong>DNSKEY</strong> record.</div>
+        </div>
+      </div>
+      <div class="chain-step">
+        <div class="chain-num">2</div>
+        <div class="chain-content">
+          <div class="chain-title">Delegation Signer (DS) Record</div>
+          <div class="chain-desc">A hash of the zone's DNSKEY (called a <strong>DS record</strong>) is published in the <em>parent zone</em>. For example, the .com zone holds a DS record for itstudyhub.com's DNSKEY. This links child zone trust to the parent zone's signature, building the chain of trust upward.</div>
+        </div>
+      </div>
+      <div class="chain-step">
+        <div class="chain-num">3</div>
+        <div class="chain-content">
+          <div class="chain-title">Root Zone Anchor</div>
+          <div class="chain-desc">The chain terminates at the <strong>DNS root zone</strong>, which is signed by ICANN. Resolvers have the root zone's public key pre-configured as a <strong>trust anchor</strong>. This allows validation of the entire chain from root → TLD → domain → record.</div>
+        </div>
+      </div>
+      <div class="chain-step">
+        <div class="chain-num">4</div>
+        <div class="chain-content">
+          <div class="chain-title">Validation</div>
+          <div class="chain-desc">A <strong>validating resolver</strong> retrieves the RRSIG and DNSKEY for each response and verifies the signature cryptographically. If validation fails, the resolver returns SERVFAIL — the client receives no answer. Poisoned or tampered records fail validation because the attacker cannot forge signatures without the zone's private key.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">📌 Key DNSSEC Record Types</div>
+      <p><strong>DNSKEY</strong> — the zone's public key, published in DNS so resolvers can verify signatures.</p>
+      <p><strong>RRSIG</strong> — the digital signature for a resource record set. Included alongside every signed record in a DNSSEC response.</p>
+      <p><strong>DS (Delegation Signer)</strong> — a hash of a child zone's DNSKEY, published in the parent zone. Creates the chain of trust between zones.</p>
+      <p><strong>NSEC / NSEC3</strong> — proves that a DNS name does NOT exist (authenticated denial of existence). Prevents attackers from fabricating negative responses.</p>
+    </div>
+
+    <h2>DNS over HTTPS (DoH) and DNS over TLS (DoT)</h2>
+
+    <p>While DNSSEC validates the authenticity of DNS responses, it does not encrypt them. Traditional DNS over UDP/53 is visible to anyone on the network — ISPs, network administrators, and on-path attackers can see every domain you query. DoH and DoT solve this by encrypting the DNS query and response.</p>
+
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-icon">🔒</div>
+        <div class="tech-name">DNS over HTTPS (DoH)</div>
+        <div class="tech-desc">DNS queries are sent as <strong>HTTPS POST or GET requests</strong> inside standard TLS on <strong>port 443</strong>. DNS traffic is completely indistinguishable from regular HTTPS web traffic — ISPs, firewalls, and even corporate content filters cannot see or block DNS queries without blocking all HTTPS. <strong>Security benefit:</strong> strong encryption and confidentiality. <strong>Enterprise concern:</strong> bypasses DNS-based security controls and monitoring — some organisations block DoH to maintain visibility.</div>
+        <div class="tech-chips"><span class="tech-chip">Port 443</span><span class="tech-chip">HTTPS</span><span class="tech-chip">Hidden from ISP</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🛡️</div>
+        <div class="tech-name">DNS over TLS (DoT)</div>
+        <div class="tech-desc">DNS queries are sent over a <strong>dedicated TLS connection on port 853</strong>. Queries are encrypted but the traffic is <strong>identifiable as DNS</strong> — firewalls can allow or block port 853 specifically. Preferred in enterprise environments where encrypted DNS is desired but DNS visibility and policy enforcement must be maintained. <strong>RFC 7858.</strong> Commonly used by mobile operating systems and privacy-conscious resolvers (Cloudflare 1.1.1.1, Google 8.8.8.8).</div>
+        <div class="tech-chips"><span class="tech-chip">Port 853</span><span class="tech-chip">TLS encrypted</span><span class="tech-chip">Identifiable as DNS</span></div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Exam Tip — DoH vs DoT Port Numbers</div>
+      <p><strong>DoH = port 443</strong> (HTTPS port — blends with web traffic). <strong>DoT = port 853</strong> (unique DNS-over-TLS port — visible and blockable).</p>
+      <p>The exam may present a scenario where a company wants encrypted DNS but needs to maintain the ability to monitor and filter DNS traffic. The answer is <strong>DoT (port 853)</strong> — not DoH, because DoH blends into HTTPS and cannot be separately filtered.</p>
+    </div>
+
+    <h2>Split-Horizon DNS</h2>
+
+    <p>Split-horizon DNS (also called split-brain DNS or split-view DNS) uses <strong>different DNS answers for the same domain depending on who is asking</strong>. Internal users querying from inside the corporate network receive internal IP addresses (or hostnames of internal servers). External users querying from the internet receive public IP addresses.</p>
+
+    <div class="callout">
+      <div class="callout-label">📌 Split-Horizon DNS Use Case</div>
+      <p>A company has an application server accessible internally at 192.168.1.100 and externally via a public IP 203.0.113.45. Without split-horizon, internal users would connect through the external firewall to reach their own server — inefficient and potentially insecure.</p>
+      <p>With split-horizon: <strong>internal DNS server</strong> returns 192.168.1.100 for app.company.com → internal traffic stays internal. <strong>External DNS server</strong> (hosted publicly) returns 203.0.113.45 → internet users connect through the normal public path.</p>
+      <p><strong>Security note:</strong> split-horizon prevents internal server names and addresses from being exposed to external queries — attackers cannot enumerate internal infrastructure via DNS.</p>
+    </div>
+
+    <h2>DNS Security Comparison Table</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Technology</th>
+            <th>What It Protects Against</th>
+            <th>What It Doesn't Do</th>
+            <th>Port</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-term">DNSSEC</td>
+            <td>Cache poisoning, tampered DNS responses, forged records</td>
+            <td>Does not encrypt queries — queries are still visible in plaintext</td>
+            <td>53 (UDP/TCP)</td>
+          </tr>
+          <tr>
+            <td class="td-term">DNS over TLS (DoT)</td>
+            <td>Eavesdropping on DNS queries, on-path manipulation</td>
+            <td>Does not validate record authenticity (use with DNSSEC for full protection)</td>
+            <td>853 (TCP)</td>
+          </tr>
+          <tr>
+            <td class="td-term">DNS over HTTPS (DoH)</td>
+            <td>Eavesdropping, ISP monitoring, network-level censorship</td>
+            <td>Harder for enterprises to filter/monitor; doesn't authenticate records</td>
+            <td>443 (TCP)</td>
+          </tr>
+          <tr>
+            <td class="td-term">DNSSEC + DoT/DoH</td>
+            <td>Both authentication AND encryption — full DNS security</td>
+            <td>Not protection against DNS hijacking at the endpoint (malware)</td>
+            <td>853 or 443</td>
+          </tr>
+          <tr>
+            <td class="td-term">Split-Horizon DNS</td>
+            <td>Internal infrastructure enumeration by external attackers</td>
+            <td>Does not prevent attacks against the DNS server itself</td>
+            <td>53 (UDP/TCP)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Exam Scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item"><strong>Scenario 1:</strong> Users are being redirected to a fake banking site even though they type the correct URL. Investigation reveals the local DNS resolver has incorrect records for the bank's domain. What attack occurred and what is the primary defence? <em>Answer:</em> <strong>DNS cache poisoning</strong>. The attacker injected false records into the resolver's cache. The primary defence is <strong>DNSSEC</strong> — cryptographic signatures on DNS records allow the resolver to detect and reject tampered responses.</div>
+      <div class="scenario-item"><strong>Scenario 2:</strong> A company wants to encrypt DNS queries from employee devices to prevent ISPs from logging which sites employees visit, while still allowing the IT team to monitor and filter DNS traffic at the network level. Which encrypted DNS protocol should they use? <em>Answer:</em> <strong>DNS over TLS (DoT) on port 853</strong>. DoT encrypts DNS queries but uses a dedicated port that is identifiable and manageable — IT can monitor port 853 traffic and apply filtering policy. DoH on port 443 would blend with HTTPS and be much harder to inspect.</div>
+      <div class="scenario-item"><strong>Scenario 3:</strong> An organisation needs internal users to resolve <strong>app.company.com</strong> to an internal private IP address while external users resolve the same name to a public IP. What DNS technique achieves this? <em>Answer:</em> <strong>Split-horizon (split-brain) DNS</strong>. An internal DNS server returns the private IP to internal clients; an external-facing DNS server returns the public IP to internet clients. This also prevents internal IP ranges from being exposed in public DNS.</div>
+      <div class="scenario-item"><strong>Scenario 4:</strong> A security analyst notices unusually long subdomains in DNS queries leaving the network — strings like "dGhpcyBpcyBzZWNyZXQgZGF0YQ.attacker.com". What type of attack is this? <em>Answer:</em> <strong>DNS tunnelling</strong>. The attacker is encoding data (likely Base64) inside DNS query subdomains to exfiltrate data or maintain a covert C2 channel. Detection relies on DNS anomaly monitoring — abnormal subdomain length, query frequency, and entropy analysis.</div>
+      <div class="scenario-item"><strong>Scenario 5:</strong> A company's home office employees have their DNS settings changed by malware on their router, redirecting all DNS queries to an attacker-controlled server. What type of attack is this? <em>Answer:</em> <strong>DNS hijacking via router compromise</strong>. The attacker changed the router's DNS configuration so all DHCP clients receive a malicious DNS server address. DNSSEC alone does not prevent this — even with DNSSEC, if the client's resolver is an attacker-controlled server that ignores validation. Defence: secure router credentials, firmware updates, and monitoring for DNS setting changes.</div>
+      <div class="scenario-item"><strong>Scenario 6:</strong> What record type in DNSSEC proves that a DNS name does NOT exist, preventing attackers from fabricating negative responses? <em>Answer:</em> <strong>NSEC (Next Secure) or NSEC3</strong> records. They provide authenticated denial of existence — the resolver can cryptographically verify that a queried name truly doesn't exist in the zone, preventing an attacker from claiming a domain doesn't exist when it does.</div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Prepare for Security+ and Network+</h3>
+        <p>Free cheat sheets, study guides, and practice scenarios.</p>
+      </div>
+      <a href="network-plus-cheat-sheet.html" class="btn-blue">View Cheat Sheet →</a>
+    </div>
+
+    <h2>Related Topics</h2>
+    <div class="related-grid">
+      <a href="proxy-server-explained.html" class="related-link">Proxy Servers Explained</a>
+      <a href="vpn.html" class="related-link">VPN Types & Protocols</a>
+      <a href="cloud-security.html" class="related-link">Cloud Security</a>
+      <a href="wan-technologies.html" class="related-link">WAN Technologies Explained</a>
+      <a href="load-balancing-explained.html" class="related-link">Load Balancing Explained</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free study guides for CompTIA Network+, Security+, A+, and cloud certifications.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Quick Links</div>
+      <a href="index.html">Home</a>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="best-study-resources.html">Study Resources</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-pp">© 2026 IT Study Hub. All rights reserved.</span>
+    <a href="privacy.html" style="color:rgba(255,255,255,.4);">Privacy Policy</a>
+  </div>
+</footer>
+</body>
+</html>
