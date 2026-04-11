@@ -407,7 +407,7 @@ tbody tr:hover td { background: #f0fbf9; }
   white-space: nowrap;
   transition: background 0.15s, transform 0.1s;
 }
-.app-banner-cta:hover { background: var(--teal2); transform: translateY(-1px); }
+.app-banner-cta:hover { background: #00a896; color: var(--navy) !important; transform: translateY(-1px); }
 .app-banner-close {
   position: absolute;
   right: 14px;
@@ -482,6 +482,11 @@ tbody tr:hover td { background: #f0fbf9; }
   ]
 }
 </script>
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="IT Study Hub">
+  <meta property="og:url" content="https://itstudyhub.org/ssh-explained.html">
+  <meta property="og:title" content="SSH vs Telnet — Why SSH Won and How It Actually Works">
+  <meta property="og:description" content="Telnet sends your password in plaintext — SSH encrypts the whole session. Learn how SSH authentication works, what key pairs do, how tunnelling is used,…">
 </head>
 
 <body>
@@ -689,8 +694,49 @@ tbody tr:hover td { background: #f0fbf9; }
     <div class="code-block">
       <div class="code-label">SSH commands you need to know</div>
       <pre><span class="code-comment"># Connect to a remote host</span>
-<span class="code-hl">ssh <span style="color:rgba(255,255,255,0.4);"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a></span></span>
-<span class="code-hl">ssh <span style="color:rgba(255,255,255,0.4);"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a></span> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a> &nbsp;·&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+<span class="code-hl">ssh user@hostname</span>
+
+<span class="code-comment"># Connect on a non-default port</span>
+<span class="code-hl">ssh -p 2222 user@hostname</span>
+
+<span class="code-comment"># Copy a file to a remote host (SCP)</span>
+<span class="code-hl">scp file.txt user@hostname:/remote/path/</span>
+
+<span class="code-comment"># Generate an SSH key pair (Ed25519 recommended)</span>
+<span class="code-hl">ssh-keygen -t ed25519</span>
+
+<span class="code-comment"># Copy public key to remote host for key-based auth</span>
+<span class="code-hl">ssh-copy-id user@hostname</span></pre>
+    </div>
+
+  </div><!-- end article-body -->
+</article>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+, Network+, and Security+ resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Security+</div>
+      <a href="cryptography.html">What is Cryptography?</a>
+      <a href="network-attacks.html">Common Network Attacks</a>
+      <a href="vpn.html">What is a VPN?</a>
+      <a href="best-security-plus.html">Best Security+ Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="firewall-basics.html">Firewall Basics</a>
+      <a href="subnetting-guide.html">Subnetting</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="ports.html">Port Numbers</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span class="footer-email"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
   </div>
 </footer>
 
