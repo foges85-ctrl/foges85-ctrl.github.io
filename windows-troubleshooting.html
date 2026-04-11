@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/windows-troubleshooting.html">
+<title>Windows Troubleshooting — BSOD, Startup Repair & Safe Mode | CompTIA A+</title>
+<meta name="description" content="How to troubleshoot Windows — BSOD stop codes, startup repair, Safe Mode, System Restore, Recovery Environment, and every Windows troubleshooting scenario tested on CompTIA A+ 220-1202.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.15) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(0,194,168,.07) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+code{font-family:'DM Mono',monospace;background:var(--light);border:1px solid var(--border);border-radius:5px;padding:2px 7px;font-size:13px;color:var(--navy);}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.18) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* BSOD card */
+.bsod-card{background:#0a1628;border-radius:14px;padding:24px 28px;margin-bottom:40px;font-family:'DM Mono',monospace;}
+.bsod-title{color:#ffffff;font-size:14px;font-weight:700;margin-bottom:12px;letter-spacing:.5px;}
+.bsod-code{font-size:22px;font-weight:700;color:#93c5fd;margin-bottom:8px;}
+.bsod-desc{font-size:13px;color:rgba(255,255,255,.6);line-height:1.65;}
+/* Stop code table */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:400px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#eff6ff;}
+.td-term{font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;}
+/* Tool cards */
+.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:40px;}
+@media(max-width:600px){.tool-grid{grid-template-columns:1fr;}}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px;box-shadow:var(--card-shadow);}
+.tool-icon{font-size:22px;margin-bottom:8px;}
+.tool-name{font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.tool-cmd{font-family:'DM Mono',monospace;font-size:12px;color:var(--blue);background:var(--light);border-radius:5px;padding:2px 7px;margin-bottom:8px;display:inline-block;}
+.tool-desc{font-size:13px;color:var(--text);line-height:1.6;}
+.tool-desc strong{color:var(--navy);}
+.callout{background:rgba(26,108,255,.04);border:1px solid rgba(26,108,255,.2);border-left:4px solid var(--blue);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-blue{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--blue);color:var(--white);box-shadow:0 6px 20px rgba(26,108,255,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(26,108,255,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.3);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.app-banner{background:linear-gradient(90deg,#0d1f3c 0%,#0a2a50 100%);border-bottom:1px solid rgba(0,194,168,0.25);padding:9px 48px 9px 28px;text-align:center;position:relative;z-index:101;}
+.app-banner-inner{display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;}
+.app-banner-text{font-size:13.5px;font-weight:500;color:rgba(255,255,255,0.82);letter-spacing:0.1px;}
+.app-banner-text strong{color:var(--teal);font-weight:700;}
+.app-banner-cta{display:inline-flex;align-items:center;gap:6px;background:var(--teal);color:var(--navy)!important;font-size:12.5px;font-weight:700;padding:5px 15px;border-radius:100px;white-space:nowrap;transition:background 0.15s,transform 0.1s;}
+.app-banner-cta:hover{transform:translateY(-1px);}
+.app-banner-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.35);font-size:20px;line-height:1;cursor:pointer;padding:4px 6px;}
+.app-banner-close:hover{color:rgba(255,255,255,0.75);}
+@media(max-width:600px){.app-banner{padding:8px 40px 8px 16px;}.app-banner-text{font-size:12.5px;}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is a BSOD?","acceptedAnswer":{"@type":"Answer","text":"A BSOD (Blue Screen of Death) is a Windows stop error — a critical system failure that Windows cannot recover from. The screen turns blue and displays a stop code (e.g., PAGE_FAULT_IN_NONPAGED_AREA, IRQL_NOT_LESS_OR_EQUAL) that identifies the type of failure. Common causes include faulty RAM, corrupted drivers, hardware failures, overheating, and software conflicts. The stop code is the most important diagnostic information on the BSOD."}},
+{"@type":"Question","name":"What is Safe Mode in Windows?","acceptedAnswer":{"@type":"Answer","text":"Safe Mode starts Windows with a minimal set of drivers and services — only the essential components needed to run the OS. Third-party drivers, startup programs, and most services are not loaded. Safe Mode is used to troubleshoot problems that occur during normal Windows startup — if the issue doesn't occur in Safe Mode, a driver or startup program is the likely cause. Access Safe Mode by pressing F8 during startup (older Windows) or via Settings → Update & Security → Recovery → Advanced startup."}},
+{"@type":"Question","name":"What is the Windows Recovery Environment (WinRE)?","acceptedAnswer":{"@type":"Answer","text":"The Windows Recovery Environment (WinRE) is a special recovery partition on the hard drive that boots automatically when Windows fails to start normally. It provides repair tools including Startup Repair (automatically fixes boot issues), System Restore (reverts to a previous restore point), System Image Recovery, Command Prompt (for manual repairs), and Reset This PC. WinRE can also be accessed from bootable Windows installation media."}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"IT Study Hub","item":"https://itstudyhub.org/"},{"@type":"ListItem","position":2,"name":"Windows Troubleshooting","item":"https://itstudyhub.org/windows-troubleshooting.html"}]}
+</script>
+</head>
+<body>
+<div class="app-banner" id="certflashBanner">
+  <div class="app-banner-inner">
+    <span class="app-banner-text">📱 New iOS App — <strong>CertFlash</strong>: CompTIA flashcards built for exam day.</span>
+    <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" class="app-banner-cta" target="_blank" rel="noopener noreferrer">Get it on the App Store ↗</a>
+  </div>
+  <button class="app-banner-close" aria-label="Dismiss" onclick="document.getElementById('certflashBanner').style.display='none'">×</button>
+</div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="windows-command-line.html">Windows CLI</a>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="best-study-resources.html" class="nav-cta">Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="comptia-aplus-study-guide.html">CompTIA A+</a><span>›</span>
+      <span>Windows Troubleshooting</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · 220-1202 · Operating Systems</div>
+    <h1>Windows <span>Troubleshooting</span></h1>
+    <p class="page-hero-sub">BSOD stop codes, Safe Mode, Startup Repair, System Restore, the Recovery Environment, and every Windows troubleshooting tool and scenario tested on CompTIA A+ 220-1202.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Quick Answer</div>
+      <div class="quick-answer-text">
+        <strong>BSOD (Blue Screen of Death)</strong> = critical Windows error; the stop code identifies the cause. <strong>Safe Mode</strong> = Windows starts with minimal drivers — use it to isolate driver/software problems. <strong>WinRE (Windows Recovery Environment)</strong> = special boot menu with repair tools: Startup Repair, System Restore, Command Prompt, Reset. <strong>System Restore</strong> = rolls back OS to a previous restore point (doesn't affect personal files). <strong>sfc /scannow</strong> = scans and repairs corrupted system files. Know these tools, when to use each one, and how to access them — this is heavily tested on A+ Core 2 (220-1202).
+      </div>
+    </div>
+
+    <h2>BSOD — Blue Screen of Death</h2>
+
+    <p>The Blue Screen of Death (BSOD) is a <strong>stop error</strong> — Windows has encountered a critical problem it cannot recover from and has halted to prevent further damage or data corruption. In Windows 10 and 11 the screen turns blue and displays a sad face emoji with a stop code. In older Windows versions it displayed hexadecimal error codes.</p>
+
+    <div class="bsod-card">
+      <div class="bsod-title">💻 Your PC ran into a problem and needs to restart.</div>
+      <div class="bsod-code">IRQL_NOT_LESS_OR_EQUAL</div>
+      <div class="bsod-desc">Stop code: 0x0000000A · The most important diagnostic information on a BSOD is the stop code name. It tells you what type of failure occurred and where to start troubleshooting.</div>
+    </div>
+
+    <p>The <strong>stop code</strong> is the most important piece of information. Windows also writes a <strong>memory dump file</strong> (minidump) to <code>C:\Windows\Minidump\</code> that captures the system state at the moment of failure. Tools like <strong>WinDbg</strong> or <strong>WhoCrashed</strong> can analyse the dump file to identify which driver or component caused the crash.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Stop Code</th><th>Common Cause</th><th>First Step</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">IRQL_NOT_LESS_OR_EQUAL</td><td>Faulty driver accessing invalid memory address</td><td>Check recently installed drivers; update or roll back</td></tr>
+          <tr><td class="td-term">PAGE_FAULT_IN_NONPAGED_AREA</td><td>RAM failure or driver trying to access paged-out memory</td><td>Run Windows Memory Diagnostic; check drivers</td></tr>
+          <tr><td class="td-term">SYSTEM_SERVICE_EXCEPTION</td><td>Corrupted system file or driver</td><td>Run sfc /scannow; check for Windows updates</td></tr>
+          <tr><td class="td-term">CRITICAL_PROCESS_DIED</td><td>Critical Windows process terminated unexpectedly</td><td>Run sfc /scannow and DISM; check for malware</td></tr>
+          <tr><td class="td-term">KERNEL_SECURITY_CHECK_FAILURE</td><td>Memory corruption — RAM, driver, or malware</td><td>Test RAM; check for malware; update drivers</td></tr>
+          <tr><td class="td-term">NTFS_FILE_SYSTEM</td><td>Corrupt NTFS file system or failing storage drive</td><td>Run chkdsk /f /r; check S.M.A.R.T. data on drive</td></tr>
+          <tr><td class="td-term">DPC_WATCHDOG_VIOLATION</td><td>Driver not responding in time; SSD/driver issue</td><td>Update SSD firmware and storage drivers</td></tr>
+          <tr><td class="td-term">WHEA_UNCORRECTABLE_ERROR</td><td>Hardware failure — CPU, RAM, or overclocking instability</td><td>Check CPU/RAM temps; reset overclocking; test hardware</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 A+ Exam — BSOD Troubleshooting Approach</div>
+      <p>The A+ exam doesn't require you to memorise every stop code, but you should know the general approach: <strong>(1) Note the stop code</strong>. <strong>(2) Check if it happens after a recent change</strong> (driver install, Windows update, new hardware). <strong>(3) Boot into Safe Mode</strong> — if it doesn't BSOD in Safe Mode, a third-party driver or startup program is the cause. <strong>(4) If hardware-related codes appear</strong> (memory, disk), test hardware. <strong>(5) Use sfc /scannow and DISM</strong> to repair corrupted system files.</p>
+    </div>
+
+    <h2>Safe Mode</h2>
+
+    <p>Safe Mode starts Windows with only the <strong>minimum required drivers and services</strong>: the basic display driver, keyboard, mouse, and essential Windows services. Third-party drivers, startup programs, and non-essential services are not loaded. This makes Safe Mode invaluable for troubleshooting because:</p>
+
+    <p>If a problem <strong>does not occur in Safe Mode</strong> → a third-party driver or startup program is the cause. Enable programs one by one (using <code>msconfig</code>) to identify the culprit. If the problem <strong>still occurs in Safe Mode</strong> → the cause is in the core Windows components, hardware, or system files — not third-party software.</p>
+
+    <div class="callout">
+      <div class="callout-label">How to access Safe Mode in Windows 10/11</div>
+      <p><strong>Method 1 — From Settings:</strong> Settings → System → Recovery → Advanced startup → Restart now → Troubleshoot → Advanced options → Startup Settings → Restart → press 4 for Safe Mode or 5 for Safe Mode with Networking.</p>
+      <p><strong>Method 2 — Shift+Restart:</strong> Hold Shift while clicking Restart from the Start menu or login screen. This boots into WinRE where you can access Startup Settings.</p>
+      <p><strong>Method 3 — msconfig:</strong> Run <code>msconfig</code> → Boot tab → check "Safe boot" → restart. (Remember to uncheck this after troubleshooting.)</p>
+      <p><strong>Method 4 — If Windows won't boot:</strong> Interrupt boot 3 times in a row (power off during Windows logo). Windows automatically enters Automatic Repair / WinRE.</p>
+    </div>
+
+    <p><strong>Safe Mode with Networking</strong> loads the same minimal environment as Safe Mode but adds network drivers, allowing internet access. Use this when you need Safe Mode but also need to download drivers or run online malware scans. <strong>Safe Mode with Command Prompt</strong> opens a command prompt instead of the Windows desktop — for advanced repairs.</p>
+
+    <h2>Windows Recovery Environment (WinRE)</h2>
+
+    <p>WinRE is a special pre-OS recovery environment stored on a hidden recovery partition. It boots automatically when Windows fails to start twice, or when you access it manually. WinRE provides several repair tools:</p>
+
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tool-icon">🔧</div>
+        <div class="tool-name">Startup Repair</div>
+        <div class="tool-desc">Automatically diagnoses and fixes common boot problems — missing or corrupted bootloader, missing boot files, incorrect boot configuration. <strong>First tool to try when Windows won't start.</strong> Does not affect user files.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">⏪</div>
+        <div class="tool-name">System Restore</div>
+        <div class="tool-desc">Reverts Windows registry, system files, and installed programs to a previous <strong>restore point</strong> (snapshot). <strong>Does not affect personal files</strong> (documents, photos). Use when a recent driver install, update, or program caused instability.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">💾</div>
+        <div class="tool-name">System Image Recovery</div>
+        <div class="tool-desc">Restores the entire PC from a <strong>system image backup</strong> created with Windows Backup. Replaces the entire drive contents — use this for complete disaster recovery when other options fail and a recent image backup exists.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">⌨️</div>
+        <div class="tool-name">Command Prompt</div>
+        <div class="tool-desc">Opens a full command prompt with access to Windows commands. Use for manual repairs: <code>sfc /scannow</code>, <code>chkdsk</code>, <code>bootrec</code>, <code>bcdedit</code>. The most powerful repair option for advanced troubleshooting.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">🔄</div>
+        <div class="tool-name">Reset This PC</div>
+        <div class="tool-desc">Reinstalls Windows — either <strong>keeping personal files</strong> (removes apps and settings) or <strong>removing everything</strong> (full clean install). Use when the OS is too corrupted to repair but you want to avoid a full manual reinstall from media.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">⚙️</div>
+        <div class="tool-name">Startup Settings</div>
+        <div class="tool-desc">Presents boot options including Safe Mode, Safe Mode with Networking, Safe Mode with Command Prompt, disable driver signature enforcement, and low-resolution video mode. Available after clicking Restart from Advanced Options.</div>
+      </div>
+    </div>
+
+    <h2>Key Windows Repair Commands</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Command</th><th>What It Does</th><th>When to Use</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">sfc /scannow</td><td>System File Checker — scans all protected Windows system files and replaces corrupted ones from a cached copy</td><td>Suspected corrupted system files; after malware removal; frequent crashes</td></tr>
+          <tr><td class="td-term">DISM /Online /Cleanup-Image /RestoreHealth</td><td>Repairs the Windows component store (which sfc uses as its source) — downloads clean files from Windows Update</td><td>Run before sfc if sfc reports it cannot fix errors; deep corruption</td></tr>
+          <tr><td class="td-term">chkdsk C: /f /r</td><td>Checks and repairs file system errors (/f) and scans for bad sectors (/r) on the drive</td><td>Disk errors, slow performance, filesystem corruption, drive-related BSODs</td></tr>
+          <tr><td class="td-term">bootrec /fixmbr</td><td>Repairs the Master Boot Record of the system disk</td><td>Windows won't boot; "Operating system not found" error</td></tr>
+          <tr><td class="td-term">bootrec /fixboot</td><td>Writes a new boot sector to the system partition</td><td>Boot sector corruption; "Bootmgr is missing" error</td></tr>
+          <tr><td class="td-term">bootrec /rebuildbcd</td><td>Scans all disks for Windows installations and rebuilds the BCD (Boot Configuration Data) store</td><td>Multiple Windows installations; BCD corruption</td></tr>
+          <tr><td class="td-term">bcdedit</td><td>Views and edits the Boot Configuration Data store directly</td><td>Advanced boot configuration changes; fixing dual-boot issues</td></tr>
+          <tr><td class="td-term">msconfig</td><td>System Configuration — manages startup programs, services, boot options including Safe Mode</td><td>Identifying startup programs causing issues; enabling Safe Mode; clean boot</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 sfc vs DISM — Order Matters</div>
+      <p>When repairing Windows system files, run them in this order: <strong>DISM first, then sfc</strong>. DISM repairs the component store that sfc uses as its repair source. If sfc runs first and the component store is corrupted, sfc will report errors it cannot fix. After DISM repairs the store, sfc can successfully replace corrupted files. Both commands should be run from an elevated (Administrator) command prompt.</p>
+    </div>
+
+    <h2>System Restore</h2>
+
+    <p>System Restore creates and manages <strong>restore points</strong> — snapshots of Windows system files, the registry, and installed programs at a specific point in time. Windows automatically creates restore points before significant system changes (Windows updates, driver installs, program installs). You can also create restore points manually.</p>
+
+    <p>Restoring to a restore point <strong>reverts Windows back to that state</strong>: registry settings, system files, and installed drivers/programs revert. <strong>Personal files (documents, photos, videos) are not affected.</strong> This is the critical A+ exam distinction — students confuse System Restore with a file backup. It is not a file backup; it only protects system configuration.</p>
+
+    <p>Access System Restore from: <strong>WinRE → Troubleshoot → Advanced options → System Restore</strong>, or from Windows: <strong>Control Panel → Recovery → Open System Restore</strong>, or by running <code>rstrui.exe</code>.</p>
+
+    <h2>Windows Boot Process and Boot Failures</h2>
+
+    <p>Understanding the Windows boot sequence helps diagnose where a failure occurs:</p>
+
+    <p><strong>1. UEFI/BIOS POST</strong> → hardware check → finds bootable drive. <strong>2. Windows Boot Manager</strong> (<code>bootmgr</code>) loads from the system partition. <strong>3. Windows Boot Loader</strong> (<code>winload.exe</code>) loads the Windows kernel. <strong>4. Windows kernel</strong> initialises, loads HAL, and starts Windows services. <strong>5. Login screen appears.</strong></p>
+
+    <p>Common boot failure messages and causes: <strong>"Bootmgr is missing"</strong> → Boot sector or MBR corrupt → run <code>bootrec /fixmbr</code> and <code>bootrec /fixboot</code> from WinRE Command Prompt. <strong>"Operating system not found"</strong> → BIOS can't find a bootable partition → check boot order in BIOS, check drive connection. <strong>"Inaccessible Boot Device"</strong> → Windows can't access the drive during startup → storage driver issue or corrupted BCD → run Startup Repair.</p>
+
+    <h2>Event Viewer</h2>
+
+    <p><strong>Event Viewer</strong> (<code>eventvwr.msc</code>) is the primary Windows log viewer. It records detailed information about every significant system event — errors, warnings, and informational events from the OS, applications, and security subsystem. For A+ troubleshooting, the most important logs are:</p>
+
+    <p><strong>Windows Logs → System</strong>: hardware errors, driver failures, service failures, unexpected shutdowns. <strong>Windows Logs → Application</strong>: application crashes and errors. <strong>Windows Logs → Security</strong>: login events, account changes, security policy changes. Event Viewer is your first stop when investigating a recurring problem — look for Error-level events that correspond to the time the problem occurred.</p>
+
+    <h2>Exam Scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item"><strong>Scenario:</strong> A Windows 10 computer experiences random BSODs with the stop code IRQL_NOT_LESS_OR_EQUAL. The BSODs started after the user installed a new Wi-Fi adapter. What is the most likely cause and solution? <strong>Answer: Faulty or incompatible Wi-Fi adapter driver.</strong> Boot into Safe Mode (which doesn't load the driver), uninstall the driver, then reinstall the latest driver from the manufacturer's website.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> A user's PC displays "Your PC did not start correctly" and boots into Automatic Repair. The user has not made any changes recently. What tool should be tried first? <strong>Answer: Startup Repair.</strong> From WinRE, choose Troubleshoot → Advanced options → Startup Repair. It automatically scans for and fixes common boot configuration problems.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> A technician runs sfc /scannow and receives the message "Windows Resource Protection found corrupt files but was unable to fix some of them." What should be done next? <strong>Answer: Run DISM /Online /Cleanup-Image /RestoreHealth</strong> to repair the component store, then run sfc /scannow again. DISM downloads fresh copies of files from Windows Update to restore the component store.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> After installing a new graphics driver, Windows repeatedly crashes and reboots. The user cannot reach the desktop to uninstall the driver. What is the correct approach? <strong>Answer: Boot into Safe Mode</strong> (Safe Mode doesn't load third-party GPU drivers). From Safe Mode, go to Device Manager, find the display adapter, right-click → Update driver → Roll back driver, or uninstall the driver entirely, then reinstall the correct version.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> A user accidentally deleted important system configuration files. The computer still boots. The user wants to revert to yesterday's settings without losing any personal documents. What should be used? <strong>Answer: System Restore.</strong> Restore to a restore point from before the deletion. System Restore reverts system files, the registry, and installed programs to the restore point state without affecting personal files.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> A technician needs to determine what caused a BSOD that happened yesterday and has not recurred. Windows is currently running normally. Where should the technician look? <strong>Answer: Event Viewer (eventvwr.msc) → Windows Logs → System.</strong> Filter for Critical and Error events around the time the BSOD occurred. The minidump file in C:\Windows\Minidump\ can also be analysed with WinDbg or WhoCrashed for more detail.</div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Preparing for CompTIA A+ Core 2?</h3>
+        <p>220-1202 is 30% Operating Systems — check the full A+ study guide.</p>
+      </div>
+      <a href="comptia-aplus-study-guide.html" class="btn-blue">View A+ Study Guide →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="bios-uefi-explained.html" class="related-link">BIOS & UEFI Explained</a>
+      <a href="hardware-components-guide.html" class="related-link">Hardware Components Guide</a>
+      <a href="windows-command-line.html" class="related-link">Windows Command Line</a>
+      <a href="windows-registry.html" class="related-link">Windows Registry</a>
+      <a href="troubleshooting-methodology.html" class="related-link">Troubleshooting Methodology</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="comptia-aplus-study-guide.html" class="related-link">Full A+ Study Guide</a>
+      <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">CompTIA A+</div>
+      <a href="comptia-aplus-study-guide.html">A+ Study Guide</a>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="best-a-plus.html">Best A+ Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Related</div>
+      <a href="bios-uefi-explained.html">BIOS & UEFI</a>
+      <a href="windows-command-line.html">Windows CLI</a>
+      <a href="troubleshooting-methodology.html">Troubleshooting</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>

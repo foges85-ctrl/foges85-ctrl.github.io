@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/hardware-components-guide.html">
+<title>PC Hardware Components Guide — CPU, RAM, GPU, PSU & More | CompTIA A+</title>
+<meta name="description" content="A complete guide to PC hardware components — CPU, RAM, GPU, PSU, motherboard, storage — with what each does, how to identify failures, and CompTIA A+ exam scenarios.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.15) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(0,194,168,.07) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.18) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* Component cards */
+.comp-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--card-shadow);margin-bottom:28px;}
+.comp-header{padding:16px 22px;display:flex;align-items:center;gap:14px;}
+.comp-emoji{font-size:28px;flex-shrink:0;}
+.comp-header-text{}
+.comp-name{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);}
+.comp-full{font-size:12px;color:rgba(255,255,255,.6);font-family:'DM Mono',monospace;}
+.cpu-h{background:linear-gradient(135deg,#1a6cff,#0a4fd4);}
+.ram-h{background:linear-gradient(135deg,#7c3aed,#5b21b6);}
+.gpu-h{background:linear-gradient(135deg,#10b981,#059669);}
+.psu-h{background:linear-gradient(135deg,#f97316,#ea580c);}
+.mobo-h{background:linear-gradient(135deg,#0a1628,#1e3a5f);}
+.storage-h{background:linear-gradient(135deg,#06b6d4,#0891b2);}
+.comp-body{padding:18px 22px;}
+.comp-body p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:12px;}
+.comp-body p:last-child{margin-bottom:0;}
+.comp-body strong{color:var(--navy);}
+.comp-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+.comp-tag{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;background:var(--light);border:1px solid var(--border);border-radius:6px;padding:3px 8px;color:var(--navy);}
+.comp-tag.warn{background:#fff4ed;border-color:#fed7aa;color:#c2410c;}
+/* Table */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:400px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#eff6ff;}
+.td-term{font-weight:700;color:var(--navy);}
+/* Callout / exam tip */
+.callout{background:rgba(26,108,255,.04);border:1px solid rgba(26,108,255,.2);border-left:4px solid var(--blue);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+/* Scenarios */
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-blue{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--blue);color:var(--white);box-shadow:0 6px 20px rgba(26,108,255,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(26,108,255,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.3);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.app-banner{background:linear-gradient(90deg,#0d1f3c 0%,#0a2a50 100%);border-bottom:1px solid rgba(0,194,168,0.25);padding:9px 48px 9px 28px;text-align:center;position:relative;z-index:101;}
+.app-banner-inner{display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;}
+.app-banner-text{font-size:13.5px;font-weight:500;color:rgba(255,255,255,0.82);letter-spacing:0.1px;}
+.app-banner-text strong{color:var(--teal);font-weight:700;}
+.app-banner-cta{display:inline-flex;align-items:center;gap:6px;background:var(--teal);color:var(--navy)!important;font-size:12.5px;font-weight:700;padding:5px 15px;border-radius:100px;white-space:nowrap;transition:background 0.15s,transform 0.1s;}
+.app-banner-cta:hover{transform:translateY(-1px);}
+.app-banner-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.35);font-size:20px;line-height:1;cursor:pointer;padding:4px 6px;}
+.app-banner-close:hover{color:rgba(255,255,255,0.75);}
+@media(max-width:600px){.app-banner{padding:8px 40px 8px 16px;}.app-banner-text{font-size:12.5px;}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What does a CPU do?","acceptedAnswer":{"@type":"Answer","text":"The CPU (Central Processing Unit) is the primary processor of a computer. It executes instructions from programs by performing arithmetic, logic, control, and input/output operations. CPU performance is determined by clock speed (GHz), number of cores, number of threads, and cache size. Modern CPUs are multi-core — a quad-core CPU has four independent processor cores that can execute instructions simultaneously."}},
+{"@type":"Question","name":"What is the difference between RAM and storage?","acceptedAnswer":{"@type":"Answer","text":"RAM (Random Access Memory) is volatile, fast, temporary working memory — data in RAM is lost when the computer is powered off. It holds the OS, running programs, and active data. Storage (HDD, SSD) is non-volatile, persistent — data remains when powered off. It holds installed programs, files, and the OS image. More RAM allows more programs to run simultaneously; faster storage reduces boot and load times."}},
+{"@type":"Question","name":"What does a PSU do?","acceptedAnswer":{"@type":"Answer","text":"The PSU (Power Supply Unit) converts AC power from the wall outlet into the DC voltages required by PC components — typically +12V (for CPU and GPU), +5V, and +3.3V. The PSU's wattage rating must be sufficient to power all installed components simultaneously. An undersized PSU causes random shutdowns, instability, or failure to boot under load. The 80 Plus certification rating (Bronze, Silver, Gold, Platinum) indicates the PSU's efficiency at converting AC to DC power."}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"IT Study Hub","item":"https://itstudyhub.org/"},{"@type":"ListItem","position":2,"name":"PC Hardware Components Guide","item":"https://itstudyhub.org/hardware-components-guide.html"}]}
+</script>
+</head>
+<body>
+<div class="app-banner" id="certflashBanner">
+  <div class="app-banner-inner">
+    <span class="app-banner-text">📱 New iOS App — <strong>CertFlash</strong>: CompTIA flashcards built for exam day.</span>
+    <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" class="app-banner-cta" target="_blank" rel="noopener noreferrer">Get it on the App Store ↗</a>
+  </div>
+  <button class="app-banner-close" aria-label="Dismiss" onclick="document.getElementById('certflashBanner').style.display='none'">×</button>
+</div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="bios-uefi-explained.html">BIOS & UEFI</a>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="best-study-resources.html" class="nav-cta">Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="comptia-aplus-study-guide.html">CompTIA A+</a><span>›</span>
+      <span>Hardware Components</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · 220-1101 · Hardware</div>
+    <h1>PC Hardware <span>Components Guide</span></h1>
+    <p class="page-hero-sub">CPU, RAM, GPU, PSU, motherboard, and storage — what every component does, how to identify failures, and every hardware scenario tested on CompTIA A+ 220-1101.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Quick Answer</div>
+      <div class="quick-answer-text">
+        The six core PC components: <strong>CPU</strong> = the brain (executes instructions); <strong>RAM</strong> = short-term working memory (volatile, lost on power-off); <strong>GPU</strong> = graphics processor (renders images, also used for AI/ML compute); <strong>PSU</strong> = converts AC wall power to DC voltages the components need; <strong>Motherboard</strong> = the main circuit board connecting everything; <strong>Storage (HDD/SSD)</strong> = long-term non-volatile data storage. The A+ exam tests what each component does, how to identify failure symptoms, and how to select appropriate upgrades.
+      </div>
+    </div>
+
+    <h2>CPU — Central Processing Unit</h2>
+
+    <div class="comp-card">
+      <div class="comp-header cpu-h">
+        <div class="comp-emoji">🧠</div>
+        <div class="comp-header-text">
+          <div class="comp-name">CPU — Central Processing Unit</div>
+          <div class="comp-full">The primary processor — executes all program instructions</div>
+        </div>
+      </div>
+      <div class="comp-body">
+        <p>The CPU is the brain of the computer. It fetches instructions from memory, decodes them, executes them, and writes results back. Every action the computer performs — running software, processing files, responding to input — is ultimately executed by the CPU.</p>
+        <p>Key CPU specifications: <strong>clock speed</strong> (GHz) — how many instruction cycles per second; <strong>cores</strong> — independent processing units within the chip (quad-core = 4 cores running in parallel); <strong>threads</strong> — virtual cores via hyper-threading (a 4-core/8-thread CPU can run 8 concurrent threads); <strong>cache</strong> (L1/L2/L3) — fast on-chip memory storing recently used data.</p>
+        <p>Major CPU manufacturers: <strong>Intel</strong> (Core i3/i5/i7/i9 for consumer; Xeon for servers) and <strong>AMD</strong> (Ryzen 3/5/7/9 for consumer; EPYC for servers). Intel uses LGA (Land Grid Array) sockets; AMD uses PGA (Pin Grid Array) or AM5 LGA sockets. <strong>CPU and motherboard sockets must be compatible</strong> — you cannot install an Intel CPU in an AMD motherboard.</p>
+        <div class="comp-row">
+          <span class="comp-tag">Failure symptom: system won't POST</span>
+          <span class="comp-tag">Failure symptom: BSOD / system freeze</span>
+          <span class="comp-tag warn">Thermal throttling = overheating</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 A+ Exam — CPU Thermal Management</div>
+      <p>The A+ exam frequently tests thermal issues. <strong>Thermal paste</strong> (thermal compound) fills microscopic gaps between the CPU and heat sink, improving heat transfer. Without it (or with dried-out paste), the CPU overheats and throttles. <strong>CPU throttling</strong> = the CPU automatically reduces its clock speed to prevent thermal shutdown. Symptoms: computer runs slowly under load, fans spin at maximum speed, CPU temperature near or above 90°C in monitoring software.</p>
+    </div>
+
+    <h2>RAM — Random Access Memory</h2>
+
+    <div class="comp-card">
+      <div class="comp-header ram-h">
+        <div class="comp-emoji">⚡</div>
+        <div class="comp-header-text">
+          <div class="comp-name">RAM — Random Access Memory</div>
+          <div class="comp-full">Volatile working memory — holds the OS, programs, and active data</div>
+        </div>
+      </div>
+      <div class="comp-body">
+        <p>RAM is the computer's short-term working memory. The OS, running applications, and actively-used data are loaded into RAM because it is far faster than storage (nanosecond access vs millisecond). RAM is <strong>volatile</strong> — its contents are lost when power is removed.</p>
+        <p>Current RAM types: <strong>DDR4</strong> is the most common in systems from 2016–2023. <strong>DDR5</strong> is the current generation (Intel 12th gen+, AMD Ryzen 7000+). DDR generations are not backward-compatible — DDR4 sticks cannot be installed in DDR5 slots. RAM sticks also have physical notches (keys) in different positions to prevent wrong installation.</p>
+        <p>Form factors: <strong>DIMM</strong> (Dual In-Line Memory Module) for desktops — full-length sticks. <strong>SO-DIMM</strong> (Small Outline DIMM) for laptops and small-form-factor PCs — about half the length. Speed is measured in MHz (DDR4-3200 runs at 3200 MHz effective) or as PC rating (PC4-25600 = DDR4-3200).</p>
+        <div class="comp-row">
+          <span class="comp-tag">Failure symptom: system won't POST (beep codes)</span>
+          <span class="comp-tag">Failure symptom: random BSOD with memory errors</span>
+          <span class="comp-tag warn">Fix: reseat sticks, test one at a time</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>RAM Type</th><th>Form Factor</th><th>Use Case</th><th>Voltage</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">DDR4 DIMM</td><td>Full-size (288-pin)</td><td>Desktop PCs (2016–2023)</td><td>1.2V</td></tr>
+          <tr><td class="td-term">DDR5 DIMM</td><td>Full-size (288-pin)</td><td>Modern desktops (2021+)</td><td>1.1V</td></tr>
+          <tr><td class="td-term">DDR4 SO-DIMM</td><td>Small (260-pin)</td><td>Laptops, NUCs</td><td>1.2V</td></tr>
+          <tr><td class="td-term">DDR5 SO-DIMM</td><td>Small (262-pin)</td><td>Modern laptops</td><td>1.1V</td></tr>
+          <tr><td class="td-term">ECC RAM</td><td>DIMM / SO-DIMM</td><td>Servers — detects/corrects bit errors</td><td>Varies</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>GPU — Graphics Processing Unit</h2>
+
+    <div class="comp-card">
+      <div class="comp-header gpu-h">
+        <div class="comp-emoji">🎮</div>
+        <div class="comp-header-text">
+          <div class="comp-name">GPU — Graphics Processing Unit</div>
+          <div class="comp-full">Renders graphics and accelerates parallel compute workloads</div>
+        </div>
+      </div>
+      <div class="comp-body">
+        <p>The GPU handles graphics rendering — converting 3D scene data into the 2D pixels displayed on your monitor. Modern GPUs contain thousands of small cores optimised for parallel processing, making them also excellent for AI/ML training, video encoding, and scientific computing.</p>
+        <p><strong>Discrete GPU</strong>: a dedicated graphics card installed in a PCIe x16 slot, with its own VRAM (Video RAM — typically 8–24 GB). Discrete GPUs from NVIDIA (GeForce) and AMD (Radeon) are required for gaming, video editing, and 3D work. NVIDIA also produces professional cards (Quadro/RTX Pro) for workstations.</p>
+        <p><strong>Integrated GPU</strong>: built into the CPU die (Intel HD/UHD/Iris Xe, AMD Radeon Graphics). Uses system RAM rather than dedicated VRAM. Sufficient for office work, web browsing, and 4K video playback, but not for gaming or GPU compute workloads. Most Intel Core processors include integrated graphics; AMD calls this an APU (Accelerated Processing Unit).</p>
+        <p>Display outputs on modern GPUs: <strong>HDMI</strong> (most common for monitors and TVs), <strong>DisplayPort</strong> (preferred for high refresh rate monitors), <strong>USB-C/Thunderbolt</strong> (on laptops), and legacy <strong>DVI/VGA</strong> (older systems). Multiple monitors can be connected if the GPU has multiple outputs.</p>
+        <div class="comp-row">
+          <span class="comp-tag">Failure symptom: no display output</span>
+          <span class="comp-tag">Failure symptom: screen artifacts / corruption</span>
+          <span class="comp-tag warn">Check: power connectors seated, driver installed</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>PSU — Power Supply Unit</h2>
+
+    <div class="comp-card">
+      <div class="comp-header psu-h">
+        <div class="comp-emoji">⚡</div>
+        <div class="comp-header-text">
+          <div class="comp-name">PSU — Power Supply Unit</div>
+          <div class="comp-full">Converts AC mains power to DC voltages required by components</div>
+        </div>
+      </div>
+      <div class="comp-body">
+        <p>The PSU converts the 120V/240V AC power from the wall outlet into the DC voltages PC components require: <strong>+12V</strong> (primary rail — powers CPU, GPU, storage motors), <strong>+5V</strong> (USB, older drives, logic circuits), and <strong>+3.3V</strong> (RAM, CPU I/O).</p>
+        <p><strong>Wattage</strong> is the PSU's total power output capacity. The PSU must supply enough watts for all components simultaneously under full load. A gaming PC with a high-end GPU might need a 750W–1000W PSU; an office PC might need only 300W. <strong>Undersized PSUs cause random shutdowns, instability under load, or refusal to POST.</strong></p>
+        <p>The <strong>80 Plus certification</strong> rates PSU efficiency — the percentage of AC power converted to DC (the rest becomes heat). Bronze = 82–85% efficient; Gold = 87–90%; Platinum = 90–92%; Titanium = 94%+. Higher efficiency means less wasted heat and lower electricity bills. The certification is printed on the PSU label.</p>
+        <p><strong>Modular vs non-modular</strong>: a modular PSU lets you attach only the cables you need, reducing cable clutter inside the case. Non-modular PSUs have all cables permanently attached.</p>
+        <div class="comp-row">
+          <span class="comp-tag">Failure symptom: system won't turn on</span>
+          <span class="comp-tag">Failure symptom: random shutdown under load</span>
+          <span class="comp-tag warn">Test with PSU tester or multimeter</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>Motherboard</h2>
+
+    <div class="comp-card">
+      <div class="comp-header mobo-h">
+        <div class="comp-emoji">🔌</div>
+        <div class="comp-header-text">
+          <div class="comp-name">Motherboard (System Board / Mainboard)</div>
+          <div class="comp-full">The main circuit board connecting all components</div>
+        </div>
+      </div>
+      <div class="comp-body">
+        <p>The motherboard is the central hub that physically connects and allows communication between every other component. It contains the CPU socket, RAM slots, PCIe slots (for GPU and expansion cards), M.2 slots (for NVMe SSDs), SATA connectors (for drives), USB headers, and the chipset that manages data flow between components.</p>
+        <p><strong>Form factors</strong> define the physical size and mounting hole pattern: <strong>ATX</strong> (standard full-size, 305×244mm) fits in full-tower and mid-tower cases; <strong>Micro-ATX</strong> (244×244mm) is smaller; <strong>Mini-ITX</strong> (170×170mm) is the smallest common form factor for compact builds.</p>
+        <p>The <strong>chipset</strong> (Intel: Z790, B760; AMD: X670, B650) determines which CPU generations are supported, how many PCIe lanes are available, and which features are unlocked (CPU overclocking is typically only available on Intel Z-series and AMD X-series chipsets).</p>
+        <p>The <strong>PCIe (Peripheral Component Interconnect Express) bus</strong> is the high-speed interface for GPUs, NVMe SSDs, and expansion cards. PCIe x16 slots (full bandwidth) are used for GPUs; PCIe x4 and x1 slots are used for other expansion cards. PCIe 4.0 doubles the bandwidth of PCIe 3.0; PCIe 5.0 doubles it again.</p>
+        <div class="comp-row">
+          <span class="comp-tag">CPU socket must match CPU brand/generation</span>
+          <span class="comp-tag">RAM type must match motherboard spec</span>
+          <span class="comp-tag warn">Failure: capacitor bulge, burn marks, no POST</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>Storage — HDD, SSD, and NVMe</h2>
+
+    <div class="comp-card">
+      <div class="comp-header storage-h">
+        <div class="comp-emoji">💾</div>
+        <div class="comp-header-text">
+          <div class="comp-name">Storage — HDD, SSD, NVMe</div>
+          <div class="comp-full">Non-volatile long-term data storage</div>
+        </div>
+      </div>
+      <div class="comp-body">
+        <p><strong>HDD (Hard Disk Drive)</strong> — uses spinning magnetic platters and a moving read/write head. Sequential read speeds of ~150 MB/s. Susceptible to physical shock (the read head can crash into the platter). Failure symptoms: clicking or grinding sounds, S.M.A.R.T. errors, slow read/write, bad sectors. HDDs are still cost-effective for bulk storage (e.g., NAS drives, backup drives).</p>
+        <p><strong>SSD (Solid-State Drive)</strong> using the <strong>SATA interface</strong> — no moving parts; uses flash memory chips. Sequential read speeds of ~550 MB/s. Installs in a 2.5" bay or adapts to a 3.5" bay. Uses the same SATA cable as HDDs. The primary reason for upgrading from an HDD to an SSD is dramatically faster boot times and application load times.</p>
+        <p><strong>NVMe SSD</strong> (Non-Volatile Memory Express) using the <strong>M.2 connector</strong> — plugs directly into a motherboard M.2 slot (no cables). Speeds of 3,500–7,000+ MB/s. Far faster than SATA SSD because NVMe uses the PCIe bus rather than the SATA interface. <strong>M.2 slots can accept either SATA or NVMe drives</strong> depending on the slot — check the motherboard spec before buying.</p>
+        <div class="comp-row">
+          <span class="comp-tag">HDD: click of death = imminent failure</span>
+          <span class="comp-tag">SSD: sudden failure with no warning</span>
+          <span class="comp-tag warn">Always maintain backups of critical data</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>Connectors and Expansion Cards</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Connector / Port</th><th>What It's For</th><th>A+ Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">SATA</td><td>HDD and SATA SSD data + power</td><td>L-shaped connector, 6 Gbps (SATA III)</td></tr>
+          <tr><td class="td-term">M.2 slot</td><td>NVMe SSDs (and some SATA SSDs)</td><td>Keying: B key (SATA/NVMe), M key (NVMe only)</td></tr>
+          <tr><td class="td-term">PCIe x16</td><td>Discrete GPU</td><td>Largest slot; GPU requires significant power</td></tr>
+          <tr><td class="td-term">PCIe x1</td><td>Sound cards, network cards, USB expansion</td><td>Smaller slot</td></tr>
+          <tr><td class="td-term">USB-A / USB-C</td><td>Peripherals, storage, charging</td><td>USB 3.2 Gen 2 = 10 Gbps; USB4 = up to 40 Gbps</td></tr>
+          <tr><td class="td-term">Thunderbolt 4</td><td>High-speed peripherals, docks, external GPU</td><td>Uses USB-C connector; up to 40 Gbps</td></tr>
+          <tr><td class="td-term">24-pin ATX</td><td>Motherboard main power from PSU</td><td>Largest PSU connector on the motherboard</td></tr>
+          <tr><td class="td-term">8-pin EPS / CPU power</td><td>CPU power from PSU</td><td>Separate from 24-pin; near CPU socket</td></tr>
+          <tr><td class="td-term">6+2 PCIe power</td><td>GPU power from PSU</td><td>Required for discrete GPUs over ~75W</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Hardware Troubleshooting Summary</h2>
+
+    <div class="callout">
+      <div class="callout-label">A+ Hardware Troubleshooting Quick Reference</div>
+      <p><strong>No POST, no beeps, no display:</strong> Check power connections, reseat RAM. Could be PSU, RAM, or CPU failure.</p>
+      <p><strong>POST beep codes:</strong> Count the beeps. Multiple short beeps usually indicate RAM. Long beep + short beeps often indicates GPU/video.</p>
+      <p><strong>System powers on but won't boot to OS:</strong> Check storage connection (SATA cable, M.2 seating), verify boot order in BIOS, check for corrupted bootloader.</p>
+      <p><strong>Random shutdowns under load:</strong> PSU insufficient wattage or failing. CPU overheating (check thermal paste, fan). GPU overheating.</p>
+      <p><strong>Screen artifacts, corruption, or no display:</strong> GPU driver issue or GPU hardware failure. Test with integrated graphics if available.</p>
+      <p><strong>Clicking / grinding sound from storage:</strong> HDD mechanical failure — back up immediately, replace drive.</p>
+    </div>
+
+    <h2>Exam Scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item"><strong>Scenario:</strong> A desktop computer shuts down randomly while running games but works fine during light use. What component is most likely to blame? <strong>Answer: PSU (inadequate wattage for full load) or GPU overheating.</strong> Check PSU wattage capacity and GPU temperatures. The system draws maximum power during gaming.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> A technician hears a clicking sound from a computer and the OS is responding very slowly. What action should be taken first? <strong>Answer: Back up the data immediately.</strong> Clicking is a sign of imminent HDD mechanical failure ("click of death"). Replace the drive after backing up.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> A user wants to upgrade a laptop's RAM. The technician notes the laptop uses DDR4 SO-DIMM. The user purchases DDR4 DIMM sticks. Will the upgrade work? <strong>Answer: No.</strong> Laptops use SO-DIMM form factor. DIMM sticks (full-size desktop RAM) will not physically fit in a laptop SO-DIMM slot.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> A newly assembled PC has no video output, but the power light is on and the system sounds like it's running. The discrete GPU is installed. What should the technician check first? <strong>Answer: Verify the monitor cable is connected to the GPU (not the motherboard's video output), check the PCIe power connector from the PSU is attached to the GPU, and reseat the GPU in the PCIe slot.</strong></div>
+      <div class="scenario-item"><strong>Scenario:</strong> A user reports that their computer's performance has degraded significantly over time and the CPU runs at full speed even during idle tasks. What is the most likely cause? <strong>Answer: CPU thermal throttling due to dried-out thermal paste or a clogged CPU heatsink.</strong> Clean the heatsink, replace thermal paste, and verify the CPU cooler fan is working.</div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for CompTIA A+ Hardware?</h3>
+        <p>The A+ 220-1101 exam is 44% Hardware — make sure you're prepared.</p>
+      </div>
+      <a href="comptia-aplus-study-guide.html" class="btn-blue">View A+ Study Guide →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="bios-uefi-explained.html" class="related-link">BIOS & UEFI Explained</a>
+      <a href="storage-types.html" class="related-link">Storage Types (HDD, SSD, NVMe)</a>
+      <a href="raid-levels.html" class="related-link">RAID Levels Explained</a>
+      <a href="windows-troubleshooting.html" class="related-link">Windows Troubleshooting</a>
+      <a href="printer-types-explained.html" class="related-link">Printer Types Explained</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="comptia-aplus-study-guide.html" class="related-link">Full A+ Study Guide</a>
+      <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">CompTIA A+</div>
+      <a href="comptia-aplus-study-guide.html">A+ Study Guide</a>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="best-a-plus.html">Best A+ Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Related</div>
+      <a href="bios-uefi-explained.html">BIOS & UEFI</a>
+      <a href="storage-types.html">Storage Types</a>
+      <a href="windows-troubleshooting.html">Windows Troubleshooting</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>

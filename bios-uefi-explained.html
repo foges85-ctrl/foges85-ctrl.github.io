@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/bios-uefi-explained.html">
+<title>BIOS vs UEFI Explained — POST, Boot Order & Secure Boot | CompTIA A+</title>
+<meta name="description" content="What BIOS and UEFI are, how POST works, how to configure boot order, what Secure Boot does, and every BIOS/UEFI concept tested on CompTIA A+ 220-1101 and 220-1201.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.15) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(0,194,168,.07) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.18) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+/* Comparison table */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:400px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#eff6ff;}
+.td-term{font-weight:700;color:var(--navy);}
+/* POST step cards */
+.steps-list{display:flex;flex-direction:column;gap:12px;margin-bottom:40px;}
+.step-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;display:flex;gap:16px;align-items:flex-start;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.step-num{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--navy);color:var(--white);font-family:'Outfit',sans-serif;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.step-body{}
+.step-title{font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:var(--navy);margin-bottom:4px;}
+.step-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.step-desc strong{color:var(--navy);}
+/* Concept cards */
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+@media(max-width:600px){.concept-grid{grid-template-columns:1fr;}}
+.concept-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 22px;box-shadow:var(--card-shadow);}
+.concept-icon{font-size:24px;margin-bottom:10px;}
+.concept-name{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:8px;}
+.concept-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.concept-desc strong{color:var(--navy);}
+/* Callout */
+.callout{background:rgba(26,108,255,.04);border:1px solid rgba(26,108,255,.2);border-left:4px solid var(--blue);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+/* Exam tip */
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+/* Scenarios */
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+/* CTA */
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-blue{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--blue);color:var(--white);box-shadow:0 6px 20px rgba(26,108,255,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(26,108,255,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.3);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.app-banner{background:linear-gradient(90deg,#0d1f3c 0%,#0a2a50 100%);border-bottom:1px solid rgba(0,194,168,0.25);padding:9px 48px 9px 28px;text-align:center;position:relative;z-index:101;}
+.app-banner-inner{display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;}
+.app-banner-text{font-size:13.5px;font-weight:500;color:rgba(255,255,255,0.82);letter-spacing:0.1px;}
+.app-banner-text strong{color:var(--teal);font-weight:700;}
+.app-banner-cta{display:inline-flex;align-items:center;gap:6px;background:var(--teal);color:var(--navy)!important;font-size:12.5px;font-weight:700;padding:5px 15px;border-radius:100px;white-space:nowrap;transition:background 0.15s,transform 0.1s;}
+.app-banner-cta:hover{transform:translateY(-1px);}
+.app-banner-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.35);font-size:20px;line-height:1;cursor:pointer;padding:4px 6px;transition:color 0.15s;}
+.app-banner-close:hover{color:rgba(255,255,255,0.75);}
+@media(max-width:600px){.app-banner{padding:8px 40px 8px 16px;}.app-banner-text{font-size:12.5px;}}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What is BIOS?","acceptedAnswer":{"@type":"Answer","text":"BIOS (Basic Input/Output System) is firmware stored on a small chip on the motherboard. It is the first software that runs when a computer is powered on. BIOS performs the POST (Power-On Self-Test), initialises hardware components, and then hands off to the bootloader to load the operating system. Traditional BIOS uses a 16-bit processor mode, has a text-based interface, and supports only MBR-partitioned drives up to 2 TB."}},
+    {"@type":"Question","name":"What is UEFI and how is it different from BIOS?","acceptedAnswer":{"@type":"Answer","text":"UEFI (Unified Extensible Firmware Interface) is the modern replacement for BIOS. UEFI supports drives larger than 2 TB (using GPT partitioning instead of MBR), has a graphical mouse-enabled interface, boots faster, supports Secure Boot (which prevents unsigned bootloaders from running), and uses 32-bit or 64-bit processor mode. All modern computers ship with UEFI rather than traditional BIOS."}},
+    {"@type":"Question","name":"What is Secure Boot?","acceptedAnswer":{"@type":"Answer","text":"Secure Boot is a UEFI feature that prevents the computer from booting unsigned or unrecognised bootloaders and operating systems. When enabled, the firmware checks the digital signature of every boot component against a database of trusted keys. If the signature doesn't match, the system refuses to boot that component. This prevents bootkits and rootkits from loading before the OS. Secure Boot is required for Windows 11."}},
+    {"@type":"Question","name":"What does POST stand for and what does it do?","acceptedAnswer":{"@type":"Answer","text":"POST stands for Power-On Self-Test. It is the diagnostic process the BIOS/UEFI runs every time the computer starts. POST checks that essential hardware components — CPU, RAM, storage, and keyboard — are present and functional. If POST succeeds, the system beeps once and proceeds to boot. If POST fails, the system issues a series of beep codes or displays an error on screen to identify the failing component."}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"IT Study Hub","item":"https://itstudyhub.org/"},{"@type":"ListItem","position":2,"name":"BIOS vs UEFI Explained","item":"https://itstudyhub.org/bios-uefi-explained.html"}]}
+</script>
+</head>
+<body>
+<div class="app-banner" id="certflashBanner">
+  <div class="app-banner-inner">
+    <span class="app-banner-text">📱 New iOS App — <strong>CertFlash</strong>: CompTIA flashcards built for exam day.</span>
+    <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" class="app-banner-cta" target="_blank" rel="noopener noreferrer">Get it on the App Store ↗</a>
+  </div>
+  <button class="app-banner-close" aria-label="Dismiss" onclick="document.getElementById('certflashBanner').style.display='none'">×</button>
+</div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="hardware-components-guide.html">Hardware Guide</a>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="best-study-resources.html" class="nav-cta">Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="comptia-aplus-study-guide.html">CompTIA A+</a><span>›</span>
+      <span>BIOS & UEFI</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · 220-1101 · Hardware</div>
+    <h1>BIOS vs UEFI <span>Explained</span></h1>
+    <p class="page-hero-sub">POST, boot order, Secure Boot, CMOS, TPM, and every BIOS/UEFI concept tested on CompTIA A+ — with exam scenarios and a clear breakdown of what changed when UEFI replaced legacy BIOS.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Quick Answer</div>
+      <div class="quick-answer-text">
+        <strong>BIOS</strong> (Basic Input/Output System) is the legacy firmware that initialises hardware and boots the OS. <strong>UEFI</strong> (Unified Extensible Firmware Interface) is its modern replacement — it supports drives over 2 TB, has a graphical interface, boots faster, and adds <strong>Secure Boot</strong> to prevent unauthorised bootloaders. Every time a PC starts, <strong>POST</strong> (Power-On Self-Test) runs first to verify hardware is functional. You access BIOS/UEFI settings by pressing a key (Del, F2, F10) during POST. <strong>Windows 11 requires UEFI with Secure Boot and TPM 2.0.</strong>
+      </div>
+    </div>
+
+    <h2>BIOS vs UEFI — Key Differences</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Property</th><th>Legacy BIOS</th><th>UEFI</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-term">Full name</td><td>Basic Input/Output System</td><td>Unified Extensible Firmware Interface</td></tr>
+          <tr><td class="td-term">Age / status</td><td>1970s–2000s; now legacy</td><td>Current standard on all modern PCs</td></tr>
+          <tr><td class="td-term">Processor mode</td><td>16-bit real mode</td><td>32-bit or 64-bit protected mode</td></tr>
+          <tr><td class="td-term">Interface</td><td>Text-only, keyboard navigation</td><td>Graphical, mouse support available</td></tr>
+          <tr><td class="td-term">Partition table</td><td>MBR (Master Boot Record)</td><td>GPT (GUID Partition Table) — also supports MBR</td></tr>
+          <tr><td class="td-term">Max drive size</td><td>2 TB (MBR limit)</td><td>9.4 ZB (GPT limit — effectively unlimited)</td></tr>
+          <tr><td class="td-term">Max primary partitions</td><td>4 (MBR)</td><td>128 (GPT)</td></tr>
+          <tr><td class="td-term">Secure Boot</td><td>Not supported</td><td>Supported (required for Windows 11)</td></tr>
+          <tr><td class="td-term">Boot speed</td><td>Slower initialisation</td><td>Faster — can use fast boot to skip POST</td></tr>
+          <tr><td class="td-term">Network boot</td><td>PXE boot support</td><td>HTTP boot + PXE boot</td></tr>
+          <tr><td class="td-term">Storage location</td><td>ROM / Flash chip on motherboard</td><td>Flash chip on motherboard (NVRAM)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Why UEFI replaced BIOS</div>
+      <p>The 2 TB hard drive limit was the primary driver. MBR (Master Boot Record) uses 32-bit sector addressing, which caps out at 2 TB. When consumer hard drives exceeded 2 TB, a new standard was needed. GPT (GUID Partition Table), used by UEFI, uses 64-bit addressing and supports drives up to 9.4 ZB. UEFI also added Secure Boot and faster initialisation as significant improvements over BIOS.</p>
+    </div>
+
+    <h2>POST — Power-On Self-Test</h2>
+
+    <p>Every time a computer is powered on, the BIOS/UEFI runs POST before anything else. POST is a diagnostic sequence that checks that essential hardware is present and functioning. If POST passes, the system beeps once (on systems with a speaker) and proceeds to load the bootloader. If POST fails, the system halts and signals the error via <strong>beep codes</strong> or on-screen error messages.</p>
+
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">CPU check</div>
+          <div class="step-desc">The CPU is verified first — if the CPU is faulty, no further testing is possible. A CPU failure usually means the system doesn't start at all (no power light, no beeps, no display).</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">RAM check</div>
+          <div class="step-desc">RAM modules are tested. A <strong>continuous beep or 3 short beeps</strong> (depending on the BIOS manufacturer) typically indicates a RAM failure. Reseating or replacing RAM sticks is the first troubleshooting step.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Video card / display check</div>
+          <div class="step-desc">The video system is initialised. Without a working display, <strong>beep codes</strong> are the primary diagnostic output. <strong>1 long + 2 short beeps</strong> (AMI BIOS) typically indicates a video card error.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Storage and peripheral check</div>
+          <div class="step-desc">Keyboards, storage drives, and other connected hardware are inventoried. A missing keyboard on older systems generates a POST error. Storage drives are detected and listed.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-title">Handoff to bootloader</div>
+          <div class="step-desc">POST passes → BIOS/UEFI checks the configured <strong>boot order</strong> and hands execution to the first bootable device found (USB, hard drive, optical drive, network PXE). The bootloader loads the OS kernel.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 A+ Exam — POST Beep Codes</div>
+      <p>The exact beep code meanings vary by BIOS manufacturer (AMI, Award, Phoenix), but the A+ exam tests the general concept rather than memorising specific codes. <strong>1 short beep = POST passed successfully.</strong> <strong>Multiple beeps or continuous beeping = hardware failure.</strong> The number and pattern of beeps identify which component failed. If there is no beep at all and nothing displays, suspect the CPU, RAM, or power supply.</p>
+    </div>
+
+    <h2>Boot Order (Boot Priority)</h2>
+
+    <p>The <strong>boot order</strong> (also called boot priority or boot sequence) tells the BIOS/UEFI which devices to check for a bootable OS, and in what order. When POST completes, the firmware tries each device in the configured sequence and loads the OS from the first bootable one it finds.</p>
+
+    <p>Common boot order entries include: USB flash drive, DVD/optical drive, hard drive (HDD or SSD), network PXE boot, and SD card. A typical default boot order puts the hard drive first, so the installed OS loads normally. When you need to boot from a USB installer or recovery drive, you temporarily change the boot order to put USB first — or use a <strong>one-time boot menu</strong> (usually F11 or F12 at startup) to select the device without permanently changing the order.</p>
+
+    <div class="callout">
+      <div class="callout-label">Common BIOS/UEFI entry keys</div>
+      <p>The key to press during POST to enter BIOS/UEFI settings varies by manufacturer — but the A+ exam may test this. Common keys: <strong>Del</strong> or <strong>F2</strong> (most common — Dell, ASUS, Lenovo), <strong>F10</strong> (HP), <strong>F1</strong> (IBM/Lenovo ThinkPad), <strong>Esc</strong> (some HP systems). The key is usually displayed briefly on screen during POST. On systems with fast boot enabled, you may need to hold the key or access UEFI settings from within Windows (Settings → Recovery → Advanced startup → UEFI Firmware Settings).</p>
+    </div>
+
+    <h2>Secure Boot</h2>
+
+    <p>Secure Boot is a UEFI security feature that prevents the computer from loading unauthorised bootloaders and early-startup drivers. When Secure Boot is enabled, the UEFI firmware checks the digital signature of each boot component — bootloader, kernel modules, UEFI drivers — against a database of trusted signatures (the <strong>db</strong> database) and a blocklist of known-bad signatures (the <strong>dbx</strong> database).</p>
+
+    <p>If the signature is trusted, the component loads. If the signature is missing or doesn't match a trusted key, the firmware refuses to load it and displays a Secure Boot violation error. This prevents <strong>bootkits</strong> — malware that loads before the OS and is invisible to antivirus software running inside the OS.</p>
+
+    <p><strong>Windows 11 requires Secure Boot to be enabled.</strong> Most Linux distributions also support Secure Boot via Microsoft-signed shim bootloaders. When dual-booting or installing a custom OS, you may need to enrol additional trusted keys or temporarily disable Secure Boot — though disabling it reduces security.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Secure Boot vs TPM — Know the Difference</div>
+      <p><strong>Secure Boot</strong> = verifies the bootloader and early OS components haven't been tampered with. Enforced by UEFI firmware. Prevents bootkits.</p>
+      <p><strong>TPM</strong> (Trusted Platform Module) = a hardware chip that stores cryptographic keys, certificates, and measurements of the boot state. Used by BitLocker to seal encryption keys and detect boot tampering. Both Secure Boot and TPM 2.0 are required for Windows 11.</p>
+      <p>They work together: Secure Boot ensures only trusted boot code runs; TPM records and seals measurements of the trusted boot state. If the boot chain changes (e.g., malware modifies the bootloader), TPM detects the change and BitLocker prompts for recovery key.</p>
+    </div>
+
+    <h2>CMOS and the CMOS Battery</h2>
+
+    <p><strong>CMOS</strong> (Complementary Metal-Oxide Semiconductor) is a small amount of memory on the motherboard that stores BIOS/UEFI settings — including the system date and time, boot order, and hardware configuration. Unlike regular RAM, CMOS is powered by a small lithium coin cell battery (usually a CR2032) so that settings are preserved when the computer is unplugged.</p>
+
+    <p>When the <strong>CMOS battery dies</strong>, the system loses its BIOS settings every time it is powered off. Common symptoms include: the system date and time resetting to a default (January 1, 2000 or similar), incorrect boot order on every startup, or a BIOS/CMOS checksum error message during POST. Replacing the CR2032 battery (a $1–2 part) resolves this.</p>
+
+    <p><strong>Clearing CMOS</strong> resets BIOS settings to factory defaults. This is used to recover from a forgotten BIOS password, fix a misconfigured BIOS that prevents booting, or recover from a failed BIOS flash. Most motherboards have a dedicated CMOS reset jumper; alternatively, removing the CMOS battery for 30 seconds with the system unplugged clears the settings.</p>
+
+    <h2>Other Key BIOS/UEFI Settings</h2>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-icon">🔒</div>
+        <div class="concept-name">BIOS / Supervisor Password</div>
+        <div class="concept-desc">A password that must be entered to access BIOS settings. Prevents unauthorised users from changing boot order, disabling Secure Boot, or altering hardware configuration. A separate <strong>boot password</strong> can require a password before the OS loads.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">⚡</div>
+        <div class="concept-name">Fast Boot / Quick Boot</div>
+        <div class="concept-desc">Skips parts of POST (like RAM testing) to reduce boot time. Useful on modern systems where hardware is reliable. <strong>Disable fast boot</strong> when troubleshooting POST errors or when you need to access the BIOS setup utility during startup.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🖥️</div>
+        <div class="concept-name">Virtualization Support (VT-x / AMD-V)</div>
+        <div class="concept-desc">Enables CPU-level hardware virtualisation. Must be <strong>enabled in BIOS</strong> before hypervisors like Hyper-V, VirtualBox, or VMware Workstation can run 64-bit guest VMs. Often disabled by default on new systems.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🌡️</div>
+        <div class="concept-name">Fan Speed & Thermal Settings</div>
+        <div class="concept-desc">BIOS/UEFI displays current CPU and system temperatures and fan speeds. Fan curve profiles (Silent, Standard, Performance) can be set here. Useful for diagnosing thermal throttling or overheating issues before the OS boots.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🔄</div>
+        <div class="concept-name">BIOS Flashing / Firmware Update</div>
+        <div class="concept-desc">BIOS firmware can be updated (flashed) to add features, fix bugs, or add CPU support. <strong>Never interrupt a BIOS flash</strong> — a failed flash can brick the motherboard. Most modern systems support flashing from a USB drive within the UEFI interface.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🌐</div>
+        <div class="concept-name">PXE Boot (Network Boot)</div>
+        <div class="concept-desc">Allows booting from a network server rather than local storage. Used by IT departments to deploy OS images to many machines simultaneously. Must be <strong>enabled in BIOS</strong> and set in boot order. The system requests a DHCP address and downloads a boot image from a TFTP server.</div>
+      </div>
+    </div>
+
+    <h2>Exam Scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item"><strong>Scenario:</strong> A technician turns on a computer and hears 3 short beeps. The screen is blank. What is the most likely cause? <strong>Answer: RAM failure.</strong> Reseat or replace the RAM sticks. Multiple short beeps during POST indicate a memory error on most BIOS implementations.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> Every time a computer is unplugged from power overnight, the system clock resets to January 1, 2000 and the boot order changes. What component needs to be replaced? <strong>Answer: The CMOS battery (CR2032).</strong> A dead CMOS battery causes BIOS settings to reset when main power is removed.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> A user wants to install Windows 11 but the installer reports that the PC doesn't meet requirements. The CPU and RAM are sufficient. What two BIOS settings should the technician check first? <strong>Answer: Secure Boot (must be enabled) and TPM 2.0 (must be present and enabled).</strong> Both are mandatory Windows 11 requirements.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> A technician needs to boot a PC from a USB drive to run a diagnostic tool. The PC currently boots straight to Windows without showing POST. What are the two options? <strong>Answer: (1) Enter BIOS and change boot order to put USB first, or (2) press F11/F12 during startup for a one-time boot device selection menu.</strong> If fast boot is enabled, it may need to be disabled first.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> A technician installs VirtualBox on a Windows PC but cannot create 64-bit virtual machines. Only 32-bit is available. What is the most likely cause? <strong>Answer: Hardware virtualisation (VT-x or AMD-V) is disabled in BIOS.</strong> Enable it in BIOS/UEFI settings under CPU or Advanced settings.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> What is the difference between MBR and GPT, and when does it matter for the A+ exam? <strong>Answer: MBR (used with legacy BIOS) supports a maximum of 2 TB and 4 primary partitions. GPT (used with UEFI) supports drives over 2 TB and up to 128 partitions.</strong> When installing Windows on a drive larger than 2 TB, GPT partitioning is required.</div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for CompTIA A+?</h3>
+        <p>Check out the full A+ study guide and best resources for the 220-1101 and 220-1202 exams.</p>
+      </div>
+      <a href="comptia-aplus-study-guide.html" class="btn-blue">View A+ Study Guide →</a>
+    </div>
+
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="hardware-components-guide.html" class="related-link">Hardware Components Guide</a>
+      <a href="windows-troubleshooting.html" class="related-link">Windows Troubleshooting</a>
+      <a href="storage-types.html" class="related-link">Storage Types (HDD, SSD, NVMe)</a>
+      <a href="raid-levels.html" class="related-link">RAID Levels Explained</a>
+      <a href="virtualization-explained.html" class="related-link">Virtualisation Explained</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="comptia-aplus-study-guide.html" class="related-link">Full A+ Study Guide</a>
+      <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources for A+, Network+, and Security+ candidates.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">CompTIA A+</div>
+      <a href="comptia-aplus-study-guide.html">A+ Study Guide</a>
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="best-a-plus.html">Best A+ Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Related</div>
+      <a href="hardware-components-guide.html">Hardware Components</a>
+      <a href="windows-troubleshooting.html">Windows Troubleshooting</a>
+      <a href="storage-types.html">Storage Types</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 IT Study Hub &mdash; itstudyhub.org</span>
+    <span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links.</span>
+  </div>
+</footer>
+</body>
+</html>
