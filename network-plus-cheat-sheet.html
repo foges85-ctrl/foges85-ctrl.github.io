@@ -24,6 +24,7 @@
 <meta name="description" content="Everything you need to have memorised for N10-009 on one page — every port number, OSI model layers with protocols, subnetting quick reference, routing…">
 
 <!-- Google AdSense -->
+<script src="https://f.convertkit.com/ckjs/ck.5.js" async></script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
      crossorigin="anonymous"></script>
 
@@ -412,6 +413,40 @@ tbody tr:hover td { background: #f4f8ff; }
   .app-banner { padding: 8px 40px 8px 16px; }
   .app-banner-text { font-size: 12.5px; }
 }
+.email-optin {
+  background: linear-gradient(135deg, #1e0a3c 0%, #0f172a 100%);
+  border: 1px solid rgba(124,58,237,0.3); border-radius: 14px;
+  padding: 28px 32px; margin: 32px 0;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap;
+}
+.email-optin-tag {
+  display: inline-block; background: rgba(124,58,237,0.25);
+  border: 1px solid rgba(124,58,237,0.4); color: #c4b5fd;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  padding: 4px 12px; border-radius: 20px; margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.email-optin h3 {
+  font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800;
+  color: #fff; margin-bottom: 4px;
+}
+.email-optin p { font-size: 13px; color: rgba(255,255,255,0.6); margin: 0; }
+.email-optin-form { display: flex; gap: 10px; flex-wrap: wrap; min-width: 260px; }
+.email-optin-form input[type="email"] {
+  flex: 1; min-width: 190px; padding: 10px 15px;
+  border-radius: 8px; border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.08); color: #fff; font-size: 14px; outline: none;
+}
+.email-optin-form input[type="email"]::placeholder { color: rgba(255,255,255,0.4); }
+.email-optin-form button {
+  background: #7c3aed; color: #fff; font-weight: 700; font-size: 14px;
+  padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer;
+  white-space: nowrap; transition: background 0.2s;
+}
+.email-optin-form button:hover { background: #6d28d9; }
+.email-optin-disclaimer { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 6px; width: 100%; }
+@media (max-width: 600px) { .email-optin { padding: 20px 18px; } }
 </style>
 
 <script type="application/ld+json">
@@ -803,6 +838,22 @@ tbody tr:hover td { background: #f4f8ff; }
       <p>The N10-009 study guide, Dion Training practice exams, and Professor Messer's free course.</p>
     </div>
     <a href="best-network-plus.html" class="btn btn-blue">See Network+ Resources →</a>
+  </div>
+
+  <!-- EMAIL OPT-IN -->
+  <div class="email-optin">
+    <div>
+      <div class="email-optin-tag">📥 Stay Sharp</div>
+      <h3>Want weekly study tips for CompTIA?</h3>
+      <p>Join candidates getting study tips, resource picks, and exam-day advice for A+, Network+, and Security+.</p>
+    </div>
+    <div>
+      <form class="email-optin-form" action="https://app.kit.com/forms/9332274/subscriptions" method="post">
+        <input type="email" name="email_address" placeholder="Enter your email" required>
+        <button type="submit">Subscribe Free →</button>
+        <p class="email-optin-disclaimer">No spam. Unsubscribe anytime.</p>
+      </form>
+    </div>
   </div>
 
   <h2 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:var(--navy);margin-bottom:16px;">Related Articles</h2>
