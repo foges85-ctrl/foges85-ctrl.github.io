@@ -711,6 +711,50 @@ a { color: inherit; text-decoration: none; }
   .homelab-banner-items { justify-content: flex-start; }
 }
 
+/* ── EMAIL OPT-IN BANNER ── */
+.email-optin {
+  background: linear-gradient(135deg, #1e0a3c 0%, #0f172a 100%);
+  border: 1px solid rgba(124,58,237,0.3);
+  border-radius: 16px; padding: 32px 36px; margin-bottom: 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 28px; flex-wrap: wrap;
+}
+.email-optin-left { flex: 1; min-width: 220px; }
+.email-optin-tag {
+  display: inline-block; background: rgba(124,58,237,0.25);
+  border: 1px solid rgba(124,58,237,0.4); color: #c4b5fd;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  padding: 4px 12px; border-radius: 20px; margin-bottom: 12px;
+  text-transform: uppercase;
+}
+.email-optin h3 {
+  font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 800;
+  color: #fff; margin-bottom: 6px; line-height: 1.25;
+}
+.email-optin p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0; }
+.email-optin-form {
+  display: flex; gap: 10px; flex-wrap: wrap; min-width: 280px;
+}
+.email-optin-form input[type="email"] {
+  flex: 1; min-width: 200px; padding: 11px 16px;
+  border-radius: 8px; border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.08); color: #fff; font-size: 14px;
+  outline: none; transition: border-color 0.15s;
+}
+.email-optin-form input[type="email"]::placeholder { color: rgba(255,255,255,0.4); }
+.email-optin-form input[type="email"]:focus { border-color: rgba(124,58,237,0.6); }
+.email-optin-form button {
+  background: #7c3aed; color: #fff; font-weight: 700; font-size: 14px;
+  padding: 11px 22px; border-radius: 8px; border: none; cursor: pointer;
+  white-space: nowrap; transition: background 0.2s, transform 0.15s;
+}
+.email-optin-form button:hover { background: #6d28d9; transform: translateY(-1px); }
+.email-optin-disclaimer { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 8px; width: 100%; }
+@media (max-width: 680px) {
+  .email-optin { padding: 24px 20px; }
+  .email-optin-form { width: 100%; }
+}
+
 /* ── FOOTER ── */
 .footer {
   background: var(--navy);
@@ -1005,6 +1049,23 @@ a { color: inherit; text-decoration: none; }
       <div class="homelab-banner-cta">Browse Gear →</div>
     </div>
   </a>
+
+  <!-- EMAIL OPT-IN BANNER -->
+  <!-- TO ACTIVATE: Sign up at kit.com (free), create a form, and replace the action URL below with your ConvertKit form action URL (e.g. https://app.convertkit.com/forms/YOUR_FORM_ID/subscriptions) -->
+  <div class="email-optin">
+    <div class="email-optin-left">
+      <div class="email-optin-tag">📥 Free Resource</div>
+      <h3>Get the Free Security+ Cheat Sheet</h3>
+      <p>Every algorithm, attack type, and protocol you need for SY0-701 — plus weekly study tips for CompTIA candidates.</p>
+    </div>
+    <div>
+      <form class="email-optin-form" action="#" method="post" onsubmit="alert('Email signup coming soon! Check back shortly.'); return false;">
+        <input type="email" name="email_address" placeholder="Enter your email address" required>
+        <button type="submit">Get Free Access →</button>
+        <p class="email-optin-disclaimer">No spam. Unsubscribe anytime.</p>
+      </form>
+    </div>
+  </div>
 
   <!-- ARTICLES SECTION -->
   <div class="section-header">
