@@ -199,6 +199,49 @@ tbody tr:hover td{background:#f0fdf9;}
   .app-banner { padding: 8px 40px 8px 16px; }
   .app-banner-text { font-size: 12.5px; }
 }
+
+/* ── AUTHOR BAR ── */
+.author-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+.author-bar-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.author-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800; font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.author-info {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.author-name {
+  font-size: 14px; font-weight: 700; color: var(--navy);
+}
+.author-creds {
+  font-size: 12px; color: var(--muted);
+}
+.author-date {
+  margin-left: auto;
+  font-size: 12px; color: var(--muted);
+  white-space: nowrap;
+}
+@media (max-width: 768px) {
+  .author-bar-inner { padding: 12px 16px; }
+  .author-date { display: none; }
+}
+
 </style>
 
 <script type="application/ld+json">
@@ -269,6 +312,17 @@ tbody tr:hover td{background:#f0fdf9;}
   </div>
 </section>
 
+
+<div class="author-bar">
+  <div class="author-bar-inner">
+    <div class="author-avatar">SF</div>
+    <div class="author-info">
+      <span class="author-name">Sean Fogarty</span>
+      <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
+    </div>
+    <div class="author-date">Updated April 2026</div>
+  </div>
+</div>
 <div class="article-wrap">
   <div class="article-body">
 
