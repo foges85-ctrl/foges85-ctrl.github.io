@@ -590,6 +590,58 @@ tbody tr:hover td{background:var(--light);}
       <div class="scenario-item">After following all troubleshooting steps, a technician cannot resolve a hardware failure. What is the appropriate next action? <strong>Escalate to tier 2 or a hardware specialist, providing the full documented record of what was found and what was tried. Escalation is a defined and expected outcome of step 3 - not a failure.</strong></div>
     </div>
 
+    <h2>Device-Specific Troubleshooting Patterns</h2>
+
+    <p>The CompTIA A+ exam presents troubleshooting scenarios across multiple device categories. Here are the systematic approaches for the most commonly tested device types.</p>
+
+    <p><strong>Desktop/laptop won't power on</strong>: Step 1 — verify the power source. Is the power cable plugged in? Is the outlet live (test with another device)? Is the power strip switched on? For laptops, try removing the battery and running on AC power only. For desktops, check whether the front panel power switch connector is properly seated on the motherboard header. If power LEDs light but the system doesn't POST, the fault is likely the PSU (under load), RAM, or CPU. POST beep codes (if audible) identify the component.</p>
+
+    <p><strong>Display issues</strong>: A blank screen on a system that appears to be running should lead you to check: monitor cable connection (both ends), monitor power, correct input source selected on the monitor, and whether the monitor works with a different device. If the system has a discrete GPU, verify the monitor is plugged into the GPU's output (not the motherboard's video-out). A system that shows POST but fails during OS loading points to a software or storage issue, not a display failure. Screen flicker or bright spots on an LCD indicate a failing backlight or inverter.</p>
+
+    <p><strong>Audio issues</strong>: No sound from speakers — check: volume not muted in OS, correct playback device selected in sound settings, audio drivers installed, physical speaker connection. Check Device Manager for audio device errors. For USB audio devices, try a different USB port. Static or crackling audio can indicate a driver issue, electromagnetic interference from cables running near power lines, or a failing audio jack.</p>
+
+    <p><strong>Slow system performance</strong>: Symptom-based approach. Slow only at startup: too many startup programs (check Task Manager → Startup tab). Slow all the time: check CPU and RAM utilization in Task Manager — sustained 100% CPU or memory near capacity explains slowness. High disk usage: check for active antivirus scans, Windows Update activity, or a failing HDD. Thermal throttling: check CPU temperature using HWMonitor — temperatures above 90°C cause the CPU to reduce its speed to prevent damage.</p>
+
+<h2>Troubleshooting Connectivity — The OSI Layer Approach</h2>
+
+    <p>For network troubleshooting specifically, the OSI model provides a structured framework for isolating where a problem exists. Working bottom-up from the physical layer to the application layer — or top-down from application to physical — prevents jumping to conclusions and ensures no layer is skipped.</p>
+
+    <p><strong>Layer 1 (Physical)</strong>: Check cable connections, link lights on switches and NICs, cable damage, and whether the correct port is being used. A cable plugged into the wrong port on a switch is a Layer 1 problem. Commands: check ifconfig/ipconfig for interface status showing "disconnected."</p>
+
+    <p><strong>Layer 2 (Data Link)</strong>: Check MAC address table on the switch, VLAN assignment, and duplex/speed settings. A mismatch between the NIC (auto-negotiate) and a switch port forced to 100Mbps full-duplex causes persistent errors and poor performance. Commands: <code>show mac address-table</code>, <code>show interfaces</code> on Cisco switches.</p>
+
+    <p><strong>Layer 3 (Network)</strong>: Verify IP address, subnet mask, and default gateway are correct. Use <code>ping</code> to the default gateway to test local IP connectivity. If the gateway ping succeeds but external pings fail, the problem is beyond the local network. Use <code>tracert</code> / <code>traceroute</code> to identify where packets stop being forwarded. Commands: <code>ipconfig /all</code>, <code>ping</code>, <code>tracert</code>, <code>route print</code>.</p>
+
+    <p><strong>Layer 4–7 (Transport through Application)</strong>: If Layer 3 works (successful pings) but applications fail, the problem is higher up. Can you resolve DNS names (<code>nslookup google.com</code>)? Is the service running on the destination port (<code>telnet servername 443</code> or <code>Test-NetConnection -port 443</code>)? Is a firewall blocking the specific port? Is the application service stopped on the server? The combination of ping, nslookup, and port connectivity tests quickly identifies Layer 4–7 failures.</p>
+
+    <h2>Effective Use of Diagnostic Tools</h2>
+
+    <p>Knowing the troubleshooting methodology is only useful if you know which tools to apply at each step. The A+ and Network+ exams test specific command-line tools — knowing not just what they do but when to use them is critical.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tool</th><th>What It Does</th><th>When to Use It</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">ping</td><td>Sends ICMP echo requests to test reachability. Measures round-trip latency.</td><td>Verify IP connectivity to a host or gateway. First-line test for Layer 3 reachability.</td></tr>
+          <tr><td class="td-term">tracert / traceroute</td><td>Traces the path packets take through the network, showing each router hop and latency at each hop.</td><td>Identify where in the network path connectivity fails or where latency is introduced.</td></tr>
+          <tr><td class="td-term">ipconfig / ifconfig</td><td>Shows IP address, subnet mask, gateway, DNS, and interface status on Windows/Linux.</td><td>Verify IP configuration is correct; check if DHCP assigned an APIPA address (169.254.x.x indicates DHCP failure).</td></tr>
+          <tr><td class="td-term">nslookup / dig</td><td>Queries DNS to resolve hostnames to IP addresses. Tests DNS server functionality.</td><td>Diagnose DNS resolution failures. Test whether a specific DNS server is responding correctly.</td></tr>
+          <tr><td class="td-term">netstat</td><td>Shows active network connections, listening ports, and associated processes.</td><td>Verify a service is listening on the expected port; check for unexpected outbound connections (malware indicator).</td></tr>
+          <tr><td class="td-term">arp</td><td>Shows the ARP cache — IP-to-MAC address mappings cached locally.</td><td>Diagnose Layer 2/3 boundary issues; detect ARP poisoning; verify gateway MAC is correct.</td></tr>
+          <tr><td class="td-term">nmap</td><td>Port scanner — discovers open ports and running services on remote hosts.</td><td>Security assessments; verify firewall rules are working; identify running services on a server.</td></tr>
+          <tr><td class="td-term">Wireshark</td><td>Packet capture and protocol analysis tool. Captures all traffic on an interface for detailed inspection.</td><td>Deep protocol-level troubleshooting; analyze handshakes; verify packet contents; diagnose application protocol issues.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Troubleshooting Printers — A+ Specific Scenarios</h2>
+
+    <p>Printer troubleshooting is heavily tested on the CompTIA A+ exam because printers have multiple failure modes across all layers — physical, network, driver, and application. Applying the methodology systematically prevents the common mistake of reinstalling drivers for what turns out to be a paper jam.</p>
+
+    <p><strong>Printer not printing at all</strong>: Start with Layer 1 — is it powered on, online, connected? Check the control panel for error codes. Is there paper? Is a toner/ink cartridge empty or improperly seated? Move to Layer 2/3 — is the printer visible on the network? Can you ping its IP? Is the IP address correct and not conflicting with another device? Move to Layer 7 — is the correct driver installed? Is the correct printer selected as default? Is there a job stuck in the print queue that's blocking subsequent jobs?</p>
+
+    <p><strong>Print quality issues</strong> are almost always Layer 1/physical: streaks or lines on laser printer output indicate a scratched or worn drum or dirty fuser roller. Faded output indicates low toner. Smearing or unfused toner indicates a failed fuser. Ghosting (faint duplicate images on the page) indicates a worn drum that isn't fully cleaning between passes. On inkjet printers, banding or missing colors indicate clogged print heads — run the printer's head cleaning cycle and nozzle check print.</p>
+
     <div class="cta-box">
       <div class="cta-box-text">
         <h3>Studying for CompTIA A+?</h3>

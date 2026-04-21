@@ -463,6 +463,67 @@ tbody tr:hover td{background:var(--light);}
 </div>
 
 
+<h2>Cloud-Based Disaster Recovery</h2>
+
+<p>Cloud infrastructure has transformed disaster recovery by dramatically lowering the cost of recovery site capabilities. What previously required significant capital investment in physical hot site infrastructure can now be provisioned on-demand in the cloud, paying only for the infrastructure when it's actually needed.</p>
+
+<p><strong>Pilot light DR</strong> is a cloud DR approach where the minimum critical infrastructure (databases, core servers) is replicated to cloud and kept running at minimal scale, with the rest of the environment defined but not running. In a disaster, the environment is rapidly scaled up by launching additional compute instances, load balancers, and services from the pre-defined templates. This is cheaper than a full hot site because non-critical components aren't continuously running, but recovery time is longer than a full hot site because spinning up additional infrastructure takes time (typically 30–60 minutes).</p>
+
+<p><strong>Warm standby in cloud</strong> keeps a fully functional but reduced-capacity version of the production environment running in cloud, scaled down to minimum viable capacity. In a disaster, autoscaling is triggered to bring capacity up to full production scale. Recovery time is faster than pilot light because all components are already running — only scaling is required, not provisioning from scratch.</p>
+
+<p>Cloud DR provides <strong>geographic flexibility</strong> — you can replicate to any of dozens of cloud regions worldwide, ensuring geographic diversity without owning physical infrastructure in multiple locations. It also enables <strong>regular DR testing</strong> at lower cost: spinning up a cloud DR environment for a 2-hour test once a quarter is operationally simple and costs only the hourly compute charges for the test period, versus the logistics of activating a physical DR site.</p>
+
+<h2>Order of Restoration</h2>
+
+<p>When recovering from a disaster that affects multiple systems simultaneously, <strong>order of restoration</strong> is the sequence in which systems are brought back online. Not all systems are equal — restoring them in the wrong order can prevent dependent systems from functioning or create security gaps. The BIA (Business Impact Analysis) drives the restoration order by identifying criticality rankings and interdependencies.</p>
+
+<p>General principles for restoration order: <strong>infrastructure first</strong> — networking (DNS, DHCP, Active Directory) must come up before application servers can function. A web server that boots before DNS is restored cannot be accessed by name; an application server that starts before Active Directory is restored cannot authenticate users. Core infrastructure forms the foundation that everything else depends on. Next, restore <strong>critical business systems</strong> in order of their RTO requirements — payment processing before the internal wiki, customer-facing services before internal reporting tools. Finally, restore non-critical systems during the cleanup phase once operations have resumed.</p>
+
+<p>The restoration order is documented in the DRP and tested during exercises. Common recovery mistakes include restoring application servers before their database backends are ready (resulting in application errors), restoring systems without verifying data integrity from backups (restoring corrupted backups extends the outage), and failing to verify that restored systems can communicate with each other before going live.</p>
+
+<h2>Mean Time to Repair and Mean Time Between Failures</h2>
+
+<p>Two metrics appear on both A+ and Network+ exams in the context of hardware reliability and service availability planning: <strong>MTBF (Mean Time Between Failures)</strong> and <strong>MTTR (Mean Time to Repair)</strong>.</p>
+
+<p><strong>MTBF</strong> is the average time a component or system operates without failure. A hard drive with an MTBF of 500,000 hours doesn't mean it will last that long — it's a statistical measure derived from failure rates across large populations of drives under specific conditions. MTBF is used to predict component reliability, justify redundancy (low MTBF = more critical to have spares), and set maintenance schedules. Higher MTBF = more reliable. For availability calculations: <strong>Availability = MTBF / (MTBF + MTTR)</strong>. A system with a 1,000-hour MTBF and a 10-hour MTTR has 99% availability.</p>
+
+<p><strong>MTTR</strong> is the average time required to restore a failed system to operational status, including diagnosis time, parts procurement, repair, and testing. MTTR drives the selection of recovery site type and backup strategies — an organization with an MTTR of 4 hours for their database server needs to ensure their RTO is greater than 4 hours, or they need to invest in reducing MTTR (spare parts on hand, hot standby systems, better documentation).</p>
+
+<p>For exam scenarios: if a question asks which metric measures hardware reliability, the answer is MTBF. If it asks which metric measures how quickly a system can be restored, the answer is MTTR. If it asks for a formula combining them for availability, that's Availability = MTBF / (MTBF + MTTR).</p>
+
+<h2>Testing and Maintaining BCP/DRP</h2>
+
+<p>A disaster recovery plan that has never been tested is a hypothesis, not a recovery capability. Testing is how organizations discover gaps — misconfigured backups that don't restore, runbooks with outdated server names, staff who don't know their roles — before a real disaster exposes these failures. The Security+ exam tests the different types of BCP/DRP tests in ascending order of thoroughness and cost.</p>
+
+<div class="table-wrap"><table>
+<thead><tr><th>Test Type</th><th>What Happens</th><th>Disruption</th><th>Exam Notes</th></tr></thead>
+<tbody>
+<tr><td class="td-term">Tabletop Exercise</td><td>Key stakeholders sit around a table and verbally walk through the plan in response to a simulated scenario. No systems are actually touched.</td><td>None</td><td>Best starting point for new plans. Identifies gaps in procedures, roles, and communications without risk.</td></tr>
+<tr><td class="td-term">Walkthrough / Structured Walk-Through</td><td>Each team member reviews their section of the plan in detail, checking contact lists, procedures, and resource requirements for accuracy.</td><td>None</td><td>Often combined with tabletop. Ensures plan documentation is current and accurate.</td></tr>
+<tr><td class="td-term">Simulation Test</td><td>A simulated disaster scenario is presented. Teams respond as they would in a real event but don't activate actual recovery systems.</td><td>Minimal</td><td>Tests communication and decision-making chains under realistic pressure.</td></tr>
+<tr><td class="td-term">Parallel Test</td><td>DR systems are activated and data is restored. Both primary and DR systems run simultaneously. Production is not switched over.</td><td>Low</td><td>Confirms DR systems actually work and data can be restored. Safest form of live DR testing.</td></tr>
+<tr><td class="td-term">Full Interruption Test</td><td>Production systems are deliberately brought down and full failover to DR systems is executed as it would be in a real disaster.</td><td>High</td><td>Most realistic but highest risk — production is offline. Rarely performed outside of critical infrastructure.</td></tr>
+</tbody>
+</table></div>
+
+<h2>High Availability Concepts</h2>
+
+<p>Business continuity isn't only about recovering from disasters — it's also about designing systems to avoid unplanned outages in the first place. <strong>High Availability (HA)</strong> refers to system designs that eliminate single points of failure, ensuring continuous operation even when individual components fail.</p>
+
+<p><strong>Redundancy</strong> is the foundation of HA — having duplicate components so that if one fails, another takes over. At the power level, redundant PSUs ensure a server survives a power supply failure. At the storage level, RAID arrays provide redundancy against disk failures. At the network level, redundant switches, uplinks, and ISP connections prevent network outages from single-device failures.</p>
+
+<p><strong>Clustering</strong> connects multiple servers so they operate as a single logical unit. In an active-active cluster, multiple nodes share the workload simultaneously. If one node fails, the remaining nodes absorb its traffic. In an active-passive cluster, one node handles all traffic while a standby node monitors and takes over if the primary fails. Active-active provides better resource utilization; active-passive provides simpler failover logic.</p>
+
+<p><strong>Geographic redundancy</strong> replicates critical systems across multiple physical locations. This protects against facility-level disasters — a fire, flood, or power outage at one site doesn't affect operations at the other. Cloud providers achieve this through availability zones (separate power, networking, and cooling within a region) and regions (geographically distinct data center clusters). The exam expects you to know that active-active multi-region deployments provide the highest availability but at the highest cost and complexity.</p>
+
+<h2>Data Replication and Recovery Concepts</h2>
+
+<p>Beyond backup and restore, enterprise continuity planning involves continuous data replication strategies that minimize RPO. <strong>Synchronous replication</strong> writes data to both the primary and DR storage simultaneously — a write is not acknowledged to the application until both locations have confirmed it. This provides near-zero RPO (no data loss) but adds latency to every write operation and requires low-latency network between sites. Used for the most critical data (financial transactions, healthcare records).</p>
+
+<p><strong>Asynchronous replication</strong> writes to the primary immediately and replicates to the DR site shortly afterward — with a lag of seconds to minutes. This introduces a potential data loss window equal to the replication lag (which becomes the effective RPO). Asynchronous replication has lower impact on application performance and works over higher-latency connections between geographically distant sites, making it the practical choice for most business applications.</p>
+
+<p>For exam scenarios: if the question specifies <strong>zero data loss</strong> is required, synchronous replication is the answer. If the question specifies a small RPO (say, 5 minutes) with a geographically distant DR site, asynchronous replication is more realistic. If the question asks about backup and recovery, remember the backup type determines recovery complexity: full backup alone is simplest but largest; incremental is smallest and fastest but most tapes/sets required for recovery; differential grows over the week but only needs two sets for recovery.</p>
+
 <div class="author-bio-wrap" style="background:#f0f4fa;border:1px solid #e2e8f4;border-radius:14px;padding:24px 26px;margin:48px 0 40px;display:flex;align-items:flex-start;gap:18px;">
   <div style="flex-shrink:0;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0a1628 0%,#1a6cff 100%);display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:#fff;">IH</div>
   <div>

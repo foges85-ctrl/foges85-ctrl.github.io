@@ -546,6 +546,65 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="scenario-item"><strong>Scenario 5:</strong> An organisation needs to serve multiple web applications from a single public IP address, each on a different domain. <em>Answer:</em> A <strong>reverse proxy with virtual host routing</strong> (host-header-based routing). The reverse proxy receives all traffic on the single public IP and routes requests to different backend server pools based on the HTTP Host header (domain name in the request).</div>
     </div>
 
+    <h2>URL Filtering Categories and Policy</h2>
+
+<p>A key function of forward proxies is <strong>URL category filtering</strong> — blocking access to websites based on their category rather than individual URLs. Maintaining a list of every bad URL is impractical; categorizing billions of URLs into groups (gambling, adult content, social media, malware distribution, phishing, peer-to-peer) and applying policies to categories is how enterprise web filtering actually works.</p>
+
+<p>URL category databases are maintained by vendors (Symantec, Cisco Talos, Zscaler, Forcepoint) who crawl the web continuously and classify sites by content. An organization can subscribe to these databases and configure their proxy to block specific categories. Typical enterprise policies block malware and phishing (by default — no business justification exists for accessing these), and apply conditional policies to social media (allowed during lunch breaks, blocked during work hours) or streaming video (blocked on networks with limited bandwidth).</p>
+
+<p><strong>SSL inspection scope</strong> must also account for URL category filtering: some categories should be excluded from SSL inspection for legal and practical reasons. Banking and financial sites use certificate pinning that breaks under SSL inspection. Healthcare provider portals contain protected health information that should not be decrypted by corporate infrastructure. Most organizations configure SSL inspection to exclude these categories while inspecting general browsing and risky categories.</p>
+
+<h2>Proxy Server Deployment Models</h2>
+
+<p>Understanding where and how proxies are deployed in enterprise architectures is important for both the exam and practical understanding. Several deployment models exist depending on organizational requirements.</p>
+
+<p>The <strong>on-premises hardware or software proxy</strong> runs in the corporate data center. Appliances like Cisco Web Security Appliance (WSA) or Blue Coat ProxySG are dedicated hardware boxes. Software proxies like Squid can run on standard servers. All outbound web traffic is directed to the appliance, which applies policy and logs all activity. This model provides complete visibility and control but requires investment in hardware and ongoing maintenance. Performance scales with the appliance's capacity — in large organizations, proxy farms with load balancing handle millions of requests per hour.</p>
+
+<p>The <strong>cloud-based Secure Web Gateway (SWG)</strong> model routes traffic to a cloud proxy service rather than on-premises hardware. Solutions like Zscaler Internet Access (ZIA) or Cisco Umbrella intercept traffic at the DNS level or via agent-based redirection, applying filtering policies in the cloud. This model works regardless of where the user is located — remote workers, branch offices, and data center users all go through the same cloud proxy, providing consistent policy enforcement. This is particularly valuable in post-COVID distributed work environments where the traditional assumption "users are inside the corporate network" no longer holds.</p>
+
+<p>A <strong>split tunneling vs full tunneling VPN</strong> decision directly affects proxy effectiveness. If a remote worker uses split-tunneling VPN (only corporate traffic goes through VPN, internet traffic goes directly), corporate proxy policies don't apply to their internet browsing. Full-tunnel VPN routes all traffic through corporate infrastructure including the proxy, maintaining policy enforcement. Cloud-based SWGs address this by having the agent redirect web traffic to the cloud proxy regardless of VPN status — eliminating the split-tunnel bypass problem.</p>
+
+<h2>SOCKS Proxies</h2>
+
+    <p>While most discussions of proxies focus on HTTP/HTTPS proxies, the <strong>SOCKS proxy protocol</strong> is another type that appears on the exam. SOCKS (Socket Secure) operates at a lower level than HTTP proxies — it works at the <strong>session layer (Layer 5)</strong> and can tunnel any type of TCP or UDP traffic, not just HTTP. This makes SOCKS proxies more versatile: you can tunnel FTP, SMTP, POP3, torrents, and other protocols through a SOCKS proxy.</p>
+
+    <p><strong>SOCKS4</strong> supported only TCP and required client-side DNS resolution. <strong>SOCKS5</strong> adds UDP support, IPv6, and server-side DNS resolution. SOCKS5 also adds authentication — the client can authenticate to the SOCKS server before being allowed to proxy traffic. This authentication is important in corporate environments where only authorised users should be able to use the proxy.</p>
+
+    <p>SOCKS proxies are commonly used with VPN clients, SSH tunneling, and tools like Tor. The Tor anonymity network uses SOCKS5 to allow applications to route traffic through the Tor onion network. From a security perspective, SOCKS proxies that are open to the internet without authentication become <strong>open proxies</strong> — attackers can route malicious traffic through them, attributing it to your IP address.</p>
+
+    <h2>PAC Files and WPAD</h2>
+
+    <p>Manually configuring proxy settings on every device in a large organisation is impractical. <strong>PAC files (Proxy Auto-Configuration)</strong> and <strong>WPAD (Web Proxy Auto-Discovery Protocol)</strong> automate this process and are commonly tested on Network+.</p>
+
+    <p>A <strong>PAC file</strong> is a JavaScript file hosted on a web server that returns instructions telling the browser which proxy server to use for any given URL. The file contains a function called <code>FindProxyForURL(url, host)</code> that browsers call for each request. The function can return "DIRECT" (bypass proxy), "PROXY host:port" (use a specific proxy), or chain multiple options together for failover. PAC files enable fine-grained control — for example, bypassing the proxy for internal sites while routing all external traffic through the corporate proxy.</p>
+
+    <p><strong>WPAD (Web Proxy Auto-Discovery)</strong> allows clients to automatically discover the PAC file location without any manual configuration. Clients use either <strong>DHCP</strong> (option 252 contains the PAC file URL) or <strong>DNS</strong> (looking up a well-known hostname like <code>wpad.yourdomain.com</code>) to locate the PAC file. When a client boots, it queries DHCP or DNS, retrieves the PAC file URL, downloads the file, and configures the proxy automatically — zero user interaction required.</p>
+
+    <div class="callout">
+      <div class="callout-label">⚠️ WPAD Security Risk</div>
+      <p>WPAD has a known vulnerability: if an attacker can respond to WPAD DNS or DHCP queries before your legitimate server, they can serve a malicious PAC file that routes all traffic through an attacker-controlled proxy — a classic man-in-the-middle setup. This attack is particularly effective on public Wi-Fi. Mitigation: register the WPAD hostname in DNS to prevent name hijacking, use HTTPS to serve the PAC file, and configure Windows to use a specific PAC URL via Group Policy rather than relying on WPAD auto-discovery.</p>
+    </div>
+
+    <h2>Content Delivery Networks (CDN)</h2>
+
+    <p>A <strong>CDN (Content Delivery Network)</strong> is essentially a globally distributed reverse proxy infrastructure operated by companies such as Cloudflare, Akamai, Amazon CloudFront, and Fastly. Understanding how CDNs relate to reverse proxies is useful for both Network+ and Security+ exam contexts.</p>
+
+    <p>When a website uses a CDN, the CDN provider acts as a reverse proxy in front of the origin server. DNS for the website is configured to point to the CDN's edge nodes rather than the origin server's IP. When a user in London requests a US-based website, their DNS query resolves to a CDN edge node in London. The edge node either serves cached content locally (dramatically reducing latency) or fetches content from the origin server and caches it for future requests.</p>
+
+    <p>CDNs provide several security benefits that mirror those of a standard reverse proxy: <strong>DDoS protection</strong> (CDN infrastructure absorbs attack traffic at scale), <strong>IP hiding</strong> (the origin server's real IP is hidden behind CDN IPs), and <strong>WAF capabilities</strong> (Cloudflare, Akamai, and others offer WAF services that inspect HTTP traffic before it reaches the origin). From an exam scenario perspective: if the question asks how a company can protect their web application from DDoS attacks without purchasing their own hardware, the answer involves using a <strong>CDN with DDoS mitigation services</strong>.</p>
+
+    <h2>Proxy Authentication Methods</h2>
+
+    <p>Enterprise forward proxies often require users to authenticate before they can access the internet. The proxy needs to know who is making a request for logging, policy enforcement, and quota management. Common proxy authentication methods include the following.</p>
+
+    <p><strong>Basic Authentication</strong> sends the username and password base64-encoded in the HTTP Proxy-Authorization header. This is the simplest method but transmits credentials with minimal protection — base64 is encoding, not encryption. Over HTTPS it is acceptable; over plain HTTP it should never be used.</p>
+
+    <p><strong>NTLM Authentication</strong> uses the Windows NTLM challenge-response mechanism. The proxy challenges the client, the client sends an NTLM response using their Windows credentials, and the proxy validates with a domain controller. This enables <strong>transparent authentication</strong> — domain-joined Windows machines authenticate automatically without prompting the user. This is the most common method in Active Directory environments.</p>
+
+    <p><strong>Kerberos Authentication</strong> is the most secure option for proxy authentication in Active Directory environments. The client presents a Kerberos ticket (obtained from the domain controller) to the proxy, which validates it. Like NTLM, it provides transparent SSO for domain-joined machines. Kerberos is preferred over NTLM because it doesn't transmit password hashes and has stronger mutual authentication guarantees.</p>
+
+    <p>For exam scenarios: if the question mentions that proxy users should not need to enter credentials (seamless integration with Windows login), the answer involves <strong>NTLM or Kerberos proxy authentication with Active Directory integration</strong>.</p>
+
     <div class="cta-box">
       <div class="cta-box-text">
         <h3>Master Network+ in less time</h3>

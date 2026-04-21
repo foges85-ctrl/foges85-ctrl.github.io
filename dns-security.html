@@ -509,6 +509,50 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="scenario-item"><strong>Scenario 6:</strong> What record type in DNSSEC proves that a DNS name does NOT exist, preventing attackers from fabricating negative responses? <em>Answer:</em> <strong>NSEC (Next Secure) or NSEC3</strong> records. They provide authenticated denial of existence — the resolver can cryptographically verify that a queried name truly doesn't exist in the zone, preventing an attacker from claiming a domain doesn't exist when it does.</div>
     </div>
 
+    <h2>DNS Record Types and Security Relevance</h2>
+
+<p>Understanding DNS record types is both a Network+ exam requirement and essential context for understanding why DNS security controls like DNSSEC, SPF, DKIM, and DMARC work the way they do — since all of them rely on specific DNS record types.</p>
+
+<p><strong>A record</strong>: maps a hostname to an IPv4 address. The most common DNS record type. When you look up google.com, the A record returns its IPv4 address. <strong>AAAA record</strong>: maps a hostname to an IPv6 address. Both A and AAAA records are targeted by DNS spoofing attacks — an attacker who can forge a response can redirect traffic for any hostname.</p>
+
+<p><strong>MX record</strong>: specifies which mail servers accept email for a domain. The value is a hostname (which must itself have an A/AAAA record) and a priority number — lower number = higher priority. When another mail server wants to deliver email to user@company.com, it queries the MX record for company.com. MX records are directly relevant to email security — misconfigured MX records can cause email to be delivered to the wrong server.</p>
+
+<p><strong>TXT record</strong>: stores arbitrary text data. This is the mechanism used by SPF (specifies authorized mail server IPs), DKIM (publishes public keys for signature verification), DMARC (specifies enforcement policy), and various domain ownership verification methods. TXT records are critical for email security but are also used for other purposes — Google Search Console verification, Microsoft 365 tenant verification, and general domain attribute declarations. An attacker with DNS zone control can modify TXT records to redirect email traffic or invalidate security controls.</p>
+
+<p><strong>PTR record</strong>: reverse DNS — maps an IP address back to a hostname. Used for logging (recording the hostname associated with an IP in log files), email server validation (receiving mail servers check if the sending IP's PTR record matches the claimed domain), and network troubleshooting. Absence of a PTR record for a mail server IP is a spam signal — legitimate mail servers have matching forward and reverse DNS.</p>
+
+<p><strong>NS record</strong>: specifies the authoritative name servers for a domain. Compromising or hijacking NS records is a powerful attack — redirect the NS records to your own servers and you control all DNS for the domain. <strong>SOA record</strong>: Start of Authority — contains administrative information about the DNS zone including the primary name server, zone administrator email, and timing parameters. One SOA per zone.</p>
+
+<h2>DNS Sinkholing</h2>
+
+    <p><strong>DNS sinkholing</strong> is a defensive technique where a DNS server is configured to return a false IP address for known malicious domains — redirecting the connection to a controlled server (the "sinkhole") instead of the attacker's infrastructure. When malware-infected machines attempt to contact their command-and-control (C2) server, the DNS sinkhole intercepts the lookup and returns the sinkhole's IP address. The connection goes to the sinkhole instead of the real C2 server, effectively isolating the malware from its controller.</p>
+
+    <p>From a security operations perspective, sinkholes provide two benefits: they <strong>neutralize active malware</strong> (infected machines cannot receive commands or exfiltrate data) and they <strong>identify infected hosts</strong> (the sinkhole server logs all connection attempts, revealing which internal IP addresses are querying malicious domains). This is valuable for incident response teams trying to identify compromised systems. DNS sinkholes are a core feature of enterprise DNS security platforms such as Cisco Umbrella, Infoblox, and Palo Alto DNS Security.</p>
+
+    <h2>DNS Blocklists (DNSBL)</h2>
+
+    <p>A <strong>DNS Blocklist (DNSBL)</strong>, formerly called a DNS Blacklist, is a database of known malicious or spam-associated IP addresses and domains that is queryable via DNS. Mail servers have used DNSBLs for spam filtering for decades — when receiving an email, the mail server queries a DNSBL to check whether the sending server's IP is listed as a known spam source. If it is, the email is rejected or scored as spam.</p>
+
+    <p>Modern DNS security extends this concept from email to all DNS traffic. Threat intelligence feeds populate blocklists of known malware distribution domains, phishing sites, botnet C2 servers, and other malicious infrastructure. DNS resolvers configured with these feeds automatically block queries to listed domains, returning an NXDOMAIN response or sinkhole IP instead of resolving the request. This provides automatic protection at the DNS layer for all devices on the network, regardless of whether they have endpoint security software installed — including IoT devices that cannot run traditional antivirus.</p>
+
+    <h2>DNS Tunneling</h2>
+
+    <p><strong>DNS tunneling</strong> is an attack technique (and occasionally a legitimate tool) that encodes arbitrary data into DNS queries and responses to create a covert communication channel that bypasses traditional network controls. DNS is typically allowed through firewalls because it is essential for internet access — attackers exploit this by encoding data in DNS query names and TXT records, creating a bidirectional communication channel hidden within what appears to be normal DNS traffic.</p>
+
+    <p>A malware infection might use DNS tunneling to exfiltrate data by encoding file contents into DNS lookup queries: <code>aGVsbG8gd29ybGQ.attacker-controlled.com</code> where the subdomain contains base64-encoded data. The attacker's authoritative DNS server receives these queries and decodes the data. Responses encode commands back to the malware using DNS TXT records. Because many organizations permit DNS traffic with minimal inspection, DNS tunneling can persist undetected for extended periods.</p>
+
+    <p>Detection methods for DNS tunneling include monitoring for abnormally long DNS query names (legitimate queries are rarely more than a few dozen characters), high volumes of queries to a single domain, unusual TXT record responses, and domains with high Shannon entropy in their subdomains (indicating encoded binary data). DNS security platforms and SIEM rules specifically watch for these patterns.</p>
+
+    <h2>Recursive vs Authoritative DNS Servers</h2>
+
+    <p>Understanding the distinction between recursive and authoritative DNS servers is a fundamental networking concept tested on Network+ and relevant to DNS security discussions.</p>
+
+    <p><strong>Authoritative DNS servers</strong> hold the actual DNS records for a zone — they are the canonical source of truth for a domain's IP addresses, mail records, and other records. When you register a domain and publish DNS records through your registrar or DNS hosting provider (Route 53, Cloudflare DNS), you are configuring authoritative servers. They only answer queries about zones they are authoritative for.</p>
+
+    <p><strong>Recursive (or resolver) DNS servers</strong> answer client queries by hunting through the DNS hierarchy on the client's behalf. When your laptop queries its configured DNS server (typically provided by DHCP from your ISP or IT department), that server is a resolver. If it doesn't have the answer cached, it queries root servers, then TLD servers, then the authoritative servers, then returns the answer to your client and caches it. Corporate DNS servers, ISP resolvers, and public resolvers like 8.8.8.8 (Google) and 1.1.1.1 (Cloudflare) are all recursive resolvers.</p>
+
+    <p>Security implications: DNS cache poisoning attacks target recursive resolvers — if an attacker can poison the cache of a widely-used resolver, many clients are affected. DNSSEC prevents cache poisoning by validating that records came from the authoritative server. Open resolvers (recursive resolvers that answer queries from any IP on the internet) are used in <strong>DNS amplification DDoS attacks</strong> — attackers spoof the victim's IP in DNS queries to open resolvers, which send large responses to the victim's IP, overwhelming it with traffic.</p>
+
     <div class="cta-box">
       <div class="cta-box-text">
         <h3>Prepare for Security+ and Network+</h3>

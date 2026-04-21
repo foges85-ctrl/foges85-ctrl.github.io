@@ -429,6 +429,74 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="scenario-item"><strong>Scenario:</strong> An organisation wants to use a mix of MPLS, broadband fiber, and LTE as WAN transport for its branches. Which technology enables centralised management and intelligent routing across all three links? <strong>Answer: SD-WAN.</strong> SD-WAN creates an overlay across all transport types and routes traffic intelligently based on application requirements and real-time link performance.</div>
     </div>
 
+    <h2>WAN Failover and Redundancy</h2>
+
+<p>Relying on a single WAN connection for business-critical connectivity is a significant availability risk. WAN outages — whether from carrier infrastructure failures, cable cuts, or equipment failure — are common enough that enterprise network design always accounts for redundancy. Understanding WAN failover concepts is directly relevant for Network+ exam scenarios.</p>
+
+<p><strong>Dual ISP connections</strong> (multihoming) is the standard approach for WAN redundancy. A company connects to two different ISPs, ideally using different physical paths and infrastructure. If one ISP fails, traffic automatically routes through the second. This is more effective than having two circuits from the same ISP, which may share physical infrastructure in the carrier's network. SD-WAN simplifies dual ISP management by monitoring both connections in real time and automatically routing traffic based on performance.</p>
+
+<p><strong>4G/LTE and 5G cellular failover</strong> provides a cost-effective backup for broadband internet connections. A cellular failover device (router with SIM card) acts as an automatic backup — when the primary connection fails, it switches to cellular. This is widely used in retail and branch office environments where even brief outages cost significant revenue. The limitation is that cellular bandwidth is typically lower and latency higher than fiber broadband, making it suitable for failover but not as a primary WAN for bandwidth-intensive applications.</p>
+
+<p>For exam scenarios: if the question describes a company that needs WAN connectivity to remain operational even if their primary ISP fails, the answer involves <strong>dual ISP connectivity or WAN failover</strong>. If the question asks which technology provides real-time monitoring of multiple WAN links and automatic failover with intelligent path selection, the answer is <strong>SD-WAN</strong>.</p>
+
+<h2>WAN Routing and BGP</h2>
+
+    <p>When packets travel across the internet or between large enterprise networks and service providers, <strong>BGP (Border Gateway Protocol)</strong> is the routing protocol that makes it possible. BGP is the protocol that runs between autonomous systems (AS) — large independently managed networks such as ISPs, enterprises, and cloud providers. Understanding BGP is important for Network+ because it explains how routing decisions are made at the internet scale.</p>
+
+    <p>Unlike interior routing protocols such as OSPF or EIGRP that optimize purely for shortest path, BGP uses <strong>path attributes</strong> to make routing decisions. Key attributes include AS-PATH (the list of autonomous systems a route passes through), LOCAL_PREF (preference used within an AS to select outbound paths), and MED (Multi-Exit Discriminator, used to influence how traffic enters your AS from a neighbour). BGP is a <strong>policy-driven protocol</strong> — network engineers can configure it to prefer certain routes for business reasons, not just technical ones.</p>
+
+    <p>For WAN exam scenarios, remember that BGP is the protocol used for <strong>internet edge routing</strong> and is often how enterprises connect to multiple ISPs (multihoming) for redundancy. If one ISP fails, BGP will failover traffic to the second ISP automatically.</p>
+
+    <h2>Site-to-Site VPN as a WAN Alternative</h2>
+
+    <p>Many organizations — especially smaller ones — avoid the cost of dedicated MPLS circuits by building <strong>site-to-site VPN tunnels</strong> across the public internet. A site-to-site VPN connects two entire networks (rather than a single remote user) by creating an encrypted tunnel between two VPN gateways, typically firewalls or dedicated VPN concentrators at each site.</p>
+
+    <p>The most common protocol for site-to-site VPN today is <strong>IPsec (Internet Protocol Security)</strong>, which operates at Layer 3 and can run in two modes. <strong>Tunnel mode</strong> encapsulates the entire original IP packet inside a new IP packet — this is the standard mode for site-to-site VPNs because it hides the internal addressing. <strong>Transport mode</strong> only encrypts the payload, leaving the original IP header intact — used for host-to-host encryption within a single site.</p>
+
+    <p>IPsec itself is not one protocol but a <strong>suite of protocols</strong>. The two main components are <strong>AH (Authentication Header)</strong>, which provides integrity and authentication but no encryption, and <strong>ESP (Encapsulating Security Payload)</strong>, which provides both encryption and authentication. In practice, ESP is almost always used because encryption is the primary goal. IPsec uses IKE (Internet Key Exchange) — either IKEv1 or the more modern IKEv2 — to negotiate security parameters and exchange encryption keys before the tunnel is established.</p>
+
+    <div class="callout">
+      <div class="callout-label">DMVPN — Scaling Site-to-Site VPN</div>
+      <p><strong>DMVPN (Dynamic Multipoint VPN)</strong> is a Cisco technology that solves the scalability problem of traditional site-to-site VPN. In a traditional hub-and-spoke IPsec setup, every branch site connects to the hub — branch-to-branch traffic must transit through the hub, adding latency. DMVPN allows branches to dynamically establish direct spoke-to-spoke tunnels on demand, without pre-configuring every possible branch pair. This gives you the management simplicity of hub-and-spoke with the performance of full-mesh — critical for large enterprise WAN deployments with hundreds of branch offices.</p>
+    </div>
+
+    <h2>WAN Optimization</h2>
+
+    <p>Even with high-bandwidth WAN links, application performance can suffer due to <strong>latency, packet loss, and protocol inefficiency</strong>. WAN optimization technologies address these issues through several techniques that are worth understanding for the exam.</p>
+
+    <p><strong>Compression</strong> reduces the amount of data that needs to traverse the WAN link by compressing repetitive data patterns. <strong>Deduplication</strong> (also called data reduction or caching) goes further — if the same data block has already been transmitted, only a hash reference is sent instead of retransmitting the full data. This can dramatically reduce WAN utilization for workloads involving large file transfers or backup replication.</p>
+
+    <p><strong>TCP optimization</strong> addresses the problem that TCP's congestion control algorithms were designed for low-latency LAN environments. On high-latency WAN links, TCP window sizes become a bottleneck — the protocol has to wait for ACKs before sending more data. WAN optimizers use <strong>TCP spoofing</strong> (also called TCP proxying) to locally acknowledge data on behalf of the distant endpoint, allowing the sender to continue transmitting without waiting for round-trip delays.</p>
+
+    <p><strong>Protocol optimization</strong> handles chatty protocols that generate many round trips. CIFS/SMB (Windows file sharing) is notorious for this — accessing a single file can generate dozens of round trips, which is tolerable on a LAN with sub-millisecond latency but causes terrible performance over a 50ms WAN link. WAN optimization appliances cache and pre-fetch data to reduce these round trips.</p>
+
+    <h2>WAN SLAs and Performance Metrics</h2>
+
+    <p>When purchasing WAN services from a carrier, the <strong>Service Level Agreement (SLA)</strong> defines the performance guarantees and remedies if the carrier fails to meet them. Understanding WAN SLA metrics is directly exam-relevant for Network+.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Metric</th><th>Definition</th><th>Typical SLA Value</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Uptime / Availability</td><td>Percentage of time the circuit is operational. "Five nines" = 99.999% = ~5 min downtime/year.</td><td>99.9% – 99.999% depending on service tier</td></tr>
+          <tr><td class="td-term">Latency</td><td>One-way or round-trip delay between two points. Critical for voice and video. Measured in milliseconds.</td><td>Typically &lt;20ms for MPLS, &lt;50ms for metro Ethernet</td></tr>
+          <tr><td class="td-term">Jitter</td><td>Variation in packet delay. Even if average latency is low, high jitter causes choppy VoIP calls. Measured in milliseconds.</td><td>&lt;5ms for premium voice-grade services</td></tr>
+          <tr><td class="td-term">Packet Loss</td><td>Percentage of packets that fail to arrive. Any packet loss degrades TCP throughput and causes dropped VoIP samples.</td><td>&lt;0.1% for enterprise-grade MPLS</td></tr>
+          <tr><td class="td-term">Bandwidth (CIR)</td><td>Committed Information Rate — the guaranteed minimum bandwidth the carrier will deliver, regardless of network congestion.</td><td>Equal to contracted bandwidth for leased lines</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>For exam scenarios involving WAN service selection, if the question mentions <strong>guaranteed performance, SLA, or contractual uptime</strong>, the answer typically involves a dedicated leased line or MPLS circuit rather than shared broadband. If the question mentions <strong>cost reduction while maintaining performance</strong> and the company already has MPLS, the answer is SD-WAN.</p>
+
+    <h2>Common WAN Troubleshooting Scenarios</h2>
+
+    <p>The Network+ exam tests practical troubleshooting as well as conceptual knowledge. For WAN links, common issues and their causes include the following. <strong>Intermittent connectivity drops</strong> on a broadband WAN link often indicate line quality issues — for DSL, the line may be too long or have bridge taps causing attenuation; for cable, the coaxial infrastructure may have signal noise. Tools such as checking SNR (Signal-to-Noise Ratio) margins on a DSL modem or signal levels on a cable modem help diagnose this.</p>
+
+    <p><strong>High latency or jitter</strong> on an MPLS circuit that previously performed well may indicate that the carrier is experiencing congestion in their core network, or that traffic classes are misconfigured — bulk traffic may be using the same MPLS class of service queue as latency-sensitive voice traffic. Work with the carrier to review QoS markings and ensure DSCP values set by the enterprise are being honored by the carrier's network.</p>
+
+    <p><strong>One-way audio on VoIP calls</strong> over a site-to-site VPN is a classic NAT/firewall issue — RTP (the voice media protocol) uses dynamically assigned UDP ports, and if the firewall or NAT device is blocking return traffic, audio flows in only one direction. The fix involves enabling SIP ALG (Application Layer Gateway) or using a session border controller that handles NAT traversal for SIP.</p>
+
     <div class="cta-box">
       <div class="cta-box-text">
         <h3>Studying for CompTIA Network+?</h3>

@@ -548,6 +548,48 @@ tbody tr:hover td{background:var(--light);}
 </div>
 
 
+<h2>Intelligence Types and Consumer Audiences</h2>
+
+<p>Not all threat intelligence serves the same audience. The Security+ exam distinguishes between different types of intelligence based on their intended consumer and time horizon.</p>
+
+<p><strong>Strategic intelligence</strong> is high-level, longer-term intelligence aimed at executives, board members, and senior security leadership. It addresses questions like "which threat actors are targeting our industry this year?" and "what are the trending attack techniques that our security program should prioritize?" Strategic intelligence is typically non-technical and focuses on business risk implications rather than technical indicators. It informs budget decisions, program priorities, and risk acceptance decisions at the executive level.</p>
+
+<p><strong>Operational intelligence</strong> focuses on specific ongoing campaigns or threat actor operations — providing context about a particular attack group's current activities, targets, and infrastructure. It helps security operations teams understand the nature and intent of attacks they may be facing. Operational intelligence is more timely than strategic intelligence and more actionable — it might describe a specific phishing campaign running right now, the lure documents being used, and the infrastructure hosting the C2 servers.</p>
+
+<p><strong>Tactical intelligence</strong> is the most actionable and short-lived type — specific indicators of compromise (IOCs) like malicious IP addresses, domain names, file hashes, and email subject lines associated with current threat campaigns. Tactical intelligence feeds directly into SIEM rules, firewall blocklists, and email security filters. It has a short shelf life — IOCs are rotated frequently by threat actors, so indicators from last month may already be irrelevant. The challenge with tactical intelligence is that it's reactive — it only protects against known, previously observed threats.</p>
+
+<p><strong>Technical intelligence</strong> overlaps with tactical but focuses specifically on the technical details of threat actor tools and techniques — malware analysis reports, vulnerability details, exploit code analysis. It's consumed by threat analysts, incident responders, and security engineers who need to understand how specific threats work to develop detections and defenses.</p>
+
+<h2>Threat Intelligence Lifecycle</h2>
+
+<p>Threat intelligence is not a product you buy and deploy — it's an ongoing process. The threat intelligence lifecycle describes how raw data becomes actionable insight for defenders.</p>
+
+<p>The lifecycle typically has six stages. <strong>Planning and direction</strong> defines the intelligence requirements — what questions does the organization need answered? What threats are most relevant to the business? This stage prevents the common pitfall of collecting intelligence that nobody uses. <strong>Collection</strong> gathers raw data from the sources defined in the planning stage — threat feeds, dark web monitoring, honeypots, open source intelligence (OSINT), and human intelligence. <strong>Processing</strong> normalizes and structures the raw data — converting inconsistent formats, deduplicating indicators, and enriching data with context (geolocation, ownership data, malware family classification). <strong>Analysis</strong> is where raw processed data becomes intelligence — identifying patterns, attributing activity to threat actors, assessing likelihood and impact, and drawing conclusions that answer the intelligence requirements. <strong>Dissemination</strong> delivers the finished intelligence to the stakeholders who need it — in formats and at classification levels appropriate for each audience. <strong>Feedback</strong> closes the loop — stakeholders provide input on whether the intelligence was useful and whether the intelligence requirements need updating.</p>
+
+<h2>Threat Intelligence Integration — SIEM and SOAR</h2>
+
+<p>Threat intelligence's operational value comes from its integration with detection and response tools. Raw intelligence sitting in reports that nobody reads doesn't protect anything — it needs to be operationalized.</p>
+
+<p>In a <strong>SIEM</strong>, threat intelligence feeds are ingested and matched against log data in real time. When a firewall log shows an outbound connection to an IP address that appears in a threat feed as a known C2 server, the SIEM generates an alert automatically. This correlation between observed network activity and known threat indicators is the core use case for operational threat intelligence. The quality of the intelligence feed directly affects alert quality — low-quality feeds with many false positives create alert fatigue; high-quality, curated feeds produce reliable, actionable alerts.</p>
+
+<p><strong>SOAR (Security Orchestration, Automation, and Response)</strong> platforms use threat intelligence to enrich alerts and automate initial investigation steps. When an alert fires, the SOAR can automatically query threat intelligence platforms for additional context about the indicator (which malware family uses this C2 IP? Which APT group? What other organizations have reported it?), look up internal asset data to understand what the affected host is and who owns it, and check vulnerability scanners to see if the affected host is patched against known exploits used by the attributed threat actor. This context is assembled and presented to the analyst before they begin their investigation, dramatically reducing time to triage.</p>
+
+<h2>Dark Web Monitoring</h2>
+
+<p><strong>Dark web monitoring</strong> is a specialized form of threat intelligence collection that monitors hidden services and criminal forums on the Tor network and other anonymized platforms. For organizations, dark web monitoring provides early warning of several threat scenarios.</p>
+
+<p><strong>Credential exposure</strong>: when a third-party service is breached and user credentials are stolen, those credentials often appear on dark web marketplaces or paste sites before the breach is publicly disclosed. Dark web monitoring services continuously scan for email addresses associated with an organization's domain appearing in credential dumps, providing early warning that users' credentials may be compromised and prompting proactive password resets before attackers use them.</p>
+
+<p><strong>Data leakage</strong>: sensitive documents, source code, and customer data stolen from organizations often appear on dark web markets. Monitoring for company-specific data (customer data patterns, proprietary document formatting, internal project names) can identify breaches that haven't been detected through internal controls.</p>
+
+<p><strong>Attack planning</strong>: some threat actors announce planned attacks, sell access to compromised systems, or discuss targeting of specific organizations in criminal forums. Intelligence collection from these sources can provide advance warning of imminent attacks, though this requires specialized expertise and operational security to conduct safely.</p>
+
+<h2>Threat Intelligence Sharing — ISACs and ISAOs</h2>
+
+<p><strong>ISACs (Information Sharing and Analysis Centers)</strong> are sector-specific organizations that facilitate threat intelligence sharing between organizations within the same industry. The FS-ISAC serves the financial sector, the H-ISAC serves healthcare, the E-ISAC serves electricity/energy infrastructure, and dozens more serve other critical industries. ISACs allow organizations to share indicators, attack patterns, and defensive strategies — an attack observed at one bank may be shared with all member banks, enabling them to detect and block the same attack before it reaches them.</p>
+
+<p><strong>ISAOs (Information Sharing and Analysis Organizations)</strong> are similar to ISACs but not limited to specific critical infrastructure sectors. They can serve any community of interest — geographic regions, specific technology communities, or other groupings. Both ISACs and ISAOs operate under frameworks like the Traffic Light Protocol (TLP) that defines how shared information can be further distributed — TLP:RED means do not share beyond the immediate recipients; TLP:AMBER means share within the organization; TLP:GREEN means share within the community; TLP:WHITE/TLP:CLEAR means can be freely shared publicly. The Security+ exam tests TLP designations as part of the threat intelligence sharing topic.</p>
+
 <div class="author-bio-wrap" style="background:#f0f4fa;border:1px solid #e2e8f4;border-radius:14px;padding:24px 26px;margin:48px 0 40px;display:flex;align-items:flex-start;gap:18px;">
   <div style="flex-shrink:0;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0a1628 0%,#1a6cff 100%);display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:#fff;">IH</div>
   <div>

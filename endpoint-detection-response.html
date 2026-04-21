@@ -507,6 +507,58 @@ tbody tr:hover td{background:var(--light);}
 </div>
 
 
+<h2>The EDR Market and Common Platforms</h2>
+
+<p>While the exam doesn't test specific vendor products, understanding the landscape of EDR solutions helps contextualize the concepts and prepares candidates for real-world conversations where these terms appear.</p>
+
+<p>The EDR market has consolidated significantly. <strong>CrowdStrike Falcon</strong> pioneered cloud-native EDR and remains a market leader — its agent is lightweight, and all telemetry processing and threat intelligence runs in the cloud. <strong>Microsoft Defender for Endpoint</strong> is built into Windows 10/11 and is included with Microsoft 365 E5 licensing, making it the default choice for many Microsoft-centric organizations. It integrates natively with Azure AD, Intune, and Microsoft Sentinel (SIEM). <strong>SentinelOne</strong> emphasizes autonomous response — its AI can autonomously detect, contain, and remediate threats without human intervention. <strong>Palo Alto Networks Cortex XDR</strong> combines endpoint telemetry with network and cloud telemetry in a single analysis platform, exemplifying the XDR trend.</p>
+
+<p>For exam relevance: you may encounter scenario questions referencing "EDR telemetry," "EDR isolation," "managed EDR service," or "EDR with automated response." The specific vendor doesn't matter for the exam, but understanding what EDR can do (continuous telemetry, behavioral detection, interactive response, host isolation) versus what it cannot do (prevent all attacks, replace network security, operate without skilled analysts for complex investigations) helps with scenario analysis.</p>
+
+<h2>EDR vs HIDS vs Traditional Antivirus</h2>
+
+<p>The exam distinguishes between these three related but distinct technologies, and scenario questions often ask which tool is appropriate for a given security objective.</p>
+
+<p><strong>Traditional antivirus</strong> (AV) uses signature-based detection — it maintains a database of known malware file hashes, byte patterns, and behavioral signatures. When a file is written or executed, AV scans it against the signature database. If there's a match, the file is quarantined or deleted. This works reliably against known, widely-distributed malware (commodity ransomware, email attachment threats) but is completely blind to novel or custom malware (zero-days, custom implants used by advanced threat actors) that don't match any known signatures. AV also doesn't record detailed telemetry and provides no investigation capability beyond the alert itself.</p>
+
+<p><strong>HIDS (Host-based Intrusion Detection System)</strong> monitors system events — log files, registry changes, file integrity, and process activity — for signs of compromise. Classic HIDS tools like OSSEC or Tripwire focus on detecting changes to critical system files (integrity monitoring) and suspicious log patterns. HIDS is primarily detective (it generates alerts) but typically doesn't have automated response capability. Unlike EDR, HIDS collects less granular process-level telemetry and doesn't provide interactive investigation or response capabilities.</p>
+
+<p><strong>EDR</strong> combines continuous telemetry collection (all process events, network connections, file operations, registry changes), behavioral threat detection (including signature-free detection of anomalous behavior), interactive investigation capabilities (process trees, timeline analysis, file analysis), and active response actions (isolation, process killing, forensic collection). EDR is the most capable of the three but also the most resource-intensive and complex to operate. For exam scenarios: when the question asks about detecting fileless malware, investigating a breach, or remotely responding to an active incident, the answer is EDR. When the question asks about integrity monitoring of critical system files, HIDS may be the answer. When the question asks about blocking known malware at the file level, traditional AV addresses that.</p>
+
+<h2>EDR Response Actions</h2>
+
+<p>The "response" in EDR distinguishes it from traditional antivirus and HIDS (Host-based Intrusion Detection Systems). When a threat is detected or a security incident is confirmed, EDR platforms provide active response capabilities that can be executed remotely by a SOC analyst or triggered automatically by detection rules.</p>
+
+<p><strong>Host isolation</strong> (also called network isolation or network quarantine) is the most critical response action. With a single click or API call, the EDR agent severs all network connections from the affected host — blocking inbound and outbound traffic to prevent lateral movement and C2 communication. Critically, the EDR agent maintains a persistent connection to the management platform even in isolation mode, allowing analysts to continue investigating, running queries, and executing response actions on the isolated host. When the investigation is complete and remediation is confirmed, isolation is lifted with equal ease.</p>
+
+<p><strong>Process termination</strong> allows the analyst to kill specific malicious processes identified during investigation. If the EDR has detected a PowerShell process downloading and executing a payload, the analyst can terminate that process from the management console without needing physical access to the machine. Combined with host isolation, this stops an active attack immediately while preserving the system state for forensic investigation.</p>
+
+<p><strong>File quarantine and deletion</strong> enables removal of identified malicious files. The EDR quarantines (moves to a protected storage area) rather than immediately deleting, preserving the ability to restore the file if it was a false positive. Quarantined files can be submitted to sandbox analysis or shared with threat intelligence platforms for analysis.</p>
+
+<p><strong>Forensic evidence collection</strong> allows SOC analysts to remotely collect volatile evidence from a running system: memory dumps, process lists, network connection tables, registry exports, and file artifacts. This is critical for incident response because volatile data (what's in memory, what processes are running) disappears when a system is rebooted. EDR enables collection of this evidence from hundreds of machines simultaneously — something that would take a physical incident response team weeks to accomplish manually.</p>
+
+<h2>Threat Hunting with EDR</h2>
+
+<p><strong>Threat hunting</strong> is the proactive practice of searching through endpoint telemetry to find threats that have evaded automated detection. Unlike alert-driven incident response (reacting when the EDR raises an alert), threat hunting assumes that sophisticated attackers may already be present on the network and actively looks for signs of their activity — often before any alert is generated.</p>
+
+<p>EDR's persistent telemetry is what makes threat hunting possible. A threat hunter might start with a hypothesis based on threat intelligence — for example, "APT groups targeting our industry are known to use WMI (Windows Management Instrumentation) for lateral movement." They would then query the EDR's historical data for unusual WMI activity across all endpoints: WMI processes spawning unusual child processes, WMI subscriptions that survive reboots, or WMI connections between workstations (which shouldn't normally communicate via WMI). This kind of investigation is impossible without the endpoint telemetry that EDR provides.</p>
+
+<p>Common threat hunting queries performed through EDR platforms include looking for unusual parent-child process relationships (legitimate software has predictable process trees — deviations are suspicious), processes connecting to external IPs that don't match known application behavior, scheduled tasks or services created recently that don't correspond to authorized software deployments, and credential dumping activity (processes accessing LSASS memory, which is where Windows stores credential hashes).</p>
+
+<h2>EDR and MITRE ATT&amp;CK</h2>
+
+<p>The <strong>MITRE ATT&amp;CK framework</strong> is a knowledge base of adversary tactics, techniques, and procedures (TTPs) based on real-world observations of attacker behavior. It's organized into a matrix of 14 tactic categories (Initial Access, Execution, Persistence, Privilege Escalation, Defense Evasion, Credential Access, Discovery, Lateral Movement, Collection, Command and Control, Exfiltration, Impact, etc.) with hundreds of specific techniques and sub-techniques under each.</p>
+
+<p>Modern EDR platforms map their detections to MITRE ATT&amp;CK technique IDs, giving analysts a common language to describe what they're seeing and look up known adversary groups that use the same techniques. When an EDR alert says "T1059.001 PowerShell," the analyst immediately knows this is a PowerShell execution technique, can look up which threat groups commonly use it, and understands what defenses are applicable. For the Security+ exam, you don't need to memorize individual ATT&amp;CK technique numbers, but you should know that MITRE ATT&amp;CK is a framework describing adversary tactics and techniques, and that it is used to categorize and improve detection capabilities.</p>
+
+<h2>EDR Deployment Considerations</h2>
+
+<p>Deploying EDR across an enterprise requires careful planning. The EDR agent runs continuously on every managed endpoint, consuming CPU and memory — typically 1–5% CPU overhead during normal operation with spikes during active scans or response actions. This is acceptable for modern hardware but can be problematic on older or resource-constrained endpoints, which is why EDR vendors provide lightweight agents or exclusion capabilities for specific workloads.</p>
+
+<p>EDR telemetry volumes are substantial — a large enterprise can generate terabytes of endpoint telemetry daily. Most EDR platforms store hot data locally and in cloud-based data lakes, with configurable retention periods (30–365 days is typical). Longer retention is better for forensic investigations (you may need to look back months to understand the full scope of a compromise) but increases storage costs. The decision on retention period is a balance between security requirements and budget.</p>
+
+<p>Privacy considerations also apply to EDR. Because the agent records detailed behavior about everything happening on a device, EDR deployments on employee machines in some jurisdictions require disclosure to employees (and in some cases their consent), particularly for personal devices enrolled in bring-your-own-device (BYOD) programs. Many organizations use separate MDM (Mobile Device Management) solutions for personal devices rather than full EDR agents, precisely because of the privacy implications of detailed behavioral monitoring on personal equipment.</p>
+
 <div class="author-bio-wrap" style="background:#f0f4fa;border:1px solid #e2e8f4;border-radius:14px;padding:24px 26px;margin:48px 0 40px;display:flex;align-items:flex-start;gap:18px;">
   <div style="flex-shrink:0;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0a1628 0%,#1a6cff 100%);display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:#fff;">IH</div>
   <div>

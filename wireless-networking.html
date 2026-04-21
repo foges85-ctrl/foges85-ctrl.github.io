@@ -532,6 +532,59 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="scenario-item"><strong>Scenario 5:</strong> Three APs in an open office are configured on channels 1, 3, and 6. Users report corrupted downloads and choppy VoIP. What is wrong? <em>Answer:</em> <strong>Adjacent-channel interference</strong>. Channel 3 overlaps with both channels 1 and 6, causing signal corruption. Reconfigure to use only non-overlapping channels: <strong>1, 6, and 11</strong>.</div>
     </div>
 
+    <h2>Wireless Frequencies and Regulatory Considerations</h2>
+
+<p>Wi-Fi operates in licensed spectrum bands, and the regulatory environment affects which channels are available and at what transmit power levels. For A+ and Network+ exam purposes, the key regulatory concepts are channel availability, transmit power limits, and the DFS requirement.</p>
+
+<p>In the 5GHz band, channels are divided into several groups. Channels 36–48 are UNII-1 and can be used at lower power levels indoors. Channels 52–64 and 100–144 are UNII-2 and UNII-2e, and these channels require <strong>DFS (Dynamic Frequency Selection)</strong> — the AP must listen for radar signals (used by weather radar and military radar systems that share these frequencies) before transmitting. If radar is detected, the AP must immediately vacate that channel and switch to a clear one. This is why APs on DFS channels occasionally lose clients briefly during a channel switch — they detected radar and moved. Channels 149–165 are UNII-3 and allow the highest transmit power levels, making them popular for outdoor and longer-range deployments.</p>
+
+<p>The 6GHz band, newly opened for Wi-Fi 6E, has different rules — it requires either Automated Frequency Coordination (AFC) for outdoor use or is limited to indoor use at lower power levels. The 6GHz band dramatically expands available spectrum: approximately 1,200 MHz compared to just 70 MHz on 2.4GHz and 500 MHz on 5GHz, providing up to seven additional 160MHz-wide channels. This is why Wi-Fi 6E is considered a major step forward for high-density deployments.</p>
+
+<h2>MIMO, MU-MIMO, and OFDMA</h2>
+
+    <p>Understanding the antenna and multiplexing technologies behind modern Wi-Fi standards is increasingly important for the exam, especially the differences between Wi-Fi generations.</p>
+
+    <p><strong>MIMO (Multiple-Input, Multiple-Output)</strong> was introduced with 802.11n (Wi-Fi 4). Instead of a single antenna, MIMO uses multiple antennas at both the transmitter and receiver to send and receive multiple spatial streams simultaneously. A 2×2:2 MIMO AP has 2 transmit antennas, 2 receive antennas, and can handle 2 simultaneous spatial streams — doubling throughput compared to a single antenna. Enterprise-class 802.11n APs often support 3×3:3 or 4×4:4 configurations.</p>
+
+    <p><strong>MU-MIMO (Multi-User MIMO)</strong>, introduced in 802.11ac Wave 2 (Wi-Fi 5), extends MIMO to serve multiple clients simultaneously. Single-user MIMO (SU-MIMO) only transmits to one device at a time — other devices wait their turn. MU-MIMO allows the AP to transmit to multiple devices in parallel using spatial multiplexing. Wi-Fi 5 supported MU-MIMO downlink (AP to client) only. <strong>Wi-Fi 6 (802.11ax) extends MU-MIMO to uplink</strong> as well, and supports up to 8 simultaneous spatial streams.</p>
+
+    <p><strong>OFDMA (Orthogonal Frequency-Division Multiple Access)</strong> is a major Wi-Fi 6 feature and a key exam topic when the question mentions dense environments or IoT. Traditional Wi-Fi (OFDM in 802.11a/g/n/ac) assigns the entire channel to one device for each transmission. OFDMA divides the channel into smaller frequency units called <strong>Resource Units (RUs)</strong> and allocates different RUs to different clients simultaneously. This dramatically reduces latency and improves efficiency in high-density environments — stadiums, airports, offices with many IoT devices — because the AP can serve many small devices simultaneously rather than making them queue for channel access.</p>
+
+    <h2>Wireless Network Architecture Concepts</h2>
+
+    <p>The exam tests specific wireless terminology describing how wireless networks are structured. Make sure you know these terms precisely.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Term</th><th>Definition</th><th>Exam Significance</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">SSID</td><td>Service Set Identifier — the name of a wireless network. Up to 32 characters. Multiple APs can broadcast the same SSID to create a seamless network.</td><td>Hidden SSID is security through obscurity — not genuine security. Clients must know the SSID to connect.</td></tr>
+          <tr><td class="td-term">BSS</td><td>Basic Service Set — a single AP and its associated clients. The smallest wireless network unit.</td><td>Each BSS has a unique BSSID (the AP's MAC address). Differentiates physical AP cells.</td></tr>
+          <tr><td class="td-term">ESS</td><td>Extended Service Set — multiple BSSs (APs) sharing the same SSID, connected by a distribution system (wired network). Enables seamless roaming.</td><td>Corporate Wi-Fi is an ESS. Clients roam between APs without reconnecting as long as the SSID and security settings match.</td></tr>
+          <tr><td class="td-term">IBSS</td><td>Independent Basic Service Set — ad-hoc wireless network with no AP. Devices connect peer-to-peer directly.</td><td>Rarely used in enterprise settings; generally blocked on corporate networks as a security risk.</td></tr>
+          <tr><td class="td-term">BSSID</td><td>The MAC address of an AP's radio interface. Uniquely identifies each AP cell, even if multiple APs share the same SSID.</td><td>Used by WIDS tools to detect rogue APs — unexpected BSSIDs broadcasting your SSID indicate an evil twin attack.</td></tr>
+          <tr><td class="td-term">Roaming</td><td>Client moves from one AP to another within an ESS without losing connectivity. 802.11r (Fast BSS Transition) speeds up the re-authentication process during roaming.</td><td>Poor roaming is a common wireless complaint — clients stick to a weak AP instead of roaming to a closer one.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Common Wireless Troubleshooting Issues</h2>
+
+    <p>Network+ tests practical troubleshooting in addition to theory. Here are the most common wireless problems and their root causes that appear in exam scenarios.</p>
+
+    <p><strong>Slow wireless speeds despite strong signal</strong> are often caused by <strong>co-channel interference</strong> (too many APs on the same channel in the same area), or by <strong>legacy devices</strong> on the network. When even one 802.11b device is present on a 2.4GHz network, the AP enables a protection mechanism that dramatically reduces throughput for all devices. Separating legacy and modern devices onto different SSIDs/bands resolves this.</p>
+
+    <p><strong>Intermittent connectivity or high retransmission rates</strong> are often caused by <strong>adjacent-channel interference</strong> (APs on overlapping channels), physical obstructions causing multipath reflection, or interference from non-Wi-Fi 2.4GHz sources such as microwave ovens, cordless phones, and Bluetooth devices. Moving to 5GHz resolves most of these issues because the 5GHz band has more channels and far less crowded spectrum.</p>
+
+    <p><strong>Clients connecting at low speeds</strong> (e.g., 54 Mbps instead of 300+ Mbps) despite a capable adapter usually means the client is far from the AP and using a lower modulation rate due to weak signal, or the AP's configuration has the band steering or minimum RSSI threshold misconfigured, allowing distant clients to hold onto a connection at very low rates instead of roaming to a closer AP.</p>
+
+    <p><strong>802.1X authentication failures</strong> in enterprise environments are commonly caused by an expired RADIUS server certificate, a mismatch between the server certificate's CA and the CA trusted by clients, or a client not having the correct supplicant (EAP method) configured. Always check certificate validity dates when enterprise Wi-Fi authentication suddenly stops working.</p>
+
+    <div class="callout">
+      <div class="callout-label">Wi-Fi 6E and the 6GHz Band</div>
+      <p><strong>Wi-Fi 6E</strong> extends 802.11ax into the <strong>6GHz band</strong>, which was opened by the FCC in 2020. The 6GHz band offers approximately 1,200 MHz of spectrum — compared to 70 MHz on 2.4GHz and 500 MHz on 5GHz. This means up to <strong>seven additional 160MHz-wide channels</strong>, virtually eliminating interference and congestion. Wi-Fi 6E devices require a tri-band adapter. The 6GHz band has shorter range than 5GHz (higher frequency attenuates more), so it is best suited for high-density indoor environments. Older Wi-Fi 6 devices do not support 6GHz — they require a firmware upgrade or replacement.</p>
+    </div>
+
     <div class="cta-box">
       <div class="cta-box-text">
         <h3>Ace Network+ and Security+</h3>

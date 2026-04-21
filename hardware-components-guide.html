@@ -530,6 +530,48 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="scenario-item"><strong>Scenario:</strong> A user reports that their computer's performance has degraded significantly over time and the CPU runs at full speed even during idle tasks. What is the most likely cause? <strong>Answer: CPU thermal throttling due to dried-out thermal paste or a clogged CPU heatsink.</strong> Clean the heatsink, replace thermal paste, and verify the CPU cooler fan is working.</div>
     </div>
 
+    <h2>Cooling Systems</h2>
+
+    <p>Cooling is fundamental to hardware reliability. Every CPU, GPU, and voltage regulator generates heat during operation, and sustained high temperatures cause performance throttling, component degradation, and eventual failure. A+ technicians must understand cooling options and how to diagnose thermal problems.</p>
+
+    <p><strong>Air cooling</strong> is the dominant cooling method for consumer and enterprise hardware. A CPU air cooler consists of a metal heatsink (typically aluminum with copper heat pipes) that conducts heat away from the CPU die, and a fan that blows air through the fins to dissipate the heat into the case airspace. Case fans then exhaust the hot air out of the chassis. The critical factor is <strong>thermal paste (thermal interface material)</strong> — a thin compound applied between the CPU die and the heatsink base that fills microscopic air gaps and maximizes thermal conductivity. Dried or improperly applied thermal paste is a common cause of CPU overheating; replacing it restores normal temperatures. Thermal paste should be replaced every 3–5 years as it can dry out and lose effectiveness.</p>
+
+    <p><strong>Liquid cooling (AIO — All-In-One coolers)</strong> uses a closed loop of coolant that circulates from a water block mounted on the CPU, through tubing to a radiator mounted on the case, where fans dissipate the heat. AIO coolers are more effective than air coolers for high-TDP CPUs and are quieter under sustained load. Maintenance considerations include monitoring for coolant leaks (a catastrophic failure mode), ensuring the pump is functioning, and replacing fans. Custom loops (separate pump, reservoir, water blocks, and radiators) provide even greater cooling capacity for overclocked or extreme workloads.</p>
+
+    <p><strong>Passive cooling</strong> relies on convection alone — no fans. Some low-power systems (NAS devices, thin clients, embedded systems) use entirely passive heatsinks. These are maintenance-free but require good case airflow design and are limited to low TDP components.</p>
+
+    <h2>Ports and Connectors on the A+ Exam</h2>
+
+    <p>The A+ 220-1101 exam tests identification of physical ports and connectors. Knowing which port does what at a glance is a practical skill for a field technician who needs to identify connections quickly.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Port/Connector</th><th>Type</th><th>Key Facts</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">USB-A</td><td>USB</td><td>The rectangular USB connector found on virtually all PCs since the late 1990s. USB 3.x ports are blue inside.</td></tr>
+          <tr><td class="td-term">USB-C</td><td>USB</td><td>Oval, reversible connector. Supports USB 3.2, USB4, Thunderbolt 3/4, DisplayPort, and Power Delivery. One port, many protocols.</td></tr>
+          <tr><td class="td-term">Thunderbolt 3/4</td><td>High-speed</td><td>Uses USB-C connector. Thunderbolt 4 = up to 40 Gbps bandwidth, supports two 4K displays, daisy-chaining. Identified by the lightning bolt icon.</td></tr>
+          <tr><td class="td-term">HDMI</td><td>Video/Audio</td><td>Digital audio and video. HDMI 2.0 supports 4K@60Hz. HDMI 2.1 supports 8K and 4K@120Hz. Trapezoid shape.</td></tr>
+          <tr><td class="td-term">DisplayPort</td><td>Video/Audio</td><td>Digital A/V, common on professional monitors and GPU outputs. Supports higher resolutions and refresh rates than HDMI at same version. One corner is beveled.</td></tr>
+          <tr><td class="td-term">RJ-45</td><td>Networking</td><td>8-pin Ethernet connector. The standard port for wired network connections on computers and switches.</td></tr>
+          <tr><td class="td-term">RJ-11</td><td>Telephone</td><td>6-pin telephone connector. Smaller than RJ-45. Used for DSL modems and analog phone lines. Common exam trick: distinguish from RJ-45 by size.</td></tr>
+          <tr><td class="td-term">DB-9 (RS-232)</td><td>Serial</td><td>9-pin serial port. Legacy connector for serial communication, still found on industrial equipment, network devices, and UPS units.</td></tr>
+          <tr><td class="td-term">PCIe x16</td><td>Expansion</td><td>Long slot on motherboard for discrete GPUs. PCIe 4.0 x16 = 64 GB/s bandwidth, PCIe 5.0 x16 = 128 GB/s.</td></tr>
+          <tr><td class="td-term">M.2</td><td>Storage</td><td>Small rectangular slot for NVMe SSDs and Wi-Fi cards. M-key (notch on right) for NVMe; B+M key for SATA. Check key type before purchase.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Laptop-Specific Hardware</h2>
+
+    <p>The A+ exam covers laptop hardware as a distinct category because laptops use different form factors and have unique maintenance procedures compared to desktop systems.</p>
+
+    <p><strong>SO-DIMM RAM</strong> (Small Outline Dual Inline Memory Module) is the laptop form factor for RAM — physically smaller than desktop DIMM sticks and not interchangeable. Many modern laptops solder RAM directly to the motherboard (non-upgradeable), so checking whether RAM is upgradeable before purchase is important for longevity. Ultrabooks and thin-and-light laptops almost universally solder RAM and storage.</p>
+
+    <p><strong>Laptop batteries</strong> are lithium-ion and have a limited number of charge cycles (typically 300–500 full cycles before significant capacity loss). Most OS platforms include battery health diagnostics — Windows has <code>powercfg /batteryreport</code>, macOS shows cycle count in System Information. When battery life drops significantly or the battery swells (a safety hazard), replacement is required. Swollen batteries must be handled carefully as they can rupture or catch fire.</p>
+
+    <p><strong>Laptop display assembly</strong> involves the LCD/LED panel, inverter (on older CCFL displays), Wi-Fi antenna wires (which run through the hinges around the display frame), and webcam. Replacing a laptop screen requires carefully routing the antenna cables back through the display assembly. A dim laptop screen that brightens when an external monitor is connected indicates the inverter has failed (on older CCFL models) or the LED backlight driver has failed — not a GPU issue.</p>
+
     <div class="cta-box">
       <div class="cta-box-text">
         <h3>Studying for CompTIA A+ Hardware?</h3>

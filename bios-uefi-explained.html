@@ -494,6 +494,46 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="scenario-item"><strong>Scenario:</strong> What is the difference between MBR and GPT, and when does it matter for the A+ exam? <strong>Answer: MBR (used with legacy BIOS) supports a maximum of 2 TB and 4 primary partitions. GPT (used with UEFI) supports drives over 2 TB and up to 128 partitions.</strong> When installing Windows on a drive larger than 2 TB, GPT partitioning is required.</div>
     </div>
 
+    <h2>UEFI vs BIOS — Practical Exam Implications</h2>
+
+    <p>For A+ candidates, the distinction between legacy BIOS and UEFI affects several practical decisions that appear in exam scenarios and in real-world field work.</p>
+
+    <p><strong>Drive partition scheme</strong>: legacy BIOS systems use <strong>MBR (Master Boot Record)</strong> partitioning; UEFI systems use <strong>GPT (GUID Partition Table)</strong>. MBR limits drives to <strong>2 TB maximum</strong> and allows a maximum of <strong>4 primary partitions</strong>. GPT supports drives up to 9.4 ZB (effectively unlimited) and allows up to 128 primary partitions. If you're installing Windows on a drive larger than 2 TB, GPT is required — which means UEFI mode must be used. If you're installing Windows 11, GPT + UEFI + Secure Boot + TPM 2.0 are all mandatory. For exam scenarios: if a technician reports that a new 4 TB drive is only showing 2 TB capacity, the likely cause is MBR partitioning — convert to GPT and use UEFI mode to access the full capacity.</p>
+
+    <p><strong>Boot modes</strong>: most modern systems support both UEFI native mode and UEFI with <strong>CSM (Compatibility Support Module)</strong> enabled. CSM provides legacy BIOS emulation, allowing older operating systems and bootloaders to work on UEFI hardware. When CSM is enabled, the system can boot MBR disks; when CSM is disabled (pure UEFI mode), only GPT disks with UEFI bootloaders are supported. Windows 11 requires CSM to be disabled. If a technician installs a UEFI-capable OS but the system won't boot, checking whether the drive was formatted as MBR instead of GPT is a common diagnostic step.</p>
+
+    <p><strong>Secure Boot compatibility</strong>: some older operating systems (Windows 7, older Linux distributions without UEFI Secure Boot support) are incompatible with Secure Boot. Disabling Secure Boot in BIOS allows these older systems to boot. Linux distributions that use a Microsoft-signed shim bootloader (Ubuntu, Fedora, RHEL) support Secure Boot on UEFI systems. For exam scenarios: if a customer wants to dual-boot Linux alongside Windows and the Linux installer fails to boot, a common cause is Secure Boot preventing the Linux bootloader from loading — the solution is either disabling Secure Boot or using a distribution with Secure Boot support.</p>
+
+<h2>TPM — Trusted Platform Module</h2>
+
+    <p>The <strong>TPM (Trusted Platform Module)</strong> is a dedicated security chip (or firmware-based implementation) that is configured and managed through BIOS/UEFI. TPM has become critical to understand for A+ candidates because it is a mandatory requirement for Windows 11, and because it underpins several important security features.</p>
+
+    <p>At its core, a TPM is a <strong>cryptographic coprocessor</strong> that can generate, store, and use cryptographic keys without exposing the private key material to the main CPU or operating system. The key material never leaves the TPM chip — cryptographic operations are performed inside the secure boundary of the chip. This means that even if an attacker compromises the operating system, they cannot extract the TPM-protected keys.</p>
+
+    <p>The most important consumer-facing application of TPM is <strong>BitLocker disk encryption</strong> on Windows. BitLocker uses the TPM to bind the disk encryption key to the specific hardware configuration of the computer. When the system boots, the TPM verifies that the hardware hasn't changed (boot loader, firmware, hardware components match expected measurements — called "PCR values"). If verification passes, the TPM releases the disk encryption key and Windows boots normally without requiring the user to enter a decryption password. If someone moves the hard drive to a different computer or tries to boot from external media to bypass Windows security, the hardware measurements don't match — the TPM refuses to release the key, and the drive remains encrypted and unreadable.</p>
+
+    <p>For A+ exam scenarios: TPM is required for BitLocker without a startup PIN, required for Windows 11 installation, and is enabled/disabled in BIOS/UEFI settings. If a question asks why BitLocker prompts for a recovery key when a PC's motherboard was replaced, the answer is that changing the motherboard changes the TPM chip (or its stored measurements), causing the BitLocker protection to lock until the recovery key is entered.</p>
+
+    <h2>BIOS/UEFI Security Settings</h2>
+
+    <p>Several BIOS/UEFI settings have direct security implications and are tested on both A+ and Security+ in different contexts.</p>
+
+    <p><strong>Supervisor/Administrator Password (BIOS password)</strong>: a password required to access and modify BIOS settings. Without this, anyone with physical access to the machine can change boot order, disable Secure Boot, or enable insecure interfaces. Setting a BIOS password is a basic physical security control. It can be reset by removing the CMOS battery (on desktop systems) or by a BIOS reset jumper — meaning it protects against casual tampering but not determined physical attackers.</p>
+
+    <p><strong>User Password</strong>: a separate password that prevents the system from booting without entering a password. This is distinct from the OS login — it prevents boot even before the OS loads. Combined with full-disk encryption (BitLocker/FileVault), this provides strong protection for stolen laptops.</p>
+
+    <p><strong>Chassis intrusion detection</strong>: some motherboards have a header for a physical sensor on the case that detects if the case has been opened. When triggered, BIOS records the intrusion event and can alert on next boot. This is a physical security control that logs unauthorized case access — relevant for server environments and high-security workstations.</p>
+
+    <p><strong>Disabling unused ports and interfaces</strong>: BIOS/UEFI can disable USB ports, Thunderbolt, FireWire, Wi-Fi, and Bluetooth at the firmware level. This prevents unauthorized peripherals from being connected even if the OS's device management policies are bypassed. In high-security environments (government, financial trading floors), disabling USB ports in BIOS is a common data exfiltration prevention control — more effective than OS-level USB restrictions because it cannot be bypassed by booting from external media.</p>
+
+    <h2>UEFI Firmware Attacks</h2>
+
+    <p>UEFI firmware attacks are an advanced threat category covered on Security+ and represent one of the most persistent and difficult-to-detect malware types. Because firmware runs before the operating system, malware embedded in UEFI firmware survives OS reinstallation, hard drive replacement, and most incident response procedures.</p>
+
+    <p><strong>UEFI bootkits</strong> are malware that infects the UEFI firmware itself or the EFI System Partition (ESP). Once installed, the bootkit executes at every boot before the OS loads, making it effectively invisible to OS-level security tools. Notable examples include LoJax (2018, APT28/Fancy Bear) — the first publicly documented UEFI rootkit used in real attacks. Secure Boot is a primary defense because it verifies that only signed, trusted code executes in the boot chain — including UEFI drivers and the bootloader.</p>
+
+    <p>Defenses against UEFI attacks include enabling Secure Boot, enabling UEFI firmware write protection, keeping firmware updated through vendor channels, and using TPM-based attestation (which measures the firmware state and reports if it has changed). Enterprise systems can use tools like Microsoft's Secured-Core PC requirements, which mandate hardware-based protections specifically designed to defend against firmware attacks.</p>
+
     <div class="cta-box">
       <div class="cta-box-text">
         <h3>Studying for CompTIA A+?</h3>

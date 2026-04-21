@@ -462,6 +462,54 @@ tbody tr:hover td{background:var(--light);}
 </div>
 
 
+<h2>Protocol Analyzers and Packet Captures in IDS Context</h2>
+
+<p>When an IDS/IPS generates an alert, the next step is typically to examine the actual network traffic that triggered it. <strong>Protocol analyzers</strong> (packet analyzers, packet sniffers) capture raw network traffic for detailed inspection. Wireshark is the most widely used tool — it captures packets, decodes protocol fields, and allows filtering to isolate specific conversations.</p>
+
+<p>IDS systems often integrate with packet capture infrastructure to automatically collect full packet captures triggered by alerts — a practice called <strong>trigger-based packet capture</strong> or <strong>full packet capture (FPC)</strong>. When an IDS signature fires, the system captures not just the alerting packet but a configurable window of traffic before and after the event, giving analysts the full context of the network conversation. This is essential for distinguishing genuine attacks from IDS evasion attempts (where attackers deliberately craft traffic to trigger alerts as cover for the real attack in adjacent packets).</p>
+
+<p>For exam scenarios: Wireshark is the tool for capturing and analyzing network traffic at the packet level. A network tap (passive hardware device that copies traffic from a network link) or SPAN port (switch port configured to mirror traffic from other ports) is required to capture traffic from a network link where you are not the endpoint. If a scenario asks how a technician can capture traffic between two specific hosts without modifying those hosts' configurations, the answer involves a network tap or SPAN port feeding a capture station running Wireshark or a similar tool. SPAN ports only mirror traffic within a single switch; taps are needed for traffic between switches or on specific physical links.</p>
+
+<h2>Network Traffic Analysis (NTA)</h2>
+
+<p><strong>Network Traffic Analysis (NTA)</strong> — also called Network Detection and Response (NDR) — is a detection approach that analyzes network flow data and packet captures to identify threats based on communication patterns rather than endpoint activity. Where EDR watches what happens on individual systems, NTA watches what happens between systems across the network. Together they provide complementary visibility: EDR catches malware execution and file operations, NTA catches lateral movement, data exfiltration, and communications between compromised systems.</p>
+
+<p>NTA tools ingest <strong>NetFlow, IPFIX, or sFlow</strong> data from routers and switches — summarized records of network conversations (source IP, destination IP, port, bytes transferred, duration) without capturing full packet contents. This provides scalable visibility into network patterns across the entire infrastructure without the storage requirements of full packet capture. Anomaly detection algorithms baseline normal communication patterns and alert on deviations: a workstation that suddenly starts communicating with 50 internal servers it has never contacted (lateral movement), a server sending 10 GB overnight to an unfamiliar external IP (data exfiltration), or DNS queries to domains with high entropy names (DNS tunneling or DGA domains from malware).</p>
+
+<p>The relationship between NTA and IDS/IPS: IDS/IPS focuses on detecting known attack signatures and enforcing policies on specific traffic flows in real time; NTA focuses on detecting behavioral anomalies in aggregate traffic patterns over time. Both are valuable in an enterprise security stack, and both feed into SIEM for correlation. The exam tests IDS/IPS as the primary network detection technology, but understanding NTA provides context for why network monitoring extends beyond traditional IDS into behavioral analytics.</p>
+
+<h2>Honeypots and Deception Technologies</h2>
+
+<p>A <strong>honeypot</strong> is a decoy system intentionally set up to attract and detect attackers. It appears to be a legitimate, valuable target (a file server, database, or workstation) but contains no real data and is isolated from production systems. Its only purpose is to be attacked — any connection to a honeypot is inherently suspicious because there is no legitimate reason for traffic to go there. Honeypots generate high-fidelity alerts with very low false positive rates, which makes them valuable for detection that cuts through normal network noise.</p>
+
+<p>Honeypots serve several security purposes. <strong>Early warning</strong>: a honeypot in a network segment where only attackers should be (e.g., a dormant server IP space) will alert the moment a scanner touches it, often indicating an attacker is already inside the network performing reconnaissance. <strong>Intelligence gathering</strong>: because honeypot traffic is almost entirely malicious, it can be captured and analyzed to understand attacker techniques, tools, and objectives in detail — including zero-day exploits and novel attack patterns that haven't been seen elsewhere. <strong>Slowing attackers</strong>: a honeynet (network of honeypots) can waste significant attacker time as they explore systems that appear real but contain no valuable data.</p>
+
+<p><strong>Honeytokens</strong> extend the deception concept to data items rather than systems. A honeytoken might be a fake database credential embedded in a configuration file, a fake credit card number in a database, or a fake document with a unique identifier. If that credential is used in a login attempt, or that document is accessed from an unusual location, it's a reliable indicator of compromise — the data has no legitimate use, so any activity around it must be malicious. Honeytokens can be deployed at scale across a file system to create a fine-grained trip-wire detection system.</p>
+
+<h2>IDS/IPS Tuning and Managing Alerts</h2>
+
+<p>Deploying an IDS or IPS is not a "set it and forget it" task. Out-of-the-box configurations generate massive volumes of alerts, many of which are false positives — the system flagging legitimate traffic as suspicious. An untuned IDS in a real enterprise environment might generate thousands of alerts per day, making it impossible for analysts to identify genuine threats. This is called <strong>alert fatigue</strong> — when analysts are overwhelmed by alert volume, they start ignoring or bulk-dismissing alerts, causing real attacks to be missed.</p>
+
+<p>IDS/IPS tuning is the process of adjusting detection rules to reduce false positives without increasing false negatives. The process involves: first, <strong>understanding normal traffic patterns</strong> in your specific environment (what applications, protocols, and behaviors are legitimate?); then, <strong>suppressing or adjusting rules</strong> that generate false positives for known-good traffic; and finally, <strong>validating coverage</strong> to ensure the tuning hasn't removed detection of real threats.</p>
+
+<p>The fundamental tension in IDS/IPS tuning is the tradeoff between <strong>sensitivity and specificity</strong>. A highly sensitive configuration catches more real attacks but generates more false positives. A highly specific configuration reduces false positives but risks missing novel or slightly varied attacks. The right balance depends on the environment — a honeypot network might want maximum sensitivity, while a production payment system needs precision to avoid business disruption from false blocks.</p>
+
+<h2>IDS/IPS Integration with SIEM</h2>
+
+<p>IDS and IPS systems rarely operate in isolation in enterprise environments. Their alerts are fed into a <strong>SIEM (Security Information and Event Management)</strong> system that aggregates logs from across the entire security infrastructure — firewalls, endpoints, authentication systems, cloud services, DNS servers, and more. The SIEM correlates events from multiple sources that individually might not trigger an alert but together reveal a pattern of attack.</p>
+
+<p>For example: a single failed SSH login attempt is normal noise. But if the SIEM correlates an IDS alert for a port scan from IP 10.0.5.200 at 2:00 AM, followed by 50 failed SSH login attempts from the same IP against multiple servers at 2:05 AM, followed by a successful login at 2:07 AM — the combined picture strongly indicates a successful brute-force attack that requires immediate investigation. No single event would have triggered a response, but the correlated story is unambiguous.</p>
+
+<p>SIEM integration also enables <strong>automated response</strong> through SOAR (Security Orchestration, Automation, and Response) platforms. When a SIEM rule fires based on correlated IDS/IPS alerts, the SOAR can automatically trigger predefined response playbooks: blocking the attacking IP at the firewall, sending a notification to the on-call analyst, creating an incident ticket, and capturing forensic artifacts — all without waiting for human intervention. This dramatically reduces the time between detection and response.</p>
+
+<h2>Unified Threat Management (UTM) and NGFW</h2>
+
+<p>Modern enterprise security rarely deploys standalone IDS/IPS devices. Instead, IPS functionality is typically integrated into <strong>Next-Generation Firewalls (NGFW)</strong> or <strong>UTM (Unified Threat Management)</strong> appliances that combine multiple security functions into a single device.</p>
+
+<p>A <strong>UTM appliance</strong> combines firewall, IPS, antivirus, web filtering, email filtering, and sometimes VPN into one box. This is popular in small and medium businesses because of simplified management and lower cost than deploying separate best-of-breed solutions for each function. The trade-off is that each individual function may be less capable than a dedicated solution.</p>
+
+<p>An <strong>NGFW (Next-Generation Firewall)</strong> goes beyond traditional stateful packet inspection by adding application awareness (identifying applications regardless of port — detecting BitTorrent on port 80, for example), user identity awareness (enforcing policies based on Active Directory user identity rather than just IP address), SSL/TLS inspection (decrypting and inspecting encrypted traffic), and integrated IPS. NGFWs are the dominant enterprise perimeter security technology today. For exam scenarios: when the question mentions "application-aware firewall," "user-based firewall policies," or "integrated IPS and firewall," the answer is NGFW.</p>
+
 <div class="author-bio-wrap" style="background:#f0f4fa;border:1px solid #e2e8f4;border-radius:14px;padding:24px 26px;margin:48px 0 40px;display:flex;align-items:flex-start;gap:18px;">
   <div style="flex-shrink:0;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0a1628 0%,#1a6cff 100%);display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:#fff;">IH</div>
   <div>

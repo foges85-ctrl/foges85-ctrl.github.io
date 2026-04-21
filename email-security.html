@@ -483,6 +483,75 @@ tbody tr:hover td{background:var(--light);}
 </div>
 
 
+<h2>Email Header Analysis for Phishing Investigation</h2>
+
+<p>When investigating a suspected phishing email, analyzing the email headers is one of the first steps. Headers contain a chronological trail of the message's journey through mail servers, and they can reveal whether authentication controls were bypassed, whether the sending IP matches the claimed domain, and whether the message was modified in transit.</p>
+
+<p>The key headers to examine are: <strong>Received:</strong> headers (added by each mail server that handled the message — read bottom to top for chronological order), <strong>From:</strong> (the visible sender — what users see), <strong>Reply-To:</strong> (where replies go — a different Reply-To than From is a phishing red flag), <strong>Authentication-Results:</strong> (records SPF, DKIM, and DMARC pass/fail results), and <strong>X-Originating-IP:</strong> or <strong>X-Sender-IP:</strong> (the IP that submitted the message).</p>
+
+<p>A classic phishing email pattern: the From address shows <code>CEO Name &lt;ceo@legitimate.com&gt;</code> but authentication results show SPF=fail and DMARC=fail. The Received headers show the message originated from a server in an unexpected country. The Reply-To is a different domain (attacker-controlled). The combination of these signals confirms the email is spoofed. Training users to check these headers — or deploying email security tools that display authentication banners — reduces the effectiveness of display-name spoofing attacks.</p>
+
+<h2>Email Security for CompTIA Security+ — What to Know</h2>
+
+<p>Email security spans multiple Security+ domain objectives and appears in scenario-based questions throughout the exam. Here is a consolidated reference of the key email security concepts and the exam context in which each appears.</p>
+
+<p>The exam tests your ability to identify which email security control addresses which threat. The threat model for email has three distinct layers: <strong>domain spoofing</strong> (an attacker sends email appearing to be from your domain), <strong>message tampering</strong> (an attacker modifies an email in transit), and <strong>content confidentiality</strong> (unauthorized parties reading email content). Each threat has a different solution: SPF and DMARC address domain spoofing; DKIM addresses message tampering through digital signatures; S/MIME addresses content confidentiality and sender authenticity through end-to-end encryption and digital signatures.</p>
+
+<p>A common exam question type presents a scenario and asks which technology is needed. Key patterns: if the scenario says emails are arriving that appear to come from your CEO's domain but were not sent by your organization, deploy <strong>DMARC with p=reject</strong>. If it asks how you verify that an email was not modified between sending and receiving, the answer is <strong>DKIM</strong> (the digital signature). If it asks how to prevent others from reading a confidential email even if it's intercepted on a mail server, the answer is <strong>S/MIME encryption</strong>.</p>
+
+<p>Port numbers are also tested: SMTP on port <strong>25</strong> (server-to-server), SMTP submission on port <strong>587</strong> (client-to-server with auth), POP3 on port <strong>110</strong> (or 995 with SSL), IMAP on port <strong>143</strong> (or 993 with SSL). The secure variants (SMTPS on 465, POP3S on 995, IMAPS on 993) use implicit TLS. STARTTLS upgrades an existing connection on port 587 or 143.</p>
+
+<h2>Additional Email Security Protocols</h2>
+
+<p>Beyond the core trio of SPF, DKIM, and DMARC, several additional email security mechanisms appear on the Security+ exam and in enterprise email security discussions.</p>
+
+<p><strong>MTA-STS (Mail Transfer Agent Strict Transport Security)</strong> is a DNS-based standard that allows mail server operators to declare their support for STARTTLS and require that connecting mail servers authenticate the TLS certificate. Without MTA-STS, a downgrade attack could force SMTP connections to proceed without TLS even if the server supports it. MTA-STS specifies a policy (via HTTPS) that tells sending servers "this mail server supports TLS and you must verify my certificate" — preventing opportunistic downgrade to plaintext SMTP.</p>
+
+<p><strong>BIMI (Brand Indicators for Message Identification)</strong> is an emerging standard that allows organizations with strong DMARC enforcement to display their brand logo in supporting email clients' inboxes next to authenticated emails. BIMI requires a verified DMARC policy of <code>p=quarantine</code> or <code>p=reject</code> and a Verified Mark Certificate (VMC). While BIMI is primarily a brand trust feature rather than a security control, it incentivizes organizations to properly implement and enforce DMARC — which is the genuine security benefit.</p>
+
+<p><strong>Email header analysis</strong> is a practical skill for investigating suspicious emails. Email headers contain a chronological record of every mail server the message passed through, with timestamps and IP addresses at each hop. The "Received:" headers are added by each server that handled the message, with the oldest at the bottom and the most recent at the top. Analyzing headers can reveal whether the sending IP matches the claimed domain's SPF record, whether DKIM signatures are present and valid, and whether the message passed or failed DMARC alignment — all without needing specialized tools. Many free online tools (MXToolbox, Google Admin Toolbox) can parse and visualize email headers.</p>
+
+<h2>Email Gateway and Spam Filtering</h2>
+
+<p>A <strong>Secure Email Gateway (SEG)</strong> is a dedicated appliance or cloud service that sits in the path of email traffic — both inbound and outbound — and applies multiple security controls before messages reach users' inboxes. Think of it as a combined spam filter, malware scanner, DLP engine, and policy enforcer for email. On-premises SEGs (such as Cisco IronPort, Proofpoint, or Mimecast) were the traditional deployment; cloud-based SEGs are now increasingly common for organizations using cloud email (Microsoft 365, Google Workspace).</p>
+
+<p>Inbound email controls on a SEG include <strong>spam filtering</strong> (scoring emails against known spam patterns, header analysis, and reputation checks), <strong>anti-malware scanning</strong> (scanning attachments for known malware signatures), <strong>sandboxing</strong> (executing suspicious attachments in an isolated virtual environment to detect zero-day malware that evades signature scanning), and <strong>URL rewriting</strong> (replacing links in emails with proxied versions that are checked at click-time for newly-identified malicious URLs — important because links can become malicious after delivery).</p>
+
+<p>Outbound email controls include <strong>DLP (Data Loss Prevention)</strong> — scanning outbound emails for sensitive data patterns (credit card numbers, Social Security Numbers, healthcare data) and blocking or quarantining messages that violate policy. Outbound DLP is a compliance requirement for industries subject to PCI-DSS and HIPAA.</p>
+
+<h2>SMTP Security — Port Numbers and Protocols</h2>
+
+<p>Understanding SMTP port numbers and the security implications of each is directly tested on Network+ and Security+.</p>
+
+<div class="table-wrap"><table>
+<thead><tr><th>Port</th><th>Protocol</th><th>Use</th><th>Security</th></tr></thead>
+<tbody>
+<tr><td class="td-term">25</td><td>SMTP</td><td>Server-to-server email relay (MTA to MTA). Should not be open to the internet for general use — spammers abuse open relays on port 25.</td><td>Unencrypted by default; STARTTLS optional</td></tr>
+<tr><td class="td-term">587</td><td>SMTP Submission</td><td>Client-to-server email submission (email client to mail server). Requires authentication. The correct port for email client configuration.</td><td>Requires authentication; STARTTLS mandatory</td></tr>
+<tr><td class="td-term">465</td><td>SMTPS (legacy)</td><td>Legacy SSL-wrapped SMTP. Deprecated but still supported by some servers for backward compatibility.</td><td>SSL/TLS encrypted (implicit)</td></tr>
+<tr><td class="td-term">110</td><td>POP3</td><td>Email retrieval — downloads and typically deletes from server. Simple but doesn't sync across devices.</td><td>Unencrypted; POP3S on port 995</td></tr>
+<tr><td class="td-term">143</td><td>IMAP</td><td>Email retrieval — syncs email state across multiple devices. Leaves email on server.</td><td>Unencrypted; IMAPS on port 993</td></tr>
+</tbody>
+</table></div>
+
+<p><strong>STARTTLS</strong> is an important concept to understand correctly. It is not a protocol in itself but an SMTP command that <strong>upgrades</strong> an existing plaintext SMTP connection to an encrypted TLS connection. Port 587 connections start unencrypted and use STARTTLS to negotiate encryption. This is different from implicit TLS (used on port 465) where the connection starts encrypted from the first byte. For exam purposes: STARTTLS = opportunistic TLS upgrade on an existing connection; implicit TLS = encryption from the start.</p>
+
+<h2>Business Email Compromise (BEC)</h2>
+
+<p><strong>Business Email Compromise (BEC)</strong> is one of the most financially damaging cyberattack categories, costing organizations billions annually. BEC attacks target organizations by compromising or spoofing executive or finance employee email accounts to authorize fraudulent wire transfers, gift card purchases, or data theft.</p>
+
+<p>Common BEC scenarios include the <strong>CEO Fraud</strong> pattern: an attacker spoofs the CEO's email address (or gains access to the actual account) and emails the CFO or finance team requesting an urgent wire transfer to a new vendor. Because the request appears to come from a senior executive, employees may comply without verifying through a secondary channel. Another variant is <strong>vendor impersonation</strong> — attackers intercept legitimate business communications and modify payment details in invoices to redirect funds.</p>
+
+<p>SPF, DKIM, and DMARC help prevent external spoofing, but BEC attacks where an attacker has actually compromised the legitimate email account bypass these controls entirely — the email really is coming from the real server. Defence in depth is required: mandatory secondary verification for wire transfer requests (phone call to a known number), multi-person approval workflows for large transactions, and user awareness training to recognize urgency and pressure tactics.</p>
+
+<h2>Email Encryption in Transit vs End-to-End</h2>
+
+<p>A common exam topic is the distinction between email encryption in transit (server-to-server) and end-to-end encryption (sender to recipient). These solve different problems and have different guarantees.</p>
+
+<p><strong>TLS encryption in transit</strong> (SMTP with STARTTLS or implicit TLS) encrypts the connection between mail servers. The email is encrypted while moving between the servers, but it is decrypted and re-encrypted at each hop. The email is readable in plaintext at every mail server it passes through. This protects against passive network interception but not against a compromised or curious mail server administrator.</p>
+
+<p><strong>End-to-end encryption</strong> (S/MIME or PGP) encrypts the email content with the recipient's public key before it leaves the sender's device. Only the recipient's private key can decrypt it. Even the mail servers carrying the message see only encrypted ciphertext and cannot read the content. This provides true confidentiality against all intermediaries — but requires that both sender and recipient have enrolled in the same system, which is the practical barrier to widespread adoption.</p>
+
 <div class="author-bio-wrap" style="background:#f0f4fa;border:1px solid #e2e8f4;border-radius:14px;padding:24px 26px;margin:48px 0 40px;display:flex;align-items:flex-start;gap:18px;">
   <div style="flex-shrink:0;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0a1628 0%,#1a6cff 100%);display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:#fff;">IH</div>
   <div>

@@ -536,6 +536,50 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="scenario-item"><strong>Scenario:</strong> What is the difference between a Docker image and a Docker container? <strong>Answer: An image is the read-only blueprint stored in a registry. A container is a running instance of that image</strong> — you can run many containers from one image.</div>
     </div>
 
+    <h2>Container Volumes and Persistent Storage</h2>
+
+<p>Containers are ephemeral by design — when a container is destroyed and recreated from the same image, any data written inside the container is lost. For stateless applications (web servers, API services) this is fine. For stateful applications (databases, file stores) it is not — data must persist across container restarts and deployments.</p>
+
+<p><strong>Docker volumes</strong> are the recommended mechanism for persistent data in containers. A volume is a directory managed by Docker that exists outside the container's writable layer, persists when the container is removed, and can be shared between multiple containers. When you run a database container with a volume mounted at its data directory, the database files are stored in the volume — recreating the container leaves the data untouched in the volume.</p>
+
+<p><strong>Bind mounts</strong> mount a specific directory from the host machine into the container. Unlike volumes (which Docker manages), bind mounts expose a specific host path — including the risk that the container can modify host files. Bind mounts are commonly used in development environments to mount source code from the developer's machine into a container, enabling code changes to be reflected immediately without rebuilding the image.</p>
+
+<p>In Kubernetes, <strong>PersistentVolumes (PV)</strong> and <strong>PersistentVolumeClaims (PVC)</strong> provide the abstraction layer between pods and storage. A PV represents actual storage (an AWS EBS volume, an NFS share, a GCP Persistent Disk). A PVC is a request by a pod for storage with specific size and access mode requirements. The Kubernetes scheduler matches PVCs to available PVs, abstracting storage provisioning from application deployment. This abstraction is important for portability — the same application manifest (YAML) works across cloud providers and on-premises environments without modification.</p>
+
+<h2>Container Networking</h2>
+
+    <p>Container networking is how containers communicate with each other and with the outside world. Understanding the basic networking models is useful for both exam questions and real-world troubleshooting.</p>
+
+    <p>By default, Docker creates a <strong>bridge network</strong> — a private internal network on the host where containers can communicate with each other using their container names as hostnames. The Docker host's network is separate; containers reach the outside via NAT through the host's IP address. This is the default for most single-host deployments.</p>
+
+    <p>The <strong>host network mode</strong> removes network isolation between the container and the Docker host — the container shares the host's network namespace directly, using the host's IP address. This provides the best network performance but eliminates container network isolation. Use this only when performance is critical and the security implications are understood.</p>
+
+    <p>For multi-host container deployments (Kubernetes clusters), an <strong>overlay network</strong> is used. Overlay networks create a virtual network that spans multiple physical hosts, allowing containers on different physical machines to communicate as if they were on the same network. Kubernetes uses Container Network Interface (CNI) plugins (Flannel, Calico, Cilium) to implement overlay networking. Calico, for example, adds network policy capabilities — allowing administrators to define firewall rules that restrict which pods can communicate with each other, implementing microsegmentation within the cluster.</p>
+
+    <h2>Microservices and Container Architecture</h2>
+
+    <p>Understanding why containers matter requires understanding the architectural shift they enable. Traditional monolithic applications bundle all functionality into a single deployable unit — the entire application is deployed together and scaled as one piece. <strong>Microservices architecture</strong> decomposes an application into small, independently deployable services, each responsible for a specific function. An e-commerce platform might have separate microservices for the user authentication service, product catalog, shopping cart, payment processing, and notification service.</p>
+
+    <p>Containers are the natural fit for microservices because each service can be packaged in its own container image with exactly the dependencies it needs, deployed independently, and scaled based on its own demand — if payment processing is overwhelmed but the product catalog is fine, only the payment service containers need to be scaled up. This contrasts with monolithic deployment where scaling requires running the entire application stack.</p>
+
+    <p>For the exam, the key connection is that containers enable microservices, microservices are deployed on container orchestration platforms like Kubernetes, and this architecture creates specific security challenges — a larger attack surface (many services to secure), east-west traffic between services that must be controlled, and supply chain risk from third-party base images and dependencies.</p>
+
+    <h2>Container Image Scanning and Supply Chain Security</h2>
+
+    <p>Container images are built from base images pulled from registries, and those base images contain operating system packages, libraries, and runtimes that may have known vulnerabilities. <strong>Container image scanning</strong> is the practice of analyzing images for known CVEs (Common Vulnerabilities and Exposures) in the packages they contain — similar to vulnerability scanning for traditional systems, but applied at the image layer before containers are ever deployed.</p>
+
+    <p>Tools like Trivy, Anchore, Snyk, and cloud-native scanner integrations (AWS ECR scanning, Azure Defender for Container Registries) can scan images in CI/CD pipelines, blocking deployment if critical or high-severity vulnerabilities are found. This is the container equivalent of "shift left" security — catching vulnerabilities before they reach production.</p>
+
+    <p><strong>Supply chain risk</strong> in containers is a significant concern. When you run <code>FROM ubuntu:22.04</code> in a Dockerfile, you're trusting that the ubuntu image on Docker Hub hasn't been tampered with. <strong>Image signing</strong> (using Docker Content Trust or Sigstore/cosign) allows image publishers to cryptographically sign images, and container runtimes can be configured to only run signed images from trusted publishers. This prevents "typosquatting" attacks where malicious images are published under names similar to popular images (e.g., <code>nginix</code> instead of <code>nginx</code>).</p>
+
+    <p>Best practices for container image security include using minimal base images (Alpine Linux or distroless images reduce the attack surface dramatically), never running containers as root, pinning base image versions rather than using mutable tags like <code>latest</code>, and regularly rebuilding images to incorporate security patches from updated base images.</p>
+
+    <h2>Docker Compose</h2>
+
+    <p><strong>Docker Compose</strong> is a tool for defining and running multi-container applications using a YAML configuration file (<code>docker-compose.yml</code>). Instead of starting individual containers with lengthy <code>docker run</code> commands and manually linking them, Compose lets you define the entire application stack — services, networks, volumes, environment variables, port mappings — in a single declarative file. A single <code>docker-compose up</code> command starts the entire stack.</p>
+
+    <p>For exam purposes, the distinction between Docker Compose and Kubernetes is important. Docker Compose is designed for <strong>single-host development environments</strong> — it manages containers on one machine and is great for local development and testing. <strong>Kubernetes</strong> is designed for <strong>multi-host production deployments</strong> — it manages containers across clusters of servers with health checking, auto-scaling, rolling updates, and self-healing. When exam scenarios mention production deployment at scale, the answer is Kubernetes (or a managed equivalent). When scenarios mention local development or simple multi-container applications, Docker Compose is appropriate.</p>
+
     <div class="cta-box">
       <div class="cta-box-text">
         <h3>Studying for a Cloud or DevOps Certification?</h3>

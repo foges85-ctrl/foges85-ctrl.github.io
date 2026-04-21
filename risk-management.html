@@ -476,6 +476,72 @@ tbody tr:hover td{background:var(--light);}
 </div>
 
 
+<h2>Policies, Procedures, and Standards in Risk Management</h2>
+
+<p>Risk management doesn't operate in a vacuum — it is governed by a hierarchy of organizational documents that establish expectations, define processes, and set standards. The Security+ exam tests knowledge of these document types and their relationships to each other.</p>
+
+<p>A <strong>policy</strong> is a high-level statement of management intent — it establishes what must be done and why, without specifying how. "All sensitive data must be encrypted at rest and in transit" is a policy statement. Policies are approved by senior management or the board and apply broadly across the organization. They are relatively stable documents that change infrequently.</p>
+
+<p>A <strong>procedure</strong> is the specific step-by-step process for implementing a policy — the "how." An encryption procedure specifies which encryption algorithms to use, how keys are generated and stored, and which systems fall within scope. Procedures are more detailed than policies and change more frequently as technology evolves. An employee following a procedure should be able to complete the required task by following the documented steps.</p>
+
+<p>A <strong>standard</strong> defines specific technical requirements — acceptable encryption algorithms, minimum password lengths, approved authentication protocols. Standards establish the baseline that all systems must meet. A password standard might specify: minimum 12 characters, at least one uppercase, lowercase, number, and special character, cannot reuse last 24 passwords. Standards bridge the gap between the policy ("passwords must be complex") and procedures ("here's how to configure password policy in Active Directory").</p>
+
+<p>A <strong>guideline</strong> provides recommended practices that are not mandatory — unlike standards (which must be followed), guidelines are advisory. "Consider using password managers to manage complex credentials" is a guideline. For exam purposes: policies are mandatory, standards are mandatory, procedures are mandatory, guidelines are optional/advisory.</p>
+
+<h2>Vulnerability Management as a Risk Reduction Practice</h2>
+
+<p>Vulnerability management is a core risk reduction program — it systematically identifies, prioritizes, and remediates vulnerabilities before they can be exploited. Understanding how it connects to the risk management framework is important for Security+ exam scenarios about risk reduction strategies.</p>
+
+<p><strong>Vulnerability scanning</strong> uses automated tools to identify known vulnerabilities in systems, applications, and configurations by comparing them against databases of known CVEs (Common Vulnerabilities and Exposures). Credentialed scans (where the scanner logs into the target system with admin credentials) find significantly more vulnerabilities than uncredentialed scans because they can see installed software versions, configurations, and patch levels from inside the system. Common tools include Nessus, Qualys, OpenVAS, and built-in features in cloud security services.</p>
+
+<p><strong>CVSS (Common Vulnerability Scoring System)</strong> provides a standardized numerical score (0–10) for each vulnerability, measuring severity based on exploitability (how easy is it to exploit?) and impact (what happens if exploited?). CVSS scores guide remediation prioritization — a CVSS 9.8 vulnerability on an internet-exposed web server should be patched immediately; a CVSS 3.2 vulnerability in a rarely-used internal tool can be scheduled for the next maintenance cycle. The CVSS base score doesn't account for your specific environment — a vulnerability might score 9.8 in general but be irrelevant to you if the affected service isn't running in your environment. Environmental and temporal modifiers can adjust the effective score.</p>
+
+<p>For exam scenarios: vulnerability scanning reduces risk by identifying vulnerabilities (finding weaknesses before attackers do). The act of scanning is detective; patching based on scan results is corrective/preventive. Penetration testing goes further than scanning — a penetration tester actually attempts to exploit vulnerabilities to confirm they are genuine risks rather than just theoretical findings. Both feed into the risk management process as inputs to the "identify risks" step.</p>
+
+<h2>Control Types and Categories</h2>
+
+<p>Security controls are the countermeasures used to reduce risk. For the Security+ exam, you must be able to categorize controls by both their <strong>type</strong> (what they do) and their <strong>category</strong> (how they're implemented). These classifications appear throughout the exam in questions about selecting appropriate controls for specific risk scenarios.</p>
+
+<p><strong>Control types by function:</strong> <strong>Preventive controls</strong> stop an incident from occurring — a firewall that blocks malicious traffic, a PIN requirement on a phone, or a locked server room door prevent specific threats from materializing. <strong>Detective controls</strong> identify when an incident has occurred — IDS alerts, audit logs, and security cameras detect events but don't prevent them. Detection enables timely response. <strong>Corrective controls</strong> restore systems to normal after an incident — restoring from backup after ransomware, patching a vulnerability after it's exploited, or rebuilding a compromised server. <strong>Deterrent controls</strong> discourage attackers without necessarily stopping them — warning banners, visible security cameras, and "premises monitored by CCTV" signs make attackers less likely to attempt an attack by increasing perceived risk of detection. <strong>Compensating controls</strong> are alternatives deployed when the ideal control is not feasible — using additional network monitoring (compensating) when a legacy system cannot be patched (preferred control).</p>
+
+<p><strong>Control categories:</strong> <strong>Technical controls</strong> (also called logical controls) use technology — firewalls, encryption, access control lists, MFA, and antivirus are all technical controls. <strong>Administrative controls</strong> (also called managerial controls) use policies, procedures, and training — security awareness programs, acceptable use policies, background checks, and change management processes are administrative controls. <strong>Physical controls</strong> protect physical assets and spaces — door locks, security guards, CCTV cameras, badge readers, and biometric access systems are physical controls. For exam scenarios: when asked for a physical control, think barriers, locks, and physical access systems. When asked for an administrative control, think policies and training.</p>
+
+<h2>Risk Appetite, Risk Tolerance, and Risk Threshold</h2>
+
+<p>These three related terms are frequently confused on the Security+ exam, but they have precise meanings in risk management frameworks.</p>
+
+<p><strong>Risk appetite</strong> is the broad strategic declaration of how much risk an organization is willing to accept in pursuit of its objectives. It's set at the board or executive level and reflects organizational culture and strategy. A startup in a competitive market might have a high risk appetite — willing to accept significant operational risks to move fast. A hospital or bank typically has a very low risk appetite because the consequences of certain failures (patient harm, financial loss) are unacceptable. Risk appetite statements tend to be qualitative: "We accept moderate risk in technology adoption but minimal risk in patient data privacy."</p>
+
+<p><strong>Risk tolerance</strong> is the acceptable variation around a specific objective or risk — the operational boundaries within which the organization will work. Risk tolerance is more specific than appetite. A company with a moderate risk appetite might set specific tolerances: "We will not operate systems with unpatched critical vulnerabilities for more than 30 days" or "We will maintain 99.95% uptime for payment processing."</p>
+
+<p><strong>Risk threshold</strong> is the point at which risk becomes unacceptable and requires escalation or intervention — the tripwire that triggers action. If a risk exceeds the threshold, it must be escalated to a defined decision-maker. Risk thresholds translate abstract tolerance statements into specific, measurable triggers.</p>
+
+<h2>Third-Party and Supply Chain Risk</h2>
+
+<p>Modern organizations depend heavily on third-party vendors — cloud providers, software suppliers, managed service providers, and contractors. Each dependency introduces <strong>third-party risk</strong>: the possibility that a vendor's security failure becomes your problem. The Security+ exam increasingly tests supply chain risk concepts because of high-profile incidents like the SolarWinds attack (2020), where a software update mechanism was compromised to distribute malware to thousands of customers.</p>
+
+<p>Key third-party risk management activities include <strong>vendor risk assessments</strong> (evaluating a vendor's security program before engagement), <strong>contractual security requirements</strong> (including security obligations and breach notification requirements in vendor contracts), <strong>right-to-audit clauses</strong> (contractual permission to audit the vendor's security controls), and <strong>ongoing monitoring</strong> (not just assessing vendors once but continuously monitoring for changes in their risk posture).</p>
+
+<p>The concept of <strong>nth-party risk</strong> is also important — your vendors have their own vendors (subprocessors), creating an extended supply chain. A data breach at your cloud provider's storage vendor is still your problem from a regulatory perspective if they were processing your data. Modern vendor risk management must account for this multi-tier supply chain.</p>
+
+<h2>Risk Management Frameworks</h2>
+
+<p>Risk management frameworks provide structured methodologies for identifying, assessing, and managing risk. The Security+ exam references these frameworks in the context of security program governance.</p>
+
+<p>The <strong>NIST Risk Management Framework (RMF)</strong> (NIST SP 800-37) provides a seven-step process: Prepare, Categorize, Select, Implement, Assess, Authorize, and Monitor. It is mandatory for US federal agencies and widely adopted in the private sector. The RMF integrates with NIST SP 800-53 (security controls catalog) and focuses on managing risk to information systems across their entire lifecycle.</p>
+
+<p><strong>ISO 27005</strong> is the ISO standard specifically for information security risk management, complementing the broader ISO 27001 ISMS standard. It provides detailed guidance on the risk management process: context establishment, risk assessment (identification, analysis, and evaluation), risk treatment, and risk acceptance. ISO 27005 is technology-agnostic and can be used alongside any control framework.</p>
+
+<p>The <strong>FAIR (Factor Analysis of Information Risk)</strong> model is a quantitative risk analysis framework that provides a rigorous method for measuring information risk in financial terms. FAIR is increasingly used by security professionals who need to communicate risk in business language to executives and boards. Unlike the simplified SLE/ALE formulas covered on the exam, FAIR uses probability distributions to model uncertainty rather than single-point estimates.</p>
+
+<h2>Risk Communication and Reporting</h2>
+
+<p>Risk management is not just technical analysis — effectively communicating risk to decision-makers is a critical skill. The exam touches on this through governance concepts, and it's important to understand how risk information flows through an organization.</p>
+
+<p>The <strong>risk register</strong> is the primary operational artifact, tracking individual risks with their assessments and response decisions. A <strong>risk heat map</strong> (or risk matrix) visualizes multiple risks on a 2D grid of likelihood versus impact, giving executives and board members a quick visual overview of the risk landscape. <strong>Key Risk Indicators (KRIs)</strong> are metrics that provide early warning signals when risk levels are changing — analogous to the warning lights on a car dashboard. Rising phishing attempt rates, increasing unpatched critical vulnerabilities, or declining security awareness training completion rates are all KRIs.</p>
+
+<p>Risk reporting escalates from operational teams (who manage day-to-day risk tracking) through the CISO level (who synthesizes risk into program-level metrics) to the board level (who needs to understand risk in business terms — potential financial impact, regulatory exposure, reputational consequences). The ability to translate technical risk into business language is a key competency tested implicitly throughout the Security+ exam.</p>
+
 <div class="author-bio-wrap" style="background:#f0f4fa;border:1px solid #e2e8f4;border-radius:14px;padding:24px 26px;margin:48px 0 40px;display:flex;align-items:flex-start;gap:18px;">
   <div style="flex-shrink:0;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0a1628 0%,#1a6cff 100%);display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:#fff;">IH</div>
   <div>

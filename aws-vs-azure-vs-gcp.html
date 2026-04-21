@@ -621,6 +621,54 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="scenario-item"><strong>Scenario:</strong> An IT candidate wants to enter cloud with no prior experience and maximise job opportunities. Which certification path is recommended? <strong>Answer: AWS Cloud Practitioner, then AWS Solutions Architect Associate</strong> — AWS has the largest market share and hiring demand of any cloud provider.</div>
     </div>
 
+    <h2>Key Cloud Networking Concepts</h2>
+
+    <p>Cloud networking terminology appears frequently in cloud certification exams and increasingly in CompTIA Network+ and Security+ scenarios as cloud becomes the default deployment model.</p>
+
+    <p>A <strong>VPC (Virtual Private Cloud)</strong> is the fundamental networking construct in AWS and GCP — a logically isolated network within the cloud provider's infrastructure where you deploy your resources. Azure calls the equivalent a <strong>Virtual Network (VNet)</strong>. A VPC/VNet is your private network in the cloud: you define the IP address range (CIDR block), create subnets, configure route tables, and control traffic with security groups (firewall rules). Resources within a VPC communicate privately; traffic to the internet requires an internet gateway or NAT gateway.</p>
+
+    <p><strong>Security Groups</strong> (AWS) and <strong>Network Security Groups (NSG)</strong> (Azure) are stateful virtual firewalls applied at the resource or subnet level. They control inbound and outbound traffic based on protocol, port, and source/destination IP. Because they're stateful, return traffic for allowed connections is automatically permitted — you only need to write rules for the initial direction. For exam scenarios: security groups are the cloud equivalent of ACLs or host firewalls — if a cloud instance can't be reached on a specific port, checking the security group is always step one.</p>
+
+    <p><strong>VPC Peering</strong> connects two VPCs so resources in each can communicate using private IP addresses — without traffic traversing the internet. Peering is non-transitive: if VPC A is peered with VPC B and VPC B is peered with VPC C, A cannot communicate with C through B without a direct peering. <strong>VPN Gateway</strong> and <strong>Direct Connect/ExpressRoute/Cloud Interconnect</strong> provide private connectivity from on-premises networks to cloud VPCs, essential for hybrid cloud architectures. Understanding these connectivity options is part of cloud networking fundamentals tested on cloud certifications.</p>
+
+<h2>Cloud Shared Responsibility Model</h2>
+
+    <p>The <strong>shared responsibility model</strong> is a critical concept for CompTIA Security+ and any cloud certification — it defines exactly what security you are responsible for versus what the cloud provider handles. Misunderstanding this model is a leading cause of cloud security breaches.</p>
+
+    <p>The cloud provider (<strong>"security OF the cloud"</strong>) is responsible for the physical infrastructure — data center facilities, hardware, networking equipment, and the hypervisor layer. AWS, Azure, and GCP all invest massively in physical security (multi-factor physical access, 24/7 guards, redundant power and cooling, hardware disposal). They also secure the underlying network infrastructure and the virtualization layer that keeps customers isolated from each other.</p>
+
+    <p>The customer (<strong>"security IN the cloud"</strong>) is responsible for everything above the provider's managed layer. In IaaS (virtual machines), the customer is responsible for the OS, patches, applications, data, network security groups (firewall rules), and identity and access management. In PaaS (managed databases, app platforms), the customer is responsible for the application code, data, and IAM — the provider manages the OS and runtime. In SaaS (Office 365, Salesforce), the customer is primarily responsible for data and user access management.</p>
+
+    <p>A common cloud security failure is the assumption that "it's in the cloud so it's secure." A misconfigured S3 bucket that is publicly accessible is the customer's responsibility — AWS fulfilled their obligation by providing a bucket with private-by-default settings. The customer misconfigured it to be public. All three cloud providers provide tools to detect and alert on misconfigurations (AWS Security Hub, Azure Defender for Cloud, GCP Security Command Center), but ultimately configuration security rests with the customer.</p>
+
+    <h2>Cloud Deployment Models</h2>
+
+    <p>Cloud services can be deployed in three fundamental models, and the distinction is tested on CompTIA Cloud+, Security+, and cloud vendor certifications.</p>
+
+    <p><strong>Public cloud</strong> is the standard model — compute, storage, and services are hosted by the cloud provider on their infrastructure and shared (in a multi-tenant, isolated manner) across many customers. AWS, Azure, and GCP are all public clouds. Public cloud offers the highest scalability, lowest upfront cost, and maximum managed service availability. Data is hosted on the provider's infrastructure, which some highly regulated industries (certain government agencies, defense contractors) are restricted from using for sensitive data without additional controls.</p>
+
+    <p><strong>Private cloud</strong> provides cloud-like self-service and automation on infrastructure operated exclusively for one organization — either on-premises in the organization's own data center, or in a hosted private cloud facility. Technologies like VMware vSphere, Microsoft Azure Stack HCI, and OpenStack enable private cloud. The organization maintains full control over where data resides and how infrastructure is configured, at the cost of managing the underlying hardware and losing the economies of scale of public cloud.</p>
+
+    <p><strong>Hybrid cloud</strong> connects on-premises (or private cloud) infrastructure to public cloud, allowing workloads to move between them and enabling scenarios like cloud bursting (using public cloud for peak demand while running normal workloads on-premises), disaster recovery to cloud, and gradual migration. AWS Direct Connect, Azure ExpressRoute, and Google Cloud Interconnect provide dedicated private network connections from on-premises to cloud, bypassing the public internet for better performance and security. Azure Arc and AWS Outposts are technologies that extend cloud management planes to on-premises environments.</p>
+
+    <h2>Identity and Access Management — IAM in the Cloud</h2>
+
+    <p>All three cloud providers implement their own IAM systems for controlling who can access cloud resources and what they can do. IAM concepts are foundational for any cloud certification and directly map to Security+ domain coverage on access control.</p>
+
+    <p>The core IAM components are similar across all three providers: <strong>users</strong> (individual identities), <strong>groups</strong> (collections of users sharing policies), <strong>roles</strong> (identities assumed by services or workloads — not tied to a specific user), and <strong>policies</strong> (documents that define permissions). In AWS, policies are JSON documents specifying allowed or denied actions on specific resources. Azure uses a role-based access control (RBAC) model with built-in roles (Owner, Contributor, Reader) and custom roles. GCP uses both IAM policies and resource-level policies.</p>
+
+    <p>The <strong>principle of least privilege</strong> is particularly critical in cloud IAM. A misconfigured IAM role that grants excessive permissions can allow a compromised workload to access all data in an account. AWS recommends using <strong>IAM Access Analyzer</strong> to identify overly permissive policies; Azure provides <strong>Privileged Identity Management (PIM)</strong> for just-in-time elevated access to critical resources. All three providers support multi-factor authentication for user accounts, and for the most sensitive operations, all require MFA even for administrative users.</p>
+
+    <h2>Cloud Storage Concepts</h2>
+
+    <p>Cloud storage comes in several types that map to different use cases. Understanding these distinctions is important for both cloud certifications and for Security+ scenarios about data at rest protection.</p>
+
+    <p><strong>Object storage</strong> (AWS S3, Azure Blob, GCP Cloud Storage) is for unstructured data — files, images, videos, backups, logs. It's accessed via HTTP APIs, not mounted like a traditional file system. Ideal for large-scale storage because it scales limitlessly without management. Encryption at rest and access policies are critical security controls — the most common misconfiguration is making objects public unintentionally.</p>
+
+    <p><strong>Block storage</strong> (AWS EBS, Azure Managed Disks, GCP Persistent Disk) is the virtual hard disk attached to cloud VMs. It works exactly like a physical disk — you can format it with any file system and attach it to VMs. Block storage is used for OS volumes and database data files. Snapshots provide point-in-time backups that are critical for recovery and data protection.</p>
+
+    <p><strong>File storage</strong> (AWS EFS, Azure Files, GCP Filestore) provides managed NFS or SMB file shares that multiple VMs can mount simultaneously. Used for shared application data, content management systems, and lift-and-shift migrations of applications that require shared file system access.</p>
+
     <div class="cta-box">
       <div class="cta-box-text">
         <h3>Ready to Get Cloud Certified?</h3>

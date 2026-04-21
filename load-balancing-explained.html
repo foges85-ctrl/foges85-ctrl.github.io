@@ -553,6 +553,44 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="scenario-item"><strong>Scenario 5:</strong> A company wants to offload SSL processing from backend web servers to reduce their CPU load. <em>Answer:</em> Configure <strong>SSL termination (SSL offloading)</strong> on the load balancer. The load balancer decrypts HTTPS from clients and forwards plain HTTP (or re-encrypted HTTPS) to backend servers, centralising all TLS processing at the load balancer.</div>
     </div>
 
+    <h2>Load Balancer Deployment Architectures</h2>
+
+    <p>Load balancers can be deployed in several architectural positions within a network, and the choice affects both functionality and security posture.</p>
+
+    <p>The most common deployment is as an <strong>external (internet-facing) load balancer</strong> that sits between the internet and the web server pool. In this position, the load balancer terminates inbound HTTPS connections, performs SSL offloading, and forwards requests to backend servers in the DMZ or internal network. This centralizes all TLS certificate management at the load balancer and prevents direct internet access to the backend servers — clients on the internet only communicate with the load balancer's VIP.</p>
+
+    <p>An <strong>internal load balancer</strong> sits inside the network and distributes traffic between internal application tiers — for example, balancing requests from web servers to application servers, or from application servers to database read replicas. Internal load balancing improves the scalability of multi-tier architectures without exposing the load balancer to the internet. In cloud environments, internal load balancers are a standard pattern for microservices — each service layer has its own internal load balancer so individual services can scale independently.</p>
+
+    <p>In a <strong>two-tier load balancing architecture</strong> (common in large-scale deployments), a first-tier global load balancer or GSLB routes traffic between data centers, and second-tier local load balancers within each data center distribute traffic across individual servers. This provides both geographic redundancy (handled by tier 1) and within-datacenter scaling (handled by tier 2). Cloud providers implement this automatically — AWS ALB + Route 53 or Azure Application Gateway + Azure Front Door are common implementations of two-tier architectures.</p>
+
+<h2>Global Server Load Balancing (GSLB)</h2>
+
+    <p><strong>Global Server Load Balancing (GSLB)</strong> extends load balancing beyond a single data center to distribute traffic across multiple geographically dispersed data centers. While a standard load balancer operates within one site, GSLB uses DNS to route users to the optimal data center based on geographic proximity, health, and load.</p>
+
+    <p>When a user resolves a domain like <code>www.example.com</code>, instead of getting a single IP address back from DNS, the GSLB-aware DNS server returns the IP address of the data center that is healthiest, closest to the user, and least loaded. If the US East data center fails all health checks, the GSLB DNS stops returning its IP — traffic is automatically directed to US West or Europe instead, achieving geographic failover without user intervention. Major CDN providers (Cloudflare, Akamai, AWS Route 53) implement GSLB through their anycast routing and traffic management features.</p>
+
+    <p>For exam scenarios: if the question asks how a company can direct users to the nearest data center automatically, or how traffic can fail over between geographically distributed data centers, the answer involves <strong>GSLB</strong> or DNS-based traffic management. The key differentiator from standard load balancing is that GSLB operates at the DNS level and spans multiple geographic locations.</p>
+
+    <h2>Load Balancing in Cloud Environments</h2>
+
+    <p>All major cloud providers offer managed load balancing services that eliminate the need to deploy and manage load balancer appliances. Understanding cloud load balancing options is increasingly relevant for Network+ and is directly tested on cloud certification paths.</p>
+
+    <p><strong>AWS</strong> offers three load balancer types: ALB (Application Load Balancer) for Layer 7 HTTP/HTTPS traffic with content-based routing and WebSocket support; NLB (Network Load Balancer) for Layer 4 TCP/UDP traffic with ultra-low latency and static IP addresses; and GWLB (Gateway Load Balancer) for routing traffic through third-party security appliances. The ALB is the most commonly used for web applications.</p>
+
+    <p><strong>Azure</strong> provides Azure Load Balancer (Layer 4, internal and public) and Azure Application Gateway (Layer 7 with WAF capabilities, similar to AWS ALB). Azure Front Door adds global GSLB, CDN, and WAF in a unified service. <strong>Google Cloud</strong> similarly offers Cloud Load Balancing with multiple tiers covering Layer 4 and Layer 7, internal and external traffic.</p>
+
+    <p>In cloud environments, load balancers integrate with auto-scaling groups — when the load balancer's health checks show that backend instances are overloaded (high CPU, high connection count), the auto-scaling group automatically launches additional instances and registers them with the load balancer. When load decreases, instances are terminated. This creates truly elastic capacity that scales with demand without manual intervention — a key cloud advantage over on-premises deployments.</p>
+
+    <h2>Load Balancer Security Considerations</h2>
+
+    <p>Load balancers are not just traffic distribution devices — they occupy a critical position in the network architecture and have important security implications.</p>
+
+    <p><strong>SSL/TLS certificate management</strong> is centralized at the load balancer when SSL termination is used. This means the load balancer holds the private key for the domain's certificate. If the load balancer is compromised, the private key is exposed. Hardware Security Modules (HSMs) can store private keys in tamper-resistant hardware that cannot be exported, protecting the key even if the load balancer software is compromised.</p>
+
+    <p><strong>DDoS protection</strong> is often implemented at the load balancer layer. Volumetric DDoS attacks (floods of traffic) can be absorbed by cloud-based load balancers with near-unlimited scale. Protocol attacks (SYN floods, ICMP floods) can be mitigated by the load balancer's TCP proxy behavior — the load balancer completes the three-way handshake on behalf of backend servers, absorbing SYN floods before they reach the servers. Application-layer DDoS (HTTP floods) requires rate limiting and WAF rules configured at the load balancer.</p>
+
+    <p><strong>IP address exposure</strong>: backend server IPs are hidden behind the load balancer's VIP (Virtual IP), which is a security benefit. However, applications that log client IP addresses will see the load balancer's IP rather than the real client IP unless the load balancer is configured to pass the original IP via the <code>X-Forwarded-For</code> HTTP header. Proper configuration of XFF header handling is important for security logging, access control, and geographic restriction functionality.</p>
+
     <div class="cta-box">
       <div class="cta-box-text">
         <h3>Nail your Network+ exam</h3>

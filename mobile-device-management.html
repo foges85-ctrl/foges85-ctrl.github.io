@@ -475,6 +475,62 @@ tbody tr:hover td{background:var(--light);}
     </div>
 
     
+<h2>Mobile Application Management — Technical Architecture</h2>
+
+    <p><strong>MAM (Mobile Application Management)</strong> focuses on managing specific applications rather than the entire device. This distinction is crucial for BYOD environments where full device management is inappropriate or impractical, but some level of control over corporate applications is required.</p>
+
+    <p>The technical implementation of MAM relies on an <strong>SDK (Software Development Kit)</strong> or <strong>app wrapping</strong>. SDK-based MAM requires apps to be built with the MAM SDK included, giving the MDM vendor programmatic control over the app's behavior — enforcing encryption, preventing copy-paste to non-managed apps, requiring authentication before the app opens, and enabling remote selective wipe of just that app's data. This approach is deep but requires the app developer to integrate the SDK.</p>
+
+    <p><strong>App wrapping</strong> is a post-development technique where the MDM vendor wraps an existing app binary with a layer that intercepts its API calls and applies MAM policies without modifying the source code. This allows MAM policies to be applied to third-party apps (corporate email clients, CRM apps) without requiring the vendor to integrate an SDK. The trade-off is that app wrapping may not work reliably with all apps, particularly those with anti-tampering protections.</p>
+
+    <p>The concept of the <strong>managed app container</strong> is central to BYOD MAM. Corporate apps write their data into an encrypted container (a protected area within the app's sandbox) that is separate from personal app data. The container can be remotely wiped (deleting only corporate data) without affecting personal photos, messages, or personal apps. From the user's perspective, they see two email apps — their personal Gmail and the corporate managed email — and the corporate one simply disappears (along with its cached emails) if their employment ends. This clean separation addresses both security requirements (company can wipe its data) and privacy requirements (company cannot see personal content).</p>
+
+<h2>Mobile Device Enrollment Methods</h2>
+
+    <p>Getting devices into MDM management requires an enrollment process, and the method differs significantly between corporate-owned and BYOD scenarios. Understanding enrollment methods is relevant for Security+ scenarios about MDM deployment.</p>
+
+    <p><strong>User-initiated enrollment</strong> is the standard BYOD approach. The employee downloads the company's MDM enrollment profile from a self-service portal (or receives an enrollment email), installs the MDM profile, and accepts the management permissions. The employee can see exactly what the MDM can and cannot access — typically displayed during enrollment. On iOS, MDM profiles installed this way can manage apps and settings but cannot access personal data. The user can remove the MDM profile at any time (which triggers revocation of corporate access and, for MAM, a wipe of the corporate data container).</p>
+
+    <p><strong>Zero-touch enrollment</strong> (Apple Business Manager, Android Zero-Touch, Windows Autopilot) pre-configures corporate-owned devices to automatically enroll into MDM when first powered on, without any IT department hands-on time. When a new device is purchased through an approved reseller and registered in the zero-touch program, it comes out of the box knowing it belongs to the organization. The employee powers it on, signs in with their corporate credentials, and the device automatically downloads and applies all MDM policies, installs required apps, and configures settings — without IT needing to physically touch the device. This dramatically scales device deployment: a company rolling out 500 laptops can ship them directly from the vendor to employees' homes and have them fully configured without IT involvement.</p>
+
+    <p><strong>Apple DEP (Device Enrollment Program)</strong>, now part of Apple Business Manager, provides supervised mode enrollment for corporate iOS devices. Supervised mode gives MDM significantly greater control than standard enrollment: the ability to prevent users from removing the MDM profile, disable AirDrop, restrict app installations more granularly, and enable single-app mode (where the device can only run one specific app — used for kiosk deployments). For exam scenarios: supervised mode is only available for COBO corporate-owned devices, not for BYOD personal devices.</p>
+
+<h2>MDM Policy Enforcement — What Gets Enforced</h2>
+
+<p>MDM policies define the security and configuration baseline that every managed device must meet. Understanding which policies are enforceable through MDM is tested on Security+ and is essential for practical mobile security deployments.</p>
+
+<p><strong>PIN and password complexity policies</strong> are the most fundamental. MDM can enforce minimum PIN length (6 digits vs 4 digits), require alphanumeric passwords instead of numeric PINs, set maximum failed attempts before the device wipes itself, and enforce minimum time before the screen locks automatically. These policies are enforced at the OS level through the MDM profile — a user cannot bypass them without removing the MDM enrollment entirely (which can itself trigger a wipe of corporate data).</p>
+
+<p><strong>Encryption policies</strong> require device storage to be encrypted. Modern iOS and Android devices encrypt storage by default, but MDM can verify that encryption is enabled and refuse to grant access to corporate resources if it's not. For enterprise applications, MDM can enforce that the app's own data container is encrypted independently with a separate key.</p>
+
+<p><strong>Application allow and block lists</strong> control which apps can be installed. An allow list restricts devices to only approved applications — useful for COBO devices where employees should only run specific corporate apps. A block list prevents specific apps from being installed — commonly used to prohibit consumer cloud storage apps (Dropbox, personal Google Drive) that could be used for data exfiltration on BYOD devices.</p>
+
+<p><strong>Network policies</strong> include forcing VPN connections when on untrusted networks (always-on VPN), blocking personal Wi-Fi hotspot functionality on corporate-owned devices, and preventing connection to unknown Wi-Fi networks. Per-app VPN is a particularly useful feature — only specific corporate apps tunnel their traffic through VPN, while personal apps use direct internet access, protecting privacy on BYOD devices while ensuring corporate app traffic is secured.</p>
+
+<h2>Mobile Threat Categories</h2>
+
+    <p>Mobile devices face a distinct set of threats compared to traditional endpoints, and the Security+ exam tests several mobile-specific attack categories. Understanding these helps you choose the correct MDM controls in exam scenarios.</p>
+
+    <p><strong>Malicious apps</strong> are the primary mobile malware vector. Unlike traditional malware that exploits OS vulnerabilities, mobile malware is often installed deliberately by the user from unofficial app stores, sideloaded APKs (Android Package files), or through apps that hide malicious functionality behind a legitimate-seeming surface. MDM policies that restrict sideloading (installation from outside official app stores) and require apps to be sourced only from approved corporate app stores mitigate this threat.</p>
+
+    <p><strong>Jailbreaking (iOS) and rooting (Android)</strong> remove the operating system's security restrictions, giving apps and users privileges beyond what the OS normally allows. Jailbroken and rooted devices can bypass MDM controls, install unapproved apps, and expose the underlying OS in ways that normal devices cannot. MDM platforms detect jailbroken/rooted devices during enrollment and can refuse to enroll them or quarantine them upon detection — this is a standard compliance policy in regulated environments.</p>
+
+    <p><strong>SMS phishing (smishing)</strong> uses text messages to deliver malicious links, often impersonating banks, delivery services, or government agencies. <strong>Vishing</strong> uses voice calls. These attacks target users rather than the device OS, making them difficult to block technically — user awareness training is the primary control. MDM can block specific SMS applications or restrict browser access to only known-good domains, but these controls have limitations on personal devices.</p>
+
+    <p><strong>Bluetooth attacks</strong> — including <strong>bluejacking</strong> (sending unsolicited messages to Bluetooth devices) and <strong>bluesnarfing</strong> (unauthorized access to a device's data via Bluetooth) — target devices with Bluetooth left discoverable. The security control is simple: configure devices to be non-discoverable by default and turn off Bluetooth when not in use. MDM can enforce this policy across all managed devices.</p>
+
+    <h2>Unified Endpoint Management (UEM)</h2>
+
+    <p><strong>UEM (Unified Endpoint Management)</strong> is the evolution of MDM — a single platform that manages all endpoint types including traditional Windows/macOS laptops and desktops, smartphones, tablets, IoT devices, and even rugged devices like barcode scanners. The convergence is driven by the reality that IT departments need to enforce consistent security policies across all devices regardless of form factor, and managing separate MDM, PC management, and IoT solutions creates operational complexity and security gaps.</p>
+
+    <p>For exam purposes, UEM represents the current direction of mobile and endpoint management. When Security+ scenarios ask about managing a "mixed fleet of laptops, smartphones, and tablets with consistent security policies," the modern answer is a UEM platform. Major UEM vendors include Microsoft Endpoint Manager (Intune + Configuration Manager), VMware Workspace ONE, Jamf (Mac/iOS focused), and Ivanti. The underlying capabilities — profile management, app distribution, compliance enforcement, remote wipe — are the same as traditional MDM but extended to all endpoint categories.</p>
+
+    <h2>Mobile Certificate Management</h2>
+
+    <p>Certificates play an important role in mobile security, particularly for Wi-Fi authentication (802.1X EAP-TLS), VPN client authentication, and S/MIME email signing. Manually distributing and renewing certificates to hundreds or thousands of mobile devices is impractical — MDM automates this through integration with enterprise PKI (Public Key Infrastructure).</p>
+
+    <p>MDM platforms integrate with SCEP (Simple Certificate Enrollment Protocol) or NDES (Network Device Enrollment Service, Microsoft's SCEP implementation) to automatically request, distribute, and renew certificates on managed devices. When a device enrolls in MDM, it can automatically receive a client certificate for Wi-Fi authentication — users connect to 802.1X enterprise Wi-Fi automatically without being prompted for credentials. When the certificate approaches expiration, the MDM renews it silently in the background. This is a significant advantage over password-based Wi-Fi authentication from both a security and user experience perspective.
+
 <div class="author-bio-wrap" style="background:#f0f4fa;border:1px solid #e2e8f4;border-radius:14px;padding:24px 26px;margin:48px 0 40px;display:flex;align-items:flex-start;gap:18px;">
   <div style="flex-shrink:0;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0a1628 0%,#1a6cff 100%);display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:#fff;">IH</div>
   <div>
