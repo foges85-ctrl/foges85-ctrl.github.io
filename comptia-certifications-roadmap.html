@@ -224,6 +224,65 @@ tbody tr:hover td{background:#eff6ff;}
   .author-date { display: none; }
 }
 
+
+/* ── AUTHOR BIO ── */
+.author-bio {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 36px 28px;
+}
+.author-bio-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+.author-bio-avatar {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800; font-size: 22px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.author-bio-content { flex: 1; }
+.author-bio-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .8px; text-transform: uppercase;
+  color: var(--teal2, #00a892);
+  margin-bottom: 6px;
+}
+.author-bio-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px; font-weight: 800;
+  color: var(--navy); margin-bottom: 4px;
+}
+.author-bio-creds {
+  font-size: 13px; color: var(--muted);
+  margin-bottom: 12px;
+}
+.author-bio-text {
+  font-size: 14px; color: var(--text);
+  line-height: 1.7; margin-bottom: 14px;
+}
+.author-bio-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 600;
+  color: var(--blue, #1a6cff);
+  text-decoration: none;
+}
+.author-bio-link:hover { text-decoration: underline; }
+@media (max-width: 600px) {
+  .author-bio-inner { flex-direction: column; gap: 16px; }
+  .author-bio-avatar { width: 52px; height: 52px; font-size: 18px; }
+  .author-bio { padding: 28px 16px; }
+}
+
 </style>
 
 <script type="application/ld+json">
@@ -316,6 +375,32 @@ tbody tr:hover td{background:#eff6ff;}
   <meta property="og:url" content="https://itstudyhub.org/comptia-certifications-roadmap.html">
   <meta property="og:title" content="CompTIA Certification Roadmap 2026 — The Right Order to Take">
   <meta property="og:description" content="Not sure which CompTIA cert to take first or what comes after Security+? This roadmap maps out the full path from A+ through CASP+ with realistic…">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "CompTIA Certification Roadmap 2026 \u2014 The Right Order to Take Your Exams",
+  "author": {
+    "@type": "Person",
+    "name": "Sean Fogarty",
+    "url": "https://itstudyhub.org/about.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "IT Study Hub",
+    "url": "https://itstudyhub.org",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://itstudyhub.org/favicon-512x512.png"
+    }
+  },
+  "datePublished": "2026-04-21",
+  "dateModified": "2026-04-21",
+  "url": "https://itstudyhub.org/comptia-certifications-roadmap.html",
+  "inLanguage": "en"
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->
@@ -668,6 +753,21 @@ tbody tr:hover td{background:#eff6ff;}
     <h2>Is the A+ to Security+ Path Worth It?</h2>
     <p>The short answer is yes for most people entering IT from a non-technical background. The three certifications provide a structured, vendor-neutral foundation that employers recognize and that genuinely teaches the knowledge you need to do entry-level IT and security work. They are not shortcuts — candidates who pass A+, Network+, and Security+ have legitimately studied and applied networking and security fundamentals.</p>
     <p>The limitations: certifications alone, without hands-on experience, are a floor rather than a ceiling. Employers in competitive markets are increasingly looking for certifications plus a home lab, a GitHub portfolio, documented projects, or help desk experience. Building a home lab (even a simple one with VirtualBox or VMware running a few virtual machines) while studying dramatically improves both your exam performance and your employability, because you can speak to real-world application in interviews.</p>
+
+
+<!-- AUTHOR BIO -->
+<div class="author-bio">
+  <div class="author-bio-inner">
+    <div class="author-bio-avatar">SF</div>
+    <div class="author-bio-content">
+      <div class="author-bio-label">Written by</div>
+      <div class="author-bio-name">Sean Fogarty</div>
+      <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
+    </div>
+  </div>
+</div>
 
 <footer class="footer">
   <div class="footer-inner">

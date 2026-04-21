@@ -196,7 +196,92 @@ a{color:inherit;text-decoration:none;}
   .author-date { display: none; }
 }
 
+
+/* ── AUTHOR BIO ── */
+.author-bio {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 36px 28px;
+}
+.author-bio-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+.author-bio-avatar {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800; font-size: 22px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.author-bio-content { flex: 1; }
+.author-bio-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .8px; text-transform: uppercase;
+  color: var(--teal2, #00a892);
+  margin-bottom: 6px;
+}
+.author-bio-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px; font-weight: 800;
+  color: var(--navy); margin-bottom: 4px;
+}
+.author-bio-creds {
+  font-size: 13px; color: var(--muted);
+  margin-bottom: 12px;
+}
+.author-bio-text {
+  font-size: 14px; color: var(--text);
+  line-height: 1.7; margin-bottom: 14px;
+}
+.author-bio-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 600;
+  color: var(--blue, #1a6cff);
+  text-decoration: none;
+}
+.author-bio-link:hover { text-decoration: underline; }
+@media (max-width: 600px) {
+  .author-bio-inner { flex-direction: column; gap: 16px; }
+  .author-bio-avatar { width: 52px; height: 52px; font-size: 18px; }
+  .author-bio { padding: 28px 16px; }
+}
+
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "About IT Study Hub \u2014 Free CompTIA Study Resources",
+  "author": {
+    "@type": "Person",
+    "name": "Sean Fogarty",
+    "url": "https://itstudyhub.org/about.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "IT Study Hub",
+    "url": "https://itstudyhub.org",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://itstudyhub.org/favicon-512x512.png"
+    }
+  },
+  "datePublished": "2026-04-21",
+  "dateModified": "2026-04-21",
+  "url": "https://itstudyhub.org/about.html",
+  "inLanguage": "en"
+}
+</script>
 </head>
 <body>
 
@@ -339,7 +424,7 @@ a{color:inherit;text-decoration:none;}
 
     <h2>What's on the Site</h2>
 
-    <p>IT Study Hub currently has <strong>100 articles</strong> covering every major topic tested on CompTIA A+ (220-1201 and 220-1202), Network+ (N10-009), and Security+ (SY0-701). Coverage includes:</p>
+    <p>IT Study Hub currently has <strong>107 articles</strong> covering every major topic tested on CompTIA A+ (220-1201 and 220-1202), Network+ (N10-009), and Security+ (SY0-701). Coverage includes:</p>
 
     <p><strong>Networking fundamentals</strong> — OSI model, TCP/IP model, subnetting, IP addressing, routing protocols, DNS, DHCP, NAT, VLANs, wireless networking, and network troubleshooting commands.</p>
 
@@ -380,6 +465,21 @@ a{color:inherit;text-decoration:none;}
       <a href="osi-model.html" class="ql-link">OSI Model Explained</a>
     </div>
 
+  </div>
+</div>
+
+
+<!-- AUTHOR BIO -->
+<div class="author-bio">
+  <div class="author-bio-inner">
+    <div class="author-bio-avatar">SF</div>
+    <div class="author-bio-content">
+      <div class="author-bio-label">Written by</div>
+      <div class="author-bio-name">Sean Fogarty</div>
+      <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
+    </div>
   </div>
 </div>
 

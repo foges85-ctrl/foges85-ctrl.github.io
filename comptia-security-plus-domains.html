@@ -221,6 +221,65 @@ tbody tr:hover td{background:#fdf4ff;}
   .author-date { display: none; }
 }
 
+
+/* ── AUTHOR BIO ── */
+.author-bio {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 36px 28px;
+}
+.author-bio-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+.author-bio-avatar {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800; font-size: 22px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.author-bio-content { flex: 1; }
+.author-bio-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .8px; text-transform: uppercase;
+  color: var(--teal2, #00a892);
+  margin-bottom: 6px;
+}
+.author-bio-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px; font-weight: 800;
+  color: var(--navy); margin-bottom: 4px;
+}
+.author-bio-creds {
+  font-size: 13px; color: var(--muted);
+  margin-bottom: 12px;
+}
+.author-bio-text {
+  font-size: 14px; color: var(--text);
+  line-height: 1.7; margin-bottom: 14px;
+}
+.author-bio-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 600;
+  color: var(--blue, #1a6cff);
+  text-decoration: none;
+}
+.author-bio-link:hover { text-decoration: underline; }
+@media (max-width: 600px) {
+  .author-bio-inner { flex-direction: column; gap: 16px; }
+  .author-bio-avatar { width: 52px; height: 52px; font-size: 18px; }
+  .author-bio { padding: 28px 16px; }
+}
+
 </style>
 
 <script type="application/ld+json">
@@ -313,6 +372,32 @@ tbody tr:hover td{background:#fdf4ff;}
   <meta property="og:url" content="https://itstudyhub.org/comptia-security-plus-domains.html">
   <meta property="og:title" content="CompTIA Security+ Exam Domains 2026 — Where to Focus for">
   <meta property="og:description" content="Security Operations is 28% of SY0-701 — do you know which other domain catches most candidates off guard? Full domain breakdown with weightings and…">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "CompTIA Security+ Exam Domains 2026 \u2014 Where to Focus for SY0-701",
+  "author": {
+    "@type": "Person",
+    "name": "Sean Fogarty",
+    "url": "https://itstudyhub.org/about.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "IT Study Hub",
+    "url": "https://itstudyhub.org",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://itstudyhub.org/favicon-512x512.png"
+    }
+  },
+  "datePublished": "2026-04-21",
+  "dateModified": "2026-04-21",
+  "url": "https://itstudyhub.org/comptia-security-plus-domains.html",
+  "inLanguage": "en"
+}
+</script>
 </head>
 <body>
 <!-- CERTFLASH APP BANNER -->
@@ -629,6 +714,21 @@ tbody tr:hover td{background:#fdf4ff;}
       <a href="best-security-plus.html" class="related-link">Best Security+ Study Resources</a>
     </div>
 
+  </div>
+</div>
+
+
+<!-- AUTHOR BIO -->
+<div class="author-bio">
+  <div class="author-bio-inner">
+    <div class="author-bio-avatar">SF</div>
+    <div class="author-bio-content">
+      <div class="author-bio-label">Written by</div>
+      <div class="author-bio-name">Sean Fogarty</div>
+      <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
+    </div>
   </div>
 </div>
 
