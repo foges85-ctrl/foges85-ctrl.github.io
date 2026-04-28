@@ -764,8 +764,8 @@ tbody tr:hover td{background:#eff6ff;}
       </div>
       <div class="pbq-item">
         <div class="pbq-label">PBQ Scenario 2 — Connectivity Troubleshooting</div>
-        <div class="pbq-q">Host A (192.168.5.65/27) cannot reach Host B (192.168.5.100/27). Both are on the same physical switch. The default gateway is 192.168.5.1. What is the problem?</div>
-        <div class="pbq-a"><strong>/27 has a magic number of 32.</strong> Subnet starts: 0, 32, 64, 96, 128...<br>Host A (.65) is in the 192.168.5.64/27 subnet (range: .65–.94, broadcast .95).<br>Host B (.100) is in the 192.168.5.96/27 subnet (range: .97–.126, broadcast .127).<br><strong>They are on different subnets</strong> — even though they're on the same switch, they cannot communicate directly. Traffic must route through the default gateway. The issue is that the switch is not doing inter-VLAN routing, or the subnets are not both reachable via the gateway 192.168.5.1 (which is itself not in either subnet — that's also a configuration error).</div>
+        <div class="pbq-q">Host A (192.168.5.65/27) cannot reach Host B (192.168.5.100/27). Both are on the same physical switch. The <a href="default-gateway.html">default gateway</a> is 192.168.5.1. What is the problem?</div>
+        <div class="pbq-a"><strong>/27 has a magic number of 32.</strong> Subnet starts: 0, 32, 64, 96, 128...<br>Host A (.65) is in the 192.168.5.64/27 subnet (range: .65–.94, broadcast .95).<br>Host B (.100) is in the 192.168.5.96/27 subnet (range: .97–.126, broadcast .127).<br><strong>They are on different subnets</strong> — even though they're on the same switch, they cannot communicate directly. Traffic must route through the default gateway. The issue is that the switch is not doing inter-<a href="vlan-explained.html">VLAN</a> routing, or the subnets are not both reachable via the gateway 192.168.5.1 (which is itself not in either subnet — that's also a configuration error).</div>
       </div>
       <div class="pbq-item">
         <div class="pbq-label">PBQ Scenario 3 — Subnet Identification from Route Table</div>
