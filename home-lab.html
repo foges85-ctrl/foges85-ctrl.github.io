@@ -924,7 +924,7 @@ a:hover { text-decoration: underline; }
   <div style="background:#f0f4fa;border:1px solid #e2e8f4;border-radius:14px;padding:28px 28px 24px;margin:32px 0;">
     <div style="font-size:0.85rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#3a73c6;margin-bottom:8px;">🔬 My Setup Beyond VMs</div>
     <h3 style="margin:0 0 12px;font-size:1.5rem;">When VMs aren't enough — what I actually bought</h3>
-    <p style="margin:0 0 22px;color:#334155;">Most of the A+ and Network+ syllabus is reachable from VMs on a laptop you already own (see the <a href="home-lab-setup-guide.html">beginner setup guide</a>). But for 24/7 lab services, real RDP practice, and a dedicated machine you can leave running domain controllers and DNS, a small used office PC is the most cost-effective next step. Mine is a Dell OptiPlex Micro picked up used — quiet, low-power, and powerful enough to run multiple VMs.</p>
+    <p style="margin:0 0 22px;color:#334155;">Most of the A+ and Network+ syllabus is reachable from VMs on a laptop you already own (see the <a href="home-lab-setup-guide.html">beginner setup guide</a>). But once you've outgrown that, a small used office PC is the most cost-effective next step — a dedicated, always-on Windows machine you can RDP into from anywhere on the LAN, break and rebuild without affecting your daily driver, and join to the AD domain your laptop VMs are hosting. Mine is a Dell OptiPlex Micro picked up used — quiet, low-power, and just sits on a shelf.</p>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;">
       <figure style="margin:0;text-align:center;">
@@ -934,7 +934,7 @@ a:hover { text-decoration: underline; }
              loading="lazy"
              style="max-width:100%;height:auto;border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,0.12);">
         <figcaption style="margin-top:10px;font-size:0.9rem;color:#475569;font-style:italic;">
-          The physical box — a Dell OptiPlex Micro (used). Quiet, fits anywhere, runs Windows Server VMs 24/7 without complaining.
+          The physical box — a Dell OptiPlex Micro (used). Quiet, fits anywhere, runs Windows 11 24/7 as a remote-access lab target.
         </figcaption>
       </figure>
       <figure style="margin:0;text-align:center;">
@@ -947,6 +947,35 @@ a:hover { text-decoration: underline; }
           RDP'd into the same Dell from a MacBook over the LAN, using Microsoft's free Windows App. This is exactly the kind of remote-management workflow A+ and Network+ test on.
         </figcaption>
       </figure>
+    </div>
+
+    <div style="margin-top:26px;padding:20px 22px;background:#ffffff;border:1px solid #e2e8f4;border-radius:12px;">
+      <div style="font-size:0.82rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#3a73c6;margin-bottom:10px;">🧪 How the full lab fits together</div>
+      <p style="margin:0 0 12px;color:#334155;">The Dell runs <strong>Windows 11 directly</strong> as its only OS — no VMs on this box. Its job in the lab is to be the always-on Windows machine I can RDP into from any other device on the network. That gives me a stable testbed for installing software, breaking and reverting Windows configurations, and practicing real remote-management workflows without affecting my daily-driver MacBook.</p>
+      <p style="margin:0 0 18px;color:#334155;">The Server 2022, Windows 11, and Ubuntu Server VMs all live on two MacBooks. <strong>One MacBook runs Windows 11 and Ubuntu Server side-by-side</strong> in VMware Fusion (so I can practice Windows client work and Linux command-line in the same session). <strong>A second MacBook runs Windows Server 2022</strong> with AD DS, DNS, IIS, File and Storage Services, and Print Services roles installed. The Dell is the next step <em>past</em> a closed laptop — a low-cost, low-power Windows machine that stays available even when both MacBooks are shut.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-top:8px;">
+        <figure style="margin:0;text-align:center;">
+          <img src="images/homelab-windows11-and-ubuntu-vms.jpg"
+               alt="A MacBook Pro running VMware Fusion with two VMs side-by-side: Windows 11 on the left and Ubuntu 24.04 LTS Server (console view) on the right."
+               width="1371" height="1600"
+               loading="lazy"
+               style="max-width:100%;height:auto;border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,0.12);">
+          <figcaption style="margin-top:10px;font-size:0.9rem;color:#475569;font-style:italic;">
+            MacBook #1 — Windows 11 (left) and Ubuntu 24.04 LTS Server (right) running concurrently as VMware Fusion VMs.
+          </figcaption>
+        </figure>
+        <figure style="margin:0;text-align:center;">
+          <img src="images/homelab-windows-server-2022-dashboard.jpg"
+               alt="Windows Server 2022 Server Manager Dashboard inside VMware Fusion, with AD DS, DNS, File and Storage Services, IIS, and Print Services roles installed."
+               width="1592" height="1600"
+               loading="lazy"
+               style="max-width:100%;height:auto;border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,0.12);">
+          <figcaption style="margin-top:10px;font-size:0.9rem;color:#475569;font-style:italic;">
+            MacBook #2 — Windows Server 2022 Standard (eval) with AD DS, DNS, IIS, File and Storage, and Print Services roles installed.
+          </figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 
