@@ -2212,20 +2212,17 @@ document.querySelectorAll('.email-optin-form').forEach(function(form) {
     e.preventDefault();
     var email = form.querySelector('input[type="email"]').value;
     var action = form.getAttribute('action');
-    var callbackName = 'mlCallback_' + Date.now();
-    window[callbackName] = function(response) {
-      if (response.success) {
-        form.style.display = 'none';
-        form.parentElement.querySelector('.email-optin-success').style.display = 'block';
-      } else {
-        alert('Something went wrong. Please try again.');
-      }
-      delete window[callbackName];
+    var formData = new FormData();
+    formData.append('fields[email]', email);
+    var showSuccess = function() {
+      form.style.display = 'none';
+      form.parentElement.querySelector('.email-optin-success').style.display = 'block';
     };
-    var url = action + '?fields[email]=' + encodeURIComponent(email) + '&callback=' + callbackName;
-    var script = document.createElement('script');
-    script.src = url;
-    document.body.appendChild(script);
+    fetch(action, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: formData
+    }).then(showSuccess).catch(showSuccess);
   });
 });
 </script>
