@@ -1174,6 +1174,7 @@ ml('account', '2306798');
         <button type="submit">Get Free Access →</button>
         <p class="email-optin-disclaimer">No spam. Unsubscribe anytime.</p>
       </form>
+      <p class="email-optin-success" style="display: none; color: #4ade80; margin-top: 1rem;">✓ Check your inbox to confirm your subscription</p>
     </div>
   </div>
 
@@ -2204,6 +2205,30 @@ ml('account', '2306798');
     <span class="footer-email"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="certflash-privacy.html" class="footer-pp">CertFlash App Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
   </div>
 </footer>
+
+<script>
+document.querySelectorAll('.email-optin-form').forEach(function(form) {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var email = form.querySelector('input[type="email"]').value;
+    var action = form.getAttribute('action');
+    var callbackName = 'mlCallback_' + Date.now();
+    window[callbackName] = function(response) {
+      if (response.success) {
+        form.style.display = 'none';
+        form.parentElement.querySelector('.email-optin-success').style.display = 'block';
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+      delete window[callbackName];
+    };
+    var url = action + '?fields[email]=' + encodeURIComponent(email) + '&callback=' + callbackName;
+    var script = document.createElement('script');
+    script.src = url;
+    document.body.appendChild(script);
+  });
+});
+</script>
 
 </body>
 </html>
