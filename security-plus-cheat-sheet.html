@@ -907,7 +907,7 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
       <p>Join CompTIA candidates getting weekly study tips, resource picks, and exam-day advice.</p>
     </div>
     <div>
-      <form class="email-optin-form" action="https://dashboard.mailerlite.com/jsonp/2306798/forms/186207360154338627/subscribe" method="post">
+      <form class="email-optin-form" action="https://itstudyhub-mailerlite.purple-bar-1bb9.workers.dev" method="post">
         <input type="email" name="fields[email]" placeholder="Enter your email" required>
         <button type="submit">Subscribe Free →</button>
         <p class="email-optin-disclaimer">No spam. Unsubscribe anytime.</p>
@@ -1130,17 +1130,32 @@ document.querySelectorAll('.email-optin-form').forEach(function(form) {
     e.preventDefault();
     var email = form.querySelector('input[type="email"]').value;
     var action = form.getAttribute('action');
+    var button = form.querySelector("button[type='submit']");
+    var originalText = button.textContent;
+    button.disabled = true;
+    button.textContent = 'Subscribing...';
     var formData = new FormData();
     formData.append('fields[email]', email);
-    var showSuccess = function() {
-      form.style.display = 'none';
-      form.parentElement.querySelector('.email-optin-success').style.display = 'block';
-    };
     fetch(action, {
       method: 'POST',
-      mode: 'no-cors',
       body: formData
-    }).then(showSuccess).catch(showSuccess);
+    })
+      .then(function(response) { return response.json(); })
+      .then(function(data) {
+        if (data.success) {
+          form.style.display = 'none';
+          form.parentElement.querySelector('.email-optin-success').style.display = 'block';
+        } else {
+          alert('Sorry, something went wrong. Please try again.');
+        }
+        button.disabled = false;
+        button.textContent = originalText;
+      })
+      .catch(function(error) {
+        alert('Sorry, something went wrong. Please try again.');
+        button.disabled = false;
+        button.textContent = originalText;
+      });
   });
 });
 </script>
