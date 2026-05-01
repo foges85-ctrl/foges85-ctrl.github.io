@@ -19,7 +19,15 @@
 <meta property="og:type" content="article">
 
 <!-- Google AdSense -->
-<script src="https://f.convertkit.com/ckjs/ck.5.js" async></script>
+<!-- MailerLite Universal -->
+<script>
+(function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+.push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+ml('account', '2306798');
+</script>
+<!-- End MailerLite Universal -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 
 <link rel="icon" type="image/png" href="favicon-512x512.png">
@@ -899,11 +907,12 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
       <p>Join CompTIA candidates getting weekly study tips, resource picks, and exam-day advice.</p>
     </div>
     <div>
-      <form class="email-optin-form" action="https://app.kit.com/forms/9332274/subscriptions" method="post">
-        <input type="email" name="email_address" placeholder="Enter your email" required>
+      <form class="email-optin-form" action="https://dashboard.mailerlite.com/jsonp/2306798/forms/186207360154338627/subscribe" method="post">
+        <input type="email" name="fields[email]" placeholder="Enter your email" required>
         <button type="submit">Subscribe Free →</button>
         <p class="email-optin-disclaimer">No spam. Unsubscribe anytime.</p>
       </form>
+      <p class="email-optin-success" style="display: none; color: #4ade80; margin-top: 1rem;">✓ Check your inbox to confirm your subscription</p>
     </div>
   </div>
 
@@ -1114,6 +1123,27 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
     </div>
   </div>
 </footer>
+
+<script>
+document.querySelectorAll('.email-optin-form').forEach(function(form) {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var email = form.querySelector('input[type="email"]').value;
+    var action = form.getAttribute('action');
+    var formData = new FormData();
+    formData.append('fields[email]', email);
+    var showSuccess = function() {
+      form.style.display = 'none';
+      form.parentElement.querySelector('.email-optin-success').style.display = 'block';
+    };
+    fetch(action, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: formData
+    }).then(showSuccess).catch(showSuccess);
+  });
+});
+</script>
 
 </body>
 </html>
