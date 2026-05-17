@@ -244,6 +244,40 @@ a:hover { text-decoration: underline; }
 
 .article-body strong { color: var(--navy); font-weight: 700; }
 
+/* ── QUICK ANSWER / TL;DR CALLOUT ── */
+.quick-answer {
+  background: var(--navy);
+  border-radius: 14px;
+  padding: 24px 26px;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.quick-answer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(124,58,237,.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+.quick-answer-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #c4b5fd;
+  margin-bottom: 10px;
+  position: relative;
+}
+.quick-answer-text {
+  font-size: 15px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.7;
+  position: relative;
+}
+.quick-answer-text strong { color: var(--white); }
+
 .divider {
   border: none;
   border-top: 1px solid var(--border);
@@ -887,26 +921,58 @@ tbody tr:hover td { background: #f6f9ff; }
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Real Troubleshooting Examples",
+      "name": "What are the 7 layers of the OSI model?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The exam loves asking you to identify which layer a problem or component belongs to. Memorize: cables = Layer 1, MAC = Layer 2, IP = Layer 3, TCP/UDP = Layer 4, and HTTP/DNS = Layer 7. When in doubt, work bottom-up — start at Layer 1 (is it plugged in?) and work your way up."
+        "text": "The 7 layers of the OSI model, from bottom to top, are: Layer 1 Physical (cables, signals, voltage), Layer 2 Data Link (MAC addresses, switches, Ethernet frames), Layer 3 Network (IP addresses, routers, packets), Layer 4 Transport (TCP and UDP, port numbers, segments), Layer 5 Session (opens and manages connections), Layer 6 Presentation (encryption, TLS, formatting), and Layer 7 Application (HTTP, FTP, SMTP, DNS). The standard mnemonic top-to-bottom is 'All People Seem To Need Data Processing'."
       }
     },
     {
       "@type": "Question",
-      "name": "OSI Model — Network+ Deep Dive: Protocols at Each Layer",
+      "name": "How is the OSI model tested on the CompTIA A+ exam?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The Network+ exam maps specific protocols, devices, and technologies to OSI layers. You need to know not just what each layer does, but which protocols live there and what devices operate at each layer . When data is sent, each layer adds its own header (and sometimes trailer). This is called encapsulation . On the receiving end, each layer strips its header — called de-encapsulation ."
+        "text": "The CompTIA A+ exam asks you to identify which OSI layer a concept, address, or device belongs to. Memorize: cables and signals are Layer 1 (Physical), MAC addresses and switches are Layer 2 (Data Link), IP addresses and routers are Layer 3 (Network), TCP/UDP and port numbers are Layer 4 (Transport), and HTTP/DNS/SMTP are Layer 7 (Application)."
       }
     },
     {
       "@type": "Question",
-      "name": "OSI Model — Security+ Attack Mapping",
+      "name": "How do you troubleshoot using the OSI model?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Security+ maps attacks to the OSI layer where they occur. Understanding which layer an attack targets tells you which layer the defence needs to operate at."
+        "text": "Troubleshoot bottom-up using the OSI model: start at Layer 1 (is it plugged in, is there link light?), then Layer 2 (correct VLAN, no MAC issues), Layer 3 (valid IP address, can you ping the gateway?), Layer 4 (is the port open?), then up to Layer 7 (does the application respond?). A 169.254.x.x APIPA address points to Layer 3, no link light points to Layer 1, and ping working but the website failing points to Layer 7."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which protocols and devices live at each OSI layer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Layer 7 Application: HTTP, HTTPS, FTP, SMTP, DNS, DHCP, SSH (proxies, load balancers, NGFW). Layer 6 Presentation: TLS/SSL, JPEG, encryption formats. Layer 5 Session: NetBIOS, RPC, NFS. Layer 4 Transport: TCP, UDP (firewalls filtering by port). Layer 3 Network: IP, ICMP, OSPF, BGP, IPsec (routers, Layer 3 switches). Layer 2 Data Link: Ethernet, Wi-Fi 802.11, ARP, STP, VLANs (switches, bridges, WAPs). Layer 1 Physical: cabling, USB, Bluetooth radio (hubs, repeaters, NICs)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is encapsulation in the OSI model?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Encapsulation is the process where each OSI layer adds its own header (and sometimes a trailer) to data as it travels down the stack from sender to wire. Layer 4 adds the TCP/UDP header to form a segment, Layer 3 adds the IP header to form a packet, Layer 2 adds the Ethernet header and FCS trailer to form a frame, and Layer 1 transmits the frame as bits. On the receiving end, each layer strips its own header — this is called de-encapsulation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which attacks target which OSI layer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Layer 7 Application: SQL injection, XSS, CSRF, phishing. Layer 6 Presentation: SSL stripping, downgrade attacks. Layer 5 Session: session hijacking, replay attacks. Layer 4 Transport: SYN flood, port scanning. Layer 3 Network: IP spoofing, route poisoning, DDoS. Layer 2 Data Link: ARP spoofing, MAC flooding, VLAN hopping. Layer 1 Physical: wiretapping, jamming, hardware keyloggers. Defences operate at the same layer as the attack — WAF at Layer 7, firewall port filtering at Layer 4, port security at Layer 2."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are real exam scenarios for the OSI model?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Common OSI exam scenarios: adding source and destination IP addresses to a packet happens at Layer 3 (Network); a switch learning a device's MAC address operates at Layer 2 (Data Link); ARP spoofing attacks Layer 2 because ARP maps IPs to MACs; firewalls filtering by port operate at Layer 4 (Transport); a Web Application Firewall (WAF) operates at Layer 7 (Application)."
       }
     }
   ]
@@ -1011,7 +1077,7 @@ tbody tr:hover td { background: #f6f9ff; }
     <div class="page-hero-badge">CompTIA A+ · Network+ · Security+</div>
     <h1>OSI Model <span>Explained Simply</span></h1>
     <p class="page-hero-sub">
-      All 7 layers of the OSI model broken down with memory tricks, real-world examples, and troubleshooting scenarios for the CompTIA A+ exam.
+      The OSI model is a 7-layer framework that describes how data moves across a network — from physical cables at Layer 1 up to user-facing applications at Layer 7. CompTIA A+, Network+, and Security+ all test whether you can map a concept, protocol, device, or attack to the correct layer.
     </p>
   </div>
 </section>
@@ -1031,11 +1097,16 @@ tbody tr:hover td { background: #f6f9ff; }
 <div class="article-wrap">
   <div class="article-body">
 
+    <div class="quick-answer">
+      <div class="quick-answer-label">Quick Answer</div>
+      <div class="quick-answer-text">The <strong>OSI model</strong> has 7 layers, from bottom to top: <strong>1 Physical</strong> (cables, signals), <strong>2 Data Link</strong> (MAC addresses, switches), <strong>3 Network</strong> (IP addresses, routers), <strong>4 Transport</strong> (TCP and UDP, port numbers), <strong>5 Session</strong>, <strong>6 Presentation</strong> (encryption, TLS), and <strong>7 Application</strong> (HTTP, DNS, SMTP). The mnemonic is <em>All People Seem To Need Data Processing</em> (top → bottom). It's used to map protocols, devices, and troubleshooting symptoms to a specific layer on CompTIA A+, Network+, and Security+ exams.</div>
+    </div>
+
     <p>The OSI Model is one of the most important networking concepts on the CompTIA A+ exam. It breaks networking into 7 layers so we can understand how data moves from one device to another — and how to diagnose what went wrong when it doesn't.</p>
 
     <hr class="divider">
 
-    <h2>The 7 Layers at a Glance</h2>
+    <h2>What are the 7 layers of the OSI model?</h2>
 
     <div class="memory-trick">
       <div class="memory-trick-label">🧠 Memory Trick (top → bottom)</div>
@@ -1113,7 +1184,7 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <hr class="divider">
 
-    <h2>How It Appears on the A+ Exam</h2>
+    <h2>How is the OSI model tested on the CompTIA A+ exam?</h2>
 
     <div class="table-wrap">
       <table>
@@ -1151,7 +1222,7 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <hr class="divider">
 
-    <h2>Real Troubleshooting Examples</h2>
+    <h2>How do you troubleshoot using the OSI model?</h2>
 
     <div class="trouble-grid">
       <div class="trouble-card">
@@ -1179,7 +1250,7 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <hr class="divider">
 
-    <h2>OSI Model — Network+ Deep Dive: Protocols at Each Layer</h2>
+    <h2>Which protocols and devices live at each OSI layer? (Network+)</h2>
 
     <p>The Network+ exam maps specific protocols, devices, and technologies to OSI layers. You need to know not just what each layer does, but <em>which protocols live there</em> and <em>what devices operate at each layer</em>.</p>
 
@@ -1200,7 +1271,7 @@ tbody tr:hover td { background: #f6f9ff; }
       <strong>⚡ Network+ exam tip — Layer 2 vs Layer 3 switches:</strong> A standard switch operates at Layer 2 using MAC addresses. A Layer 3 (multilayer) switch can also route between VLANs using IP addresses — it's a switch with routing capability. Exam questions often ask which device operates at which layer.
     </div>
 
-    <h3>Encapsulation — How Data Travels Down the Stack</h3>
+    <h3>What is encapsulation in the OSI model?</h3>
     <p>When data is sent, each layer adds its own header (and sometimes trailer). This is called <strong>encapsulation</strong>. On the receiving end, each layer strips its header — called <strong>de-encapsulation</strong>.</p>
 
     <div class="code-block" style="background:#0d1b2a;border-radius:10px;padding:18px 22px;font-family:'DM Mono',monospace;font-size:13px;line-height:1.9;overflow-x:auto;margin-bottom:16px;">
@@ -1211,7 +1282,7 @@ tbody tr:hover td { background: #f6f9ff; }
       <span style="color:#fbbf24;">Layer 1  </span> <span style="color:#c4b5fd;">101001011...</span> <span style="color:rgba(255,255,255,0.35);">← Frame converted to bits on wire</span>
     </div>
 
-    <h2>OSI Model — Security+ Attack Mapping</h2>
+    <h2>Which attacks target which OSI layer? (Security+)</h2>
 
     <p>Security+ maps attacks to the OSI layer where they occur. Understanding which layer an attack targets tells you which layer the defence needs to operate at.</p>
 
@@ -1233,7 +1304,7 @@ tbody tr:hover td { background: #f6f9ff; }
       <strong>⚡ Security+ exam tip:</strong> When a scenario describes an attack, identify the layer first — then match the defence. A WAF operates at Layer 7. A firewall filtering ports operates at Layer 4. A switch with port security operates at Layer 2. The exam tests whether you can match controls to the correct layer.
     </div>
 
-    <h2>Network+ and Security+ Exam Scenarios</h2>
+    <h2>What are real exam scenarios for the OSI model?</h2>
 
     <div class="exam-scenarios">
       <div class="scenario-card">
