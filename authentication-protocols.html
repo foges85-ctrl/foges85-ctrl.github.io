@@ -338,58 +338,74 @@ tbody tr:hover td{background:var(--light);}
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Why Authentication Protocols Matter",
+      "name": "Why are authentication protocols tested on CompTIA exams?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Authentication protocols define how a system proves that a user or device is who they claim to be. Different environments use different protocols depending on the scale, the type of access being controlled, and the vendor ecosystem involved. CompTIA tests authentication protocols across all three exams — A+ focuses on Windows domain authentication (Kerberos, NTLM), Network+ adds network access protocols (RADIUS, 802.1X), and Security+ expects understanding of the security properties and weaknesses of each protocol."
+        "text": "Authentication protocols define how a system proves that a user or device is who they claim to be. CompTIA tests them across all three core exams: A+ focuses on Windows domain authentication (Kerberos, NTLM), Network+ adds network access protocols (RADIUS, 802.1X), and Security+ expects you to know the security properties and weaknesses of each."
       }
     },
     {
       "@type": "Question",
-      "name": "Kerberos — Windows Domain Authentication",
+      "name": "How does Kerberos authentication work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Kerberos is the default authentication protocol for Windows Active Directory domains (and modern Linux/macOS in enterprise environments). It uses a ticket-based system that allows users to prove their identity without sending their password across the network repeatedly. Three components: the KDC (Key Distribution Centre) — runs on every domain controller and issues tickets; the TGT (Ticket Granting Ticket) — a time-limited credential issued after initial login that proves identity; and service tickets — issued by the KDC in exchange for the TGT to grant access to specific services. The Ker…"
+        "text": "Kerberos is the default authentication protocol for Windows Active Directory domains. It uses a ticket-based system with three components: the KDC (Key Distribution Centre) issues tickets, the TGT (Ticket Granting Ticket) is a time-limited credential proving identity after login, and service tickets grant access to specific services. The user's password never traverses the network after the initial TGT request, and both client and server authenticate to each other (mutual authentication). Kerberos uses port 88 (TCP and UDP). Its main weakness is Kerberoasting — offline cracking of service-ticket-protected service-account passwords."
       }
     },
     {
       "@type": "Question",
-      "name": "NTLM — Legacy Windows Authentication",
+      "name": "What is NTLM and is it still used?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "NTLM (NT LAN Manager) is the predecessor to Kerberos, used when Kerberos is unavailable — when a client authenticates using an IP address instead of a hostname, when accessing resources in untrusted domains, or in older environments. NTLM uses a challenge-response mechanism: the server sends a random challenge → the client encrypts the challenge with their password hash and sends the response → the server (or a domain controller) verifies the response. The password itself never traverses the network, but the hash is used, which introduces vulnerability. Pass-the-Hash is the critical NTLM at…"
+        "text": "NTLM (NT LAN Manager) is the legacy Windows authentication protocol that predates Kerberos. It uses a challenge-response mechanism: the server sends a random challenge, the client encrypts it with their password hash and sends back the response, and the server verifies it. The password itself never crosses the network, but the hash does — enabling the Pass-the-Hash attack, where a captured hash is replayed directly to authenticate without ever cracking the plaintext password. NTLM is still used today for legacy compatibility (IP-based connections, workgroups, untrusted domains), but Kerberos should be preferred wherever possible."
       }
     },
     {
       "@type": "Question",
-      "name": "RADIUS — Network Access AAA",
+      "name": "How does RADIUS authentication work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "RADIUS (Remote Authentication Dial-In User Service) provides centralised AAA — Authentication, Authorisation, and Accounting — for network access. Originally designed for dial-up modem authentication, RADIUS is now the standard protocol for: WiFi authentication (WPA2/3-Enterprise with 802.1X), VPN authentication, wired 802.1X port authentication on switches, and remote access services. Ports: UDP 1812 for authentication/authorisation, UDP 1813 for accounting (some legacy systems use 1645/1646). The RADIUS model: a user connects to a network access device (wireless AP, VPN gateway, switch) →…"
+        "text": "RADIUS (Remote Authentication Dial-In User Service) provides centralised AAA — Authentication, Authorisation, and Accounting — for network access. It is the standard protocol for WPA2/3-Enterprise WiFi, VPN authentication, and wired 802.1X port authentication. A user connects to a network access device (AP, VPN gateway, or switch), which acts as a RADIUS client and forwards credentials to the central RADIUS server; the server returns Access-Accept, Access-Reject, or Access-Challenge. RADIUS uses UDP port 1812 for authentication/authorisation and UDP 1813 for accounting. It encrypts only the password field — the rest of the packet is in the clear unless RADSEC (RADIUS over TLS) is used."
       }
     },
     {
       "@type": "Question",
-      "name": "TACACS+ — Cisco AAA",
+      "name": "What is TACACS+ and how does it differ from RADIUS?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "TACACS+ (Terminal Access Controller Access-Control System Plus) is Cisco's proprietary AAA protocol, used primarily for authenticating administrators to network devices — routers, switches, and firewalls. Key difference from RADIUS: TACACS+ separates authentication, authorisation, and accounting into three independent processes that can be handled by different servers. RADIUS combines authentication and authorisation. TACACS+ uses TCP port 49 and encrypts the entire packet body (not just the password, like RADIUS). This makes TACACS+ more appropriate for device administration where the full…"
+        "text": "TACACS+ (Terminal Access Controller Access-Control System Plus) is Cisco's proprietary AAA protocol, used primarily for authenticating administrators to network devices (routers, switches, firewalls). The key differences from RADIUS: TACACS+ separates authentication, authorisation, and accounting into three independent processes (RADIUS combines authentication and authorisation), uses TCP port 49 (RADIUS uses UDP 1812/1813), and encrypts the entire packet body (RADIUS encrypts only the password). On the exam: use TACACS+ for network device admin and RADIUS for end-user network access (WiFi, VPN, 802.1X)."
       }
     },
     {
       "@type": "Question",
-      "name": "LDAP — Directory Lookup",
+      "name": "What is LDAP and how is it used in authentication?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "LDAP (Lightweight Directory Access Protocol) is not an authentication protocol per se — it's a protocol for querying and modifying directory services like Active Directory. When RADIUS needs to verify a user's credentials against Active Directory, it queries AD using LDAP. When an application needs to look up a user's group memberships or email address, it queries AD using LDAP. Port 389 for LDAP (unencrypted), port 636 for LDAPS (LDAP over TLS — encrypted). A third option is LDAP with STARTTLS, which upgrades an unencrypted port 389 connection to encrypted using the STARTTLS command."
+        "text": "LDAP (Lightweight Directory Access Protocol) is not an authentication protocol on its own — it's the protocol used to query and modify directory services like Active Directory. RADIUS typically uses LDAP behind the scenes to verify a user's credentials against AD, and applications use LDAP to look up user attributes and group memberships. LDAP uses port 389 (unencrypted); LDAPS (LDAP over TLS) uses port 636. STARTTLS upgrades an unencrypted port 389 connection to encrypted within the same session."
       }
     },
     {
       "@type": "Question",
-      "name": "802.1X Port-Based Authentication — Where RADIUS Meets the Switch",
+      "name": "What is 802.1X port-based authentication?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "802.1X is the IEEE standard for port-based network access control — it defines how RADIUS integrates with network devices to authenticate endpoints before allowing network access. Three roles: the supplicant (the device requesting access — a laptop, phone, or IP camera), the authenticator (the network device enforcing access — a switch port or wireless AP), and the authentication server (the RADIUS server that validates credentials). When a device connects to an 802.1X-enabled switch port, the port blocks all traffic except the EAP (Extensible Authentication Protocol) authentication exchang…"
+        "text": "802.1X is the IEEE standard for port-based network access control. It uses three roles: the supplicant (the device requesting access), the authenticator (the switch port or wireless AP enforcing access), and the authentication server (a RADIUS server that validates credentials). Until authentication succeeds, the port blocks all traffic except the EAP authentication exchange. 802.1X prevents an unauthorised device plugged into a wall jack from reaching the corporate network, and is required by WPA2/3-Enterprise WiFi. Common EAP methods include EAP-TLS (strongest, mutual certificate auth), PEAP (server certificate + client username/password), and EAP-TTLS."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do Kerberos, NTLM, RADIUS, TACACS+, and LDAP compare?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kerberos: TCP/UDP port 88, Windows domain authentication, ticket-based. NTLM: embedded in SMB/HTTP, legacy Windows auth, challenge-response (vulnerable to Pass-the-Hash). RADIUS: UDP 1812/1813, network access AAA (WiFi, VPN, 802.1X), encrypts only the password. TACACS+: TCP 49, Cisco device administration AAA, encrypts the full packet body. LDAP: TCP 389 (636 for LDAPS), directory lookup against Active Directory."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are real exam scenarios for authentication protocols?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Common exam scenarios: per-user WiFi authentication against Active Directory requires RADIUS with 802.1X (WPA2/3-Enterprise), since WPA2/3-Personal uses a shared key. A captured hash being replayed to access a server identifies NTLM and the Pass-the-Hash attack. Cisco device administration with per-command authorisation and full audit trails points to TACACS+, because it separates authorisation and accounting from authentication. Mutual authentication on a Windows domain without sending the password over the wire points to Kerberos."
       }
     }
   ]
@@ -473,7 +489,7 @@ tbody tr:hover td{background:var(--light);}
     <nav class="breadcrumb"><a href="/">Home</a><span>›</span><span>Security</span></nav>
     <div class="page-hero-badge">🔑 Security</div>
     <h1>Authentication Protocols — <span>Kerberos, NTLM, RADIUS, TACACS+</span></h1>
-    <p class="page-hero-sub">Every authentication protocol tested across CompTIA A+, Network+, and Security+ — how each works, its port, its weakness, and exactly when the exam expects you to choose it.</p>
+    <p class="page-hero-sub">Authentication protocols verify the identity of a user or device before granting access. The five tested on CompTIA — Kerberos, NTLM, RADIUS, TACACS+, and LDAP — each have a distinct purpose, port, and known weakness, and the exam expects you to pick the right one for each scenario.</p>
     <div class="cert-badges"><span class="cert-badge cb-teal">A+ 220-1201</span><span class="cert-badge cb-blue">Network+ N10-009</span><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
   </div>
 </section>
@@ -493,38 +509,38 @@ tbody tr:hover td{background:var(--light);}
 
     <div class="quick-answer">
       <div class="quick-answer-label">Quick Reference</div>
-      <div class="quick-answer-text"><strong>Kerberos</strong> = Windows domain authentication — tickets, KDC, port 88. <strong>NTLM</strong> = legacy Windows auth — challenge/response, no KDC required. <strong>RADIUS</strong> = centralised AAA for network access — VPN, WiFi 802.1X, port 1812/1813. <strong>TACACS+</strong> = Cisco's AAA protocol — separates authentication/authorisation/accounting, port 49. <strong>LDAP</strong> = directory lookup protocol — queries Active Directory, port 389 (636 for LDAPS).</div>
+      <div class="quick-answer-text"><strong>Authentication protocols</strong> verify the identity of a user or device before granting access. The five tested on CompTIA: <strong>Kerberos</strong> = Windows domain authentication — tickets, KDC, port 88. <strong>NTLM</strong> = legacy Windows auth — challenge/response, no KDC required. <strong>RADIUS</strong> = centralised AAA for network access — VPN, WiFi 802.1X, port 1812/1813. <strong>TACACS+</strong> = Cisco's AAA protocol — separates authentication/authorisation/accounting, port 49. <strong>LDAP</strong> = directory lookup protocol — queries Active Directory, port 389 (636 for LDAPS).</div>
     </div>
 
-    <h2>Why Authentication Protocols Matter</h2>
+    <h2>Why are authentication protocols tested on CompTIA exams?</h2>
     <p>Authentication protocols define how a system proves that a user or device is who they claim to be. Different environments use different protocols depending on the scale, the type of access being controlled, and the vendor ecosystem involved. CompTIA tests authentication protocols across all three exams — A+ focuses on Windows domain authentication (Kerberos, NTLM), Network+ adds network access protocols (RADIUS, 802.1X), and Security+ expects understanding of the security properties and weaknesses of each protocol.</p>
 
-    <h2>Kerberos — Windows Domain Authentication</h2>
+    <h2>How does Kerberos authentication work?</h2>
     <p>Kerberos is the default authentication protocol for Windows Active Directory domains (and modern Linux/macOS in enterprise environments). It uses a <strong>ticket-based</strong> system that allows users to prove their identity without sending their password across the network repeatedly. Three components: the <strong>KDC (Key Distribution Centre)</strong> — runs on every domain controller and issues tickets; the <strong>TGT (Ticket Granting Ticket)</strong> — a time-limited credential issued after initial login that proves identity; and <strong>service tickets</strong> — issued by the KDC in exchange for the TGT to grant access to specific services.</p>
     <p>The Kerberos flow: a user logs in → their client requests a TGT from the KDC (Authentication Service) using their password hash → the KDC issues a TGT valid for typically 10 hours → when the user accesses a file server, their client presents the TGT to the KDC's Ticket Granting Service → the KDC issues a service ticket for that specific server → the client presents the service ticket to the file server → access granted. The user's password never traverses the network after initial TGT acquisition. Kerberos uses <strong>port 88</strong> (TCP and UDP). Mutual authentication: both the client and server prove identity to each other, preventing man-in-the-middle attacks.</p>
     <p>Key weakness: Kerberos requires both parties to trust the KDC and requires network access to the KDC for ticket issuance. <strong>Kerberoasting</strong> is a modern attack where an attacker requests service tickets for service accounts and attempts to crack them offline — service account passwords are often weak and rarely rotated, making this attack highly effective.</p>
 
-    <h2>NTLM — Legacy Windows Authentication</h2>
+    <h2>What is NTLM and is it still used?</h2>
     <p>NTLM (NT LAN Manager) is the predecessor to Kerberos, used when Kerberos is unavailable — when a client authenticates using an IP address instead of a hostname, when accessing resources in untrusted domains, or in older environments. NTLM uses a <strong>challenge-response</strong> mechanism: the server sends a random challenge → the client encrypts the challenge with their password hash and sends the response → the server (or a domain controller) verifies the response. The password itself never traverses the network, but the hash is used, which introduces vulnerability.</p>
     <p><strong>Pass-the-Hash</strong> is the critical NTLM attack: if an attacker captures an NTLM hash (from memory using Mimikatz, from a captured network authentication, or from a compromised SAM database), they can use that hash directly to authenticate as that user without knowing the plaintext password. This is a fundamental design weakness of NTLM. Organisations should disable NTLMv1 entirely, restrict NTLMv2, and prefer Kerberos wherever possible. Windows environments still rely on NTLM for legacy compatibility — disabling it entirely often breaks something.</p>
 
-    <h2>RADIUS — Network Access AAA</h2>
+    <h2>How does RADIUS authentication work?</h2>
     <p>RADIUS (Remote Authentication Dial-In User Service) provides centralised <strong>AAA — Authentication, Authorisation, and Accounting</strong> — for network access. Originally designed for dial-up modem authentication, RADIUS is now the standard protocol for: WiFi authentication (WPA2/3-Enterprise with 802.1X), VPN authentication, wired 802.1X port authentication on switches, and remote access services. Ports: <strong>UDP 1812</strong> for authentication/authorisation, <strong>UDP 1813</strong> for accounting (some legacy systems use 1645/1646).</p>
     <p>The RADIUS model: a user connects to a network access device (wireless AP, VPN gateway, switch) → the access device acts as a RADIUS client and forwards credentials to the RADIUS server → the RADIUS server checks credentials against its database (or proxies to Active Directory via LDAP) → the server returns Access-Accept, Access-Reject, or Access-Challenge → the access device grants or denies network access. The access device never handles credentials directly — it only forwards them to the central RADIUS server, enabling centralised policy management across all access points.</p>
     <p>For the exam: <strong>WPA2-Enterprise</strong> requires RADIUS. Any scenario involving "per-user authentication for WiFi" or "centralised network access control" points to RADIUS. RADIUS encrypts only the password in the access-request packet — the rest of the packet is unencrypted, which is a known limitation addressed by RADSEC (RADIUS over TLS).</p>
 
-    <h2>TACACS+ — Cisco AAA</h2>
+    <h2>What is TACACS+ and how does it differ from RADIUS?</h2>
     <p>TACACS+ (Terminal Access Controller Access-Control System Plus) is Cisco's proprietary AAA protocol, used primarily for authenticating administrators to network devices — routers, switches, and firewalls. Key difference from RADIUS: TACACS+ separates authentication, authorisation, and accounting into three independent processes that can be handled by different servers. RADIUS combines authentication and authorisation. TACACS+ uses <strong>TCP port 49</strong> and encrypts the entire packet body (not just the password, like RADIUS). This makes TACACS+ more appropriate for device administration where the full session needs protection.</p>
     <p>When to use TACACS+ vs RADIUS: <strong>TACACS+</strong> for authenticating network device administrators (SSH/Telnet to routers and switches), <strong>RADIUS</strong> for authenticating end users accessing the network (WiFi, VPN, 802.1X). This distinction appears directly on exam questions.</p>
 
-    <h2>LDAP — Directory Lookup</h2>
+    <h2>What is LDAP and how is it used in authentication?</h2>
     <p>LDAP (Lightweight Directory Access Protocol) is not an authentication protocol per se — it's a protocol for querying and modifying directory services like Active Directory. When RADIUS needs to verify a user's credentials against Active Directory, it queries AD using LDAP. When an application needs to look up a user's group memberships or email address, it queries AD using LDAP. Port <strong>389</strong> for LDAP (unencrypted), port <strong>636</strong> for LDAPS (LDAP over TLS — encrypted). A third option is LDAP with STARTTLS, which upgrades an unencrypted port 389 connection to encrypted using the STARTTLS command.</p>
 
     
-    <h2>802.1X Port-Based Authentication — Where RADIUS Meets the Switch</h2>
+    <h2>What is 802.1X port-based authentication?</h2>
     <p>802.1X is the IEEE standard for port-based network access control — it defines how RADIUS integrates with network devices to authenticate endpoints before allowing network access. Three roles: the <strong>supplicant</strong> (the device requesting access — a laptop, phone, or IP camera), the <strong>authenticator</strong> (the network device enforcing access — a switch port or wireless AP), and the <strong>authentication server</strong> (the RADIUS server that validates credentials). When a device connects to an 802.1X-enabled switch port, the port blocks all traffic except the EAP (Extensible Authentication Protocol) authentication exchange. The supplicant provides credentials, the switch forwards them to the RADIUS server, and if authentication succeeds, the switch opens the port to normal traffic. If authentication fails, the port remains blocked — even a physically connected device gets no network access without valid credentials.</p>
     <p>802.1X on wired networks eliminates the risk of someone plugging a laptop into an Ethernet port in a conference room and accessing the corporate network without credentials. On wireless networks, WPA2/3-Enterprise requires 802.1X — connecting to the SSID requires authentication through the RADIUS server rather than a shared password. The EAP methods used within 802.1X vary: EAP-TLS (mutual certificate authentication — the strongest), PEAP (the client authenticates with a username/password, the server authenticates with a certificate — most common in enterprise WiFi), and EAP-TTLS are the most common exam-relevant methods.</p>
-    <h2>Comparison Table</h2>
+    <h2>How do Kerberos, NTLM, RADIUS, TACACS+, and LDAP compare?</h2>
     <div class="table-wrap"><table>
       <thead><tr><th>Protocol</th><th>Port</th><th>Transport</th><th>Primary Use</th><th>Encryption</th></tr></thead>
       <tbody>
@@ -536,7 +552,7 @@ tbody tr:hover td{background:var(--light);}
       </tbody>
     </table></div>
 
-    <h2>Exam Scenarios</h2>
+    <h2>What are real exam scenarios for authentication protocols?</h2>
     <div class="scenario-list">
       <div class="scenario">
         <div class="scenario-q">A company wants employees to authenticate to the corporate WiFi using their Active Directory username and password rather than a shared passphrase. Which protocols are required?</div>
