@@ -362,18 +362,50 @@ a{color:inherit;text-decoration:none;}
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "TCP vs UDP — Know the Difference",
+      "name": "What's the difference between TCP and UDP?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "DNS uses UDP port 53 for standard queries — fast, low overhead, fits in one packet. DNS uses TCP port 53 for zone transfers (replicating the full DNS database between servers) and responses larger than 512 bytes. The exam may ask which protocol DNS uses — answer UDP for lookups, TCP for zone transfers."
+        "text": "TCP (Transmission Control Protocol) is connection-oriented and reliable: it establishes a connection with a 3-way handshake (SYN, SYN-ACK, ACK) and guarantees delivery, ordering, and error checking — used by HTTP, HTTPS, FTP, SSH, Telnet, SMTP, POP3, IMAP, RDP, SMB, and LDAP. UDP (User Datagram Protocol) is connectionless and fast: it sends data without a handshake, with no guaranteed delivery, ordering, or error recovery — used by DNS, DHCP, SNMP, TFTP, NTP, Syslog, VoIP (RTP), and RADIUS. TCP is used when data integrity matters; UDP is used when speed matters more than reliability."
       }
     },
     {
       "@type": "Question",
-      "name": "Encrypted vs Unencrypted — The Upgrade Pairs",
+      "name": "Which ports are most commonly tested on CompTIA exams?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The Security+ exam frequently tests whether you can identify which protocols are insecure and what their encrypted replacements are. These pairs are the most tested: Telnet (23) → SSH (22) — Remote terminal access. Telnet sends everything in cleartext. SSH encrypts the session. FTP (20/21) → SFTP or FTPS — SFTP runs over SSH (port 22). FTPS is FTP with TLS (port 990/21). Both encrypt credentials and data."
+        "text": "The 15 ports that appear on every CompTIA exam: 20/21 FTP (TCP), 22 SSH/SFTP/SCP (TCP), 23 Telnet (TCP), 25 SMTP (TCP), 53 DNS (TCP/UDP), 67/68 DHCP (UDP), 80 HTTP (TCP), 110 POP3 (TCP), 143 IMAP (TCP), 161/162 SNMP (UDP), 389 LDAP (TCP/UDP), 443 HTTPS (TCP), 445 SMB (TCP), 636 LDAPS (TCP), and 3389 RDP (TCP). For each, know the port number, the protocol name, whether it's TCP or UDP, and any encrypted alternative."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the full list of CompTIA port numbers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Common CompTIA ports: 20/21 FTP, 22 SSH/SFTP/SCP, 23 Telnet, 25 SMTP, 53 DNS, 67/68 DHCP, 69 TFTP, 80 HTTP, 110 POP3, 119 NNTP, 123 NTP, 137–139 NetBIOS, 143 IMAP, 161/162 SNMP, 389 LDAP, 443 HTTPS, 445 SMB, 465/587 SMTPS, 514 Syslog, 636 LDAPS, 993 IMAPS, 995 POP3S, 1433 MS SQL, 1723 PPTP VPN, 3306 MySQL, 3389 RDP, and 5060/5061 SIP/VoIP."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the encrypted alternatives to insecure protocols?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most-tested upgrade pairs on Security+: Telnet (23) → SSH (22) for remote terminal access; FTP (20/21) → SFTP (port 22, runs over SSH) or FTPS (TLS, port 990/21); HTTP (80) → HTTPS (443, uses TLS); SMTP (25) → SMTPS (465 or 587 with STARTTLS); IMAP (143) → IMAPS (993); POP3 (110) → POP3S (995); LDAP (389) → LDAPS (636); and SNMP v1/v2c → SNMPv3 (same port 161 but adds authentication and encryption)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does DNS use TCP or UDP?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DNS uses both. UDP port 53 handles standard DNS queries — fast, low overhead, fits in one packet. TCP port 53 handles zone transfers (replicating the full DNS database between servers) and responses larger than 512 bytes. On the exam: UDP for lookups, TCP for zone transfers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the most common port-number exam traps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Three traps appear repeatedly. FTP uses two ports — 20 for data and 21 for control — and both must be open for active-mode FTP. RDP (3389) is TCP, not UDP, despite streaming a graphical display. DHCP uses UDP (67 server, 68 client) because the client has no IP yet and cannot establish a TCP connection — DHCP discovery is a broadcast."
       }
     }
   ]
@@ -469,7 +501,7 @@ a{color:inherit;text-decoration:none;}
     </nav>
     <div class="page-hero-badge">A+ · Network+ · Security+ Reference</div>
     <h1>CompTIA <span>Port Numbers</span> Cheat Sheet</h1>
-    <p class="page-hero-sub">Every port number tested on CompTIA A+, Network+, and Security+ — with TCP vs UDP, what each protocol does, which ports are encrypted alternatives to which, and the exam traps to avoid.</p>
+    <p class="page-hero-sub">The most commonly tested CompTIA ports are: 20/21 FTP, 22 SSH, 23 Telnet, 25 SMTP, 53 DNS, 67/68 DHCP, 80 HTTP, 110 POP3, 143 IMAP, 443 HTTPS, 445 SMB, and 3389 RDP. For every port the exam expects you to know the number, the protocol name, whether it runs on TCP or UDP, and any encrypted alternative.</p>
     <div class="cert-badges">
       <span class="cert-badge cb-teal">A+ 220-1202</span>
       <span class="cert-badge cb-blue">Network+ N10-009</span>
@@ -495,11 +527,11 @@ a{color:inherit;text-decoration:none;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ The 15 Ports You Must Know Cold</div>
       <div class="quick-answer-text">
-        <strong>20/21 FTP · 22 <a href="ssh-explained.html">SSH</a> · 23 Telnet · 25 SMTP · 53 <a href="dns.html">DNS</a> · 67/68 <a href="dhcp.html">DHCP</a> · 80 HTTP · 110 POP3 · 143 IMAP · 443 HTTPS · 445 SMB · 3389 RDP · 389 <a href="ldap-explained.html">LDAP</a> · 636 LDAPS · 161/162 <a href="snmp-explained.html">SNMP</a></strong> — these are the ports that appear on every CompTIA exam. Know the port number, the protocol name, TCP or UDP, and whether there's an encrypted alternative (Telnet→SSH, HTTP→HTTPS, LDAP→LDAPS, IMAP→993, POP3→995).
+        A <strong>port number</strong> is a 16-bit identifier (0–65535) that tells a host which service a packet is for; the well-known range (0–1023) holds standard services like HTTP and SSH. The 15 ports that appear on every CompTIA exam: <strong>20/21 FTP · 22 <a href="ssh-explained.html">SSH</a> · 23 Telnet · 25 SMTP · 53 <a href="dns.html">DNS</a> · 67/68 <a href="dhcp.html">DHCP</a> · 80 HTTP · 110 POP3 · 143 IMAP · 443 HTTPS · 445 SMB · 3389 RDP · 389 <a href="ldap-explained.html">LDAP</a> · 636 LDAPS · 161/162 <a href="snmp-explained.html">SNMP</a></strong>. Know each port's number, protocol name, TCP or UDP, and any encrypted alternative (Telnet→SSH, HTTP→HTTPS, LDAP→LDAPS, IMAP→993, POP3→995).
       </div>
     </div>
 
-    <h2>TCP vs UDP — Know the Difference</h2>
+    <h2>What's the difference between TCP and UDP?</h2>
 
     <div class="proto-grid">
       <div class="proto-card">
@@ -521,7 +553,7 @@ a{color:inherit;text-decoration:none;}
       <p><strong>DNS uses UDP port 53</strong> for standard queries — fast, low overhead, fits in one packet. <strong>DNS uses TCP port 53</strong> for zone transfers (replicating the full DNS database between servers) and responses larger than 512 bytes. The exam may ask which protocol DNS uses — answer UDP for lookups, TCP for zone transfers.</p>
     </div>
 
-    <h2>Quick Reference — Most Tested Ports</h2>
+    <h2>Which ports are most commonly tested on CompTIA exams?</h2>
 
     <div class="qref-grid">
       <div class="qref-card"><div class="qref-port">20</div><div class="qref-info"><div class="qref-name">FTP Data</div><div class="qref-proto">TCP</div></div></div>
@@ -556,7 +588,7 @@ a{color:inherit;text-decoration:none;}
       <div class="qref-card"><div class="qref-port">5060/5061</div><div class="qref-info"><div class="qref-name">SIP / VoIP</div><div class="qref-proto">TCP/UDP</div></div></div>
     </div>
 
-    <h2>Full Port Reference Table</h2>
+    <h2>What is the full list of CompTIA port numbers?</h2>
 
     <div class="port-table-wrap">
       <table class="port-table">
@@ -829,7 +861,7 @@ a{color:inherit;text-decoration:none;}
       </table>
     </div>
 
-    <h2>Encrypted vs Unencrypted — The Upgrade Pairs</h2>
+    <h2>What are the encrypted alternatives to insecure protocols?</h2>
 
     <div class="callout">
       <div class="callout-label">Know Your Secure Replacements</div>
