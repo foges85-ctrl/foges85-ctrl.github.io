@@ -342,66 +342,82 @@ tbody tr:hover td{background:#f0fdf4;}
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Type 1 vs Type 2 Hypervisors",
+      "name": "What's the difference between Type 1 and Type 2 hypervisors?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The most tested virtualization concept on the A+ Core 2 exam is the distinction between Type 1 and Type 2 hypervisors. They differ in where they run relative to the host operating system: Type 1 = no host OS underneath (bare metal). Type 2 = runs on top of a host OS (hosted). The exam gives you a scenario — \"A company wants maximum performance for production VMs running 24/7 in a data centre.\" → Type 1. \"A developer wants to test software in different OS environments on their laptop.\" → Type 2. Remember: VMware ESXi = Type 1. VMware Workstation = Type 2. Both are VMware products but fundame…"
+        "text": "Type 1 (bare-metal) hypervisors run directly on physical hardware with no host OS underneath — the hypervisor is the operating system. They have the best performance and smallest attack surface, and are used in enterprise data centres, production servers, and cloud infrastructure. Examples: VMware ESXi, Microsoft Hyper-V (server), Citrix XenServer, KVM. Type 2 (hosted) hypervisors run on top of a host OS as an application. They have higher overhead and a larger attack surface, and are used on developer workstations, home labs, and testing environments. Examples: VMware Workstation, Oracle VirtualBox, Parallels Desktop, QEMU. One-line test: Type 1 = no host OS underneath; Type 2 = runs on top of a host OS."
       }
     },
     {
       "@type": "Question",
-      "name": "VMs vs Containers",
+      "name": "What are the key virtualization concepts on the A+ exam?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Containers are a lighter-weight alternative to full VMs. Both isolate workloads, but they do it differently:"
+        "text": "The A+ tests these core terms. Guest OS: the operating system running inside a VM. Host OS: the OS that a Type 2 hypervisor runs on. Snapshot: a point-in-time copy of a VM's disk, memory, and configuration that can be restored later. VM template: a pre-configured VM image used to deploy identical VMs quickly. vCPU: virtual CPU mapped to physical cores. VM sprawl: uncontrolled proliferation of VMs that creates patching and security gaps. Live migration: moving a running VM between hosts with no downtime (VMware vMotion, Hyper-V Live Migration). Nested virtualisation: running a hypervisor inside a VM."
       }
     },
     {
       "@type": "Question",
-      "name": "Cloud Service Models — IaaS, PaaS, SaaS",
+      "name": "What's the difference between VMs and containers?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Cloud computing is virtualisation at scale — providers like AWS, Azure, and Google Cloud run massive hypervisor farms and rent virtual resources. The A+ Core 2 and Network+ exams test the three cloud service models: Public cloud: Resources shared among multiple customers on provider infrastructure (AWS, Azure, GCP). Most cost-effective, least control. Private cloud: Cloud infrastructure dedicated to a single organisation — either on-premises or hosted. Full control, higher cost."
+        "text": "A VM runs a full guest OS (including its own kernel) on top of a hypervisor — gigabytes in size, minutes to boot, strong hardware-enforced isolation. A container shares the host OS kernel and packages only the application and its dependencies — megabytes in size, starts in seconds, weaker kernel-level isolation. VMs are best for running different OS types, legacy apps, or workloads needing strong isolation; containers are best for microservices, DevOps pipelines, and cloud-native applications. Common technologies: VMware/Hyper-V/VirtualBox for VMs; Docker, Podman, and Kubernetes (orchestration) for containers."
       }
     },
     {
       "@type": "Question",
-      "name": "Exam Scenarios",
+      "name": "What is IaaS vs PaaS vs SaaS?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "See the best study guides and practice exams for the 220-1202 exam."
+        "text": "IaaS (Infrastructure as a Service): the provider manages hardware, networking, virtualization, and storage; the customer manages OS, middleware, applications, and data. Examples: AWS EC2, Azure VMs, Google Compute Engine. PaaS (Platform as a Service): the provider manages everything in IaaS plus the OS, runtime, and development tools; the customer manages only application code and data. Examples: AWS Elastic Beanstalk, Azure App Service, Google App Engine, Heroku. SaaS (Software as a Service): the provider manages everything — hardware through application; the customer only configures and uses the software. Examples: Microsoft 365, Google Workspace, Salesforce, Dropbox."
       }
     },
     {
       "@type": "Question",
-      "name": "Virtualisation in the Enterprise — Why It Matters",
+      "name": "What are the main security concerns with virtualization?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Before virtualisation, each physical server ran one operating system and one primary application. A web server, database server, and email server each needed dedicated hardware — which sat idle most of the time, wasting power, cooling, and rack space. Virtualisation solved this by running multiple VMs on a single physical host, each VM believing it has exclusive access to hardware resources that are actually shared. Modern enterprise datacentres routinely run dozens of VMs per physical host, with hardware utilisation rates of 60–80% instead of the 5–15% common with dedicated physical server…"
+        "text": "VM escape — the most severe risk — is when an attacker exploits a hypervisor vulnerability to break out of a VM and access the host or other VMs; defence is keeping hypervisors patched and using Type 1 isolation. VM sprawl creates forgotten, unpatched VMs that become attack vectors; defence is VM lifecycle management and patch compliance. Snapshot risks include restoring an old snapshot that rolls back security patches; defence is limiting retention and deleting snapshots after testing. Shared resources mean side-channel attacks (Spectre, Meltdown) can leak data between VMs on the same host; defence is CPU microcode patching and isolating sensitive workloads."
       }
     },
     {
       "@type": "Question",
-      "name": "VM Components — What Makes Up a Virtual Machine",
+      "name": "What are real exam scenarios for virtualization?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A virtual machine consists of: a virtual CPU (vCPU) mapped to physical CPU cores, virtual RAM allocated from the host's physical RAM, a virtual disk (typically a .vmdk or .vhd file on the host's storage that the VM treats as a real hard drive), a virtual network adapter (the hypervisor creates a virtual switch that connects VMs to each other and to the physical network), and virtual I/O devices (graphics, USB controllers, etc.). The hypervisor manages resource allocation and prevents VMs from accessing each other's memory or storage without explicit configuration. Snapshots capture the exac…"
+        "text": "Common virtualization exam scenarios: maximum-performance production VMs running 24/7 in a data centre point to Type 1 (bare-metal) hypervisors like VMware ESXi; a developer testing software on multiple OS types from a laptop points to Type 2 (hosted) like VMware Workstation or VirtualBox; safely testing a potentially malicious script points to taking a snapshot, running the script, then reverting. A customer managing the OS and apps but not the hardware identifies IaaS. Microsoft 365 is SaaS. An attacker breaking from a VM to the host through a hypervisor flaw is VM escape. Forgotten unpatched VMs are the security risk of VM sprawl."
       }
     },
     {
       "@type": "Question",
-      "name": "Containers vs Virtual Machines",
+      "name": "Why does virtualization matter in the enterprise?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Containers (Docker, Kubernetes pods) are a lighter-weight alternative to VMs. Where a VM runs a full guest OS on top of the hypervisor, a container shares the host OS kernel and runs only the application and its dependencies. This makes containers significantly faster to start (seconds vs minutes), much smaller (megabytes vs gigabytes), and more portable — a container that runs on a developer's laptop runs identically in production. The trade-off is weaker isolation: containers share the kernel, so a kernel vulnerability can potentially affect all containers on a host. VMs provide stronger …"
+        "text": "Before virtualization each physical server ran one OS and one primary application, leaving hardware idle 85–95% of the time. Virtualization solved this by running multiple VMs on a single physical host, pushing utilization to 60–80% and shrinking server counts dramatically. The four enterprise benefits tested on the exam: hardware consolidation (fewer physical servers), improved disaster recovery (VMs back up as single files and restore to different hardware), rapid provisioning (deploy a new server in minutes from a template), and isolation (a compromised VM does not directly affect the hypervisor or other VMs, though VM escape can break this boundary)."
       }
     },
     {
       "@type": "Question",
-      "name": "Cloud and Virtualisation — The Connection",
+      "name": "What components make up a virtual machine?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Cloud computing is built on virtualisation. When you provision an EC2 instance on AWS or a VM on Azure, you're getting a virtual machine running on Amazon's or Microsoft's physical hypervisor infrastructure. The cloud provider manages the physical hardware and hypervisor (Type 1); you manage the guest OS and everything above it. This is exactly the IaaS shared responsibility model — the provider owns the virtualisation layer, the customer owns the OS. Understanding this connection makes cloud concepts on the exam easier to reason through. Questions about what a customer is responsible for i…"
+        "text": "A VM consists of a virtual CPU (vCPU) mapped to physical cores, virtual RAM allocated from host memory, a virtual disk (typically a .vmdk or .vhd file the VM treats as a real drive), a virtual network adapter connected to a hypervisor-managed virtual switch, and virtual I/O devices (graphics, USB controllers). The hypervisor enforces resource allocation and prevents VMs from accessing each other's memory or storage without explicit configuration. Snapshots capture the VM's exact state (disk, memory, configuration) at a point in time and are used for safe testing — but they are not a substitute for full backups, because they depend on the host's storage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do containers differ from VMs in isolation and security?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Containers share the host OS kernel and only isolate the application and its dependencies, while VMs each run a full guest OS with its own kernel. This gives VMs stronger isolation (hardware-enforced separation) at the cost of higher overhead; containers are faster, smaller, and more portable but weaker in isolation — a kernel vulnerability can affect every container on a host. Security+ container-specific risks include vulnerable base images (one bad image affects every container built from it), container escape (breaking out of container isolation to the host), and running containers as root rather than as least-privilege users."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How are cloud computing and virtualization connected?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cloud computing is built on virtualization. An EC2 instance on AWS or a VM on Azure is a virtual machine running on the provider's physical hypervisor infrastructure — the provider manages the physical hardware and Type 1 hypervisor, and the customer manages the guest OS and everything above it. This is exactly the IaaS shared responsibility model: provider owns the virtualization layer, customer owns the OS. The same mental model explains why a customer is responsible for guest-OS patching, application security, and data in IaaS, but progressively less in PaaS and SaaS as the provider takes over more of the stack."
       }
     }
   ]
@@ -499,7 +515,7 @@ tbody tr:hover td{background:#f0fdf4;}
     </nav>
     <div class="page-hero-badge">CompTIA A+ · Network+ · Security+ · 2026</div>
     <h1>Virtualization <span>Explained</span></h1>
-    <p class="page-hero-sub">Type 1 vs Type 2 hypervisors, virtual machines, containers vs VMs, cloud service models (IaaS/PaaS/SaaS), snapshots, and every virtualization concept tested on CompTIA A+ Core 2, Network+, and Security+.</p>
+    <p class="page-hero-sub">Virtualization is the practice of running multiple virtual computers — each with its own OS, CPU, RAM, and disk — on a single physical machine, managed by software called a hypervisor. CompTIA A+ Core 2, Network+, and Security+ test Type 1 vs Type 2 hypervisors, VMs vs containers, IaaS/PaaS/SaaS cloud models, snapshots, and the security risks of shared hardware.</p>
   </div>
 </section>
 
@@ -524,7 +540,7 @@ tbody tr:hover td{background:#f0fdf4;}
       </div>
     </div>
 
-    <h2>Type 1 vs Type 2 Hypervisors</h2>
+    <h2>What's the difference between Type 1 and Type 2 hypervisors?</h2>
     <p>The most tested virtualization concept on the A+ Core 2 exam is the distinction between Type 1 and Type 2 hypervisors. They differ in where they run relative to the host operating system:</p>
 
     <div class="compare-grid">
@@ -558,7 +574,7 @@ tbody tr:hover td{background:#f0fdf4;}
       <p>Remember: <strong>VMware ESXi = Type 1. VMware Workstation = Type 2.</strong> Both are VMware products but fundamentally different architectures.</p>
     </div>
 
-    <h2>Key Virtualization Concepts</h2>
+    <h2>What are the key virtualization concepts on the A+ exam?</h2>
 
     <div class="table-wrap">
       <table>
@@ -576,7 +592,7 @@ tbody tr:hover td{background:#f0fdf4;}
       </table>
     </div>
 
-    <h2>VMs vs Containers</h2>
+    <h2>What's the difference between VMs and containers?</h2>
     <p>Containers are a lighter-weight alternative to full VMs. Both isolate workloads, but they do it differently:</p>
 
     <div class="table-wrap">
@@ -594,7 +610,7 @@ tbody tr:hover td{background:#f0fdf4;}
       </table>
     </div>
 
-    <h2>Cloud Service Models — IaaS, PaaS, SaaS</h2>
+    <h2>What is IaaS vs PaaS vs SaaS?</h2>
     <p>Cloud computing is virtualisation at scale — providers like AWS, Azure, and Google Cloud run massive hypervisor farms and rent virtual resources. The A+ Core 2 and Network+ exams test the three cloud service models:</p>
 
     <div class="table-wrap">
@@ -616,7 +632,7 @@ tbody tr:hover td{background:#f0fdf4;}
       <p><strong>Community cloud:</strong> Shared infrastructure for organisations with similar requirements (government agencies, healthcare providers). Less common on the exam but present.</p>
     </div>
 
-    <h2>Virtualisation Security Concerns</h2>
+    <h2>What are the main security concerns with virtualization?</h2>
 
     <div class="table-wrap">
       <table>
@@ -632,7 +648,7 @@ tbody tr:hover td{background:#f0fdf4;}
 
     <hr class="divider">
 
-    <h2>Exam Scenarios</h2>
+    <h2>What are real exam scenarios for virtualization?</h2>
     <div class="scenario-list">
       <div class="scenario-item">💬 "A company wants to run multiple server workloads on dedicated hardware with maximum performance and no host OS. Which hypervisor type should they use?" → <strong>Type 1 (bare-metal) hypervisor — runs directly on hardware. Examples: VMware ESXi, Microsoft Hyper-V Server.</strong></div>
       <div class="scenario-item">💬 "A developer wants to test an application on Windows, Ubuntu, and macOS on their Windows laptop. Which virtualisation solution is most appropriate?" → <strong>Type 2 hypervisor (hosted) — VMware Workstation or VirtualBox runs as an application on the host Windows OS.</strong></div>
@@ -653,19 +669,19 @@ tbody tr:hover td{background:#f0fdf4;}
     </div>
 
     
-    <h2>Virtualisation in the Enterprise — Why It Matters</h2>
+    <h2>Why does virtualization matter in the enterprise?</h2>
     <p>Before virtualisation, each physical server ran one operating system and one primary application. A web server, database server, and email server each needed dedicated hardware — which sat idle most of the time, wasting power, cooling, and rack space. Virtualisation solved this by running multiple VMs on a single physical host, each VM believing it has exclusive access to hardware resources that are actually shared. Modern enterprise datacentres routinely run dozens of VMs per physical host, with hardware utilisation rates of 60–80% instead of the 5–15% common with dedicated physical servers.</p>
     <p>For the exam: understand that virtualisation provides <strong>hardware consolidation</strong> (fewer physical servers for the same workload), <strong>improved disaster recovery</strong> (VMs can be backed up as single files and restored to different hardware), <strong>rapid provisioning</strong> (a new server can be deployed in minutes from a template), and <strong>isolation</strong> (a compromised VM doesn't directly affect the hypervisor or other VMs — though VM escape vulnerabilities can break this boundary).</p>
 
-    <h2>VM Components — What Makes Up a Virtual Machine</h2>
+    <h2>What components make up a virtual machine?</h2>
     <p>A virtual machine consists of: a <strong>virtual CPU</strong> (vCPU) mapped to physical CPU cores, <strong>virtual RAM</strong> allocated from the host's physical RAM, a <strong>virtual disk</strong> (typically a .vmdk or .vhd file on the host's storage that the VM treats as a real hard drive), a <strong>virtual network adapter</strong> (the hypervisor creates a virtual switch that connects VMs to each other and to the physical network), and <strong>virtual I/O devices</strong> (graphics, USB controllers, etc.). The hypervisor manages resource allocation and prevents VMs from accessing each other's memory or storage without explicit configuration.</p>
     <p><strong>Snapshots</strong> capture the exact state of a VM at a point in time — memory contents, disk state, and configuration. They allow you to roll a VM back to a known-good state if something goes wrong. On the exam: snapshots are not the same as backups. Snapshots depend on the VM remaining on the same storage — if the host fails, snapshots fail too. Proper backup exports the VM to a separate location. Snapshots are ideal for testing changes (take a snapshot, apply a patch, roll back if something breaks) but should not be the sole protection mechanism.</p>
 
-    <h2>Containers vs Virtual Machines</h2>
+    <h2>How do containers differ from VMs in isolation and security?</h2>
     <p>Containers (Docker, Kubernetes pods) are a lighter-weight alternative to VMs. Where a VM runs a full guest OS on top of the hypervisor, a container shares the host OS kernel and runs only the application and its dependencies. This makes containers <strong>significantly faster to start</strong> (seconds vs minutes), <strong>much smaller</strong> (megabytes vs gigabytes), and <strong>more portable</strong> — a container that runs on a developer's laptop runs identically in production. The trade-off is weaker isolation: containers share the kernel, so a kernel vulnerability can potentially affect all containers on a host. VMs provide stronger isolation because each has its own kernel.</p>
     <p>On the exam: the key distinction is isolation level. VMs = stronger isolation, higher overhead. Containers = lighter weight, weaker isolation, better for microservices and CI/CD pipelines. Security+ specifically tests container security risks: image vulnerabilities (a vulnerable base image affects every container built from it), container escape (breaking out of container isolation to the host), and the importance of running containers as non-root users.</p>
 
-    <h2>Cloud and Virtualisation — The Connection</h2>
+    <h2>How are cloud computing and virtualization connected?</h2>
     <p>Cloud computing is built on virtualisation. When you provision an EC2 instance on AWS or a VM on Azure, you're getting a virtual machine running on Amazon's or Microsoft's physical hypervisor infrastructure. The cloud provider manages the physical hardware and hypervisor (Type 1); you manage the guest OS and everything above it. This is exactly the IaaS shared responsibility model — the provider owns the virtualisation layer, the customer owns the OS.</p>
     <p>Understanding this connection makes cloud concepts on the exam easier to reason through. Questions about what a customer is responsible for in IaaS become intuitive when you understand that the customer is essentially renting a VM — they control the guest OS and above, just like a Type 2 hypervisor user controls their VM but not the underlying host OS or hardware.</p>
 
