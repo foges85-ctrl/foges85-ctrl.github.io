@@ -111,6 +111,13 @@ a { color: inherit; text-decoration: none; }
 .s-icon { font-size: 20px; }
 .section-intro { font-size: 14px; color: var(--muted); line-height: 1.65; margin: 8px 0 18px; }
 
+/* ── QUICK ANSWER / TL;DR CALLOUT ── */
+.quick-answer { background: var(--navy); border-radius: 14px; padding: 24px 26px; margin: 0 auto 32px; max-width: 1100px; position: relative; overflow: hidden; }
+.quick-answer::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(124,58,237,.22) 0%, transparent 70%); pointer-events: none; }
+.quick-answer-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #c4b5fd; margin-bottom: 10px; position: relative; }
+.quick-answer-text { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; position: relative; }
+.quick-answer-text strong { color: var(--white); }
+
 /* ── TABLE ── */
 .table-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--border); box-shadow: var(--card-shadow); margin-bottom: 28px; }
 table { width: 100%; border-collapse: collapse; background: var(--white); min-width: 340px; }
@@ -435,6 +442,71 @@ tbody tr:hover td { background: #f0fbf9; }
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the CompTIA A+ certification?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The CompTIA A+ is a two-exam entry-level IT certification covering hardware, networking, operating systems, security, and troubleshooting. Core 1 (220-1201) tests mobile devices, networking, hardware, virtualization, and cloud. Core 2 (220-1202) tests Windows/macOS/Linux operating systems, security, software troubleshooting, and operational procedures. Each exam has up to 90 questions (multiple-choice and performance-based), runs 90 minutes, and requires a passing score of 675/900 on Core 1 or 700/900 on Core 2."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between A+ Core 1 (220-1201) and Core 2 (220-1202)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Core 1 (220-1201) focuses on hardware and infrastructure: mobile devices, networking, hardware components, virtualization, cloud computing, and hardware/network troubleshooting. Core 2 (220-1202) focuses on software and operations: Windows/macOS/Linux operating systems, security, software troubleshooting, and operational procedures (documentation, change management, communication). Both exams must be passed to earn the A+ certification, in either order, within three years of each other."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which ports and protocols are on the CompTIA A+ exam?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The A+ ports tested most often: 20/21 FTP, 22 SSH/SFTP/SCP, 23 Telnet, 25 SMTP, 53 DNS, 67/68 DHCP, 80 HTTP, 110 POP3, 123 NTP, 143 IMAP, 161/162 SNMP, 389 LDAP, 443 HTTPS, 445 SMB, 465/587 SMTP Secure, 636 LDAPS, 993 IMAPS, 995 POP3S, and 3389 RDP. Scenario questions map the port to a symptom — e.g., 'a user can't send email' typically points to ports 25 or 587 being blocked."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What RAM types are tested on the CompTIA A+?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The A+ tests DDR3 (240-pin DIMM / 204-pin SO-DIMM, 1066–2133 MHz), DDR4 (288-pin DIMM / 260-pin SO-DIMM, 2133–3200+ MHz, lower voltage than DDR3), and DDR5 (288-pin DIMM / 262-pin SO-DIMM, 4800+ MHz). DDR generations are not backward compatible — notch position differs. SO-DIMM is the laptop form factor, full DIMM is desktop. ECC RAM detects and fixes single-bit errors and is required in servers, but not compatible with standard consumer motherboards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Windows commands does the A+ exam test?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Networking: ipconfig (and /all, /release, /renew, /flushdns), ping, tracert, nslookup, netstat (-a, -b), arp -a, net use. System and disk: sfc /scannow, DISM, chkdsk /f /r, diskpart, format, defrag (HDDs only), robocopy, xcopy. User, process, and admin: tasklist, taskkill /PID, msconfig, regedit, gpedit.msc, lusrmgr.msc, services.msc, eventvwr.msc, mmc, gpupdate /force, and shutdown /r /t 0."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What security threats are tested on the A+?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The A+ tests phishing (and its variants: spear phishing for targeted, whaling for executives, vishing for voice, smishing for SMS), ransomware, trojan horses, rootkits, keyloggers, spyware, adware, man-in-the-middle attacks, social engineering, tailgating, shoulder surfing, and dumpster diving. Each is tested as a scenario: the exam describes a situation and you identify the attack name."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the CompTIA A+ 7-step troubleshooting methodology?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The CompTIA 7-step troubleshooting methodology: (1) Identify the problem — gather information, question the user, check for recent changes. (2) Establish a theory of probable cause — question the obvious first. (3) Test the theory to determine cause — if confirmed, move on; if not, return to step 2. (4) Establish a plan of action to resolve the problem, considering side effects. (5) Implement the solution or escalate. (6) Verify full system functionality and implement preventive measures. (7) Document findings, actions, and outcomes. The exam asks 'which step comes next' given a scenario."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
     {
@@ -527,7 +599,7 @@ tbody tr:hover td { background: #f0fbf9; }
     </nav>
     <div class="page-hero-badge">CompTIA A+ · 220-1201 &amp; 220-1202 · 2026</div>
     <h1>CompTIA <span>A+ Cheat Sheet</span></h1>
-    <p class="page-hero-sub">Every port, connector, RAM type, storage interface, Windows command, security threat, troubleshooting methodology, and key fact you need for the 220-1201 (Core 1) and 220-1202 (Core 2) exams — on one page.</p>
+    <p class="page-hero-sub">The CompTIA A+ is a two-exam entry-level IT certification: Core 1 (220-1201) covers hardware, networking, mobile devices, virtualization, and cloud; Core 2 (220-1202) covers Windows/macOS/Linux, security, software troubleshooting, and operational procedures. This cheat sheet condenses every must-know port, connector, RAM type, Windows command, security threat, and the 7-step CompTIA troubleshooting methodology onto one reference page.</p>
   </div>
 </section>
 
@@ -563,8 +635,13 @@ tbody tr:hover td { background: #f0fbf9; }
 <!-- ARTICLE -->
 <div class="article-wrap">
 
+  <div class="quick-answer">
+    <div class="quick-answer-label">⚡ A+ Exam Quick Reference</div>
+    <div class="quick-answer-text">The <strong>CompTIA A+</strong> is a two-exam IT certification. <strong>Core 1 (220-1201)</strong> tests hardware, networking, mobile devices, virtualization, and cloud. <strong>Core 2 (220-1202)</strong> tests Windows/macOS/Linux operating systems, security, software troubleshooting, and operational procedures. Each exam has up to 90 questions (multiple-choice and performance-based), runs 90 minutes, and requires a passing score of <strong>675/900</strong> (Core 1) or <strong>700/900</strong> (Core 2). Use the sections below for last-minute review of the highest-yield topics: ports, connectors, RAM, Windows commands, security threats, and the 7-step CompTIA troubleshooting methodology.</div>
+  </div>
+
   <!-- PORTS -->
-  <div id="ports" class="section-title"><span class="s-icon">🔌</span> Ports &amp; Protocols</div>
+  <h2 id="ports" class="section-title"><span class="s-icon">🔌</span> Which ports and protocols are on the CompTIA A+ exam?</h2>
   <p class="section-intro">The A+ exam tests <a href="ports-and-protocols.html">port numbers</a> in scenario questions — "a user can't send email" maps to ports 25/587. Know the port, protocol (TCP/UDP), and what breaks when it's blocked.</p>
 
   <div class="table-wrap">
@@ -598,7 +675,7 @@ tbody tr:hover td { background: #f0fbf9; }
   </div>
 
   <!-- CONNECTORS -->
-  <div id="connectors" class="section-title"><span class="s-icon">🔧</span> Connectors &amp; Cables</div>
+  <h2 id="connectors" class="section-title"><span class="s-icon">🔧</span> Which connectors and cables are tested on the A+ exam?</h2>
   <p class="section-intro">Core 1 tests connector identification heavily — expect photos of connectors with multiple choice answers. Know the visual appearance, use case, and speed/standard for each.</p>
 
   <div class="table-wrap">
@@ -635,7 +712,7 @@ tbody tr:hover td { background: #f0fbf9; }
   </div>
 
   <!-- RAM -->
-  <div id="ram" class="section-title"><span class="s-icon">🧠</span> RAM Types</div>
+  <h2 id="ram" class="section-title"><span class="s-icon">🧠</span> What RAM types are tested on the CompTIA A+?</h2>
   <p class="section-intro">Know the pin counts, speeds, and form factors — the exam will give you a scenario where you need to identify the correct module type for a given system.</p>
 
   <div class="table-wrap">
@@ -661,7 +738,7 @@ tbody tr:hover td { background: #f0fbf9; }
   </div>
 
   <!-- STORAGE -->
-  <div id="storage" class="section-title"><span class="s-icon">💾</span> Storage Interfaces &amp; Types</div>
+  <h2 id="storage" class="section-title"><span class="s-icon">💾</span> Which storage interfaces and types does the A+ cover?</h2>
   <p class="section-intro">The A+ exam tests storage connectors, interfaces, and form factors. Know what connects to what and the speed difference between HDD, SATA SSD, and NVMe SSD.</p>
 
   <div class="table-wrap">
@@ -687,7 +764,7 @@ tbody tr:hover td { background: #f0fbf9; }
   </div>
 
   <!-- DISPLAY -->
-  <div id="display" class="section-title"><span class="s-icon">🖥️</span> Display Connectors</div>
+  <h2 id="display" class="section-title"><span class="s-icon">🖥️</span> Which display connectors are on the A+ exam?</h2>
   <p class="section-intro">Display connector identification appears in Core 1 scenarios. Know the shape, pin count, and whether each carries audio.</p>
 
   <div class="table-wrap">
@@ -709,7 +786,7 @@ tbody tr:hover td { background: #f0fbf9; }
   </div>
 
   <!-- NETWORKING -->
-  <div id="networking" class="section-title"><span class="s-icon">🌐</span> Networking Basics</div>
+  <h2 id="networking" class="section-title"><span class="s-icon">🌐</span> What networking basics does the A+ exam require?</h2>
   <p class="section-intro">A+ Core 1 covers networking fundamentals — IP addressing, subnet masks, DHCP, DNS, and troubleshooting connectivity. Know these cold.</p>
 
   <div class="code-block">
@@ -758,7 +835,7 @@ tbody tr:hover td { background: #f0fbf9; }
   </div>
 
   <!-- WIRELESS -->
-  <div id="wireless" class="section-title"><span class="s-icon">📶</span> Wireless Standards</div>
+  <h2 id="wireless" class="section-title"><span class="s-icon">📶</span> Which wireless standards are tested on the A+?</h2>
   <p class="section-intro">Know each <a href="wifi-standards.html">802.11</a> standard's frequency, maximum speed, and key distinguishing feature. The exam distinguishes between 2.4 GHz (range) and 5 GHz (speed).</p>
 
   <div class="table-wrap">
@@ -788,7 +865,7 @@ tbody tr:hover td { background: #f0fbf9; }
   </div>
 
   <!-- WINDOWS COMMANDS -->
-  <div id="os" class="section-title"><span class="s-icon">⌨️</span> Windows Commands</div>
+  <h2 id="os" class="section-title"><span class="s-icon">⌨️</span> Which Windows commands does the A+ exam test?</h2>
   <p class="section-intro">Core 2 tests command-line tools heavily — expect to be given a task ("check what ports are listening") and choose the correct command. Know what each does and when to use it.</p>
 
   <div class="code-block">
@@ -838,7 +915,7 @@ tbody tr:hover td { background: #f0fbf9; }
   </div>
 
   <!-- SECURITY -->
-  <div id="security" class="section-title"><span class="s-icon">🔒</span> Security Threats</div>
+  <h2 id="security" class="section-title"><span class="s-icon">🔒</span> What security threats are tested on the A+?</h2>
   <p class="section-intro">Core 2 has a heavy security focus. Know each threat type by name — the exam describes a scenario and you identify the attack.</p>
 
   <div class="table-wrap">
@@ -868,8 +945,8 @@ tbody tr:hover td { background: #f0fbf9; }
   </div>
 
   <!-- TROUBLESHOOTING -->
-  <div id="troubleshooting" class="section-title"><span class="s-icon">🛠️</span> Troubleshooting Methodology</div>
-  <p class="section-intro">CompTIA's 7-step troubleshooting methodology is tested directly on both Core 1 and Core 2. Memorise the steps and order — scenario questions will ask which step comes next.</p>
+  <h2 id="troubleshooting" class="section-title"><span class="s-icon">🛠️</span> What is the CompTIA A+ 7-step troubleshooting methodology?</h2>
+  <p class="section-intro">CompTIA's 7-step troubleshooting methodology is tested directly across <a href="comptia-aplus-domains.html">both A+ exam domains</a> (Core 1 and Core 2). Memorise the steps and order — scenario questions will ask which step comes next.</p>
 
   <div class="code-block">
     <div class="code-label">CompTIA 7-step troubleshooting methodology</div>
@@ -921,13 +998,14 @@ tbody tr:hover td { background: #f0fbf9; }
         <strong>Spinning wheel / slow boot</strong> — failing HDD, check with chkdsk<br>
         <strong>Overheating / random shutdown</strong> — clogged vents, failed fan, dried thermal paste<br>
         <strong>Clicking HDD</strong> — imminent drive failure — back up immediately<br>
-        <strong>CMOS error on boot</strong> — dead CMOS battery (CR2032) — replace it
+        <strong>CMOS error on boot</strong> — dead CMOS battery (CR2032) — replace it<br><br>
+        For a deeper walk-through of each component, see our <a href="hardware-components-guide.html">PC hardware components guide</a>.
       </div>
     </div>
   </div>
 
   <!-- ACRONYMS -->
-  <div id="acronyms" class="section-title"><span class="s-icon">📖</span> Key Acronyms</div>
+  <h2 id="acronyms" class="section-title"><span class="s-icon">📖</span> What are the key acronyms for the A+ exam?</h2>
   <p class="section-intro">The A+ exam uses acronyms constantly — both in questions and answer choices. If you hesitate on an acronym you lose time. Know every expansion below cold.</p>
 
   <div class="table-wrap">
@@ -947,7 +1025,7 @@ tbody tr:hover td { background: #f0fbf9; }
         <tr><td class="td-key">RAID</td><td>Redundant Array of Independent Disks</td><td>Combines multiple drives for speed and/or redundancy</td></tr>
         <tr><td class="td-key">UPS</td><td>Uninterruptible Power Supply</td><td>Battery backup that keeps systems running during brief power outages</td></tr>
         <tr><td class="td-key">KVM</td><td>Keyboard, Video, Mouse switch</td><td>Allows one keyboard/monitor/mouse to control multiple computers</td></tr>
-        <tr><td class="td-key">VDI</td><td>Virtual Desktop Infrastructure</td><td>Hosts desktop OS instances on a centralised server — thin clients connect</td></tr>
+        <tr><td class="td-key">VDI</td><td>Virtual Desktop Infrastructure</td><td>Hosts desktop OS instances on a centralised server using <a href="virtualization-explained.html">virtualization</a> — thin clients connect</td></tr>
         <tr><td class="td-key">IaaS</td><td>Infrastructure as a Service</td><td>Cloud provides VMs, storage, networking — you manage OS and apps (AWS EC2)</td></tr>
         <tr><td class="td-key">PaaS</td><td>Platform as a Service</td><td>Cloud provides runtime environment — you manage only the application code</td></tr>
         <tr><td class="td-key">SaaS</td><td>Software as a Service</td><td>Cloud provides the full application — you just use it (Microsoft 365, Salesforce)</td></tr>
