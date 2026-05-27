@@ -199,6 +199,13 @@ a { color: inherit; text-decoration: none; }
 .section-title .s-icon { font-size: 20px; }
 .section-intro { font-size: 14px; color: var(--muted); margin-bottom: 16px; line-height: 1.65; }
 
+/* ── QUICK ANSWER / TL;DR CALLOUT ── */
+.quick-answer { background: var(--navy); border-radius: 14px; padding: 24px 26px; margin-bottom: 40px; position: relative; overflow: hidden; }
+.quick-answer::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(124,58,237,.22) 0%, transparent 70%); pointer-events: none; }
+.quick-answer-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #c4b5fd; margin-bottom: 10px; position: relative; }
+.quick-answer-text { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; position: relative; }
+.quick-answer-text strong { color: var(--white); }
+
 /* ── TABLE ── */
 .table-wrap {
   overflow-x: auto; border-radius: 12px; border: 1px solid var(--border);
@@ -621,6 +628,71 @@ tbody tr:hover td { background: #f4f8ff; }
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the CompTIA Network+ certification (N10-009)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CompTIA Network+ (exam N10-009) is the vendor-neutral intermediate networking certification — the next step after CompTIA A+. The exam has up to 90 questions (multiple-choice and performance-based), runs 90 minutes, and requires a passing score of 720/900. It tests five domains: Networking Concepts (23%), Network Implementation (20%), Network Operations (19%), Network Security (14%), and Network Troubleshooting (24%). Network+ is also a stepping stone to vendor-specific certifications like Cisco CCNA."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the OSI model and how is it tested on Network+?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The OSI model is a 7-layer framework: Layer 1 Physical (cables, signals), Layer 2 Data Link (MAC addresses, switches, frames), Layer 3 Network (IP addresses, routers, packets), Layer 4 Transport (TCP/UDP, ports, segments), Layer 5 Session, Layer 6 Presentation (TLS, encryption), and Layer 7 Application (HTTP, DNS, SMTP). The Network+ exam asks you to map every protocol and device to a specific layer — e.g., a switch is Layer 2, a router is Layer 3, a firewall filtering by port is Layer 4."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which port numbers are tested on Network+?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Network+ ports tested most often: 20/21 FTP, 22 SSH/SFTP/SCP, 23 Telnet, 25 SMTP, 53 DNS (TCP/UDP), 67/68 DHCP, 69 TFTP, 80 HTTP, 110 POP3, 123 NTP, 143 IMAP, 161/162 SNMP, 389 LDAP, 443 HTTPS, 445 SMB, 465/587 SMTPS, 636 LDAPS, 993 IMAPS, 995 POP3S, 1812/1813 RADIUS, 3389 RDP, and 5060/5061 SIP. Know the encrypted pairs: Telnet→SSH, HTTP→HTTPS, FTP→SFTP, LDAP→LDAPS."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you subnet for Network+ (CIDR quick reference)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CIDR-to-mask reference for Network+: /24 = 255.255.255.0 (254 hosts), /25 = 255.255.255.128 (126 hosts), /26 = 255.255.255.192 (62 hosts), /27 = 255.255.255.224 (30 hosts), /28 = 255.255.255.240 (14 hosts), /29 = 255.255.255.248 (6 hosts), /30 = 255.255.255.252 (2 hosts). Formula: usable hosts = 2^(host bits) − 2. Private RFC 1918 ranges: 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16. APIPA falls into 169.254.0.0/16, and 127.0.0.0/8 is loopback."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between RIP, OSPF, EIGRP, and BGP?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RIP v2: distance-vector IGP, metric is hop count (max 15), simple but slow convergence. OSPF: link-state IGP using Dijkstra's SPF algorithm, metric is cost (bandwidth), fast convergence, most common interior protocol. EIGRP: Cisco's hybrid IGP using the DUAL algorithm, metric is bandwidth + delay. BGP: path-vector EGP that routes between autonomous systems on the internet, uses AS path attributes for best-path selection. IGP = inside one organisation; EGP = between organisations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which wireless standards are tested on Network+?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Network+ tests the 802.11 family: 802.11a (Wi-Fi 1, 5 GHz, 54 Mbps), 802.11b (Wi-Fi 2, 2.4 GHz, 11 Mbps), 802.11g (Wi-Fi 3, 2.4 GHz, 54 Mbps), 802.11n (Wi-Fi 4, dual-band, up to 600 Mbps, introduced MIMO), 802.11ac (Wi-Fi 5, 5 GHz, up to 3.5 Gbps, MU-MIMO and beamforming), and 802.11ax (Wi-Fi 6/6E, tri-band 2.4/5/6 GHz, up to 9.6 Gbps, OFDMA). Wireless security: WEP (broken), WPA (deprecated), WPA2 (AES-CCMP), WPA3 (SAE replaces PSK, required on Wi-Fi 6 certified devices)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the CompTIA 7-step troubleshooting methodology?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The CompTIA 7-step troubleshooting methodology used across all CompTIA exams: (1) Identify the problem — gather information, question users, check for recent changes. (2) Establish a theory of probable cause — question the obvious first. (3) Test the theory — confirm or deny; if denied, return to step 2. (4) Establish a plan of action, considering side effects. (5) Implement the solution or escalate. (6) Verify full system functionality and implement preventive measures. (7) Document findings, actions, and outcomes."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
     {
@@ -713,7 +785,7 @@ tbody tr:hover td { background: #f4f8ff; }
     </nav>
     <div class="page-hero-badge">CompTIA Network+ · N10-009 · Quick Reference</div>
     <h1>CompTIA <span>Network+</span> Cheat Sheet</h1>
-    <p class="page-hero-sub">Every port number, OSI model layer, subnetting reference, routing protocol, wireless standard, and key acronym you need for the N10-009 exam — all in one place.</p>
+    <p class="page-hero-sub">CompTIA Network+ (exam N10-009) is the vendor-neutral intermediate networking certification — it tests OSI model layers, IPv4/IPv6 addressing and subnetting, routing and switching, wireless standards, network security, and troubleshooting. This cheat sheet condenses every port number, subnet table, routing protocol, Wi-Fi standard, and acronym tested on N10-009 onto one reference page.</p>
   </div>
 </section>
 
@@ -749,8 +821,13 @@ tbody tr:hover td { background: #f4f8ff; }
 <!-- ARTICLE -->
 <div class="article-wrap">
 
+  <div class="quick-answer">
+    <div class="quick-answer-label">⚡ Network+ Exam Quick Reference</div>
+    <div class="quick-answer-text"><strong>CompTIA Network+ (N10-009)</strong> is the vendor-neutral intermediate networking certification. The exam has up to 90 questions (multiple-choice and performance-based), runs 90 minutes, and requires a passing score of <strong>720/900</strong>. It tests five domains: <strong>Networking Concepts</strong> (23%), <strong>Network Implementation</strong> (20%), <strong>Network Operations</strong> (19%), <strong>Network Security</strong> (14%), and <strong>Network Troubleshooting</strong> (24%). Use the sections below for last-minute review of the highest-yield topics: OSI layers, port numbers, subnetting, routing protocols (RIP/OSPF/EIGRP/BGP), wireless standards, and the CompTIA 7-step troubleshooting methodology.</div>
+  </div>
+
   <!-- OSI MODEL -->
-  <div id="osi" class="section-title"><span class="s-icon">🔢</span> OSI Model</div>
+  <h2 id="osi" class="section-title"><span class="s-icon">🔢</span> What is the OSI model and how is it tested on Network+?</h2>
   <p class="section-intro">The OSI model is one of the most tested topics on Network+. Know every layer number, name, what it does, and at least two protocols or devices that operate at each layer.</p>
 
   <div class="osi-stack">
@@ -799,8 +876,8 @@ tbody tr:hover td { background: #f4f8ff; }
   </div>
 
   <!-- PORT NUMBERS -->
-  <div id="ports" class="section-title"><span class="s-icon">🔌</span> Port Numbers</div>
-  <p class="section-intro">Memorise every port below — Network+ tests these directly and in scenario questions where you must identify a blocked service from its port number.</p>
+  <h2 id="ports" class="section-title"><span class="s-icon">🔌</span> Which port numbers are tested on Network+?</h2>
+  <p class="section-intro">Memorise every <a href="ports-and-protocols.html">port and protocol</a> below — Network+ tests these directly and in scenario questions where you must identify a blocked service from its port number.</p>
 
   <div class="table-wrap">
     <table>
@@ -841,7 +918,7 @@ tbody tr:hover td { background: #f4f8ff; }
   </div>
 
   <!-- SUBNETTING -->
-  <div id="subnetting" class="section-title"><span class="s-icon">🧮</span> Subnetting Quick Reference</div>
+  <h2 id="subnetting" class="section-title"><span class="s-icon">🧮</span> How do you subnet for Network+ (CIDR quick reference)?</h2>
   <p class="section-intro">The most tested calculation topic on Network+. Know the <a href="subnet-mask.html">subnet mask</a>, number of hosts, and network increment for each CIDR prefix from /24 to /30.</p>
 
   <p class="subnet-note">Formula: Usable hosts = 2^(host bits) − 2 &nbsp;·&nbsp; Network bits + host bits = 32</p>
@@ -877,7 +954,7 @@ tbody tr:hover td { background: #f4f8ff; }
   </div>
 
   <!-- PROTOCOLS -->
-  <div id="protocols" class="section-title"><span class="s-icon">📡</span> Key Protocols & Standards</div>
+  <h2 id="protocols" class="section-title"><span class="s-icon">📡</span> Which key protocols and standards does Network+ test?</h2>
 
   <div class="table-wrap">
     <table>
@@ -903,7 +980,7 @@ tbody tr:hover td { background: #f4f8ff; }
   </div>
 
   <!-- ROUTING PROTOCOLS -->
-  <div id="routing" class="section-title"><span class="s-icon">🗺️</span> Routing Protocols</div>
+  <h2 id="routing" class="section-title"><span class="s-icon">🗺️</span> What's the difference between RIP, OSPF, EIGRP, and BGP?</h2>
 
   <div class="table-wrap">
     <table>
@@ -927,7 +1004,7 @@ tbody tr:hover td { background: #f4f8ff; }
   </div>
 
   <!-- WIRELESS -->
-  <div id="wireless" class="section-title"><span class="s-icon">📶</span> Wireless Standards</div>
+  <h2 id="wireless" class="section-title"><span class="s-icon">📶</span> Which wireless standards are tested on Network+?</h2>
 
   <div class="table-wrap">
     <table>
@@ -956,7 +1033,7 @@ tbody tr:hover td { background: #f4f8ff; }
   </div>
 
   <!-- SECURITY -->
-  <div id="security" class="section-title"><span class="s-icon">🔒</span> Network Security</div>
+  <h2 id="security" class="section-title"><span class="s-icon">🔒</span> What network security concepts are tested on Network+?</h2>
 
   <div class="table-wrap">
     <table>
@@ -971,7 +1048,7 @@ tbody tr:hover td { background: #f4f8ff; }
         <tr><td class="td-key">VPN</td><td>Encrypted tunnel over public internet — IPsec for site-to-site, SSL/TLS VPN for remote access</td></tr>
         <tr><td class="td-key">ACL</td><td>Access Control List — ordered list of permit/deny rules applied to router interfaces</td></tr>
         <tr><td class="td-key">NAC</td><td>Network Access Control — verifies device compliance before granting network access</td></tr>
-        <tr><td class="td-key">VLAN</td><td>Virtual LAN — logical network segments on the same physical switch, isolates broadcast domains</td></tr>
+        <tr><td class="td-key">VLAN</td><td>Virtual LAN — logical <a href="network-segmentation.html">network segments</a> on the same physical switch, isolates broadcast domains</td></tr>
         <tr><td class="td-key">AAA</td><td>Authentication, Authorisation, Accounting — RADIUS and TACACS+ implement AAA for network access</td></tr>
         <tr><td class="td-key">RADIUS</td><td>Centrally authenticates network access — encrypts password only, UDP ports 1812/1813</td></tr>
         <tr><td class="td-key">TACACS+</td><td>Cisco AAA protocol — encrypts entire packet, separates auth/authz/accounting, TCP port 49</td></tr>
@@ -980,7 +1057,7 @@ tbody tr:hover td { background: #f4f8ff; }
   </div>
 
   <!-- TROUBLESHOOTING -->
-  <div id="troubleshooting" class="section-title"><span class="s-icon">🔧</span> Troubleshooting Tools & Commands</div>
+  <h2 id="troubleshooting" class="section-title"><span class="s-icon">🔧</span> Which troubleshooting tools and commands does Network+ test?</h2>
 
   <div class="code-block">
     <div class="code-label">Essential troubleshooting commands</div>
@@ -1008,8 +1085,8 @@ tbody tr:hover td { background: #f4f8ff; }
   </div>
 
   <!-- ACRONYMS -->
-  <div id="acronyms" class="section-title"><span class="s-icon">📖</span> Key Acronyms</div>
-  <p class="section-intro">Network+ loves acronym-heavy questions. If you can't expand an acronym instantly you'll lose time on the exam.</p>
+  <h2 id="acronyms" class="section-title"><span class="s-icon">📖</span> What are the key acronyms on the Network+ exam?</h2>
+  <p class="section-intro">Network+ loves acronym-heavy questions. If you can't expand an acronym instantly you'll lose time on the exam. For courses and practice exams that drill these, see our <a href="best-network-plus.html">best Network+ study resources</a>.</p>
 
   <div class="table-wrap">
     <table>
