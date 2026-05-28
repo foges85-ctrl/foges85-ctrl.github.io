@@ -90,6 +90,13 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
 .section-title:first-of-type { margin-top: 0; }
 .section-title .s-icon { font-size: 20px; }
 
+/* ── QUICK ANSWER / TL;DR CALLOUT ── */
+.quick-answer { background: var(--navy); border-radius: 14px; padding: 24px 26px; margin-bottom: 40px; position: relative; overflow: hidden; }
+.quick-answer::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(124,58,237,.22) 0%, transparent 70%); pointer-events: none; }
+.quick-answer-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #c4b5fd; margin-bottom: 10px; position: relative; }
+.quick-answer-text { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; position: relative; }
+.quick-answer-text strong { color: var(--white); }
+
 /* TABLES */
 .cheat-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 8px; }
 .cheat-table th { background: var(--navy); color: #fff; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 10px 14px; text-align: left; }
@@ -421,6 +428,71 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the CompTIA Security+ certification (SY0-701)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CompTIA Security+ (exam SY0-701) is the most widely recognized entry-level cybersecurity certification and satisfies DoD 8140 IAT Level II requirements for many federal and defence contractor positions. The exam has up to 90 questions (multiple-choice and performance-based), runs 90 minutes, and requires a passing score of 750/900. It tests five domains: General Security Concepts (12%), Threats Vulnerabilities and Mitigations (22%), Security Architecture (18%), Security Operations (28%), and Security Program Management and Oversight (20%)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What cryptography algorithms are tested on Security+?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Security+ tests symmetric encryption (AES — current standard, 128/192/256-bit; 3DES — deprecated; DES — broken), asymmetric encryption (RSA — key exchange and signatures; ECC — same security as RSA at smaller key sizes; Diffie-Hellman — key exchange only), and hashing (SHA-256 and SHA-3 — current standards; MD5 and SHA-1 — broken, do not use). The key distinctions: AES is for bulk encryption, SHA is for hashing/integrity, RSA is for key exchange and digital signatures, and HMAC adds authentication to a hash using a shared key."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What threats and attacks does Security+ cover?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Security+ tests malware (ransomware, trojans, rootkits, keyloggers, spyware, worms, fileless malware), social engineering (phishing, spear phishing, whaling, vishing, smishing, pretexting), network attacks (DDoS, ARP spoofing, DNS poisoning, on-path/MitM, replay), application attacks (SQL injection, XSS, CSRF, buffer overflow, race conditions), and cryptographic attacks (downgrade, birthday, collision, rainbow tables). Scenarios on the exam describe a symptom and you identify the attack name."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is PKI and how do certificates work on Security+?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PKI (Public Key Infrastructure) is the framework that issues, manages, and verifies digital certificates. The trust chain: a Root CA signs Intermediate CAs, which sign end-entity certificates; clients trust the root, so they trust everything signed by it. Certificate lifecycle: a CSR (Certificate Signing Request) is generated with a public key, the CA signs and issues the certificate, revocation is tracked via CRL (Certificate Revocation List) or OCSP (Online Certificate Status Protocol). Certificate types tested include domain-validated (DV), organization-validated (OV), extended-validation (EV), wildcard, and SAN/UCC certificates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the NIST incident response lifecycle?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The NIST incident response lifecycle has six phases in strict order: (1) Preparation — IR plan, tools, training, communication contacts. (2) Detection — identify the incident via SIEM, IDS, or user reports. (3) Containment — short-term isolation followed by long-term patching and rebuilding. (4) Eradication — remove malware and close attack vectors. (5) Recovery — restore from clean backups and monitor for re-infection. (6) Lessons Learned — post-incident review and IR plan updates. Order matters on the exam: containment comes before eradication, which comes before recovery."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which frameworks, regulations, and compliance standards does Security+ test?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Security+ tests NIST CSF (5 functions: Identify, Protect, Detect, Respond, Recover), NIST SP 800-53 (US federal security controls catalogue), ISO 27001 (international ISMS standard, Annex A's 93 controls), PCI DSS (12 requirements for payment card data), HIPAA (US healthcare PHI protections), GDPR (EU personal data, 72-hour breach notification, right to erasure), SOC 2 (5 Trust Service Criteria), MITRE ATT&CK (adversary TTP matrix), the Lockheed Martin Cyber Kill Chain (7 phases), and the OWASP Top 10 web application risks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which wireless security protocols are tested on Security+?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WEP (RC4, 40-bit, broken — never use). WPA (TKIP, deprecated). WPA2-Personal (AES-CCMP with PSK, acceptable but vulnerable to PMKID attacks). WPA2-Enterprise (AES-CCMP with 802.1X/RADIUS, recommended). WPA3-Personal (AES-GCMP-256 with SAE replacing PSK — current standard, forward secrecy). WPA3-Enterprise (AES-GCMP-256 with 802.1X/RADIUS, 192-bit mode for high-security environments). Wireless attacks tested: Evil Twin (rogue AP), deauthentication, PMKID, WPS PIN brute force, and wardriving."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
     {
@@ -502,7 +574,7 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
   <div class="page-hero-inner">
     <div class="page-hero-badge">CompTIA Security+ · SY0-701 · 2026 · Quick Reference</div>
     <h1>CompTIA Security+ <span>Cheat Sheet</span></h1>
-    <p class="page-hero-sub">Every cryptography algorithm, threat and attack type, IAM concept, PKI term, network security control, incident response step, and compliance framework you need for the SY0-701 exam — on one page.</p>
+    <p class="page-hero-sub">CompTIA Security+ (exam SY0-701) is the most widely recognized entry-level cybersecurity certification — it tests general security concepts, threats and attacks, security architecture, security operations, and security program management. This cheat sheet condenses every cryptography algorithm, attack type, IAM concept, PKI term, network security control, NIST incident response phase, and compliance framework tested on SY0-701 onto one reference page.</p>
   </div>
 </section>
 
@@ -536,8 +608,13 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
 <!-- ARTICLE -->
 <div class="article-wrap">
 
+  <div class="quick-answer">
+    <div class="quick-answer-label">⚡ Security+ Exam Quick Reference</div>
+    <div class="quick-answer-text"><strong>CompTIA Security+ (SY0-701)</strong> is the most widely recognized entry-level cybersecurity certification and satisfies <strong>DoD 8140 IAT Level II</strong> requirements. The exam has up to 90 questions (multiple-choice and performance-based), runs 90 minutes, and requires a passing score of <strong>750/900</strong>. It tests five domains: <strong>General Security Concepts</strong> (12%), <strong>Threats, Vulnerabilities, and Mitigations</strong> (22%), <strong>Security Architecture</strong> (18%), <strong>Security Operations</strong> (28%), and <strong>Security Program Management and Oversight</strong> (20%). Use the sections below for last-minute review of cryptography, attacks, IAM, PKI, the NIST incident response lifecycle, and key compliance frameworks.</div>
+  </div>
+
   <!-- CRYPTOGRAPHY -->
-  <div id="crypto" class="section-title"><span class="s-icon">🔐</span> Cryptography</div>
+  <h2 id="crypto" class="section-title"><span class="s-icon">🔐</span> What cryptography algorithms are tested on Security+?</h2>
 
   <div class="callout callout-amber">
     <strong>⚡ Exam tip:</strong> Know symmetric vs asymmetric, which algorithms are weak vs strong, and what each is used for. AES = encryption, SHA = hashing, RSA = key exchange/signatures. These distinctions appear constantly.
@@ -591,7 +668,7 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
   </div>
 
   <!-- THREATS & ATTACKS -->
-  <div id="threats" class="section-title"><span class="s-icon">⚠️</span> Threats & Attacks</div>
+  <h2 id="threats" class="section-title"><span class="s-icon">⚠️</span> What threats and attacks does Security+ cover?</h2>
 
   <div class="callout callout-amber">
     <strong>⚡ Exam tip:</strong> Security+ SY0-701 heavily tests threat categories. Know: social engineering indicators, malware types, application attacks (SQLi, XSS, buffer overflow), and network attacks (MitM, replay, DoS/DDoS).
@@ -632,7 +709,7 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
   </div>
 
   <!-- NETWORK SECURITY -->
-  <div id="network" class="section-title"><span class="s-icon">🛡️</span> Network Security Controls</div>
+  <h2 id="network" class="section-title"><span class="s-icon">🛡️</span> Which network security controls are tested on Security+?</h2>
 
   <div class="table-wrap">
     <table class="cheat-table">
@@ -660,7 +737,7 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
   </div>
 
   <!-- IAM -->
-  <div id="iam" class="section-title"><span class="s-icon">👤</span> Identity & Access Management (IAM)</div>
+  <h2 id="iam" class="section-title"><span class="s-icon">👤</span> What IAM concepts are tested on Security+?</h2>
 
   <div class="table-wrap">
     <table class="cheat-table">
@@ -689,7 +766,7 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
   </div>
 
   <!-- PKI & CERTIFICATES -->
-  <div id="pki" class="section-title"><span class="s-icon">📜</span> PKI & Certificates</div>
+  <h2 id="pki" class="section-title"><span class="s-icon">📜</span> What is PKI and how do certificates work on Security+?</h2>
 
   <div class="callout callout-amber">
     <strong>⚡ Exam tip:</strong> PKI questions test the chain of trust. Know: CA hierarchy (Root → Intermediate → End-entity), what each certificate field means, and what happens during TLS handshake. Certificate pinning and CT logs appear in SY0-701.
@@ -729,7 +806,7 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
   </div>
 
   <!-- VULNERABILITIES -->
-  <div id="vuln" class="section-title"><span class="s-icon">🔍</span> Vulnerability Management</div>
+  <h2 id="vuln" class="section-title"><span class="s-icon">🔍</span> How does vulnerability management work for Security+?</h2>
 
   <div class="table-wrap">
     <table class="cheat-table">
@@ -750,7 +827,7 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
   </div>
 
   <!-- INCIDENT RESPONSE -->
-  <div id="incident" class="section-title"><span class="s-icon">🚨</span> Incident Response</div>
+  <h2 id="incident" class="section-title"><span class="s-icon">🚨</span> What is the NIST incident response lifecycle?</h2>
 
   <div class="callout callout-amber">
     <strong>⚡ Exam tip:</strong> Know the NIST IR lifecycle and the order of steps. Containment comes before eradication. Documentation happens throughout. Chain of custody is critical for forensics evidence admissibility.
@@ -794,7 +871,7 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
   </div>
 
   <!-- FRAMEWORKS -->
-  <div id="frameworks" class="section-title"><span class="s-icon">📋</span> Frameworks, Regulations & Compliance</div>
+  <h2 id="frameworks" class="section-title"><span class="s-icon">📋</span> Which frameworks, regulations, and compliance standards does Security+ test?</h2>
 
   <div class="table-wrap">
     <table class="cheat-table">
@@ -815,7 +892,7 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
   </div>
 
   <!-- WIRELESS SECURITY -->
-  <div id="wireless" class="section-title"><span class="s-icon">📶</span> Wireless Security</div>
+  <h2 id="wireless" class="section-title"><span class="s-icon">📶</span> Which wireless security protocols are tested on Security+?</h2>
 
   <div class="table-wrap">
     <table class="cheat-table">
@@ -855,7 +932,7 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
   </div>
 
   <!-- ACRONYMS -->
-  <div id="acronyms" class="section-title"><span class="s-icon">📖</span> Key Acronyms</div>
+  <h2 id="acronyms" class="section-title"><span class="s-icon">📖</span> What are the key acronyms on the Security+ exam?</h2>
 
   <div class="table-wrap">
     <table class="cheat-table">
