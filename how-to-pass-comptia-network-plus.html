@@ -179,6 +179,14 @@ a { color: inherit; text-decoration: none; }
 }
 .quick-answer-text strong { color: var(--white); }
 
+/* ── STUDY-TOOL CALLOUT (CertFlash placement) ── */
+.study-tool-callout { background: linear-gradient(135deg, #f0faf8, #e8f4ff); border: 1px solid rgba(0,194,168,0.25); border-left: 4px solid var(--teal, #00c2a8); border-radius: 12px; padding: 20px 24px; margin: 32px 0; }
+.study-tool-callout-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #0a6f5c; margin-bottom: 8px; }
+.study-tool-callout-text { font-size: 15px; color: var(--text, #1a1f36); line-height: 1.7; margin: 0; }
+.study-tool-callout-text strong { color: var(--navy); }
+.study-tool-callout-text a { color: var(--blue, #1a6cff); font-weight: 600; }
+.study-tool-callout-text a:hover { text-decoration: underline; }
+
 /* ── STAT PILLS ── */
 .stat-row {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px;
@@ -594,34 +602,42 @@ tbody tr:hover td { background: #f6f9ff; }
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What the Network+ exam actually tests",
+      "name": "What does the Network+ exam actually test?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "N10-009 has five domains. The weighting tells you where to spend your study time — networking fundamentals and troubleshooting together make up over half the exam:"
+        "text": "N10-009 tests five domains: Networking Fundamentals (24%) — OSI model, ports and protocols, IP addressing, subnetting, routing concepts, switching, wireless standards. Network Implementation (19%) — routing protocols (OSPF, BGP, RIP), VLANs, switching features, wireless implementation, cloud networking. Network Operations (16%) — monitoring, documentation, network policies, disaster recovery, high availability. Network Security (19%) — firewalls, IDS/IPS, VPNs, network hardening, common attacks. Network Troubleshooting (22%) — methodology, cable issues, connectivity problems, tools (ping, tracert, nslookup, netstat). Fundamentals plus troubleshooting together make up nearly half the exam."
       }
     },
     {
       "@type": "Question",
-      "name": "The one topic that fails most candidates — subnetting",
+      "name": "Why does subnetting fail most Network+ candidates?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Subnetting is the make-or-break topic on Network+. It's not optional, it can't be guessed, and it appears in multiple questions including performance-based questions where you have to calculate subnet ranges, usable hosts, and broadcast addresses under time pressure. The good news is subnetting is completely learnable with the right approach. The bad news is most candidates underestimate how much practice it takes to do it quickly and accurately under exam conditions. Reading about subnetting is not enough — you need to do hundreds of practice problems until the pattern is automatic. Learn …"
+        "text": "Subnetting is the make-or-break topic on Network+. It is not optional, it cannot be guessed, and it appears in multiple questions including performance-based questions where you must calculate subnet ranges, usable hosts, and broadcast addresses under time pressure. Most candidates underestimate how much practice it takes to do this quickly and accurately under exam conditions. Reading about subnetting is not enough — you need to do hundreds of practice problems until the pattern is automatic. Learn the /24 to /32 range first (the most commonly tested) and practice daily, not in marathon sessions: 15–20 problems every day for 4 weeks builds fluency faster than 100 problems in one weekend."
       }
     },
     {
       "@type": "Question",
-      "name": "The study plan that works",
+      "name": "How long does it take to study for Network+?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Start with the OSI model and TCP/IP fundamentals — even if you covered these for A+, review them with Network+ depth in mind. Then spend the majority of this phase on subnetting. Don't move on until you can calculate subnet ranges, usable hosts, and broadcast addresses consistently and quickly. This phase covers the content that's most different from A+. Routing protocols, VLANs, and switching concepts require understanding how network decisions are made — not just memorising names. Use diagrams and draw out network topologies as you study; visualising traffic flow accelerates understanding…"
+        "text": "Most candidates need 2–4 months of consistent study at 1–2 hours per day. Your starting point matters significantly. Candidates with CompTIA A+ typically need 2–3 months — focus extra time on subnetting, routing protocols, and VLANs which A+ doesn't cover in depth. Candidates already working in networking can target 6–8 weeks because hands-on experience covers troubleshooting well, but should not skip the study guide for protocol terminology. Candidates with no networking background should plan for 3–4 months and budget extra time for subnetting and the OSI model. Retake candidates should pull the score report and target the lowest-scoring domains rather than re-study everything."
       }
     },
     {
       "@type": "Question",
-      "name": "Exam day tips",
+      "name": "What's the Network+ study plan that actually works?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Underestimating subnetting. Candidates who can explain subnetting conceptually but can't calculate quickly under time pressure run out of time on PBQs and lose points they would have had. Subnetting speed comes only from repetitive practice — there's no shortcut. The second most common reason: skipping the troubleshooting methodology. CompTIA's 7-step process is directly tested and scenario questions specifically ask for the correct first, second, or next step. Memorise the order: identify the problem → establish a theory → test the theory → establish a plan → implement → verify → document.…"
+        "text": "A 10-week plan at 1–2 hours per day, built around subnetting fluency. Weeks 1–3 fundamentals — OSI model, IPv4 addressing, CIDR, top 20 ports, and 20 subnetting problems per day. Weeks 4–6 implementation — routing protocols (OSPF, RIP, BGP), VLANs and 802.1Q, switching (STP, port security), wireless (802.11, WPA2/WPA3), and WAN technologies. Weeks 7–8 security and troubleshooting — firewalls, IDS/IPS, VPNs, common attacks, the CompTIA 7-step methodology, SNMP/syslog. Weeks 9–10 timed practice exams with weak-area review while continuing daily subnetting practice. Book the exam at 80%+ consistent practice scores."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the best Network+ exam day tips?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Write down your subnetting cheat sheet on the scratch paper before the timer starts — CIDR-to-mask conversions and usable-host counts for /24 through /30. Flag PBQs and answer multiple choice first; PBQs take longer and time is better spent banking the easier questions. Identify the OSI layer the question is testing — many Network+ scenarios are layer-identification puzzles in disguise. Apply the CompTIA 7-step troubleshooting methodology in order (identify, theory, test, plan, implement, verify, document) — questions specifically ask for the correct next step. Trust your preparation: 80%+ consistent practice scores on Dion Training or Professor Messer means you're ready."
       }
     }
   ]
@@ -723,7 +739,7 @@ tbody tr:hover td { background: #f6f9ff; }
     </nav>
     <div class="page-hero-badge">CompTIA Network+ · Study Guide · 2026</div>
     <h1>How to Pass <span>CompTIA Network+</span></h1>
-    <p class="page-hero-sub">A realistic study plan for N10-009, what the exam actually tests, how long to study, which resources are worth your time, and the strategies that make a real difference on exam day.</p>
+    <p class="page-hero-sub">Passing CompTIA Network+ takes a subnetting-first plan: 2–4 months of consistent study with daily subnetting practice, then sitting N10-009 (one exam, up to 90 questions, 90 minutes, 720/900 to pass). Network+ is meaningfully harder than A+ — subnetting and routing require real practice, not just reading. This page walks through what the exam actually tests, realistic timelines per starting point, the study plan that gets candidates to a consistent 80% on practice tests, and the exam-day tactics that move candidates from "ready" to "passed."</p>
   </div>
 </section>
 
@@ -774,7 +790,7 @@ tbody tr:hover td { background: #f6f9ff; }
       <p><strong>If you passed A+, you already have the foundation.</strong> Ports, protocols, the OSI model, and basic TCP/IP are review. The new material is subnetting, routing protocols, VLANs, WAN technologies, and network operations — give these areas the most time.</p>
     </div>
 
-    <h2>What the Network+ exam actually tests</h2>
+    <h2>What does the Network+ exam actually test?</h2>
 
     <p>N10-009 has five domains. The weighting tells you where to spend your study time — networking fundamentals and troubleshooting together make up over half the exam:</p>
 
@@ -817,7 +833,7 @@ tbody tr:hover td { background: #f6f9ff; }
       </table>
     </div>
 
-    <h2>The one topic that fails most candidates — subnetting</h2>
+    <h2>Why does subnetting fail most Network+ candidates?</h2>
 
     <p>Subnetting is the make-or-break topic on Network+. It's not optional, it can't be guessed, and it appears in multiple questions including performance-based questions where you have to calculate subnet ranges, usable hosts, and broadcast addresses under time pressure.</p>
 
@@ -855,7 +871,7 @@ tbody tr:hover td { background: #f6f9ff; }
       </div>
     </div>
 
-    <h2>The study plan that works</h2>
+    <h2>What's the Network+ study plan that actually works?</h2>
 
     <div class="phase-list">
 
@@ -931,7 +947,12 @@ tbody tr:hover td { background: #f6f9ff; }
 
     </div>
 
-    <h2>Exam day tips</h2>
+    <div class="study-tool-callout">
+      <div class="study-tool-callout-label">📱 A free flashcard tool that supports active recall</div>
+      <p class="study-tool-callout-text">Active recall — drilling cards on port numbers, OSI layers, subnetting prefixes, cable and connector types, and the CompTIA 7-step troubleshooting methodology — is exactly what flashcards with spaced repetition are for. <strong>CertFlash: CompTIA Study Cards</strong> is a free iOS app where the <strong>Network+ deck</strong> is part of the one-time <strong>$3.99 unlock</strong>, which also includes Security+, CySA+, and Linux+ — useful as you continue past Network+ toward Security+. The <strong>A+ deck is free</strong> if you want to try the app before unlocking. It's not a course or practice exam — it's a flashcard app with spaced repetition that sits on top of whatever primary resource you're using. <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" target="_blank" rel="noopener">Get CertFlash on the App Store →</a></p>
+    </div>
+
+    <h2>What are the best Network+ exam day tips?</h2>
 
     <div class="tips-grid">
       <div class="tip-card">
@@ -977,21 +998,13 @@ tbody tr:hover td { background: #f6f9ff; }
     <div class="cta-box">
       <div class="cta-box-text">
         <h3>Ready to start studying for Network+?</h3>
-        <p>The best N10-009 study guide, practice exams, and Professor Messer's free course.</p>
+        <p>Network+ flashcards on iOS via CertFlash (one-time $3.99 unlock includes Network+, Security+, CySA+, and Linux+) — or compare the best N10-009 study guide, practice exams, and Professor Messer's free course.</p>
       </div>
-      <a href="best-network-plus.html" class="btn btn-blue">See Network+ Resources →</a>
+      <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" target="_blank" rel="noopener" class="btn btn-blue">Get CertFlash (Includes Network+ Deck) →</a>
+      <a href="best-network-plus.html" style="display:inline-block;margin-top:10px;font-size:14px;color:#1a6cff;font-weight:600;">Or compare paid Network+ resources →</a>
     </div>
 
-    
-<div class="author-bio-wrap" style="background:#f0f4fa;border:1px solid #e2e8f4;border-radius:14px;padding:24px 26px;margin:48px 0 40px;display:flex;align-items:flex-start;gap:18px;">
-  <div style="flex-shrink:0;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0a1628 0%,#1a6cff 100%);display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:#fff;">IH</div>
-  <div>
-    <div style="font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:#0a1628;margin-bottom:4px;">IT Study Hub Editorial Team</div>
-    <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#1a6cff;margin-bottom:8px;">CompTIA A+ &middot; Network+ &middot; Security+</div>
-    <p style="font-size:13px;color:#5c6f87;line-height:1.65;margin:0;">Our content is written and reviewed by IT professionals holding active CompTIA certifications. Every article is grounded in current exam objectives and cross-checked against official CompTIA documentation and authoritative primary sources. <a href="about.html" style="color:#1a6cff;font-weight:600;">About us &rarr;</a></p>
-  </div>
-</div>
-<h2>Related Articles</h2>
+    <h2>Related Articles</h2>
     <div class="related-grid">
       <a href="comptia-network-plus-study-guide.html" class="related-link">Network+ Complete Study Guide</a>
       <a href="best-network-plus.html" class="related-link">Best Network+ Study Resources</a>
