@@ -177,6 +177,21 @@ a{color:inherit;text-decoration:none;}
   .app-banner-text { font-size: 12.5px; }
 }
 
+/* ── QUICK ANSWER / TL;DR CALLOUT ── */
+.quick-answer { background: var(--navy); border-radius: 14px; padding: 24px 26px; margin-bottom: 40px; position: relative; overflow: hidden; }
+.quick-answer::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(124,58,237,.22) 0%, transparent 70%); pointer-events: none; }
+.quick-answer-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #c4b5fd; margin-bottom: 10px; position: relative; }
+.quick-answer-text { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; position: relative; }
+.quick-answer-text strong { color: var(--white); }
+
+/* ── STUDY-TOOL CALLOUT (CertFlash placement) ── */
+.study-tool-callout { background: linear-gradient(135deg, #f0faf8, #e8f4ff); border: 1px solid rgba(0,194,168,0.25); border-left: 4px solid var(--teal, #00c2a8); border-radius: 12px; padding: 20px 24px; margin: 32px 0; }
+.study-tool-callout-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #0a6f5c; margin-bottom: 8px; }
+.study-tool-callout-text { font-size: 15px; color: var(--text, #1a1f36); line-height: 1.7; margin: 0; }
+.study-tool-callout-text strong { color: var(--navy); }
+.study-tool-callout-text a { color: var(--blue, #1a6cff); font-weight: 600; }
+.study-tool-callout-text a:hover { text-decoration: underline; }
+
 /* ── AUTHOR BAR ── */
 .author-bar {
   background: var(--white);
@@ -346,50 +361,58 @@ a{color:inherit;text-decoration:none;}
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Who Should Take Security+",
+      "name": "Who should take CompTIA Security+?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Security+ is the entry-level cybersecurity certification recognised by the US DoD (Directive 8140) and most enterprise security teams. It proves you can identify threats, implement security controls, and respond to incidents — not just define terms. The SY0-701 version emphasises scenario-based application over memorisation; you need to understand what to do in a situation, not just what something is called. Security+ is the logical next step after Network+. Roughly 30% of its content builds directly on networking knowledge — firewalls, VPNs, network attacks, wireless security. If you've ta…"
+        "text": "Security+ is the entry-level cybersecurity certification recognised by the US DoD (Directive 8140) and most enterprise security teams. It proves you can identify threats, implement security controls, and respond to incidents — not just define terms. SY0-701 emphasises scenario-based application over memorisation. Security+ is the logical next step after Network+: roughly 30% of its content builds directly on networking knowledge — firewalls, VPNs, network attacks, wireless security. Candidates who skip Network+ are not blocked from sitting Security+, but they should expect the network-security domains to require additional study time."
       }
     },
     {
       "@type": "Question",
-      "name": "Realistic Study Plan — 10 Weeks",
+      "name": "What are the Security+ exam domain weightings?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Security+ requires more study time than A+ or Network+ because of the breadth and the scenario-based question format. Most candidates need 8–12 weeks. This plan assumes 1–2 hours per day. Incident Response (PICERL) — Domain 4 is 28% of the exam and IR scenarios appear constantly. Know the six phases in order, know which action belongs in which phase (containment before eradication, legal counsel before public notification), and know the order of volatility for forensics. Cryptography — Symmetric vs asymmetric, when to use each, which algorithms (AES, RSA, ECC, SHA), and how TLS uses both (a…"
+        "text": "SY0-701 covers five domains: Domain 1 General Security Concepts (12%) — cryptography, security control types, authentication, PKI. Domain 2 Threats, Vulnerabilities & Mitigations (22%) — malware, social engineering, network attacks, application attacks. Domain 3 Security Architecture (18%) — cloud security, network segmentation, Zero Trust, virtualisation security. Domain 4 Security Operations (28%, largest) — incident response (PICERL), digital forensics, IAM, endpoint security, monitoring. Domain 5 Security Program Management & Oversight (20%) — governance, risk, compliance, frameworks (NIST, ISO 27001), regulations (GDPR, HIPAA, PCI-DSS)."
       }
     },
     {
       "@type": "Question",
-      "name": "Performance-Based Questions (PBQs)",
+      "name": "What is a realistic 10-week Security+ study plan?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Security+ PBQs on SY0-701 commonly include: network diagram analysis (identify the security flaw in a given topology), log file interpretation (identify the attack type from firewall or SIEM logs), access control configuration (assign the correct permissions given a scenario), and incident response ordering (drag the response steps into the correct PICERL sequence). PBQs appear at the start of the exam and cannot be skipped (you must at least submit an answer before moving on). A common strategy: spend no more than 5 minutes per PBQ, make your best attempt, flag it, then return after finish…"
+        "text": "A realistic 10-week plan at 1–2 hours per day: Week 1 foundations and cryptography. Week 2 authentication and access control. Week 3 threats and malware. Week 4 network attacks and mitigations. Week 5 security architecture (cloud, segmentation, Zero Trust). Week 6 incident response (PICERL, forensics, SIEM). Week 7 governance, risk, and compliance. Week 8 vulnerability management. Week 9 first pass on full-length practice exams with weak-area review. Week 10 final practice exams with PBQ focus and timed simulation before sitting. Most candidates need 8–12 weeks total."
       }
     },
     {
       "@type": "Question",
-      "name": "What to Expect on the Security+ Exam",
+      "name": "What are Security+ performance-based questions (PBQs)?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "SY0-701 is 90 questions in 90 minutes with a passing score of 750 out of 900. Like Network+, PBQs appear at the start of the exam. Security+ PBQ formats include log file analysis (identify an attack type from a SIEM or firewall log excerpt), network diagram analysis (identify the security flaw in a described topology), incident response ordering (sequence the correct PICERL steps), and access control configuration (select the correct policy for a described user scenario). Security+ scenario questions are longer and more complex than A+ or Network+ questions. A question might describe a comp…"
+        "text": "Security+ PBQs on SY0-701 commonly include: network diagram analysis (identify the security flaw in a given topology), log file interpretation (identify the attack type from firewall or SIEM logs), access control configuration (assign correct permissions given a scenario), and incident response ordering (drag the response steps into the correct PICERL sequence). PBQs appear at the start of the exam and cannot be skipped — you must submit an answer before moving on. A common strategy: spend no more than 5 minutes per PBQ, make your best attempt, flag it, then return after finishing the multiple-choice questions if time allows."
       }
     },
     {
       "@type": "Question",
-      "name": "Security+ Study Strategy — Eight Weeks to Exam Ready",
+      "name": "What should you expect on the Security+ exam?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Candidates with Network+ spend roughly 8 weeks preparing for Security+ at 1–2 hours per day. A practical 4-phase approach: Weeks 1–2 — cover Domain 1 (cryptography, security controls taxonomy, authentication concepts) and Domain 2 (all malware types, social engineering attacks, vulnerability types). These form the vocabulary for the rest of the exam. Weeks 3–4 — cover Domain 3 (cloud security, Zero Trust, network security architecture, secure design) and Domain 4 Part 1 (incident response PICERL, digital forensics, identity and access management). Weeks 5–6 — cover Domain 4 Part 2 (endpoint…"
+        "text": "SY0-701 is up to 90 questions in 90 minutes with a passing score of 750/900. PBQs appear at the start of the exam. Security+ scenario questions are longer and more complex than A+ or Network+ — a single question may describe a compromised host, a SIEM log excerpt, and a network diagram before asking which control would have prevented the attack. The most common exam-day surprise is question length: practice timed full-length exams to internalise the pace required to finish within 90 minutes."
       }
     },
     {
       "@type": "Question",
-      "name": "What Security+ Qualifies You For",
+      "name": "How can you prepare for Security+ in 8 weeks?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Security+ is the baseline credential for most entry to mid-level cybersecurity roles. It satisfies the US Department of Defense Directive 8140 IAT Level II requirement, making it a mandatory or preferred credential for many federal government and defence contractor positions. In the private sector, security analyst, SOC analyst, information security specialist, and junior penetration tester roles commonly list Security+ as a preferred or required certification. Beyond the job requirement signal, Security+ teaches the conceptual foundation for understanding security operations, incident resp…"
+        "text": "Candidates with Network+ can prepare for Security+ in roughly 8 weeks at 1–2 hours per day using a 4-phase approach. Weeks 1–2: Domain 1 (cryptography, controls, authentication) plus Domain 2 (malware, social engineering, vulnerabilities) — the vocabulary phase. Weeks 3–4: Domain 3 (cloud security, Zero Trust, secure design) plus the first half of Domain 4 (incident response PICERL, digital forensics, IAM). Weeks 5–6: the rest of Domain 4 (endpoint security, monitoring, SIEM) plus Domain 5 (GRC, frameworks, regulations). Weeks 7–8: full-length practice exams, PBQ practice, and weak-area review before sitting."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What jobs does Security+ qualify you for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Security+ is the baseline credential for most entry-to-mid-level cybersecurity roles. It satisfies the US Department of Defense Directive 8140 IAT Level II requirement, making it a mandatory or preferred credential for many federal government and defence contractor positions. In the private sector, security analyst, SOC analyst, information security specialist, and junior penetration tester roles commonly list Security+ as a preferred or required certification. Beyond the job-requirement signal, Security+ teaches the conceptual foundation for understanding security operations, incident response, and risk management that hiring managers expect at the interview stage."
       }
     }
   ]
@@ -485,7 +508,7 @@ a{color:inherit;text-decoration:none;}
     </nav>
     <div class="page-hero-badge">CompTIA Security+ SY0-701</div>
     <h1>CompTIA <span>Security+</span> Study Guide</h1>
-    <p class="page-hero-sub">Everything you need to pass SY0-701 — exam structure, all 5 domain weightings, a realistic study plan, the highest-priority topics, performance-based question formats, and links to every Security+ concept on IT Study Hub.</p>
+    <p class="page-hero-sub">CompTIA Security+ (exam SY0-701) is the most widely recognised entry-level cybersecurity certification — it satisfies <strong style="color:rgba(255,255,255,0.85)">DoD 8140 IAT Level II</strong> requirements and tests five domains: General Security Concepts, Threats &amp; Vulnerabilities, Security Architecture, Security Operations, and Security Program Management. This study guide breaks down each domain with weightings, links every domain to its primary topic guides, and walks through a realistic 10-week study plan.</p>
     <div class="stat-row">
       <div class="stat-card"><div class="stat-val">SY0-701</div><div class="stat-label">Exam code</div></div>
       <div class="stat-card"><div class="stat-val">90</div><div class="stat-label">Max questions</div></div>
@@ -508,7 +531,12 @@ a{color:inherit;text-decoration:none;}
 </div>
 <div class="guide-wrap">
 
-  <h2>Who Should Take Security+</h2>
+  <div class="quick-answer">
+    <div class="quick-answer-label">Quick Answer</div>
+    <div class="quick-answer-text">The <strong>CompTIA Security+</strong> (SY0-701) is the most widely recognised entry-level cybersecurity certification — it satisfies <strong>DoD 8140 IAT Level II</strong> requirements and is required or preferred for many federal and defence contractor security roles. The exam is up to <strong>90 questions in 90 minutes</strong> with a passing score of <strong>750/900</strong>. It tests five domains: General Security Concepts (12%), Threats Vulnerabilities &amp; Mitigations (22%), Security Architecture (18%), Security Operations (28%), and Security Program Management &amp; Oversight (20%). Realistic study time at 1–2 hours per day is <strong>8–12 weeks</strong> with a Network+ foundation. The three highest-ROI study topics: incident response (PICERL), cryptography, and scenario-reading technique.</div>
+  </div>
+
+  <h2>Who should take CompTIA Security+?</h2>
 
   <p>Security+ is the entry-level cybersecurity certification recognised by the US DoD (Directive 8140) and most enterprise security teams. It proves you can identify threats, implement security controls, and respond to incidents — not just define terms. The SY0-701 version emphasises <strong>scenario-based application</strong> over memorisation; you need to understand what to do in a situation, not just what something is called.</p>
 
@@ -520,7 +548,7 @@ a{color:inherit;text-decoration:none;}
     <p><strong>SY0-601 expires Q4 2024</strong> — if you haven't passed it yet, you need SY0-701 materials.</p>
   </div>
 
-  <h2>Exam Domain Weightings</h2>
+  <h2>What are the Security+ exam domain weightings?</h2>
 
   <div class="domain-bars">
     <div class="domain-bar-row">
@@ -550,7 +578,7 @@ a{color:inherit;text-decoration:none;}
     </div>
   </div>
 
-  <h2>Study Resources by Domain</h2>
+  <h2>Which study resources cover each Security+ domain?</h2>
 
   <!-- Domain 1 -->
   <div class="topic-section">
@@ -724,7 +752,7 @@ a{color:inherit;text-decoration:none;}
     </div>
   </div>
 
-  <h2>Realistic Study Plan — 10 Weeks</h2>
+  <h2>What is a realistic 10-week Security+ study plan?</h2>
 
   <p>Security+ requires more study time than A+ or Network+ because of the breadth and the scenario-based question format. Most candidates need 8–12 weeks. This plan assumes 1–2 hours per day.</p>
 
@@ -788,18 +816,24 @@ a{color:inherit;text-decoration:none;}
     <p><strong>Scenario reading</strong> — Security+ questions are long. Practice reading scenario questions efficiently: identify what the question is actually asking (often in the last sentence), eliminate obviously wrong answers, then apply your knowledge. Time management on PBQs is the #1 reason candidates run out of time.</p>
   </div>
 
-  <h2>Performance-Based Questions (PBQs)</h2>
+  <h2>What are Security+ performance-based questions (PBQs)?</h2>
 
   <p>Security+ PBQs on SY0-701 commonly include: <strong>network diagram analysis</strong> (identify the security flaw in a given topology), <strong>log file interpretation</strong> (identify the attack type from firewall or SIEM logs), <strong>access control configuration</strong> (assign the correct permissions given a scenario), and <strong>incident response ordering</strong> (drag the response steps into the correct PICERL sequence).</p>
 
   <p>PBQs appear at the start of the exam and cannot be skipped (you must at least submit an answer before moving on). A common strategy: spend no more than 5 minutes per PBQ, make your best attempt, flag it, then return after finishing the multiple-choice questions if time allows.</p>
 
+  <div class="study-tool-callout">
+    <div class="study-tool-callout-label">📱 A free flashcard tool for the Security+ path</div>
+    <p class="study-tool-callout-text"><strong>CertFlash: CompTIA Study Cards</strong> is a free iOS app for focused flashcard study with built-in spaced repetition. The <strong>Security+ deck</strong> is part of the one-time <strong>$3.99 unlock</strong>, which also includes Network+, CySA+, and Linux+ — useful as you continue past Security+ toward CySA+. The <strong>A+ deck is free</strong> if you want to try the app before unlocking. It's not a course or practice exam — it's a flashcard app with spaced repetition that sits on top of whatever primary resource you're using. <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" target="_blank" rel="noopener">Get CertFlash on the App Store →</a></p>
+  </div>
+
   <div class="cta-box">
     <div class="cta-box-text">
       <h3>Ready to start studying?</h3>
-      <p>See the best courses, practice exams, and books for Security+ SY0-701.</p>
+      <p>Security+ flashcards on iOS via CertFlash (one-time $3.99 unlock includes Security+, Network+, CySA+, and Linux+) — or compare the best paid courses, practice exams, and books for SY0-701.</p>
     </div>
-    <a href="best-security-plus.html" class="btn-purple">Best Security+ Resources →</a>
+    <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" target="_blank" rel="noopener" class="btn-purple">Get CertFlash (Includes Security+ Deck) →</a>
+    <a href="best-security-plus.html" style="display:inline-block;margin-top:10px;font-size:14px;color:#1a6cff;font-weight:600;">Or compare paid Security+ resources →</a>
   </div>
 
   <h2>Also On IT Study Hub</h2>
@@ -996,16 +1030,16 @@ a{color:inherit;text-decoration:none;}
 </footer>
 
   <div style="max-width:960px;margin:0 auto;padding:0 28px 48px;">
-    <h2 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#0a1628;letter-spacing:-.3px;margin:52px 0 16px;">What to Expect on the Security+ Exam</h2>
+    <h2 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#0a1628;letter-spacing:-.3px;margin:52px 0 16px;">What should you expect on the Security+ exam?</h2>
     <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">SY0-701 is 90 questions in 90 minutes with a passing score of 750 out of 900. Like Network+, PBQs appear at the start of the exam. Security+ PBQ formats include log file analysis (identify an attack type from a SIEM or firewall log excerpt), network diagram analysis (identify the security flaw in a described topology), incident response ordering (sequence the correct PICERL steps), and access control configuration (select the correct policy for a described user scenario).</p>
     <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">Security+ scenario questions are longer and more complex than A+ or Network+ questions. A question might describe a company's entire security posture across three paragraphs before asking which single control would most effectively address the described risk. Practising reading and extracting the key question from long scenarios is a skill that must be developed through practice, not just content study.</p>
     <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">The most commonly cited exam day surprise from candidates: Domain 5 (Security Program Management) questions are more frequent and more detailed than expected. Risk calculations (SLE × ARO = ALE), data roles (data owner vs data custodian vs data processor), and regulatory frameworks (GDPR 72-hour notification, HIPAA, PCI-DSS scope) appear in scenario form. Know these — they're not background knowledge, they're exam questions.</p>
 
-    <h2 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#0a1628;letter-spacing:-.3px;margin:52px 0 16px;">Security+ Study Strategy — Eight Weeks to Exam Ready</h2>
+    <h2 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#0a1628;letter-spacing:-.3px;margin:52px 0 16px;">How can you prepare for Security+ in 8 weeks?</h2>
     <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">Candidates with Network+ spend roughly 8 weeks preparing for Security+ at 1–2 hours per day. A practical 4-phase approach: <strong>Weeks 1–2</strong> — cover Domain 1 (cryptography, security controls taxonomy, authentication concepts) and Domain 2 (all malware types, social engineering attacks, vulnerability types). These form the vocabulary for the rest of the exam. <strong>Weeks 3–4</strong> — cover Domain 3 (cloud security, Zero Trust, network security architecture, secure design) and Domain 4 Part 1 (incident response PICERL, digital forensics, identity and access management). <strong>Weeks 5–6</strong> — cover Domain 4 Part 2 (endpoint security, SIEM/SOAR, monitoring) and Domain 5 (risk management, compliance frameworks, data governance, security awareness). <strong>Weeks 7–8</strong> — full practice exams (Dion Training), domain-level analysis of weak areas, PBQ-specific drilling, and scenario question reading practice.</p>
     <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">Three things to do differently from most candidates: First, study GRC (Domain 5) as seriously as the technical domains. Second, practise identifying attack types from descriptions rather than names — the exam describes the behaviour, you supply the term. Third, track your performance by domain on every practice exam and weight your review time to both domain weight and your personal weakness.</p>
 
-    <h2 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#0a1628;letter-spacing:-.3px;margin:52px 0 16px;">What Security+ Qualifies You For</h2>
+    <h2 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#0a1628;letter-spacing:-.3px;margin:52px 0 16px;">What jobs does Security+ qualify you for?</h2>
     <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">Security+ is the baseline credential for most entry to mid-level cybersecurity roles. It satisfies the US Department of Defense Directive 8140 IAT Level II requirement, making it a mandatory or preferred credential for many federal government and defence contractor positions. In the private sector, security analyst, SOC analyst, information security specialist, and junior penetration tester roles commonly list Security+ as a preferred or required certification.</p>
     <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">Beyond the job requirement signal, Security+ teaches the conceptual foundation for understanding security operations, incident response, risk management, and secure architecture. The knowledge has long-term value because the fundamental principles — defence in depth, least privilege, zero trust, the CIA triad — don't change even as specific technologies do. Security+ is worth studying thoroughly, not just passing.</p>
   </div>

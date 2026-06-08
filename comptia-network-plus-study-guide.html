@@ -179,6 +179,21 @@ a{color:inherit;text-decoration:none;}
   .app-banner-text { font-size: 12.5px; }
 }
 
+/* ── QUICK ANSWER / TL;DR CALLOUT ── */
+.quick-answer { background: var(--navy); border-radius: 14px; padding: 24px 26px; margin-bottom: 40px; position: relative; overflow: hidden; }
+.quick-answer::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(124,58,237,.22) 0%, transparent 70%); pointer-events: none; }
+.quick-answer-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #c4b5fd; margin-bottom: 10px; position: relative; }
+.quick-answer-text { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; position: relative; }
+.quick-answer-text strong { color: var(--white); }
+
+/* ── STUDY-TOOL CALLOUT (CertFlash placement) ── */
+.study-tool-callout { background: linear-gradient(135deg, #f0faf8, #e8f4ff); border: 1px solid rgba(0,194,168,0.25); border-left: 4px solid var(--teal, #00c2a8); border-radius: 12px; padding: 20px 24px; margin: 32px 0; }
+.study-tool-callout-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #0a6f5c; margin-bottom: 8px; }
+.study-tool-callout-text { font-size: 15px; color: var(--text, #1a1f36); line-height: 1.7; margin: 0; }
+.study-tool-callout-text strong { color: var(--navy); }
+.study-tool-callout-text a { color: var(--blue, #1a6cff); font-weight: 600; }
+.study-tool-callout-text a:hover { text-decoration: underline; }
+
 /* ── AUTHOR BAR ── */
 .author-bar {
   background: var(--white);
@@ -348,42 +363,50 @@ a{color:inherit;text-decoration:none;}
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Who Should Take Network+",
+      "name": "Who should take CompTIA Network+?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The CompTIA Network+ is the benchmark certification for anyone working in networking — IT support technicians who need to understand what's happening beyond the workstation, aspiring network administrators, and help desk staff who regularly deal with connectivity issues. It's the natural step after CompTIA A+ and a prerequisite mindset for Security+. Network+ proves you understand how networks actually work — not just that you can configure a device, but why packets move the way they do, what happens when they don't, and how to fix it. The N10-009 version places heavy emphasis on troublesho…"
+        "text": "Network+ is the benchmark vendor-neutral networking certification — for IT support technicians who need to understand what's happening beyond the workstation, aspiring network administrators, and help desk staff who regularly deal with connectivity issues. It's the natural step after CompTIA A+ and a prerequisite mindset for Security+. Network+ proves you understand how networks actually work — why packets move the way they do, what happens when they don't, and how to fix it. The N10-009 version places heavy emphasis on troubleshooting and security in a networking context."
       }
     },
     {
       "@type": "Question",
-      "name": "Realistic Study Plan — 8 Weeks",
+      "name": "What are the Network+ exam domain weightings?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Most candidates need 6–10 weeks to prepare for Network+, depending on their background. This plan assumes 1–2 hours of study per day. Subnetting — appears in multiple question formats including performance-based questions. You cannot pass Network+ without being comfortable with subnetting. Practice until you can do it in your head, not just with a formula sheet. Port numbers — memorise the full port table. Not just HTTP/HTTPS — SNMP (161/162), LDAP (389/636), RADIUS (1812/1813), Kerberos (88), Syslog (514). These appear in firewall rule scenarios, troubleshooting questions, and security que…"
+        "text": "N10-009 covers five domains: Domain 1 Networking Fundamentals (23%) — OSI model, TCP/IP, IP addressing, subnetting, ports and protocols, wireless and cable basics. Domain 2 Network Implementations (21%) — VLANs, routing protocols, DHCP, NAT, wireless deployment. Domain 3 Network Operations (19%) — SNMP, syslog, VPN types, high availability (HSRP, LACP), documentation. Domain 4 Network Security (19%) — firewalls, IDS/IPS, wireless security, network attacks, RADIUS/802.1X. Domain 5 Network Troubleshooting (18%) — scenario-based troubleshooting using command-line tools."
       }
     },
     {
       "@type": "Question",
-      "name": "Performance-Based Questions (PBQs)",
+      "name": "What is a realistic 8-week Network+ study plan?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The Network+ includes performance-based questions — interactive simulations where you configure a device, draw a network diagram, or troubleshoot a scenario. They appear at the start of the exam. Common PBQ formats on Network+ include: Network diagram drag-and-drop — place devices in the correct network zones (inside, DMZ, outside). Know where the firewall, web server, DNS server, and workstations belong. IP address configuration — given network requirements, assign correct IPs, subnet masks, and gateways. Subnetting skill is essential. Cable selection — identify the correct cable type (Cat…"
+        "text": "A realistic 8-week plan at 1–2 hours per day: Week 1 OSI/TCP-IP and IP addressing fundamentals. Week 2 subnetting (practice daily until fast). Week 3 switching and VLANs. Week 4 routing protocols and WAN. Week 5 wireless and remote access (VPNs, SNMP, syslog). Week 6 network security (firewalls, IDS/IPS, attacks, ACLs, DMZ). Week 7 first-pass full-length practice exam with weak-area review. Week 8 multiple practice exams with PBQ focus before sitting. Most candidates need 6–10 weeks total depending on their A+ or networking background."
       }
     },
     {
       "@type": "Question",
-      "name": "What to Expect on the Network+ Exam",
+      "name": "What are Network+ performance-based questions (PBQs)?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The N10-009 exam is 90 questions in 90 minutes — a tight pace that rewards candidates who can read scenarios efficiently and recognise what's being tested quickly. Roughly 75–80 questions are multiple choice; the remainder are performance-based questions (PBQs) that appear at the start of the exam. PBQ formats include drag-and-drop topology labelling, IP configuration tasks, cable type matching, and command output interpretation. The most important tactical preparation: don't spend more than 90 seconds on any multiple-choice question and cap PBQ time at 5 minutes each. Flag questions you're…"
+        "text": "Network+ PBQs are interactive simulations that appear at the start of the exam. Common formats: network diagram drag-and-drop (place firewall, web server, DNS server, and workstations in the correct zones — inside, DMZ, outside), IP address configuration (assign correct IPs, subnet masks, and gateways given network requirements — subnetting skill is essential), cable selection (identify the correct cable type — Cat6, fiber SMF/MMF — for a given scenario), and command output interpretation (given ipconfig or tracert output, identify the problem)."
       }
     },
     {
       "@type": "Question",
-      "name": "Network+ Study Strategy — Four Weeks to Exam Ready",
+      "name": "What should you expect on the Network+ exam?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Candidates with A+ or equivalent background can be ready for Network+ in 6–8 weeks studying 1–2 hours daily. A practical 4-phase approach: Weeks 1–2 — cover Networking Fundamentals (Domain 1) deeply, focusing on OSI/TCP-IP models, subnetting, and ports/protocols. These are the foundation for all other domains and are directly tested at 23% of the exam. Weeks 3–4 — cover Network Implementations (Domain 2) and Network Operations (Domain 3): routing protocols, VLANs, wireless, and network monitoring tools. Weeks 5–6 — cover Network Security (Domain 4) and Network Troubleshooting (Domain 5): at…"
+        "text": "The N10-009 exam is up to 90 questions in 90 minutes — a tight pace that rewards candidates who can read scenarios efficiently. Roughly 75–80 questions are multiple choice; the remainder are PBQs that appear at the start of the exam. The most important tactical preparation: don't spend more than 90 seconds on any multiple-choice question and cap PBQ time at 5 minutes each. Flag questions you're unsure about and return to them at the end. Passing score is 720/900."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can you prepare for Network+ in 4 weeks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Candidates with A+ or equivalent background can compress Network+ preparation into 4–6 weeks at 1–2 hours per day using a 2-phase approach. Weeks 1–2: cover Networking Fundamentals (Domain 1) deeply, focusing on OSI/TCP-IP models, subnetting (until you can do it in your head), and the full ports table. These are the foundation for all other domains and are directly tested at 23% of the exam. Weeks 3–4: cover Implementations, Operations, Security, and Troubleshooting (Domains 2–5) plus full-length practice exams with PBQ focus. The 4-week timeline is aggressive — only attempt it if you already have strong networking fundamentals from A+ or work experience."
       }
     },
     {
@@ -391,7 +414,7 @@ a{color:inherit;text-decoration:none;}
       "name": "Is Network+ Worth It?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Network+ is the most widely recognised vendor-neutral networking certification and the most commonly listed requirement for junior to mid-level network administration and IT infrastructure roles. It demonstrates that you understand how networks are designed, how traffic flows, and how to diagnose and fix common network problems — skills that apply regardless of whether the environment runs Cisco, Juniper, Aruba, or any other vendor's equipment. For candidates who want to move into networking specialisation, Network+ is the stepping stone to vendor-specific credentials like Cisco CCNA. The C…"
+        "text": "Network+ is the most widely recognised vendor-neutral networking certification and the most commonly listed requirement for junior-to-mid-level network administration and IT infrastructure roles. It demonstrates that you understand how networks are designed, how traffic flows, and how to diagnose common network problems — skills that apply regardless of whether the environment runs Cisco, Juniper, Aruba, or any other vendor's equipment. For candidates moving into networking specialisation, Network+ is the stepping stone to vendor-specific credentials like Cisco CCNA. The CompTIA-to-Cisco progression is well-trodden and recognised by employers."
       }
     }
   ]
@@ -487,7 +510,7 @@ a{color:inherit;text-decoration:none;}
     </nav>
     <div class="page-hero-badge">CompTIA Network+ N10-009</div>
     <h1>CompTIA <span>Network+</span> Study Guide</h1>
-    <p class="page-hero-sub">Everything you need to pass the N10-009 — exam structure, domain breakdown, a realistic study plan, the highest-priority topics, and links to every Network+ concept covered on IT Study Hub.</p>
+    <p class="page-hero-sub">CompTIA Network+ (exam N10-009) is the vendor-neutral intermediate networking certification — the standard step between A+ and Security+, and a stepping stone to vendor-specific credentials like Cisco CCNA. It tests five domains: <strong style="color:rgba(255,255,255,0.85)">Networking Fundamentals, Network Implementations, Network Operations, Network Security, and Network Troubleshooting</strong>. This study guide breaks down each domain with weightings, links every domain to its primary topic guides, and walks through a realistic 8-week study plan.</p>
     <div class="stat-row">
       <div class="stat-card"><div class="stat-val">N10-009</div><div class="stat-label">Exam code</div></div>
       <div class="stat-card"><div class="stat-val">90</div><div class="stat-label">Max questions</div></div>
@@ -510,7 +533,12 @@ a{color:inherit;text-decoration:none;}
 </div>
 <div class="guide-wrap">
 
-  <h2>Who Should Take Network+</h2>
+  <div class="quick-answer">
+    <div class="quick-answer-label">Quick Answer</div>
+    <div class="quick-answer-text">The <strong>CompTIA Network+</strong> (N10-009) is the vendor-neutral intermediate networking certification — the standard step between A+ and Security+, and a stepping stone to vendor-specific credentials like Cisco CCNA. The exam is up to <strong>90 questions in 90 minutes</strong> with a passing score of <strong>720/900</strong>. It tests five domains: Networking Fundamentals (23%), Network Implementations (21%), Network Operations (19%), Network Security (19%), and Network Troubleshooting (18%). Realistic study time at 1–2 hours per day is <strong>6–10 weeks</strong> with an A+ foundation. The three highest-ROI study topics: subnetting, port numbers, and OSI layer identification.</div>
+  </div>
+
+  <h2>Who should take CompTIA Network+?</h2>
 
   <p>The CompTIA Network+ is the benchmark certification for anyone working in networking — IT support technicians who need to understand what's happening beyond the workstation, aspiring network administrators, and help desk staff who regularly deal with connectivity issues. It's the natural step after CompTIA A+ and a prerequisite mindset for Security+.</p>
 
@@ -521,7 +549,7 @@ a{color:inherit;text-decoration:none;}
     <p>The N10-009 (current version) kept the same 5 domains as N10-008 but rebalanced the weightings. The biggest change: <strong>Networking Fundamentals dropped from 24% to 23%</strong> while <strong>Network Troubleshooting increased from 17% to 18%</strong>. Cloud and virtualisation content is more integrated throughout. If you're using study materials, make sure they target N10-009 specifically.</p>
   </div>
 
-  <h2>Exam Domain Weightings</h2>
+  <h2>What are the Network+ exam domain weightings?</h2>
 
   <div class="domain-bars">
     <div class="domain-bar-row">
@@ -551,7 +579,7 @@ a{color:inherit;text-decoration:none;}
     </div>
   </div>
 
-  <h2>Study Resources by Domain</h2>
+  <h2>Which study resources cover each Network+ domain?</h2>
 
   <!-- Domain 1 -->
   <div class="topic-section">
@@ -753,7 +781,7 @@ a{color:inherit;text-decoration:none;}
     </div>
   </div>
 
-  <h2>Realistic Study Plan — 8 Weeks</h2>
+  <h2>What is a realistic 8-week Network+ study plan?</h2>
 
   <p>Most candidates need 6–10 weeks to prepare for Network+, depending on their background. This plan assumes 1–2 hours of study per day.</p>
 
@@ -807,18 +835,24 @@ a{color:inherit;text-decoration:none;}
     <p><strong>OSI layer identification</strong> — given a description of a protocol, device, or problem, you must identify the OSI layer. Switches operate at Layer 2. Routers at Layer 3. Firewalls typically at Layer 3–4 (stateful) or Layer 7 (NGFW). ARP is Layer 2/3. TLS is Layer 5–6. This question type appears on almost every exam.</p>
   </div>
 
-  <h2>Performance-Based Questions (PBQs)</h2>
+  <h2>What are Network+ performance-based questions (PBQs)?</h2>
 
   <p>The Network+ includes performance-based questions — interactive simulations where you configure a device, draw a network diagram, or troubleshoot a scenario. They appear at the start of the exam. Common PBQ formats on Network+ include:</p>
 
   <p><strong>Network diagram drag-and-drop</strong> — place devices in the correct network zones (inside, DMZ, outside). Know where the firewall, web server, DNS server, and workstations belong. <strong>IP address configuration</strong> — given network requirements, assign correct IPs, subnet masks, and gateways. Subnetting skill is essential. <strong>Cable selection</strong> — identify the correct cable type (Cat6, fiber SMF/MMF) for a given scenario. <strong>Command output interpretation</strong> — given ipconfig or tracert output, identify the problem.</p>
 
+  <div class="study-tool-callout">
+    <div class="study-tool-callout-label">📱 A free flashcard tool for the Network+ path</div>
+    <p class="study-tool-callout-text"><strong>CertFlash: CompTIA Study Cards</strong> is a free iOS app for focused flashcard study with built-in spaced repetition. The <strong>Network+ deck</strong> is part of the one-time <strong>$3.99 unlock</strong>, which also includes Security+, CySA+, and Linux+ — useful as you continue past Network+ toward Security+. The <strong>A+ deck is free</strong> if you want to try the app before unlocking. It's not a course or practice exam — it's a flashcard app with spaced repetition that sits on top of whatever primary resource you're using. <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" target="_blank" rel="noopener">Get CertFlash on the App Store →</a></p>
+  </div>
+
   <div class="cta-box">
     <div class="cta-box-text">
       <h3>Ready to start studying?</h3>
-      <p>See the best courses, practice exams, and books for Network+ N10-009.</p>
+      <p>Network+ flashcards on iOS via CertFlash (one-time $3.99 unlock includes Network+, Security+, CySA+, and Linux+) — or compare the best paid courses, practice exams, and books for N10-009.</p>
     </div>
-    <a href="best-network-plus.html" class="btn-blue">Best Network+ Resources →</a>
+    <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" target="_blank" rel="noopener" class="btn-blue">Get CertFlash (Includes Network+ Deck) →</a>
+    <a href="best-network-plus.html" style="display:inline-block;margin-top:10px;font-size:14px;color:#1a6cff;font-weight:600;">Or compare paid Network+ resources →</a>
   </div>
 
   <h2>Also On IT Study Hub</h2>
@@ -852,12 +886,12 @@ a{color:inherit;text-decoration:none;}
 </div>
 
   <div style="max-width:960px;margin:0 auto;padding:0 28px 48px;">
-    <h2 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#0a1628;letter-spacing:-.3px;margin:52px 0 16px;">What to Expect on the Network+ Exam</h2>
+    <h2 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#0a1628;letter-spacing:-.3px;margin:52px 0 16px;">What should you expect on the Network+ exam?</h2>
     <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">The N10-009 exam is 90 questions in 90 minutes — a tight pace that rewards candidates who can read scenarios efficiently and recognise what's being tested quickly. Roughly 75–80 questions are multiple choice; the remainder are performance-based questions (PBQs) that appear at the start of the exam. PBQ formats include drag-and-drop topology labelling, IP configuration tasks, cable type matching, and command output interpretation.</p>
     <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">The most important tactical preparation: don't spend more than 90 seconds on any multiple-choice question and cap PBQ time at 5 minutes each. Flag questions you're unsure about and return to them. Running out of time is a common failure mode — candidates who get stuck on difficult PBQs at the start often don't complete all the multiple-choice questions.</p>
     <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">Passing score is <strong>720 out of 900</strong>. The exam is scored on a scaled scoring system, so question difficulty affects point values. Exam questions are not published, but consistently tested areas across candidate reports include: subnetting calculations, VLAN and trunk configuration concepts, wireless standards (802.11ax/Wi-Fi 6 vs predecessors), network troubleshooting command output interpretation, and routing protocol characteristics (OSPF vs RIP vs BGP use cases).</p>
 
-    <h2 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#0a1628;letter-spacing:-.3px;margin:52px 0 16px;">Network+ Study Strategy — Four Weeks to Exam Ready</h2>
+    <h2 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#0a1628;letter-spacing:-.3px;margin:52px 0 16px;">How can you prepare for Network+ in 4 weeks?</h2>
     <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">Candidates with A+ or equivalent background can be ready for Network+ in 6–8 weeks studying 1–2 hours daily. A practical 4-phase approach: <strong>Weeks 1–2</strong> — cover Networking Fundamentals (Domain 1) deeply, focusing on OSI/TCP-IP models, subnetting, and ports/protocols. These are the foundation for all other domains and are directly tested at 23% of the exam. <strong>Weeks 3–4</strong> — cover Network Implementations (Domain 2) and Network Operations (Domain 3): routing protocols, VLANs, wireless, and network monitoring tools. <strong>Weeks 5–6</strong> — cover Network Security (Domain 4) and Network Troubleshooting (Domain 5): attack types, firewall types, and systematic troubleshooting using the OSI model as a guide. <strong>Weeks 7–8</strong> — full practice exams, domain-by-domain analysis of weak areas, targeted review, and PBQ-specific drilling.</p>
     <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">The most important single skill to develop for Network+: subnetting. Practise daily until you can work any /24 through /30 subnet in under 60 seconds. Use free tools like <a href="subnetting-guide.html" style="color:#1a6cff;font-weight:600;">subnet calculators</a> to check your work, but always do the calculation manually first — the exam won't give you a calculator for subnetting questions.</p>
 

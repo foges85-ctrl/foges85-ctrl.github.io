@@ -178,6 +178,14 @@ a { color: inherit; text-decoration: none; }
 }
 .quick-answer-text strong { color: var(--white); }
 
+/* ── STUDY-TOOL CALLOUT (CertFlash placement) ── */
+.study-tool-callout { background: linear-gradient(135deg, #f0faf8, #e8f4ff); border: 1px solid rgba(0,194,168,0.25); border-left: 4px solid var(--teal, #00c2a8); border-radius: 12px; padding: 20px 24px; margin: 32px 0; }
+.study-tool-callout-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #0a6f5c; margin-bottom: 8px; }
+.study-tool-callout-text { font-size: 15px; color: var(--text, #1a1f36); line-height: 1.7; margin: 0; }
+.study-tool-callout-text strong { color: var(--navy); }
+.study-tool-callout-text a { color: var(--blue, #1a6cff); font-weight: 600; }
+.study-tool-callout-text a:hover { text-decoration: underline; }
+
 /* ── STAT PILLS ── */
 .stat-row {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px;
@@ -583,10 +591,10 @@ tbody tr:hover td { background: #f6f9ff; }
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What the A+ exam actually tests",
+      "name": "What does the A+ exam actually test?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A lot of people go into A+ expecting a hardware quiz and are surprised by how much troubleshooting, operating systems, networking, and security content appears. The exam tests whether you can think like a technician — given a real scenario, what would you do first, what would you check, and what's the most likely cause? Performance-based questions (PBQs) appear at the start of each exam and require you to interact with simulated environments — drag-and-drop cable connections, configure settings in a simulated OS, or work through a troubleshooting scenario. These take longer than multiple ch…"
+        "text": "The A+ tests whether you can think like a technician — given a real scenario, what would you do first, what would you check, and what's the most likely cause? Many candidates expect a hardware quiz and are surprised by how much troubleshooting, operating-systems, networking, and security content appears. Performance-based questions (PBQs) appear at the start of each exam and require interacting with simulated environments — drag-and-drop cable connections, configuring settings in a simulated OS, or working through a troubleshooting scenario. PBQs take longer than multiple-choice and cannot be skipped entirely; many candidates underestimate them."
       }
     },
     {
@@ -594,23 +602,23 @@ tbody tr:hover td { background: #f6f9ff; }
       "name": "How long does it take to study for A+?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The honest answer is 2–4 months for most people studying part-time (1–2 hours per day). That said, your starting point matters significantly:"
+        "text": "The honest answer is 2–4 months for most people studying part-time at 1–2 hours per day. Your starting point matters significantly. A complete beginner with no IT background should budget 3–4 months. Someone with casual IT experience or who has built PCs can move faster at 2–3 months. Candidates already working in IT can target 6–8 weeks but should focus on domains outside their daily work. Retake candidates after a failed attempt typically need 2–4 more weeks targeted on the weak domains from the score report."
       }
     },
     {
       "@type": "Question",
-      "name": "The study plan that works",
+      "name": "What's the A+ study plan that actually works?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Most people who fail A+ studied too passively — they read or watched videos but didn't do enough practice questions. The study plan below is built around active recall, which is how you actually retain technical material. Work through a structured study guide (Walker Bridge's CompTIA A+ Core Study Guide or Professor Messer's free course) covering Core 1 domains. Don't rush — understanding the hardware and networking fundamentals deeply makes everything else easier. After each chapter, do 10–15 practice questions on that topic. Stop reading new material and switch entirely to practice exams.…"
+        "text": "The A+ study plan that consistently works is built around active recall in four phases. Phase 1 (Weeks 1–4): work through a structured study guide covering Core 1 domains and do 10–15 practice questions per topic as you go — don't rush the hardware and networking fundamentals. Phase 2 (Weeks 5–6): stop reading new material, switch to full timed Core 1 practice exams, review every wrong answer, and target weak domains until you score 80%+ consistently. Phase 3: book and sit Core 1, then start Core 2 within a week — pay extra attention to Windows command line and operational procedures (often under-studied). Phase 4 (Weeks 9–12): same practice-heavy process for Core 2, with extra PBQ-style drilling before sitting."
       }
     },
     {
       "@type": "Question",
-      "name": "Exam day tips",
+      "name": "What are the best A+ exam day tips?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Not enough practice questions. Reading and watching videos feels productive but it's passive. The exam tests application, not recall. If you can't consistently score 75%+ on practice tests, you're not ready — regardless of how much you've read. Switch to active practice earlier than feels comfortable. The second most common reason: underestimating Core 2 operational procedures. It's 26% of the exam and covers documentation, change management, and professionalism — topics that feel boring to study but appear constantly on the actual exam. The best A+ study guide, practice exams, and Professo…"
+        "text": "Flag and skip PBQs first — they take 5–10 minutes each and appear at the start; finish multiple-choice first, then return to PBQs with remaining time. Read every option before answering — A+ scenario questions often have two plausible answers and the right one is usually the 'best first step' per the troubleshooting methodology. Watch your pace at roughly one minute per question; flag and move on rather than spending four minutes on one. Use the scratch paper at the testing centre to write down ports, subnetting formulas, or other memorised facts before the timer starts. Trust your preparation if you've been consistently hitting 80%+ on practice tests — exam anxiety causes more failures than lack of knowledge."
       }
     }
   ]
@@ -712,7 +720,7 @@ tbody tr:hover td { background: #f6f9ff; }
     </nav>
     <div class="page-hero-badge">CompTIA A+ · Study Guide · 2026</div>
     <h1>How to Pass <span>CompTIA A+</span></h1>
-    <p class="page-hero-sub">A realistic study plan, what the exam actually tests, how long to study, which resources are worth your time, and exam day strategies that make a real difference.</p>
+    <p class="page-hero-sub">Passing the CompTIA A+ takes a two-step plan: 2–4 months of consistent study (depending on IT background) using a structured guide plus active practice questions, then sitting Core 1 (220-1201) and Core 2 (220-1202) within a few weeks of each other. This page walks through what the exam actually tests, realistic timelines per starting point, the 4-phase study plan that gets candidates to a consistent 80% on practice tests, and the exam-day tactics that move candidates from "ready" to "passed."</p>
   </div>
 </section>
 
@@ -757,7 +765,7 @@ tbody tr:hover td { background: #f6f9ff; }
       </div>
     </div>
 
-    <h2>What the A+ exam actually tests</h2>
+    <h2>What does the A+ exam actually test?</h2>
 
     <p>A lot of people go into A+ expecting a hardware quiz and are surprised by how much troubleshooting, operating systems, networking, and security content appears. The exam tests whether you can <em>think like a technician</em> — given a real scenario, what would you do first, what would you check, and what's the most likely cause?</p>
 
@@ -863,7 +871,7 @@ tbody tr:hover td { background: #f6f9ff; }
       </div>
     </div>
 
-    <h2>The study plan that works</h2>
+    <h2>What's the A+ study plan that actually works?</h2>
 
     <p>Most people who fail A+ studied too passively — they read or watched videos but didn't do enough practice questions. The study plan below is built around active recall, which is how you actually retain technical material.</p>
 
@@ -939,7 +947,12 @@ tbody tr:hover td { background: #f6f9ff; }
 
     </div>
 
-    <h2>Exam day tips</h2>
+    <div class="study-tool-callout">
+      <div class="study-tool-callout-label">📱 A free flashcard tool that supports active recall</div>
+      <p class="study-tool-callout-text">The "active recall" piece of the plan above is exactly what flashcards with spaced repetition are for. <strong>CertFlash: CompTIA Study Cards</strong> is a free iOS app where the <strong>A+ deck is free</strong> — no purchase required to drill Core 1 or Core 2 cards. A one-time <strong>$3.99 unlock</strong> adds Network+, Security+, CySA+, and Linux+ if you continue past A+. It's not a course or practice exam — it's a flashcard app with spaced repetition that sits on top of whatever primary resource you're using. <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" target="_blank" rel="noopener">Get CertFlash on the App Store →</a></p>
+    </div>
+
+    <h2>What are the best A+ exam day tips?</h2>
 
     <div class="tips-grid">
       <div class="tip-card">
@@ -985,20 +998,13 @@ tbody tr:hover td { background: #f6f9ff; }
     <div class="cta-box">
       <div class="cta-box-text">
         <h3>Ready to start studying?</h3>
-        <p>The best A+ study guide, practice exams, and Professor Messer's free course for 2026.</p>
+        <p>Free A+ flashcards on iOS via CertFlash — or compare the best A+ study guide, practice exams, and Professor Messer's free course for 2026.</p>
       </div>
-      <a href="best-a-plus.html" class="btn btn-teal">See A+ Study Resources →</a>
+      <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" target="_blank" rel="noopener" class="btn btn-teal">Get CertFlash (Free A+ Deck) →</a>
+      <a href="best-a-plus.html" style="display:inline-block;margin-top:10px;font-size:14px;color:#1a6cff;font-weight:600;">Or compare paid A+ resources →</a>
     </div>
 
     
-<div class="author-bio-wrap" style="background:#f0f4fa;border:1px solid #e2e8f4;border-radius:14px;padding:24px 26px;margin:48px 0 40px;display:flex;align-items:flex-start;gap:18px;">
-  <div style="flex-shrink:0;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0a1628 0%,#1a6cff 100%);display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:#fff;">IH</div>
-  <div>
-    <div style="font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:#0a1628;margin-bottom:4px;">IT Study Hub Editorial Team</div>
-    <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#1a6cff;margin-bottom:8px;">CompTIA A+ &middot; Network+ &middot; Security+</div>
-    <p style="font-size:13px;color:#5c6f87;line-height:1.65;margin:0;">Our content is written and reviewed by IT professionals holding active CompTIA certifications. Every article is grounded in current exam objectives and cross-checked against official CompTIA documentation and authoritative primary sources. <a href="about.html" style="color:#1a6cff;font-weight:600;">About us &rarr;</a></p>
-  </div>
-</div>
 <h2>Related Articles</h2>
     <div class="related-grid">
       <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
