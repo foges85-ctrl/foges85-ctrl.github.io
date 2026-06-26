@@ -512,6 +512,33 @@ a { color: inherit; text-decoration: none; }
   font-family: 'DM Mono', monospace;
 }
 
+.section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.section-nav a {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: none;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 14px;
+  letter-spacing: 0.2px;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.section-nav a:hover {
+  background: var(--light);
+  border-color: var(--teal);
+  color: var(--teal2);
+}
+
 /* ── ARTICLE CARDS ── */
 .cards-grid {
   display: grid;
@@ -1188,11 +1215,19 @@ ml('account', '2306798');
   <!-- ARTICLES SECTION -->
   <div class="section-header">
     <h2 class="section-title">All <span>Guides</span></h2>
-    <span class="section-count">107 guides</span>
+    <span class="section-count">109 guides</span>
   </div>
 
+  <nav class="section-nav" aria-label="Jump to guide section">
+    <a href="#core-concepts">Core Concepts</a>
+    <a href="#ip-addressing">IP Addressing</a>
+    <a href="#traffic-routing">Traffic &amp; Routing</a>
+    <a href="#troubleshooting-security">Troubleshooting &amp; Security</a>
+    <a href="#home-lab">Home Lab</a>
+  </nav>
+
   <!-- STAGE: CORE CONCEPTS -->
-  <div class="stage-label">📐 Core Concepts</div>
+  <div class="stage-label" id="core-concepts">📐 Core Concepts</div>
   <div class="cards-grid">
 
 <div class="article-card">
@@ -1594,7 +1629,7 @@ ml('account', '2306798');
   </div>
 
   <!-- STAGE: IP ADDRESSING -->
-  <div class="stage-label">🌐 IP Addressing & Configuration</div>
+  <div class="stage-label" id="ip-addressing">🌐 IP Addressing & Configuration</div>
   <div class="cards-grid">
 
 <div class="article-card">
@@ -1650,7 +1685,7 @@ ml('account', '2306798');
   </div>
 
   <!-- STAGE: TRAFFIC & ROUTING -->
-  <div class="stage-label">🔀 Traffic Flow & Routing</div>
+  <div class="stage-label" id="traffic-routing">🔀 Traffic Flow & Routing</div>
   <div class="cards-grid">
 
 <div class="article-card">
@@ -1740,7 +1775,7 @@ ml('account', '2306798');
   </div>
 
   <!-- STAGE: TROUBLESHOOTING & SECURITY -->
-  <div class="stage-label">🔒 Troubleshooting & Security</div>
+  <div class="stage-label" id="troubleshooting-security">🔒 Troubleshooting & Security</div>
   <div class="cards-grid">
 
 <div class="article-card">
@@ -1914,7 +1949,7 @@ ml('account', '2306798');
   </div>
 
   <!-- STAGE: HOME LAB -->
-  <div class="stage-label">🧰 Home Lab</div>
+  <div class="stage-label" id="home-lab">🧰 Home Lab</div>
   <div class="cards-grid">
 
     <div class="article-card">
