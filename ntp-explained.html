@@ -20,7 +20,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/ntp-explained.html">
 
-<title>Why Time Synchronisation Matters in IT — NTP Explained</title>
+<title>Why Time Synchronization Matters in IT — NTP Explained</title>
 <meta name="description" content="Kerberos authentication breaks if clocks are 5 minutes out of sync. Learn how NTP keeps your network time accurate, the stratum hierarchy, NTP security…">
 
 <!-- Google AdSense -->
@@ -592,7 +592,7 @@ tbody tr:hover td { background: #f4f8ff; }
       "name": "Why accurate time matters in networking",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Time synchronisation sounds like a minor housekeeping task, but it underpins some of the most critical functions in a network. These are the real-world consequences of clocks being out of sync — and the reason the exam treats NTP as a significant protocol:"
+        "text": "Time synchronization sounds like a minor housekeeping task, but it underpins some of the most critical functions in a network. These are the real-world consequences of clocks being out of sync — and the reason the exam treats NTP as a significant protocol:"
       }
     },
     {
@@ -600,12 +600,12 @@ tbody tr:hover td { background: #f4f8ff; }
       "name": "NTP stratum levels",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "NTP uses a hierarchical system called stratum levels to describe how far a clock is from a reference time source. Stratum 0 is the most accurate; each level further down introduces a small amount of additional drift. Lower stratum = more accurate. Stratum 0 is the reference source. Stratum 1 is closest to it. A device at Stratum 3 synchronises from a Stratum 2 server, which synchronises from Stratum 1. The exam may ask: \"An NTP server synchronises directly from an atomic clock. What stratum level is it?\" → Stratum 1 . Or: \"Which stratum level represents the most accurate time source?\" → Str…"
+        "text": "NTP uses a hierarchical system called stratum levels to describe how far a clock is from a reference time source. Stratum 0 is the most accurate; each level further down introduces a small amount of additional drift. Lower stratum = more accurate. Stratum 0 is the reference source. Stratum 1 is closest to it. A device at Stratum 3 synchronizes from a Stratum 2 server, which synchronizes from Stratum 1. The exam may ask: \"An NTP server synchronizes directly from an atomic clock. What stratum level is it?\" → Stratum 1 . Or: \"Which stratum level represents the most accurate time source?\" → Str…"
       }
     },
     {
       "@type": "Question",
-      "name": "How NTP synchronisation works",
+      "name": "How NTP synchronization works",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "NTP doesn't just set the clock once — it continuously monitors drift and makes small adjustments to keep clocks aligned. The protocol measures the round-trip delay to the time server and accounts for it when calculating the correct local time. 1. Client sends NTP request to server Client records: T1 = time request was sent 2. Server receives request, sends response Server records: T2 = time request was received T3 = time response was sent 3. Client receives response Client records: T4 = time response was received 4. Client calculates offset and delay: Round-trip delay = (T4 - T1) - (T3 - T2…"
@@ -653,7 +653,7 @@ tbody tr:hover td { background: #f4f8ff; }
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Why Time Synchronisation Matters in IT — NTP Explained",
+      "name": "Why Time Synchronization Matters in IT — NTP Explained",
       "item": "https://itstudyhub.org/ntp-explained.html"
     }
   ]
@@ -662,14 +662,14 @@ tbody tr:hover td { background: #f4f8ff; }
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="IT Study Hub">
   <meta property="og:url" content="https://itstudyhub.org/ntp-explained.html">
-  <meta property="og:title" content="Why Time Synchronisation Matters in IT — NTP Explained">
+  <meta property="og:title" content="Why Time Synchronization Matters in IT — NTP Explained">
   <meta property="og:description" content="Kerberos authentication breaks if clocks are 5 minutes out of sync. Learn how NTP keeps your network time accurate, the stratum hierarchy, NTP security…">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Why Time Synchronisation Matters in IT \u2014 NTP Explained",
+  "headline": "Why Time Synchronization Matters in IT \u2014 NTP Explained",
   "author": {
     "@type": "Person",
     "name": "Sean Fogarty",
@@ -736,7 +736,7 @@ tbody tr:hover td { background: #f4f8ff; }
     </nav>
     <div class="page-hero-badge">CompTIA Network+ · Security+ · 2026</div>
     <h1>What is <span>NTP?</span></h1>
-    <p class="page-hero-sub">Network Time Protocol — why accurate time matters in networking, stratum levels, how NTP synchronises clocks, NTP security risks, and every NTP concept tested on CompTIA Network+ and Security+.</p>
+    <p class="page-hero-sub">Network Time Protocol — why accurate time matters in networking, stratum levels, how NTP synchronizes clocks, NTP security risks, and every NTP concept tested on CompTIA Network+ and Security+.</p>
   </div>
 </section>
 
@@ -758,13 +758,13 @@ tbody tr:hover td { background: #f4f8ff; }
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ What is NTP?</div>
       <div class="quick-answer-text">
-        NTP (Network Time Protocol) is a protocol that <strong>synchronises the clocks of computers and network devices</strong> to a common time source. It runs over <strong>UDP port 123</strong> and is one of the oldest protocols still in active use. Accurate time is critical for security logs, authentication systems, SSL/TLS certificates, Kerberos, and forensic investigations — a clock that's even a few minutes off can cause authentication failures and make log correlation impossible.
+        NTP (Network Time Protocol) is a protocol that <strong>synchronizes the clocks of computers and network devices</strong> to a common time source. It runs over <strong>UDP port 123</strong> and is one of the oldest protocols still in active use. Accurate time is critical for security logs, authentication systems, SSL/TLS certificates, Kerberos, and forensic investigations — a clock that's even a few minutes off can cause authentication failures and make log correlation impossible.
       </div>
     </div>
 
     <h2>Why accurate time matters in networking</h2>
 
-    <p>Time synchronisation sounds like a minor housekeeping task, but it underpins some of the most critical functions in a network. These are the real-world consequences of clocks being out of sync — and the reason the exam treats NTP as a significant protocol:</p>
+    <p>Time synchronization sounds like a minor housekeeping task, but it underpins some of the most critical functions in a network. These are the real-world consequences of clocks being out of sync — and the reason the exam treats NTP as a significant protocol:</p>
 
     <div class="table-wrap">
       <table>
@@ -815,22 +815,22 @@ tbody tr:hover td { background: #f4f8ff; }
       </div>
       <div class="stratum-row">
         <div class="stratum-badge s3">Stratum 3–15</div>
-        <div class="stratum-desc"><strong>Downstream clients and servers</strong> — each level synchronises from the one above. Workstations, switches, and routers typically sit at Stratum 3 or 4. Accuracy decreases slightly at each hop but remains acceptable for network purposes.</div>
+        <div class="stratum-desc"><strong>Downstream clients and servers</strong> — each level synchronizes from the one above. Workstations, switches, and routers typically sit at Stratum 3 or 4. Accuracy decreases slightly at each hop but remains acceptable for network purposes.</div>
       </div>
     </div>
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ Stratum — what the exam tests</div>
-      <p><strong>Lower stratum = more accurate.</strong> Stratum 0 is the reference source. Stratum 1 is closest to it. A device at Stratum 3 synchronises from a Stratum 2 server, which synchronises from Stratum 1.</p>
-      <p>The exam may ask: "An NTP server synchronises directly from an atomic clock. What stratum level is it?" → <strong>Stratum 1</strong>. Or: "Which stratum level represents the most accurate time source?" → <strong>Stratum 0</strong> (the reference clock itself, not on the network).</p>
+      <p><strong>Lower stratum = more accurate.</strong> Stratum 0 is the reference source. Stratum 1 is closest to it. A device at Stratum 3 synchronizes from a Stratum 2 server, which synchronizes from Stratum 1.</p>
+      <p>The exam may ask: "An NTP server synchronizes directly from an atomic clock. What stratum level is it?" → <strong>Stratum 1</strong>. Or: "Which stratum level represents the most accurate time source?" → <strong>Stratum 0</strong> (the reference clock itself, not on the network).</p>
     </div>
 
-    <h2>How NTP synchronisation works</h2>
+    <h2>How NTP synchronization works</h2>
 
     <p>NTP doesn't just set the clock once — it continuously monitors drift and makes small adjustments to keep clocks aligned. The protocol measures the round-trip delay to the time server and accounts for it when calculating the correct local time.</p>
 
     <div class="code-block">
-      <div class="code-label">NTP synchronisation process</div>
+      <div class="code-label">NTP synchronization process</div>
       <pre><span class="code-comment">1. Client sends NTP request to server</span>
    Client records: T1 = time request was sent
 
@@ -907,7 +907,7 @@ tbody tr:hover td { background: #f4f8ff; }
       <div class="code-label">NTP exam reference</div>
       <pre><span class="code-hl">Protocol:</span>   NTP (Network Time Protocol)
 <span class="code-hl">Port:</span>        UDP 123
-<span class="code-hl">Purpose:</span>     Clock synchronisation across network devices
+<span class="code-hl">Purpose:</span>     Clock synchronization across network devices
 
 <span class="code-hl">Stratum 0:</span>   Atomic clock / GPS — reference source, not on network
 <span class="code-hl">Stratum 1:</span>   Primary server — directly connected to Stratum 0
@@ -928,10 +928,10 @@ tbody tr:hover td { background: #f4f8ff; }
 
     <div class="scenario-list">
       <div class="scenario-item">💬 "Users on a Windows domain are suddenly unable to authenticate. The help desk finds that one workstation's clock is 10 minutes ahead of the domain controller. What is the most likely cause of the authentication failure?" → <strong>Kerberos requires clock skew to be within 5 minutes — a 10-minute difference causes authentication tickets to be rejected</strong></div>
-      <div class="scenario-item">💬 "Which protocol synchronises clocks across network devices and uses UDP port 123?" → <strong>NTP — Network Time Protocol</strong></div>
-      <div class="scenario-item">💬 "An NTP server synchronises directly from an atomic clock. What stratum level is it?" → <strong>Stratum 1</strong></div>
+      <div class="scenario-item">💬 "Which protocol synchronizes clocks across network devices and uses UDP port 123?" → <strong>NTP — Network Time Protocol</strong></div>
+      <div class="scenario-item">💬 "An NTP server synchronizes directly from an atomic clock. What stratum level is it?" → <strong>Stratum 1</strong></div>
       <div class="scenario-item">💬 "Which stratum level describes the atomic clocks and GPS receivers that are the ultimate reference time sources?" → <strong>Stratum 0</strong></div>
-      <div class="scenario-item">💬 "A security analyst is investigating an incident but finds that log timestamps from different devices don't align. What should be implemented to prevent this?" → <strong>NTP — synchronise all devices to a common time source so log timestamps are consistent</strong></div>
+      <div class="scenario-item">💬 "A security analyst is investigating an incident but finds that log timestamps from different devices don't align. What should be implemented to prevent this?" → <strong>NTP — synchronize all devices to a common time source so log timestamps are consistent</strong></div>
       <div class="scenario-item">💬 "An attacker sends a small spoofed UDP packet to a public NTP server and the victim receives a large flood of traffic in response. What attack is this?" → <strong>NTP amplification attack — the attacker exploits the monlist command to amplify traffic toward the victim</strong></div>
       <div class="scenario-item">💬 "Which simplified version of NTP is used on embedded and IoT devices where full NTP is too resource-intensive?" → <strong>SNTP — Simple Network Time Protocol, also uses UDP port 123</strong></div>
       <div class="scenario-item">💬 "What NTP feature prevents attackers from injecting fake time responses?" → <strong>NTP authentication — shared MD5 or SHA keys that the client uses to verify the server's responses are legitimate</strong></div>

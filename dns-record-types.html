@@ -365,7 +365,7 @@ tbody tr:hover td{background:#eff6ff;}
       "name": "DNS Attacks Targeting Records",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "DNS Spoofing / Cache Poisoning: Attacker injects malicious A records into a DNS resolver's cache — victims querying that resolver get a fake IP and are redirected to an attacker-controlled server. Defence: DNSSEC (cryptographically signs DNS records). DNS Hijacking: Attacker modifies legitimate DNS records (by compromising the registrar account or DNS provider) — everyone resolving the domain gets the attacker's IP. Defence: registrar account MFA, registry lock. DNS Zone Transfer Attack: Unauthorised zone transfer (AXFR) reveals all DNS records for a domain — a complete map of the organisat…"
+        "text": "DNS Spoofing / Cache Poisoning: Attacker injects malicious A records into a DNS resolver's cache — victims querying that resolver get a fake IP and are redirected to an attacker-controlled server. Defense: DNSSEC (cryptographically signs DNS records). DNS Hijacking: Attacker modifies legitimate DNS records (by compromising the registrar account or DNS provider) — everyone resolving the domain gets the attacker's IP. Defense: registrar account MFA, registry lock. DNS Zone Transfer Attack: Unauthorised zone transfer (AXFR) reveals all DNS records for a domain — a complete map of the organisat…"
       }
     },
     {
@@ -613,7 +613,7 @@ example.com.  IN  TXT  "v=spf1 ip4:93.184.216.34 ip4:93.184.216.35 -all"
 
 ; DMARC policy
 _dmarc.example.com.  IN  TXT  "v=DMARC1; p=reject; rua=mailto:<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c7a3aaa6b5a487a2bfa6aab7aba2e9a4a8aa">[email&#160;protected]</a>"</div>
-          <div class="record-exam"><strong>Exam use case:</strong> "An organisation wants to prevent email spoofing — attackers sending email that appears to come from their domain. Which DNS records should be configured?" → SPF (TXT record), DKIM (TXT record), DMARC (TXT record). All three live in TXT records. SPF = who can send. DKIM = prove the email wasn't tampered with. DMARC = what to do when SPF/DKIM fail.</div>
+          <div class="record-exam"><strong>Exam use case:</strong> "An organization wants to prevent email spoofing — attackers sending email that appears to come from their domain. Which DNS records should be configured?" → SPF (TXT record), DKIM (TXT record), DMARC (TXT record). All three live in TXT records. SPF = who can send. DKIM = prove the email wasn't tampered with. DMARC = what to do when SPF/DKIM fail.</div>
         </div>
       </div>
 
@@ -666,9 +666,9 @@ _sip._tcp.example.com.       IN  SRV  10 100 5060  voip.example.com.</div>
       <table>
         <thead><tr><th>Record</th><th>What It Does</th><th>How It Works</th><th>Limitation</th></tr></thead>
         <tbody>
-          <tr><td class="td-term">SPF</td><td>Defines which mail servers are authorised to send email for the domain</td><td>Receiving server checks the sending server's IP against the SPF TXT record. If the IP isn't listed, the email fails SPF.</td><td>Breaks with email forwarding — forwarded email changes the sending IP, causing SPF failures</td></tr>
+          <tr><td class="td-term">SPF</td><td>Defines which mail servers are authorized to send email for the domain</td><td>Receiving server checks the sending server's IP against the SPF TXT record. If the IP isn't listed, the email fails SPF.</td><td>Breaks with email forwarding — forwarded email changes the sending IP, causing SPF failures</td></tr>
           <tr><td class="td-term">DKIM</td><td>Allows the sending mail server to cryptographically sign outgoing email</td><td>Sender signs email headers with a private key. Receiver retrieves the public key from a DKIM TXT record and verifies the signature. Proves the email wasn't modified in transit.</td><td>Doesn't prevent the From: address from being spoofed — only proves the signing domain's integrity</td></tr>
-          <tr><td class="td-term">DMARC</td><td>Tells receiving servers what to do when SPF or DKIM checks fail (none / quarantine / reject)</td><td>Queries _dmarc.example.com TXT record for policy. Also enables reporting — organisations receive reports of who is sending email claiming to be from their domain.</td><td>Only as effective as its strictest policy setting. p=none provides reporting but no enforcement.</td></tr>
+          <tr><td class="td-term">DMARC</td><td>Tells receiving servers what to do when SPF or DKIM checks fail (none / quarantine / reject)</td><td>Queries _dmarc.example.com TXT record for policy. Also enables reporting — organizations receive reports of who is sending email claiming to be from their domain.</td><td>Only as effective as its strictest policy setting. p=none provides reporting but no enforcement.</td></tr>
         </tbody>
       </table>
     </div>
@@ -685,9 +685,9 @@ _sip._tcp.example.com.       IN  SRV  10 100 5060  voip.example.com.</div>
           <tr><td class="td-term">CNAME</td><td>Alias hostname → canonical hostname</td><td>Subdomains pointing to same server, CDN aliases</td></tr>
           <tr><td class="td-term">PTR</td><td>IP address → hostname</td><td>Reverse DNS lookups, email server verification</td></tr>
           <tr><td class="td-term">NS</td><td>Zone → authoritative name servers</td><td>Identifies which DNS servers hold zone records</td></tr>
-          <tr><td class="td-term">SOA</td><td>Zone metadata (serial, TTL, admin)</td><td>Zone synchronisation between primary/secondary DNS</td></tr>
+          <tr><td class="td-term">SOA</td><td>Zone metadata (serial, TTL, admin)</td><td>Zone synchronization between primary/secondary DNS</td></tr>
           <tr><td class="td-term">TXT</td><td>Domain → arbitrary text</td><td>SPF, DKIM, DMARC, domain ownership verification</td></tr>
-          <tr><td class="td-term">CAA</td><td>Domain → authorised CAs</td><td>Restrict which CAs can issue certificates for the domain</td></tr>
+          <tr><td class="td-term">CAA</td><td>Domain → authorized CAs</td><td>Restrict which CAs can issue certificates for the domain</td></tr>
           <tr><td class="td-term">SRV</td><td>Service → hostname + port</td><td>Active Directory, VoIP (SIP), service discovery</td></tr>
         </tbody>
       </table>
@@ -697,10 +697,10 @@ _sip._tcp.example.com.       IN  SRV  10 100 5060  voip.example.com.</div>
 
     <div class="callout">
       <div class="callout-label">Security+ DNS attack types</div>
-      <p><strong>DNS Spoofing / Cache Poisoning:</strong> Attacker injects malicious A records into a DNS resolver's cache — victims querying that resolver get a fake IP and are redirected to an attacker-controlled server. Defence: DNSSEC (cryptographically signs DNS records).</p>
-      <p><strong>DNS Hijacking:</strong> Attacker modifies legitimate DNS records (by compromising the registrar account or DNS provider) — everyone resolving the domain gets the attacker's IP. Defence: registrar account MFA, registry lock.</p>
-      <p><strong>DNS Zone Transfer Attack:</strong> Unauthorised zone transfer (AXFR) reveals all DNS records for a domain — a complete map of the organisation's infrastructure. Defence: restrict zone transfers to authorised secondary servers only.</p>
-      <p><strong>DNS Tunnelling:</strong> Data exfiltration encoded in DNS queries/responses — bypasses firewalls that allow DNS traffic. Defence: DNS query monitoring, restrict outbound DNS to trusted resolvers.</p>
+      <p><strong>DNS Spoofing / Cache Poisoning:</strong> Attacker injects malicious A records into a DNS resolver's cache — victims querying that resolver get a fake IP and are redirected to an attacker-controlled server. Defense: DNSSEC (cryptographically signs DNS records).</p>
+      <p><strong>DNS Hijacking:</strong> Attacker modifies legitimate DNS records (by compromising the registrar account or DNS provider) — everyone resolving the domain gets the attacker's IP. Defense: registrar account MFA, registry lock.</p>
+      <p><strong>DNS Zone Transfer Attack:</strong> Unauthorised zone transfer (AXFR) reveals all DNS records for a domain — a complete map of the organization's infrastructure. Defense: restrict zone transfers to authorized secondary servers only.</p>
+      <p><strong>DNS Tunnelling:</strong> Data exfiltration encoded in DNS queries/responses — bypasses firewalls that allow DNS traffic. Defense: DNS query monitoring, restrict outbound DNS to trusted resolvers.</p>
     </div>
 
     <hr class="divider">
@@ -710,8 +710,8 @@ _sip._tcp.example.com.       IN  SRV  10 100 5060  voip.example.com.</div>
       <div class="scenario-item">💬 "Users can access a website by IP but not by hostname. Which DNS record type is most likely missing?" → <strong>A record — the forward lookup mapping the hostname to the IPv4 address is missing or misconfigured.</strong></div>
       <div class="scenario-item">💬 "An administrator configures DNS so that both www.example.com and shop.example.com resolve to the same server. Rather than creating two A records, they want to manage a single IP. Which record type achieves this?" → <strong>CNAME — create CNAME records for www and shop pointing to the canonical hostname, which has a single A record. Update only the A record when the IP changes.</strong></div>
       <div class="scenario-item">💬 "Email sent to users at example.com is bouncing. The MX record points to mail.example.com. What else must exist for email delivery to work?" → <strong>An A record for mail.example.com — MX records point to hostnames, not IPs. The mail server hostname must have its own A record resolving to an IP.</strong></div>
-      <div class="scenario-item">💬 "A security engineer wants to prevent attackers from obtaining fraudulent SSL certificates for the company's domain. Which DNS record should be added?" → <strong>CAA record — lists the authorised Certificate Authorities for the domain. CAs that comply with the CA/Browser Forum rules will not issue certificates to unlisted requestors.</strong></div>
-      <div class="scenario-item">💬 "Which three DNS records work together to prevent email spoofing and should be configured for every domain sending email?" → <strong>SPF (TXT) — authorised sending servers. DKIM (TXT) — cryptographic email signing. DMARC (TXT) — enforcement policy when SPF/DKIM fail.</strong></div>
+      <div class="scenario-item">💬 "A security engineer wants to prevent attackers from obtaining fraudulent SSL certificates for the company's domain. Which DNS record should be added?" → <strong>CAA record — lists the authorized Certificate Authorities for the domain. CAs that comply with the CA/Browser Forum rules will not issue certificates to unlisted requestors.</strong></div>
+      <div class="scenario-item">💬 "Which three DNS records work together to prevent email spoofing and should be configured for every domain sending email?" → <strong>SPF (TXT) — authorized sending servers. DKIM (TXT) — cryptographic email signing. DMARC (TXT) — enforcement policy when SPF/DKIM fail.</strong></div>
       <div class="scenario-item">💬 "A technician queries an IP address using nslookup and receives the associated hostname. Which DNS record type was queried?" → <strong>PTR record — pointer records in reverse lookup zones map IP addresses back to hostnames.</strong></div>
       <div class="scenario-item">💬 "Active Directory clients cannot locate the domain controller after a DNS change. Which record type is most likely affected?" → <strong>SRV records — Active Directory relies on SRV records to locate domain controllers for Kerberos (port 88), LDAP (port 389), and other AD services.</strong></div>
       <div class="scenario-item">💬 "What is the purpose of the serial number in the SOA record?" → <strong>Secondary DNS servers compare their cached serial number with the primary's SOA serial number to determine whether the zone has been updated and a zone transfer is needed.</strong></div>

@@ -474,7 +474,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <h2>Docker: Images, Containers, and the Dockerfile</h2>
 
-    <p>Docker is the platform that standardised containers and made them accessible to developers. The Docker ecosystem has four key components you need to understand:</p>
+    <p>Docker is the platform that standardized containers and made them accessible to developers. The Docker ecosystem has four key components you need to understand:</p>
 
     <div class="concept-grid">
       <div class="concept-card">
@@ -495,7 +495,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="concept-card">
         <div class="concept-icon">🗄️</div>
         <div class="concept-name">Registry</div>
-        <div class="concept-desc">A <strong>storage and distribution system</strong> for Docker images. Docker Hub is the default public registry — millions of pre-built images are hosted there. Private registries (AWS ECR, Azure ACR, Google Artifact Registry) let organisations store proprietary images securely.</div>
+        <div class="concept-desc">A <strong>storage and distribution system</strong> for Docker images. Docker Hub is the default public registry — millions of pre-built images are hosted there. Private registries (AWS ECR, Azure ACR, Google Artifact Registry) let organizations store proprietary images securely.</div>
       </div>
     </div>
 
@@ -589,7 +589,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <div class="scenario-list">
       <div class="scenario-item"><strong>Scenario:</strong> A team needs to deploy the same application across development, staging, and production and ensure it behaves identically in each environment. What technology is best suited? <strong>Answer: Containers (Docker)</strong> — the image ensures a consistent environment from dev to prod.</div>
-      <div class="scenario-item"><strong>Scenario:</strong> An organisation runs 500 containers across 20 servers and needs automatic failover, rolling updates, and auto-scaling. What tool manages this? <strong>Answer: Kubernetes (or a managed service like EKS/AKS/GKE)</strong>.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> An organization runs 500 containers across 20 servers and needs automatic failover, rolling updates, and auto-scaling. What tool manages this? <strong>Answer: Kubernetes (or a managed service like EKS/AKS/GKE)</strong>.</div>
       <div class="scenario-item"><strong>Scenario:</strong> A security scan reveals that a container is running as root. Why is this a risk? <strong>Answer: If a container escape vulnerability exists, a root container process would have root-level access on the host OS</strong>. Containers should run as non-privileged users.</div>
       <div class="scenario-item"><strong>Scenario:</strong> A developer hardcoded a database password in a Dockerfile. What is the correct remediation? <strong>Answer: Remove the secret from the image and inject it at runtime</strong> using environment variables or a secrets manager. Never store secrets in images, as they are visible to anyone with image access.</div>
       <div class="scenario-item"><strong>Scenario:</strong> What is the difference between a Docker image and a Docker container? <strong>Answer: An image is the read-only blueprint stored in a registry. A container is a running instance of that image</strong> — you can run many containers from one image.</div>

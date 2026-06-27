@@ -299,7 +299,7 @@ tbody tr:hover td{background:#eff6ff;}
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type":"Question","name":"What is BIOS?","acceptedAnswer":{"@type":"Answer","text":"BIOS (Basic Input/Output System) is firmware stored on a small chip on the motherboard. It is the first software that runs when a computer is powered on. BIOS performs the POST (Power-On Self-Test), initialises hardware components, and then hands off to the bootloader to load the operating system. Traditional BIOS uses a 16-bit processor mode, has a text-based interface, and supports only MBR-partitioned drives up to 2 TB."}},
+    {"@type":"Question","name":"What is BIOS?","acceptedAnswer":{"@type":"Answer","text":"BIOS (Basic Input/Output System) is firmware stored on a small chip on the motherboard. It is the first software that runs when a computer is powered on. BIOS performs the POST (Power-On Self-Test), initializes hardware components, and then hands off to the bootloader to load the operating system. Traditional BIOS uses a 16-bit processor mode, has a text-based interface, and supports only MBR-partitioned drives up to 2 TB."}},
     {"@type":"Question","name":"What is UEFI and how is it different from BIOS?","acceptedAnswer":{"@type":"Answer","text":"UEFI (Unified Extensible Firmware Interface) is the modern replacement for BIOS. UEFI supports drives larger than 2 TB (using GPT partitioning instead of MBR), has a graphical mouse-enabled interface, boots faster, supports Secure Boot (which prevents unsigned bootloaders from running), and uses 32-bit or 64-bit processor mode. All modern computers ship with UEFI rather than traditional BIOS."}},
     {"@type":"Question","name":"What is Secure Boot?","acceptedAnswer":{"@type":"Answer","text":"Secure Boot is a UEFI feature that prevents the computer from booting unsigned or unrecognised bootloaders and operating systems. When enabled, the firmware checks the digital signature of every boot component against a database of trusted keys. If the signature doesn't match, the system refuses to boot that component. This prevents bootkits and rootkits from loading before the OS. Secure Boot is required for Windows 11."}},
     {"@type":"Question","name":"What does POST stand for and what does it do?","acceptedAnswer":{"@type":"Answer","text":"POST stands for Power-On Self-Test. It is the diagnostic process the BIOS/UEFI runs every time the computer starts. POST checks that essential hardware components — CPU, RAM, storage, and keyboard — are present and functional. If POST succeeds, the system beeps once and proceeds to boot. If POST fails, the system issues a series of beep codes or displays an error on screen to identify the failing component."}}
@@ -394,7 +394,7 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ Quick Answer</div>
       <div class="quick-answer-text">
-        <strong>BIOS</strong> (Basic Input/Output System) is the legacy firmware that initialises hardware and boots the OS. <strong>UEFI</strong> (Unified Extensible Firmware Interface) is its modern replacement — it supports drives over 2 TB, has a graphical interface, boots faster, and adds <strong>Secure Boot</strong> to prevent unauthorised bootloaders. Every time a PC starts, <strong>POST</strong> (Power-On Self-Test) runs first to verify hardware is functional. You access BIOS/UEFI settings by pressing a key (Del, F2, F10) during POST. <strong>Windows 11 requires UEFI with Secure Boot and TPM 2.0.</strong>
+        <strong>BIOS</strong> (Basic Input/Output System) is the legacy firmware that initializes hardware and boots the OS. <strong>UEFI</strong> (Unified Extensible Firmware Interface) is its modern replacement — it supports drives over 2 TB, has a graphical interface, boots faster, and adds <strong>Secure Boot</strong> to prevent unauthorised bootloaders. Every time a PC starts, <strong>POST</strong> (Power-On Self-Test) runs first to verify hardware is functional. You access BIOS/UEFI settings by pressing a key (Del, F2, F10) during POST. <strong>Windows 11 requires UEFI with Secure Boot and TPM 2.0.</strong>
       </div>
     </div>
 
@@ -414,7 +414,7 @@ tbody tr:hover td{background:#eff6ff;}
           <tr><td class="td-term">Max drive size</td><td>2 TB (MBR limit)</td><td>9.4 ZB (GPT limit — effectively unlimited)</td></tr>
           <tr><td class="td-term">Max primary partitions</td><td>4 (MBR)</td><td>128 (GPT)</td></tr>
           <tr><td class="td-term">Secure Boot</td><td>Not supported</td><td>Supported (required for Windows 11)</td></tr>
-          <tr><td class="td-term">Boot speed</td><td>Slower initialisation</td><td>Faster — can use fast boot to skip POST</td></tr>
+          <tr><td class="td-term">Boot speed</td><td>Slower initialization</td><td>Faster — can use fast boot to skip POST</td></tr>
           <tr><td class="td-term">Network boot</td><td>PXE boot support</td><td>HTTP boot + PXE boot</td></tr>
           <tr><td class="td-term">Storage location</td><td>ROM / Flash chip on motherboard</td><td>Flash chip on motherboard (NVRAM)</td></tr>
         </tbody>
@@ -423,7 +423,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <div class="callout">
       <div class="callout-label">Why UEFI replaced BIOS</div>
-      <p>The 2 TB hard drive limit was the primary driver. MBR (Master Boot Record) uses 32-bit sector addressing, which caps out at 2 TB. When consumer hard drives exceeded 2 TB, a new standard was needed. GPT (GUID Partition Table), used by UEFI, uses 64-bit addressing and supports drives up to 9.4 ZB. UEFI also added Secure Boot and faster initialisation as significant improvements over BIOS.</p>
+      <p>The 2 TB hard drive limit was the primary driver. MBR (Master Boot Record) uses 32-bit sector addressing, which caps out at 2 TB. When consumer hard drives exceeded 2 TB, a new standard was needed. GPT (GUID Partition Table), used by UEFI, uses 64-bit addressing and supports drives up to 9.4 ZB. UEFI also added Secure Boot and faster initialization as significant improvements over BIOS.</p>
     </div>
 
     <h2>POST — Power-On Self-Test</h2>
@@ -449,7 +449,7 @@ tbody tr:hover td{background:#eff6ff;}
         <div class="step-num">3</div>
         <div class="step-body">
           <div class="step-title">Video card / display check</div>
-          <div class="step-desc">The video system is initialised. Without a working display, <strong>beep codes</strong> are the primary diagnostic output. <strong>1 long + 2 short beeps</strong> (AMI BIOS) typically indicates a video card error.</div>
+          <div class="step-desc">The video system is initialized. Without a working display, <strong>beep codes</strong> are the primary diagnostic output. <strong>1 long + 2 short beeps</strong> (AMI BIOS) typically indicates a video card error.</div>
         </div>
       </div>
       <div class="step-item">
@@ -470,7 +470,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 A+ Exam — POST Beep Codes</div>
-      <p>The exact beep code meanings vary by BIOS manufacturer (AMI, Award, Phoenix), but the A+ exam tests the general concept rather than memorising specific codes. <strong>1 short beep = POST passed successfully.</strong> <strong>Multiple beeps or continuous beeping = hardware failure.</strong> The number and pattern of beeps identify which component failed. If there is no beep at all and nothing displays, suspect the CPU, RAM, or power supply.</p>
+      <p>The exact beep code meanings vary by BIOS manufacturer (AMI, Award, Phoenix), but the A+ exam tests the general concept rather than memorizing specific codes. <strong>1 short beep = POST passed successfully.</strong> <strong>Multiple beeps or continuous beeping = hardware failure.</strong> The number and pattern of beeps identify which component failed. If there is no beep at all and nothing displays, suspect the CPU, RAM, or power supply.</p>
     </div>
 
     <h2>Boot Order (Boot Priority)</h2>
@@ -490,7 +490,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <p>If the signature is trusted, the component loads. If the signature is missing or doesn't match a trusted key, the firmware refuses to load it and displays a Secure Boot violation error. This prevents <strong>bootkits</strong> — malware that loads before the OS and is invisible to antivirus software running inside the OS.</p>
 
-    <p><strong>Windows 11 requires Secure Boot to be enabled.</strong> Most Linux distributions also support Secure Boot via Microsoft-signed shim bootloaders. When dual-booting or installing a custom OS, you may need to enrol additional trusted keys or temporarily disable Secure Boot — though disabling it reduces security.</p>
+    <p><strong>Windows 11 requires Secure Boot to be enabled.</strong> Most Linux distributions also support Secure Boot via Microsoft-signed shim bootloaders. When dual-booting or installing a custom OS, you may need to enroll additional trusted keys or temporarily disable Secure Boot — though disabling it reduces security.</p>
 
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 Secure Boot vs TPM — Know the Difference</div>

@@ -547,7 +547,7 @@ tbody tr:hover td{background:#fef2f2;}
             <span class="pb-phase-tag pt-prep">Before the incident</span>
           </div>
           <div class="pb-phase-content"><ul>
-            <li>Maintain <strong>offline, tested backups</strong> following the 3-2-1 rule (3 copies, 2 media types, 1 offsite) — the most important ransomware defence</li>
+            <li>Maintain <strong>offline, tested backups</strong> following the 3-2-1 rule (3 copies, 2 media types, 1 offsite) — the most important ransomware defense</li>
             <li>Segment the network with VLANs to limit lateral movement if ransomware spreads</li>
             <li>Disable SMBv1, restrict RDP access, enforce MFA on all remote access</li>
             <li>Deploy and configure EDR (Endpoint Detection and Response) with ransomware behavioural detection</li>
@@ -765,7 +765,7 @@ tbody tr:hover td{background:#fef2f2;}
             <span class="pb-phase-tag pt-contain">Absorb or redirect</span>
           </div>
           <div class="pb-phase-content"><ul>
-            <li>Activate DDoS mitigation service — scrubbing centre filters malicious traffic, passes legitimate traffic</li>
+            <li>Activate DDoS mitigation service — scrubbing center filters malicious traffic, passes legitimate traffic</li>
             <li>Implement <strong>blackhole routing</strong> (null route) for the targeted IP if service must be sacrificed to protect the network</li>
             <li>Contact ISP for upstream filtering — block attack traffic at the ISP level before it reaches your infrastructure</li>
             <li>Apply ACLs to block known attacking IP ranges or ASNs if attack is from identifiable sources</li>
@@ -862,7 +862,7 @@ tbody tr:hover td{background:#fef2f2;}
             <li>Audit the compromised account's activity — what was accessed, were email rules set up (attacker forwarding), were files shared?</li>
             <li>Remove any inbox rules the attacker created (common BEC tactic: forward all emails to attacker)</li>
             <li>If malware was delivered via attachment, treat as a malware incident — scan and remediate the endpoint</li>
-            <li>Review OAuth app permissions — attackers may have authorised malicious apps to access the account</li>
+            <li>Review OAuth app permissions — attackers may have authorized malicious apps to access the account</li>
           </ul></div>
         </div>
         <div class="pb-phase">
@@ -875,7 +875,7 @@ tbody tr:hover td{background:#fef2f2;}
             <li>Why did the phishing email bypass email security filters? Update rules accordingly</li>
             <li>Conduct phishing simulation training with the affected user and their team</li>
             <li>Review DMARC, DKIM, and SPF configuration for your own domain to prevent outbound spoofing</li>
-            <li>Enforce MFA across the organisation — a phished password alone should not grant access</li>
+            <li>Enforce MFA across the organization — a phished password alone should not grant access</li>
           </ul></div>
         </div>
       </div>
@@ -896,7 +896,7 @@ tbody tr:hover td{background:#fef2f2;}
           <tr>
             <td class="td-term">Segmentation</td>
             <td>Move affected system to an isolated VLAN — internet blocked, internal blocked, only forensics team can access</td>
-            <td>Need to monitor attacker behaviour (honeypot), maintain limited availability during investigation</td>
+            <td>Need to monitor attacker behavior (honeypot), maintain limited availability during investigation</td>
             <td>Attacker still has access to the isolated system — must monitor closely</td>
           </tr>
           <tr>
@@ -915,7 +915,7 @@ tbody tr:hover td{background:#fef2f2;}
             <td class="td-term">Evidence Preservation (No Action)</td>
             <td>Monitor without containment — collect evidence while attacker is unaware</td>
             <td>Law enforcement investigation, threat intelligence gathering, when attacker access needs to be proven</td>
-            <td>Risk of additional damage while monitoring — requires legal authorisation and careful management</td>
+            <td>Risk of additional damage while monitoring — requires legal authorization and careful management</td>
           </tr>
         </tbody>
       </table>
@@ -932,14 +932,14 @@ tbody tr:hover td{background:#fef2f2;}
       <div class="exam-tip-label">🎯 The Most Tested IR Sequencing Questions</div>
       <p><strong>Containment before eradication</strong> — you always stop the spread before removing the threat. Eradicating malware from one machine while it's still spreading to others is pointless.</p>
       <p><strong>Legal counsel first for data breaches</strong> — before notifying the public, law enforcement, or even affected users, legal counsel must be engaged. They determine what must be disclosed, when, and how. Premature disclosure can create liability.</p>
-      <p><strong>Lessons Learned is mandatory</strong> — the post-incident review is not optional. Security+ scenario questions often describe skipping this phase — the correct answer is always that the organisation should conduct a lessons learned review regardless of how the incident resolved.</p>
+      <p><strong>Lessons Learned is mandatory</strong> — the post-incident review is not optional. Security+ scenario questions often describe skipping this phase — the correct answer is always that the organization should conduct a lessons learned review regardless of how the incident resolved.</p>
     </div>
 
     <h2>Exam Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario-item">💬 "A security analyst detects ransomware actively encrypting files on a workstation. The workstation is connected to a shared file server. What is the FIRST action the analyst should take?" → <strong>Isolate the infected workstation — disconnect it from the network immediately to stop encryption from spreading to the shared file server and other network resources. This is Containment, and it comes before Eradication. Shutting down the machine is secondary to isolation because shutdown destroys volatile memory evidence.</strong></div>
       <div class="scenario-item">💬 "A company discovers a data breach affecting 50,000 customers' personal data including names, addresses, and email addresses. Who should be notified FIRST?" → <strong>Legal counsel — before notifying customers, regulators, law enforcement, or the public. Legal determines regulatory obligations (GDPR, state breach laws), notification timelines, and what can be disclosed without creating additional liability. Notifying the public before legal review can expose the company to further legal risk.</strong></div>
-      <div class="scenario-item">💬 "During a DDoS attack investigation, the security team notices simultaneous unusual login attempts from foreign IP addresses to the company's VPN. What should they conclude?" → <strong>The DDoS is likely a smokescreen — attackers use DDoS to distract security teams while simultaneously attempting to breach systems. The team should prioritise investigating the VPN login attempts, which represent an active credential attack, while the DDoS mitigation service handles the flood traffic.</strong></div>
+      <div class="scenario-item">💬 "During a DDoS attack investigation, the security team notices simultaneous unusual login attempts from foreign IP addresses to the company's VPN. What should they conclude?" → <strong>The DDoS is likely a smokescreen — attackers use DDoS to distract security teams while simultaneously attempting to breach systems. The team should prioritize investigating the VPN login attempts, which represent an active credential attack, while the DDoS mitigation service handles the flood traffic.</strong></div>
       <div class="scenario-item">💬 "An IR team has contained and eradicated a malware infection, restored systems from backup, and returned users to normal operations. A manager says the incident is over. What is the IR team missing?" → <strong>Lessons Learned (Post-Incident Review) — the final mandatory phase of PICERL. The team should conduct a structured review of what happened, what the timeline was, what went well, what failed, and update the IR plan and playbooks accordingly. Skipping this phase means the same incident may recur.</strong></div>
       <div class="scenario-item">💬 "A forensic analyst needs to collect evidence from a compromised server that is still running. What should be collected first, before the server is powered off?" → <strong>Volatile evidence in the order of volatility — RAM contents first (running processes, network connections, encryption keys, active sessions), then network connection state, then the filesystem. If the server is powered off first, all RAM contents are lost permanently. Disk evidence can be acquired after power-off through imaging.</strong></div>
       <div class="scenario-item">💬 "A user reports that after clicking a link in an email, they were taken to a login page that looked like their company's portal, and they entered their username and password. What should the IR team do immediately?" → <strong>Reset the user's password and invalidate all active sessions immediately — credential theft is assumed. Enable or enforce MFA before restoring access. Block the phishing domain at the email gateway and web proxy. Audit the account's recent activity for signs of attacker access (email rule changes, data access, outbound emails). Recall the phishing email from all other recipients.</strong></div>

@@ -354,7 +354,7 @@ tbody tr:hover td{background:#fdf4ff;}
       "name": "PKI Hierarchy — Root CA, Intermediate CA, End-Entity",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "PKI uses a chain of trust — a hierarchy of Certificate Authorities where each level vouches for the one below it: Public PKI: Certificate Authorities like DigiCert, Let's Encrypt, and Sectigo are trusted by browsers and operating systems by default — their root certificates are pre-installed. Use for public-facing websites. Private/Internal PKI: Organisations run their own CA hierarchy (Microsoft Active Directory Certificate Services is common) for issuing certificates to internal systems, VPN clients, and users. Clients must explicitly trust the internal root CA — typically deployed via Gr…"
+        "text": "PKI uses a chain of trust — a hierarchy of Certificate Authorities where each level vouches for the one below it: Public PKI: Certificate Authorities like DigiCert, Let's Encrypt, and Sectigo are trusted by browsers and operating systems by default — their root certificates are pre-installed. Use for public-facing websites. Private/Internal PKI: Organizations run their own CA hierarchy (Microsoft Active Directory Certificate Services is common) for issuing certificates to internal systems, VPN clients, and users. Clients must explicitly trust the internal root CA — typically deployed via Gr…"
       }
     },
     {
@@ -378,7 +378,7 @@ tbody tr:hover td{background:#fdf4ff;}
       "name": "Certificate Revocation — CRL and OCSP",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Certificates can be revoked before they expire — if the private key is compromised, the certificate is mis-issued, or the organisation no longer exists. Two mechanisms handle revocation:"
+        "text": "Certificates can be revoked before they expire — if the private key is compromised, the certificate is mis-issued, or the organization no longer exists. Two mechanisms handle revocation:"
       }
     },
     {
@@ -386,7 +386,7 @@ tbody tr:hover td{background:#fdf4ff;}
       "name": "Certificate Pinning",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Certificate pinning (also called public key pinning) is a defence against rogue or compromised CAs. Normally, a browser trusts any certificate signed by any CA in its trust store — meaning if any CA is compromised, an attacker could get a fraudulent cert for any domain. With pinning, an application hardcodes (pins) the expected certificate or public key for a specific server. If the presented certificate doesn't match the pin, the connection is rejected — even if the certificate is otherwise valid and CA-signed. Used by high-security applications like banking apps and mobile applications to…"
+        "text": "Certificate pinning (also called public key pinning) is a defense against rogue or compromised CAs. Normally, a browser trusts any certificate signed by any CA in its trust store — meaning if any CA is compromised, an attacker could get a fraudulent cert for any domain. With pinning, an application hardcodes (pins) the expected certificate or public key for a specific server. If the presented certificate doesn't match the pin, the connection is rejected — even if the certificate is otherwise valid and CA-signed. Used by high-security applications like banking apps and mobile applications to…"
       }
     },
     {
@@ -539,7 +539,7 @@ tbody tr:hover td{background:#fdf4ff;}
     <div class="callout">
       <div class="callout-label">Internal vs External PKI</div>
       <p><strong>Public PKI:</strong> Certificate Authorities like DigiCert, Let's Encrypt, and Sectigo are trusted by browsers and operating systems by default — their root certificates are pre-installed. Use for public-facing websites.</p>
-      <p><strong>Private/Internal PKI:</strong> Organisations run their own CA hierarchy (Microsoft Active Directory Certificate Services is common) for issuing certificates to internal systems, VPN clients, and users. Clients must explicitly trust the internal root CA — typically deployed via Group Policy in AD environments.</p>
+      <p><strong>Private/Internal PKI:</strong> Organizations run their own CA hierarchy (Microsoft Active Directory Certificate Services is common) for issuing certificates to internal systems, VPN clients, and users. Clients must explicitly trust the internal root CA — typically deployed via Group Policy in AD environments.</p>
     </div>
 
     <h2>X.509 — The Certificate Standard</h2>
@@ -567,9 +567,9 @@ tbody tr:hover td{background:#fdf4ff;}
       <table>
         <thead><tr><th>Certificate Type</th><th>What It Does</th><th>Exam Use Case</th></tr></thead>
         <tbody>
-          <tr><td class="td-term">Domain Validation (DV)</td><td>Verifies ownership of the domain only — automated, fast, cheap (Let's Encrypt is free DV). No identity verification of the organisation.</td><td>Most HTTPS sites use DV — doesn't mean the site is trustworthy, just that the connection is encrypted</td></tr>
-          <tr><td class="td-term">Organisation Validation (OV)</td><td>Verifies domain ownership AND that the organisation is legally registered. CA manually validates the organisation's details.</td><td>Shows organisation name in certificate details — more trust than DV</td></tr>
-          <tr><td class="td-term">Extended Validation (EV)</td><td>Strictest vetting — thorough legal and operational verification. Historically showed green address bar, now shows organisation name in cert details.</td><td>Highest assurance — banking and financial sites. Most browsers have removed the green bar but the cert still contains richer identity info.</td></tr>
+          <tr><td class="td-term">Domain Validation (DV)</td><td>Verifies ownership of the domain only — automated, fast, cheap (Let's Encrypt is free DV). No identity verification of the organization.</td><td>Most HTTPS sites use DV — doesn't mean the site is trustworthy, just that the connection is encrypted</td></tr>
+          <tr><td class="td-term">Organization Validation (OV)</td><td>Verifies domain ownership AND that the organization is legally registered. CA manually validates the organization's details.</td><td>Shows organization name in certificate details — more trust than DV</td></tr>
+          <tr><td class="td-term">Extended Validation (EV)</td><td>Strictest vetting — thorough legal and operational verification. Historically showed green address bar, now shows organization name in cert details.</td><td>Highest assurance — banking and financial sites. Most browsers have removed the green bar but the cert still contains richer identity info.</td></tr>
           <tr><td class="td-term">Wildcard Certificate</td><td>A single certificate covering a domain and all its subdomains — *.company.com covers mail.company.com, vpn.company.com, etc.</td><td>Compromise of a wildcard cert exposes all subdomains — broader attack surface than individual certs</td></tr>
           <tr><td class="td-term">SAN Certificate</td><td>Subject Alternative Name — one certificate valid for multiple specific domains (company.com AND company.net AND shop.company.com)</td><td>More flexible than wildcard — lists exact domains rather than a wildcard pattern</td></tr>
           <tr><td class="td-term">Code Signing Certificate</td><td>Used by software developers to sign executable code — proves the code came from the stated developer and hasn't been modified</td><td>Windows SmartScreen checks for code signing — unsigned executables trigger warnings</td></tr>
@@ -627,7 +627,7 @@ tbody tr:hover td{background:#fdf4ff;}
     </div>
 
     <h2>Certificate Revocation — CRL and OCSP</h2>
-    <p>Certificates can be revoked before they expire — if the private key is compromised, the certificate is mis-issued, or the organisation no longer exists. Two mechanisms handle revocation:</p>
+    <p>Certificates can be revoked before they expire — if the private key is compromised, the certificate is mis-issued, or the organization no longer exists. Two mechanisms handle revocation:</p>
 
     <div class="table-wrap">
       <table>
@@ -641,17 +641,17 @@ tbody tr:hover td{background:#fdf4ff;}
     </div>
 
     <h2>Certificate Pinning</h2>
-    <p><strong>Certificate pinning</strong> (also called public key pinning) is a defence against rogue or compromised CAs. Normally, a browser trusts any certificate signed by any CA in its trust store — meaning if any CA is compromised, an attacker could get a fraudulent cert for any domain.</p>
+    <p><strong>Certificate pinning</strong> (also called public key pinning) is a defense against rogue or compromised CAs. Normally, a browser trusts any certificate signed by any CA in its trust store — meaning if any CA is compromised, an attacker could get a fraudulent cert for any domain.</p>
     <p>With pinning, an application hardcodes (pins) the expected certificate or public key for a specific server. If the presented certificate doesn't match the pin, the connection is rejected — even if the certificate is otherwise valid and CA-signed. Used by high-security applications like banking apps and mobile applications to prevent MITM attacks even in corporate environments that perform SSL inspection.</p>
 
     <h2>Common PKI Attacks and Weaknesses</h2>
 
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Attack / Issue</th><th>How It Works</th><th>Defence</th></tr></thead>
+        <thead><tr><th>Attack / Issue</th><th>How It Works</th><th>Defense</th></tr></thead>
         <tbody>
           <tr><td class="td-term">Rogue CA / CA Compromise</td><td>An attacker compromises a CA and issues fraudulent certificates for legitimate domains — the browser trusts them because it trusts the CA</td><td>Certificate Transparency logs (public audit trail of all issued certs), CAA DNS records (restrict which CAs can issue for your domain)</td></tr>
-          <tr><td class="td-term">SSL Stripping</td><td>Attacker downgrades HTTPS to HTTP in a MITM position — user's browser communicates in plaintext without the user realising they're no longer on HTTPS</td><td>HSTS (HTTP Strict Transport Security) — browser refuses to connect over plain HTTP to known HTTPS sites</td></tr>
+          <tr><td class="td-term">SSL Stripping</td><td>Attacker downgrades HTTPS to HTTP in a MITM position — user's browser communicates in plaintext without the user realizing they're no longer on HTTPS</td><td>HSTS (HTTP Strict Transport Security) — browser refuses to connect over plain HTTP to known HTTPS sites</td></tr>
           <tr><td class="td-term">Expired Certificate</td><td>Server's certificate has passed its Not After date — browsers reject it, causing connection errors</td><td>Certificate lifecycle management, automated renewal (e.g. Let's Encrypt with certbot), monitoring alerts before expiry</td></tr>
           <tr><td class="td-term">Weak Algorithm</td><td>Certificate signed with MD5 or SHA-1 — both are cryptographically broken and can be forged</td><td>Require SHA-256 or stronger for all new certificates, migrate away from legacy algorithms</td></tr>
           <tr><td class="td-term">Private Key Compromise</td><td>The server's private key is stolen — attacker can impersonate the server or decrypt recorded past sessions (without PFS)</td><td>Revoke certificate immediately, reissue with new key pair, implement PFS to protect past sessions</td></tr>
@@ -665,11 +665,11 @@ tbody tr:hover td{background:#fdf4ff;}
     <div class="scenario-list">
       <div class="scenario-item">💬 "A user receives a browser warning that a website's certificate is not trusted. The site uses an internal CA. What is the most likely cause?" → <strong>The internal CA's root certificate is not in the user's trust store. Fix: distribute the internal root CA certificate via Group Policy to domain-joined machines.</strong></div>
       <div class="scenario-item">💬 "Which certificate type covers a domain and all its immediate subdomains with a single certificate?" → <strong>Wildcard certificate — *.company.com covers any single-level subdomain (mail.company.com, vpn.company.com) but not sub-subdomains (a.b.company.com).</strong></div>
-      <div class="scenario-item">💬 "An organisation's root CA must be kept offline. What is the purpose of an intermediate CA?" → <strong>The intermediate CA handles day-to-day certificate issuance so the root CA never needs to be brought online — protecting the root's private key from exposure.</strong></div>
+      <div class="scenario-item">💬 "An organization's root CA must be kept offline. What is the purpose of an intermediate CA?" → <strong>The intermediate CA handles day-to-day certificate issuance so the root CA never needs to be brought online — protecting the root's private key from exposure.</strong></div>
       <div class="scenario-item">💬 "What mechanism allows a web server to include a pre-fetched revocation status in the TLS handshake without the client contacting the CA?" → <strong>OCSP Stapling — the server staples a signed OCSP response to the handshake, eliminating the client's need to query the OCSP responder.</strong></div>
       <div class="scenario-item">💬 "A banking app rejects a valid, CA-signed certificate during a corporate SSL inspection deployment. What feature is causing this?" → <strong>Certificate pinning — the app is hardcoded to only accept the bank's specific certificate or public key, rejecting any substitute even if it's legitimately CA-signed.</strong></div>
       <div class="scenario-item">💬 "TLS uses both asymmetric and symmetric cryptography. Which is used for authentication and which for data encryption?" → <strong>Asymmetric (RSA or ECC) for authentication and key exchange during the handshake. Symmetric (AES) for encrypting actual data — asymmetric is too slow for bulk data transfer.</strong></div>
-      <div class="scenario-item">💬 "What DNS record type can restrict which Certificate Authorities are permitted to issue certificates for a domain?" → <strong>CAA (Certification Authority Authorization) record — lists the CAs authorised to issue certs for the domain, preventing unauthorised CAs from doing so.</strong></div>
+      <div class="scenario-item">💬 "What DNS record type can restrict which Certificate Authorities are permitted to issue certificates for a domain?" → <strong>CAA (Certification Authority Authorization) record — lists the CAs authorized to issue certs for the domain, preventing unauthorised CAs from doing so.</strong></div>
       <div class="scenario-item">💬 "What is the difference between a self-signed certificate and a CA-signed certificate?" → <strong>A self-signed certificate is signed by the same entity it was issued to — no third-party verification. Browsers don't trust it by default. A CA-signed certificate is vouched for by a trusted third-party CA.</strong></div>
     </div>
 

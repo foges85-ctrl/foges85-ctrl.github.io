@@ -373,7 +373,7 @@ tbody tr:hover td{background:var(--light);}
       "name": "Web Application Firewall (WAF)",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A WAF operates at Layer 7 and specialises in protecting web applications from application-layer attacks. It understands HTTP/HTTPS and inspects web requests and responses for attack patterns: SQL injection, cross-site scripting (XSS), cross-site request forgery (CSRF), path traversal, command injection, and other OWASP Top 10 vulnerabilities. A traditional stateful firewall sees a web request as \"TCP port 443 traffic from an allowed IP\" — it cannot tell the difference between a legitimate login attempt and one containing a SQL injection payload. A WAF inspects the payload of every HTTP requ…"
+        "text": "A WAF operates at Layer 7 and specializes in protecting web applications from application-layer attacks. It understands HTTP/HTTPS and inspects web requests and responses for attack patterns: SQL injection, cross-site scripting (XSS), cross-site request forgery (CSRF), path traversal, command injection, and other OWASP Top 10 vulnerabilities. A traditional stateful firewall sees a web request as \"TCP port 443 traffic from an allowed IP\" — it cannot tell the difference between a legitimate login attempt and one containing a SQL injection payload. A WAF inspects the payload of every HTTP requ…"
       }
     },
     {
@@ -520,7 +520,7 @@ tbody tr:hover td{background:var(--light);}
     <p>NGFWs are the current enterprise standard for perimeter firewalls. Major vendors include Palo Alto Networks, Fortinet, Cisco Firepower, and Check Point. The exam distinguishes NGFWs from traditional firewalls primarily through application awareness and DPI — if a scenario requires controlling applications by name or inspecting traffic content, the answer is NGFW.</p>
 
     <h2>Web Application Firewall (WAF)</h2>
-    <p>A WAF operates at Layer 7 and specialises in protecting web applications from application-layer attacks. It understands HTTP/HTTPS and inspects web requests and responses for attack patterns: SQL injection, cross-site scripting (XSS), cross-site request forgery (CSRF), path traversal, command injection, and other OWASP Top 10 vulnerabilities. A traditional stateful firewall sees a web request as "TCP port 443 traffic from an allowed IP" — it cannot tell the difference between a legitimate login attempt and one containing a SQL injection payload. A WAF inspects the payload of every HTTP request and blocks those containing attack patterns.</p>
+    <p>A WAF operates at Layer 7 and specializes in protecting web applications from application-layer attacks. It understands HTTP/HTTPS and inspects web requests and responses for attack patterns: SQL injection, cross-site scripting (XSS), cross-site request forgery (CSRF), path traversal, command injection, and other OWASP Top 10 vulnerabilities. A traditional stateful firewall sees a web request as "TCP port 443 traffic from an allowed IP" — it cannot tell the difference between a legitimate login attempt and one containing a SQL injection payload. A WAF inspects the payload of every HTTP request and blocks those containing attack patterns.</p>
     <p>WAFs are deployed in front of web servers and web application servers. Cloud WAF services (AWS WAF, Cloudflare WAF, Azure Application Gateway WAF) protect internet-facing applications without requiring on-premises hardware. The exam question trigger for WAF: any scenario involving protecting a web application from application-layer attacks — especially SQL injection or XSS. "Which firewall protects against OWASP Top 10 attacks?" → WAF.</p>
 
     <h2>Proxy Firewall</h2>
@@ -556,7 +556,7 @@ tbody tr:hover td{background:var(--light);}
         <div class="scenario-a"><strong>Answer: Stateful inspection firewall.</strong> The state table automatically permits return traffic for established outbound connections — the browser's outbound request creates a state entry, and the web server's response is automatically allowed. A stateless packet filter would require an explicit inbound rule allowing TCP 80/443 responses, which would also allow unsolicited inbound traffic on those ports.</div>
       </div>
       <div class="scenario">
-        <div class="scenario-q">An organisation wants to allow Zoom but block other video conferencing applications, and detect exploit attempts in encrypted traffic. Which firewall type is required?</div>
+        <div class="scenario-q">An organization wants to allow Zoom but block other video conferencing applications, and detect exploit attempts in encrypted traffic. Which firewall type is required?</div>
         <div class="scenario-a"><strong>Answer: NGFW (Next-Generation Firewall).</strong> Application-level control (allow Zoom, block others) requires deep packet inspection and application awareness — capabilities only NGFWs provide. Inspecting encrypted traffic requires TLS inspection, which is also an NGFW feature. A stateful firewall sees all HTTPS traffic identically regardless of the application.</div>
       </div>
     </div>

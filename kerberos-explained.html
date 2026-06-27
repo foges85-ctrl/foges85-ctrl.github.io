@@ -441,7 +441,7 @@ tbody tr:hover td { background: #faf4ff; }
       "name": "The 5-minute clock skew rule",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Every Kerberos ticket contains a timestamp. The KDC and all clients must have clocks synchronised within 5 minutes of each other. If the clock skew exceeds this threshold, the KDC rejects the ticket as potentially replayed — an attacker could theoretically capture a ticket and reuse it later, so the time window limits this risk. This is exactly why NTP is critical in Active Directory environments . If a domain-joined machine's clock drifts more than 5 minutes from the Domain Controller (which runs the KDC), all Kerberos authentication fails for that machine — users cannot log in, cannot acc…"
+        "text": "Every Kerberos ticket contains a timestamp. The KDC and all clients must have clocks synchronized within 5 minutes of each other. If the clock skew exceeds this threshold, the KDC rejects the ticket as potentially replayed — an attacker could theoretically capture a ticket and reuse it later, so the time window limits this risk. This is exactly why NTP is critical in Active Directory environments . If a domain-joined machine's clock drifts more than 5 minutes from the Domain Controller (which runs the KDC), all Kerberos authentication fails for that machine — users cannot log in, cannot acc…"
       }
     },
     {
@@ -449,7 +449,7 @@ tbody tr:hover td { background: #faf4ff; }
       "name": "Kerberos attacks — Security+ exam targets",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Kerberos attacks are high-frequency Security+ content. The exam expects you to recognise each attack by name, understand the mechanism, and know the defence. These attacks target different stages of the Kerberos ticket chain:"
+        "text": "Kerberos attacks are high-frequency Security+ content. The exam expects you to recognize each attack by name, understand the mechanism, and know the defense. These attacks target different stages of the Kerberos ticket chain:"
       }
     },
     {
@@ -583,7 +583,7 @@ tbody tr:hover td { background: #faf4ff; }
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ What is Kerberos?</div>
       <div class="quick-answer-text">
-        Kerberos is a <strong>network authentication protocol</strong> that uses encrypted tickets to prove identity without transmitting passwords over the network. It is the default authentication protocol for Windows Active Directory domains. Kerberos runs on <strong>TCP/UDP port 88</strong> and relies on a trusted third party — the <strong>Key Distribution Centre (KDC)</strong> — to issue tickets that grant access to services. Because tickets are time-stamped, Kerberos requires all systems to have clocks synchronised within <strong>5 minutes</strong> — which is why NTP is critical in domain environments.
+        Kerberos is a <strong>network authentication protocol</strong> that uses encrypted tickets to prove identity without transmitting passwords over the network. It is the default authentication protocol for Windows Active Directory domains. Kerberos runs on <strong>TCP/UDP port 88</strong> and relies on a trusted third party — the <strong>Key Distribution Center (KDC)</strong> — to issue tickets that grant access to services. Because tickets are time-stamped, Kerberos requires all systems to have clocks synchronized within <strong>5 minutes</strong> — which is why NTP is critical in domain environments.
       </div>
     </div>
 
@@ -603,7 +603,7 @@ tbody tr:hover td { background: #faf4ff; }
         <tbody>
           <tr>
             <td class="td-term">KDC</td>
-            <td>Key Distribution Centre</td>
+            <td>Key Distribution Center</td>
             <td>The trusted third party — runs on the Domain Controller in Active Directory. Contains two services: the AS and the TGS.</td>
           </tr>
           <tr>
@@ -692,7 +692,7 @@ tbody tr:hover td { background: #faf4ff; }
 
     <h2>The 5-minute clock skew rule</h2>
 
-    <p>Every Kerberos ticket contains a timestamp. The KDC and all clients must have clocks synchronised within <strong>5 minutes</strong> of each other. If the clock skew exceeds this threshold, the KDC rejects the ticket as potentially replayed — an attacker could theoretically capture a ticket and reuse it later, so the time window limits this risk.</p>
+    <p>Every Kerberos ticket contains a timestamp. The KDC and all clients must have clocks synchronized within <strong>5 minutes</strong> of each other. If the clock skew exceeds this threshold, the KDC rejects the ticket as potentially replayed — an attacker could theoretically capture a ticket and reuse it later, so the time window limits this risk.</p>
 
     <div class="callout">
       <div class="callout-label">📌 Why this matters — the NTP connection</div>
@@ -703,38 +703,38 @@ tbody tr:hover td { background: #faf4ff; }
 
     <h2>Kerberos attacks — Security+ exam targets</h2>
 
-    <p>Kerberos attacks are high-frequency Security+ content. The exam expects you to recognise each attack by name, understand the mechanism, and know the defence. These attacks target different stages of the Kerberos ticket chain:</p>
+    <p>Kerberos attacks are high-frequency Security+ content. The exam expects you to recognize each attack by name, understand the mechanism, and know the defense. These attacks target different stages of the Kerberos ticket chain:</p>
 
     <div class="attack-grid">
       <div class="attack-card">
         <div class="attack-label">Ticket theft attack</div>
         <div class="attack-title">Pass-the-Ticket (PtT)</div>
         <div class="attack-how">An attacker steals a valid Kerberos ticket from memory (using tools like Mimikatz) and uses it to authenticate as the victim — without knowing their password. Since the ticket is already encrypted and valid, the KDC accepts it. The attacker effectively impersonates the victim for the ticket's remaining lifetime.</div>
-        <div class="attack-defend"><strong>Defence:</strong> Credential Guard (isolates LSASS in a virtualised environment), short ticket lifetimes, monitoring for anomalous ticket usage from unexpected IPs, and privileged access workstations (PAWs).</div>
+        <div class="attack-defend"><strong>Defense:</strong> Credential Guard (isolates LSASS in a virtualised environment), short ticket lifetimes, monitoring for anomalous ticket usage from unexpected IPs, and privileged access workstations (PAWs).</div>
       </div>
       <div class="attack-card">
         <div class="attack-label">Forged TGT attack</div>
         <div class="attack-title">Golden Ticket Attack</div>
         <div class="attack-how">If an attacker compromises the <strong>krbtgt account hash</strong> (the KDC's master key), they can forge completely valid TGTs for any user — including domain admins — with any expiry date, even after the real account is deleted or disabled. A Golden Ticket gives persistent, unrestricted domain access and is extremely difficult to detect because the tickets appear legitimate to every service.</div>
-        <div class="attack-defend"><strong>Defence:</strong> Reset the krbtgt account password twice (to invalidate all existing TGTs), monitor for tickets with abnormal lifetimes or group memberships, and implement tiered administration to protect Domain Controller access.</div>
+        <div class="attack-defend"><strong>Defense:</strong> Reset the krbtgt account password twice (to invalidate all existing TGTs), monitor for tickets with abnormal lifetimes or group memberships, and implement tiered administration to protect Domain Controller access.</div>
       </div>
       <div class="attack-card">
         <div class="attack-label">Forged service ticket</div>
         <div class="attack-title">Silver Ticket Attack</div>
         <div class="attack-how">If an attacker compromises a <strong>service account's password hash</strong> (rather than the krbtgt hash), they can forge service tickets for that specific service without contacting the KDC at all. More limited scope than a Golden Ticket (one service only) but harder to detect because it generates no KDC traffic.</div>
-        <div class="attack-defend"><strong>Defence:</strong> Use strong, long, randomly generated service account passwords. Enable Privileged Attribute Certificate (PAC) validation so services verify tickets with the KDC.</div>
+        <div class="attack-defend"><strong>Defense:</strong> Use strong, long, randomly generated service account passwords. Enable Privileged Attribute Certificate (PAC) validation so services verify tickets with the KDC.</div>
       </div>
       <div class="attack-card">
         <div class="attack-label">Credential attack</div>
         <div class="attack-title">Kerberoasting</div>
         <div class="attack-how">Any authenticated domain user can request service tickets for any service with a Service Principal Name (SPN) registered. The service ticket is encrypted with the service account's password hash. An attacker requests these tickets, extracts them, and cracks the encryption offline — no account lockout, no noise, no need for elevated privileges. Weak service account passwords are trivially cracked this way.</div>
-        <div class="attack-defend"><strong>Defence:</strong> Use strong, long passwords (25+ characters) for service accounts — or better, use <strong>Managed Service Accounts (MSAs)</strong> which have 240-character auto-rotating passwords that are practically uncrackable. Audit SPNs regularly.</div>
+        <div class="attack-defend"><strong>Defense:</strong> Use strong, long passwords (25+ characters) for service accounts — or better, use <strong>Managed Service Accounts (MSAs)</strong> which have 240-character auto-rotating passwords that are practically uncrackable. Audit SPNs regularly.</div>
       </div>
       <div class="attack-card">
         <div class="attack-label">Pre-auth bypass</div>
         <div class="attack-title">AS-REP Roasting</div>
         <div class="attack-how">For accounts that have <strong>Kerberos pre-authentication disabled</strong>, an attacker can request a TGT without proving identity first. The KDC responds with an AS-REP containing data encrypted with the user's password hash, which the attacker can extract and crack offline — similar to Kerberoasting but targeting user accounts instead of service accounts.</div>
-        <div class="attack-defend"><strong>Defence:</strong> Ensure Kerberos pre-authentication is enabled on all accounts (it's enabled by default — only disable for specific legacy application compatibility requirements). Monitor for AS-REP requests from accounts with pre-auth disabled.</div>
+        <div class="attack-defend"><strong>Defense:</strong> Ensure Kerberos pre-authentication is enabled on all accounts (it's enabled by default — only disable for specific legacy application compatibility requirements). Monitor for AS-REP requests from accounts with pre-auth disabled.</div>
       </div>
     </div>
 
@@ -746,7 +746,7 @@ tbody tr:hover td { background: #faf4ff; }
 <span class="code-hl">Port:</span>          TCP/UDP 88
 <span class="code-hl">Used by:</span>       Active Directory (default domain auth protocol)
 
-<span class="code-hl">KDC:</span>           Key Distribution Centre — runs on Domain Controller
+<span class="code-hl">KDC:</span>           Key Distribution Center — runs on Domain Controller
 <span class="code-hl">AS:</span>            Authentication Service — issues TGT after login
 <span class="code-hl">TGS:</span>           Ticket-Granting Service — issues service tickets
 <span class="code-hl">TGT:</span>           Ticket-Granting Ticket — master ticket, valid 10hrs (default)
@@ -772,7 +772,7 @@ tbody tr:hover td { background: #faf4ff; }
       <div class="scenario-item">💬 "An attacker compromises the krbtgt account hash and uses it to create forged tickets that grant domain admin access for any user. What is this attack?" → <strong>Golden Ticket attack — requires resetting the krbtgt password twice to remediate</strong></div>
       <div class="scenario-item">💬 "An attacker requests service tickets for all SPN-registered service accounts and cracks them offline. No account lockouts occur. What is this attack?" → <strong>Kerberoasting — use Managed Service Accounts with long auto-rotating passwords to defend</strong></div>
       <div class="scenario-item">💬 "What is the initial ticket issued by the Kerberos Authentication Service after a user provides valid credentials?" → <strong>TGT — Ticket-Granting Ticket, used to request individual service tickets without re-entering credentials</strong></div>
-      <div class="scenario-item">💬 "An organisation wants to prevent Kerberos ticket theft from memory. Which Windows feature should be enabled?" → <strong>Credential Guard — isolates LSASS in a virtualisation-based security environment, preventing Mimikatz-style ticket extraction</strong></div>
+      <div class="scenario-item">💬 "An organization wants to prevent Kerberos ticket theft from memory. Which Windows feature should be enabled?" → <strong>Credential Guard — isolates LSASS in a virtualisation-based security environment, preventing Mimikatz-style ticket extraction</strong></div>
       <div class="scenario-item">💬 "Which Kerberos attack exploits accounts that have pre-authentication disabled?" → <strong>AS-REP Roasting — the KDC returns encrypted data without verifying identity first, which can be cracked offline</strong></div>
     </div>
 

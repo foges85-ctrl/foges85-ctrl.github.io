@@ -21,7 +21,7 @@
 <link rel="canonical" href="https://itstudyhub.org/network-plus-cheat-sheet.html">
 
 <title>CompTIA Network+ Cheat Sheet 2026 — Ports, Subnetting & OSI</title>
-<meta name="description" content="Everything you need to have memorised for N10-009 on one page — every port number, OSI model layers with protocols, subnetting quick reference, routing…">
+<meta name="description" content="Everything you need to have memorized for N10-009 on one page — every port number, OSI model layers with protocols, subnetting quick reference, routing…">
 
 <!-- Google AdSense -->
 <!-- MailerLite Universal -->
@@ -667,7 +667,7 @@ tbody tr:hover td { background: #f4f8ff; }
       "name": "What's the difference between RIP, OSPF, EIGRP, and BGP?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "RIP v2: distance-vector IGP, metric is hop count (max 15), simple but slow convergence. OSPF: link-state IGP using Dijkstra's SPF algorithm, metric is cost (bandwidth), fast convergence, most common interior protocol. EIGRP: Cisco's hybrid IGP using the DUAL algorithm, metric is bandwidth + delay. BGP: path-vector EGP that routes between autonomous systems on the internet, uses AS path attributes for best-path selection. IGP = inside one organisation; EGP = between organisations."
+        "text": "RIP v2: distance-vector IGP, metric is hop count (max 15), simple but slow convergence. OSPF: link-state IGP using Dijkstra's SPF algorithm, metric is cost (bandwidth), fast convergence, most common interior protocol. EIGRP: Cisco's hybrid IGP using the DUAL algorithm, metric is bandwidth + delay. BGP: path-vector EGP that routes between autonomous systems on the internet, uses AS path attributes for best-path selection. IGP = inside one organization; EGP = between organizations."
       }
     },
     {
@@ -714,7 +714,7 @@ tbody tr:hover td { background: #f4f8ff; }
   <meta property="og:site_name" content="IT Study Hub">
   <meta property="og:url" content="https://itstudyhub.org/network-plus-cheat-sheet.html">
   <meta property="og:title" content="CompTIA Network+ Cheat Sheet 2026 — Ports, Subnetting & OSI">
-  <meta property="og:description" content="Everything you need to have memorised for N10-009 on one page — every port number, OSI model layers with protocols, subnetting quick reference, routing…">
+  <meta property="og:description" content="Everything you need to have memorized for N10-009 on one page — every port number, OSI model layers with protocols, subnetting quick reference, routing…">
 
 <script type="application/ld+json">
 {
@@ -884,7 +884,7 @@ tbody tr:hover td { background: #f4f8ff; }
 
   <!-- PORT NUMBERS -->
   <h2 id="ports" class="section-title"><span class="s-icon">🔌</span> Which port numbers are tested on Network+?</h2>
-  <p class="section-intro">Memorise every <a href="ports-and-protocols.html">port and protocol</a> below — Network+ tests these directly and in scenario questions where you must identify a blocked service from its port number.</p>
+  <p class="section-intro">Memorize every <a href="ports-and-protocols.html">port and protocol</a> below — Network+ tests these directly and in scenario questions where you must identify a blocked service from its port number.</p>
 
   <div class="table-wrap">
     <table>
@@ -903,7 +903,7 @@ tbody tr:hover td { background: #f4f8ff; }
         <tr><td class="td-blue">80</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">HTTP</td><td>Unencrypted web traffic</td></tr>
         <tr><td class="td-blue">110</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">POP3</td><td>Downloads email to device, deletes from server</td></tr>
         <tr><td class="td-blue">119</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">NNTP</td><td>Network News Transfer Protocol — Usenet</td></tr>
-        <tr><td class="td-blue">123</td><td><span class="badge badge-udp">UDP</span></td><td class="td-key">NTP</td><td>Network Time Protocol — clock synchronisation</td></tr>
+        <tr><td class="td-blue">123</td><td><span class="badge badge-udp">UDP</span></td><td class="td-key">NTP</td><td>Network Time Protocol — clock synchronization</td></tr>
         <tr><td class="td-blue">137–139</td><td><span class="badge badge-both">TCP/UDP</span></td><td class="td-key">NetBIOS</td><td>Legacy Windows name resolution and file sharing</td></tr>
         <tr><td class="td-blue">143</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">IMAP</td><td>Email stays on server, synced to devices</td></tr>
         <tr><td class="td-blue">161/162</td><td><span class="badge badge-udp">UDP</span></td><td class="td-key">SNMP</td><td>161 = queries, 162 = traps (alerts)</td></tr>
@@ -919,7 +919,7 @@ tbody tr:hover td { background: #f4f8ff; }
         <tr><td class="td-blue">1723</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">PPTP</td><td>Legacy VPN — insecure, deprecated</td></tr>
         <tr><td class="td-blue">3306</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">MySQL</td><td>MySQL database</td></tr>
         <tr><td class="td-blue">3389</td><td><span class="badge badge-tcp">TCP</span></td><td class="td-key">RDP</td><td>Remote Desktop Protocol — Windows remote access</td></tr>
-        <tr><td class="td-blue">5060/5061</td><td><span class="badge badge-both">TCP/UDP</span></td><td class="td-key">SIP</td><td>Session Initiation Protocol — VoIP signalling</td></tr>
+        <tr><td class="td-blue">5060/5061</td><td><span class="badge badge-both">TCP/UDP</span></td><td class="td-key">SIP</td><td>Session Initiation Protocol — VoIP signaling</td></tr>
       </tbody>
     </table>
   </div>
@@ -978,7 +978,7 @@ tbody tr:hover td { background: #f4f8ff; }
         <tr><td class="td-key">DHCP</td><td>Dynamic Host Configuration Protocol</td><td>Automatically assigns IP, subnet mask, gateway, and DNS to devices</td></tr>
         <tr><td class="td-key">NAT</td><td>Network Address Translation</td><td>Translates private IPs to a public IP for internet access</td></tr>
         <tr><td class="td-key">SNMP</td><td>Simple Network Management Protocol</td><td>Monitors and manages network devices — v3 adds encryption</td></tr>
-        <tr><td class="td-key">NTP</td><td>Network Time Protocol</td><td>Synchronises clocks across network devices — UDP port 123</td></tr>
+        <tr><td class="td-key">NTP</td><td>Network Time Protocol</td><td>Synchronizes clocks across network devices — UDP port 123</td></tr>
         <tr><td class="td-key">STP</td><td>Spanning Tree Protocol</td><td>Prevents switching loops by blocking redundant paths</td></tr>
         <tr><td class="td-key">802.1Q</td><td>VLAN Tagging Standard</td><td>Tags Ethernet frames with VLAN ID for trunk links between switches</td></tr>
         <tr><td class="td-key">802.1X</td><td>Port-Based Access Control</td><td>Authenticates devices before allowing network access — uses RADIUS</td></tr>
@@ -1005,8 +1005,8 @@ tbody tr:hover td { background: #f4f8ff; }
 
   <div class="exam-tip">
     <div class="exam-tip-label">⚡ Routing exam shortcuts</div>
-    <p><strong>IGP</strong> = Interior Gateway Protocol — routes within one organisation (RIP, <a href="routing-protocols.html">OSPF</a>, EIGRP)</p>
-    <p><strong>EGP</strong> = Exterior Gateway Protocol — routes between organisations/ISPs (BGP)</p>
+    <p><strong>IGP</strong> = Interior Gateway Protocol — routes within one organization (RIP, <a href="routing-protocols.html">OSPF</a>, EIGRP)</p>
+    <p><strong>EGP</strong> = Exterior Gateway Protocol — routes between organizations/ISPs (BGP)</p>
     <p><strong>Distance vector</strong> = knows direction and distance to destinations (RIP). <strong>Link state</strong> = knows the full network map (OSPF). <strong>Path vector</strong> = knows the full path including autonomous systems (BGP).</p>
   </div>
 
@@ -1056,7 +1056,7 @@ tbody tr:hover td { background: #f4f8ff; }
         <tr><td class="td-key">ACL</td><td>Access Control List — ordered list of permit/deny rules applied to router interfaces</td></tr>
         <tr><td class="td-key">NAC</td><td>Network Access Control — verifies device compliance before granting network access</td></tr>
         <tr><td class="td-key">VLAN</td><td>Virtual LAN — logical <a href="network-segmentation.html">network segments</a> on the same physical switch, isolates broadcast domains</td></tr>
-        <tr><td class="td-key">AAA</td><td>Authentication, Authorisation, Accounting — RADIUS and TACACS+ implement AAA for network access</td></tr>
+        <tr><td class="td-key">AAA</td><td>Authentication, Authorization, Accounting — RADIUS and TACACS+ implement AAA for network access</td></tr>
         <tr><td class="td-key">RADIUS</td><td>Centrally authenticates network access — encrypts password only, UDP ports 1812/1813</td></tr>
         <tr><td class="td-key">TACACS+</td><td>Cisco AAA protocol — encrypts entire packet, separates auth/authz/accounting, TCP port 49</td></tr>
       </tbody>
@@ -1108,14 +1108,14 @@ tbody tr:hover td { background: #f4f8ff; }
         <tr><td class="td-key">FQDN</td><td>Fully Qualified Domain Name</td><td>Complete domain name — www.example.com</td></tr>
         <tr><td class="td-key">MTBF</td><td>Mean Time Between Failures</td><td>Average time a device runs before failing</td></tr>
         <tr><td class="td-key">MTTR</td><td>Mean Time To Repair</td><td>Average time to restore a failed device</td></tr>
-        <tr><td class="td-key">QoS</td><td>Quality of Service</td><td>Prioritises certain traffic types — VoIP, video</td></tr>
+        <tr><td class="td-key">QoS</td><td>Quality of Service</td><td>Prioritizes certain traffic types — VoIP, video</td></tr>
         <tr><td class="td-key">SLA</td><td>Service Level Agreement</td><td>Contractual uptime and performance guarantees</td></tr>
         <tr><td class="td-key">SDN</td><td>Software-Defined Networking</td><td>Separates control plane from data plane — centralised management</td></tr>
         <tr><td class="td-key">MPLS</td><td>Multiprotocol Label Switching</td><td>WAN technology using labels to route traffic efficiently</td></tr>
         <tr><td class="td-key">PoE</td><td>Power over Ethernet</td><td>Delivers electrical power over Ethernet cable — IP phones, APs</td></tr>
         <tr><td class="td-key">STP</td><td>Spanning Tree Protocol</td><td>Prevents Layer 2 loops in switched networks</td></tr>
         <tr><td class="td-key">LACP</td><td>Link Aggregation Control Protocol</td><td>Combines multiple physical links into one logical link (802.3ad)</td></tr>
-        <tr><td class="td-key">VXLAN</td><td>Virtual Extensible LAN</td><td>Extends VLANs across Layer 3 networks — used in cloud/data centres</td></tr>
+        <tr><td class="td-key">VXLAN</td><td>Virtual Extensible LAN</td><td>Extends VLANs across Layer 3 networks — used in cloud/data centers</td></tr>
       </tbody>
     </table>
   </div>

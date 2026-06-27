@@ -399,7 +399,7 @@ tbody tr:hover td{background:#eff6ff;}
       "name": "Active Directory and Security+ — Attack Surface",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Because AD controls authentication and authorisation for the entire domain, it's a prime target for attackers. Security+ tests AD-specific attack scenarios regularly."
+        "text": "Because AD controls authentication and authorization for the entire domain, it's a prime target for attackers. Security+ tests AD-specific attack scenarios regularly."
       }
     }
   ]
@@ -547,10 +547,10 @@ tbody tr:hover td{background:#eff6ff;}
       <table>
         <thead><tr><th>Level</th><th>What It Is</th><th>Exam Note</th></tr></thead>
         <tbody>
-          <tr><td class="td-term">Forest</td><td>The top-level AD boundary — one or more domain trees that share a common schema and global catalogue</td><td>The security boundary — trust relationships and schema are forest-wide. Multiple companies in one forest = full trust.</td></tr>
+          <tr><td class="td-term">Forest</td><td>The top-level AD boundary — one or more domain trees that share a common schema and global catalog</td><td>The security boundary — trust relationships and schema are forest-wide. Multiple companies in one forest = full trust.</td></tr>
           <tr><td class="td-term">Tree</td><td>A collection of domains sharing a contiguous DNS namespace (e.g. company.com and sales.company.com)</td><td>Child domains share parent namespace — sales.company.com is a child domain of company.com</td></tr>
           <tr><td class="td-term">Domain</td><td>The core administrative unit — defines a security and replication boundary</td><td>Users and computers belong to a domain. Group Policy is applied at domain level or OU level.</td></tr>
-          <tr><td class="td-term">OU (Organisational Unit)</td><td>A container within a domain used to organise objects — like folders in a filing cabinet</td><td>The primary tool for delegation and GPO application. Admins can delegate control of an OU without giving full domain admin access.</td></tr>
+          <tr><td class="td-term">OU (Organisational Unit)</td><td>A container within a domain used to organize objects — like folders in a filing cabinet</td><td>The primary tool for delegation and GPO application. Admins can delegate control of an OU without giving full domain admin access.</td></tr>
           <tr><td class="td-term">Objects</td><td>Anything stored in AD — users, computers, groups, printers, OUs</td><td>Every object has attributes. User objects have username, password hash, email, group memberships, etc.</td></tr>
         </tbody>
       </table>
@@ -571,11 +571,11 @@ tbody tr:hover td{background:#eff6ff;}
         <thead><tr><th>Role / Service</th><th>What It Does</th></tr></thead>
         <tbody>
           <tr><td class="td-term">AD DS</td><td>Active Directory Domain Services — the core directory database of users, computers, and objects</td></tr>
-          <tr><td class="td-term">KDC</td><td>Key Distribution Centre — handles Kerberos authentication for all domain users</td></tr>
+          <tr><td class="td-term">KDC</td><td>Key Distribution Center — handles Kerberos authentication for all domain users</td></tr>
           <tr><td class="td-term">DNS Server</td><td>AD requires DNS — DCs typically run DNS to resolve AD service records (SRV records)</td></tr>
           <tr><td class="td-term">SYSVOL</td><td>A shared folder replicated across all DCs — stores Group Policy templates and logon scripts</td></tr>
-          <tr><td class="td-term">Global Catalogue</td><td>A searchable index of all objects in the forest — needed for logon and universal group lookups</td></tr>
-          <tr><td class="td-term">FSMO Roles</td><td>Flexible Single Master Operations — five specialised roles distributed across DCs (PDC Emulator, RID Master, Infrastructure Master, Domain Naming Master, Schema Master)</td></tr>
+          <tr><td class="td-term">Global Catalog</td><td>A searchable index of all objects in the forest — needed for logon and universal group lookups</td></tr>
+          <tr><td class="td-term">FSMO Roles</td><td>Flexible Single Master Operations — five specialized roles distributed across DCs (PDC Emulator, RID Master, Infrastructure Master, Domain Naming Master, Schema Master)</td></tr>
         </tbody>
       </table>
     </div>
@@ -590,7 +590,7 @@ tbody tr:hover td{background:#eff6ff;}
         <thead><tr><th>Group Type</th><th>Scope</th><th>Use Case</th></tr></thead>
         <tbody>
           <tr><td class="td-term">Domain Local</td><td>Access to resources in the same domain only</td><td>Assign permissions to resources — "Sales File Share Access"</td></tr>
-          <tr><td class="td-term">Global</td><td>Used across the entire forest</td><td>Organise users with similar roles — "Sales Department"</td></tr>
+          <tr><td class="td-term">Global</td><td>Used across the entire forest</td><td>Organize users with similar roles — "Sales Department"</td></tr>
           <tr><td class="td-term">Universal</td><td>Used across forests with trusts</td><td>Grant access across multiple domains — large enterprise use</td></tr>
           <tr><td class="td-term">Security Group</td><td>Any scope</td><td>Assign permissions to resources (files, printers, applications)</td></tr>
           <tr><td class="td-term">Distribution Group</td><td>Any scope</td><td>Email lists only — cannot be used for permissions</td></tr>
@@ -615,7 +615,7 @@ tbody tr:hover td{background:#eff6ff;}
         <thead><tr><th>GPO Setting Category</th><th>Examples</th><th>Exam Relevance</th></tr></thead>
         <tbody>
           <tr><td class="td-term">Password Policy</td><td>Minimum length, complexity, expiry, lockout threshold</td><td>A+ Core 2 — securing user accounts</td></tr>
-          <tr><td class="td-term">Account Lockout</td><td>Lock after N failed attempts, lockout duration, reset counter</td><td>A+ / Security+ — defence against brute force</td></tr>
+          <tr><td class="td-term">Account Lockout</td><td>Lock after N failed attempts, lockout duration, reset counter</td><td>A+ / Security+ — defense against brute force</td></tr>
           <tr><td class="td-term">Software Deployment</td><td>Push MSI packages to computers or users</td><td>A+ Core 2 — enterprise software management</td></tr>
           <tr><td class="td-term">Desktop Restrictions</td><td>Remove Control Panel, disable USB, restrict Run dialog</td><td>A+ Core 2 — standard hardening scenario</td></tr>
           <tr><td class="td-term">Security Settings</td><td>Audit policies, user rights assignment, firewall rules</td><td>Security+ — security baseline enforcement</td></tr>
@@ -667,11 +667,11 @@ tbody tr:hover td{background:#eff6ff;}
     </div>
 
     <h2>Active Directory and Security+ — Attack Surface</h2>
-    <p>Because AD controls authentication and authorisation for the entire domain, it's a prime target for attackers. Security+ tests AD-specific attack scenarios regularly.</p>
+    <p>Because AD controls authentication and authorization for the entire domain, it's a prime target for attackers. Security+ tests AD-specific attack scenarios regularly.</p>
 
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Attack</th><th>Target</th><th>How It Works</th><th>Defence</th></tr></thead>
+        <thead><tr><th>Attack</th><th>Target</th><th>How It Works</th><th>Defense</th></tr></thead>
         <tbody>
           <tr><td class="td-term">Pass-the-Hash</td><td>NTLM credential</td><td>Attacker extracts NTLM hash from memory and uses it to authenticate without knowing the plaintext password</td><td>Credential Guard, disable NTLM, use Kerberos only</td></tr>
           <tr><td class="td-term">Kerberoasting</td><td>Service account tickets</td><td>Requests Kerberos service tickets for SPNs and cracks them offline to recover service account passwords</td><td>Long, complex service account passwords; use gMSA (group Managed Service Accounts)</td></tr>

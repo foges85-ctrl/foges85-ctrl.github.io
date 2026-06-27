@@ -1280,13 +1280,13 @@ a:hover { text-decoration: underline; }
         <div class="cmd-line"><span class="cmd-text">tcpdump -i eth0 port 443</span><span class="cmd-comment"># Capture HTTPS traffic only</span></div>
         <div class="cmd-line"><span class="cmd-text">tcpdump -i eth0 tcp</span><span class="cmd-comment"># Capture TCP traffic only</span></div>
         <div class="cmd-line"><span class="cmd-text">tcpdump -w capture.pcap</span><span class="cmd-comment"># Write capture to file for Wireshark analysis</span></div>
-        <div class="cmd-line"><span class="cmd-text">tcpdump -r capture.pcap</span><span class="cmd-comment"># Read and analyse a previously saved capture</span></div>
+        <div class="cmd-line"><span class="cmd-text">tcpdump -r capture.pcap</span><span class="cmd-comment"># Read and analyze a previously saved capture</span></div>
         <div class="cmd-line"><span class="cmd-text">tcpdump -n -i eth0</span><span class="cmd-comment"># No DNS resolution — show raw IPs (faster)</span></div>
       </div>
     </div>
 
     <div class="callout callout-amber" style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:16px 0;font-size:14px;">
-      <strong>⚡ Security+ exam tip:</strong> tcpdump and Wireshark capture files use the <code>.pcap</code> format. In incident response scenarios, a packet capture is considered volatile evidence — it should be collected early. Wireshark is the GUI version; tcpdump is the CLI version. Both analyse the same .pcap files.
+      <strong>⚡ Security+ exam tip:</strong> tcpdump and Wireshark capture files use the <code>.pcap</code> format. In incident response scenarios, a packet capture is considered volatile evidence — it should be collected early. Wireshark is the GUI version; tcpdump is the CLI version. Both analyze the same .pcap files.
     </div>
 
     <!-- NMAP -->
@@ -1309,7 +1309,7 @@ a:hover { text-decoration: underline; }
     </div>
 
     <div class="callout callout-amber" style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:16px 0;font-size:14px;">
-      <strong>⚡ Security+ exam tip:</strong> nmap is a dual-use tool — used by administrators for asset discovery and by attackers for reconnaissance. A SYN scan (<code>-sS</code>) is called a "stealth scan" because it never completes the three-way handshake, making it harder to detect in logs. <strong>Always get written authorisation before scanning networks you don't own.</strong>
+      <strong>⚡ Security+ exam tip:</strong> nmap is a dual-use tool — used by administrators for asset discovery and by attackers for reconnaissance. A SYN scan (<code>-sS</code>) is called a "stealth scan" because it never completes the three-way handshake, making it harder to detect in logs. <strong>Always get written authorization before scanning networks you don't own.</strong>
     </div>
 
     <!-- NETWORK+ / SECURITY+ SCENARIOS -->
@@ -1330,7 +1330,7 @@ a:hover { text-decoration: underline; }
       </div>
       <div class="scenario-card" style="background:#fff;border:1px solid #e2e8f4;border-radius:10px;padding:18px 20px;">
         <div class="scenario-q" style="font-weight:700;font-size:14px;color:#0a1628;margin-bottom:8px;">A penetration tester needs to identify all live hosts on the 10.10.10.0/24 network without triggering port scan alerts. Which nmap command should they use?</div>
-        <div class="scenario-a" style="font-size:14px;color:#1c2a3e;"><strong><code>nmap -sn 10.10.10.0/24</code></strong> — the ping scan discovers live hosts using ICMP echo requests and TCP probes without scanning any ports, minimising noise in IDS logs.</div>
+        <div class="scenario-a" style="font-size:14px;color:#1c2a3e;"><strong><code>nmap -sn 10.10.10.0/24</code></strong> — the ping scan discovers live hosts using ICMP echo requests and TCP probes without scanning any ports, minimizing noise in IDS logs.</div>
       </div>
     </div>
 
@@ -1409,7 +1409,7 @@ a:hover { text-decoration: underline; }
       </div>
       <div class="cheat-row">
         <div class="cheat-cmd">ip neigh show</div>
-        <div class="cheat-use">Show ARP/neighbour table (Linux — replaces arp -a)</div>
+        <div class="cheat-use">Show ARP/neighbor table (Linux — replaces arp -a)</div>
       </div>
       <div class="cheat-row">
         <div class="cheat-cmd">ss -tuln</div>

@@ -964,7 +964,7 @@ tbody tr:hover td { background: #f6f9ff; }
       "name": "Which attacks target which OSI layer?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Layer 7 Application: SQL injection, XSS, CSRF, phishing. Layer 6 Presentation: SSL stripping, downgrade attacks. Layer 5 Session: session hijacking, replay attacks. Layer 4 Transport: SYN flood, port scanning. Layer 3 Network: IP spoofing, route poisoning, DDoS. Layer 2 Data Link: ARP spoofing, MAC flooding, VLAN hopping. Layer 1 Physical: wiretapping, jamming, hardware keyloggers. Defences operate at the same layer as the attack — WAF at Layer 7, firewall port filtering at Layer 4, port security at Layer 2."
+        "text": "Layer 7 Application: SQL injection, XSS, CSRF, phishing. Layer 6 Presentation: SSL stripping, downgrade attacks. Layer 5 Session: session hijacking, replay attacks. Layer 4 Transport: SYN flood, port scanning. Layer 3 Network: IP spoofing, route poisoning, DDoS. Layer 2 Data Link: ARP spoofing, MAC flooding, VLAN hopping. Layer 1 Physical: wiretapping, jamming, hardware keyloggers. Defenses operate at the same layer as the attack — WAF at Layer 7, firewall port filtering at Layer 4, port security at Layer 2."
       }
     },
     {
@@ -1284,10 +1284,10 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <h2>Which attacks target which OSI layer? (Security+)</h2>
 
-    <p>Security+ maps attacks to the OSI layer where they occur. Understanding which layer an attack targets tells you which layer the defence needs to operate at.</p>
+    <p>Security+ maps attacks to the OSI layer where they occur. Understanding which layer an attack targets tells you which layer the defense needs to operate at.</p>
 
     <table class="info-table">
-      <thead><tr><th>Layer</th><th>Attack</th><th>How It Targets This Layer</th><th>Defence Layer</th></tr></thead>
+      <thead><tr><th>Layer</th><th>Attack</th><th>How It Targets This Layer</th><th>Defense Layer</th></tr></thead>
       <tbody>
         <tr><td><strong>7 — Application</strong></td><td>SQL injection, XSS, CSRF</td><td>Exploits application logic and input handling</td><td>WAF, input validation, secure coding</td></tr>
         <tr><td><strong>7 — Application</strong></td><td>Phishing, social engineering</td><td>Targets the human user of the application</td><td>User training, email filtering</td></tr>
@@ -1296,12 +1296,12 @@ tbody tr:hover td { background: #f6f9ff; }
         <tr><td><strong>4 — Transport</strong></td><td>SYN flood, port scanning</td><td>Exploits TCP handshake or probes open ports</td><td>SYN cookies, firewall port filtering</td></tr>
         <tr><td><strong>3 — Network</strong></td><td>IP spoofing, route poisoning, DDoS</td><td>Forges source IPs or manipulates routing tables</td><td>BCP38, OSPF authentication, rate limiting</td></tr>
         <tr><td><strong>2 — Data Link</strong></td><td>ARP spoofing, MAC flooding, VLAN hopping</td><td>Poisons ARP cache or floods switch CAM table</td><td>DAI, port security, private VLANs</td></tr>
-        <tr><td><strong>1 — Physical</strong></td><td>Wiretapping, jamming, hardware keylogger</td><td>Intercepts or disrupts physical medium</td><td>Physical security, fibre (harder to tap), TEMPEST shielding</td></tr>
+        <tr><td><strong>1 — Physical</strong></td><td>Wiretapping, jamming, hardware keylogger</td><td>Intercepts or disrupts physical medium</td><td>Physical security, fiber (harder to tap), TEMPEST shielding</td></tr>
       </tbody>
     </table>
 
     <div class="callout callout-amber">
-      <strong>⚡ Security+ exam tip:</strong> When a scenario describes an attack, identify the layer first — then match the defence. A WAF operates at Layer 7. A firewall filtering ports operates at Layer 4. A switch with port security operates at Layer 2. The exam tests whether you can match controls to the correct layer.
+      <strong>⚡ Security+ exam tip:</strong> When a scenario describes an attack, identify the layer first — then match the defense. A WAF operates at Layer 7. A firewall filtering ports operates at Layer 4. A switch with port security operates at Layer 2. The exam tests whether you can match controls to the correct layer.
     </div>
 
     <h2>What are real exam scenarios for the OSI model?</h2>
