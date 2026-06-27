@@ -620,8 +620,8 @@ tbody tr:hover td{background:#f0fdf4;}
         </div>
         <div class="raid-body">
           <strong>How it works:</strong> Data is split across all drives in the array — each drive stores a portion of every file. This means reads and writes happen in parallel, giving throughput proportional to the number of drives.<br><br>
-          <strong>Failure behaviour:</strong> If any single drive fails, <strong>all data is lost</strong> — there is no redundancy. RAID 0 trades safety for speed entirely.<br><br>
-          <strong>Use case:</strong> Video editing scratch disks, gaming drives, any workload prioritising speed over data safety. Not appropriate for any data you cannot afford to lose.
+          <strong>Failure behavior:</strong> If any single drive fails, <strong>all data is lost</strong> — there is no redundancy. RAID 0 trades safety for speed entirely.<br><br>
+          <strong>Use case:</strong> Video editing scratch disks, gaming drives, any workload prioritizing speed over data safety. Not appropriate for any data you cannot afford to lose.
           <div class="raid-stats">
             <span class="raid-stat"><strong>Min drives:</strong> 2</span>
             <span class="raid-stat"><strong>Capacity:</strong> 100% of total (no overhead)</span>
@@ -640,7 +640,7 @@ tbody tr:hover td{background:#f0fdf4;}
         </div>
         <div class="raid-body">
           <strong>How it works:</strong> Every write is duplicated to two (or more) drives simultaneously — each drive is an exact mirror of the other. Reads can be served from either drive, improving read performance slightly.<br><br>
-          <strong>Failure behaviour:</strong> If one drive fails, the other contains a complete copy of all data — the system continues operating without data loss. Replace the failed drive and the array rebuilds automatically.<br><br>
+          <strong>Failure behavior:</strong> If one drive fails, the other contains a complete copy of all data — the system continues operating without data loss. Replace the failed drive and the array rebuilds automatically.<br><br>
           <strong>Use case:</strong> OS drives, critical data that must survive a single drive failure. Common in servers and workstations where downtime is unacceptable.
           <div class="raid-stats">
             <span class="raid-stat"><strong>Min drives:</strong> 2</span>
@@ -661,7 +661,7 @@ tbody tr:hover td{background:#f0fdf4;}
         </div>
         <div class="raid-body">
           <strong>How it works:</strong> Data is striped across all drives like RAID 0, but <strong>parity information</strong> is also distributed across all drives. Parity is a mathematical checksum — if one drive fails, its data can be reconstructed from the parity and remaining data on the other drives.<br><br>
-          <strong>Failure behaviour:</strong> The array can survive the failure of <strong>one drive</strong>. The system continues operating (in a degraded state) until the failed drive is replaced and the array rebuilds. If a second drive fails during rebuild — all data is lost.<br><br>
+          <strong>Failure behavior:</strong> The array can survive the failure of <strong>one drive</strong>. The system continues operating (in a degraded state) until the failed drive is replaced and the array rebuilds. If a second drive fails during rebuild — all data is lost.<br><br>
           <strong>Use case:</strong> NAS drives, file servers, small business storage — good balance of capacity, performance, and redundancy.
           <div class="raid-stats">
             <span class="raid-stat"><strong>Min drives:</strong> 3</span>
@@ -682,7 +682,7 @@ tbody tr:hover td{background:#f0fdf4;}
         </div>
         <div class="raid-body">
           <strong>How it works:</strong> RAID 10 combines RAID 1 (mirroring) and RAID 0 (striping). Drives are first paired as mirrors (RAID 1), then those mirrors are striped together (RAID 0). You get both the performance of striping and the fault tolerance of mirroring.<br><br>
-          <strong>Failure behaviour:</strong> Can tolerate the failure of <strong>one drive per mirror pair</strong>. With 4 drives (2 pairs), up to 2 drives can fail — as long as they're not both from the same mirror pair. If both drives in a mirror pair fail, data is lost.<br><br>
+          <strong>Failure behavior:</strong> Can tolerate the failure of <strong>one drive per mirror pair</strong>. With 4 drives (2 pairs), up to 2 drives can fail — as long as they're not both from the same mirror pair. If both drives in a mirror pair fail, data is lost.<br><br>
           <strong>Use case:</strong> Database servers, high-transaction workloads requiring both speed and redundancy. The premium choice when performance and fault tolerance are both required.
           <div class="raid-stats">
             <span class="raid-stat"><strong>Min drives:</strong> 4</span>
@@ -721,7 +721,7 @@ tbody tr:hover td{background:#f0fdf4;}
       <div class="scenario-item">💬 "A user installs an M.2 drive into a new laptop and it is not detected. The drive is NVMe but the M.2 slot only supports SATA. What is the issue?" → <strong>Protocol mismatch — the M.2 slot is SATA-only and does not support NVMe (PCIe). The drive requires a slot with PCIe/NVMe support.</strong></div>
       <div class="scenario-item">💬 "A hard drive makes a clicking sound during operation. What does this typically indicate?" → <strong>Imminent drive failure — the read/write head is failing (head crash or bearing failure). Back up data immediately.</strong></div>
       <div class="scenario-item">💬 "A server needs storage that can survive a single drive failure with the best read performance and minimal capacity overhead. Which RAID level is most appropriate?" → <strong>RAID 5 — stripes data with distributed parity, survives one drive failure, and uses only 1 drive's worth of space for parity overhead (better than RAID 1's 50% overhead).</strong></div>
-      <div class="scenario-item">💬 "A company implements RAID 1 on their file server. An employee accidentally deletes an important folder. Will RAID protect the data?" → <strong>No — RAID mirrors are synchronised in real time. The deletion replicates to both drives immediately. RAID is not a substitute for backups.</strong></div>
+      <div class="scenario-item">💬 "A company implements RAID 1 on their file server. An employee accidentally deletes an important folder. Will RAID protect the data?" → <strong>No — RAID mirrors are synchronized in real time. The deletion replicates to both drives immediately. RAID is not a substitute for backups.</strong></div>
       <div class="scenario-item">💬 "Which RAID level requires a minimum of 4 drives and provides both striping performance and mirroring redundancy?" → <strong>RAID 10 (RAID 1+0) — stripe of mirrors.</strong></div>
       <div class="scenario-item">💬 "A technician needs to recommend the fastest storage upgrade for a laptop currently using a 2.5-inch SATA HDD. What is the best option if the laptop has an M.2 slot?" → <strong>NVMe M.2 SSD — if the M.2 slot supports NVMe/PCIe, this provides up to 20× the speed of the HDD. Confirm slot compatibility before purchase.</strong></div>
       <div class="scenario-item">💬 "In a RAID 5 array of 4 drives (each 2 TB), how much usable storage is available?" → <strong>6 TB — RAID 5 uses the equivalent of one drive for parity. (N-1) × drive size = (4-1) × 2 TB = 6 TB.</strong></div>

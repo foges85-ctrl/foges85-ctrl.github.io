@@ -600,7 +600,7 @@ tbody tr:hover td { background: #f4f8ff; }
       "name": "Why SNMP exists",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Managing a network with hundreds of routers, switches, and servers individually would be impossible at scale. SNMP solves this by giving a central network management station (NMS) a standardised way to query any managed device for its current status and statistics — without logging into each device separately. Think of it as a health-monitoring system for your entire network infrastructure. The NMS can poll every device every few minutes, collect data, graph trends, and send alerts when something goes wrong — all automatically."
+        "text": "Managing a network with hundreds of routers, switches, and servers individually would be impossible at scale. SNMP solves this by giving a central network management station (NMS) a standardized way to query any managed device for its current status and statistics — without logging into each device separately. Think of it as a health-monitoring system for your entire network infrastructure. The NMS can poll every device every few minutes, collect data, graph trends, and send alerts when something goes wrong — all automatically."
       }
     },
     {
@@ -608,7 +608,7 @@ tbody tr:hover td { background: #f4f8ff; }
       "name": "How SNMP communication works",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "SNMP communication happens in two directions — the manager polling agents, and agents sending unsolicited traps. Both use UDP, which makes SNMP lightweight but also connectionless. GetRequest Manager → Agent (UDP 161) Ask for the value of a specific OID e.g. \"What is the current CPU utilisation?\" GetNextRequest Manager → Agent (UDP 161) Walk through the MIB tree sequentially GetBulkRequest Manager → Agent (UDP 161) — SNMPv2c+ Retrieve large amounts of data efficiently SetRequest Manager → Agent (UDP 161) Change a value on the device e.g. \"Change the interface description\" GetResponse Agent …"
+        "text": "SNMP communication happens in two directions — the manager polling agents, and agents sending unsolicited traps. Both use UDP, which makes SNMP lightweight but also connectionless. GetRequest Manager → Agent (UDP 161) Ask for the value of a specific OID e.g. \"What is the current CPU utilization?\" GetNextRequest Manager → Agent (UDP 161) Walk through the MIB tree sequentially GetBulkRequest Manager → Agent (UDP 161) — SNMPv2c+ Retrieve large amounts of data efficiently SetRequest Manager → Agent (UDP 161) Change a value on the device e.g. \"Change the interface description\" GetResponse Agent …"
       }
     },
     {
@@ -648,7 +648,7 @@ tbody tr:hover td { background: #f4f8ff; }
       "name": "SNMP in network monitoring — real-world context",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "In practice, SNMP is what powers most enterprise network monitoring platforms. Tools like SolarWinds NPM, PRTG, Nagios, Zabbix, and LibreNMS all use SNMP to collect metrics from managed devices. A typical deployment polls every managed device every 5 minutes, collects interface traffic counters, CPU and memory utilisation, and interface error rates, then graphs the data over time. SNMP traps provide near-real-time alerting — a switch sending a trap the moment a port goes down is far faster than waiting for the next polling cycle. Port 161 UDP — SNMP queries (manager to agent). Port 162 UDP …"
+        "text": "In practice, SNMP is what powers most enterprise network monitoring platforms. Tools like SolarWinds NPM, PRTG, Nagios, Zabbix, and LibreNMS all use SNMP to collect metrics from managed devices. A typical deployment polls every managed device every 5 minutes, collects interface traffic counters, CPU and memory utilization, and interface error rates, then graphs the data over time. SNMP traps provide near-real-time alerting — a switch sending a trap the moment a port goes down is far faster than waiting for the next polling cycle. Port 161 UDP — SNMP queries (manager to agent). Port 162 UDP …"
       }
     },
     {
@@ -788,7 +788,7 @@ tbody tr:hover td { background: #f4f8ff; }
 
     <h2>Why SNMP exists</h2>
 
-    <p>Managing a network with hundreds of routers, switches, and servers individually would be impossible at scale. SNMP solves this by giving a central <strong>network management station (NMS)</strong> a standardised way to query any managed device for its current status and statistics — without logging into each device separately.</p>
+    <p>Managing a network with hundreds of routers, switches, and servers individually would be impossible at scale. SNMP solves this by giving a central <strong>network management station (NMS)</strong> a standardized way to query any managed device for its current status and statistics — without logging into each device separately.</p>
 
     <p>Think of it as a health-monitoring system for your entire network infrastructure. The NMS can poll every device every few minutes, collect data, graph trends, and send alerts when something goes wrong — all automatically.</p>
 
@@ -827,7 +827,7 @@ tbody tr:hover td { background: #f4f8ff; }
       <div class="code-label">SNMP message types</div>
       <pre><span class="code-hl">GetRequest</span>       <span class="code-comment">Manager → Agent  (UDP 161)</span>
                  <span class="code-comment">Ask for the value of a specific OID</span>
-                 <span class="code-comment">e.g. "What is the current CPU utilisation?"</span>
+                 <span class="code-comment">e.g. "What is the current CPU utilization?"</span>
 
 <span class="code-hl">GetNextRequest</span>   <span class="code-comment">Manager → Agent  (UDP 161)</span>
                  <span class="code-comment">Walk through the MIB tree sequentially</span>
@@ -847,7 +847,7 @@ tbody tr:hover td { background: #f4f8ff; }
                  <span class="code-comment">e.g. link down, high temperature, auth failure</span>
 
 <span class="code-teal">Inform</span>           <span class="code-comment">Agent → Manager  (UDP 162) — SNMPv2c+</span>
-                 <span class="code-comment">Like a trap but requires acknowledgement</span></pre>
+                 <span class="code-comment">Like a trap but requires acknowledgment</span></pre>
     </div>
 
     <div class="exam-tip">
@@ -872,7 +872,7 @@ tbody tr:hover td { background: #f4f8ff; }
 <span class="code-comment">Each number represents a branch in the OID tree</span></pre>
     </div>
 
-    <p>You don't need to memorise OIDs for the exam — but you do need to understand that OIDs are the addressing system SNMP uses to identify specific data points, and that the MIB is the schema defining which OIDs a device supports and what they mean.</p>
+    <p>You don't need to memorize OIDs for the exam — but you do need to understand that OIDs are the addressing system SNMP uses to identify specific data points, and that the MIB is the schema defining which OIDs a device supports and what they mean.</p>
 
     <h2>SNMPv1 vs SNMPv2c vs SNMPv3</h2>
 
@@ -968,7 +968,7 @@ tbody tr:hover td { background: #f4f8ff; }
 
     <p>In practice, SNMP is what powers most enterprise network monitoring platforms. Tools like SolarWinds NPM, PRTG, Nagios, Zabbix, and LibreNMS all use SNMP to collect metrics from managed devices.</p>
 
-    <p>A typical deployment polls every managed device every 5 minutes, collects interface traffic counters, CPU and memory utilisation, and interface error rates, then graphs the data over time. SNMP traps provide near-real-time alerting — a switch sending a trap the moment a port goes down is far faster than waiting for the next polling cycle.</p>
+    <p>A typical deployment polls every managed device every 5 minutes, collects interface traffic counters, CPU and memory utilization, and interface error rates, then graphs the data over time. SNMP traps provide near-real-time alerting — a switch sending a trap the moment a port goes down is far faster than waiting for the next polling cycle.</p>
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ SNMP exam summary — what to know cold</div>

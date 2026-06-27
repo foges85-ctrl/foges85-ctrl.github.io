@@ -457,7 +457,7 @@ tbody tr:hover td { background: #f4f8ff; }
       "name": "802.1X — RADIUS for wired and wireless access control",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "802.1X is the IEEE standard for port-based network access control. It uses RADIUS as its backend authentication server. When a device plugs into a switch port or connects to a Wi-Fi network, 802.1X holds them in an unauthenticated state — a kind of quarantine — until RADIUS verifies their identity. Without 802.1X, anyone who physically plugs into a switch port gets network access. With 802.1X, every device must authenticate before any traffic is allowed — unauthenticated devices are placed in a quarantine VLAN or blocked entirely. This is the standard defence against rogue device attacks — …"
+        "text": "802.1X is the IEEE standard for port-based network access control. It uses RADIUS as its backend authentication server. When a device plugs into a switch port or connects to a Wi-Fi network, 802.1X holds them in an unauthenticated state — a kind of quarantine — until RADIUS verifies their identity. Without 802.1X, anyone who physically plugs into a switch port gets network access. With 802.1X, every device must authenticate before any traffic is allowed — unauthenticated devices are placed in a quarantine VLAN or blocked entirely. This is the standard defense against rogue device attacks — …"
       }
     },
     {
@@ -473,7 +473,7 @@ tbody tr:hover td { background: #f4f8ff; }
       "name": "RADIUS in enterprise deployments",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "In production environments, RADIUS doesn't work in isolation. It connects to backend systems to check credentials and retrieve authorisation policies: User connects to Wi-Fi / VPN / switch port │ ▼ Authenticator (AP / VPN gateway / switch) │ EAP over RADIUS (UDP 1812) ▼ RADIUS Server (e.g. Microsoft NPS, FreeRADIUS, Cisco ISE) │ ├──▶ Active Directory / LDAP (verify credentials) │ ├──▶ Certificate Authority (validate client certs for EAP-TLS) │ └──▶ Policy engine (assign VLAN, ACL, time restrictions) │ └─▶ Access-Accept (+ VLAN tag, ACL) → user gets network access Access-Reject → user blocke…"
+        "text": "In production environments, RADIUS doesn't work in isolation. It connects to backend systems to check credentials and retrieve authorization policies: User connects to Wi-Fi / VPN / switch port │ ▼ Authenticator (AP / VPN gateway / switch) │ EAP over RADIUS (UDP 1812) ▼ RADIUS Server (e.g. Microsoft NPS, FreeRADIUS, Cisco ISE) │ ├──▶ Active Directory / LDAP (verify credentials) │ ├──▶ Certificate Authority (validate client certs for EAP-TLS) │ └──▶ Policy engine (assign VLAN, ACL, time restrictions) │ └─▶ Access-Accept (+ VLAN tag, ACL) → user gets network access Access-Reject → user blocke…"
       }
     },
     {
@@ -607,7 +607,7 @@ tbody tr:hover td { background: #f4f8ff; }
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ What is RADIUS?</div>
       <div class="quick-answer-text">
-        RADIUS (Remote Authentication Dial-In User Service) is a networking protocol that provides centralised <strong>AAA — Authentication, Authorisation, and Accounting</strong> for users connecting to a network. It runs over <strong>UDP port 1812</strong> (authentication) and <strong>UDP port 1813</strong> (accounting). RADIUS is the standard for authenticating VPN users, Wi-Fi clients (via 802.1X), and remote access — rather than storing credentials on each device, RADIUS forwards them to a central server that makes the access decision.
+        RADIUS (Remote Authentication Dial-In User Service) is a networking protocol that provides centralised <strong>AAA — Authentication, Authorization, and Accounting</strong> for users connecting to a network. It runs over <strong>UDP port 1812</strong> (authentication) and <strong>UDP port 1813</strong> (accounting). RADIUS is the standard for authenticating VPN users, Wi-Fi clients (via 802.1X), and remote access — rather than storing credentials on each device, RADIUS forwards them to a central server that makes the access decision.
       </div>
     </div>
 
@@ -624,7 +624,7 @@ tbody tr:hover td { background: #f4f8ff; }
       </div>
       <div class="aaa-card authz">
         <div class="aaa-letter">A</div>
-        <div class="aaa-word">Authorisation</div>
+        <div class="aaa-word">Authorization</div>
         <div class="aaa-question">What can you access?</div>
         <div class="aaa-desc">Determining what resources the authenticated user is permitted to access — VLANs, network segments, services, admin rights.</div>
       </div>
@@ -666,7 +666,7 @@ tbody tr:hover td { background: #f4f8ff; }
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ RADIUS ports — cold recall</div>
-      <p><strong>UDP 1812</strong> — RADIUS authentication and authorisation (Access-Request, Access-Accept, Access-Reject).</p>
+      <p><strong>UDP 1812</strong> — RADIUS authentication and authorization (Access-Request, Access-Accept, Access-Reject).</p>
       <p><strong>UDP 1813</strong> — RADIUS accounting (session start, stop, and interim updates).</p>
       <p>Older implementations used UDP 1645 and 1646 respectively — the exam may reference these legacy ports. Know both pairs. RADIUS uses UDP (not TCP) because it handles its own retransmission logic.</p>
     </div>
@@ -698,13 +698,13 @@ tbody tr:hover td { background: #f4f8ff; }
           </tr>
           <tr>
             <td class="td-term">AAA separation</td>
-            <td>Authentication and authorisation combined</td>
-            <td>Authentication, authorisation, and accounting fully separated</td>
+            <td>Authentication and authorization combined</td>
+            <td>Authentication, authorization, and accounting fully separated</td>
           </tr>
           <tr>
             <td class="td-term">Primary use</td>
             <td>Network access — VPN, Wi-Fi, 802.1X</td>
-            <td>Device administration — router/switch command authorisation</td>
+            <td>Device administration — router/switch command authorization</td>
           </tr>
           <tr>
             <td class="td-term">Multiprotocol</td>
@@ -761,7 +761,7 @@ tbody tr:hover td { background: #f4f8ff; }
     <div class="callout">
       <div class="callout-label">📌 Why 802.1X matters for Security+</div>
       <p>Without 802.1X, anyone who physically plugs into a switch port gets network access. With 802.1X, <strong>every device must authenticate before any traffic is allowed</strong> — unauthenticated devices are placed in a quarantine VLAN or blocked entirely.</p>
-      <p>This is the standard defence against <strong>rogue device attacks</strong> — an attacker plugging a laptop into an empty switch port and accessing the internal network. 802.1X prevents this at the port level.</p>
+      <p>This is the standard defense against <strong>rogue device attacks</strong> — an attacker plugging a laptop into an empty switch port and accessing the internal network. 802.1X prevents this at the port level.</p>
       <p>The exam may describe 802.1X as <strong>"port-based NAC (Network Access Control)"</strong> — this is the same thing.</p>
     </div>
 
@@ -805,7 +805,7 @@ tbody tr:hover td { background: #f4f8ff; }
 
     <h2>RADIUS in enterprise deployments</h2>
 
-    <p>In production environments, RADIUS doesn't work in isolation. It connects to backend systems to check credentials and retrieve authorisation policies:</p>
+    <p>In production environments, RADIUS doesn't work in isolation. It connects to backend systems to check credentials and retrieve authorization policies:</p>
 
     <div class="code-block">
       <div class="code-label">RADIUS enterprise architecture</div>
@@ -834,12 +834,12 @@ tbody tr:hover td { background: #f4f8ff; }
     <div class="scenario-list">
       <div class="scenario-item">💬 "A company wants to authenticate VPN users against Active Directory from a central server rather than storing credentials on the VPN appliance. Which protocol should they use?" → <strong>RADIUS — centralised AAA, forwards credentials to Active Directory for verification</strong></div>
       <div class="scenario-item">💬 "Which protocol uses TCP port 49 and fully encrypts the entire authentication packet — commonly used for Cisco device administration?" → <strong>TACACS+</strong></div>
-      <div class="scenario-item">💬 "What are the three components of AAA?" → <strong>Authentication (who are you), Authorisation (what can you access), Accounting (what did you do)</strong></div>
+      <div class="scenario-item">💬 "What are the three components of AAA?" → <strong>Authentication (who are you), Authorization (what can you access), Accounting (what did you do)</strong></div>
       <div class="scenario-item">💬 "Which IEEE standard provides port-based network access control, blocking unauthenticated devices at the switch port?" → <strong>802.1X — uses RADIUS as the backend authentication server</strong></div>
       <div class="scenario-item">💬 "Which EAP method requires certificates on both the client and server and provides the strongest authentication?" → <strong>EAP-TLS — mutual certificate authentication, no passwords</strong></div>
       <div class="scenario-item">💬 "A security team wants to prevent rogue devices from connecting to switch ports. What technology should be implemented?" → <strong>802.1X port-based NAC with RADIUS — unauthenticated devices are blocked or quarantined</strong></div>
       <div class="scenario-item">💬 "What are the RADIUS ports for authentication and accounting?" → <strong>UDP 1812 (authentication) and UDP 1813 (accounting)</strong></div>
-      <div class="scenario-item">💬 "A network engineer needs to log every command an administrator executes on a Cisco router. Which AAA protocol best supports this?" → <strong>TACACS+ — separates authentication, authorisation, and accounting; supports per-command authorisation and full logging on Cisco devices</strong></div>
+      <div class="scenario-item">💬 "A network engineer needs to log every command an administrator executes on a Cisco router. Which AAA protocol best supports this?" → <strong>TACACS+ — separates authentication, authorization, and accounting; supports per-command authorization and full logging on Cisco devices</strong></div>
     </div>
 
     <hr class="divider">

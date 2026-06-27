@@ -345,7 +345,7 @@ tbody tr:hover td{background:#f0fdf4;}
       "name": "What's the difference between Type 1 and Type 2 hypervisors?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Type 1 (bare-metal) hypervisors run directly on physical hardware with no host OS underneath — the hypervisor is the operating system. They have the best performance and smallest attack surface, and are used in enterprise data centres, production servers, and cloud infrastructure. Examples: VMware ESXi, Microsoft Hyper-V (server), Citrix XenServer, KVM. Type 2 (hosted) hypervisors run on top of a host OS as an application. They have higher overhead and a larger attack surface, and are used on developer workstations, home labs, and testing environments. Examples: VMware Workstation, Oracle VirtualBox, Parallels Desktop, QEMU. One-line test: Type 1 = no host OS underneath; Type 2 = runs on top of a host OS."
+        "text": "Type 1 (bare-metal) hypervisors run directly on physical hardware with no host OS underneath — the hypervisor is the operating system. They have the best performance and smallest attack surface, and are used in enterprise data centers, production servers, and cloud infrastructure. Examples: VMware ESXi, Microsoft Hyper-V (server), Citrix XenServer, KVM. Type 2 (hosted) hypervisors run on top of a host OS as an application. They have higher overhead and a larger attack surface, and are used on developer workstations, home labs, and testing environments. Examples: VMware Workstation, Oracle VirtualBox, Parallels Desktop, QEMU. One-line test: Type 1 = no host OS underneath; Type 2 = runs on top of a host OS."
       }
     },
     {
@@ -377,7 +377,7 @@ tbody tr:hover td{background:#f0fdf4;}
       "name": "What are the main security concerns with virtualization?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "VM escape — the most severe risk — is when an attacker exploits a hypervisor vulnerability to break out of a VM and access the host or other VMs; defence is keeping hypervisors patched and using Type 1 isolation. VM sprawl creates forgotten, unpatched VMs that become attack vectors; defence is VM lifecycle management and patch compliance. Snapshot risks include restoring an old snapshot that rolls back security patches; defence is limiting retention and deleting snapshots after testing. Shared resources mean side-channel attacks (Spectre, Meltdown) can leak data between VMs on the same host; defence is CPU microcode patching and isolating sensitive workloads."
+        "text": "VM escape — the most severe risk — is when an attacker exploits a hypervisor vulnerability to break out of a VM and access the host or other VMs; defense is keeping hypervisors patched and using Type 1 isolation. VM sprawl creates forgotten, unpatched VMs that become attack vectors; defense is VM lifecycle management and patch compliance. Snapshot risks include restoring an old snapshot that rolls back security patches; defense is limiting retention and deleting snapshots after testing. Shared resources mean side-channel attacks (Spectre, Meltdown) can leak data between VMs on the same host; defense is CPU microcode patching and isolating sensitive workloads."
       }
     },
     {
@@ -385,7 +385,7 @@ tbody tr:hover td{background:#f0fdf4;}
       "name": "What are real exam scenarios for virtualization?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Common virtualization exam scenarios: maximum-performance production VMs running 24/7 in a data centre point to Type 1 (bare-metal) hypervisors like VMware ESXi; a developer testing software on multiple OS types from a laptop points to Type 2 (hosted) like VMware Workstation or VirtualBox; safely testing a potentially malicious script points to taking a snapshot, running the script, then reverting. A customer managing the OS and apps but not the hardware identifies IaaS. Microsoft 365 is SaaS. An attacker breaking from a VM to the host through a hypervisor flaw is VM escape. Forgotten unpatched VMs are the security risk of VM sprawl."
+        "text": "Common virtualization exam scenarios: maximum-performance production VMs running 24/7 in a data center point to Type 1 (bare-metal) hypervisors like VMware ESXi; a developer testing software on multiple OS types from a laptop points to Type 2 (hosted) like VMware Workstation or VirtualBox; safely testing a potentially malicious script points to taking a snapshot, running the script, then reverting. A customer managing the OS and apps but not the hardware identifies IaaS. Microsoft 365 is SaaS. An attacker breaking from a VM to the host through a hypervisor flaw is VM escape. Forgotten unpatched VMs are the security risk of VM sprawl."
       }
     },
     {
@@ -536,7 +536,7 @@ tbody tr:hover td{background:#f0fdf4;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ What is Virtualization?</div>
       <div class="quick-answer-text">
-        Virtualization is the process of running <strong>multiple virtual computers on a single physical machine</strong>. A piece of software called a <strong>hypervisor</strong> divides the physical hardware — CPU, RAM, storage, network — into isolated virtual machines (VMs), each behaving as if it were a dedicated physical computer. One server running 10 VMs replaces 10 physical servers, dramatically reducing hardware costs, power consumption, and data centre space.
+        Virtualization is the process of running <strong>multiple virtual computers on a single physical machine</strong>. A piece of software called a <strong>hypervisor</strong> divides the physical hardware — CPU, RAM, storage, network — into isolated virtual machines (VMs), each behaving as if it were a dedicated physical computer. One server running 10 VMs replaces 10 physical servers, dramatically reducing hardware costs, power consumption, and data center space.
       </div>
     </div>
 
@@ -550,7 +550,7 @@ tbody tr:hover td{background:#f0fdf4;}
         <div class="compare-body">
           Runs <strong>directly on the physical hardware</strong> — there is no host OS underneath it. The hypervisor IS the operating system. VMs run on top of the hypervisor, which directly manages the hardware resources.<br><br>
           <strong>Performance:</strong> Best — no host OS overhead.<br>
-          <strong>Use case:</strong> Enterprise data centres, production servers, cloud infrastructure.<br>
+          <strong>Use case:</strong> Enterprise data centers, production servers, cloud infrastructure.<br>
           <strong>Security:</strong> Smaller attack surface — no underlying OS to compromise.
         </div>
         <div class="compare-examples">Examples: VMware ESXi · Microsoft Hyper-V (server) · Citrix XenServer · KVM (Linux kernel)</div>
@@ -570,7 +570,7 @@ tbody tr:hover td{background:#f0fdf4;}
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ Type 1 vs Type 2 — The one-line test</div>
-      <p><strong>Type 1 = no host OS underneath</strong> (bare metal). <strong>Type 2 = runs on top of a host OS</strong> (hosted). The exam gives you a scenario — "A company wants maximum performance for production VMs running 24/7 in a data centre." → Type 1. "A developer wants to test software in different OS environments on their laptop." → Type 2.</p>
+      <p><strong>Type 1 = no host OS underneath</strong> (bare metal). <strong>Type 2 = runs on top of a host OS</strong> (hosted). The exam gives you a scenario — "A company wants maximum performance for production VMs running 24/7 in a data center." → Type 1. "A developer wants to test software in different OS environments on their laptop." → Type 2.</p>
       <p>Remember: <strong>VMware ESXi = Type 1. VMware Workstation = Type 2.</strong> Both are VMware products but fundamentally different architectures.</p>
     </div>
 
@@ -627,16 +627,16 @@ tbody tr:hover td{background:#f0fdf4;}
     <div class="callout">
       <div class="callout-label">Cloud Deployment Models</div>
       <p><strong>Public cloud:</strong> Resources shared among multiple customers on provider infrastructure (AWS, Azure, GCP). Most cost-effective, least control.</p>
-      <p><strong>Private cloud:</strong> Cloud infrastructure dedicated to a single organisation — either on-premises or hosted. Full control, higher cost.</p>
+      <p><strong>Private cloud:</strong> Cloud infrastructure dedicated to a single organization — either on-premises or hosted. Full control, higher cost.</p>
       <p><strong>Hybrid cloud:</strong> Combination of public and private — workloads move between them based on need. Common enterprise model.</p>
-      <p><strong>Community cloud:</strong> Shared infrastructure for organisations with similar requirements (government agencies, healthcare providers). Less common on the exam but present.</p>
+      <p><strong>Community cloud:</strong> Shared infrastructure for organizations with similar requirements (government agencies, healthcare providers). Less common on the exam but present.</p>
     </div>
 
     <h2>What are the main security concerns with virtualization?</h2>
 
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Concern</th><th>Description</th><th>Defence</th></tr></thead>
+        <thead><tr><th>Concern</th><th>Description</th><th>Defense</th></tr></thead>
         <tbody>
           <tr><td class="td-term">VM Escape</td><td>An attacker exploits a hypervisor vulnerability to break out of a VM and access the host system or other VMs — the most severe virtualisation attack</td><td>Keep hypervisors patched, use Type 1 for isolation, monitor for anomalous inter-VM communication</td></tr>
           <tr><td class="td-term">VM Sprawl</td><td>Uncontrolled creation of VMs leads to unpatched, forgotten systems that become attack vectors</td><td>VM lifecycle management policies, automated patch compliance, regular audits of running VMs</td></tr>
@@ -670,7 +670,7 @@ tbody tr:hover td{background:#f0fdf4;}
 
     
     <h2>Why does virtualization matter in the enterprise?</h2>
-    <p>Before virtualisation, each physical server ran one operating system and one primary application. A web server, database server, and email server each needed dedicated hardware — which sat idle most of the time, wasting power, cooling, and rack space. Virtualisation solved this by running multiple VMs on a single physical host, each VM believing it has exclusive access to hardware resources that are actually shared. Modern enterprise datacentres routinely run dozens of VMs per physical host, with hardware utilisation rates of 60–80% instead of the 5–15% common with dedicated physical servers.</p>
+    <p>Before virtualisation, each physical server ran one operating system and one primary application. A web server, database server, and email server each needed dedicated hardware — which sat idle most of the time, wasting power, cooling, and rack space. Virtualisation solved this by running multiple VMs on a single physical host, each VM believing it has exclusive access to hardware resources that are actually shared. Modern enterprise datacentres routinely run dozens of VMs per physical host, with hardware utilization rates of 60–80% instead of the 5–15% common with dedicated physical servers.</p>
     <p>For the exam: understand that virtualisation provides <strong>hardware consolidation</strong> (fewer physical servers for the same workload), <strong>improved disaster recovery</strong> (VMs can be backed up as single files and restored to different hardware), <strong>rapid provisioning</strong> (a new server can be deployed in minutes from a template), and <strong>isolation</strong> (a compromised VM doesn't directly affect the hypervisor or other VMs — though VM escape vulnerabilities can break this boundary).</p>
 
     <h2>What components make up a virtual machine?</h2>

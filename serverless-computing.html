@@ -321,7 +321,7 @@ tbody tr:hover td{background:#eff6ff;}
       "name": "What is a cold start in serverless?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A cold start occurs when a serverless function is invoked after being idle — the provider needs to provision a new execution environment (download the code, initialise the runtime) before running the function. This adds latency, typically 100ms to a few seconds depending on the runtime and function size. Cold starts are the primary performance trade-off of serverless compared to always-on containers or VMs. Mitigation techniques include provisioned concurrency (AWS Lambda), keeping functions warm with scheduled pings, and choosing faster runtimes like Node.js or Python over Java."
+        "text": "A cold start occurs when a serverless function is invoked after being idle — the provider needs to provision a new execution environment (download the code, initialize the runtime) before running the function. This adds latency, typically 100ms to a few seconds depending on the runtime and function size. Cold starts are the primary performance trade-off of serverless compared to always-on containers or VMs. Mitigation techniques include provisioned concurrency (AWS Lambda), keeping functions warm with scheduled pings, and choosing faster runtimes like Node.js or Python over Java."
       }
     },
     {
@@ -585,11 +585,11 @@ tbody tr:hover td{background:#eff6ff;}
 
     <h2>The Cold Start Problem</h2>
 
-    <p>The most discussed performance trade-off of serverless is the <strong>cold start</strong>. When a serverless function hasn't been invoked for a period of time, the provider scales it down to zero — no execution environment is running. When the next request arrives, the provider must: (1) allocate compute resources, (2) download and initialise the function code, (3) start the language runtime, and (4) execute the handler. This process typically adds <strong>100ms to several seconds</strong> of latency on top of the normal execution time.</p>
+    <p>The most discussed performance trade-off of serverless is the <strong>cold start</strong>. When a serverless function hasn't been invoked for a period of time, the provider scales it down to zero — no execution environment is running. When the next request arrives, the provider must: (1) allocate compute resources, (2) download and initialize the function code, (3) start the language runtime, and (4) execute the handler. This process typically adds <strong>100ms to several seconds</strong> of latency on top of the normal execution time.</p>
 
-    <p>Cold starts are worst with runtimes that have slow initialisation — Java and .NET have significantly worse cold starts than Node.js or Python because of JVM/CLR startup overhead. Large deployment packages (ZIP files with many dependencies) also increase cold start time.</p>
+    <p>Cold starts are worst with runtimes that have slow initialization — Java and .NET have significantly worse cold starts than Node.js or Python because of JVM/CLR startup overhead. Large deployment packages (ZIP files with many dependencies) also increase cold start time.</p>
 
-    <p><strong>Mitigation strategies:</strong> AWS Lambda Provisioned Concurrency keeps a specified number of execution environments pre-warmed, eliminating cold starts for latency-sensitive workloads (at additional cost). Keeping functions warm with periodic scheduled pings (every few minutes) is a cheaper but less reliable approach. Choosing lightweight runtimes (Node.js, Python) and minimising deployment package size also reduces cold start impact.</p>
+    <p><strong>Mitigation strategies:</strong> AWS Lambda Provisioned Concurrency keeps a specified number of execution environments pre-warmed, eliminating cold starts for latency-sensitive workloads (at additional cost). Keeping functions warm with periodic scheduled pings (every few minutes) is a cheaper but less reliable approach. Choosing lightweight runtimes (Node.js, Python) and minimizing deployment package size also reduces cold start impact.</p>
 
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 Key Concepts to Remember</div>

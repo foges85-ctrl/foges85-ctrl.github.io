@@ -367,7 +367,7 @@ tbody tr:hover td{background:#eff6ff;}
       "name": "The Routing Protocols — In Depth",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "RIP is the oldest and simplest dynamic routing protocol. It uses hop count as its only metric — the number of routers a packet must pass through to reach the destination. Maximum hop count is 15 — any destination more than 15 hops away is considered unreachable. This hard limit makes RIP unsuitable for large networks. RIP routers broadcast their entire routing table to all neighbours every 30 seconds . This wastes bandwidth and causes slow convergence — it can take minutes for the entire network to learn about a topology change. RIPv2 added subnet mask support (VLSM) and multicast updates; …"
+        "text": "RIP is the oldest and simplest dynamic routing protocol. It uses hop count as its only metric — the number of routers a packet must pass through to reach the destination. Maximum hop count is 15 — any destination more than 15 hops away is considered unreachable. This hard limit makes RIP unsuitable for large networks. RIP routers broadcast their entire routing table to all neighbors every 30 seconds . This wastes bandwidth and causes slow convergence — it can take minutes for the entire network to learn about a topology change. RIPv2 added subnet mask support (VLSM) and multicast updates; …"
       }
     },
     {
@@ -375,7 +375,7 @@ tbody tr:hover td{background:#eff6ff;}
       "name": "Quick Comparison — All Four Protocols",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "IGP (Interior Gateway Protocol) — routes traffic within a single Autonomous System (one organisation's network). RIP, OSPF, and EIGRP are all IGPs. EGP (Exterior Gateway Protocol) — routes traffic between Autonomous Systems. BGP is the only EGP in use today. An Autonomous System (AS) is a network under a single administrative control, identified by an AS number (ASN). Every ISP has one or more ASNs. Large enterprises that connect to multiple ISPs (multi-homed) also have their own ASN."
+        "text": "IGP (Interior Gateway Protocol) — routes traffic within a single Autonomous System (one organization's network). RIP, OSPF, and EIGRP are all IGPs. EGP (Exterior Gateway Protocol) — routes traffic between Autonomous Systems. BGP is the only EGP in use today. An Autonomous System (AS) is a network under a single administrative control, identified by an AS number (ASN). Every ISP has one or more ASNs. Large enterprises that connect to multiple ISPs (multi-homed) also have their own ASN."
       }
     },
     {
@@ -391,7 +391,7 @@ tbody tr:hover td{background:#eff6ff;}
       "name": "Distance-Vector vs Link-State — The Core Distinction",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "All dynamic routing protocols fall into two fundamental categories based on how they make routing decisions. Distance-vector protocols (RIP, EIGRP) make decisions based on hop count or a composite metric, and each router knows only what its directly connected neighbours have told it — routers share their entire routing table with neighbours on a schedule. This is sometimes called \"routing by rumour\" because a router's view of the network is based on second-hand information. The advantage is simplicity; the disadvantage is slow convergence and susceptibility to routing loops. Link-state prot…"
+        "text": "All dynamic routing protocols fall into two fundamental categories based on how they make routing decisions. Distance-vector protocols (RIP, EIGRP) make decisions based on hop count or a composite metric, and each router knows only what its directly connected neighbors have told it — routers share their entire routing table with neighbors on a schedule. This is sometimes called \"routing by rumour\" because a router's view of the network is based on second-hand information. The advantage is simplicity; the disadvantage is slow convergence and susceptibility to routing loops. Link-state prot…"
       }
     },
     {
@@ -407,7 +407,7 @@ tbody tr:hover td{background:#eff6ff;}
       "name": "OSPF — The Enterprise Standard",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "OSPF (Open Shortest Path First) is the most widely deployed interior gateway protocol in enterprise networks and a major Network+ topic. Key characteristics: link-state (builds complete topology map), uses cost as its metric (calculated from interface bandwidth — higher bandwidth = lower cost, meaning OSPF prefers faster links), supports VLSM and CIDR (classless routing), fast convergence (detects failures in seconds and recalculates routes immediately), and scales to large networks through hierarchical area design . OSPF organises networks into areas. Area 0 (the backbone area) is required…"
+        "text": "OSPF (Open Shortest Path First) is the most widely deployed interior gateway protocol in enterprise networks and a major Network+ topic. Key characteristics: link-state (builds complete topology map), uses cost as its metric (calculated from interface bandwidth — higher bandwidth = lower cost, meaning OSPF prefers faster links), supports VLSM and CIDR (classless routing), fast convergence (detects failures in seconds and recalculates routes immediately), and scales to large networks through hierarchical area design . OSPF organizes networks into areas. Area 0 (the backbone area) is required…"
       }
     }
   ]
@@ -526,7 +526,7 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ What Are Routing Protocols?</div>
       <div class="quick-answer-text">
-        Routing protocols are the rules routers use to <strong>automatically discover and share information about network paths</strong>. Instead of an administrator manually entering every route, dynamic routing protocols allow routers to exchange route information, detect topology changes, and calculate the best path to each destination. The key protocols on the Network+ exam are <strong>RIP, OSPF, EIGRP</strong> (internal / within one organisation) and <strong>BGP</strong> (external / between organisations on the internet).
+        Routing protocols are the rules routers use to <strong>automatically discover and share information about network paths</strong>. Instead of an administrator manually entering every route, dynamic routing protocols allow routers to exchange route information, detect topology changes, and calculate the best path to each destination. The key protocols on the Network+ exam are <strong>RIP, OSPF, EIGRP</strong> (internal / within one organization) and <strong>BGP</strong> (external / between organizations on the internet).
       </div>
     </div>
 
@@ -573,7 +573,7 @@ tbody tr:hover td{background:#eff6ff;}
       <table>
         <thead><tr><th>Property</th><th>Distance-Vector</th><th>Link-State</th></tr></thead>
         <tbody>
-          <tr><td class="td-term">How it works</td><td>Each router shares its entire routing table with directly connected neighbours — "routing by rumour"</td><td>Each router shares the state of its own links with ALL routers in the area — builds a complete topology map</td></tr>
+          <tr><td class="td-term">How it works</td><td>Each router shares its entire routing table with directly connected neighbors — "routing by rumour"</td><td>Each router shares the state of its own links with ALL routers in the area — builds a complete topology map</td></tr>
           <tr><td class="td-term">What routers know</td><td>Direction and distance (hop count or metric) to each destination</td><td>Complete map of the network topology — runs SPF algorithm to find shortest path</td></tr>
           <tr><td class="td-term">Convergence speed</td><td>Slow — updates only sent periodically; susceptible to routing loops</td><td>Fast — triggered updates sent immediately when topology changes</td></tr>
           <tr><td class="td-term">CPU/memory use</td><td>Low</td><td>Higher — maintains link-state database and runs SPF calculations</td></tr>
@@ -593,7 +593,7 @@ tbody tr:hover td{background:#eff6ff;}
       </div>
       <div class="protocol-body">
         <p>RIP is the oldest and simplest dynamic routing protocol. It uses <strong>hop count</strong> as its only metric — the number of routers a packet must pass through to reach the destination. Maximum hop count is <strong>15</strong> — any destination more than 15 hops away is considered unreachable. This hard limit makes RIP unsuitable for large networks.</p>
-        <p>RIP routers broadcast their entire routing table to all neighbours every <strong>30 seconds</strong>. This wastes bandwidth and causes slow convergence — it can take minutes for the entire network to learn about a topology change. RIPv2 added subnet mask support (VLSM) and multicast updates; RIPng added IPv6 support.</p>
+        <p>RIP routers broadcast their entire routing table to all neighbors every <strong>30 seconds</strong>. This wastes bandwidth and causes slow convergence — it can take minutes for the entire network to learn about a topology change. RIPv2 added subnet mask support (VLSM) and multicast updates; RIPng added IPv6 support.</p>
         <div class="proto-specs">
           <div class="spec-item"><div class="spec-label">Metric</div><div class="spec-val">Hop count (max 15)</div></div>
           <div class="spec-item"><div class="spec-label">Update interval</div><div class="spec-val">30 seconds (broadcast)</div></div>
@@ -611,7 +611,7 @@ tbody tr:hover td{background:#eff6ff;}
       </div>
       <div class="protocol-body">
         <p>OSPF is the dominant IGP in enterprise networks. It uses <strong>cost</strong> as its metric — calculated as 100 Mbps ÷ interface bandwidth. A 1 Gbps link has a cost of 1; a 100 Mbps link has a cost of 1 (same, which is why the reference bandwidth is often adjusted). OSPF runs the <strong>Dijkstra SPF algorithm</strong> to calculate the shortest path to every destination.</p>
-        <p>OSPF organises routers into <strong>areas</strong> to limit the scope of topology updates and SPF recalculations. <strong>Area 0 (backbone area)</strong> is required — all other areas must connect to Area 0. This hierarchical design makes OSPF scalable to very large networks. OSPF only sends updates when topology changes (not every 30 seconds like RIP), making convergence fast.</p>
+        <p>OSPF organizes routers into <strong>areas</strong> to limit the scope of topology updates and SPF recalculations. <strong>Area 0 (backbone area)</strong> is required — all other areas must connect to Area 0. This hierarchical design makes OSPF scalable to very large networks. OSPF only sends updates when topology changes (not every 30 seconds like RIP), making convergence fast.</p>
         <div class="proto-specs">
           <div class="spec-item"><div class="spec-label">Metric</div><div class="spec-val">Cost (bandwidth-based)</div></div>
           <div class="spec-item"><div class="spec-label">Algorithm</div><div class="spec-val">Dijkstra SPF</div></div>
@@ -646,7 +646,7 @@ tbody tr:hover td{background:#eff6ff;}
         <span class="protocol-ad">AD: 20 (eBGP) / 200 (iBGP)</span>
       </div>
       <div class="protocol-body">
-        <p>BGP is the routing protocol of the internet. While IGPs (RIP, OSPF, EIGRP) route traffic <em>within</em> an organisation, BGP routes traffic <em>between</em> organisations (Autonomous Systems). Every ISP, cloud provider, and large enterprise uses BGP to exchange routes with each other. BGP runs on <strong>TCP port 179</strong>.</p>
+        <p>BGP is the routing protocol of the internet. While IGPs (RIP, OSPF, EIGRP) route traffic <em>within</em> an organization, BGP routes traffic <em>between</em> organizations (Autonomous Systems). Every ISP, cloud provider, and large enterprise uses BGP to exchange routes with each other. BGP runs on <strong>TCP port 179</strong>.</p>
         <p>BGP is a <strong>path-vector</strong> protocol — it selects routes based on policies and path attributes rather than simple metrics. The primary attribute is the <strong>AS-PATH</strong> — the list of Autonomous System numbers a route has traversed. BGP prefers shorter AS paths, but operators can influence routing through a large set of attributes. BGP convergence is intentionally slow to prevent route flapping from destabilising the global routing table.</p>
         <p><strong>eBGP</strong> (External BGP) runs between different Autonomous Systems. <strong>iBGP</strong> (Internal BGP) runs between routers within the same AS to distribute externally learned routes internally.</p>
         <div class="proto-specs">
@@ -674,7 +674,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <div class="callout">
       <div class="callout-label">IGP vs EGP — The Key Distinction</div>
-      <p><strong>IGP (Interior Gateway Protocol)</strong> — routes traffic within a single Autonomous System (one organisation's network). RIP, OSPF, and EIGRP are all IGPs.</p>
+      <p><strong>IGP (Interior Gateway Protocol)</strong> — routes traffic within a single Autonomous System (one organization's network). RIP, OSPF, and EIGRP are all IGPs.</p>
       <p><strong>EGP (Exterior Gateway Protocol)</strong> — routes traffic between Autonomous Systems. BGP is the only EGP in use today. An <strong>Autonomous System (AS)</strong> is a network under a single administrative control, identified by an AS number (ASN). Every ISP has one or more ASNs. Large enterprises that connect to multiple ISPs (multi-homed) also have their own ASN.</p>
     </div>
 
@@ -688,7 +688,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="scenario-item">💬 "Which routing protocol is used to exchange routes between ISPs on the internet?" → <strong>BGP (Border Gateway Protocol) running on TCP port 179.</strong></div>
       <div class="scenario-item">💬 "A company connects to two ISPs for redundancy and needs to advertise its own IP prefix to both. Which protocol should they use?" → <strong>BGP — multi-homing with redundant ISP connections requires BGP and an ASN.</strong></div>
       <div class="scenario-item">💬 "Which routing protocol is Cisco proprietary and uses a composite metric of bandwidth and delay?" → <strong>EIGRP (Enhanced Interior Gateway Routing Protocol) — AD 90.</strong></div>
-      <div class="scenario-item">💬 "OSPF organises routers into areas. Which area is required and must be the backbone?" → <strong>Area 0 — the backbone area. All other OSPF areas must connect to Area 0, directly or via a virtual link.</strong></div>
+      <div class="scenario-item">💬 "OSPF organizes routers into areas. Which area is required and must be the backbone?" → <strong>Area 0 — the backbone area. All other OSPF areas must connect to Area 0, directly or via a virtual link.</strong></div>
       <div class="scenario-item">💬 "What is the administrative distance of a directly connected interface?" → <strong>0 — the most trusted route source. Static routes have AD 1.</strong></div>
     </div>
 
@@ -702,20 +702,20 @@ tbody tr:hover td{background:#eff6ff;}
 
     
     <h2>Distance-Vector vs Link-State — The Core Distinction</h2>
-    <p>All dynamic routing protocols fall into two fundamental categories based on how they make routing decisions. <strong>Distance-vector protocols</strong> (RIP, EIGRP) make decisions based on hop count or a composite metric, and each router knows only what its directly connected neighbours have told it — routers share their entire routing table with neighbours on a schedule. This is sometimes called "routing by rumour" because a router's view of the network is based on second-hand information. The advantage is simplicity; the disadvantage is slow convergence and susceptibility to routing loops.</p>
+    <p>All dynamic routing protocols fall into two fundamental categories based on how they make routing decisions. <strong>Distance-vector protocols</strong> (RIP, EIGRP) make decisions based on hop count or a composite metric, and each router knows only what its directly connected neighbors have told it — routers share their entire routing table with neighbors on a schedule. This is sometimes called "routing by rumour" because a router's view of the network is based on second-hand information. The advantage is simplicity; the disadvantage is slow convergence and susceptibility to routing loops.</p>
     <p><strong>Link-state protocols</strong> (OSPF, IS-IS) build a complete map of the network topology. Every router exchanges Link State Advertisements (LSAs) so that each router has an identical topological database. Each router independently runs Dijkstra's shortest path first (SPF) algorithm to calculate the best path to every destination. Link-state protocols converge faster, scale better, and are more loop-resistant than distance-vector protocols — which is why OSPF replaced RIP as the dominant interior gateway protocol in enterprise and ISP networks.</p>
 
     <h2>RIP — Why It's Still Tested Despite Being Legacy</h2>
     <p>RIP (Routing Information Protocol) is rarely used in modern networks but remains heavily tested on Network+ because its simplicity makes it an ideal teaching tool for routing concepts. RIP uses <strong>hop count as its sole metric</strong> — the "best" path is always the one with fewest routers between source and destination, regardless of link bandwidth. A 100 Mbps path through 2 hops beats a 10 Gbps path through 3 hops. This is RIP's fundamental limitation — it has no concept of bandwidth, delay, or reliability.</p>
-    <p>Key RIP facts for the exam: maximum hop count is <strong>15</strong> (16 = infinity, meaning unreachable), routing updates are sent every <strong>30 seconds</strong> to all neighbours (RIPv1 broadcasts, RIPv2 multicasts to 224.0.0.9), convergence is slow because routers must wait for update intervals to propagate changes across the network. RIPv2 added support for VLSM and CIDR (classless routing) and authentication, addressing RIPv1's major limitations. RIPng is the IPv6 version.</p>
+    <p>Key RIP facts for the exam: maximum hop count is <strong>15</strong> (16 = infinity, meaning unreachable), routing updates are sent every <strong>30 seconds</strong> to all neighbors (RIPv1 broadcasts, RIPv2 multicasts to 224.0.0.9), convergence is slow because routers must wait for update intervals to propagate changes across the network. RIPv2 added support for VLSM and CIDR (classless routing) and authentication, addressing RIPv1's major limitations. RIPng is the IPv6 version.</p>
 
     <h2>OSPF — The Enterprise Standard</h2>
     <p>OSPF (Open Shortest Path First) is the most widely deployed interior gateway protocol in enterprise networks and a major Network+ topic. Key characteristics: <strong>link-state</strong> (builds complete topology map), uses <strong>cost</strong> as its metric (calculated from interface bandwidth — higher bandwidth = lower cost, meaning OSPF prefers faster links), supports <strong>VLSM and CIDR</strong> (classless routing), <strong>fast convergence</strong> (detects failures in seconds and recalculates routes immediately), and scales to large networks through <strong>hierarchical area design</strong>.</p>
-    <p>OSPF organises networks into areas. <strong>Area 0 (the backbone area)</strong> is required — all other areas must connect to Area 0. This hierarchical structure reduces the size of each router's topology database and limits the scope of route recalculations when something changes. The router connecting an area to Area 0 is called an <strong>ABR (Area Border Router)</strong>. For the exam: know that OSPF uses areas to scale, Area 0 is the backbone, and routers within an area have a complete topology map of their area but only summary information about other areas.</p>
+    <p>OSPF organizes networks into areas. <strong>Area 0 (the backbone area)</strong> is required — all other areas must connect to Area 0. This hierarchical structure reduces the size of each router's topology database and limits the scope of route recalculations when something changes. The router connecting an area to Area 0 is called an <strong>ABR (Area Border Router)</strong>. For the exam: know that OSPF uses areas to scale, Area 0 is the backbone, and routers within an area have a complete topology map of their area but only summary information about other areas.</p>
 
     <h2>BGP — How the Internet Routes</h2>
-    <p>BGP (Border Gateway Protocol) is the routing protocol of the internet — the protocol used by ISPs and large organisations to exchange routing information between autonomous systems (AS). Every major internet network operator (Google, AWS, Comcast, AT&T) runs BGP to advertise which IP address blocks they own and are reachable through their network. When you type a domain name, your traffic is routed across the internet using BGP to find the path from your ISP's network to the destination network.</p>
-    <p>For Network+ and Security+: BGP is an <strong>exterior gateway protocol (EGP)</strong> used between autonomous systems, while OSPF and EIGRP are <strong>interior gateway protocols (IGP)</strong> used within a single organisation's network. BGP is a <strong>path-vector protocol</strong> — routing decisions are based on policies and AS-path attributes rather than just metrics. BGP misconfigurations are a real-world source of major internet outages (route leaks and hijacks) — a recurring Security+ topic about BGP security involves <strong>route hijacking</strong>, where an AS incorrectly advertises routes it doesn't own, redirecting traffic through malicious infrastructure.</p>
+    <p>BGP (Border Gateway Protocol) is the routing protocol of the internet — the protocol used by ISPs and large organizations to exchange routing information between autonomous systems (AS). Every major internet network operator (Google, AWS, Comcast, AT&T) runs BGP to advertise which IP address blocks they own and are reachable through their network. When you type a domain name, your traffic is routed across the internet using BGP to find the path from your ISP's network to the destination network.</p>
+    <p>For Network+ and Security+: BGP is an <strong>exterior gateway protocol (EGP)</strong> used between autonomous systems, while OSPF and EIGRP are <strong>interior gateway protocols (IGP)</strong> used within a single organization's network. BGP is a <strong>path-vector protocol</strong> — routing decisions are based on policies and AS-path attributes rather than just metrics. BGP misconfigurations are a real-world source of major internet outages (route leaks and hijacks) — a recurring Security+ topic about BGP security involves <strong>route hijacking</strong>, where an AS incorrectly advertises routes it doesn't own, redirecting traffic through malicious infrastructure.</p>
 
     <h2>Administrative Distance — When Multiple Protocols Disagree</h2>
     <p>A router may learn routes to the same destination from multiple sources — a static route, OSPF, and RIP might all claim to know how to reach 192.168.10.0/24. <strong>Administrative distance (AD)</strong> determines which source the router trusts most. Lower AD = more trusted. Cisco's default values: Connected interface (0), Static route (1), EIGRP (90), OSPF (110), RIP (120), External BGP (20), Internal BGP (200). A directly connected route (AD 0) is always preferred over any dynamic protocol. A static route (AD 1) beats any dynamic protocol. Between OSPF (AD 110) and RIP (AD 120), OSPF wins.</p>

@@ -398,7 +398,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="bsod-desc">Stop code: 0x0000000A · The most important diagnostic information on a BSOD is the stop code name. It tells you what type of failure occurred and where to start troubleshooting.</div>
     </div>
 
-    <p>The <strong>stop code</strong> is the most important piece of information. Windows also writes a <strong>memory dump file</strong> (minidump) to <code>C:\Windows\Minidump\</code> that captures the system state at the moment of failure. Tools like <strong>WinDbg</strong> or <strong>WhoCrashed</strong> can analyse the dump file to identify which driver or component caused the crash.</p>
+    <p>The <strong>stop code</strong> is the most important piece of information. Windows also writes a <strong>memory dump file</strong> (minidump) to <code>C:\Windows\Minidump\</code> that captures the system state at the moment of failure. Tools like <strong>WinDbg</strong> or <strong>WhoCrashed</strong> can analyze the dump file to identify which driver or component caused the crash.</p>
 
     <div class="table-wrap">
       <table>
@@ -418,7 +418,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 A+ Exam — BSOD Troubleshooting Approach</div>
-      <p>The A+ exam doesn't require you to memorise every stop code, but you should know the general approach: <strong>(1) Note the stop code</strong>. <strong>(2) Check if it happens after a recent change</strong> (driver install, Windows update, new hardware). <strong>(3) Boot into Safe Mode</strong> — if it doesn't BSOD in Safe Mode, a third-party driver or startup program is the cause. <strong>(4) If hardware-related codes appear</strong> (memory, disk), test hardware. <strong>(5) Use sfc /scannow and DISM</strong> to repair corrupted system files.</p>
+      <p>The A+ exam doesn't require you to memorize every stop code, but you should know the general approach: <strong>(1) Note the stop code</strong>. <strong>(2) Check if it happens after a recent change</strong> (driver install, Windows update, new hardware). <strong>(3) Boot into Safe Mode</strong> — if it doesn't BSOD in Safe Mode, a third-party driver or startup program is the cause. <strong>(4) If hardware-related codes appear</strong> (memory, disk), test hardware. <strong>(5) Use sfc /scannow and DISM</strong> to repair corrupted system files.</p>
     </div>
 
     <h2>Safe Mode</h2>
@@ -509,7 +509,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <p>Understanding the Windows boot sequence helps diagnose where a failure occurs:</p>
 
-    <p><strong>1. UEFI/BIOS POST</strong> → hardware check → finds bootable drive. <strong>2. Windows Boot Manager</strong> (<code>bootmgr</code>) loads from the system partition. <strong>3. Windows Boot Loader</strong> (<code>winload.exe</code>) loads the Windows kernel. <strong>4. Windows kernel</strong> initialises, loads HAL, and starts Windows services. <strong>5. Login screen appears.</strong></p>
+    <p><strong>1. UEFI/BIOS POST</strong> → hardware check → finds bootable drive. <strong>2. Windows Boot Manager</strong> (<code>bootmgr</code>) loads from the system partition. <strong>3. Windows Boot Loader</strong> (<code>winload.exe</code>) loads the Windows kernel. <strong>4. Windows kernel</strong> initializes, loads HAL, and starts Windows services. <strong>5. Login screen appears.</strong></p>
 
     <p>Common boot failure messages and causes: <strong>"Bootmgr is missing"</strong> → Boot sector or MBR corrupt → run <code>bootrec /fixmbr</code> and <code>bootrec /fixboot</code> from WinRE Command Prompt. <strong>"Operating system not found"</strong> → BIOS can't find a bootable partition → check boot order in BIOS, check drive connection. <strong>"Inaccessible Boot Device"</strong> → Windows can't access the drive during startup → storage driver issue or corrupted BCD → run Startup Repair.</p>
 
@@ -527,7 +527,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="scenario-item"><strong>Scenario:</strong> A technician runs sfc /scannow and receives the message "Windows Resource Protection found corrupt files but was unable to fix some of them." What should be done next? <strong>Answer: Run DISM /Online /Cleanup-Image /RestoreHealth</strong> to repair the component store, then run sfc /scannow again. DISM downloads fresh copies of files from Windows Update to restore the component store.</div>
       <div class="scenario-item"><strong>Scenario:</strong> After installing a new graphics driver, Windows repeatedly crashes and reboots. The user cannot reach the desktop to uninstall the driver. What is the correct approach? <strong>Answer: Boot into Safe Mode</strong> (Safe Mode doesn't load third-party GPU drivers). From Safe Mode, go to Device Manager, find the display adapter, right-click → Update driver → Roll back driver, or uninstall the driver entirely, then reinstall the correct version.</div>
       <div class="scenario-item"><strong>Scenario:</strong> A user accidentally deleted important system configuration files. The computer still boots. The user wants to revert to yesterday's settings without losing any personal documents. What should be used? <strong>Answer: System Restore.</strong> Restore to a restore point from before the deletion. System Restore reverts system files, the registry, and installed programs to the restore point state without affecting personal files.</div>
-      <div class="scenario-item"><strong>Scenario:</strong> A technician needs to determine what caused a BSOD that happened yesterday and has not recurred. Windows is currently running normally. Where should the technician look? <strong>Answer: Event Viewer (eventvwr.msc) → Windows Logs → System.</strong> Filter for Critical and Error events around the time the BSOD occurred. The minidump file in C:\Windows\Minidump\ can also be analysed with WinDbg or WhoCrashed for more detail.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> A technician needs to determine what caused a BSOD that happened yesterday and has not recurred. Windows is currently running normally. Where should the technician look? <strong>Answer: Event Viewer (eventvwr.msc) → Windows Logs → System.</strong> Filter for Critical and Error events around the time the BSOD occurred. The minidump file in C:\Windows\Minidump\ can also be analyzed with WinDbg or WhoCrashed for more detail.</div>
     </div>
 
     <div class="cta-box">

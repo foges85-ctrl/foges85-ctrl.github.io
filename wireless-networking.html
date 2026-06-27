@@ -306,7 +306,7 @@ tbody tr:hover td{background:#eff6ff;}
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"What is the difference between 2.4GHz and 5GHz Wi-Fi?","acceptedAnswer":{"@type":"Answer","text":"2.4GHz Wi-Fi has longer range and better wall penetration but is more congested and has only 3 non-overlapping channels (1, 6, 11). 5GHz has shorter range but is faster, less congested, and has 24+ non-overlapping channels. Use 2.4GHz for coverage; 5GHz for performance near the AP."}},
 {"@type":"Question","name":"What is the difference between WPA2 and WPA3?","acceptedAnswer":{"@type":"Answer","text":"WPA2 uses AES-CCMP with PSK authentication, which is vulnerable to offline dictionary attacks after capturing the 4-way handshake. WPA3 replaces PSK with SAE (Simultaneous Authentication of Equals), which provides forward secrecy and resists offline brute-force attacks. WPA3 also adds OWE for encrypting open networks."}},
-{"@type":"Question","name":"What is an evil twin attack?","acceptedAnswer":{"@type":"Answer","text":"An evil twin attack creates a rogue AP mimicking a legitimate SSID — often with stronger signal. Clients connect to the attacker's AP and all traffic is intercepted. Defence: 802.1X enterprise authentication, VPN on untrusted networks, and WIDS monitoring."}}
+{"@type":"Question","name":"What is an evil twin attack?","acceptedAnswer":{"@type":"Answer","text":"An evil twin attack creates a rogue AP mimicking a legitimate SSID — often with stronger signal. Clients connect to the attacker's AP and all traffic is intercepted. Defense: 802.1X enterprise authentication, VPN on untrusted networks, and WIDS monitoring."}}
 ]}
 </script>
 <script type="application/ld+json">
@@ -422,7 +422,7 @@ tbody tr:hover td{background:#eff6ff;}
     </div>
 
     <div class="exam-tip">
-      <div class="exam-tip-label">🎯 Exam Tip — Three Speed Facts to Memorise</div>
+      <div class="exam-tip-label">🎯 Exam Tip — Three Speed Facts to Memorize</div>
       <p><strong>802.11a and 802.11g are both 54 Mbps</strong> — same speed, different bands (a=5GHz, g=2.4GHz). This is a classic trick question.</p>
       <p><strong>802.11ac is 5GHz only</strong> — it does not operate on 2.4GHz. If the scenario requires dual-band, the answer is 802.11n or 802.11ax.</p>
       <p><strong>802.11ax = Wi-Fi 6</strong> — the answer to any "most current standard" question.</p>
@@ -434,7 +434,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="tech-card">
         <div class="tech-icon">📡</div>
         <div class="tech-name">2.4 GHz Band</div>
-        <div class="tech-desc"><strong>Longer range</strong> — lower frequency penetrates walls better. Only <strong>3 non-overlapping channels</strong> in the US: channels 1, 6, and 11. Highly congested — shared with Bluetooth, microwaves, baby monitors, and neighbouring networks. Lower maximum throughput. Best for: distant devices, IoT sensors, devices needing broad coverage.</div>
+        <div class="tech-desc"><strong>Longer range</strong> — lower frequency penetrates walls better. Only <strong>3 non-overlapping channels</strong> in the US: channels 1, 6, and 11. Highly congested — shared with Bluetooth, microwaves, baby monitors, and neighboring networks. Lower maximum throughput. Best for: distant devices, IoT sensors, devices needing broad coverage.</div>
         <div class="tech-chips"><span class="tech-chip">Channels 1/6/11 only</span><span class="tech-chip">Better range</span><span class="tech-chip">More congestion</span></div>
       </div>
       <div class="tech-card">
@@ -540,19 +540,19 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="attack-grid">
       <div class="attack-card">
         <div class="attack-name">Evil Twin Attack</div>
-        <div class="attack-desc">Attacker creates a rogue AP broadcasting the <strong>same SSID as a legitimate network</strong>, often at higher power to attract clients. All traffic routes through the attacker (man-in-the-middle). <strong>Defence:</strong> 802.1X (clients only connect to authenticated infrastructure), VPN on untrusted networks, WIDS monitoring for duplicate SSIDs.</div>
+        <div class="attack-desc">Attacker creates a rogue AP broadcasting the <strong>same SSID as a legitimate network</strong>, often at higher power to attract clients. All traffic routes through the attacker (man-in-the-middle). <strong>Defense:</strong> 802.1X (clients only connect to authenticated infrastructure), VPN on untrusted networks, WIDS monitoring for duplicate SSIDs.</div>
       </div>
       <div class="attack-card orange">
         <div class="attack-name">Rogue Access Point</div>
-        <div class="attack-desc">An <strong>unauthorised AP plugged into the corporate wired network</strong> — by an employee for convenience, or by an attacker. Creates an uncontrolled wireless entry point that bypasses perimeter controls. <strong>Defence:</strong> WIDS/WIPS, 802.1X on all switch ports (NAC), regular RF surveys, physical security.</div>
+        <div class="attack-desc">An <strong>unauthorised AP plugged into the corporate wired network</strong> — by an employee for convenience, or by an attacker. Creates an uncontrolled wireless entry point that bypasses perimeter controls. <strong>Defense:</strong> WIDS/WIPS, 802.1X on all switch ports (NAC), regular RF surveys, physical security.</div>
       </div>
       <div class="attack-card purple">
         <div class="attack-name">Deauthentication Attack</div>
-        <div class="attack-desc">Attacker sends spoofed <strong>802.11 deauth frames</strong> forcing clients to disconnect. On reconnect, the WPA2 4-way handshake is captured for offline cracking. Also used to push clients onto an evil twin. <strong>Defence:</strong> WPA3/SAE (resists offline cracking), <strong>802.11w Protected Management Frames (PMF)</strong> — authenticates management frames to block spoofed deauths.</div>
+        <div class="attack-desc">Attacker sends spoofed <strong>802.11 deauth frames</strong> forcing clients to disconnect. On reconnect, the WPA2 4-way handshake is captured for offline cracking. Also used to push clients onto an evil twin. <strong>Defense:</strong> WPA3/SAE (resists offline cracking), <strong>802.11w Protected Management Frames (PMF)</strong> — authenticates management frames to block spoofed deauths.</div>
       </div>
       <div class="attack-card yellow">
         <div class="attack-name">Jamming (RF DoS)</div>
-        <div class="attack-desc">Flooding a frequency with RF noise to prevent legitimate devices from communicating — a wireless denial-of-service. Can be accidental (microwave ovens on 2.4GHz) or deliberate. <strong>Defence:</strong> WIDS jamming detection, 5GHz band (less interference), frequency-hopping spread spectrum (FHSS). Physical access to RF spectrum cannot be fully prevented.</div>
+        <div class="attack-desc">Flooding a frequency with RF noise to prevent legitimate devices from communicating — a wireless denial-of-service. Can be accidental (microwave ovens on 2.4GHz) or deliberate. <strong>Defense:</strong> WIDS jamming detection, 5GHz band (less interference), frequency-hopping spread spectrum (FHSS). Physical access to RF spectrum cannot be fully prevented.</div>
       </div>
     </div>
 
@@ -567,12 +567,12 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="tech-card">
         <div class="tech-icon">🔢</div>
         <div class="tech-name">MAC Address Filtering</div>
-        <div class="tech-desc">Allowing only pre-approved MAC addresses to associate with the AP. <strong>Easily bypassed</strong> — MAC addresses are transmitted in plaintext and trivially spoofed. An attacker sniffs an authorised MAC and spoofs it. High administrative overhead. Not a security control — just a marginal inconvenience to unskilled attackers.</div>
+        <div class="tech-desc">Allowing only pre-approved MAC addresses to associate with the AP. <strong>Easily bypassed</strong> — MAC addresses are transmitted in plaintext and trivially spoofed. An attacker sniffs an authorized MAC and spoofs it. High administrative overhead. Not a security control — just a marginal inconvenience to unskilled attackers.</div>
       </div>
       <div class="tech-card">
         <div class="tech-icon">🏢</div>
         <div class="tech-name">WIDS / WIPS</div>
-        <div class="tech-desc"><strong>Wireless IDS</strong> monitors the RF environment and alerts on rogue APs, evil twins, and anomalous behaviour. <strong>Wireless IPS</strong> takes active countermeasures — e.g., sending deauth frames to disconnect clients from rogue APs. Implemented as dedicated sensor overlays or as features in enterprise Wi-Fi controllers (Cisco, Aruba, Meraki).</div>
+        <div class="tech-desc"><strong>Wireless IDS</strong> monitors the RF environment and alerts on rogue APs, evil twins, and anomalous behavior. <strong>Wireless IPS</strong> takes active countermeasures — e.g., sending deauth frames to disconnect clients from rogue APs. Implemented as dedicated sensor overlays or as features in enterprise Wi-Fi controllers (Cisco, Aruba, Meraki).</div>
       </div>
       <div class="tech-card">
         <div class="tech-icon">📐</div>

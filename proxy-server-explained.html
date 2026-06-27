@@ -535,7 +535,7 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="callout">
       <div class="callout-label">🔍 How SSL Inspection Works</div>
       <p><strong>1. Client connects to proxy</strong> via HTTPS. The proxy presents a certificate signed by a <strong>corporate CA</strong> (Certificate Authority) that has been pre-installed as trusted on all client devices via Group Policy or MDM.</p>
-      <p><strong>2. Proxy establishes a separate TLS session</strong> to the destination server using the server's real certificate. The proxy sits in the middle — a "man in the middle" that the organisation controls.</p>
+      <p><strong>2. Proxy establishes a separate TLS session</strong> to the destination server using the server's real certificate. The proxy sits in the middle — a "man in the middle" that the organization controls.</p>
       <p><strong>3. Proxy decrypts, inspects, re-encrypts.</strong> The traffic is scanned for malware, DLP violations, and policy violations. Compliant traffic is re-encrypted and forwarded; malicious traffic is blocked.</p>
       <p><strong>Note:</strong> Some sites use certificate pinning (banks, Google apps) which will break under SSL inspection — these must be excluded from inspection in the proxy policy.</p>
     </div>
@@ -602,7 +602,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="scenario-item"><strong>Scenario 2:</strong> A company's public web application needs protection from SQL injection and XSS attacks without modifying the application code. <em>Answer:</em> Place a <strong>reverse proxy with a WAF (Web Application Firewall)</strong> in front of the web servers. The WAF inspects HTTP requests for attack patterns and blocks malicious traffic before it reaches the application.</div>
       <div class="scenario-item"><strong>Scenario 3:</strong> A security team wants to inspect encrypted HTTPS traffic leaving the network for signs of data exfiltration. <em>Answer:</em> Deploy a <strong>forward proxy with SSL inspection</strong>. Deploy the proxy's CA certificate to all company devices via Group Policy so clients trust the proxy's re-signed certificates. The proxy decrypts, inspects, and re-encrypts all HTTPS traffic.</div>
       <div class="scenario-item"><strong>Scenario 4:</strong> A company's proxy is configured but some users can bypass it by changing their browser settings. How is this prevented? <em>Answer:</em> Replace the explicit proxy with a <strong>transparent (intercepting) proxy</strong>. Configure the perimeter firewall to redirect all port 80/443 traffic to the proxy regardless of client settings. Users cannot bypass what they don't know exists.</div>
-      <div class="scenario-item"><strong>Scenario 5:</strong> An organisation needs to serve multiple web applications from a single public IP address, each on a different domain. <em>Answer:</em> A <strong>reverse proxy with virtual host routing</strong> (host-header-based routing). The reverse proxy receives all traffic on the single public IP and routes requests to different backend server pools based on the HTTP Host header (domain name in the request).</div>
+      <div class="scenario-item"><strong>Scenario 5:</strong> An organization needs to serve multiple web applications from a single public IP address, each on a different domain. <em>Answer:</em> A <strong>reverse proxy with virtual host routing</strong> (host-header-based routing). The reverse proxy receives all traffic on the single public IP and routes requests to different backend server pools based on the HTTP Host header (domain name in the request).</div>
     </div>
 
     <h2>URL Filtering Categories and Policy</h2>
@@ -627,13 +627,13 @@ tbody tr:hover td{background:#eff6ff;}
 
     <p>While most discussions of proxies focus on HTTP/HTTPS proxies, the <strong>SOCKS proxy protocol</strong> is another type that appears on the exam. SOCKS (Socket Secure) operates at a lower level than HTTP proxies — it works at the <strong>session layer (Layer 5)</strong> and can tunnel any type of TCP or UDP traffic, not just HTTP. This makes SOCKS proxies more versatile: you can tunnel FTP, SMTP, POP3, torrents, and other protocols through a SOCKS proxy.</p>
 
-    <p><strong>SOCKS4</strong> supported only TCP and required client-side DNS resolution. <strong>SOCKS5</strong> adds UDP support, IPv6, and server-side DNS resolution. SOCKS5 also adds authentication — the client can authenticate to the SOCKS server before being allowed to proxy traffic. This authentication is important in corporate environments where only authorised users should be able to use the proxy.</p>
+    <p><strong>SOCKS4</strong> supported only TCP and required client-side DNS resolution. <strong>SOCKS5</strong> adds UDP support, IPv6, and server-side DNS resolution. SOCKS5 also adds authentication — the client can authenticate to the SOCKS server before being allowed to proxy traffic. This authentication is important in corporate environments where only authorized users should be able to use the proxy.</p>
 
     <p>SOCKS proxies are commonly used with VPN clients, SSH tunneling, and tools like Tor. The Tor anonymity network uses SOCKS5 to allow applications to route traffic through the Tor onion network. From a security perspective, SOCKS proxies that are open to the internet without authentication become <strong>open proxies</strong> — attackers can route malicious traffic through them, attributing it to your IP address.</p>
 
     <h2>PAC Files and WPAD</h2>
 
-    <p>Manually configuring proxy settings on every device in a large organisation is impractical. <strong>PAC files (Proxy Auto-Configuration)</strong> and <strong>WPAD (Web Proxy Auto-Discovery Protocol)</strong> automate this process and are commonly tested on Network+.</p>
+    <p>Manually configuring proxy settings on every device in a large organization is impractical. <strong>PAC files (Proxy Auto-Configuration)</strong> and <strong>WPAD (Web Proxy Auto-Discovery Protocol)</strong> automate this process and are commonly tested on Network+.</p>
 
     <p>A <strong>PAC file</strong> is a JavaScript file hosted on a web server that returns instructions telling the browser which proxy server to use for any given URL. The file contains a function called <code>FindProxyForURL(url, host)</code> that browsers call for each request. The function can return "DIRECT" (bypass proxy), "PROXY host:port" (use a specific proxy), or chain multiple options together for failover. PAC files enable fine-grained control — for example, bypassing the proxy for internal sites while routing all external traffic through the corporate proxy.</p>
 
