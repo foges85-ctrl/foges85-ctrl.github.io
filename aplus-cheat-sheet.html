@@ -555,6 +555,7 @@ tbody tr:hover td { background: #f0fbf9; }
   "inLanguage": "en"
 }
 </script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
 <body>
@@ -1065,6 +1066,8 @@ tbody tr:hover td { background: #f0fbf9; }
     <div>
       <form class="email-optin-form" action="https://itstudyhub-mailerlite.purple-bar-1bb9.workers.dev" method="post">
         <input type="email" name="fields[email]" placeholder="Enter your email" required>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAADsDAkWyld69sn18" data-size="flexible"></div>
         <button type="submit">Subscribe Free →</button>
         <p class="email-optin-disclaimer">No spam. Unsubscribe anytime.</p>
       </form>
@@ -1273,6 +1276,10 @@ document.querySelectorAll('.email-optin-form').forEach(function(form) {
     button.textContent = 'Subscribing...';
     var formData = new FormData();
     formData.append('fields[email]', email);
+    var hp = form.querySelector('input[name="website"]');
+    if (hp) formData.append('website', hp.value);
+    var token = form.querySelector('[name="cf-turnstile-response"]');
+    formData.append('cf-turnstile-response', token ? token.value : '');
     fetch(action, {
       method: 'POST',
       body: formData
