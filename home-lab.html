@@ -990,6 +990,33 @@ a:hover { text-decoration: underline; }
     </div>
   </div>
 
+  <div style="background:#f0f4fa;border:1px solid #e2e8f4;border-radius:14px;padding:28px;margin:32px 0;">
+    <div style="font-size:0.85rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#3a73c6;margin-bottom:8px;">⚙️ From Study Lab to Automation Server</div>
+    <h3 style="margin:0 0 12px;font-size:1.5rem;">What the always-on box actually grew into</h3>
+    <p style="margin:0 0 22px;color:#334155;">The Dell started life as an RDP target, a machine to break and rebuild. Over time it became something more useful: the always-on server that runs my automations. It now runs a couple of small Python agents on Windows Task Scheduler. One handles SEO and indexing chores for this site. Another pulls analytics for the iOS apps I build and emails me a weekly summary. The study lab quietly turned into low-key infrastructure I actually depend on.</p>
+
+    <figure style="margin:0;text-align:center;">
+      <img src="images/SEO-agentScreenshot.png"
+           alt="A weekly SEO summary email generated automatically by a Python agent running on the always-on Dell home lab server via Windows Task Scheduler."
+           width="1870" height="552"
+           loading="lazy"
+           style="max-width:100%;height:auto;border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,0.12);">
+      <figcaption style="margin-top:10px;font-size:0.9rem;color:#475569;font-style:italic;">
+        One of the agents in action. This weekly SEO summary lands in my inbox automatically, generated and sent by a Python script on the always-on Dell, scheduled through Windows Task Scheduler.
+      </figcaption>
+    </figure>
+
+    <div style="margin-top:26px;padding:20px 22px;background:#ffffff;border:1px solid #e2e8f4;border-radius:12px;">
+      <div style="font-size:0.82rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#3a73c6;margin-bottom:10px;">🐛 The four-week silent failure</div>
+      <p style="margin:0 0 12px;color:#334155;">One of those agents went silent for about four weeks and I had no idea. There was no crash and no error. The weekly emails simply stopped arriving, and because I was not looking for their absence, I did not notice for a month. Silent failure of a scheduled job is its own particular kind of dread once you realize how long it has been dead.</p>
+      <p style="margin:0 0 12px;color:#334155;">The tell was the timing. The last successful run was almost exactly seven days after the last time I had manually re-authorized the agent in a browser. Google expires OAuth refresh tokens after seven days for any app whose consent screen is still in "Testing" status. A scheduled task cannot open a browser to re-authorize itself, so the moment the cached token aged out, every run failed quietly. Running the script by hand and getting an invalid_grant error on the token refresh confirmed it.</p>
+      <p style="margin:0 0 12px;color:#334155;">The fix had three parts. Publish the OAuth consent screen from "Testing" to "In production," which stops the refresh tokens from expiring for a personal app used only by me. Delete the stale cached token. Then re-run the script once interactively to mint a fresh one. It has held ever since.</p>
+      <p style="margin:0;color:#334155;">The real lesson was that it failed silently. So I added a preflight auth check that runs before the actual work. If the credentials are dead, it sends me an alert email and exits cleanly instead of pretending everything is fine. I tested it by deliberately renaming the token file, confirming the alert landed, then restoring it. Now a dead token tells me, instead of just disappearing.</p>
+    </div>
+
+    <p style="margin:22px 0 0;color:#334155;">If you are building automations on a home lab box, the takeaway is simple. Assume scheduled jobs will fail eventually, and make them tell you when they do. A failure you find out about is an inconvenience. A failure you do not is a four-week gap.</p>
+  </div>
+
   <hr class="divider" style="margin-top:0;">
 
   <!-- TOOLKIT SECTION -->
