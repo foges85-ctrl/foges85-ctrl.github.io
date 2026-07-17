@@ -28,7 +28,7 @@
   "headline":"Network Scanning Tools for IT Techs: Desktop and Mobile Compared (2026)",
   "description":"An honest comparison of network scanning tools for IT techs and CompTIA candidates: nmap, Angry IP Scanner, Fing, iNet, and IP Scanner Ultra. When to reach for a desktop tool versus your phone, and what a scanner actually does for Network+ and Security+.",
   "datePublished":"2026-07-12",
-  "dateModified":"2026-07-12",
+  "dateModified":"2026-07-16",
   "author":{"@type":"Person","name":"Sean Fogarty"},
   "publisher":{"@type":"Organization","name":"IT Study Hub","url":"https://itstudyhub.org/"}
 }
@@ -44,7 +44,8 @@
     {"@type":"Question","name":"What is the best free network scanner?","acceptedAnswer":{"@type":"Answer","text":"On a computer, nmap is free, open source, and the most capable option available, and it is the professional standard. If nmap's command line is too much, Angry IP Scanner is also free and open source with a simple graphical interface across Windows, Mac, and Linux. On a phone, Fing has a genuinely usable permanent free tier for basic device discovery. Prices and free-tier limits are as of 2026 and change, so verify before relying on them."}},
     {"@type":"Question","name":"Can a phone app replace nmap?","acceptedAnswer":{"@type":"Answer","text":"No. Nothing on mobile matches nmap's depth of port scanning, service detection, OS fingerprinting, and scripting. Mobile scanners exist for a different situation: you are standing in a server closet, a client's office, or a basement with only your phone and need a quick picture of what is on the network. For serious work at a desk, nmap is the answer; the phone is for when you do not have a computer in hand."}},
     {"@type":"Question","name":"What is the difference between a network scanner and a network monitor?","acceptedAnswer":{"@type":"Answer","text":"A scanner takes a point-in-time snapshot: you run it, it discovers what is on the network right now, and it stops. A monitor runs continuously, watches for devices joining or leaving, and can alert you or block devices over time. Most of the tools techs reach for, including nmap and the mobile scanners, are scanners. Continuous monitoring is a separate job that a paid tier of a tool like Fing, or a dedicated desktop platform, is built for."}},
-    {"@type":"Question","name":"nmap vs Angry IP Scanner: which should I use?","acceptedAnswer":{"@type":"Answer","text":"Use nmap when you need depth: detailed port scanning, service and version detection, OS fingerprinting, and scripting. It is command-line and has a steep learning curve, but nothing matches it. Use Angry IP Scanner when you want a fast, friendly graphical sweep of a subnet to see what is up and what basic ports are open, without learning nmap's syntax. Many techs keep both: Angry IP for a quick look, nmap when they need to dig in."}}
+    {"@type":"Question","name":"nmap vs Angry IP Scanner: which should I use?","acceptedAnswer":{"@type":"Answer","text":"Use nmap when you need depth: detailed port scanning, service and version detection, OS fingerprinting, and scripting. It is command-line and has a steep learning curve, but nothing matches it. Use Angry IP Scanner when you want a fast, friendly graphical sweep of a subnet to see what is up and what basic ports are open, without learning nmap's syntax. Many techs keep both: Angry IP for a quick look, nmap when they need to dig in."}},
+    {"@type":"Question","name":"How can I identify an unknown device on my network?","acceptedAnswer":{"@type":"Answer","text":"Start with the clues the device gives off. Many devices broadcast a hostname or advertise services (over Bonjour or UPnP) that reveal what they are, and a device's MAC address prefix identifies its manufacturer. The fastest manual method is to open your router's admin page, find the unknown device's MAC address, and look up its manufacturer prefix. Some scanners automate this: they read the broadcast names, services, and MAC vendor prefixes during a scan and label the device for you. On iOS, NetScanPro does this on-device, resolving a name, type, and manufacturer where the device exposes enough information, and marking each result with a confidence level rather than guessing. A device that broadcasts nothing identifiable, common with privacy-focused phones and some smart-home gear, may stay unidentified in any scanner; for those, the router MAC lookup or unplugging a suspected device and rescanning is the fallback."}}
   ]
 }
 </script>
@@ -512,8 +513,8 @@ table.cmp tr.me th,table.cmp tr.me td{background:rgba(0,194,168,.07);}
 
     <div class="app-block me">
       <p class="app-name">NetScanPro</p>
-      <p class="app-bestfor">Best for: a one-time-purchase field scanner for documenting a client site</p>
-      <p>NetScanPro is an iOS scanner sold as a <b>$6.99 one-time purchase</b> &mdash; not a subscription, and no account required. Its angle is thorough discovery from a phone: it uses <b>four device-discovery methods</b> &mdash; TCP, Bonjour/mDNS, SSDP/UPnP, and ICMP &mdash; which catches devices that a single-method scan can miss. It adds <b>port scanning</b>, a <b>Face ID lock</b> on the app, and <b>PDF export</b>, which is the practical bit if you need to hand a client or a file a record of what was on their network. It's a straightforward, private, buy-once field tool.</p>
+      <p class="app-bestfor">Best for: a one-time-purchase field scanner that identifies the devices it finds</p>
+      <p>NetScanPro is an iOS scanner sold as a <b>$6.99 one-time purchase</b> &mdash; not a subscription, and no account required. Its angle is thorough discovery from a phone: it uses <b>four device-discovery methods</b> &mdash; TCP, Bonjour/mDNS, SSDP/UPnP, and ICMP &mdash; which catches devices that a single-method scan can miss. Beyond finding devices, it tries to identify them: it resolves names, types, and manufacturers from the data devices broadcast (Bonjour, UPnP, and MAC vendor prefixes), and labels each result with a confidence level so you can tell a confirmed identification from a best guess. Devices that share nothing stay unlabeled rather than being guessed at. All of it happens on the phone, with no data sent to a server. It adds <b>port scanning</b>, a <b>Face ID lock</b> on the app, and <b>PDF export</b>, which is the practical bit if you need to hand a client or a file a record of what was on their network. It's a straightforward, private, buy-once field tool.</p>
       <p class="con"><b>Where it loses, plainly:</b> it's <b>iOS only</b>, and it's a scanner, not a monitoring platform &mdash; there's no continuous background monitoring, no alerts, no device blocking, no desktop app, and no multi-network management. And to be blunt about the category: nothing on mobile, this included, matches nmap's depth. If you want an always-on watchdog for your home network, <b>Fing's paid tier or a desktop tool is the better fit</b>; if you're at a computer, nmap is.</p>
       <a class="app-cta" href="https://apps.apple.com/us/app/netscanpro/id6762677151" target="_blank" rel="noopener">View NetScanPro on the App Store &mdash; $6.99 once &rarr;</a>
     </div>
@@ -565,7 +566,7 @@ table.cmp tr.me th,table.cmp tr.me td{background:rgba(0,194,168,.07);}
             <th>NetScanPro</th>
             <td>iOS</td>
             <td><span class="cmp-chip chip-once">$6.99 once</span></td>
-            <td>One-time-purchase field scanning on a client site</td>
+            <td>One-time-purchase field scanning that identifies devices</td>
             <td>No</td>
           </tr>
         </tbody>
@@ -583,7 +584,7 @@ table.cmp tr.me th,table.cmp tr.me td{background:rgba(0,194,168,.07);}
       <h4>If you want continuous monitoring and alerts</h4>
       <p>Choose Fing's paid tier for an always-on mobile watchdog, or a dedicated desktop monitoring tool for a home network. A plain scanner &mdash; including all the buy-once mobile apps &mdash; takes a snapshot and stops; it won't watch the network for you.</p>
       <h4>If you're on a client site with just your phone and want a one-time purchase</h4>
-      <p>Consider NetScanPro. $6.99 once with no account, four-method discovery, and PDF export for documenting what you found &mdash; useful when you're in the field without a laptop. Accept that it's iOS only and a scanner, not a monitor; for depth you'd still want nmap at a desk.</p>
+      <p>Consider NetScanPro. $6.99 once with no account, four-method discovery, device identification with honest confidence labels, and PDF export for documenting what you found, useful when you're in the field without a laptop. Accept that it's iOS only and a scanner, not a monitor; for depth you'd still want nmap at a desk.</p>
     </div>
 
     <h2>Frequently asked questions</h2>
@@ -619,11 +620,15 @@ table.cmp tr.me th,table.cmp tr.me td{background:rgba(0,194,168,.07);}
       <p class="faq-q">Which mobile scanner is best if I don't want a subscription?</p>
       <p class="faq-a">If you want the fullest toolbox for one price, iNet is a one-time purchase with extras like Wake on LAN, SSH, and Bonjour. If you're deep in the Apple ecosystem, IP Scanner Ultra has a generous free tier and iCloud sync. NetScanPro is a $6.99 one-time buy focused on multi-method discovery and PDF export for documenting a site. All are scanners, not monitors &mdash; and none replace nmap when you're at a computer. Prices as of 2026; confirm before buying.</p>
     </div>
+    <div class="faq-item">
+      <p class="faq-q">How can I identify an unknown device on my network?</p>
+      <p class="faq-a">Start with the clues the device gives off. Many devices broadcast a hostname or advertise services (over Bonjour or UPnP) that reveal what they are, and a device's MAC address prefix identifies its manufacturer. The fastest manual method is to open your router's admin page, find the unknown device's MAC address, and look up its manufacturer prefix. Some scanners automate this: they read the broadcast names, services, and MAC vendor prefixes during a scan and label the device for you. On iOS, NetScanPro does this on-device, resolving a name, type, and manufacturer where the device exposes enough information, and marking each result with a confidence level rather than guessing. A device that broadcasts nothing identifiable, common with privacy-focused phones and some smart-home gear, may stay unidentified in any scanner; for those, the router MAC lookup or unplugging a suspected device and rescanning is the fallback.</p>
+    </div>
 
     <div class="cta-box">
       <div class="cta-box-text">
         <h3>NetScanPro &mdash; a buy-once iOS field scanner</h3>
-        <p>Four-method discovery (TCP, Bonjour/mDNS, SSDP/UPnP, ICMP), port scanning, Face ID lock, and PDF export. $6.99 once, no subscription, no account.</p>
+        <p>Four-method discovery (TCP, Bonjour/mDNS, SSDP/UPnP, ICMP), on-device device identification with confidence labels, port scanning, Face ID lock, and PDF export. $6.99 once, no subscription, no account.</p>
       </div>
       <a class="btn-teal" href="https://apps.apple.com/us/app/netscanpro/id6762677151" target="_blank" rel="noopener">View NetScanPro on the App Store &rarr;</a>
     </div>
