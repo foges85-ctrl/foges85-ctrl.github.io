@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/comptia-aplus-ai-concepts.html">
+<title>CompTIA A+ AI Concepts (Objective 4.10): What Core 2 Actually Tests</title>
+<meta name="description" content="Objective 4.10 on CompTIA A+ Core 2 (220-1202) explained: application integration, appropriate use and plagiarism policy, bias, hallucinations, accuracy, and private vs. public AI.">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--red:#dc2626;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(0,194,168,.14) 0%,transparent 70%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(0,194,168,.15);border:1px solid rgba(0,194,168,.35);color:#5eead4;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#5eead4;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.cert-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.cert-badge{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+.cb-teal{background:rgba(0,194,168,.2);color:#5eead4;border:1px solid rgba(0,194,168,.3);}
+.cb-blue{background:rgba(26,108,255,.2);color:#93c5fd;border:1px solid rgba(26,108,255,.3);}
+.cb-purple{background:rgba(124,58,237,.2);color:#c4b5fd;border:1px solid rgba(124,58,237,.3);}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(0,194,168,.14) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#5eead4;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.step-flow{display:flex;flex-direction:column;gap:0;margin-bottom:40px;}
+.step-item{display:grid;grid-template-columns:56px 1fr;background:var(--white);border:1px solid var(--border);border-bottom:none;}
+.step-item:first-child{border-radius:14px 14px 0 0;}
+.step-item:last-child{border-radius:0 0 14px 14px;border-bottom:1px solid var(--border);}
+.step-num{display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:var(--white);background:var(--teal);border-right:1px solid rgba(0,194,168,.3);}
+.step-content{padding:16px 20px;}
+.step-title{font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:var(--navy);margin-bottom:4px;}
+.step-abbrev{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.step-desc{font-size:13px;color:var(--text);line-height:1.6;margin-bottom:6px;}
+.step-desc strong{color:var(--navy);}
+.step-key{font-size:12px;color:var(--muted);line-height:1.55;font-style:italic;}
+.track-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:40px;}
+@media(max-width:580px){.track-grid{grid-template-columns:1fr;}}
+.track-card{background:var(--white);border:1px solid var(--border);border-radius:13px;padding:18px 20px;box-shadow:var(--card-shadow);border-top:3px solid var(--teal);}
+.track-card.network{border-top-color:var(--blue);}
+.track-card.os{border-top-color:var(--purple);}
+.track-card.security{border-top-color:var(--red);}
+.track-title{font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:var(--navy);margin-bottom:10px;}
+.track-steps{display:flex;flex-direction:column;gap:5px;}
+.track-step{font-size:13px;color:var(--text);line-height:1.55;padding-left:14px;position:relative;}
+.track-step::before{content:'\203A';position:absolute;left:0;color:var(--teal);font-weight:700;}
+.track-card.network .track-step::before{color:var(--blue);}
+.track-card.os .track-step::before{color:var(--purple);}
+.track-card.security .track-step::before{color:var(--red);}
+.track-step strong{color:var(--navy);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:400px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:13px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:var(--light);}
+.td-term{font-weight:700;color:var(--navy);}
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+.callout{background:rgba(0,194,168,.04);border:1px solid rgba(0,194,168,.2);border-left:4px solid var(--teal);border-radius:12px;padding:16px 20px;margin-bottom:36px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(0,194,168,.2) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-teal{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--teal);color:var(--navy);box-shadow:0 6px 20px rgba(0,194,168,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-teal:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,194,168,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(0,194,168,.4);color:var(--teal);transform:translateY(-1px);}
+.related-link::before{content:'\2192';color:var(--teal);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── CERTFLASH APP BANNER ── */
+.app-banner {
+  background: linear-gradient(90deg, #0d1f3c 0%, #0a2a50 100%);
+  border-bottom: 1px solid rgba(0,194,168,0.25);
+  padding: 9px 48px 9px 28px;
+  text-align: center;
+  position: relative;
+  z-index: 101;
+}
+.app-banner-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.app-banner-text {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.82);
+  letter-spacing: 0.1px;
+}
+.app-banner-text strong { color: var(--teal); font-weight: 700; }
+.app-banner-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--teal);
+  color: var(--navy) !important;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 5px 15px;
+  border-radius: 100px;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.1s;
+}
+.app-banner-cta:hover { background: #00a896; color: var(--navy) !important; transform: translateY(-1px); }
+.app-banner-close {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.35);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 6px;
+  transition: color 0.15s;
+}
+.app-banner-close:hover { color: rgba(255,255,255,0.75); }
+@media (max-width: 600px) {
+  .app-banner { padding: 8px 40px 8px 16px; }
+  .app-banner-text { font-size: 12.5px; }
+}
+
+/* ── AUTHOR BAR ── */
+.author-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+.author-bar-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.author-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800; font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.author-info {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.author-name {
+  font-size: 14px; font-weight: 700; color: var(--navy);
+}
+.author-creds {
+  font-size: 12px; color: var(--muted);
+}
+.author-date {
+  margin-left: auto;
+  font-size: 12px; color: var(--muted);
+  white-space: nowrap;
+}
+@media (max-width: 768px) {
+  .author-bar-inner { padding: 12px 16px; }
+  .author-date { display: none; }
+}
+
+
+/* ── AUTHOR BIO ── */
+.author-bio {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 36px 28px;
+}
+.author-bio-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+.author-bio-avatar {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800; font-size: 22px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.author-bio-content { flex: 1; }
+.author-bio-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .8px; text-transform: uppercase;
+  color: var(--teal2, #00a892);
+  margin-bottom: 6px;
+}
+.author-bio-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px; font-weight: 800;
+  color: var(--navy); margin-bottom: 4px;
+}
+.author-bio-creds {
+  font-size: 13px; color: var(--muted);
+  margin-bottom: 12px;
+}
+.author-bio-text {
+  font-size: 14px; color: var(--text);
+  line-height: 1.7; margin-bottom: 14px;
+}
+.author-bio-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 600;
+  color: var(--blue, #1a6cff);
+  text-decoration: none;
+}
+.author-bio-link:hover { text-decoration: underline; }
+@media (max-width: 600px) {
+  .author-bio-inner { flex-direction: column; gap: 16px; }
+  .author-bio-avatar { width: 52px; height: 52px; font-size: 18px; }
+  .author-bio { padding: 28px 16px; }
+}
+
+
+/* ── FROM FOGARTY HOLDINGS PORTFOLIO ── */
+.footer-portfolio {
+  max-width: 1100px;
+  margin: 0 auto 24px;
+  padding: 22px 0 26px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-portfolio-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 18px;
+}
+.footer-portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: end;
+}
+.footer-portfolio-app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 92px;
+}
+.footer-portfolio-app-meta { display: flex; align-items: center; gap: 12px; }
+.footer-portfolio-app-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  display: block;
+  background: rgba(255,255,255,0.04);
+}
+.footer-portfolio-app-text { display: flex; flex-direction: column; gap: 2px; }
+.footer-portfolio-app-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.3;
+}
+.footer-portfolio-app-desc {
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.4;
+}
+.footer-portfolio-badge { display: inline-block; line-height: 0; }
+.footer-portfolio-badge img { height: 40px; width: auto; display: block; }
+@media (max-width: 640px) {
+  .footer-portfolio-grid { grid-template-columns: 1fr; gap: 22px; }
+  .footer-portfolio-app { min-height: 0; }
+}
+
+/* ── AI CONCEPTS PAGE ── */
+.article-body h3{font-family:'Outfit',sans-serif;font-size:17px;font-weight:800;color:var(--navy);letter-spacing:-.2px;margin:32px 0 10px;}
+.article-body ul{margin:0 0 16px 20px;}
+.article-body li{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:7px;}
+.article-body p a,.article-body li a,.callout a,.scenario-item a{color:var(--blue);font-weight:600;}
+.article-body p a:hover,.article-body li a:hover,.callout a:hover{text-decoration:underline;}
+.obj-tree{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;margin-bottom:32px;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.obj-tree-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
+.obj-tree ul{margin:0 0 0 18px;}
+.obj-tree li{font-size:14.5px;margin-bottom:5px;}
+.obj-tree > ul > li{font-weight:700;color:var(--navy);}
+.obj-tree > ul > li > ul > li{font-weight:400;color:var(--text);}
+.study-tool-callout { background: linear-gradient(135deg, #f0faf8, #e8f4ff); border: 1px solid rgba(0,194,168,0.25); border-left: 4px solid var(--teal, #00c2a8); border-radius: 12px; padding: 20px 24px; margin: 32px 0; }
+.study-tool-callout-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #0a6f5c; margin-bottom: 8px; }
+.study-tool-callout-text { font-size: 15px; color: var(--text); line-height: 1.7; margin: 0; }
+.study-tool-callout-text strong { color: var(--navy); }
+.study-tool-callout-text a { color: var(--blue, #1a6cff); font-weight: 600; }
+.study-tool-callout-text a:hover { text-decoration: underline; }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "CompTIA A+ AI Concepts (Objective 4.10): What Core 2 Actually Tests",
+  "description": "Objective 4.10 on CompTIA A+ Core 2 (220-1202) explained in a working IT support context: application integration, policy, limitations, and private vs. public AI.",
+  "author": {
+    "@type": "Person",
+    "name": "Sean Fogarty",
+    "url": "https://itstudyhub.org/about.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "IT Study Hub",
+    "url": "https://itstudyhub.org",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://itstudyhub.org/favicon-512x512.png"
+    }
+  },
+  "datePublished": "2026-07-29",
+  "dateModified": "2026-07-29",
+  "url": "https://itstudyhub.org/comptia-aplus-ai-concepts.html",
+  "inLanguage": "en",
+  "about": {
+    "@type": "Thing",
+    "name": "CompTIA A+ Core 2 220-1202 Objective 4.10 artificial intelligence concepts"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "CompTIA A+ Study Guide",
+      "item": "https://itstudyhub.org/comptia-aplus-study-guide.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "A+ AI Concepts (Objective 4.10)",
+      "item": "https://itstudyhub.org/comptia-aplus-ai-concepts.html"
+    }
+  ]
+}
+</script>
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="IT Study Hub">
+  <meta property="og:url" content="https://itstudyhub.org/comptia-aplus-ai-concepts.html">
+  <meta property="og:title" content="CompTIA A+ AI Concepts (Objective 4.10): What Core 2 Actually Tests">
+  <meta property="og:description" content="Objective 4.10 on CompTIA A+ Core 2 (220-1202) explained: application integration, appropriate use and plagiarism policy, bias, hallucinations, accuracy, and private vs. public AI.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is AI on the CompTIA A+ exam?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Objective 4.10, “Explain basic concepts related to artificial intelligence (AI),” is on Core 2 (220-1202), in domain 4.0 Operational Procedures. It is new to the 220-1200 series and was not on 220-1102."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is an AI hallucination?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Output that is fluent, specific and confident but fabricated — an invented registry path, a cmdlet that does not exist, a vendor KB number that resolves to nothing. It is wrong in a way that reads exactly like a correct answer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use ChatGPT at work as an IT tech?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That depends on your employer's acceptable use policy — some approve specific tools, some ban public ones, many have written nothing down. Confirm what is approved, and never paste client data, credentials or configuration into a public tool without approval."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does private vs. public mean in objective 4.10?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A public tool is third-party hosted and shared, so input leaves your control and may be retained or reviewed. A private deployment runs inside your own boundary, so data stays under your governance. The trade-off is cost and maintenance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between AI bias and AI inaccuracy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bias is a systematic skew from training data or design, so the tool is wrong consistently in one direction. Inaccuracy is output wrong for your situation, often because it is out of date. Bias is a pattern; inaccuracy is an instance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does objective 4.10 require knowing how to build or train an AI model?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The verb is “explain,” and it sits in Operational Procedures alongside documentation and change management. It covers using these tools responsibly and knowing where data goes — not model architecture."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What percentage of Core 2 is objective 4.10?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CompTIA does not publish weightings for individual objectives, so there is no figure for 4.10. What is published is the domain: 4.0 Operational Procedures is 21% of Core 2, and 4.10 is one objective within it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does plagiarism appear in a CompTIA A+ objective?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because support runs on written documentation. Generated text pasted into a knowledge base unreviewed becomes institutional fact, and if wrong the team inherits the error. Reproducing vendor documentation without attribution adds a licensing problem."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<!-- CERTFLASH APP BANNER -->
+<div class="app-banner" id="certflashBanner">
+  <div class="app-banner-inner">
+    <span class="app-banner-text">📱 iOS App — <strong>CertFlash</strong>: CompTIA flashcards built for exam day.</span>
+    <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835"
+       class="app-banner-cta" target="_blank" rel="noopener noreferrer">
+      Get it on the App Store ↗
+    </a>
+  </div>
+  <button class="app-banner-close" aria-label="Dismiss"
+    onclick="document.getElementById('certflashBanner').style.display='none'">×</button>
+</div>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo-link"><img src="favicon-512x512.png" alt="IT Study Hub" class="logo-img"><span>IT Study Hub</span></a>
+    <div class="nav-links">
+      <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
+      <a href="network-troubleshooting-commands.html">Network Commands</a>
+      <a href="windows-command-line.html">Windows CLI</a>
+      <a href="best-a-plus.html" class="nav-cta">A+ Resources</a>
+    </div>
+  </div>
+</nav>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb"><a href="/">Home</a><span>&#8250;</span><a href="comptia-aplus-study-guide.html">A+ Study Guide</a><span>&#8250;</span><span>AI Concepts (4.10)</span></nav>
+    <div class="page-hero-badge">New Objective &middot; Core 2 220-1202</div>
+    <h1>CompTIA A+ <span>AI Concepts</span> &mdash; Objective 4.10</h1>
+    <p class="page-hero-sub">Objective 4.10 is new to the 220-1200 series. It sits in domain 4.0 Operational Procedures and covers four things: how AI shows up inside the tools you already use, what policy has to say about it, where these tools fail, and what happens to data you put into them.</p>
+    <div class="cert-badges">
+      <span class="cert-badge cb-teal">Core 2 &middot; Domain 4.0</span>
+      <span class="cert-badge cb-blue">Operational Procedures &middot; 21%</span>
+      <span class="cert-badge cb-purple">New in 220-1202</span>
+    </div>
+  </div>
+</section>
+
+<div class="author-bar">
+  <div class="author-bar-inner">
+    <div class="author-avatar">SF</div>
+    <div class="author-info">
+      <span class="author-name">Sean Fogarty</span>
+      <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
+    </div>
+    <div class="author-date">Updated June 2026</div>
+  </div>
+</div>
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">Quick Answer</div>
+      <div class="quick-answer-text"><strong>Objective 4.10 &mdash; &ldquo;Explain basic concepts related to artificial intelligence (AI)&rdquo; &mdash; is an objective on the current CompTIA A+ Core 2 exam (220-1202).</strong> It is new to the 220-1200 series and did not exist on 220-1102. It lives in <strong>domain 4.0 Operational Procedures</strong>, which accounts for <strong>21% of Core 2</strong>. It covers exactly four areas: <strong>application integration</strong>; <strong>policy</strong> (appropriate use, plagiarism); <strong>limitations</strong> (bias, hallucinations, accuracy); and <strong>private vs. public</strong> (data security, data source, data privacy). Core 2 is a maximum of 90 questions in 90 minutes; passing score 700 on a 100&ndash;900 scale.</div>
+    </div>
+
+    <h2>What objective 4.10 actually covers</h2>
+
+    <p>Most A+ material predates this objective, which makes it easy to over- or under-study. Here is the complete sub-topic list as CompTIA publishes it &mdash; nothing else sits under 4.10.</p>
+
+    <div class="obj-tree">
+      <div class="obj-tree-label">4.10 &mdash; Explain basic concepts related to artificial intelligence (AI)</div>
+      <ul>
+        <li>Application integration</li>
+        <li>Policy
+          <ul><li>Appropriate use</li><li>Plagiarism</li></ul>
+        </li>
+        <li>Limitations
+          <ul><li>Bias</li><li>Hallucinations</li><li>Accuracy</li></ul>
+        </li>
+        <li>Private vs. public
+          <ul><li>Data security</li><li>Data source</li><li>Data privacy</li></ul>
+        </li>
+      </ul>
+    </div>
+
+    <p>Note the verb: <em>explain</em>. Nothing here asks you to train a model or describe a neural network. And note where it sits &mdash; in <a href="comptia-aplus-domains.html">Operational Procedures</a>, next to documentation, change management and professionalism. That placement is the signal: AI is treated as something you use responsibly at work, with rules and risks, the same way backups and change control are.</p>
+
+    <h2>Why CompTIA added this</h2>
+
+    <p>Exam objectives follow the field. Between the 220-1102 and 220-1202 revisions, AI stopped being a separate category of product and started appearing inside tools support teams already run &mdash; ticketing, remote monitoring, documentation search, email security, endpoint tooling. A tech starting a help desk job now is likely to meet AI-generated output on day one, whether or not anyone mentioned it. The risks therefore landed on the support desk before the governance did: someone has to decide whether it is acceptable to paste a customer's error log into a chatbot, and often that person is a tier-one tech deciding in the moment. Hence an objective about judgement rather than technology.</p>
+
+    <h2>Application integration</h2>
+
+    <p>Application integration means AI capability delivered <em>inside</em> software you already use, rather than as a separate site you deliberately visit. In support work that looks like:</p>
+
+    <ul>
+      <li><strong>Ticketing systems</strong> suggesting a category or priority as a ticket is created, or drafting a first response for the tech to edit.</li>
+      <li><strong>RMM and monitoring platforms</strong> summarising an alert storm into a probable root cause instead of four hundred alerts.</li>
+      <li><strong>Documentation and knowledge-base search</strong> answering in prose rather than returning a list of articles.</li>
+      <li><strong>Email security</strong> scoring messages for social-engineering indicators &mdash; a natural fit with <a href="email-security.html">email security</a> and <a href="social-engineering-attacks.html">social engineering attacks</a>.</li>
+      <li><strong>Endpoint tooling</strong> flagging anomalous process behaviour, as described under <a href="endpoint-detection-response.html">endpoint detection and response</a>.</li>
+    </ul>
+
+    <p>Integration changes the trust question. A suggestion appearing in a field looks like part of the application, indistinguishable from a database lookup, and techs accept it with less scrutiny than identical text from a chatbot &mdash; purely because of where it appeared. So know three things about any tool in your stack: whether it has AI features, whether they can be disabled, and whether using them sends data outside the organisation. The third turns an integration question into a <a href="data-loss-prevention.html">data loss prevention</a> question.</p>
+
+    <h2>Policy</h2>
+
+    <p>Objective 4.10 names two policy sub-topics: appropriate use and plagiarism.</p>
+
+    <h3>Appropriate use</h3>
+
+    <p>An acceptable use policy for AI answers a few concrete questions: which tools are approved, what data may never be entered, whether output must be reviewed by a human before it reaches a customer or production system, and who owns the output.</p>
+
+    <p>In many organisations no such policy exists yet, and the absence of a policy is not the absence of use &mdash; staff use these tools anyway, without guidance, and the organisation carries a risk it cannot describe. Three provisions cover most of the exposure:</p>
+
+    <ul>
+      <li><strong>Name the approved tools.</strong> A short allow-list beats a general prohibition nobody follows.</li>
+      <li><strong>Draw one clear data red line</strong> &mdash; no customer data, credentials, configuration or personal data in any tool not on the list.</li>
+      <li><strong>Require human review</strong> before anything customer-facing or production-facing. This is the provision that catches hallucinations before they cost something.</li>
+    </ul>
+
+    <p>This is ordinary policy work, sitting alongside the governance structures in <a href="security-frameworks.html">security frameworks</a> and the exposure assessment in <a href="risk-management.html">risk management</a>.</p>
+
+    <h3>Plagiarism</h3>
+
+    <p>Plagiarism looks like an odd inclusion until you remember that support runs on written documentation. A tech resolves a ticket, asks a model to write it up, and pastes the result into the knowledge base unreviewed. That article is now indistinguishable from one written by the engineer who performed the fix &mdash; and if it contains an error, the error is institutional: the next three techs follow it, and the fourth escalates a problem the documentation caused. Marking generated drafts as generated is what keeps a knowledge base trustworthy.</p>
+
+    <p>There is an external dimension too. Vendor documentation and published technical writing are copyrighted work, and reproducing them through a model does not change the licence. A customer-facing knowledge base built from unattributed content is a legal problem as well as a quality one.</p>
+
+    <h2>Limitations</h2>
+
+    <p>Three named limitations: bias, hallucinations and accuracy. They are distinct failure modes, so it is worth being able to tell them apart.</p>
+
+    <h3>Bias</h3>
+
+    <p>Bias is a systematic skew inherited from training data or design choices. It is not random error &mdash; it is being wrong consistently, in the same direction, which is what makes it hard to notice.</p>
+
+    <p>In support work it surfaces quietly. A model asked to recommend hardware favours whatever was most written about in training, which tracks marketing volume rather than reliability. A triage model trained on historical tickets inherits that history: if one department's tickets were deprioritised before, it learns to deprioritise them. Tickets in imperfect English can score as less urgent because the model associates fluency with importance. None of these announce themselves as errors &mdash; they look like the tool working normally.</p>
+
+    <h3>Hallucinations</h3>
+
+    <p>A hallucination is fluent, specific, confident output that is fabricated. This is the limitation most likely to bite a working tech, because the failure is invisible in the output itself.</p>
+
+    <p>Take the concrete case. A tech troubleshooting a Windows error asks an AI tool for a fix and gets a registry path, a value name, a DWORD, and an instruction to set it to 1 and reboot. The path is plausible and the naming convention is right. The key does not exist in any build of Windows. The damage is what happens next: the tech creates it, because creating a missing key looks like the remedy for a missing key. Either an hour is gone, or something breaks and there is now an undocumented change on a production machine &mdash; and it goes into the ticket as the fix, and the knowledge base permanently.</p>
+
+    <p>The countermeasure is unglamorous: anything specific and checkable &mdash; a path, a command, a port, a version, an identifier &mdash; gets verified against vendor documentation before it is run. That is the <em>test the theory</em> step of the <a href="troubleshooting-methodology.html">CompTIA troubleshooting methodology</a>, and knowing <a href="windows-registry.html">how the Windows registry is structured</a> is what lets you recognise a fabricated path on sight.</p>
+
+    <h3>Accuracy</h3>
+
+    <p>Accuracy is the broader category, and worth separating from hallucination: a hallucinated answer describes something that does not exist, while an inaccurate one can describe something entirely real that is still wrong for you. The common shapes are guidance correct for Windows 10 handed to you for Windows 11, a cmdlet deprecated two versions ago. The tool knows nothing about your environment unless you supply it, and its training has a cut-off date it will not mention. Accuracy is contextual: not only &ldquo;is this true?&rdquo; but &ldquo;is this true here, now, on this system?&rdquo;</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">&#127919; Telling the three limitations apart</div>
+      <p><strong>Bias</strong> &mdash; wrong in a consistent direction, inherited from training data or design. A pattern.</p>
+      <p><strong>Hallucination</strong> &mdash; confidently describes something that does not exist at all. A fabrication.</p>
+      <p><strong>Accuracy</strong> &mdash; may be real and still wrong for your version, environment or moment. A mismatch.</p>
+    </div>
+
+    <h2>Private vs. public</h2>
+
+    <p>This is the part of 4.10 with the most immediate consequences, because the decision gets made in seconds and cannot be taken back. Three sub-topics: data security, data source, data privacy.</p>
+
+    <h3>Data security</h3>
+
+    <p>When you type into a public AI tool, that text leaves your organisation. Depending on product and tier it may be transmitted to a third party, retained in logs, reviewed by staff for abuse monitoring, used to improve the service, and it becomes subject to that provider's breach exposure.</p>
+
+    <p>Here is the case that matters. A tech stuck on a client's routing problem pastes the running configuration into a public chatbot. That config plausibly contains internal subnets, device hostnames, the WAN IP, VPN peer addresses, SNMP community strings and administrative usernames &mdash; a map of the client's network, disclosed to a third party by someone who does not own it. Even if nothing is breached, the organisation can no longer state that the data stayed inside its boundary, which may be exactly what its contract requires. There is usually no retraction mechanism.</p>
+
+    <p>A private deployment changes that shape: running a model inside your own environment, or a contractually isolated tenant, keeps input within your governance boundary and existing controls &mdash; the same boundary logic <a href="cloud-security.html">cloud security</a> describes, and why <a href="encryption-types.html">encryption in transit and at rest</a> belongs in the conversation.</p>
+
+    <h3>Data source</h3>
+
+    <p>Data source cuts two ways: where the model's training data came from, which determines its bias, knowledge cut-off and any licensing attached to what it reproduces; and where the tool retrieves information when it answers you &mdash; your own documentation, the open internet, or nothing beyond its training.</p>
+
+    <p>The second changes how far to trust an answer. A tool grounded in your own verified knowledge base answers from a source you control; one drawing on the open web answers from forum posts of unknown quality; one answering purely from training data answers from memory, with no source to cite &mdash; the condition under which hallucinations are likeliest.</p>
+
+    <h3>Data privacy</h3>
+
+    <p>Data privacy is the regulated subset of the data security problem. Some categories carry legal obligations regardless of internal policy: personally identifiable information, health information, cardholder data, student records, and anything covered by a confidentiality clause.</p>
+
+    <p>Support tickets are full of it. A single ticket might carry a user's full name, phone numbers, home address, employee ID and a description of the accessibility accommodation their software needs. Pasting that into a public tool to summarise it is a disclosure of personal &mdash; possibly health-related &mdash; data, and the tech is unlikely to have registered it as such, because they were thinking about the summary rather than the payload.</p>
+
+    <p>So treat the prompt box as the external system it is: redact before you paste. Replace names with roles, strip identifiers, reduce the input to the technical facts. Usually the problem is answerable without any identifying detail at all &mdash; meaning the data was never needed for the question.</p>
+
+    <h2>Public AI tools vs. private deployment</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Factor</th><th>Public AI tool</th><th>Private / self-hosted deployment</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-term">Where your data goes</td><td>To a third-party provider, outside your network boundary</td><td>Stays inside your own environment or an isolated tenant</td></tr>
+          <tr><td class="td-term">Retention and training</td><td>May be logged, retained and used to improve the service, depending on tier</td><td>Governed by your own retention policy; not used to train a shared model</td></tr>
+          <tr><td class="td-term">Privacy risk</td><td>High for anything identifying or confidential; disclosure is irreversible</td><td>Low; data never leaves the boundary you already control</td></tr>
+          <tr><td class="td-term">Client or regulated data</td><td>Not suitable without explicit approval</td><td>Suitable where existing controls and contracts already permit</td></tr>
+          <tr><td class="td-term">Cost</td><td>Free tier or per-seat subscription; no infrastructure</td><td>Infrastructure, licensing and staff time &mdash; a real project</td></tr>
+          <tr><td class="td-term">Setup and maintenance</td><td>None; available immediately</td><td>Provisioning, updates and access control are yours</td></tr>
+          <tr><td class="td-term">Typical use case</td><td>Learning a concept, drafting non-sensitive text, sanitised problems</td><td>Real tickets, configurations, logs and internal documentation</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The rule that follows: a sanitised, generic question is fine in a public tool; anything carrying real organisational or client data is not, unless the deployment is approved to receive it.</p>
+
+    <h2>Frequently asked questions</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item"><strong>Is AI on the CompTIA A+ exam?</strong><br>Yes. Objective 4.10, “Explain basic concepts related to artificial intelligence (AI),” is on Core 2 (220-1202), in domain 4.0 Operational Procedures. It is new to the 220-1200 series and was not on 220-1102.</div>
+      <div class="scenario-item"><strong>What is an AI hallucination?</strong><br>Output that is fluent, specific and confident but fabricated — an invented registry path, a cmdlet that does not exist, a vendor KB number that resolves to nothing. It is wrong in a way that reads exactly like a correct answer.</div>
+      <div class="scenario-item"><strong>Can I use ChatGPT at work as an IT tech?</strong><br>That depends on your employer's acceptable use policy — some approve specific tools, some ban public ones, many have written nothing down. Confirm what is approved, and never paste client data, credentials or configuration into a public tool without approval.</div>
+      <div class="scenario-item"><strong>What does private vs. public mean in objective 4.10?</strong><br>A public tool is third-party hosted and shared, so input leaves your control and may be retained or reviewed. A private deployment runs inside your own boundary, so data stays under your governance. The trade-off is cost and maintenance.</div>
+      <div class="scenario-item"><strong>What is the difference between AI bias and AI inaccuracy?</strong><br>Bias is a systematic skew from training data or design, so the tool is wrong consistently in one direction. Inaccuracy is output wrong for your situation, often because it is out of date. Bias is a pattern; inaccuracy is an instance.</div>
+      <div class="scenario-item"><strong>Does objective 4.10 require knowing how to build or train an AI model?</strong><br>No. The verb is “explain,” and it sits in Operational Procedures alongside documentation and change management. It covers using these tools responsibly and knowing where data goes — not model architecture.</div>
+      <div class="scenario-item"><strong>What percentage of Core 2 is objective 4.10?</strong><br>CompTIA does not publish weightings for individual objectives, so there is no figure for 4.10. What is published is the domain: 4.0 Operational Procedures is 21% of Core 2, and 4.10 is one objective within it.</div>
+      <div class="scenario-item"><strong>Why does plagiarism appear in a CompTIA A+ objective?</strong><br>Because support runs on written documentation. Generated text pasted into a knowledge base unreviewed becomes institutional fact, and if wrong the team inherits the error. Reproducing vendor documentation without attribution adds a licensing problem.</div>
+    </div>
+
+    <div class="study-tool-callout">
+      <div class="study-tool-callout-label">&#128241; A free flashcard tool for the A+ path</div>
+      <p class="study-tool-callout-text">Objective 4.10 is mostly definitions and distinctions &mdash; bias versus hallucination versus accuracy, public versus private &mdash; which is the kind of material spaced repetition handles well. <strong>CertFlash: CompTIA Study Cards</strong> is a free iOS app for focused flashcard study with built-in spaced repetition. The <strong>A+ deck is free</strong> &mdash; no in-app purchase required to study Core 1 or Core 2 cards. A one-time <strong>$5.99 unlock</strong> adds Network+, Security+, CySA+, Linux+, Cloud+, and PenTest+ if you continue past A+. It's not a course, a quiz app, or a set of practice exams &mdash; it's a flashcard app that sits on top of whatever primary resource you're using. <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" target="_blank" rel="noopener">Get CertFlash on the App Store &rarr;</a></p>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying Core 2?</h3>
+        <p>4.10 is one objective in Operational Procedures. See how the rest of Core 2 is weighted and what to study in what order.</p>
+      </div>
+      <a href="comptia-aplus-study-guide.html" class="btn-teal">A+ Study Guide &rarr;</a>
+    </div>
+
+<h2>Related Articles</h2>
+    <div class="related-grid">
+      <a href="comptia-aplus-study-guide.html" class="related-link">A+ Complete Study Guide</a>
+      <a href="comptia-aplus-domains.html" class="related-link">A+ Exam Domains &amp; Weightings</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="how-to-pass-comptia-aplus.html" class="related-link">How to Pass A+</a>
+      <a href="troubleshooting-methodology.html" class="related-link">Troubleshooting Methodology</a>
+      <a href="data-loss-prevention.html" class="related-link">Data Loss Prevention</a>
+      <a href="security-frameworks.html" class="related-link">Security Frameworks</a>
+      <a href="risk-management.html" class="related-link">Risk Management</a>
+      <a href="cloud-security.html" class="related-link">Cloud Security</a>
+      <a href="best-comptia-flashcard-apps.html" class="related-link">Best CompTIA Flashcard Apps</a>
+    </div>
+  </div>
+</div>
+
+<!-- AUTHOR BIO -->
+<div class="author-bio">
+  <div class="author-bio-inner">
+    <div class="author-bio-avatar">SF</div>
+    <div class="author-bio-content">
+      <div class="author-bio-label">Written by</div>
+      <div class="author-bio-name">Sean Fogarty</div>
+      <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-portfolio">
+    <div class="footer-portfolio-title">From Fogarty Holdings</div>
+    <div class="footer-portfolio-grid">
+      <div class="footer-portfolio-app">
+        <div class="footer-portfolio-app-meta">
+          <img class="footer-portfolio-app-icon" src="images/certflash-icon.png" alt="" />
+          <div class="footer-portfolio-app-text">
+            <div class="footer-portfolio-app-name">CertFlash</div>
+            <div class="footer-portfolio-app-desc">CompTIA Study Cards</div>
+          </div>
+        </div>
+        <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835"
+           class="footer-portfolio-badge"
+           target="_blank" rel="noopener"
+           aria-label="Download CertFlash on the App Store">
+          <svg class="footer-portfolio-badge-svg" width="135" height="40" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 119.66407 40">
+            <g>
+              <g>
+                <g>
+                  <path d="M110.13477,0H9.53468c-.3667,0-.729,0-1.09473.002-.30615.002-.60986.00781-.91895.0127A13.21476,13.21476,0,0,0,5.5171.19141a6.66509,6.66509,0,0,0-1.90088.627A6.43779,6.43779,0,0,0,1.99757,1.99707,6.25844,6.25844,0,0,0,.81935,3.61816a6.60119,6.60119,0,0,0-.625,1.90332,12.993,12.993,0,0,0-.1792,2.002C.00587,7.83008.00489,8.1377,0,8.44434V31.5586c.00489.3105.00587.6113.01515.9219a12.99232,12.99232,0,0,0,.1792,2.0019,6.58756,6.58756,0,0,0,.625,1.9043A6.20778,6.20778,0,0,0,1.99757,38.001a6.27445,6.27445,0,0,0,1.61865,1.1787,6.70082,6.70082,0,0,0,1.90088.6308,13.45514,13.45514,0,0,0,2.0039.1768c.30909.0068.6128.0107.91895.0107C8.80567,40,9.168,40,9.53468,40H110.13477c.3594,0,.7246,0,1.084-.002.3047,0,.6172-.0039.9219-.0107a13.279,13.279,0,0,0,2-.1768,6.80432,6.80432,0,0,0,1.9082-.6308,6.27742,6.27742,0,0,0,1.6172-1.1787,6.39482,6.39482,0,0,0,1.1816-1.6143,6.60413,6.60413,0,0,0,.6191-1.9043,13.50643,13.50643,0,0,0,.1856-2.0019c.0039-.3106.0039-.6114.0039-.9219.0078-.3633.0078-.7246.0078-1.0938V9.53613c0-.36621,0-.72949-.0078-1.09179,0-.30664,0-.61426-.0039-.9209a13.5071,13.5071,0,0,0-.1856-2.002,6.6177,6.6177,0,0,0-.6191-1.90332,6.46619,6.46619,0,0,0-2.7988-2.7998,6.76754,6.76754,0,0,0-1.9082-.627,13.04394,13.04394,0,0,0-2-.17676c-.3047-.00488-.6172-.01074-.9219-.01269-.3594-.002-.7246-.002-1.084-.002Z"/>
+                  <path d="M8.44483,39.125c-.30468,0-.602-.0039-.90429-.0107a12.68714,12.68714,0,0,1-1.86914-.1631,5.88381,5.88381,0,0,1-1.65674-.5479,5.40573,5.40573,0,0,1-1.397-1.0166,5.32082,5.32082,0,0,1-1.02051-1.3965,5.72186,5.72186,0,0,1-.543-1.6572,12.41351,12.41351,0,0,1-.1665-1.875c-.00634-.2109-.01464-.9131-.01464-.9131V8.44434S.88185,7.75293.8877,7.5498a12.37039,12.37039,0,0,1,.16553-1.87207,5.7555,5.7555,0,0,1,.54346-1.6621A5.37349,5.37349,0,0,1,2.61183,2.61768,5.56543,5.56543,0,0,1,4.01417,1.59521a5.82309,5.82309,0,0,1,1.65332-.54394A12.58589,12.58589,0,0,1,7.543.88721L8.44532.875H111.21387l.9131.0127a12.38493,12.38493,0,0,1,1.8584.16259,5.93833,5.93833,0,0,1,1.6709.54785,5.59374,5.59374,0,0,1,2.415,2.41993,5.76267,5.76267,0,0,1,.5352,1.64892,12.995,12.995,0,0,1,.1738,1.88721c.0029.2832.0029.5874.0029.89014.0079.375.0079.73193.0079,1.09179V30.4648c0,.3633,0,.7178-.0079,1.0752,0,.3252,0,.6231-.0039.9297a12.73126,12.73126,0,0,1-.1709,1.8535,5.739,5.739,0,0,1-.54,1.67,5.48029,5.48029,0,0,1-1.0156,1.3857,5.4129,5.4129,0,0,1-1.3994,1.0225,5.86168,5.86168,0,0,1-1.668.5498,12.54218,12.54218,0,0,1-1.8692.1631c-.2929.0068-.5996.0107-.8974.0107l-1.084.002Z" style="fill: #fff"/>
+                </g>
+                <g data-name="&lt;Group&gt;">
+                  <g data-name="&lt;Group&gt;">
+                    <g data-name="&lt;Group&gt;">
+                      <path data-name="&lt;Path&gt;" d="M24.99671,19.88935a5.14625,5.14625,0,0,1,2.45058-4.31771,5.26776,5.26776,0,0,0-4.15039-2.24376c-1.74624-.1833-3.43913,1.04492-4.329,1.04492-.90707,0-2.27713-1.02672-3.75247-.99637a5.52735,5.52735,0,0,0-4.65137,2.8367c-2.01111,3.482-.511,8.59939,1.41551,11.414.96388,1.37823,2.09037,2.91774,3.56438,2.86315,1.4424-.05983,1.98111-.91977,3.7222-.91977,1.72494,0,2.23035.91977,3.73427.88506,1.54777-.02512,2.52292-1.38435,3.453-2.77563a11.39931,11.39931,0,0,0,1.579-3.21589A4.97284,4.97284,0,0,1,24.99671,19.88935Z"/>
+                      <path data-name="&lt;Path&gt;" d="M22.15611,11.47681a5.06687,5.06687,0,0,0,1.159-3.62989,5.15524,5.15524,0,0,0-3.33555,1.72582,4.82131,4.82131,0,0,0-1.18934,3.4955A4.26259,4.26259,0,0,0,22.15611,11.47681Z"/>
+                    </g>
+                  </g>
+                  <g>
+                    <path d="M42.30178,27.13965h-4.7334l-1.13672,3.35645H34.42678l4.4834-12.418h2.083l4.4834,12.418H43.43752Zm-4.24316-1.54883h3.752L39.961,20.14355H39.9092Z"/>
+                    <path d="M55.1592,25.96973c0,2.81348-1.50586,4.62109-3.77832,4.62109a3.0693,3.0693,0,0,1-2.84863-1.584h-.043v4.48438h-1.8584V21.44238h1.79883v1.50586h.03418a3.21162,3.21162,0,0,1,2.88281-1.60059C53.64455,21.34766,55.1592,23.16406,55.1592,25.96973Zm-1.91016,0c0-1.833-.94727-3.03809-2.39258-3.03809-1.41992,0-2.375,1.23047-2.375,3.03809,0,1.82422.95508,3.0459,2.375,3.0459C52.30178,29.01563,53.249,27.81934,53.249,25.96973Z"/>
+                    <path d="M65.12453,25.96973c0,2.81348-1.50635,4.62109-3.77881,4.62109a3.0693,3.0693,0,0,1-2.84863-1.584h-.043v4.48438h-1.8584V21.44238h1.79883v1.50586h.03418a3.21162,3.21162,0,0,1,2.88281-1.60059C63.6094,21.34766,65.12453,23.16406,65.12453,25.96973Zm-1.91064,0c0-1.833-.94727-3.03809-2.39258-3.03809-1.41992,0-2.375,1.23047-2.375,3.03809,0,1.82422.95508,3.0459,2.375,3.0459C62.26662,29.01563,63.21389,27.81934,63.21389,25.96973Z"/>
+                    <path d="M71.70949,27.03613c.1377,1.23145,1.334,2.04,2.96875,2.04,1.56641,0,2.69336-.80859,2.69336-1.91895,0-.96387-.67969-1.541-2.28906-1.93652l-1.60937-.3877c-2.28027-.55078-3.33887-1.61719-3.33887-3.34766,0-2.14258,1.86719-3.61426,4.51758-3.61426,2.625,0,4.42383,1.47168,4.48438,3.61426h-1.876c-.1123-1.23926-1.13672-1.9873-2.63379-1.9873s-2.52148.75684-2.52148,1.8584c0,.87793.6543,1.39453,2.25488,1.79l1.36816.33594c2.54785.60254,3.60547,1.626,3.60547,3.44238,0,2.32324-1.84961,3.77832-4.793,3.77832-2.75391,0-4.61328-1.4209-4.7334-3.667Z"/>
+                    <path d="M83.34621,19.2998v2.14258h1.72168v1.47168H83.34621v4.99121c0,.77539.34473,1.13672,1.10156,1.13672a5.80752,5.80752,0,0,0,.61133-.043v1.46289a5.10351,5.10351,0,0,1-1.03223.08594c-1.833,0-2.54785-.68848-2.54785-2.44434V22.91406H80.16262V21.44238H81.479V19.2998Z"/>
+                    <path d="M86.064,25.96973c0-2.84863,1.67773-4.63867,4.29395-4.63867,2.625,0,4.29492,1.79,4.29492,4.63867,0,2.85645-1.66113,4.63867-4.29492,4.63867C87.72512,30.6084,86.064,28.82617,86.064,25.96973Zm6.69531,0c0-1.9541-.89551-3.10742-2.40137-3.10742s-2.40137,1.16211-2.40137,3.10742c0,1.96191.89551,3.10645,2.40137,3.10645S92.7593,27.93164,92.7593,25.96973Z"/>
+                    <path d="M96.18508,21.44238h1.77246v1.541h.043a2.1594,2.1594,0,0,1,2.17773-1.63574,2.86616,2.86616,0,0,1,.63672.06934v1.73828a2.59794,2.59794,0,0,0-.835-.1123,1.87264,1.87264,0,0,0-1.93652,2.083v5.37012h-1.8584Z"/>
+                    <path d="M109.38332,27.83691c-.25,1.64355-1.85059,2.77148-3.89844,2.77148-2.63379,0-4.26855-1.76465-4.26855-4.5957,0-2.83984,1.64355-4.68164,4.19043-4.68164,2.50488,0,4.08008,1.7207,4.08008,4.46582v.63672h-6.39453v.1123a2.358,2.358,0,0,0,2.43555,2.56445,2.04834,2.04834,0,0,0,2.09082-1.27344Zm-6.28223-2.70215h4.52637a2.1773,2.1773,0,0,0-2.2207-2.29785A2.292,2.292,0,0,0,103.10109,25.13477Z"/>
+                  </g>
+                </g>
+              </g>
+              <g data-name="&lt;Group&gt;">
+                <g>
+                  <path d="M37.82619,8.731a2.63964,2.63964,0,0,1,2.80762,2.96484c0,1.90625-1.03027,3.002-2.80762,3.002H35.67092V8.731Zm-1.22852,5.123h1.125a1.87588,1.87588,0,0,0,1.96777-2.146,1.881,1.881,0,0,0-1.96777-2.13379h-1.125Z"/>
+                  <path d="M41.68068,12.44434a2.13323,2.13323,0,1,1,4.24707,0,2.13358,2.13358,0,1,1-4.24707,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C44.57522,13.99463,45.01369,13.42432,45.01369,12.44434Z"/>
+                  <path d="M51.57326,14.69775h-.92187l-.93066-3.31641h-.07031l-.92676,3.31641h-.91309l-1.24121-4.50293h.90137l.80664,3.436h.06641l.92578-3.436h.85254l.92578,3.436h.07031l.80273-3.436h.88867Z"/>
+                  <path d="M53.85354,10.19482H54.709v.71533h.06641a1.348,1.348,0,0,1,1.34375-.80225,1.46456,1.46456,0,0,1,1.55859,1.6748v2.915h-.88867V12.00586c0-.72363-.31445-1.0835-.97168-1.0835a1.03294,1.03294,0,0,0-1.0752,1.14111v2.63428h-.88867Z"/>
+                  <path d="M59.09377,8.437h.88867v6.26074h-.88867Z"/>
+                  <path d="M61.21779,12.44434a2.13346,2.13346,0,1,1,4.24756,0,2.1338,2.1338,0,1,1-4.24756,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C64.11232,13.99463,64.5508,13.42432,64.5508,12.44434Z"/>
+                  <path d="M66.4009,13.42432c0-.81055.60352-1.27783,1.6748-1.34424l1.21973-.07031v-.38867c0-.47559-.31445-.74414-.92187-.74414-.49609,0-.83984.18213-.93848.50049h-.86035c.09082-.77344.81836-1.26953,1.83984-1.26953,1.12891,0,1.76563.562,1.76563,1.51318v3.07666h-.85547v-.63281h-.07031a1.515,1.515,0,0,1-1.35254.707A1.36026,1.36026,0,0,1,66.4009,13.42432Zm2.89453-.38477v-.37646l-1.09961.07031c-.62012.0415-.90137.25244-.90137.64941,0,.40527.35156.64111.835.64111A1.0615,1.0615,0,0,0,69.29543,13.03955Z"/>
+                  <path d="M71.34816,12.44434c0-1.42285.73145-2.32422,1.86914-2.32422a1.484,1.484,0,0,1,1.38086.79h.06641V8.437h.88867v6.26074h-.85156v-.71143h-.07031a1.56284,1.56284,0,0,1-1.41406.78564C72.0718,14.772,71.34816,13.87061,71.34816,12.44434Zm.918,0c0,.95508.4502,1.52979,1.20313,1.52979.749,0,1.21191-.583,1.21191-1.52588,0-.93848-.46777-1.52979-1.21191-1.52979C72.72121,10.91846,72.26613,11.49707,72.26613,12.44434Z"/>
+                  <path d="M79.23,12.44434a2.13323,2.13323,0,1,1,4.24707,0,2.13358,2.13358,0,1,1-4.24707,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C82.12453,13.99463,82.563,13.42432,82.563,12.44434Z"/>
+                  <path d="M84.66945,10.19482h.85547v.71533h.06641a1.348,1.348,0,0,1,1.34375-.80225,1.46456,1.46456,0,0,1,1.55859,1.6748v2.915H87.605V12.00586c0-.72363-.31445-1.0835-.97168-1.0835a1.03294,1.03294,0,0,0-1.0752,1.14111v2.63428h-.88867Z"/>
+                  <path d="M93.51516,9.07373v1.1416h.97559v.74854h-.97559V13.2793c0,.47168.19434.67822.63672.67822a2.96657,2.96657,0,0,0,.33887-.02051v.74023a2.9155,2.9155,0,0,1-.4834.04541c-.98828,0-1.38184-.34766-1.38184-1.21582v-2.543h-.71484v-.74854h.71484V9.07373Z"/>
+                  <path d="M95.70461,8.437h.88086v2.48145h.07031a1.3856,1.3856,0,0,1,1.373-.80664,1.48339,1.48339,0,0,1,1.55078,1.67871v2.90723H98.69v-2.688c0-.71924-.335-1.0835-.96289-1.0835a1.05194,1.05194,0,0,0-1.13379,1.1416v2.62988h-.88867Z"/>
+                  <path d="M104.76125,13.48193a1.828,1.828,0,0,1-1.95117,1.30273A2.04531,2.04531,0,0,1,100.73,12.46045a2.07685,2.07685,0,0,1,2.07617-2.35254c1.25293,0,2.00879.856,2.00879,2.27V12.688h-3.17969v.0498a1.1902,1.1902,0,0,0,1.19922,1.29,1.07934,1.07934,0,0,0,1.07129-.5459Zm-3.126-1.45117h2.27441a1.08647,1.08647,0,0,0-1.1084-1.1665A1.15162,1.15162,0,0,0,101.63527,12.03076Z"/>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </a>
+      </div>
+      <div class="footer-portfolio-app">
+        <div class="footer-portfolio-app-meta">
+          <img class="footer-portfolio-app-icon" src="images/netscanpro-icon.png" alt="" />
+          <div class="footer-portfolio-app-text">
+            <div class="footer-portfolio-app-name">NetScanPro</div>
+            <div class="footer-portfolio-app-desc">iOS Network Scanner</div>
+          </div>
+        </div>
+        <a href="https://apps.apple.com/us/app/netscanpro/id6762677151"
+           class="footer-portfolio-badge"
+           target="_blank" rel="noopener"
+           aria-label="Download NetScanPro on the App Store">
+          <svg class="footer-portfolio-badge-svg" width="135" height="40" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 119.66407 40">
+            <g>
+              <g>
+                <g>
+                  <path d="M110.13477,0H9.53468c-.3667,0-.729,0-1.09473.002-.30615.002-.60986.00781-.91895.0127A13.21476,13.21476,0,0,0,5.5171.19141a6.66509,6.66509,0,0,0-1.90088.627A6.43779,6.43779,0,0,0,1.99757,1.99707,6.25844,6.25844,0,0,0,.81935,3.61816a6.60119,6.60119,0,0,0-.625,1.90332,12.993,12.993,0,0,0-.1792,2.002C.00587,7.83008.00489,8.1377,0,8.44434V31.5586c.00489.3105.00587.6113.01515.9219a12.99232,12.99232,0,0,0,.1792,2.0019,6.58756,6.58756,0,0,0,.625,1.9043A6.20778,6.20778,0,0,0,1.99757,38.001a6.27445,6.27445,0,0,0,1.61865,1.1787,6.70082,6.70082,0,0,0,1.90088.6308,13.45514,13.45514,0,0,0,2.0039.1768c.30909.0068.6128.0107.91895.0107C8.80567,40,9.168,40,9.53468,40H110.13477c.3594,0,.7246,0,1.084-.002.3047,0,.6172-.0039.9219-.0107a13.279,13.279,0,0,0,2-.1768,6.80432,6.80432,0,0,0,1.9082-.6308,6.27742,6.27742,0,0,0,1.6172-1.1787,6.39482,6.39482,0,0,0,1.1816-1.6143,6.60413,6.60413,0,0,0,.6191-1.9043,13.50643,13.50643,0,0,0,.1856-2.0019c.0039-.3106.0039-.6114.0039-.9219.0078-.3633.0078-.7246.0078-1.0938V9.53613c0-.36621,0-.72949-.0078-1.09179,0-.30664,0-.61426-.0039-.9209a13.5071,13.5071,0,0,0-.1856-2.002,6.6177,6.6177,0,0,0-.6191-1.90332,6.46619,6.46619,0,0,0-2.7988-2.7998,6.76754,6.76754,0,0,0-1.9082-.627,13.04394,13.04394,0,0,0-2-.17676c-.3047-.00488-.6172-.01074-.9219-.01269-.3594-.002-.7246-.002-1.084-.002Z"/>
+                  <path d="M8.44483,39.125c-.30468,0-.602-.0039-.90429-.0107a12.68714,12.68714,0,0,1-1.86914-.1631,5.88381,5.88381,0,0,1-1.65674-.5479,5.40573,5.40573,0,0,1-1.397-1.0166,5.32082,5.32082,0,0,1-1.02051-1.3965,5.72186,5.72186,0,0,1-.543-1.6572,12.41351,12.41351,0,0,1-.1665-1.875c-.00634-.2109-.01464-.9131-.01464-.9131V8.44434S.88185,7.75293.8877,7.5498a12.37039,12.37039,0,0,1,.16553-1.87207,5.7555,5.7555,0,0,1,.54346-1.6621A5.37349,5.37349,0,0,1,2.61183,2.61768,5.56543,5.56543,0,0,1,4.01417,1.59521a5.82309,5.82309,0,0,1,1.65332-.54394A12.58589,12.58589,0,0,1,7.543.88721L8.44532.875H111.21387l.9131.0127a12.38493,12.38493,0,0,1,1.8584.16259,5.93833,5.93833,0,0,1,1.6709.54785,5.59374,5.59374,0,0,1,2.415,2.41993,5.76267,5.76267,0,0,1,.5352,1.64892,12.995,12.995,0,0,1,.1738,1.88721c.0029.2832.0029.5874.0029.89014.0079.375.0079.73193.0079,1.09179V30.4648c0,.3633,0,.7178-.0079,1.0752,0,.3252,0,.6231-.0039.9297a12.73126,12.73126,0,0,1-.1709,1.8535,5.739,5.739,0,0,1-.54,1.67,5.48029,5.48029,0,0,1-1.0156,1.3857,5.4129,5.4129,0,0,1-1.3994,1.0225,5.86168,5.86168,0,0,1-1.668.5498,12.54218,12.54218,0,0,1-1.8692.1631c-.2929.0068-.5996.0107-.8974.0107l-1.084.002Z" style="fill: #fff"/>
+                </g>
+                <g data-name="&lt;Group&gt;">
+                  <g data-name="&lt;Group&gt;">
+                    <g data-name="&lt;Group&gt;">
+                      <path data-name="&lt;Path&gt;" d="M24.99671,19.88935a5.14625,5.14625,0,0,1,2.45058-4.31771,5.26776,5.26776,0,0,0-4.15039-2.24376c-1.74624-.1833-3.43913,1.04492-4.329,1.04492-.90707,0-2.27713-1.02672-3.75247-.99637a5.52735,5.52735,0,0,0-4.65137,2.8367c-2.01111,3.482-.511,8.59939,1.41551,11.414.96388,1.37823,2.09037,2.91774,3.56438,2.86315,1.4424-.05983,1.98111-.91977,3.7222-.91977,1.72494,0,2.23035.91977,3.73427.88506,1.54777-.02512,2.52292-1.38435,3.453-2.77563a11.39931,11.39931,0,0,0,1.579-3.21589A4.97284,4.97284,0,0,1,24.99671,19.88935Z"/>
+                      <path data-name="&lt;Path&gt;" d="M22.15611,11.47681a5.06687,5.06687,0,0,0,1.159-3.62989,5.15524,5.15524,0,0,0-3.33555,1.72582,4.82131,4.82131,0,0,0-1.18934,3.4955A4.26259,4.26259,0,0,0,22.15611,11.47681Z"/>
+                    </g>
+                  </g>
+                  <g>
+                    <path d="M42.30178,27.13965h-4.7334l-1.13672,3.35645H34.42678l4.4834-12.418h2.083l4.4834,12.418H43.43752Zm-4.24316-1.54883h3.752L39.961,20.14355H39.9092Z"/>
+                    <path d="M55.1592,25.96973c0,2.81348-1.50586,4.62109-3.77832,4.62109a3.0693,3.0693,0,0,1-2.84863-1.584h-.043v4.48438h-1.8584V21.44238h1.79883v1.50586h.03418a3.21162,3.21162,0,0,1,2.88281-1.60059C53.64455,21.34766,55.1592,23.16406,55.1592,25.96973Zm-1.91016,0c0-1.833-.94727-3.03809-2.39258-3.03809-1.41992,0-2.375,1.23047-2.375,3.03809,0,1.82422.95508,3.0459,2.375,3.0459C52.30178,29.01563,53.249,27.81934,53.249,25.96973Z"/>
+                    <path d="M65.12453,25.96973c0,2.81348-1.50635,4.62109-3.77881,4.62109a3.0693,3.0693,0,0,1-2.84863-1.584h-.043v4.48438h-1.8584V21.44238h1.79883v1.50586h.03418a3.21162,3.21162,0,0,1,2.88281-1.60059C63.6094,21.34766,65.12453,23.16406,65.12453,25.96973Zm-1.91064,0c0-1.833-.94727-3.03809-2.39258-3.03809-1.41992,0-2.375,1.23047-2.375,3.03809,0,1.82422.95508,3.0459,2.375,3.0459C62.26662,29.01563,63.21389,27.81934,63.21389,25.96973Z"/>
+                    <path d="M71.70949,27.03613c.1377,1.23145,1.334,2.04,2.96875,2.04,1.56641,0,2.69336-.80859,2.69336-1.91895,0-.96387-.67969-1.541-2.28906-1.93652l-1.60937-.3877c-2.28027-.55078-3.33887-1.61719-3.33887-3.34766,0-2.14258,1.86719-3.61426,4.51758-3.61426,2.625,0,4.42383,1.47168,4.48438,3.61426h-1.876c-.1123-1.23926-1.13672-1.9873-2.63379-1.9873s-2.52148.75684-2.52148,1.8584c0,.87793.6543,1.39453,2.25488,1.79l1.36816.33594c2.54785.60254,3.60547,1.626,3.60547,3.44238,0,2.32324-1.84961,3.77832-4.793,3.77832-2.75391,0-4.61328-1.4209-4.7334-3.667Z"/>
+                    <path d="M83.34621,19.2998v2.14258h1.72168v1.47168H83.34621v4.99121c0,.77539.34473,1.13672,1.10156,1.13672a5.80752,5.80752,0,0,0,.61133-.043v1.46289a5.10351,5.10351,0,0,1-1.03223.08594c-1.833,0-2.54785-.68848-2.54785-2.44434V22.91406H80.16262V21.44238H81.479V19.2998Z"/>
+                    <path d="M86.064,25.96973c0-2.84863,1.67773-4.63867,4.29395-4.63867,2.625,0,4.29492,1.79,4.29492,4.63867,0,2.85645-1.66113,4.63867-4.29492,4.63867C87.72512,30.6084,86.064,28.82617,86.064,25.96973Zm6.69531,0c0-1.9541-.89551-3.10742-2.40137-3.10742s-2.40137,1.16211-2.40137,3.10742c0,1.96191.89551,3.10645,2.40137,3.10645S92.7593,27.93164,92.7593,25.96973Z"/>
+                    <path d="M96.18508,21.44238h1.77246v1.541h.043a2.1594,2.1594,0,0,1,2.17773-1.63574,2.86616,2.86616,0,0,1,.63672.06934v1.73828a2.59794,2.59794,0,0,0-.835-.1123,1.87264,1.87264,0,0,0-1.93652,2.083v5.37012h-1.8584Z"/>
+                    <path d="M109.38332,27.83691c-.25,1.64355-1.85059,2.77148-3.89844,2.77148-2.63379,0-4.26855-1.76465-4.26855-4.5957,0-2.83984,1.64355-4.68164,4.19043-4.68164,2.50488,0,4.08008,1.7207,4.08008,4.46582v.63672h-6.39453v.1123a2.358,2.358,0,0,0,2.43555,2.56445,2.04834,2.04834,0,0,0,2.09082-1.27344Zm-6.28223-2.70215h4.52637a2.1773,2.1773,0,0,0-2.2207-2.29785A2.292,2.292,0,0,0,103.10109,25.13477Z"/>
+                  </g>
+                </g>
+              </g>
+              <g data-name="&lt;Group&gt;">
+                <g>
+                  <path d="M37.82619,8.731a2.63964,2.63964,0,0,1,2.80762,2.96484c0,1.90625-1.03027,3.002-2.80762,3.002H35.67092V8.731Zm-1.22852,5.123h1.125a1.87588,1.87588,0,0,0,1.96777-2.146,1.881,1.881,0,0,0-1.96777-2.13379h-1.125Z"/>
+                  <path d="M41.68068,12.44434a2.13323,2.13323,0,1,1,4.24707,0,2.13358,2.13358,0,1,1-4.24707,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C44.57522,13.99463,45.01369,13.42432,45.01369,12.44434Z"/>
+                  <path d="M51.57326,14.69775h-.92187l-.93066-3.31641h-.07031l-.92676,3.31641h-.91309l-1.24121-4.50293h.90137l.80664,3.436h.06641l.92578-3.436h.85254l.92578,3.436h.07031l.80273-3.436h.88867Z"/>
+                  <path d="M53.85354,10.19482H54.709v.71533h.06641a1.348,1.348,0,0,1,1.34375-.80225,1.46456,1.46456,0,0,1,1.55859,1.6748v2.915h-.88867V12.00586c0-.72363-.31445-1.0835-.97168-1.0835a1.03294,1.03294,0,0,0-1.0752,1.14111v2.63428h-.88867Z"/>
+                  <path d="M59.09377,8.437h.88867v6.26074h-.88867Z"/>
+                  <path d="M61.21779,12.44434a2.13346,2.13346,0,1,1,4.24756,0,2.1338,2.1338,0,1,1-4.24756,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C64.11232,13.99463,64.5508,13.42432,64.5508,12.44434Z"/>
+                  <path d="M66.4009,13.42432c0-.81055.60352-1.27783,1.6748-1.34424l1.21973-.07031v-.38867c0-.47559-.31445-.74414-.92187-.74414-.49609,0-.83984.18213-.93848.50049h-.86035c.09082-.77344.81836-1.26953,1.83984-1.26953,1.12891,0,1.76563.562,1.76563,1.51318v3.07666h-.85547v-.63281h-.07031a1.515,1.515,0,0,1-1.35254.707A1.36026,1.36026,0,0,1,66.4009,13.42432Zm2.89453-.38477v-.37646l-1.09961.07031c-.62012.0415-.90137.25244-.90137.64941,0,.40527.35156.64111.835.64111A1.0615,1.0615,0,0,0,69.29543,13.03955Z"/>
+                  <path d="M71.34816,12.44434c0-1.42285.73145-2.32422,1.86914-2.32422a1.484,1.484,0,0,1,1.38086.79h.06641V8.437h.88867v6.26074h-.85156v-.71143h-.07031a1.56284,1.56284,0,0,1-1.41406.78564C72.0718,14.772,71.34816,13.87061,71.34816,12.44434Zm.918,0c0,.95508.4502,1.52979,1.20313,1.52979.749,0,1.21191-.583,1.21191-1.52588,0-.93848-.46777-1.52979-1.21191-1.52979C72.72121,10.91846,72.26613,11.49707,72.26613,12.44434Z"/>
+                  <path d="M79.23,12.44434a2.13323,2.13323,0,1,1,4.24707,0,2.13358,2.13358,0,1,1-4.24707,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C82.12453,13.99463,82.563,13.42432,82.563,12.44434Z"/>
+                  <path d="M84.66945,10.19482h.85547v.71533h.06641a1.348,1.348,0,0,1,1.34375-.80225,1.46456,1.46456,0,0,1,1.55859,1.6748v2.915H87.605V12.00586c0-.72363-.31445-1.0835-.97168-1.0835a1.03294,1.03294,0,0,0-1.0752,1.14111v2.63428h-.88867Z"/>
+                  <path d="M93.51516,9.07373v1.1416h.97559v.74854h-.97559V13.2793c0,.47168.19434.67822.63672.67822a2.96657,2.96657,0,0,0,.33887-.02051v.74023a2.9155,2.9155,0,0,1-.4834.04541c-.98828,0-1.38184-.34766-1.38184-1.21582v-2.543h-.71484v-.74854h.71484V9.07373Z"/>
+                  <path d="M95.70461,8.437h.88086v2.48145h.07031a1.3856,1.3856,0,0,1,1.373-.80664,1.48339,1.48339,0,0,1,1.55078,1.67871v2.90723H98.69v-2.688c0-.71924-.335-1.0835-.96289-1.0835a1.05194,1.05194,0,0,0-1.13379,1.1416v2.62988h-.88867Z"/>
+                  <path d="M104.76125,13.48193a1.828,1.828,0,0,1-1.95117,1.30273A2.04531,2.04531,0,0,1,100.73,12.46045a2.07685,2.07685,0,0,1,2.07617-2.35254c1.25293,0,2.00879.856,2.00879,2.27V12.688h-3.17969v.0498a1.1902,1.1902,0,0,0,1.19922,1.29,1.07934,1.07934,0,0,0,1.07129-.5459Zm-3.126-1.45117h2.27441a1.08647,1.08647,0,0,0-1.1084-1.1665A1.15162,1.15162,0,0,0,101.63527,12.03076Z"/>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-inner">
+    <div class="footer-brand"><div class="footer-logo">IT Study Hub</div><div class="footer-tagline">Free CompTIA study resources covering certifications, networking, security, and core IT concepts.</div></div>
+    <div class="footer-links"><div class="footer-links-title">A+</div><a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a><a href="how-to-pass-comptia-aplus.html">How to Pass A+</a><a href="best-a-plus.html">Best A+ Resources</a></div>
+    <div class="footer-links"><div class="footer-links-title">Related</div><a href="network-troubleshooting-commands.html">Network Commands</a><a href="osi-model.html">OSI Model</a><a href="incident-response-explained.html">Incident Response</a></div>
+  </div>
+  <div class="footer-bottom"><span>&copy; 2026 <a href="https://fogartyholdings.com" target="_blank" rel="noopener" style="color:inherit;">Fogarty Holdings LLC</a>. All rights reserved.</span><span><a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &middot; Disclosure: Some links may be affiliate links.</span></div>
+</footer>
+</body>
+</html>
