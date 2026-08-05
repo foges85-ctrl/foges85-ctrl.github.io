@@ -1030,6 +1030,74 @@ a { color: inherit; text-decoration: none; }
   .footer-portfolio-grid { grid-template-columns: 1fr; gap: 22px; }
   .footer-portfolio-app { min-height: 0; }
 }
+
+/* ---- MOBILE NAV: collapsible menu (added 2026-08-05) ---- */
+.nav-toggle { display: none; }
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0 10px;
+    background: none;
+    border: 1px solid var(--border, #e2e8f4);
+    border-radius: 8px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--navy, #0a1628);
+    border-radius: 2px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .navbar .nav-links {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    margin: 0;
+    padding: 10px 16px 14px;
+    list-style: none;
+    background: var(--white, #ffffff);
+    border-bottom: 1px solid var(--border, #e2e8f4);
+    box-shadow: 0 10px 24px rgba(10,22,40,0.10);
+    overflow-x: visible;
+    overflow-y: auto;
+    max-height: calc(100vh - 60px);
+  }
+  .navbar .nav-links.open { display: flex; }
+  .navbar .nav-links li { list-style: none; width: 100%; margin: 0; }
+  .navbar .nav-links a {
+    display: block;
+    width: 100%;
+    font-size: 15px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    white-space: normal;
+  }
+  .navbar .nav-links a.nav-cta {
+    margin-left: 0;
+    margin-top: 4px;
+    padding: 14px 18px;
+    text-align: center;
+  }
+}
+/* ---- end mobile nav ---- */
 </style>
 <!-- Google AdSense -->
 <!-- MailerLite Universal -->
@@ -1065,10 +1133,14 @@ ml('account', '2306798');
 <nav class="navbar">
   <div class="nav-inner">
     <a href="/" class="logo-link">
-      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <img src="favicon-128x128.png" alt="IT Study Hub Logo" class="logo-img" width="52" height="52">
       <span>IT Study Hub</span>
     </a>
-    <div class="nav-links">
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"
+      onclick="var n=document.getElementById('navLinks'),o=n.classList.toggle('open');this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'Close menu':'Open menu');">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
       <a href="/" class="active">Home</a>
       <a href="networking-roadmap.html">Networking Roadmap</a>
       <a href="networking.html">Networking Guide</a>
@@ -1225,7 +1297,7 @@ ml('account', '2306798');
   <!-- ARTICLES SECTION -->
   <div class="section-header">
     <h2 class="section-title">All <span>Guides</span></h2>
-    <span class="section-count">109 guides</span>
+    <span class="section-count">107 guides</span>
   </div>
 
   <nav class="section-nav" aria-label="Jump to guide section">
@@ -2052,15 +2124,15 @@ ml('account', '2306798');
     </div>
     <div class="affiliate-buttons">
       <a href="https://www.examcompass.com/comptia-a-plus-certification-practice-test-1-exam-220-1201"
-         class="aff-btn aff-btn-primary" target="_blank" rel="nofollow">
+         class="aff-btn aff-btn-primary" target="_blank" rel="nofollow sponsored">
         🧪 A+ Practice Exams (220-1201)
       </a>
       <a href="https://www.examcompass.com/comptia-network-plus-certification-practice-test-1-exam-n10-009"
-         class="aff-btn aff-btn-primary" target="_blank" rel="nofollow">
+         class="aff-btn aff-btn-primary" target="_blank" rel="nofollow sponsored">
         🧪 Network+ Practice Exams (N10-009)
       </a>
       <a href="https://www.examcompass.com/comptia-security-plus-practice-test-1-exam-sy0-701"
-         class="aff-btn aff-btn-primary" target="_blank" rel="nofollow">
+         class="aff-btn aff-btn-primary" target="_blank" rel="nofollow sponsored">
         🧪 Security+ Practice Exams (SY0-701)
       </a>
     </div>
