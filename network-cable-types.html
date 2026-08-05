@@ -335,6 +335,74 @@ tbody tr:hover td{background:#f0fdf4;}
   .footer-portfolio-grid { grid-template-columns: 1fr; gap: 22px; }
   .footer-portfolio-app { min-height: 0; }
 }
+
+/* ---- MOBILE NAV: collapsible menu (added 2026-08-05) ---- */
+.nav-toggle { display: none; }
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0 10px;
+    background: none;
+    border: 1px solid var(--border, #e2e8f4);
+    border-radius: 8px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--navy, #0a1628);
+    border-radius: 2px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .navbar .nav-links {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    margin: 0;
+    padding: 10px 16px 14px;
+    list-style: none;
+    background: var(--white, #ffffff);
+    border-bottom: 1px solid var(--border, #e2e8f4);
+    box-shadow: 0 10px 24px rgba(10,22,40,0.10);
+    overflow-x: visible;
+    overflow-y: auto;
+    max-height: calc(100vh - 60px);
+  }
+  .navbar .nav-links.open { display: flex; }
+  .navbar .nav-links li { list-style: none; width: 100%; margin: 0; }
+  .navbar .nav-links a {
+    display: block;
+    width: 100%;
+    font-size: 15px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    white-space: normal;
+  }
+  .navbar .nav-links a.nav-cta {
+    margin-left: 0;
+    margin-top: 4px;
+    padding: 14px 18px;
+    text-align: center;
+  }
+}
+/* ---- end mobile nav ---- */
 </style>
 
 <script type="application/ld+json">
@@ -479,10 +547,14 @@ tbody tr:hover td{background:#f0fdf4;}
 <nav class="navbar">
   <div class="nav-inner">
     <a href="/" class="logo-link">
-      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <img src="favicon-128x128.png" alt="IT Study Hub Logo" class="logo-img" width="52" height="52">
       <span>IT Study Hub</span>
     </a>
-    <div class="nav-links">
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"
+      onclick="var n=document.getElementById('navLinks'),o=n.classList.toggle('open');this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'Close menu':'Open menu');">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
       <a href="/">Home</a>
       <a href="networking-roadmap.html">Roadmap</a>
       <a href="aplus-cheat-sheet.html">A+ Cheat Sheet</a>
