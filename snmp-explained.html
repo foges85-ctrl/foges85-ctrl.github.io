@@ -1038,7 +1038,7 @@ tbody tr:hover td { background: #f4f8ff; }
 
     <h2>SNMP in network monitoring — real-world context</h2>
 
-    <p>In practice, SNMP is what powers most enterprise network monitoring platforms. Tools like SolarWinds NPM, PRTG, Nagios, Zabbix, and LibreNMS all use SNMP to collect metrics from managed devices.</p>
+    <p>In practice, SNMP is what powers most enterprise network monitoring platforms. Tools like SolarWinds NPM, PRTG, Nagios, Zabbix, and LibreNMS all use SNMP to collect metrics from managed devices. Smaller tools query it too — mobile network scanners often read SNMP to fill in what a device actually is, which is one of the things we look at in <a href="https://appmatchup.com/fing-vs-wifiman.html">how Fing and WiFiman each handle discovery</a>.</p>
 
     <p>A typical deployment polls every managed device every 5 minutes, collects interface traffic counters, CPU and memory utilization, and interface error rates, then graphs the data over time. SNMP traps provide near-real-time alerting — a switch sending a trap the moment a port goes down is far faster than waiting for the next polling cycle.</p>
 
