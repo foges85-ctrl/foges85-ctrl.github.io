@@ -2,8 +2,8 @@
 <!--
   PUBLISH CHECKLIST:
   - Confirm canonical/og:url path
-  - Verify current tool pricing before publishing (nmap free, Angry IP free, Fing subscription, iNet one-time, IP Scanner Ultra free tier, NetScanPro free with a $6.99 Pro unlock)
-  - Update datePublished / dateModified
+  - Verify current tool pricing before publishing (nmap free, Angry IP free, Fing subscription, iNet free basic with Pro at $11.99, IP Scanner Ultra $39.99 with a separate free IP Scanner app, NetScanPro free with a $6.99 Pro unlock)
+  - Update datePublished / dateModified (done: dateModified set to 2026-08-08)
   - After publishing: fire IndexNow, add a link to this page from network-troubleshooting-commands.html / home-lab.html / comptia-network-plus-domains.html, submit URL in Bing + GSC
   - Built on itstudyhub's own stylesheet for an exact match
 -->
@@ -28,7 +28,7 @@
   "headline":"Network Scanning Tools for IT Techs: Desktop and Mobile Compared (2026)",
   "description":"An honest comparison of network scanning tools for IT techs and CompTIA candidates: nmap, Angry IP Scanner, Fing, iNet, and IP Scanner Ultra. When to reach for a desktop tool versus your phone, and what a scanner actually does for Network+ and Security+.",
   "datePublished":"2026-07-12",
-  "dateModified":"2026-08-04",
+  "dateModified":"2026-08-08",
   "author":{"@type":"Person","name":"Sean Fogarty"},
   "publisher":{"@type":"Organization","name":"IT Study Hub","url":"https://itstudyhub.org/"}
 }
@@ -38,13 +38,13 @@
   "@context":"https://schema.org",
   "@type":"FAQPage",
   "mainEntity":[
-    {"@type":"Question","name":"What is a network scanner and what does it actually do?","acceptedAnswer":{"@type":"Answer","text":"A network scanner discovers what is present and reachable on a network. Working from the bottom up, it typically runs a host discovery pass (an ICMP ping sweep and, on a local segment, ARP requests) to find live devices, then scans ports on those hosts to see which services are listening, and often attempts service and operating-system detection to identify what is actually running. The output is an inventory: which IP addresses are up, which ports are open, and, where it can tell, what software and OS sit behind them."}},
-    {"@type":"Question","name":"Is nmap on the CompTIA Network+ and Security+ exams?","acceptedAnswer":{"@type":"Answer","text":"Yes. nmap is the reference scanning tool that both exams point to, and the underlying concepts (host discovery, ping sweeps, port scanning, and service and OS detection) are testable material. Network+ covers scanning as part of network discovery and documentation, and Security+ covers it under reconnaissance and vulnerability identification. Knowing what nmap does and how to read its output is exam-relevant regardless of which scanner you use day to day."}},
-    {"@type":"Question","name":"Is it legal to scan a network?","acceptedAnswer":{"@type":"Answer","text":"Only scan networks you own or have explicit written permission to test. Scanning your own home lab or a client's network under a signed engagement is fine. Scanning a network you do not control, such as a coffee shop, an employer's network without authorization, or a stranger's Wi-Fi, can violate computer-misuse laws and acceptable-use policies even if you never touch a device. Port scanning in particular is treated as reconnaissance and can trigger security alerts. When in doubt, get written authorization first."}},
-    {"@type":"Question","name":"What is the best free network scanner?","acceptedAnswer":{"@type":"Answer","text":"On a computer, nmap is free, open source, and the most capable option available, and it is the professional standard. If nmap's command line is too much, Angry IP Scanner is also free and open source with a simple graphical interface across Windows, Mac, and Linux. On a phone, Fing has a genuinely usable permanent free tier for basic device discovery. Prices and free-tier limits are as of 2026 and change, so verify before relying on them."}},
-    {"@type":"Question","name":"Can a phone app replace nmap?","acceptedAnswer":{"@type":"Answer","text":"No. Nothing on mobile matches nmap's depth of port scanning, service detection, OS fingerprinting, and scripting. Mobile scanners exist for a different situation: you are standing in a server closet, a client's office, or a basement with only your phone and need a quick picture of what is on the network. For serious work at a desk, nmap is the answer; the phone is for when you do not have a computer in hand."}},
-    {"@type":"Question","name":"What is the difference between a network scanner and a network monitor?","acceptedAnswer":{"@type":"Answer","text":"A scanner takes a point-in-time snapshot: you run it, it discovers what is on the network right now, and it stops. A monitor runs continuously, watches for devices joining or leaving, and can alert you or block devices over time. Most of the tools techs reach for, including nmap and the mobile scanners, are scanners. Continuous monitoring is a separate job that a paid tier of a tool like Fing, or a dedicated desktop platform, is built for."}},
-    {"@type":"Question","name":"nmap vs Angry IP Scanner: which should I use?","acceptedAnswer":{"@type":"Answer","text":"Use nmap when you need depth: detailed port scanning, service and version detection, OS fingerprinting, and scripting. It is command-line and has a steep learning curve, but nothing matches it. Use Angry IP Scanner when you want a fast, friendly graphical sweep of a subnet to see what is up and what basic ports are open, without learning nmap's syntax. Many techs keep both: Angry IP for a quick look, nmap when they need to dig in."}},
+    {"@type":"Question","name":"What is a network scanner and what does it actually do?","acceptedAnswer":{"@type":"Answer","text":"It discovers what's present and reachable on a network. Working bottom-up, it runs host discovery (an ICMP ping sweep, and ARP on a local segment) to find live devices, scans ports on those hosts to see which services are listening, and often attempts service and OS detection to identify what's running. The result is an inventory: which addresses are up, which ports are open, and what sits behind them."}},
+    {"@type":"Question","name":"Is nmap on the CompTIA Network+ and Security+ exams?","acceptedAnswer":{"@type":"Answer","text":"Yes. nmap is the reference scanning tool both exams point to, and the underlying concepts \u2014 host discovery, ping sweeps, port scanning, and service/OS detection \u2014 are testable. Network+ covers scanning under network discovery and documentation; Security+ covers it under reconnaissance and vulnerability identification. Knowing what nmap does and how to read its output is exam-relevant no matter which scanner you use day to day."}},
+    {"@type":"Question","name":"Is it legal to scan a network?","acceptedAnswer":{"@type":"Answer","text":"Only scan networks you own or have explicit written permission to test. Your own home lab or a client's network under a signed engagement is fine. Scanning a network you don't control \u2014 a coffee shop, an employer's network without authorization, a stranger's Wi-Fi \u2014 can violate computer-misuse laws and acceptable-use policies even if you never touch a device. Port scanning is treated as reconnaissance and can trigger security alerts. When in doubt, get written authorization first."}},
+    {"@type":"Question","name":"What's the best free network scanner?","acceptedAnswer":{"@type":"Answer","text":"On a computer, nmap \u2014 free, open source, and the most capable option there is. If its command line is too much, Angry IP Scanner is also free and open source with a simple GUI across Windows, Mac, and Linux. On a phone, Fing has a genuinely usable permanent free tier for basic device discovery, capped at three manual scans a day. Free-tier limits and prices are as of 2026 and change, so verify before relying on them."}},
+    {"@type":"Question","name":"Can a phone app replace nmap?","acceptedAnswer":{"@type":"Answer","text":"No. Nothing on mobile matches nmap's depth of port scanning, service detection, OS fingerprinting, and scripting. Mobile scanners are for a different situation \u2014 you're in a server closet, a client's office, or a basement with only your phone and need a quick picture of the network. For serious work at a desk, nmap is the answer; the phone is for when you don't have a computer in hand."}},
+    {"@type":"Question","name":"What's the difference between a network scanner and a network monitor?","acceptedAnswer":{"@type":"Answer","text":"A scanner takes a point-in-time snapshot: you run it, it discovers what's on the network right now, and it stops. A monitor runs continuously, watches for devices joining or leaving, and can alert you or block devices over time. Most tools techs reach for \u2014 nmap and the mobile scanners \u2014 are scanners. Continuous monitoring is a separate job that a paid tier like Fing's, or a dedicated desktop platform, is built for."}},
+    {"@type":"Question","name":"nmap vs Angry IP Scanner \u2014 which should I use?","acceptedAnswer":{"@type":"Answer","text":"Use nmap when you need depth: detailed port scanning, service and version detection, OS fingerprinting, and scripting. It's command-line with a steep learning curve, but nothing matches it. Use Angry IP Scanner when you want a fast, friendly graphical sweep of a subnet to see what's up and what basic ports are open, without learning nmap's syntax. Many techs keep both."}},
     {"@type":"Question","name":"How can I identify an unknown device on my network?","acceptedAnswer":{"@type":"Answer","text":"Start with the clues the device gives off. Many devices broadcast a hostname or advertise services (over Bonjour or UPnP) that reveal what they are, and a device's MAC address prefix identifies its manufacturer. The fastest manual method is to open your router's admin page, find the unknown device's MAC address, and look up its manufacturer prefix. Some scanners automate this: on a desktop they read MAC addresses straight off the local segment, and on any platform they read the broadcast names and services during a scan. On iOS, NetScanPro does the broadcast half on-device, resolving a name, type, and manufacturer where the device exposes enough information, and marking each result with a confidence level rather than guessing; iOS blocks the ARP table, so a phone scanner cannot read MAC addresses the way a desktop one does. A device that broadcasts nothing identifiable, common with privacy-focused phones and some smart-home gear, may stay unidentified in any scanner; for those, the router MAC lookup or unplugging a suspected device and rescanning is the fallback."}}
   ]
 }
@@ -565,21 +565,21 @@ table.cmp tr.me th,table.cmp tr.me td{background:rgba(0,194,168,.07);}
     <div class="app-block">
       <p class="app-name">Fing</p>
       <p class="app-bestfor">Best for: the popular pick &mdash; a genuinely usable free tier for casual scans</p>
-      <p>Fing is the most widely installed mobile network scanner, and for good reason: it's free to download, the free tier is a permanent solution rather than a trial, and its device fingerprinting is excellent &mdash; it's often uncannily good at naming exactly what each device is. For "who's on my Wi-Fi?" it covers most casual needs without paying a cent. A <b>subscription</b> premium tier (around <b>$9.99/month</b>, with cheaper tiers available; pricing as of 2026) adds continuous monitoring, alerts, and more. If you want an always-on watchdog for a home network, that paid tier is one of the few mobile tools built for it.</p>
-      <p class="con"><b>Worth noting:</b> Fing has drawn criticism from some users for moving core features behind a subscription paywall and limiting the number of free-tier scans over time. That's reported user sentiment rather than a fixed statement about current features &mdash; free tiers change in both directions &mdash; so check what today's free tier includes before you rely on it. Even so, the free tier remains one of the more capable ones on mobile.</p>
+      <p>Fing is the most widely installed mobile network scanner, and for good reason: it's free to download, the free tier is a permanent plan rather than a trial, though it is capped at three manual scans a day, and its device fingerprinting is excellent &mdash; it's often uncannily good at naming exactly what each device is. For "who's on my Wi-Fi?" it covers most casual needs without paying a cent. A <b>subscription</b> premium tier (Premium at <b>$7.99/month or $69.99/year</b>, Professional at <b>$16.99/month or $149.99/year</b>, per Fing's pricing page as of August 2026) adds continuous monitoring, alerts, and more. If you want an always-on watchdog for a home network, that paid tier is one of the few mobile tools built for it.</p>
+      <p class="con"><b>Worth noting:</b> Fing has drawn criticism from some users for moving core features behind a subscription paywall and limiting the number of free-tier scans over time. That's reported user sentiment about which features have moved over time rather than a fixed statement about today's tier &mdash; free tiers change in both directions &mdash; so check what today's free tier includes before you rely on it. Even so, the free tier remains one of the more capable ones on mobile.</p>
     </div>
 
     <div class="app-block">
       <p class="app-name">iNet</p>
       <p class="app-bestfor">Best for: the most complete one-time-purchase mobile toolbox</p>
-      <p>iNet is a well-established scanner for iOS, iPad, and Mac sold as a <b>one-time purchase</b> rather than a subscription. Beyond discovery it bundles genuinely useful extra tools &mdash; <b>Wake on LAN, SSH, Bonjour</b> browsing, and more &mdash; which makes it more of a pocket network toolkit than a single-purpose scanner. If you want the widest set of features on mobile without a recurring bill, this is the fullest box.</p>
+      <p>iNet is a well-established scanner for iOS, iPad, and Mac sold as a <b>one-time purchase</b> rather than a subscription &mdash; a free basic version with in-app upgrades, or <b>iNet Pro at $11.99</b>. Beyond discovery it bundles genuinely useful extra tools &mdash; <b>Wake on LAN, SSH, Bonjour</b> browsing, and more &mdash; which makes it more of a pocket network toolkit than a single-purpose scanner. If you want the widest set of features on mobile without a recurring bill, this is the fullest box.</p>
       <p class="con"><b>Trade-offs:</b> it's still a mobile tool, so it won't match nmap's depth of enumeration. And the extra tooling means a slightly busier interface than a bare scanner &mdash; a fair trade if you'll use the extras, overkill if you just want a device list.</p>
     </div>
 
     <div class="app-block">
       <p class="app-name">IP Scanner Ultra</p>
       <p class="app-bestfor">Best for: people who live across Apple devices</p>
-      <p>IP Scanner Ultra's standout feature is <b>iCloud sync across Mac, iPad, and Apple TV</b>, so your network inventory and custom device names follow you across your Apple hardware. It has a generous free tier for basic scanning, and the paid unlock adds capacity and features. If your world is entirely Apple and you want one scanner that's consistent everywhere you use it, this is the natural fit.</p>
+      <p>IP Scanner Ultra's standout feature is <b>iCloud sync across Mac, iPhone, iPad, Apple TV, Watch, and Vision Pro</b>, so your network inventory and custom device names follow you across your Apple hardware. It's a <b>$39.99</b> purchase &mdash; the free tier belongs to a separate listing, plain <b>IP Scanner</b>, from the same developer. If your world is entirely Apple and you want one scanner that's consistent everywhere you use it, this is the natural fit.</p>
       <p class="con"><b>Trade-offs:</b> the iCloud-and-Apple-ecosystem angle is the whole point, so it's less compelling if you're not all-in on Apple. Like the others here, it's a discovery scanner, not an nmap-class enumeration tool.</p>
     </div>
 
@@ -616,21 +616,21 @@ table.cmp tr.me th,table.cmp tr.me td{background:rgba(0,194,168,.07);}
           <tr>
             <th>Fing</th>
             <td>iOS, Android (+ desktop)</td>
-            <td><span class="cmp-chip chip-free">Free tier</span> <span class="cmp-chip chip-sub">Premium ~$9.99/mo</span></td>
+            <td><span class="cmp-chip chip-free">Free tier</span> <span class="cmp-chip chip-sub">Premium $7.99/mo</span></td>
             <td>Casual "who's on my Wi-Fi" + monitoring</td>
             <td>Yes &mdash; on the paid tier</td>
           </tr>
           <tr>
             <th>iNet</th>
             <td>iOS, iPad, Mac</td>
-            <td><span class="cmp-chip chip-once">One-time purchase</span></td>
+            <td><span class="cmp-chip chip-free">Free basic</span> <span class="cmp-chip chip-once">Pro $11.99 once</span></td>
             <td>Fullest mobile toolbox (WoL, SSH, Bonjour)</td>
             <td>No</td>
           </tr>
           <tr>
             <th>IP Scanner Ultra</th>
-            <td>Mac, iPad, Apple TV (iCloud)</td>
-            <td><span class="cmp-chip chip-free">Generous free tier</span></td>
+            <td>Mac, iPhone, iPad, Apple TV, Watch, Vision Pro (iCloud) &mdash; requires iOS 26</td>
+            <td><span class="cmp-chip chip-once">$39.99</span> (separate free &ldquo;IP Scanner&rdquo; app available)</td>
             <td>Apple-ecosystem users</td>
             <td>No</td>
           </tr>
@@ -652,7 +652,7 @@ table.cmp tr.me th,table.cmp tr.me td{background:rgba(0,194,168,.07);}
       <h4>If you want a desktop GUI without the nmap learning curve</h4>
       <p>Use Angry IP Scanner. Free, open source, cross-platform, and friendly &mdash; a fast graphical sweep of any subnet with nothing to memorize. Move to nmap when you need real depth.</p>
       <h4>If you just want to see who's on your Wi-Fi, free</h4>
-      <p>Use Fing's free tier on your phone. It's permanent, not a trial, and its device fingerprinting is the best on mobile for casual "what's connected?" checks. Just confirm what today's free tier includes.</p>
+      <p>Use Fing's free tier on your phone. It's permanent, not a trial &mdash; though capped at three manual scans a day &mdash; and its device fingerprinting is the best on mobile for casual "what's connected?" checks. Just confirm what today's free tier includes.</p>
       <h4>If you want continuous monitoring and alerts</h4>
       <p>Choose Fing's paid tier for an always-on mobile watchdog, or a dedicated desktop monitoring tool for a home network. A plain scanner &mdash; including all the buy-once mobile apps &mdash; takes a snapshot and stops; it won't watch the network for you.</p>
       <h4>If you're on a client site with just your phone and want a one-time purchase</h4>
@@ -674,7 +674,7 @@ table.cmp tr.me th,table.cmp tr.me td{background:rgba(0,194,168,.07);}
     </div>
     <div class="faq-item">
       <p class="faq-q">What's the best free network scanner?</p>
-      <p class="faq-a">On a computer, nmap &mdash; free, open source, and the most capable option there is. If its command line is too much, Angry IP Scanner is also free and open source with a simple GUI across Windows, Mac, and Linux. On a phone, Fing has a genuinely usable permanent free tier for basic device discovery. Free-tier limits and prices are as of 2026 and change, so verify before relying on them.</p>
+      <p class="faq-a">On a computer, nmap &mdash; free, open source, and the most capable option there is. If its command line is too much, Angry IP Scanner is also free and open source with a simple GUI across Windows, Mac, and Linux. On a phone, Fing has a genuinely usable permanent free tier for basic device discovery, capped at three manual scans a day. Free-tier limits and prices are as of 2026 and change, so verify before relying on them.</p>
     </div>
     <div class="faq-item">
       <p class="faq-q">Can a phone app replace nmap?</p>
@@ -690,7 +690,7 @@ table.cmp tr.me th,table.cmp tr.me td{background:rgba(0,194,168,.07);}
     </div>
     <div class="faq-item">
       <p class="faq-q">Which mobile scanner is best if I don't want a subscription?</p>
-      <p class="faq-a">If you want the fullest toolbox for one price, iNet is a one-time purchase with extras like Wake on LAN, SSH, and Bonjour. If you're deep in the Apple ecosystem, IP Scanner Ultra has a generous free tier and iCloud sync. NetScanPro is free to download, with a one-time $6.99 Pro unlock, focused on multi-method discovery and PDF export for documenting a site. All are scanners, not monitors &mdash; and none replace nmap when you're at a computer. Prices as of 2026; confirm before buying.</p>
+      <p class="faq-a">If you want the fullest toolbox for one price, iNet is a one-time purchase &mdash; free basic with in-app upgrades, or Pro at $11.99 &mdash; with extras like Wake on LAN, SSH, and Bonjour. If you're deep in the Apple ecosystem, IP Scanner Ultra is $39.99 with iCloud sync, and the same developer's separate free &ldquo;IP Scanner&rdquo; listing covers basic scanning. NetScanPro is free to download, with a one-time $6.99 Pro unlock, focused on multi-method discovery and PDF export for documenting a site. All are scanners, not monitors &mdash; and none replace nmap when you're at a computer. Prices as of 2026; confirm before buying.</p>
     </div>
     <div class="faq-item">
       <p class="faq-q">How can I identify an unknown device on my network?</p>
