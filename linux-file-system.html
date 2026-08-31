@@ -606,6 +606,8 @@ tbody tr:hover td{background:#f0fdf9;}
       </div>
     </div>
 
+    <p style="font-size:13.5px;color:var(--muted);border-left:3px solid var(--border);padding:8px 0 8px 14px;margin:0 0 26px;">Directory definitions on this page are quoted from the <a href="https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.txt" target="_blank" rel="noopener">Filesystem Hierarchy Standard 3.0</a> (dated 19 March 2015, still the current release); exam weightings are checked against CompTIA's published <a href="https://www.comptia.org/en-us/certifications/a/core-1-and-2-v15/" target="_blank" rel="noopener">A+ Core 1 and Core 2 (V15) exam details</a>. Both verified 31 August 2026.</p>
+
     <h2>The Linux Directory Tree</h2>
 
     <p>Unlike Windows (which uses drive letters like <code class="mono">C:\</code> and <code class="mono">D:\</code>), Linux has a single hierarchical file system rooted at <code class="mono">/</code>. All storage devices — internal drives, USB drives, network shares — are mounted somewhere within this tree. This design is called the <strong>Filesystem Hierarchy Standard (FHS)</strong>.</p>
@@ -685,6 +687,8 @@ tbody tr:hover td{background:#f0fdf9;}
       </div>
     </div>
 
+    <p>These layouts are specified, not conventional. The <a href="https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.txt" target="_blank" rel="noopener">Filesystem Hierarchy Standard 3.0</a> defines <code class="mono">/etc</code> as &ldquo;host-specific system configuration&rdquo;, <code class="mono">/var</code> as &ldquo;variable data files&rdquo;, and <code class="mono">/opt</code> as &ldquo;reserved for the installation of add-on application software packages&rdquo;. The per-directory reference shipped on most systems is the <a href="https://man7.org/linux/man-pages/man7/hier.7.html" target="_blank" rel="noopener">hier(7)</a> man page; on systemd distributions, the additional layout rules that sit on top of the FHS are documented in <a href="https://man7.org/linux/man-pages/man7/file-hierarchy.7.html" target="_blank" rel="noopener">file-hierarchy(7)</a>.</p>
+
     <h2>Linux File System Types</h2>
 
     <div class="table-wrap">
@@ -741,6 +745,8 @@ tbody tr:hover td{background:#f0fdf9;}
       <div class="exam-tip-label">🎯 FAT32's 4 GB Limit — A Frequent Exam Trap</div>
       <p><strong>FAT32 cannot store any single file larger than 4 GB.</strong> This is a hard limitation of the file system, not the drive size. A common A+ scenario: a user tries to copy a 6 GB video file to a USB drive and gets an error — the cause is FAT32 formatting. The fix is to reformat the drive as exFAT (cross-platform, no 4 GB limit) or NTFS (Windows/Linux only). The drive itself is not broken.</p>
     </div>
+
+    <p>Defaults differ by distribution and change between releases. Red Hat's own documentation states that <a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/managing_file_systems/getting-started-with-xfs" target="_blank" rel="noopener">XFS &ldquo;is default in RHEL 10&rdquo;</a>, while the Debian and Ubuntu installers still default to ext4. Check the installer for the release in front of you rather than assuming.</p>
 
     <h2>Linux File Permissions</h2>
 
@@ -843,6 +849,12 @@ tbody tr:hover td{background:#f0fdf9;}
       <div class="exam-tip-label">🎯 Linux vs Windows File System Comparison</div>
       <p><strong>Linux uses forward slashes</strong> (<code class="mono">/home/user/file</code>) — Windows uses backslashes (<code class="mono">C:\Users\user\file</code>). Linux is <strong>case-sensitive</strong> — <code class="mono">File.txt</code> and <code class="mono">file.txt</code> are different files. Windows is case-insensitive. Linux has <strong>no drive letters</strong> — everything is under /. The Linux equivalent of C:\ is /, the equivalent of the Windows Desktop is ~/Desktop or /home/username/Desktop.</p>
     </div>
+
+    <h2>What This Page Doesn't Cover</h2>
+
+    <p>This covers the directory tree, permissions, inodes and mount points at the depth CompTIA tests. It does not cover POSIX ACLs beyond the basic <code class="mono">rwx</code> triads, SELinux or AppArmor contexts, LVM, filesystem tuning, or recovery from a damaged superblock &mdash; those are Linux+ and administration topics rather than A+ ones. Where a distribution diverges from the standard (Ubuntu's Snap mount points, for instance), this page follows the FHS rather than the distribution.</p>
+
+    <p>For scope: CompTIA's published <a href="https://www.comptia.org/en-us/certifications/a/core-1-and-2-v15/" target="_blank" rel="noopener">A+ Core 1 and Core 2 (V15) exam details</a> put Operating Systems at <strong>28% of Core 2</strong>, with a passing score of <strong>700 out of 900</strong>. The current versions, <strong>220-1201</strong> and <strong>220-1202</strong>, launched on <strong>25 March 2025</strong>. Linux file-system questions sit inside that 28%, alongside Windows and macOS.</p>
 
     <h2>Exam Scenarios</h2>
     <div class="scenario-list">

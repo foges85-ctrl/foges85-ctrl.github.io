@@ -578,6 +578,8 @@ tbody tr:hover td{background:#fdf4ff;}
       </div>
     </div>
 
+    <p style="font-size:13.5px;color:var(--muted);border-left:3px solid var(--border);padding:8px 0 8px 14px;margin:0 0 26px;">WPA3 behaviour on this page is checked against the <a href="https://www.wi-fi.org/news-events/newsroom/wi-fi-alliance-introduces-wi-fi-certified-wpa3-security" target="_blank" rel="noopener">Wi-Fi Alliance's WPA3 announcement</a>, EAP behaviour against the relevant RFCs, and exam scope against CompTIA's published <a href="https://www.comptia.org/en-us/certifications/security/" target="_blank" rel="noopener">Security+ SY0-701 exam details</a>. All verified 31 August 2026.</p>
+
     <h2>WEP → WPA → WPA2 → WPA3 — The Evolution</h2>
 
     <div class="proto-timeline">
@@ -643,6 +645,8 @@ tbody tr:hover td{background:#fdf4ff;}
       <p>The exam will often list all four and ask which provides the highest security or which should be used for a new enterprise deployment. The answer is always WPA3. If WPA3 isn't available, WPA2 Enterprise.</p>
     </div>
 
+    <p>The dates here are worth holding onto. The Wi-Fi Alliance <a href="https://www.wi-fi.org/news-events/newsroom/wi-fi-alliance-introduces-wi-fi-certified-wpa3-security" target="_blank" rel="noopener">introduced WPA3 on 25 June 2018</a>, and WPA3 support became <strong>mandatory for new Wi-Fi CERTIFIED devices on 1 July 2020</strong> &mdash; which is why hardware sold since then generally offers it even where networks still run WPA2. Per that same announcement, all WPA3 networks &ldquo;require use of Protected Management Frames&rdquo;, where WPA2 leaves PMF optional; WPA3-Personal replaces the pre-shared key with Simultaneous Authentication of Equals (SAE); and WPA3-Enterprise offers an optional mode at &ldquo;the equivalent of 192-bit cryptographic strength&rdquo;.</p>
+
     <h2>Personal vs Enterprise Mode</h2>
     <p>Both WPA2 and WPA3 come in two authentication modes with fundamentally different authentication mechanisms:</p>
 
@@ -676,6 +680,8 @@ tbody tr:hover td{background:#fdf4ff;}
 
     <p>The authentication flow: <strong>Supplicant → Authenticator (AP) → RADIUS Server</strong>. The AP acts as a pass-through — it doesn't validate credentials itself, it forwards the authentication exchange to the RADIUS server and grants/denies access based on the response.</p>
 
+    <p>802.1X itself is an IEEE standard &mdash; <a href="https://standards.ieee.org/ieee/802.1X/7345/" target="_blank" rel="noopener">IEEE 802.1X-2020</a> &mdash; and it is what defines the supplicant, authenticator and authentication-server roles described above. It is not wireless-specific: the same standard governs wired switch-port authentication.</p>
+
     <h2>EAP Types — How Credentials Are Carried</h2>
     <p>EAP (Extensible Authentication Protocol) is the framework that carries authentication credentials inside 802.1X. Different EAP types provide different levels of security:</p>
 
@@ -698,6 +704,8 @@ tbody tr:hover td{background:#fdf4ff;}
       <p><strong>PEAP:</strong> Only the server has a certificate. The server proves its identity to the client via certificate; the client proves its identity with username/password inside the encrypted TLS tunnel. Easier to deploy (no client certificates), nearly as secure if the server certificate is properly validated.</p>
       <p>The exam asks: "Which EAP type requires certificates on both the client and the server?" → <strong>EAP-TLS</strong>. "Which EAP type requires only a server certificate?" → <strong>PEAP or EAP-TTLS</strong>.</p>
     </div>
+
+    <p>EAP is a framework, not a single method, which is why the table above has so many rows. The framework is specified in <a href="https://www.rfc-editor.org/rfc/rfc3748" target="_blank" rel="noopener">RFC 3748</a>; EAP-TLS, the certificate-based method, is specified separately in <a href="https://www.rfc-editor.org/rfc/rfc5216" target="_blank" rel="noopener">RFC 5216</a>. Reading the first page of each is the fastest way to see why some methods need a client certificate and others only need a server one.</p>
 
     <h2>Wireless Attacks</h2>
 
@@ -731,6 +739,10 @@ tbody tr:hover td{background:#fdf4ff;}
     </div>
 
     <hr class="divider">
+
+    <h2>What This Page Doesn't Cover</h2>
+
+    <p>This page covers the protocols and the attacks against them at Security+ depth. It does not cover RF planning, channel and power design, antenna selection, or wireless survey work &mdash; those belong to Network+ and to vendor wireless tracks. It also does not walk through configuring a specific controller or access point, since the menus differ by vendor and change between firmware releases. Where WPA2 and WPA3 behaviour differs, this page describes the certified behaviour rather than any one vendor's implementation of it.</p>
 
     <h2>Exam Scenarios</h2>
     <div class="scenario-list">

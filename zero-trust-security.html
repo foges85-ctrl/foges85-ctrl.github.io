@@ -616,6 +616,8 @@ tbody tr:hover td{background:#fdf4ff;}
       </div>
     </div>
 
+    <p style="font-size:13.5px;color:var(--muted);border-left:3px solid var(--border);padding:8px 0 8px 14px;margin:0 0 26px;">Definitions on this page follow <a href="https://csrc.nist.gov/pubs/sp/800/207/final" target="_blank" rel="noopener">NIST SP 800-207, <em>Zero Trust Architecture</em></a> (August 2020), and the pillar model follows <a href="https://www.cisa.gov/zero-trust-maturity-model" target="_blank" rel="noopener">CISA's Zero Trust Maturity Model v2.0</a> (April 2023). Exam scope is checked against CompTIA's published <a href="https://www.comptia.org/en-us/certifications/security/" target="_blank" rel="noopener">Security+ SY0-701 exam details</a>. All verified 31 August 2026.</p>
+
     <h2>The Problem Zero Trust Solves</h2>
 
     <p>Traditional network security relied on a hard perimeter — like a castle with a moat. Get inside the walls (VPN, office network) and you were trusted. This model breaks down in the modern world of remote work, cloud services, BYOD, and sophisticated attackers who can breach the perimeter or already be inside as malicious insiders.</p>
@@ -730,6 +732,8 @@ tbody tr:hover td{background:#fdf4ff;}
       </div>
     </div>
 
+    <p>The phrase has a specific source. <a href="https://csrc.nist.gov/pubs/sp/800/207/final" target="_blank" rel="noopener">NIST SP 800-207</a> &mdash; published August 2020 by Scott Rose, Oliver Borchert, Stu Mitchell and Sean Connelly &mdash; is what turned &ldquo;zero trust&rdquo; from a vendor slogan into a defined architecture, and it is where the split between policy engine, policy administrator and policy enforcement point comes from. The five pillars above are not NIST's: they are <a href="https://www.cisa.gov/zero-trust-maturity-model" target="_blank" rel="noopener">CISA's</a>, from the Zero Trust Maturity Model, which reached <strong>version 2.0 in April 2023</strong> (version 1.0 dates from 2021). CISA pairs those five pillars with three cross-cutting capabilities &mdash; Visibility and Analytics, Automation and Orchestration, and Governance &mdash; and grades each against four maturity stages: Traditional, Initial, Advanced and Optimal.</p>
+
     <h2>Zero Trust Key Terms for the Exam</h2>
 
     <div class="table-wrap">
@@ -755,6 +759,12 @@ tbody tr:hover td{background:#fdf4ff;}
       <p>These are related but different concepts. <strong>Defense in depth</strong> layers multiple security controls (firewall + IDS + antivirus + MFA) — but can still have implicit trust inside those layers. <strong>Zero Trust</strong> is an architectural philosophy that eliminates implicit trust entirely.</p>
       <p>In practice, Zero Trust uses defense-in-depth techniques (MFA, encryption, segmentation, logging) but applies them with the principle that no entity is ever trusted by default — the "never trust" mindset is the distinguishing factor. On the exam, if the scenario involves eliminating implicit trust or not trusting the internal network, the answer is Zero Trust.</p>
     </div>
+
+    <h2>What This Page Doesn't Cover</h2>
+
+    <p>This page explains Zero Trust as Security+ frames it: the principles, the pillars, the vocabulary, and the contrast with the perimeter model. It does not tell you how to implement one. Policy-engine selection, identity-provider federation, device-posture tooling, microsegmentation at the switching layer, and the sequencing of a migration are architecture and engineering work that sits well outside SY0-701 &mdash; NIST's <a href="https://csrc.nist.gov/pubs/sp/800/207/final" target="_blank" rel="noopener">SP 800-207</a> section on deployment scenarios is the better starting point for that.</p>
+
+    <p>For scope: CompTIA's published <a href="https://www.comptia.org/en-us/certifications/security/" target="_blank" rel="noopener">Security+ SY0-701 exam details</a> show <strong>SY0-701 launched on 7 November 2023</strong>, runs a <strong>maximum of 90 questions in 90 minutes</strong>, and requires <strong>750 on a scale of 100&ndash;900</strong> to pass. Security Architecture, where Zero Trust sits, is <strong>18%</strong> of the exam.</p>
 
     <h2>Exam Scenarios</h2>
     <div class="scenario-list">

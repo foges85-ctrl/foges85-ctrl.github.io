@@ -594,6 +594,8 @@ tbody tr:hover td{background:#eff6ff;}
       </div>
     </div>
 
+    <p style="font-size:13.5px;color:var(--muted);border-left:3px solid var(--border);padding:8px 0 8px 14px;margin:0 0 26px;">Group Policy behaviour on this page is checked against Microsoft's <a href="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-processing" target="_blank" rel="noopener">Group Policy processing documentation</a>, protocol behaviour against the Kerberos and LDAP RFCs, and exam weightings against CompTIA's published <a href="https://www.comptia.org/en-us/certifications/a/core-1-and-2-v15/" target="_blank" rel="noopener">A+ Core 1 and Core 2 (V15) exam details</a>. All verified 31 August 2026.</p>
+
     <h2>Active Directory vs Workgroup — Why Domains Exist</h2>
     <p>In a <strong>workgroup</strong> (peer-to-peer), each computer manages its own local user accounts. If you have 200 computers and need to update a password policy, you update it on 200 machines individually. That's unmanageable at scale.</p>
     <p>In a <strong>domain</strong>, all user accounts, passwords, and policies are stored centrally on a <strong>Domain Controller (DC)</strong>. Users log in with domain credentials that authenticate against the DC. An admin changes a policy once and it applies everywhere. This is the fundamental reason Active Directory exists.</p>
@@ -706,6 +708,8 @@ tbody tr:hover td{background:#eff6ff;}
 <span class="code-blue">rsop.msc</span>             <span class="code-comment"># Resultant Set of Policy — GUI GPO diagnostics</span></pre>
     </div>
 
+    <p>Those intervals are documented rather than folklore. Microsoft's <a href="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-processing" target="_blank" rel="noopener">Group Policy processing reference</a> gives member computers a background refresh of <strong>90 minutes plus a randomised offset of up to 30 minutes</strong> &mdash; so 90 to 120 minutes in practice &mdash; while <strong>domain controllers refresh every 5 minutes</strong>. The same page confirms the LSDOU order above, and states the governing rule plainly: &ldquo;The AD container closest to the computer or user overrides Group Policy set in a higher-level AD container.&rdquo;</p>
+
     <h2>Domain Join — How a Computer Joins AD</h2>
     <p>When a computer joins a domain, it creates a <strong>computer account object</strong> in Active Directory and establishes a trust relationship with the DC. After joining, users can log in with domain credentials from that machine.</p>
 
@@ -738,6 +742,8 @@ tbody tr:hover td{background:#eff6ff;}
       </table>
     </div>
 
+    <p>Neither protocol is a Microsoft invention. Kerberos version 5 &mdash; the ticket-granting exchange described above &mdash; is specified in <a href="https://www.rfc-editor.org/rfc/rfc4120" target="_blank" rel="noopener">RFC 4120</a>, and LDAP version 3 in <a href="https://www.rfc-editor.org/rfc/rfc4511" target="_blank" rel="noopener">RFC 4511</a>. Active Directory implements both, with its own extensions layered on top, which is why non-Windows systems can authenticate against a domain at all.</p>
+
     <h2>Active Directory and Security+ — Attack Surface</h2>
     <p>Because AD controls authentication and authorization for the entire domain, it's a prime target for attackers. Security+ tests AD-specific attack scenarios regularly.</p>
 
@@ -755,6 +761,12 @@ tbody tr:hover td{background:#eff6ff;}
     </div>
 
     <hr class="divider">
+
+    <h2>What This Page Doesn't Cover</h2>
+
+    <p>This is the conceptual layer A+ and Security+ ask about: what a domain is, how the structure nests, how Group Policy applies, and where the attack surface sits. It does not cover building a forest, FSMO role placement and seizure, sites-and-services replication topology, schema extension, or AD recovery &mdash; all administration topics rather than exam ones. Azure AD / Microsoft Entra ID is a different product with a different model and is not covered here either, despite the similar name.</p>
+
+    <p>One perishable detail worth knowing: <a href="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/active-directory-functional-levels" target="_blank" rel="noopener">Windows Server 2025 introduced a new domain and forest functional level</a> &mdash; the first since Windows Server 2016, as Server 2019 and 2022 both topped out at the 2016 level. On the exam side, CompTIA's published <a href="https://www.comptia.org/en-us/certifications/a/core-1-and-2-v15/" target="_blank" rel="noopener">A+ Core 1 and Core 2 (V15) exam details</a> put Security at <strong>28% of Core 2 (220-1202)</strong>, with a passing score of <strong>700 out of 900</strong>.</p>
 
     <h2>Exam Scenarios</h2>
     <div class="scenario-list">
