@@ -86,7 +86,7 @@ a { color: inherit; text-decoration: none; }
   transition: background 0.15s, transform 0.1s;
 }
 .nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
-.nav-links a.nav-cta.active { background: var(--teal2); }
+.nav-links a.nav-cta.active, .nav-links a.nav-cta.active:hover { background: var(--teal2); color: var(--navy) !important; }
 @media (max-width: 768px) {
   .nav-inner { padding: 0 16px; height: 60px; }
   .logo-img { height: 44px; }
@@ -636,6 +636,7 @@ a { color: inherit; text-decoration: none; }
 .editorial p { font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 16px; }
 .editorial a { color: var(--blue); font-weight: 600; }
 .editorial a:hover { text-decoration: underline; }
+.editorial a.btn { color: var(--navy); }
 .editorial strong { color: var(--navy); }
 
 /* ---- MOBILE NAV: collapsible menu (added 2026-08-05) ---- */
@@ -1214,6 +1215,14 @@ a { color: inherit; text-decoration: none; }
     <p>There is no single number &mdash; it depends on how much you choose to buy, and the cheapest workable path costs very little. The cost that dwarfs everything else is the exam voucher itself, which is why spending a little to pass on the first attempt is the cheapest path overall.</p>
     <p><strong>The free path</strong> costs $0 for learning: Professor Messer&rsquo;s videos plus free reference articles. <strong>Practice exams</strong> run roughly $30&ndash;$40 per certification from Dion Training and are the purchase most first-time passers credit. <strong>A printed study guide</strong> adds about $30&ndash;$60 depending on the title. <strong>Udemy video courses</strong> are frequently discounted when they&rsquo;re on sale &mdash; never pay full list price, as Udemy runs sales constantly. <strong>CertFlash</strong> is free for the A+ deck, with a one-time $9.99 unlock for the other certs.</p>
     <p>Putting that together: <strong>going fully free costs $0</strong> &mdash; Messer&rsquo;s videos plus free practice questions. The <strong>minimum paid path</strong> is a set of practice exams on their own, roughly $30&ndash;$40. The <strong>recommended combination</strong> &mdash; a study guide plus practice exams &mdash; comes to roughly $60&ndash;$100 per certification, toward the higher end for Security+. Compared to the cost of re-sitting a failed exam, a quality set of practice tests is the easiest money you&rsquo;ll spend.</p>
+
+    <div class="study-tool-callout">
+      <div class="study-tool-callout-label">&#128218; If you&rsquo;re studying for more than one exam</div>
+      <p class="study-tool-callout-text"><strong>ExpertEdge</strong> is a subscription learning library from Packt Publishing, with titles from Packt, Wiley and other publishers. When I checked the catalog in October 2026, it had study guides and video courses for Security+ (SY0-701) and Network+ (N10-009), and <strong>video courses only for A+</strong> (220-1201/1202) &mdash; no current A+ book. The subscription makes the most sense if you&rsquo;re working through more than one exam; for a single exam, a single study guide may be cheaper. Code <strong>ITSTUDYHUB50</strong> gives 50% off the yearly plan only.</p>
+      <p class="study-tool-callout-text" style="margin-top:10px;">1. Go to expertedge.org and sign up.<br>2. Choose the yearly plan (the code doesn&rsquo;t work on monthly).<br>3. Enter <strong>ITSTUDYHUB50</strong> at checkout for 50% off.</p>
+      <a href="https://expertedge.org" target="_blank" rel="nofollow sponsored" class="btn btn-teal" style="margin-top:14px;text-decoration:none;">View ExpertEdge &rarr;</a>
+      <p style="font-size:12px;color:var(--muted);margin-top:10px;">Affiliate partner &mdash; I earn a commission on yearly signups with this code. Catalog checked October 2026.</p>
+    </div>
 
     <h2>What are the most common CompTIA study mistakes?</h2>
     <p><strong>Relying on brain dumps.</strong> Leaked &ldquo;exam questions&rdquo; are tempting but counterproductive: CompTIA refreshes its question pool, dumps are frequently inaccurate, and passing without understanding leaves you unable to do the job. Use legitimate practice exams instead.</p>
