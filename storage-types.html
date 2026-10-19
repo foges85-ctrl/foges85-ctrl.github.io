@@ -452,7 +452,7 @@ tbody tr:hover td{background:#f0fdf4;}
       "name": "RAID — Redundant Array of Independent Disks",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "RAID combines multiple drives to provide either fault tolerance (data survives a drive failure) or improved performance (or both). The A+ exam tests RAID 0, 1, 5, and 10 — you must know how each works, the minimum drives required, and what happens when a drive fails. RAID is NOT a backup. This is the most important RAID concept on the exam. RAID protects against drive failure — it does not protect against accidental deletion, ransomware, or corruption (which replicates to all mirrors instantly). Backups and RAID serve different purposes. RAID 0 has no fault tolerance — any drive failure des…"
+        "text": "RAID combines multiple drives to provide either fault tolerance (data survives a drive failure) or improved performance (or both). The A+ exam tests RAID 0, 1, 5, 6, and 10 — you must know how each works, the minimum drives required, and what happens when a drive fails. RAID is NOT a backup. This is the most important RAID concept on the exam. RAID protects against drive failure — it does not protect against accidental deletion, ransomware, or corruption (which replicates to all mirrors instantly). Backups and RAID serve different purposes. RAID 0 has no fault tolerance — any drive failure des…"
       }
     },
     {
@@ -513,7 +513,7 @@ tbody tr:hover td{background:#f0fdf4;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/storage-types.html",
   "inLanguage": "en"
 }
@@ -574,7 +574,7 @@ tbody tr:hover td{background:#f0fdf4;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -677,7 +677,7 @@ tbody tr:hover td{background:#f0fdf4;}
     </div>
 
     <h2>RAID — Redundant Array of Independent Disks</h2>
-    <p>RAID combines multiple drives to provide either <strong>fault tolerance</strong> (data survives a drive failure) or <strong>improved performance</strong> (or both). The A+ exam tests RAID 0, 1, 5, and 10 — you must know how each works, the minimum drives required, and what happens when a drive fails.</p>
+    <p>RAID combines multiple drives to provide either <strong>fault tolerance</strong> (data survives a drive failure) or <strong>improved performance</strong> (or both). The A+ exam tests RAID 0, 1, 5, 6, and 10 — you must know how each works, the minimum drives required, and what happens when a drive fails.</p>
 
     <div class="raid-grid">
 
@@ -745,6 +745,26 @@ tbody tr:hover td{background:#f0fdf4;}
 
       <div class="raid-card">
         <div class="raid-header">
+          <span class="raid-num">RAID 6</span>
+          <span class="raid-name">Striping with Double Parity</span>
+          <div class="raid-badges">
+            <span class="raid-badge badge-redundancy">Redundancy</span>
+          </div>
+        </div>
+        <div class="raid-body">
+          <strong>How it works:</strong> Like RAID 5, data is striped across all drives, but <strong>two independent parity blocks</strong> are distributed across the drives instead of one.<br><br>
+          <strong>Failure behavior:</strong> The array can survive the failure of <strong>any two drives</strong>, so a second failure during a rebuild does not destroy the data. Writes are slower than RAID 5 because two parity blocks must be calculated.<br><br>
+          <strong>Use case:</strong> Large arrays where rebuilds take a long time and a second failure during rebuild is a real risk.
+          <div class="raid-stats">
+            <span class="raid-stat"><strong>Min drives:</strong> 4</span>
+            <span class="raid-stat"><strong>Capacity:</strong> (N-2) drives (2 drive equivalents for parity)</span>
+            <span class="raid-stat"><strong>Drive failure tolerance:</strong> 2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="raid-card">
+        <div class="raid-header">
           <span class="raid-num">RAID 10</span>
           <span class="raid-name">Stripe of Mirrors (RAID 1+0)</span>
           <div class="raid-badges">
@@ -769,7 +789,7 @@ tbody tr:hover td{background:#f0fdf4;}
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ RAID exam tips</div>
       <p><strong>RAID is NOT a backup.</strong> This is the most important RAID concept on the exam. RAID protects against drive failure — it does not protect against accidental deletion, ransomware, or corruption (which replicates to all mirrors instantly). Backups and RAID serve different purposes.</p>
-      <p><strong>RAID 0 has no fault tolerance</strong> — any drive failure destroys all data. <strong>RAID 1 and RAID 5 can each survive one drive failure</strong>. <strong>RAID 10 can survive one failure per mirror pair</strong>. The exam frequently asks "which RAID level provides redundancy with the best write performance?" → <strong>RAID 10</strong>.</p>
+      <p><strong>RAID 0 has no fault tolerance</strong> — any drive failure destroys all data. <strong>RAID 1 and RAID 5 can each survive one drive failure</strong>; <strong>RAID 6 survives two</strong>. <strong>RAID 10 can survive one failure per mirror pair</strong>. The exam frequently asks "which RAID level provides redundancy with the best write performance?" → <strong>RAID 10</strong>.</p>
     </div>
 
     <h2>Storage Speed Comparison</h2>

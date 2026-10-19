@@ -1206,7 +1206,7 @@ tbody tr:hover td { background: #f6f9ff; }
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/subnet-mask.html",
   "inLanguage": "en"
 }
@@ -1275,7 +1275,7 @@ tbody tr:hover td { background: #f6f9ff; }
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated May 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <!-- ARTICLE -->
@@ -1424,14 +1424,14 @@ ipconfig /all     ← shows full details including subnet mask</pre>
 Mask: 255.255.0.0</pre>
         </div>
         <div class="trouble-scenario-block">
-          <div class="trouble-scenario-label">✓ All other devices</div>
+          <div class="trouble-scenario-label">✓ Other devices on the laptop's subnet</div>
           <pre>IP:   192.168.1.X
 Mask: 255.255.255.0</pre>
         </div>
       </div>
 
       <div class="trouble-result">
-        <strong>Result:</strong> The laptop treats a much wider range of addresses as "local," causing ARP and routing confusion. Local devices may be unreachable despite internet working fine.<br><br>
+        <strong>Result:</strong> The laptop treats every 192.168.x.x address as "local." Devices on its own 192.168.1.x subnet still work, but the printer is on a different subnet (192.168.2.20), so the laptop ARPs for it directly instead of sending the traffic to the default gateway — and the print job never arrives. Internet traffic still goes through the gateway, so browsing works fine.<br><br>
         <strong>Fix:</strong> Correct the subnet mask — usually done automatically by DHCP. Check if the laptop was manually configured.
       </div>
     </div>
@@ -1462,7 +1462,7 @@ Mask: 255.255.255.0</pre>
     <div class="summary-list">
       <div class="summary-item">A subnet mask defines what your device considers "local"</div>
       <div class="summary-item">The most common mask is <strong>255.255.255.0</strong> (/24)</div>
-      <div class="summary-item">Wrong subnet masks cause partial connectivity — local OR internet works, but not both</div>
+      <div class="summary-item">Wrong subnet masks cause partial connectivity — some destinations work while others fail</div>
       <div class="summary-item">Subnet mask works alongside the default gateway and DHCP</div>
     </div>
 

@@ -541,7 +541,7 @@ a{color:inherit;text-decoration:none;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/tcp-ip-model.html",
   "inLanguage": "en"
 }
@@ -601,7 +601,7 @@ a{color:inherit;text-decoration:none;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -804,7 +804,7 @@ a{color:inherit;text-decoration:none;}
 
     <h2>IP Addressing Fundamentals</h2>
     <p>Every device on a TCP/IP network needs at minimum three configuration items: an <strong>IP address</strong> (identifies the device on its network), a <strong>subnet mask</strong> (defines the boundary between network and host portions of the address), and a <strong>default gateway</strong> (the IP address of the router that handles traffic destined for other networks). Without a correct default gateway, a device can communicate with other devices on its own subnet but cannot reach anything outside it.</p>
-    <p>DNS servers are also typically configured, providing hostname-to-IP resolution. Without DNS, users would need to type IP addresses to reach websites and services. The command <span style="font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 5px;border-radius:4px;">ipconfig /all</span> (Windows) or <span style="font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 5px;border-radius:4px;">ifconfig</span>/<span style="font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 5px;border-radius:4px;">ip addr</span> (Linux/macOS) displays all four: IP address, subnet mask, default gateway, and DNS server addresses.</p>
+    <p>DNS servers are also typically configured, providing hostname-to-IP resolution. Without DNS, users would need to type IP addresses to reach websites and services. On Windows, <span style="font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 5px;border-radius:4px;">ipconfig /all</span> displays all four: IP address, subnet mask, default gateway, and DNS server addresses. On Linux, use <span style="font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 5px;border-radius:4px;">ip addr</span> (address and mask), <span style="font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 5px;border-radius:4px;">ip route</span> (default gateway), and <span style="font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 5px;border-radius:4px;">resolvectl status</span> (DNS servers); on macOS, use <span style="font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 5px;border-radius:4px;">ifconfig</span>, <span style="font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 5px;border-radius:4px;">netstat -rn</span>, and <span style="font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 5px;border-radius:4px;">scutil --dns</span>.</p>
 
     <h2>TCP Three-Way Handshake — How Connections Are Established</h2>
     <p>Before any data flows over a TCP connection, the two parties perform a <strong>three-way handshake</strong> to establish the connection and synchronize sequence numbers. Step 1: the client sends a <strong>SYN</strong> (synchronize) packet to the server. Step 2: the server responds with a <strong>SYN-ACK</strong> (synchronize-acknowledge) — acknowledging the client's SYN and sending its own SYN. Step 3: the client sends an <strong>ACK</strong> (acknowledge) completing the handshake. Data transfer can now begin.</p>

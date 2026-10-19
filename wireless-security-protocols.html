@@ -505,7 +505,7 @@ tbody tr:hover td{background:#fdf4ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/wireless-security-protocols.html",
   "inLanguage": "en"
 }
@@ -565,7 +565,7 @@ tbody tr:hover td{background:#fdf4ff;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -574,11 +574,11 @@ tbody tr:hover td{background:#fdf4ff;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ Wireless Security in One Paragraph</div>
       <div class="quick-answer-text">
-        Wireless security protocols protect Wi-Fi traffic from eavesdropping and unauthorised access. They have evolved from the completely broken <strong>WEP</strong> (1997) through the transitional <strong>WPA</strong> (2003) and widely deployed <strong>WPA2</strong> (2004) to the current standard <strong>WPA3</strong> (2018). Each protocol comes in two modes: <strong>Personal</strong> (pre-shared key — for homes and small offices) and <strong>Enterprise</strong> (802.1X with a RADIUS server — for corporate environments, providing per-user authentication). The exam tests which protocol to recommend, which is insecure, and how 802.1X/EAP authentication works.
+        Wireless security protocols protect Wi-Fi traffic from eavesdropping and unauthorized access. They have evolved from the completely broken <strong>WEP</strong> (1997) through the transitional <strong>WPA</strong> (2003) and widely deployed <strong>WPA2</strong> (2004) to the current standard <strong>WPA3</strong> (2018). Each protocol comes in two modes: <strong>Personal</strong> (pre-shared key — for homes and small offices) and <strong>Enterprise</strong> (802.1X with a RADIUS server — for corporate environments, providing per-user authentication). The exam tests which protocol to recommend, which is insecure, and how 802.1X/EAP authentication works.
       </div>
     </div>
 
-    <p style="font-size:13.5px;color:var(--muted);border-left:3px solid var(--border);padding:8px 0 8px 14px;margin:0 0 26px;">WPA3 behaviour on this page is checked against the <a href="https://www.wi-fi.org/news-events/newsroom/wi-fi-alliance-introduces-wi-fi-certified-wpa3-security" target="_blank" rel="noopener">Wi-Fi Alliance's WPA3 announcement</a>, EAP behaviour against the relevant RFCs, and exam scope against CompTIA's published <a href="https://www.comptia.org/en-us/certifications/security/" target="_blank" rel="noopener">Security+ SY0-701 exam details</a>. All verified 31 August 2026.</p>
+    <p style="font-size:13.5px;color:var(--muted);border-left:3px solid var(--border);padding:8px 0 8px 14px;margin:0 0 26px;">WPA3 behavior on this page is checked against the <a href="https://www.wi-fi.org/news-events/newsroom/wi-fi-alliance-introduces-wi-fi-certified-wpa3-security" target="_blank" rel="noopener">Wi-Fi Alliance's WPA3 announcement</a>, EAP behavior against the relevant RFCs, and exam scope against CompTIA's published <a href="https://www.comptia.org/en-us/certifications/security/" target="_blank" rel="noopener">Security+ SY0-701 exam details</a>. All verified 31 August 2026.</p>
 
     <h2>WEP → WPA → WPA2 → WPA3 — The Evolution</h2>
 
@@ -617,7 +617,7 @@ tbody tr:hover td{background:#fdf4ff;}
         </div>
         <div class="proto-right">
           <div class="proto-encryption">Encryption: AES-CCMP (Counter Mode CBC-MAC Protocol) · 128-bit key</div>
-          <div class="proto-desc">The current widely deployed standard. Replaced RC4/TKIP with <strong>AES encryption using CCMP</strong> — a fundamentally stronger cipher. WPA2 has been the mandatory minimum for Wi-Fi certification since 2006. Known vulnerability: the <strong>KRACK attack</strong> (Key Reinstallation Attack, 2017) affects WPA2 in certain implementations — mitigated by patches. WPA2 remains acceptable if WPA3 is unavailable, especially in Enterprise mode.</div>
+          <div class="proto-desc">The current widely deployed standard. Replaced RC4/TKIP with <strong>AES encryption using CCMP</strong> — a fundamentally stronger cipher. WPA2 has been the mandatory minimum for Wi-Fi certification since 2006. Known vulnerability: the <strong>KRACK attack</strong> (Key Reinstallation Attack, 2017) affects the WPA2 protocol itself (virtually all implementations) — fixed by backward-compatible client/AP patches. WPA2 remains acceptable if WPA3 is unavailable, especially in Enterprise mode.</div>
           <div class="proto-exam"><strong>Exam note:</strong> WPA2 = AES/CCMP. This is the key fact — AES is what makes WPA2 significantly more secure than WPA (TKIP/RC4). CCMP is the specific mode of AES used.</div>
         </div>
       </div>
@@ -629,9 +629,9 @@ tbody tr:hover td{background:#fdf4ff;}
           <div class="proto-status status-best">Recommended</div>
         </div>
         <div class="proto-right">
-          <div class="proto-encryption">Encryption: AES-GCMP-256 (192-bit in WPA3-Enterprise) · SAE replaces PSK</div>
-          <div class="proto-desc">The current recommended standard. Key improvements over WPA2: <strong>SAE (Simultaneous Authentication of Equals)</strong> replaces the PSK handshake — eliminates offline dictionary attacks against captured handshakes. <strong>Forward secrecy</strong> — each session uses unique keys, so past traffic can't be decrypted if the password is later compromised. <strong>Stronger encryption</strong> — 192-bit security in Enterprise mode. <strong>Enhanced Open</strong> — encrypts open (no-password) networks using OWE (Opportunistic Wireless Encryption).</div>
-          <div class="proto-exam"><strong>Exam note:</strong> WPA3 key features: SAE (replaces PSK, prevents offline cracking), forward secrecy, 192-bit enterprise mode, OWE for open networks. SAE is also called "Dragonfly handshake."</div>
+          <div class="proto-encryption">Encryption: AES-CCMP-128 (Personal &amp; standard Enterprise); AES-GCMP-256 in the optional WPA3-Enterprise 192-bit mode · SAE replaces PSK</div>
+          <div class="proto-desc">The current recommended standard. Key improvements over WPA2: <strong>SAE (Simultaneous Authentication of Equals)</strong> replaces the PSK handshake — eliminates offline dictionary attacks against captured handshakes. <strong>Forward secrecy</strong> — each session uses unique keys, so past traffic can't be decrypted if the password is later compromised. <strong>Stronger encryption option</strong> — an optional 192-bit-security mode in WPA3-Enterprise (GCMP-256, CNSA suite). <strong>Enhanced Open</strong> — encrypts open (no-password) networks using OWE (Opportunistic Wireless Encryption).</div>
+          <div class="proto-exam"><strong>Exam note:</strong> WPA3 key features: SAE (replaces PSK, prevents offline cracking), forward secrecy, optional 192-bit enterprise mode, OWE for open networks. SAE is also called "Dragonfly handshake."</div>
         </div>
       </div>
     </div>
@@ -641,7 +641,7 @@ tbody tr:hover td{background:#fdf4ff;}
       <p><strong>WEP = RC4 (static key, broken IVs)</strong> — completely insecure, never use.</p>
       <p><strong>WPA = TKIP</strong> — transitional, deprecated, still RC4 underneath.</p>
       <p><strong>WPA2 = AES/CCMP</strong> — current standard, strong encryption, acceptable.</p>
-      <p><strong>WPA3 = AES-GCMP + SAE</strong> — recommended, forward secrecy, no offline dictionary attacks.</p>
+      <p><strong>WPA3 = SAE + PMF (AES-CCMP; GCMP-256 in 192-bit mode)</strong> — recommended, forward secrecy, no offline dictionary attacks.</p>
       <p>The exam will often list all four and ask which provides the highest security or which should be used for a new enterprise deployment. The answer is always WPA3. If WPA3 isn't available, WPA2 Enterprise.</p>
     </div>
 
@@ -658,7 +658,7 @@ tbody tr:hover td{background:#fdf4ff;}
           <tr><td class="td-term">Who it's for</td><td>Homes, small offices — simple, no infrastructure required</td><td>Corporate environments — provides per-user accountability and access control</td></tr>
           <tr><td class="td-term">Key weakness</td><td>Single shared password — if compromised, all users must update their devices. No per-user audit trail.</td><td>Complex to deploy — requires RADIUS server, certificates (for EAP-TLS)</td></tr>
           <tr><td class="td-term">WPA2 name</td><td>WPA2-Personal</td><td>WPA2-Enterprise</td></tr>
-          <tr><td class="td-term">WPA3 upgrade</td><td>WPA3-Personal uses SAE instead of PSK — prevents offline dictionary attacks against captured handshakes</td><td>WPA3-Enterprise uses 192-bit AES-GCMP instead of 128-bit AES-CCMP</td></tr>
+          <tr><td class="td-term">WPA3 upgrade</td><td>WPA3-Personal uses SAE instead of PSK — prevents offline dictionary attacks against captured handshakes</td><td>WPA3-Enterprise adds required PMF and offers an optional 192-bit-security mode (GCMP-256, CNSA suite)</td></tr>
           <tr><td class="td-term">Exam recommendation</td><td>Home / SOHO networks only</td><td>Always recommended for corporate/enterprise deployments</td></tr>
         </tbody>
       </table>
@@ -742,7 +742,7 @@ tbody tr:hover td{background:#fdf4ff;}
 
     <h2>What This Page Doesn't Cover</h2>
 
-    <p>This page covers the protocols and the attacks against them at Security+ depth. It does not cover RF planning, channel and power design, antenna selection, or wireless survey work &mdash; those belong to Network+ and to vendor wireless tracks. It also does not walk through configuring a specific controller or access point, since the menus differ by vendor and change between firmware releases. Where WPA2 and WPA3 behaviour differs, this page describes the certified behaviour rather than any one vendor's implementation of it.</p>
+    <p>This page covers the protocols and the attacks against them at Security+ depth. It does not cover RF planning, channel and power design, antenna selection, or wireless survey work &mdash; those belong to Network+ and to vendor wireless tracks. It also does not walk through configuring a specific controller or access point, since the menus differ by vendor and change between firmware releases. Where WPA2 and WPA3 behavior differs, this page describes the certified behavior rather than any one vendor's implementation of it.</p>
 
     <h2>Exam Scenarios</h2>
     <div class="scenario-list">

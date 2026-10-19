@@ -493,7 +493,7 @@ tbody tr:hover td{background:#eff6ff;}
       "name": "Performance-Based Question (PBQ) Practice",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The network and broadcast addresses are not usable. A /26 has 64 addresses but only 62 usable hosts (subtract 2, always). Exam questions that give you \"64 hosts\" are testing whether you pick /26 (62 hosts — correct) or /25 (126 hosts — unnecessarily large). /31 is a special case. Technically 2² − 2 = 0 usable hosts, but RFC 3021 permits /31 for point-to-point links because no broadcast is needed. The exam occasionally includes /31 — know that it's used for P2P links and has 2 assignable addresses. Don't confuse subnets-from-/24 with total subnets. A /26 gives you 4 subnets when splitting a …"
+        "text": "The network and broadcast addresses are not usable. A /26 has 64 addresses but only 62 usable hosts (subtract 2, always). Exam questions that give you \"64 hosts\" are testing whether you wrongly pick /26 (only 62 usable) instead of /25 (126 usable — correct). /31 is a special case. Technically 2¹ − 2 = 0 usable hosts, but RFC 3021 permits /31 for point-to-point links because no broadcast is needed. The exam occasionally includes /31 — know that it's used for P2P links and has 2 assignable addresses. Don't confuse subnets-from-/24 with total subnets. A /26 gives you 4 subnets when splitting a …"
       }
     },
     {
@@ -570,7 +570,7 @@ tbody tr:hover td{background:#eff6ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/subnetting-guide.html",
   "inLanguage": "en"
 }
@@ -634,7 +634,7 @@ tbody tr:hover td{background:#eff6ff;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -643,7 +643,7 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ The Key Insight</div>
       <div class="quick-answer-text">
-        Subnetting is not memorisation — it's a <strong>repeating pattern</strong>. Every subnet has a block size (how many addresses it contains), and subnets always start at multiples of that block size. Once you know the <strong>magic number</strong> for any prefix length, you can find any subnet's network address, broadcast address, and usable host range in under 30 seconds. That's the entire skill the exam tests.
+        Subnetting is not memorization — it's a <strong>repeating pattern</strong>. Every subnet has a block size (how many addresses it contains), and subnets always start at multiples of that block size. Once you know the <strong>magic number</strong> for any prefix length, you can find any subnet's network address, broadcast address, and usable host range in under 30 seconds. That's the entire skill the exam tests.
       </div>
     </div>
 
@@ -907,8 +907,8 @@ tbody tr:hover td{background:#eff6ff;}
 
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 Three Common Exam Traps in Subnetting Questions</div>
-      <p><strong>The network and broadcast addresses are not usable.</strong> A /26 has 64 addresses but only 62 usable hosts (subtract 2, always). Exam questions that give you "64 hosts" are testing whether you pick /26 (62 hosts — correct) or /25 (126 hosts — unnecessarily large).</p>
-      <p><strong>/31 is a special case.</strong> Technically 2² − 2 = 0 usable hosts, but RFC 3021 permits /31 for point-to-point links because no broadcast is needed. The exam occasionally includes /31 — know that it's used for P2P links and has 2 assignable addresses.</p>
+      <p><strong>The network and broadcast addresses are not usable.</strong> A /26 has 64 addresses but only 62 usable hosts (subtract 2, always). Exam questions that give you "64 hosts" are testing whether you wrongly pick /26 (only 62 usable) instead of /25 (126 usable — correct).</p>
+      <p><strong>/31 is a special case.</strong> Technically 2¹ − 2 = 0 usable hosts, but RFC 3021 permits /31 for point-to-point links because no broadcast is needed. The exam occasionally includes /31 — know that it's used for P2P links and has 2 assignable addresses.</p>
       <p><strong>Don't confuse subnets-from-/24 with total subnets.</strong> A /26 gives you 4 subnets when splitting a /24. But if you're splitting a /22, you get many more. Always read the question — it will tell you the parent block you're subnetting from.</p>
     </div>
 

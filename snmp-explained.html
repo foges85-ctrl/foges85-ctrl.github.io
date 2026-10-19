@@ -700,7 +700,7 @@ tbody tr:hover td { background: #f4f8ff; }
       "name": "Community strings — the SNMPv1/v2c security problem",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "SNMPv1 and SNMPv2c use community strings as a basic form of authentication — essentially a shared password included in every SNMP message. There are two types: Community strings are sent in plaintext. Anyone capturing network traffic with a packet analyser can read them directly — no decryption needed. With the read-write community string, an attacker can reconfigure network devices remotely. Default community strings (\"public\" and \"private\") are well-known and are actively scanned for by attackers. Devices left with defaults are trivially exploitable."
+        "text": "SNMPv1 and SNMPv2c use community strings as a basic form of authentication — essentially a shared password included in every SNMP message. There are two types: Community strings are sent in plaintext. Anyone capturing network traffic with a packet analyzer can read them directly — no decryption needed. With the read-write community string, an attacker can reconfigure network devices remotely. Default community strings (\"public\" and \"private\") are well-known and are actively scanned for by attackers. Devices left with defaults are trivially exploitable."
       }
     },
     {
@@ -1008,7 +1008,7 @@ tbody tr:hover td { background: #f4f8ff; }
 
     <div class="warning">
       <div class="warning-label">⚠️ Why SNMPv1/v2c are security risks</div>
-      <p><strong>Community strings are sent in plaintext.</strong> Anyone capturing network traffic with a packet analyser can read them directly — no decryption needed. With the read-write community string, an attacker can reconfigure network devices remotely.</p>
+      <p><strong>Community strings are sent in plaintext.</strong> Anyone capturing network traffic with a packet analyzer can read them directly — no decryption needed. With the read-write community string, an attacker can reconfigure network devices remotely.</p>
       <p><strong>Default community strings</strong> ("public" and "private") are well-known and are actively scanned for by attackers. Devices left with defaults are trivially exploitable.</p>
       <p><strong>Best practice:</strong> Use SNMPv3 exclusively. If you must use v1/v2c, change community strings from defaults, restrict SNMP access via ACLs to only the management station's IP, and consider placing SNMP traffic on a dedicated out-of-band management VLAN.</p>
     </div>

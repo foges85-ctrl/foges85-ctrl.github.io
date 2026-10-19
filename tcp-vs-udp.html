@@ -502,7 +502,7 @@ tbody tr:hover td{background:var(--light);}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/tcp-vs-udp.html",
   "inLanguage": "en"
 }
@@ -549,7 +549,7 @@ tbody tr:hover td{background:var(--light);}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -609,7 +609,7 @@ tbody tr:hover td{background:var(--light);}
     
     <h2>QoS and Traffic Priority</h2>
     <p><strong>QoS (Quality of Service)</strong> is a network mechanism that prioritizes certain traffic types over others when the network is congested. UDP-based real-time traffic (VoIP, video conferencing) is highly sensitive to delay and packet loss — even brief congestion causing 200ms of additional latency degrades voice quality noticeably. QoS marks VoIP packets with a higher priority using DSCP (Differentiated Services Code Point) values in the IP header, and network devices service higher-priority queues first during congestion. A properly configured QoS policy guarantees that VoIP packets are forwarded before email and file transfer traffic, even when all are competing for the same link. This is why VoIP deployments always require QoS configuration alongside the phones and call manager — without it, congested networks degrade voice quality unpredictably.</p>
-    <p>For the Network+ exam: QoS is configured at Layer 3 (DSCP markings in the IP header) and enforced at Layer 2 (802.1p class of service in Ethernet frames). The most common exam scenario: "users report choppy VoIP calls during peak hours when network utilization is high — what should the administrator configure?" → QoS with higher priority for VoIP traffic.</p>
+    <p>For the Network+ exam: QoS can mark traffic at Layer 3 (DSCP in the IP header) or Layer 2 (802.1p class of service in Ethernet frames); routers and switches then enforce it with queuing. The most common exam scenario: "users report choppy VoIP calls during peak hours when network utilization is high — what should the administrator configure?" → QoS with higher priority for VoIP traffic.</p>
 
     <h2>TCP Port States — netstat and Troubleshooting</h2>
     <p>The <code>netstat</code> command (or <code>ss</code> on modern Linux) displays active TCP connections and their states, which is essential for network troubleshooting. Key states: <strong>LISTEN</strong> — the application is waiting for incoming connections on that port (a web server listening on port 443). <strong>ESTABLISHED</strong> — an active connection exists between two endpoints. <strong>TIME_WAIT</strong> — the connection has ended but the OS is waiting to ensure all packets have been delivered before releasing the port. <strong>CLOSE_WAIT</strong> — the remote end has closed the connection but the local application hasn't yet. A large number of TIME_WAIT connections is normal under load. A large number of CLOSE_WAIT connections may indicate an application that's not closing connections cleanly. <strong>SYN_SENT</strong> — a connection attempt has been made and the three-way handshake is in progress. Running <code>netstat -an</code> and identifying which ports are in LISTEN state confirms which services are running and accessible — a key step in port-based firewall troubleshooting.</p>

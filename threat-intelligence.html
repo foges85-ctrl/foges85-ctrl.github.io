@@ -437,7 +437,7 @@ tbody tr:hover td{background:var(--light);}
       "name": "MITRE ATT&CK Framework",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge) is a globally accessible knowledge base of adversary tactics and techniques based on real-world observations. It's organized as a matrix where columns represent tactics (the adversary's goal — the \"why\") and rows within each column represent techniques (how they achieve it — the \"how\"). The 14 ATT&CK Enterprise tactics in kill-chain order: Reconnaissance → Resource Development → Initial Access → Execution → Persistence → Privilege Escalation → Defense Evasion → Credential Access → Discovery → Lateral Movement → Collection …"
+        "text": "MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge) is a globally accessible knowledge base of adversary tactics and techniques based on real-world observations. It's organized as a matrix where columns represent tactics (the adversary's goal — the \"why\") and rows within each column represent techniques (how they achieve it — the \"how\"). The 15 ATT&CK Enterprise tactics in kill-chain order: Reconnaissance → Resource Development → Initial Access → Execution → Persistence → Privilege Escalation → Stealth → Defense Impairment → Credential Access → Discovery → Lateral Movement → Collection …"
       }
     },
     {
@@ -493,7 +493,7 @@ tbody tr:hover td{background:var(--light);}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/threat-intelligence.html",
   "inLanguage": "en"
 }
@@ -538,7 +538,7 @@ tbody tr:hover td{background:var(--light);}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap"><div class="article-body">
@@ -615,7 +615,7 @@ tbody tr:hover td{background:var(--light);}
 
 <div class="callout callout-teal">
 <div class="callout-label">💡 MITRE ATT&CK Tactics (Enterprise)</div>
-<p>The 14 ATT&CK Enterprise tactics in kill-chain order: <strong>Reconnaissance → Resource Development → Initial Access → Execution → Persistence → Privilege Escalation → Defense Evasion → Credential Access → Discovery → Lateral Movement → Collection → Command and Control → Exfiltration → Impact</strong>. Each tactic contains multiple techniques and sub-techniques — over 400 in total.</p>
+<p>The 15 ATT&CK Enterprise tactics in kill-chain order: <strong>Reconnaissance → Resource Development → Initial Access → Execution → Persistence → Privilege Escalation → Stealth → Defense Impairment → Credential Access → Discovery → Lateral Movement → Collection → Command and Control → Exfiltration → Impact</strong>. Defense Evasion was split into Stealth (TA0005) and Defense Impairment (TA0112) in ATT&CK v19 (April 2026), so older material lists 14 tactics. Each tactic contains multiple techniques and sub-techniques — over 700 in total (v20, October 2026: 227 techniques and 479 sub-techniques).</p>
 </div>
 
 <p>ATT&CK is primarily used for three purposes in a security operations context: <strong>threat hunting</strong> (using known adversary techniques as hunt hypotheses), <strong>detection engineering</strong> (building SIEM and EDR rules for specific techniques), and <strong>red team exercises</strong> (simulating specific adversary techniques to test defenses). When a threat intelligence report says an APT group uses "T1566.001" (Spearphishing Attachment), that's an ATT&CK technique ID.</p>
@@ -719,7 +719,7 @@ tbody tr:hover td{background:var(--light);}
 
 <p><strong>ISACs (Information Sharing and Analysis Centers)</strong> are sector-specific organizations that facilitate threat intelligence sharing between organizations within the same industry. The FS-ISAC serves the financial sector, the H-ISAC serves healthcare, the E-ISAC serves electricity/energy infrastructure, and dozens more serve other critical industries. ISACs allow organizations to share indicators, attack patterns, and defensive strategies — an attack observed at one bank may be shared with all member banks, enabling them to detect and block the same attack before it reaches them.</p>
 
-<p><strong>ISAOs (Information Sharing and Analysis Organizations)</strong> are similar to ISACs but not limited to specific critical infrastructure sectors. They can serve any community of interest — geographic regions, specific technology communities, or other groupings. Both ISACs and ISAOs operate under frameworks like the Traffic Light Protocol (TLP) that defines how shared information can be further distributed — TLP:RED means do not share beyond the immediate recipients; TLP:AMBER means share within the organization; TLP:GREEN means share within the community; TLP:WHITE/TLP:CLEAR means can be freely shared publicly. The Security+ exam tests TLP designations as part of the threat intelligence sharing topic.</p>
+<p><strong>ISAOs (Information Sharing and Analysis Organizations)</strong> are similar to ISACs but not limited to specific critical infrastructure sectors. They can serve any community of interest — geographic regions, specific technology communities, or other groupings. Both ISACs and ISAOs operate under frameworks like the Traffic Light Protocol (TLP) that defines how shared information can be further distributed. Under TLP 2.0 (FIRST, August 2022), TLP:RED means do not share beyond the immediate recipients; TLP:AMBER+STRICT means share only within the recipient's organization; TLP:AMBER means share on a need-to-know basis within the recipient's organization and its clients; TLP:GREEN means share within the community; TLP:CLEAR (formerly TLP:WHITE) means can be freely shared publicly. The Security+ exam tests TLP designations as part of the threat intelligence sharing topic.</p>
 
 <h2>Related Articles</h2>
 <div class="related-grid">

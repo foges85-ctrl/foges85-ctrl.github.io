@@ -459,15 +459,15 @@ tbody tr:hover td{background:#eff6ff;}
       "name": "Distance-Vector vs Link-State — The Core Distinction",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "All dynamic routing protocols fall into two fundamental categories based on how they make routing decisions. Distance-vector protocols (RIP, EIGRP) make decisions based on hop count or a composite metric, and each router knows only what its directly connected neighbors have told it — routers share their entire routing table with neighbors on a schedule. This is sometimes called \"routing by rumour\" because a router's view of the network is based on second-hand information. The advantage is simplicity; the disadvantage is slow convergence and susceptibility to routing loops. Link-state prot…"
+        "text": "All dynamic routing protocols fall into two fundamental categories based on how they make routing decisions. Distance-vector protocols (RIP, EIGRP) make decisions based on hop count or a composite metric, and each router knows only what its directly connected neighbors have told it — routers share their entire routing table with neighbors on a schedule. This is sometimes called \"routing by rumor\" because a router's view of the network is based on second-hand information. The advantage is simplicity; the disadvantage is slow convergence and susceptibility to routing loops. Link-state prot…"
       }
     },
     {
       "@type": "Question",
-      "name": "RIP — Why It's Still Tested Despite Being Legacy",
+      "name": "RIP — Why It's Still Worth Learning Despite Being Legacy",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "RIP (Routing Information Protocol) is rarely used in modern networks but remains heavily tested on Network+ because its simplicity makes it an ideal teaching tool for routing concepts. RIP uses hop count as its sole metric — the \"best\" path is always the one with fewest routers between source and destination, regardless of link bandwidth. A 100 Mbps path through 2 hops beats a 10 Gbps path through 3 hops. This is RIP's fundamental limitation — it has no concept of bandwidth, delay, or reliability. Key RIP facts for the exam: maximum hop count is 15 (16 = infinity, meaning unreachable), rout…"
+        "text": "RIP (Routing Information Protocol) is rarely used in modern networks and is no longer on the Network+ N10-009 objectives (it appears only in the acronym list), but its simplicity makes it an ideal teaching tool for routing concepts. RIP uses hop count as its sole metric — the \"best\" path is always the one with fewest routers between source and destination, regardless of link bandwidth. A 100 Mbps path through 2 hops beats a 10 Gbps path through 3 hops. This is RIP's fundamental limitation — it has no concept of bandwidth, delay, or reliability. Key RIP facts: maximum hop count is 15 (16 = infinity, meaning unreachable), rout…"
       }
     },
     {
@@ -528,7 +528,7 @@ tbody tr:hover td{background:#eff6ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/routing-protocols.html",
   "inLanguage": "en"
 }
@@ -589,7 +589,7 @@ tbody tr:hover td{background:#eff6ff;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -598,7 +598,7 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ What Are Routing Protocols?</div>
       <div class="quick-answer-text">
-        Routing protocols are the rules routers use to <strong>automatically discover and share information about network paths</strong>. Instead of an administrator manually entering every route, dynamic routing protocols allow routers to exchange route information, detect topology changes, and calculate the best path to each destination. The key protocols on the Network+ exam are <strong>RIP, OSPF, EIGRP</strong> (internal / within one organization) and <strong>BGP</strong> (external / between organizations on the internet).
+        Routing protocols are the rules routers use to <strong>automatically discover and share information about network paths</strong>. Instead of an administrator manually entering every route, dynamic routing protocols allow routers to exchange route information, detect topology changes, and calculate the best path to each destination. The Network+ N10-009 objectives list <strong>OSPF and EIGRP</strong> (internal / within one organization) and <strong>BGP</strong> (external / between organizations on the internet). <strong>RIP</strong> is no longer an objective, but it is a useful example of distance-vector routing.
       </div>
     </div>
 
@@ -636,7 +636,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ AD memory trick</div>
-      <p>Remember: <strong>lower AD wins</strong>. "0 = connected, 1 = static, 90 = EIGRP, 110 = OSPF, 120 = RIP." The exam often asks "A router has a route to 10.0.0.0/8 learned from both OSPF and RIP — which route goes in the table?" Answer: <strong>OSPF (AD 110) beats RIP (AD 120)</strong>.</p>
+      <p>Remember: <strong>lower AD wins</strong>. "0 = connected, 1 = static, 90 = EIGRP, 110 = OSPF, 120 = RIP." A typical question: "A router has a route to 10.0.0.0/8 learned from both OSPF and EIGRP — which route goes in the table?" Answer: <strong>EIGRP (AD 90) beats OSPF (AD 110)</strong>.</p>
     </div>
 
     <h2>Distance-Vector vs Link-State — The Two Routing Approaches</h2>
@@ -645,7 +645,7 @@ tbody tr:hover td{background:#eff6ff;}
       <table>
         <thead><tr><th>Property</th><th>Distance-Vector</th><th>Link-State</th></tr></thead>
         <tbody>
-          <tr><td class="td-term">How it works</td><td>Each router shares its entire routing table with directly connected neighbors — "routing by rumour"</td><td>Each router shares the state of its own links with ALL routers in the area — builds a complete topology map</td></tr>
+          <tr><td class="td-term">How it works</td><td>Each router shares its entire routing table with directly connected neighbors — "routing by rumor"</td><td>Each router shares the state of its own links with ALL routers in the area — builds a complete topology map</td></tr>
           <tr><td class="td-term">What routers know</td><td>Direction and distance (hop count or metric) to each destination</td><td>Complete map of the network topology — runs SPF algorithm to find shortest path</td></tr>
           <tr><td class="td-term">Convergence speed</td><td>Slow — updates only sent periodically; susceptible to routing loops</td><td>Fast — triggered updates sent immediately when topology changes</td></tr>
           <tr><td class="td-term">CPU/memory use</td><td>Low</td><td>Higher — maintains link-state database and runs SPF calculations</td></tr>
@@ -719,7 +719,7 @@ tbody tr:hover td{background:#eff6ff;}
       </div>
       <div class="protocol-body">
         <p>BGP is the routing protocol of the internet. While IGPs (RIP, OSPF, EIGRP) route traffic <em>within</em> an organization, BGP routes traffic <em>between</em> organizations (Autonomous Systems). Every ISP, cloud provider, and large enterprise uses BGP to exchange routes with each other. BGP runs on <strong>TCP port 179</strong>.</p>
-        <p>BGP is a <strong>path-vector</strong> protocol — it selects routes based on policies and path attributes rather than simple metrics. The primary attribute is the <strong>AS-PATH</strong> — the list of Autonomous System numbers a route has traversed. BGP prefers shorter AS paths, but operators can influence routing through a large set of attributes. BGP convergence is intentionally slow to prevent route flapping from destabilising the global routing table.</p>
+        <p>BGP is a <strong>path-vector</strong> protocol — it selects routes based on policies and path attributes rather than simple metrics. The primary attribute is the <strong>AS-PATH</strong> — the list of Autonomous System numbers a route has traversed. BGP prefers shorter AS paths, but operators can influence routing through a large set of attributes. BGP convergence is intentionally slow to prevent route flapping from destabilizing the global routing table.</p>
         <p><strong>eBGP</strong> (External BGP) runs between different Autonomous Systems. <strong>iBGP</strong> (Internal BGP) runs between routers within the same AS to distribute externally learned routes internally.</p>
         <div class="proto-specs">
           <div class="spec-item"><div class="spec-label">Metric / Selection</div><div class="spec-val">Path attributes (AS-PATH, MED, Local Pref)</div></div>
@@ -754,7 +754,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <h2>Exam Scenarios</h2>
     <div class="scenario-list">
-      <div class="scenario-item">💬 "A router has learned a route to 10.0.0.0/8 via both OSPF and RIP. Which route is installed in the routing table?" → <strong>OSPF (AD 110) — lower administrative distance wins over RIP (AD 120).</strong></div>
+      <div class="scenario-item">💬 "A router has learned a route to 10.0.0.0/8 via both OSPF and EIGRP. Which route is installed in the routing table?" → <strong>EIGRP (AD 90) — lower administrative distance wins over OSPF (AD 110).</strong></div>
       <div class="scenario-item">💬 "Which routing protocol uses hop count as its metric and has a maximum of 15 hops?" → <strong>RIP (Routing Information Protocol) — 16 hops = unreachable.</strong></div>
       <div class="scenario-item">💬 "A network engineer needs a routing protocol that scales to a large enterprise with multiple buildings. Which should they choose?" → <strong>OSPF — link-state protocol with area hierarchy that scales to thousands of routers. RIP's 15-hop limit makes it unsuitable.</strong></div>
       <div class="scenario-item">💬 "Which routing protocol is used to exchange routes between ISPs on the internet?" → <strong>BGP (Border Gateway Protocol) running on TCP port 179.</strong></div>
@@ -774,12 +774,12 @@ tbody tr:hover td{background:#eff6ff;}
 
     
     <h2>Distance-Vector vs Link-State — The Core Distinction</h2>
-    <p>All dynamic routing protocols fall into two fundamental categories based on how they make routing decisions. <strong>Distance-vector protocols</strong> (RIP, EIGRP) make decisions based on hop count or a composite metric, and each router knows only what its directly connected neighbors have told it — routers share their entire routing table with neighbors on a schedule. This is sometimes called "routing by rumour" because a router's view of the network is based on second-hand information. The advantage is simplicity; the disadvantage is slow convergence and susceptibility to routing loops.</p>
+    <p>All dynamic routing protocols fall into two fundamental categories based on how they make routing decisions. <strong>Distance-vector protocols</strong> (RIP, EIGRP) make decisions based on hop count or a composite metric, and each router knows only what its directly connected neighbors have told it — routers share their entire routing table with neighbors on a schedule. This is sometimes called "routing by rumor" because a router's view of the network is based on second-hand information. The advantage is simplicity; the disadvantage is slow convergence and susceptibility to routing loops.</p>
     <p><strong>Link-state protocols</strong> (OSPF, IS-IS) build a complete map of the network topology. Every router exchanges Link State Advertisements (LSAs) so that each router has an identical topological database. Each router independently runs Dijkstra's shortest path first (SPF) algorithm to calculate the best path to every destination. Link-state protocols converge faster, scale better, and are more loop-resistant than distance-vector protocols — which is why OSPF replaced RIP as the dominant interior gateway protocol in enterprise and ISP networks.</p>
 
-    <h2>RIP — Why It's Still Tested Despite Being Legacy</h2>
-    <p>RIP (Routing Information Protocol) is rarely used in modern networks but remains heavily tested on Network+ because its simplicity makes it an ideal teaching tool for routing concepts. RIP uses <strong>hop count as its sole metric</strong> — the "best" path is always the one with fewest routers between source and destination, regardless of link bandwidth. A 100 Mbps path through 2 hops beats a 10 Gbps path through 3 hops. This is RIP's fundamental limitation — it has no concept of bandwidth, delay, or reliability.</p>
-    <p>Key RIP facts for the exam: maximum hop count is <strong>15</strong> (16 = infinity, meaning unreachable), routing updates are sent every <strong>30 seconds</strong> to all neighbors (RIPv1 broadcasts, RIPv2 multicasts to 224.0.0.9), convergence is slow because routers must wait for update intervals to propagate changes across the network. RIPv2 added support for VLSM and CIDR (classless routing) and authentication, addressing RIPv1's major limitations. RIPng is the IPv6 version.</p>
+    <h2>RIP — Why It's Still Worth Learning Despite Being Legacy</h2>
+    <p>RIP (Routing Information Protocol) is rarely used in modern networks and is no longer on the Network+ N10-009 objectives (it appears only in the acronym list), but its simplicity makes it an ideal teaching tool for routing concepts. RIP uses <strong>hop count as its sole metric</strong> — the "best" path is always the one with fewest routers between source and destination, regardless of link bandwidth. A 100 Mbps path through 2 hops beats a 10 Gbps path through 3 hops. This is RIP's fundamental limitation — it has no concept of bandwidth, delay, or reliability.</p>
+    <p>Key RIP facts: maximum hop count is <strong>15</strong> (16 = infinity, meaning unreachable), routing updates are sent every <strong>30 seconds</strong> to all neighbors (RIPv1 broadcasts, RIPv2 multicasts to 224.0.0.9), convergence is slow because routers must wait for update intervals to propagate changes across the network. RIPv2 added support for VLSM and CIDR (classless routing) and authentication, addressing RIPv1's major limitations. RIPng is the IPv6 version.</p>
 
     <h2>OSPF — The Enterprise Standard</h2>
     <p>OSPF (Open Shortest Path First) is the most widely deployed interior gateway protocol in enterprise networks and a major Network+ topic. Key characteristics: <strong>link-state</strong> (builds complete topology map), uses <strong>cost</strong> as its metric (calculated from interface bandwidth — higher bandwidth = lower cost, meaning OSPF prefers faster links), supports <strong>VLSM and CIDR</strong> (classless routing), <strong>fast convergence</strong> (detects failures in seconds and recalculates routes immediately), and scales to large networks through <strong>hierarchical area design</strong>.</p>

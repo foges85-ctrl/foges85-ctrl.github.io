@@ -502,7 +502,7 @@ tbody tr:hover td{background:var(--light);}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/windows-registry.html",
   "inLanguage": "en"
 }
@@ -549,7 +549,7 @@ tbody tr:hover td{background:var(--light);}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -629,7 +629,7 @@ tbody tr:hover td{background:var(--light);}
 
     
     <h2>Registry Hives on Disk — Where the Files Live</h2>
-    <p>The registry is stored as binary hive files on disk. When Windows boots, it loads these files into memory and presents them through the registry editor interface. The main hive files: <strong>SYSTEM</strong> — stores hardware and boot configuration, loaded before user login. <strong>SOFTWARE</strong> — stores installed software settings for all users. <strong>SAM (Security Accounts Manager)</strong> — stores local user accounts and hashed passwords. The SAM file is locked during normal system operation — attackers use offline attacks (booting to another OS) or exploit techniques like Mimikatz to extract credentials from the SAM or from memory. <strong>SECURITY</strong> — stores security policies and audit settings. <strong>DEFAULT</strong> — the default user profile registry settings applied to new users.</p>
+    <p>The registry is stored as binary hive files on disk. When Windows boots, it loads these files into memory and presents them through the registry editor interface. The main hive files: <strong>SYSTEM</strong> — stores hardware and boot configuration, loaded before user login. <strong>SOFTWARE</strong> — stores installed software settings for all users. <strong>SAM (Security Accounts Manager)</strong> — stores local user accounts and hashed passwords. The SAM file is locked during normal system operation — attackers use offline attacks (booting to another OS) or exploit techniques like Mimikatz to extract credentials from the SAM or from memory. <strong>SECURITY</strong> — stores security policies and audit settings. <strong>DEFAULT</strong> — HKU\.DEFAULT, the LocalSystem account's profile (used at the logon screen). New users are created from C:\Users\Default\NTUSER.DAT.</p>
     <p>Registry hive files are located in <code>C:\Windows\System32\config\</code> for system hives and in each user's profile at <code>C:\Users\username\NTUSER.DAT</code> for the HKCU hive. The NTUSER.DAT file is the user's registry hive — it's loaded when the user logs in and unloaded when they log off. Group Policy also stores its settings in the registry — policy settings applied by a domain controller write to specific registry keys and are re-enforced at each login, preventing users from permanently modifying settings that Group Policy controls.</p>
 
     <h2>Registry vs Group Policy — How They Interact</h2>

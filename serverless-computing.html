@@ -440,7 +440,7 @@ tbody tr:hover td{background:#eff6ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/serverless-computing.html",
   "inLanguage": "en"
 }
@@ -501,7 +501,7 @@ tbody tr:hover td{background:#eff6ff;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -551,7 +551,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <h2>AWS Lambda — The Most Widely Used FaaS Platform</h2>
 
-    <p>AWS Lambda, launched in 2014, popularised the serverless model and remains the most widely used FaaS platform. Understanding Lambda is essential for AWS certifications and gives you a solid mental model for Azure Functions and Google Cloud Functions, which work similarly.</p>
+    <p>AWS Lambda, launched in 2014, popularized the serverless model and remains the most widely used FaaS platform. Understanding Lambda is essential for AWS certifications and gives you a solid mental model for Azure Functions and Google Cloud Functions, which work similarly.</p>
 
     <p>A Lambda function consists of your <strong>code</strong> (uploaded as a ZIP file or container image), a <strong>runtime</strong> (the language environment — Node.js, Python, Java, Go, .NET, Ruby, and more are supported), and a <strong>handler</strong> (the entry point function within your code that Lambda calls). You configure the function's memory (128 MB to 10 GB), timeout (up to 15 minutes), and the IAM role that defines what AWS resources it can access.</p>
 
@@ -646,7 +646,7 @@ tbody tr:hover td{background:#eff6ff;}
         <tbody>
           <tr><td class="td-term">Infrastructure management</td><td>None — fully managed</td><td>Low — manage container orchestration</td><td>High — manage OS, patching, scaling</td></tr>
           <tr><td class="td-term">Scaling</td><td>Automatic, scales to zero</td><td>Automatic with orchestrator (K8s)</td><td>Manual or scheduled auto-scaling</td></tr>
-          <tr><td class="td-term">Billing model</td><td>Per invocation + duration (ms)</td><td>Per running container (seconds)</td><td>Per running VM (hours)</td></tr>
+          <tr><td class="td-term">Billing model</td><td>Per invocation + duration (ms)</td><td>Per running container (seconds)</td><td>Per running VM (per second/minute, while running)</td></tr>
           <tr><td class="td-term">Cold start</td><td>Yes — latency on first invocation</td><td>Minimal (containers start in ms)</td><td>Slow (minutes to boot OS)</td></tr>
           <tr><td class="td-term">Max execution time</td><td>15 min (Lambda), varies by provider</td><td>Unlimited</td><td>Unlimited</td></tr>
           <tr><td class="td-term">Stateful workloads</td><td>Poor — stateless by design</td><td>Good — with persistent volumes</td><td>Best — full persistent storage</td></tr>
@@ -679,7 +679,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <p><strong>Dependency vulnerabilities</strong> in your function's package dependencies (npm packages, Python pip packages) are a significant risk. Serverless functions often pull in many third-party packages, each of which may contain known CVEs. Regular dependency scanning and updates are essential.</p>
 
-    <p><strong>Injection attacks</strong> remain relevant in serverless — SQL injection, command injection, and event data injection can all occur if function code processes user-supplied input without proper validation and sanitisation.</p>
+    <p><strong>Injection attacks</strong> remain relevant in serverless — SQL injection, command injection, and event data injection can all occur if function code processes user-supplied input without proper validation and sanitization.</p>
 
     <h2>Key Scenarios</h2>
 
@@ -707,7 +707,7 @@ tbody tr:hover td{background:#eff6ff;}
       <a href="aws-vs-azure-vs-gcp.html" class="related-link">AWS vs Azure vs GCP</a>
       <a href="cloud-deployment-models.html" class="related-link">Cloud Deployment Models</a>
       <a href="cloud-security.html" class="related-link">Cloud Security (CASB, CSPM)</a>
-      <a href="virtualization-explained.html" class="related-link">Virtualisation Explained</a>
+      <a href="virtualization-explained.html" class="related-link">Virtualization Explained</a>
       <a href="identity-and-access-management.html" class="related-link">IAM Explained</a>
       <a href="best-study-resources.html" class="related-link">Best Study Resources</a>
     </div>
@@ -866,7 +866,7 @@ tbody tr:hover td{background:#eff6ff;}
     </div>
     <div class="footer-links">
       <div class="footer-links-title">Related</div>
-      <a href="virtualization-explained.html">Virtualisation</a>
+      <a href="virtualization-explained.html">Virtualization</a>
       <a href="cloud-security.html">Cloud Security</a>
       <a href="best-study-resources.html">Study Resources</a>
     </div>

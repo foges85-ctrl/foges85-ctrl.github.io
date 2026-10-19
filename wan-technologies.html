@@ -480,11 +480,11 @@ tbody tr:hover td{background:#eff6ff;}
 
     <h2>SD-WAN — Software-Defined Wide Area Network</h2>
 
-    <p>SD-WAN applies <strong>software-defined networking (SDN)</strong> principles to WAN connectivity. Instead of being locked into a single expensive MPLS circuit, SD-WAN creates an <strong>overlay network</strong> on top of any combination of underlying transport links — MPLS, broadband internet, LTE/5G, or satellite — and manages them through a centralised software controller.</p>
+    <p>SD-WAN applies <strong>software-defined networking (SDN)</strong> principles to WAN connectivity. Instead of being locked into a single expensive MPLS circuit, SD-WAN creates an <strong>overlay network</strong> on top of any combination of underlying transport links — MPLS, broadband internet, LTE/5G, or satellite — and manages them through a centralized software controller.</p>
 
     <p>SD-WAN constantly monitors the performance of every available link (latency, jitter, packet loss) and automatically routes each application's traffic over the best-performing path in real time. <strong>Latency-sensitive applications</strong> (VoIP, video conferencing) are sent over the lowest-latency link; <strong>bulk transfers</strong> (backups, software updates) can use cheaper broadband links. If a link degrades or fails, traffic is instantly rerouted to an alternate path — often without users noticing.</p>
 
-    <p>The result is a dramatic reduction in WAN costs (replacing expensive dedicated MPLS with commodity internet) while maintaining or improving performance for cloud-based applications. SD-WAN also provides <strong>centralised visibility and management</strong> — a single dashboard shows traffic flows, application performance, and security posture across all branch sites simultaneously.</p>
+    <p>The result is a dramatic reduction in WAN costs (replacing expensive dedicated MPLS with commodity internet) while maintaining or improving performance for cloud-based applications. SD-WAN also provides <strong>centralized visibility and management</strong> — a single dashboard shows traffic flows, application performance, and security posture across all branch sites simultaneously.</p>
 
     <div class="callout">
       <div class="callout-label">MPLS vs SD-WAN — The Modern WAN Choice</div>
@@ -507,7 +507,7 @@ tbody tr:hover td{background:#eff6ff;}
         <thead><tr><th>Technology</th><th>Type</th><th>Key Characteristics</th><th>Use Case</th></tr></thead>
         <tbody>
           <tr><td class="td-term">DSL</td><td>Broadband</td><td>Uses telephone copper lines. ADSL asymmetric (faster download). VDSL faster but shorter range. Shared last mile.</td><td>Small office, home office broadband</td></tr>
-          <tr><td class="td-term">Cable (DOCSIS)</td><td>Broadband</td><td>Uses coaxial TV cable. Shared neighbourhood segment — performance varies with congestion. High speeds available.</td><td>Home/SMB broadband</td></tr>
+          <tr><td class="td-term">Cable (DOCSIS)</td><td>Broadband</td><td>Uses coaxial TV cable. Shared neighborhood segment — performance varies with congestion. High speeds available.</td><td>Home/SMB broadband</td></tr>
           <tr><td class="td-term">Fiber (FTTH/FTTP)</td><td>Broadband</td><td>Fiber to the premises. Symmetrical speeds available. Lowest latency of broadband options. Gold standard for business.</td><td>Business broadband, ISP backhaul</td></tr>
           <tr><td class="td-term">LTE / 5G</td><td>Cellular WAN</td><td>Wireless WAN. Used as primary connectivity in remote sites or as failover backup. High latency on LTE vs fiber.</td><td>Remote sites, WAN failover, IoT</td></tr>
           <tr><td class="td-term">Satellite</td><td>Satellite</td><td>Global coverage. High latency (~600ms geostationary, ~40ms LEO/Starlink). LEO satellites dramatically improved usability.</td><td>Remote/rural sites with no terrestrial option</td></tr>
@@ -521,7 +521,7 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 Network+ WAN Key Points</div>
       <p><strong>MPLS</strong> = label-based switching, traffic engineering, QoS, private carrier network. Key terms: PE router, P router, LSP (Label Switched Path), MPLS VPN.</p>
-      <p><strong>SD-WAN</strong> = software overlay over any WAN links, centralised controller, application-aware routing, reduces cost vs pure MPLS.</p>
+      <p><strong>SD-WAN</strong> = software overlay over any WAN links, centralized controller, application-aware routing, reduces cost vs pure MPLS.</p>
       <p><strong>T1 = 1.544 Mbps</strong> (24 DS0 channels × 64 Kbps). <strong>T3 = 44.7 Mbps</strong> (28 T1s). <strong>E1 = 2.048 Mbps</strong> (30 channels, used in Europe).</p>
       <p><strong>Frame Relay</strong> and <strong>ATM</strong> are legacy technologies — they appear in older study materials and may appear on exams as "what did MPLS replace?"</p>
     </div>
@@ -557,7 +557,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="scenario-item"><strong>Scenario:</strong> A company has 50 branch offices connected via MPLS. Most traffic now goes to Office 365 and Salesforce rather than the corporate data center, and users complain of slow cloud application performance. What solution should be recommended? <strong>Answer: SD-WAN with direct internet breakout.</strong> SD-WAN allows cloud-destined traffic to exit directly at each branch over internet connections rather than hairpinning through HQ via MPLS, dramatically improving cloud application performance.</div>
       <div class="scenario-item"><strong>Scenario:</strong> A small branch office needs a WAN connection with guaranteed 10 Mbps symmetric bandwidth and a contractual uptime SLA. Internet broadband exists but performance is inconsistent. What WAN technology meets these requirements? <strong>Answer: A leased line (dedicated Ethernet circuit).</strong> Leased lines provide guaranteed symmetric bandwidth and carrier SLAs — unlike broadband which is shared and variable.</div>
       <div class="scenario-item"><strong>Scenario:</strong> What is the bandwidth of a T1 line, and how many DS0 channels does it contain? <strong>Answer: T1 = 1.544 Mbps, consisting of 24 DS0 channels at 64 Kbps each.</strong></div>
-      <div class="scenario-item"><strong>Scenario:</strong> An organization wants to use a mix of MPLS, broadband fiber, and LTE as WAN transport for its branches. Which technology enables centralised management and intelligent routing across all three links? <strong>Answer: SD-WAN.</strong> SD-WAN creates an overlay across all transport types and routes traffic intelligently based on application requirements and real-time link performance.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> An organization wants to use a mix of MPLS, broadband fiber, and LTE as WAN transport for its branches. Which technology enables centralized management and intelligent routing across all three links? <strong>Answer: SD-WAN.</strong> SD-WAN creates an overlay across all transport types and routes traffic intelligently based on application requirements and real-time link performance.</div>
     </div>
 
     <h2>WAN Failover and Redundancy</h2>

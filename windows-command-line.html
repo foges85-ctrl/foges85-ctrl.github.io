@@ -478,7 +478,7 @@ tbody tr:hover td{background:#f0fdf4;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/windows-command-line.html",
   "inLanguage": "en"
 }
@@ -538,7 +538,7 @@ tbody tr:hover td{background:#f0fdf4;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -753,7 +753,7 @@ tbody tr:hover td{background:#f0fdf4;}
         <div class="cmd-tag tag-acct">Group Policy</div>
       </div>
       <div class="cmd-body">
-        <div class="cmd-desc"><code>gpupdate</code> forces an immediate <strong>Group Policy refresh</strong> — instead of waiting for the background refresh interval (90 minutes ± 30 for computers, 90 minutes for users). <code>gpresult</code> shows which policies are actually applied to the current user and computer.</div>
+        <div class="cmd-desc"><code>gpupdate</code> forces an immediate <strong>Group Policy refresh</strong> — instead of waiting for the background refresh interval (every 90 minutes plus a random 0–30 minute offset for both users and computers; 5 minutes on domain controllers). <code>gpresult</code> shows which policies are actually applied to the current user and computer.</div>
         <div class="cmd-syntax-block">
           <div class="cmd-syntax-row"><span class="cmd-syntax">gpupdate</span><span class="cmd-comment">; refresh user and computer policies</span></div>
           <div class="cmd-syntax-row"><span class="cmd-syntax">gpupdate /force</span><span class="cmd-comment">; re-apply all policies even if unchanged</span></div>
@@ -792,7 +792,7 @@ tbody tr:hover td{background:#f0fdf4;}
         <div class="cmd-tag tag-sys">Files</div>
       </div>
       <div class="cmd-body">
-        <div class="cmd-desc"><code>robocopy</code> (Robust File Copy) is the modern standard for <strong>copying files and folder trees</strong> with reliability features — retries on failure, preserves permissions and timestamps, mirrors directories, and can run as a sync job. <code>xcopy</code> is the older alternative, still tested on A+.</div>
+        <div class="cmd-desc"><code>robocopy</code> (Robust File Copy) is the modern standard for <strong>copying files and folder trees</strong> with reliability features — retries on failure, preserves permissions and timestamps, mirrors directories, and can run as a sync job. <code>xcopy</code> is the older alternative (no longer in the 220-1202 objectives).</div>
         <div class="cmd-syntax-block">
           <div class="cmd-syntax-row"><span class="cmd-syntax">robocopy C:\Source D:\Dest /E</span><span class="cmd-comment">; copy all files + subdirectories including empty ones</span></div>
           <div class="cmd-syntax-row"><span class="cmd-syntax">robocopy C:\Source D:\Dest /MIR</span><span class="cmd-comment">; mirror — exact copy, deletes files in dest not in source</span></div>

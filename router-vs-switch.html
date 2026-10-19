@@ -760,7 +760,7 @@ a:hover { text-decoration: underline; }
       "name": "Hub vs switch — why it matters",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A hub is an older Layer 1 device that blindly sends every incoming frame out to every single port — it has no intelligence. Every device on a hub receives every frame, whether it's meant for them or not. This wastes bandwidth and creates collisions. A switch is smarter — it learns which device is on which port (via the MAC address table) and sends frames only to the correct port. This is called unicast forwarding and it's why switches replaced hubs. On the A+ exam, hubs still appear as a concept — just remember: hub = Layer 1, broadcasts to all; switch = Layer 2, sends only to the destination."
+        "text": "A hub is an older Layer 1 device that blindly sends every incoming frame out to every single port — it has no intelligence. Every device on a hub receives every frame, whether it's meant for them or not. This wastes bandwidth and creates collisions. A switch is smarter — it learns which device is on which port (via the MAC address table) and sends frames only to the correct port. This is called unicast forwarding and it's why switches replaced hubs. Hubs were dropped from the A+ 220-1201 objectives, but knowing why switches replaced them still helps — just remember: hub = Layer 1, broadcasts to all; switch = Layer 2, sends only to the destination."
       }
     }
   ]
@@ -813,7 +813,7 @@ a:hover { text-decoration: underline; }
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/router-vs-switch.html",
   "inLanguage": "en"
 }
@@ -880,7 +880,7 @@ a:hover { text-decoration: underline; }
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <!-- ARTICLE -->
@@ -1076,7 +1076,7 @@ a:hover { text-decoration: underline; }
     <div class="hub-switch-box">
       <div class="hub-switch-label">📡 Don't confuse switches with hubs</div>
       <p>A <strong>hub</strong> is an older Layer 1 device that blindly sends every incoming frame out to every single port — it has no intelligence. Every device on a hub receives every frame, whether it's meant for them or not. This wastes bandwidth and creates collisions.</p>
-      <p>A <strong>switch</strong> is smarter — it learns which device is on which port (via the MAC address table) and sends frames only to the correct port. This is called <strong>unicast forwarding</strong> and it's why switches replaced hubs. On the A+ exam, hubs still appear as a concept — just remember: hub = Layer 1, broadcasts to all; switch = Layer 2, sends only to the destination.</p>
+      <p>A <strong>switch</strong> is smarter — it learns which device is on which port (via the MAC address table) and sends frames only to the correct port. This is called <strong>unicast forwarding</strong> and it's why switches replaced hubs. Hubs were dropped from the A+ 220-1201 objectives, but knowing why switches replaced them still helps — just remember: hub = Layer 1, broadcasts to all; switch = Layer 2, sends only to the destination.</p>
     </div>
 
     <hr class="divider">
@@ -1102,7 +1102,7 @@ a:hover { text-decoration: underline; }
         <div class="scenario-icon">🏢</div>
         <div>
           <div class="scenario-title">Office with 40 devices<span class="scenario-device both">Both needed</span></div>
-          <div class="scenario-desc">A 24-port switch connects all 40 devices on the local network. A single router connects the switch (and therefore all devices) to the internet and acts as the default gateway. Both devices are essential — neither can replace the other.</div>
+          <div class="scenario-desc">A 48-port switch (or two stacked 24-port switches) connects all 40 devices on the local network. A single router connects the switch (and therefore all devices) to the internet and acts as the default gateway. Both devices are essential — neither can replace the other.</div>
         </div>
       </div>
       <div class="scenario">
@@ -1123,7 +1123,7 @@ a:hover { text-decoration: underline; }
       <div class="summary-item"><strong>Switch = Layer 2, MAC addresses, connects devices on the same network</strong> — it's what your PC, printer, and server all plug into</div>
       <div class="summary-item">The router IS the default gateway — when traffic needs to leave the local network, it goes to the router first</div>
       <div class="summary-item">Switches use a <strong>MAC address table (CAM table)</strong> to forward frames only to the correct port — far more efficient than a hub</div>
-      <div class="summary-item"><strong>Hub = Layer 1</strong>, sends to all ports (dumb). <strong>Switch = Layer 2</strong>, sends only to destination (smart). Hubs are obsolete but still appear on the A+ exam.</div>
+      <div class="summary-item"><strong>Hub = Layer 1</strong>, sends to all ports (dumb). <strong>Switch = Layer 2</strong>, sends only to destination (smart). Hubs are obsolete and no longer on the A+ 220-1201 objectives.</div>
       <div class="summary-item">Routers <strong>separate broadcast domains</strong> — switches do not (unless VLANs are configured)</div>
       <div class="summary-item">In most networks, both devices work together: switch handles local traffic, router handles internet traffic</div>
     </div>

@@ -369,7 +369,7 @@ tbody tr:hover td{background:#eff6ff;}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"What is the difference between a forward proxy and a reverse proxy?","acceptedAnswer":{"@type":"Answer","text":"A forward proxy sits between internal clients and the internet — clients send requests to the proxy, which fetches the content on their behalf. The destination server sees the proxy's IP, not the client's. Used for web filtering, caching, and anonymisation. A reverse proxy sits in front of servers and intercepts requests coming from the internet before they reach backend servers. Clients see the reverse proxy's IP. Used for load balancing, SSL termination, caching, and WAF protection. The key distinction: a forward proxy serves clients; a reverse proxy serves servers."}},
+{"@type":"Question","name":"What is the difference between a forward proxy and a reverse proxy?","acceptedAnswer":{"@type":"Answer","text":"A forward proxy sits between internal clients and the internet — clients send requests to the proxy, which fetches the content on their behalf. The destination server sees the proxy's IP, not the client's. Used for web filtering, caching, and anonymization. A reverse proxy sits in front of servers and intercepts requests coming from the internet before they reach backend servers. Clients see the reverse proxy's IP. Used for load balancing, SSL termination, caching, and WAF protection. The key distinction: a forward proxy serves clients; a reverse proxy serves servers."}},
 {"@type":"Question","name":"What is a transparent proxy?","acceptedAnswer":{"@type":"Answer","text":"A transparent proxy intercepts traffic without the client's knowledge or configuration — traffic is redirected to the proxy automatically, typically by a firewall or router rule. No browser or client settings need to be changed. Often used for corporate web filtering. A non-transparent (explicit) proxy requires clients to manually configure proxy settings (IP address and port) in their browser or OS settings."}},
 {"@type":"Question","name":"What is SSL inspection on a proxy?","acceptedAnswer":{"@type":"Answer","text":"SSL inspection (also called SSL interception or HTTPS inspection) allows a proxy to decrypt, inspect, and re-encrypt HTTPS traffic. The proxy presents its own certificate to the client (signed by a corporate CA that clients trust) and establishes a separate TLS session to the destination server. This allows the proxy to scan HTTPS traffic for malware, enforce content policies, and prevent data exfiltration. Users may see a different certificate than they expect — the proxy's re-signed certificate rather than the original server certificate."}}
 ]}
@@ -381,7 +381,7 @@ tbody tr:hover td{background:#eff6ff;}
   <meta property="og:site_name" content="IT Study Hub">
   <meta property="og:url" content="https://itstudyhub.org/proxy-server-explained.html">
   <meta property="og:title" content="Proxy Server Explained — Forward vs Reverse Proxy, Uses & Security | Network+">
-  <meta property="og:description" content="Forward proxy vs reverse proxy, transparent vs non-transparent, web filtering, caching, SSL inspection, WAF, and anonymisation — everything tested on CompTIA Network+ and Security+.">
+  <meta property="og:description" content="Forward proxy vs reverse proxy, transparent vs non-transparent, web filtering, caching, SSL inspection, WAF, and anonymization — everything tested on CompTIA Network+ and Security+.">
 
 <script type="application/ld+json">
 {
@@ -403,7 +403,7 @@ tbody tr:hover td{background:#eff6ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/proxy-server-explained.html",
   "inLanguage": "en"
 }
@@ -457,7 +457,7 @@ tbody tr:hover td{background:#eff6ff;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated May 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -466,7 +466,7 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ Quick Answer</div>
       <div class="quick-answer-text">
-        A <strong>forward proxy</strong> sits between clients and the internet — clients connect to it and it fetches content on their behalf. Destination servers only see the proxy's IP. Used for: web filtering, caching, and anonymisation. A <strong>reverse proxy</strong> sits in front of servers — internet clients connect to it and it forwards requests to backend servers. Clients only see the proxy's IP. Used for: load balancing, SSL termination, caching, and WAF. Memory trick: <strong>forward proxy = protects clients</strong>, <strong>reverse proxy = protects servers</strong>.
+        A <strong>forward proxy</strong> sits between clients and the internet — clients connect to it and it fetches content on their behalf. Destination servers only see the proxy's IP. Used for: web filtering, caching, and anonymization. A <strong>reverse proxy</strong> sits in front of servers — internet clients connect to it and it forwards requests to backend servers. Clients only see the proxy's IP. Used for: load balancing, SSL termination, caching, and WAF. Memory trick: <strong>forward proxy = protects clients</strong>, <strong>reverse proxy = protects servers</strong>.
       </div>
     </div>
 
@@ -484,7 +484,7 @@ tbody tr:hover td{background:#eff6ff;}
           <div class="proxy-item"><strong>Who uses it:</strong> Internal clients (employees, students)</div>
           <div class="proxy-item"><strong>Initiated by:</strong> The client — clients are configured to use the proxy (explicit) or traffic is redirected to it (transparent)</div>
           <div class="proxy-item"><strong>What servers see:</strong> The proxy's IP address, not the real client IP</div>
-          <div class="proxy-item"><strong>Primary uses:</strong> Web content filtering, bandwidth caching, URL blocking, anonymisation, bypassing geo-restrictions</div>
+          <div class="proxy-item"><strong>Primary uses:</strong> Web content filtering, bandwidth caching, URL blocking, anonymization, bypassing geo-restrictions</div>
           <div class="proxy-item"><strong>Example products:</strong> Squid, Blue Coat, Cisco WSA, Zscaler</div>
           <div class="proxy-item"><strong>Common deployment:</strong> Corporate networks, schools, ISPs</div>
         </div>
@@ -545,7 +545,7 @@ tbody tr:hover td{background:#eff6ff;}
       </div>
       <div class="use-card">
         <div class="use-card-icon">🕵️</div>
-        <div class="use-card-name">Anonymisation</div>
+        <div class="use-card-name">Anonymization</div>
         <div class="use-card-desc">Hides the client's real IP from destination servers. The server only sees the proxy's IP. Used for privacy and to bypass IP-based geo-restrictions.</div>
       </div>
       <div class="use-card">
@@ -576,7 +576,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="use-card">
         <div class="use-card-icon">🔐</div>
         <div class="use-card-name">SSL Termination</div>
-        <div class="use-card-desc">Handles TLS decryption so backend servers don't need to. Centralises certificate management and reduces backend CPU usage. Backend communication can be plain HTTP on a trusted internal network.</div>
+        <div class="use-card-desc">Handles TLS decryption so backend servers don't need to. Centralizes certificate management and reduces backend CPU usage. Backend communication can be plain HTTP on a trusted internal network.</div>
       </div>
       <div class="use-card">
         <div class="use-card-icon">🚀</div>
@@ -609,7 +609,7 @@ tbody tr:hover td{background:#eff6ff;}
       <p><strong>1. Client connects to proxy</strong> via HTTPS. The proxy presents a certificate signed by a <strong>corporate CA</strong> (Certificate Authority) that has been pre-installed as trusted on all client devices via Group Policy or MDM.</p>
       <p><strong>2. Proxy establishes a separate TLS session</strong> to the destination server using the server's real certificate. The proxy sits in the middle — a "man in the middle" that the organization controls.</p>
       <p><strong>3. Proxy decrypts, inspects, re-encrypts.</strong> The traffic is scanned for malware, DLP violations, and policy violations. Compliant traffic is re-encrypted and forwarded; malicious traffic is blocked.</p>
-      <p><strong>Note:</strong> Some sites use certificate pinning (banks, Google apps) which will break under SSL inspection — these must be excluded from inspection in the proxy policy.</p>
+      <p><strong>Note:</strong> Some applications (especially mobile and desktop apps) pin certificates and break under SSL inspection — these must be excluded from inspection in the proxy policy.</p>
     </div>
 
     <h2>Proxy vs Firewall vs NAT</h2>
@@ -683,7 +683,7 @@ tbody tr:hover td{background:#eff6ff;}
 
 <p>URL category databases are maintained by vendors (Symantec, Cisco Talos, Zscaler, Forcepoint) who crawl the web continuously and classify sites by content. An organization can subscribe to these databases and configure their proxy to block specific categories. Typical enterprise policies block malware and phishing (by default — no business justification exists for accessing these), and apply conditional policies to social media (allowed during lunch breaks, blocked during work hours) or streaming video (blocked on networks with limited bandwidth).</p>
 
-<p><strong>SSL inspection scope</strong> must also account for URL category filtering: some categories should be excluded from SSL inspection for legal and practical reasons. Banking and financial sites use certificate pinning that breaks under SSL inspection. Healthcare provider portals contain protected health information that should not be decrypted by corporate infrastructure. Most organizations configure SSL inspection to exclude these categories while inspecting general browsing and risky categories.</p>
+<p><strong>SSL inspection scope</strong> must also account for URL category filtering: some categories should be excluded from SSL inspection for legal and practical reasons. Banking and financial sites are usually excluded for privacy and legal reasons. Healthcare provider portals contain protected health information that should not be decrypted by corporate infrastructure. Most organizations configure SSL inspection to exclude these categories while inspecting general browsing and risky categories.</p>
 
 <h2>Proxy Server Deployment Models</h2>
 
@@ -730,7 +730,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <p><strong>Basic Authentication</strong> sends the username and password base64-encoded in the HTTP Proxy-Authorization header. This is the simplest method but transmits credentials with minimal protection — base64 is encoding, not encryption. Over HTTPS it is acceptable; over plain HTTP it should never be used.</p>
 
-    <p><strong>NTLM Authentication</strong> uses the Windows NTLM challenge-response mechanism. The proxy challenges the client, the client sends an NTLM response using their Windows credentials, and the proxy validates with a domain controller. This enables <strong>transparent authentication</strong> — domain-joined Windows machines authenticate automatically without prompting the user. This is the most common method in Active Directory environments.</p>
+    <p><strong>NTLM Authentication</strong> uses the Windows NTLM challenge-response mechanism. The proxy challenges the client, the client sends an NTLM response using their Windows credentials, and the proxy validates with a domain controller. This enables <strong>transparent authentication</strong> — domain-joined Windows machines authenticate automatically without prompting the user. NTLM is still widely seen, but Microsoft has deprecated it; Kerberos (via Negotiate) is the recommended method.</p>
 
     <p><strong>Kerberos Authentication</strong> is the most secure option for proxy authentication in Active Directory environments. The client presents a Kerberos ticket (obtained from the domain controller) to the proxy, which validates it. Like NTLM, it provides transparent SSO for domain-joined machines. Kerberos is preferred over NTLM because it doesn't transmit password hashes and has stronger mutual authentication guarantees.</p>
 

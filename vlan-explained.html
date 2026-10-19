@@ -689,7 +689,7 @@ tbody tr:hover td { background: #f4f8ff; }
       "name": "802.1Q tagging",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "802.1Q is the IEEE standard that makes VLANs work across trunk links. When a frame crosses a trunk port, the switch inserts a 4-byte 802.1Q tag into the Ethernet frame header. This tag contains the VLAN ID (0–4094), allowing the receiving switch to know which VLAN the frame belongs to and forward it to the correct ports. Standard Ethernet frame: [ Dest MAC ] [ Src MAC ] [ EtherType ] [ Payload ] [ FCS ] 802.1Q tagged frame (trunk link): [ Dest MAC ] [ Src MAC ] [ 802.1Q Tag (4 bytes) ] [ EtherType ] [ Payload ] [ FCS ] ↳ TPID (0x8100) ↳ PCP (priority bits) ↳ VLAN ID (12 bits = 0–4094) 📌 Nat…"
+        "text": "802.1Q is the IEEE standard that makes VLANs work across trunk links. When a frame crosses a trunk port, the switch inserts a 4-byte 802.1Q tag into the Ethernet frame header. This tag contains the VLAN ID (12 bits = 0–4095; 0 and 4095 are reserved, so usable VLANs are 1–4094), allowing the receiving switch to know which VLAN the frame belongs to and forward it to the correct ports. Standard Ethernet frame: [ Dest MAC ] [ Src MAC ] [ EtherType ] [ Payload ] [ FCS ] 802.1Q tagged frame (trunk link): [ Dest MAC ] [ Src MAC ] [ 802.1Q Tag (4 bytes) ] [ EtherType ] [ Payload ] [ FCS ] ↳ TPID (0x8100) ↳ PCP (priority bits) ↳ VLAN ID (12 bits = 0–4095; usable 1–4094) 📌 Nat…"
       }
     },
     {
@@ -758,7 +758,7 @@ tbody tr:hover td { background: #f4f8ff; }
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/vlan-explained.html",
   "inLanguage": "en"
 }
@@ -825,7 +825,7 @@ tbody tr:hover td { background: #f4f8ff; }
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <!-- ARTICLE -->
@@ -923,7 +923,7 @@ tbody tr:hover td { background: #f4f8ff; }
 
     <h2>802.1Q tagging</h2>
 
-    <p>802.1Q is the IEEE standard that makes VLANs work across trunk links. When a frame crosses a trunk port, the switch inserts a 4-byte 802.1Q tag into the Ethernet frame header. This tag contains the VLAN ID (0–4094), allowing the receiving switch to know which VLAN the frame belongs to and forward it to the correct ports.</p>
+    <p>802.1Q is the IEEE standard that makes VLANs work across trunk links. When a frame crosses a trunk port, the switch inserts a 4-byte 802.1Q tag into the Ethernet frame header. This tag contains the VLAN ID (12 bits = 0–4095; 0 and 4095 are reserved, so usable VLANs are 1–4094), allowing the receiving switch to know which VLAN the frame belongs to and forward it to the correct ports.</p>
 
     <div class="code-block">
       <div class="code-label">802.1Q frame structure</div>
@@ -934,7 +934,7 @@ tbody tr:hover td { background: #f4f8ff; }
 <span class="code-hl">[ Dest MAC ] [ Src MAC ]</span> <span class="code-teal">[ 802.1Q Tag (4 bytes) ]</span> <span class="code-hl">[ EtherType ] [ Payload ] [ FCS ]</span>
                          <span class="code-teal">  ↳ TPID (0x8100)</span>
                          <span class="code-teal">  ↳ PCP (priority bits)</span>
-                         <span class="code-teal">  ↳ VLAN ID (12 bits = 0–4094)</span></pre>
+                         <span class="code-teal">  ↳ VLAN ID (12 bits = 0–4095; usable 1–4094)</span></pre>
     </div>
 
     <div class="callout">

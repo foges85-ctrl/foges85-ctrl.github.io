@@ -20,8 +20,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/aplus-cheat-sheet.html">
 
-<title>CompTIA A+ Cheat Sheet 2026 — Every Port Number for 220-1201/1202</title>
-<meta name="description" content="Every port number tested on the A+ exam, in one table — plus Windows commands, connectors, RAM types, and the acronym list. Free, no signup.">
+<title>CompTIA A+ Cheat Sheet 2026 — Ports, Commands & Acronyms for 220-1201/1202</title>
+<meta name="description" content="The A+ 220-1201 port list in one table — plus Windows commands, connectors, RAM types, and the acronym list. Free, no signup.">
 
 <!-- Google AdSense -->
 <!-- MailerLite Universal -->
@@ -525,7 +525,7 @@ tbody tr:hover td { background: #f0fbf9; }
       "name": "What's the difference between A+ Core 1 (220-1201) and Core 2 (220-1202)?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Core 1 (220-1201) focuses on hardware and infrastructure: mobile devices, networking, hardware components, virtualization, cloud computing, and hardware/network troubleshooting. Core 2 (220-1202) focuses on software and operations: Windows/macOS/Linux operating systems, security, software troubleshooting, and operational procedures (documentation, change management, communication). Both exams must be passed to earn the A+ certification, in either order, within three years of each other."
+        "text": "Core 1 (220-1201) focuses on hardware and infrastructure: mobile devices, networking, hardware components, virtualization, cloud computing, and hardware/network troubleshooting. Core 2 (220-1202) focuses on software and operations: Windows/macOS/Linux operating systems, security, software troubleshooting, and operational procedures (documentation, change management, communication). Both exams must be passed to earn the A+ certification, in either order, and both must be from the same series (220-1201 and 220-1202)."
       }
     },
     {
@@ -533,7 +533,7 @@ tbody tr:hover td { background: #f0fbf9; }
       "name": "Which ports and protocols are on the CompTIA A+ exam?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The A+ ports tested most often: 20/21 FTP, 22 SSH/SFTP/SCP, 23 Telnet, 25 SMTP, 53 DNS, 67/68 DHCP, 80 HTTP, 110 POP3, 123 NTP, 143 IMAP, 161/162 SNMP, 389 LDAP, 443 HTTPS, 445 SMB, 465/587 SMTP Secure, 636 LDAPS, 993 IMAPS, 995 POP3S, and 3389 RDP. Scenario questions map the port to a symptom — e.g., 'a user can't send email' typically points to ports 25 or 587 being blocked."
+        "text": "The ports listed in 220-1201 objective 2.1: 20/21 FTP, 22 SSH, 23 Telnet, 25 SMTP, 53 DNS, 67/68 DHCP, 80 HTTP, 110 POP3, 137–139 NetBIOS/NetBT, 143 IMAP, 389 LDAP, 443 HTTPS, 445 SMB/CIFS, and 3389 RDP. Related ports worth knowing that are not listed in 2.1: 123 NTP (NTP itself is in objective 2.3), plus 161/162 SNMP, 587 SMTPS, and 636 LDAPS (listed in Network+ N10-009), and 465 SMTPS, 993 IMAPS, and 995 POP3S. Scenario questions map the port to a symptom — e.g., 'a user can't send email' typically points to ports 25 or 587 being blocked."
       }
     },
     {
@@ -549,7 +549,7 @@ tbody tr:hover td { background: #f0fbf9; }
       "name": "Which Windows commands does the A+ exam test?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Networking: ipconfig (and /all, /release, /renew, /flushdns), ping, tracert, nslookup, netstat (-a, -b), arp -a, net use. System and disk: sfc /scannow, DISM, chkdsk /f /r, diskpart, format, defrag (HDDs only), robocopy, xcopy. User, process, and admin: tasklist, taskkill /PID, msconfig, regedit, gpedit.msc, lusrmgr.msc, services.msc, eventvwr.msc, mmc, gpupdate /force, and shutdown /r /t 0."
+        "text": "Objective 1.5 lists: Navigation: cd, dir. Network: ipconfig (and /all, /release, /renew, /flushdns), ping, netstat, nslookup, net use, tracert, pathping. Disk and file: chkdsk, format, diskpart, md, rmdir, robocopy. Informational: hostname, net user, winver, whoami, [command] /?. OS management: gpupdate, gpresult, sfc. Windows tools in objective 1.4 include msconfig, regedit, gpedit.msc, lusrmgr.msc, eventvwr.msc, and mmc. xcopy and shutdown were removed in 220-1202; tasklist, taskkill, DISM, arp, and defrag are useful but not in the objectives."
       }
     },
     {
@@ -557,15 +557,15 @@ tbody tr:hover td { background: #f0fbf9; }
       "name": "What security threats are tested on the A+?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The A+ tests phishing (and its variants: spear phishing for targeted, whaling for executives, vishing for voice, smishing for SMS), ransomware, trojan horses, rootkits, keyloggers, spyware, adware, man-in-the-middle attacks, social engineering, tailgating, shoulder surfing, and dumpster diving. Each is tested as a scenario: the exam describes a situation and you identify the attack name."
+        "text": "The A+ tests phishing (and its variants: spear phishing for targeted, whaling for executives, vishing for voice, smishing for SMS), ransomware, trojan horses, rootkits, keyloggers, spyware, adware, on-path (man-in-the-middle) attacks, social engineering, tailgating, shoulder surfing, and dumpster diving. Each is tested as a scenario: the exam describes a situation and you identify the attack name."
       }
     },
     {
       "@type": "Question",
-      "name": "What is the CompTIA A+ 7-step troubleshooting methodology?",
+      "name": "What is the CompTIA A+ 6-step troubleshooting methodology?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The CompTIA 7-step troubleshooting methodology: (1) Identify the problem — gather information, question the user, check for recent changes. (2) Establish a theory of probable cause — question the obvious first. (3) Test the theory to determine cause — if confirmed, move on; if not, return to step 2. (4) Establish a plan of action to resolve the problem, considering side effects. (5) Implement the solution or escalate. (6) Verify full system functionality and implement preventive measures. (7) Document findings, actions, and outcomes. The exam asks 'which step comes next' given a scenario."
+        "text": "The CompTIA A+ 6-step troubleshooting methodology: (1) Identify the problem — gather information, question the user, check for recent changes. (2) Establish a theory of probable cause — question the obvious first. (3) Test the theory to determine cause — if confirmed, move on; if not, return to step 2. (4) Establish a plan of action to resolve the problem and implement the solution, considering side effects. (5) Verify full system functionality and, if applicable, implement preventive measures. (6) Document findings/lessons learned, actions, and outcomes. CompTIA publishes it in the 220-1201 objectives as a competency standard and states the methodology itself will not be tested, though troubleshooting scenarios remain heavily emphasized."
       }
     }
   ]
@@ -595,14 +595,14 @@ tbody tr:hover td { background: #f0fbf9; }
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="IT Study Hub">
   <meta property="og:url" content="https://itstudyhub.org/aplus-cheat-sheet.html">
-  <meta property="og:title" content="CompTIA A+ Cheat Sheet 2026 — Every Port Number for 220-1201/1202">
-  <meta property="og:description" content="Every port number tested on the A+ exam, in one table — plus Windows commands, connectors, RAM types, and the acronym list. Free, no signup.">
+  <meta property="og:title" content="CompTIA A+ Cheat Sheet 2026 — Ports, Commands & Acronyms for 220-1201/1202">
+  <meta property="og:description" content="The A+ 220-1201 port list in one table — plus Windows commands, connectors, RAM types, and the acronym list. Free, no signup.">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "CompTIA A+ Cheat Sheet 2026 \u2014 Every Port Number for 220-1201/1202",
+  "headline": "CompTIA A+ Cheat Sheet 2026 \u2014 Ports, Commands & Acronyms for 220-1201/1202",
   "author": {
     "@type": "Person",
     "name": "Sean Fogarty",
@@ -618,7 +618,7 @@ tbody tr:hover td { background: #f0fbf9; }
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/aplus-cheat-sheet.html",
   "inLanguage": "en"
 }
@@ -672,7 +672,7 @@ tbody tr:hover td { background: #f0fbf9; }
     </nav>
     <div class="page-hero-badge">CompTIA A+ · 220-1201 &amp; 220-1202 · 2026</div>
     <h1>CompTIA <span>A+ Cheat Sheet</span></h1>
-    <p class="page-hero-sub">The CompTIA A+ is a two-exam entry-level IT certification: Core 1 (220-1201) covers hardware, networking, mobile devices, virtualization, and cloud; Core 2 (220-1202) covers Windows/macOS/Linux, security, software troubleshooting, and operational procedures. This cheat sheet condenses every must-know port, connector, RAM type, Windows command, security threat, and the 7-step CompTIA troubleshooting methodology onto one reference page.</p>
+    <p class="page-hero-sub">The CompTIA A+ is a two-exam entry-level IT certification: Core 1 (220-1201) covers hardware, networking, mobile devices, virtualization, and cloud; Core 2 (220-1202) covers Windows/macOS/Linux, security, software troubleshooting, and operational procedures. This cheat sheet condenses every must-know port, connector, RAM type, Windows command, security threat, and the 6-step CompTIA troubleshooting methodology onto one reference page.</p>
   </div>
 </section>
 
@@ -684,7 +684,7 @@ tbody tr:hover td { background: #f0fbf9; }
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <!-- TOC -->
@@ -710,7 +710,7 @@ tbody tr:hover td { background: #f0fbf9; }
 
   <div class="quick-answer">
     <div class="quick-answer-label">⚡ A+ Exam Quick Reference</div>
-    <div class="quick-answer-text">The <strong>CompTIA A+</strong> is a two-exam IT certification. <strong>Core 1 (220-1201)</strong> tests hardware, networking, mobile devices, virtualization, and cloud. <strong>Core 2 (220-1202)</strong> tests Windows/macOS/Linux operating systems, security, software troubleshooting, and operational procedures. Each exam has up to 90 questions (multiple-choice and performance-based), runs 90 minutes, and requires a passing score of <strong>675/900</strong> (Core 1) or <strong>700/900</strong> (Core 2). Use the sections below for last-minute review of the highest-yield topics: ports, connectors, RAM, Windows commands, security threats, and the 7-step CompTIA troubleshooting methodology.</div>
+    <div class="quick-answer-text">The <strong>CompTIA A+</strong> is a two-exam IT certification. <strong>Core 1 (220-1201)</strong> tests hardware, networking, mobile devices, virtualization, and cloud. <strong>Core 2 (220-1202)</strong> tests Windows/macOS/Linux operating systems, security, software troubleshooting, and operational procedures. Each exam has up to 90 questions (multiple-choice and performance-based), runs 90 minutes, and requires a passing score of <strong>675/900</strong> (Core 1) or <strong>700/900</strong> (Core 2). Use the sections below for last-minute review of the highest-yield topics: ports, connectors, RAM, Windows commands, security threats, and the 6-step CompTIA troubleshooting methodology.</div>
   </div>
 
   <!-- CERTFLASH STUDY CTA -->
@@ -739,16 +739,17 @@ tbody tr:hover td { background: #f0fbf9; }
         <tr><td class="td-key">67 / 68</td><td>UDP</td><td>DHCP</td><td>67 = server listens, 68 = client listens — DORA process</td></tr>
         <tr><td class="td-key">80</td><td>TCP</td><td>HTTP</td><td>Unencrypted web — traffic visible to anyone on the network</td></tr>
         <tr><td class="td-key">110</td><td>TCP</td><td>POP3</td><td>Downloads email to device, removes from server</td></tr>
-        <tr><td class="td-key">123</td><td>UDP</td><td>NTP</td><td>Clock synchronization — Kerberos fails if clocks drift 5+ min</td></tr>
+        <tr><td class="td-key">123</td><td>UDP</td><td>NTP</td><td>Clock synchronization — Kerberos fails if clocks drift 5+ min <em>(NTP is in obj 2.3; port not listed)</em></td></tr>
+        <tr><td class="td-key">137–139</td><td>TCP/UDP</td><td>NetBIOS / NetBT</td><td>NetBIOS over TCP/IP — legacy Windows name resolution and file sharing</td></tr>
         <tr><td class="td-key">143</td><td>TCP</td><td>IMAP</td><td>Email stays on server, synced across devices</td></tr>
-        <tr><td class="td-key">161 / 162</td><td>UDP</td><td>SNMP</td><td>161 = queries to agent, 162 = traps from agent</td></tr>
+        <tr><td class="td-key">161 / 162</td><td>UDP</td><td>SNMP</td><td>161 = queries to agent, 162 = traps from agent <em>(Not in 220-1201 obj 2.1 — Network+/Security+)</em></td></tr>
         <tr><td class="td-key">389</td><td>TCP/UDP</td><td>LDAP</td><td>Active Directory queries — unencrypted, use LDAPS (636)</td></tr>
         <tr><td class="td-key">443</td><td>TCP</td><td>HTTPS</td><td>Encrypted web — TLS. Always prefer over HTTP.</td></tr>
         <tr><td class="td-key">445</td><td>TCP</td><td>SMB</td><td>Windows file and printer sharing, Active Directory</td></tr>
-        <tr><td class="td-key">465 / 587</td><td>TCP</td><td>SMTP Secure</td><td>587 (STARTTLS) preferred for email submission — 465 = SMTPS</td></tr>
-        <tr><td class="td-key">636</td><td>TCP</td><td>LDAPS</td><td>LDAP over TLS — encrypted directory queries</td></tr>
-        <tr><td class="td-key">993</td><td>TCP</td><td>IMAPS</td><td>IMAP over TLS — encrypted email retrieval</td></tr>
-        <tr><td class="td-key">995</td><td>TCP</td><td>POP3S</td><td>POP3 over TLS — encrypted email download</td></tr>
+        <tr><td class="td-key">465 / 587</td><td>TCP</td><td>SMTP Secure</td><td>587 (STARTTLS) preferred for email submission — 465 = SMTPS <em>(Not in 220-1201 obj 2.1; Network+ N10-009 lists 587)</em></td></tr>
+        <tr><td class="td-key">636</td><td>TCP</td><td>LDAPS</td><td>LDAP over TLS — encrypted directory queries <em>(Not in 220-1201 obj 2.1 — Network+/Security+)</em></td></tr>
+        <tr><td class="td-key">993</td><td>TCP</td><td>IMAPS</td><td>IMAP over TLS — encrypted email retrieval <em>(Not in 220-1201 obj 2.1)</em></td></tr>
+        <tr><td class="td-key">995</td><td>TCP</td><td>POP3S</td><td>POP3 over TLS — encrypted email download <em>(Not in 220-1201 obj 2.1)</em></td></tr>
         <tr><td class="td-key">3389</td><td>TCP/UDP</td><td>RDP</td><td>Windows Remote Desktop — block at firewall, use VPN if needed externally</td></tr>
       </tbody>
     </table>
@@ -765,7 +766,7 @@ tbody tr:hover td { background: #f0fbf9; }
       </thead>
       <tbody>
         <tr><td class="td-key">USB-A</td><td>USB</td><td>Rectangular — the classic USB. Host-side connector on PCs.</td></tr>
-        <tr><td class="td-key">USB-B</td><td>USB</td><td>Square with bevelled corners — printers and older devices.</td></tr>
+        <tr><td class="td-key">USB-B</td><td>USB</td><td>Square with beveled corners — printers and older devices.</td></tr>
         <tr><td class="td-key">USB Mini-B</td><td>USB</td><td>Trapezoidal 5-pin — older cameras, MP3 players.</td></tr>
         <tr><td class="td-key">USB Micro-B</td><td>USB</td><td>Thin, asymmetric — older Android phones.</td></tr>
         <tr><td class="td-key">USB-C</td><td>USB</td><td>Oval, reversible — USB 3.1/3.2/4, Thunderbolt 3/4, up to 240W charging. Used by modern devices.</td></tr>
@@ -846,7 +847,7 @@ tbody tr:hover td { background: #f0fbf9; }
       </thead>
       <tbody>
         <tr><td class="td-key">SATA III</td><td>600 MB/s</td><td>7-pin SATA data + 15-pin power</td><td>Standard for HDDs and 2.5" SSDs. Most common desktop/laptop interface.</td></tr>
-        <tr><td class="td-key">M.2 SATA</td><td>600 MB/s</td><td>M.2 slot (B+M keyed)</td><td>SATA speeds in M.2 form factor. Uses same SATA protocol — not faster than 2.5" SATA SSD.</td></tr>
+        <tr><td class="td-key">M.2 SATA</td><td>600 MB/s</td><td>M.2 socket (B or M key; drive usually B+M)</td><td>SATA speeds in M.2 form factor. Uses same SATA protocol — not faster than 2.5" SATA SSD.</td></tr>
         <tr><td class="td-key">NVMe (PCIe)</td><td>3,500+ MB/s</td><td>M.2 slot (M keyed) or PCIe slot</td><td>NVMe = Non-Volatile Memory Express. Uses PCIe lanes directly — 5–7× faster than SATA. Current standard for SSDs.</td></tr>
         <tr><td class="td-key">PCIe 4.0 NVMe</td><td>7,000 MB/s</td><td>M.2 (M keyed)</td><td>Double PCIe 3.0 NVMe speeds. Backward compatible — a PCIe 4 drive works in a PCIe 3 slot at reduced speed.</td></tr>
         <tr><td class="td-key">HDD (SATA)</td><td>~150 MB/s</td><td>SATA</td><td>Mechanical spinning disk — 5400 or 7200 RPM. Much slower than SSD, used for high-capacity bulk storage.</td></tr>
@@ -857,7 +858,7 @@ tbody tr:hover td { background: #f0fbf9; }
 
   <div class="exam-tip">
     <div class="exam-tip-label">⚡ M.2 keying — B key vs M key vs B+M key</div>
-    <p>M.2 slots have physical keys (notch positions) that determine which drives are compatible. <strong>M key</strong> supports NVMe (PCIe) drives. <strong>B+M key</strong> supports SATA drives (and some NVMe). A drive that is M-keyed only will not fit in a B+M slot. Check the motherboard spec before purchasing an M.2 drive.</p>
+    <p>M.2 slots have physical keys (notch positions) that determine which drives are compatible. <strong>M key</strong>: NVMe (PCIe x4), and SATA if the board supports it. M.2 SATA drives are usually <strong>B+M-keyed</strong> and fit B- or M-key sockets; NVMe x4 drives are M-keyed and won't fit a B-key socket. Check the motherboard spec before purchasing an M.2 drive.</p>
     <p><strong>RAID basics:</strong> <a href="raid-levels.html">RAID 0</a> = striping (speed, no redundancy). RAID 1 = mirroring (redundancy, half capacity). RAID 5 = striping with parity (3+ drives, one drive fault tolerance). RAID 10 = mirroring + striping (4+ drives, best of both).</p>
   </div>
 
@@ -975,40 +976,57 @@ tbody tr:hover td { background: #f0fbf9; }
 <span class="code-hl">ipconfig /flushdns</span> <span class="code-comment">→ Clears DNS resolver cache — fixes stale DNS entries</span>
 <span class="code-hl">ping</span>               <span class="code-comment">→ Tests basic connectivity — sends ICMP echo requests</span>
 <span class="code-hl">tracert</span>            <span class="code-comment">→ Shows each hop to destination — identifies where traffic fails</span>
+<span class="code-hl">pathping</span>           <span class="code-comment">→ Combines ping and tracert — per-hop latency and packet loss</span>
 <span class="code-hl">nslookup</span>           <span class="code-comment">→ Queries DNS — tests name resolution for a hostname</span>
 <span class="code-hl">netstat</span>            <span class="code-comment">→ Shows active TCP/UDP connections and listening ports</span>
 <span class="code-hl">netstat -a</span>         <span class="code-comment">→ All connections and listening ports</span>
 <span class="code-hl">netstat -b</span>         <span class="code-comment">→ Shows which executable is using each connection</span>
-<span class="code-hl">arp -a</span>             <span class="code-comment">→ Displays ARP cache — IP to MAC address mappings</span>
 <span class="code-hl">net use</span>            <span class="code-comment">→ Maps a network drive (net use Z: \\server\share)</span></pre>
   </div>
 
   <div class="code-block">
-    <div class="code-label">System and disk commands</div>
-    <pre><span class="code-hl">sfc /scannow</span>       <span class="code-comment">→ System File Checker — repairs corrupted Windows system files</span>
-<span class="code-hl">DISM /Online /Cleanup-Image /RestoreHealth</span>
-                   <span class="code-comment">→ Repairs Windows image when sfc fails</span>
+    <div class="code-label">Navigation, file, and disk commands</div>
+    <pre><span class="code-hl">cd</span>                 <span class="code-comment">→ Changes the current directory</span>
+<span class="code-hl">dir</span>                <span class="code-comment">→ Lists the files and folders in a directory</span>
+<span class="code-hl">md</span>                 <span class="code-comment">→ Makes (creates) a directory</span>
+<span class="code-hl">rmdir</span>              <span class="code-comment">→ Removes a directory</span>
+<span class="code-hl">robocopy</span>           <span class="code-comment">→ Robust file copy — preserves permissions, restarts on failure</span>
 <span class="code-hl">chkdsk</span>             <span class="code-comment">→ Check Disk — scans for file system and physical disk errors</span>
 <span class="code-hl">chkdsk /f /r</span>       <span class="code-comment">→ /f fixes errors, /r locates bad sectors (requires reboot)</span>
 <span class="code-hl">diskpart</span>           <span class="code-comment">→ Disk partitioning utility — create, format, delete partitions</span>
-<span class="code-hl">format</span>             <span class="code-comment">→ Formats a drive with a filesystem (NTFS, FAT32, exFAT)</span>
-<span class="code-hl">defrag</span>             <span class="code-comment">→ Defragments HDD — do NOT use on SSDs</span>
-<span class="code-hl">robocopy</span>           <span class="code-comment">→ Robust file copy — preserves permissions, restarts on failure</span>
-<span class="code-hl">xcopy</span>              <span class="code-comment">→ Extended copy — copies files and directory trees</span></pre>
+<span class="code-hl">format</span>             <span class="code-comment">→ Formats a drive with a filesystem (NTFS, FAT32, exFAT)</span></pre>
   </div>
 
   <div class="code-block">
-    <div class="code-label">User, process, and admin commands</div>
-    <pre><span class="code-hl">tasklist</span>           <span class="code-comment">→ Lists all running processes (like Task Manager in CLI)</span>
-<span class="code-hl">taskkill /PID xxxx</span> <span class="code-comment">→ Kills a process by its Process ID</span>
+    <div class="code-label">Informational, OS management, and admin tools</div>
+    <pre><span class="code-hl">hostname</span>           <span class="code-comment">→ Shows the computer's name</span>
+<span class="code-hl">net user</span>           <span class="code-comment">→ Views and manages local user accounts</span>
+<span class="code-hl">winver</span>             <span class="code-comment">→ Shows the Windows version and build</span>
+<span class="code-hl">whoami</span>             <span class="code-comment">→ Shows the signed-in user (and domain)</span>
+<span class="code-hl">[command] /?</span>       <span class="code-comment">→ Built-in help for any command</span>
+<span class="code-hl">sfc /scannow</span>       <span class="code-comment">→ System File Checker — repairs corrupted Windows system files</span>
+<span class="code-hl">gpupdate /force</span>    <span class="code-comment">→ Forces immediate Group Policy refresh</span>
+<span class="code-hl">gpresult /r</span>        <span class="code-comment">→ Shows which Group Policy settings are applied</span>
+
+<span class="code-comment">Windows tools (obj 1.4), often launched from the command line:</span>
 <span class="code-hl">msconfig</span>           <span class="code-comment">→ System Configuration — manage startup items, boot options</span>
 <span class="code-hl">regedit</span>            <span class="code-comment">→ Registry Editor — edit Windows registry (use with caution)</span>
 <span class="code-hl">gpedit.msc</span>         <span class="code-comment">→ Group Policy Editor — local security and config policies</span>
 <span class="code-hl">lusrmgr.msc</span>        <span class="code-comment">→ Local Users and Groups manager</span>
-<span class="code-hl">services.msc</span>       <span class="code-comment">→ Windows Services management console</span>
 <span class="code-hl">eventvwr.msc</span>       <span class="code-comment">→ Event Viewer — system, application, and security logs</span>
 <span class="code-hl">mmc</span>                <span class="code-comment">→ Microsoft Management Console — add snap-ins</span>
-<span class="code-hl">gpupdate /force</span>    <span class="code-comment">→ Forces immediate Group Policy refresh</span>
+
+<span class="code-comment">Useful, but not in the 220-1202 objectives:</span>
+<span class="code-hl">tasklist</span>           <span class="code-comment">→ Lists all running processes (like Task Manager in CLI)</span>
+<span class="code-hl">taskkill /PID xxxx</span> <span class="code-comment">→ Kills a process by its Process ID</span>
+<span class="code-hl">DISM /Online /Cleanup-Image /RestoreHealth</span>
+                   <span class="code-comment">→ Repairs Windows image when sfc fails</span>
+<span class="code-hl">arp -a</span>             <span class="code-comment">→ Displays ARP cache — IP to MAC address mappings</span>
+<span class="code-hl">defrag</span>             <span class="code-comment">→ Defragments HDD — do NOT use on SSDs (the Disk Defragment GUI, dfrgui.exe, is in obj 1.4)</span>
+<span class="code-hl">services.msc</span>       <span class="code-comment">→ Windows Services management console</span>
+
+<span class="code-comment">Removed in 220-1202:</span>
+<span class="code-hl">xcopy</span>              <span class="code-comment">→ Extended copy — copies files and directory trees</span>
 <span class="code-hl">shutdown /r /t 0</span>   <span class="code-comment">→ Immediate restart (/s for shutdown, /t 0 = no delay)</span></pre>
   </div>
 
@@ -1033,7 +1051,7 @@ tbody tr:hover td { background: #f0fbf9; }
         <tr><td class="td-key">Keylogger</td><td>Records keystrokes to capture passwords and sensitive data</td><td>Credentials compromised despite strong password practices</td></tr>
         <tr><td class="td-key">Spyware</td><td>Monitors user activity and sends data to a third party without consent</td><td>Browser redirects, slow performance, unexpected pop-ups</td></tr>
         <tr><td class="td-key">Adware</td><td>Displays unwanted advertisements — often bundled with free software</td><td>Pop-up ads in browser, homepage changed without permission</td></tr>
-        <tr><td class="td-key">Man-in-the-Middle</td><td>Attacker intercepts and potentially alters communication between two parties</td><td>ARP poisoning, rogue Wi-Fi hotspot — certificate errors can indicate MITM</td></tr>
+        <tr><td class="td-key">On-path attack (man-in-the-middle)</td><td>Attacker intercepts and potentially alters communication between two parties</td><td>ARP poisoning, rogue Wi-Fi hotspot — certificate errors can indicate MITM</td></tr>
         <tr><td class="td-key">Social engineering</td><td>Manipulating people into revealing information or taking insecure actions — exploits trust</td><td>Someone calling claiming to be IT support needing your password</td></tr>
         <tr><td class="td-key">Tailgating / piggybacking</td><td>Physically following an authorized person through a secure door</td><td>Person closely following you into a badge-access area</td></tr>
         <tr><td class="td-key">Shoulder surfing</td><td>Watching someone enter credentials or view sensitive information in person</td><td>Someone standing behind you at an ATM or in a coffee shop</td></tr>
@@ -1043,11 +1061,11 @@ tbody tr:hover td { background: #f0fbf9; }
   </div>
 
   <!-- TROUBLESHOOTING -->
-  <h2 id="troubleshooting" class="section-title"><span class="s-icon">🛠️</span> What is the CompTIA A+ 7-step troubleshooting methodology?</h2>
-  <p class="section-intro">CompTIA's 7-step troubleshooting methodology is tested directly across <a href="comptia-aplus-domains.html">both A+ exam domains</a> (Core 1 and Core 2). Memorize the steps and order — scenario questions will ask which step comes next.</p>
+  <h2 id="troubleshooting" class="section-title"><span class="s-icon">🛠️</span> What is the CompTIA A+ 6-step troubleshooting methodology?</h2>
+  <p class="section-intro">CompTIA publishes this 6-step troubleshooting methodology in the A+ 220-1201 objectives as a "competency standard." CompTIA states that the methodology itself will not be tested and is not a formal A+ objective, although troubleshooting scenarios remain a major part of <a href="comptia-aplus-domains.html">both A+ exams</a> (Core 1 and Core 2). Learn it as on-the-job best practice. (Network+ N10-009 objective 5.1 does test a 7-step version that splits planning from "implement the solution or escalate as necessary.")</p>
 
   <div class="code-block">
-    <div class="code-label">CompTIA 7-step troubleshooting methodology</div>
+    <div class="code-label">CompTIA A+ 6-step troubleshooting methodology</div>
     <pre><span class="code-hl">Step 1 —</span> Identify the problem
          <span class="code-comment">Gather information, question the user, identify symptoms</span>
          <span class="code-comment">Check for recent changes — "what changed right before this started?"</span>
@@ -1055,24 +1073,23 @@ tbody tr:hover td { background: #f0fbf9; }
 <span class="code-hl">Step 2 —</span> Establish a theory of probable cause
          <span class="code-comment">Question the obvious first — is it plugged in? Is the service running?</span>
          <span class="code-comment">Consider multiple possible causes before acting</span>
+         <span class="code-comment">Research knowledge base/internet, if applicable</span>
 
 <span class="code-hl">Step 3 —</span> Test the theory to determine cause
          <span class="code-comment">Confirm or deny your theory</span>
          <span class="code-comment">If theory is confirmed → move to step 4</span>
          <span class="code-comment">If theory is NOT confirmed → return to step 2 with a new theory</span>
 
-<span class="code-hl">Step 4 —</span> Establish a plan of action to resolve the problem
+<span class="code-hl">Step 4 —</span> Establish a plan of action to resolve the problem and implement the solution
          <span class="code-comment">Consider effects of the fix on the rest of the system</span>
          <span class="code-comment">Notify affected users of planned downtime if applicable</span>
+         <span class="code-comment">Apply the fix</span>
 
-<span class="code-hl">Step 5 —</span> Implement the solution or escalate as necessary
-         <span class="code-comment">Apply the fix — if beyond your expertise, escalate to senior tech</span>
-
-<span class="code-hl">Step 6 —</span> Verify full system functionality
+<span class="code-hl">Step 5 —</span> Verify full system functionality and, if applicable, implement preventive measures
          <span class="code-comment">Confirm the original problem is resolved</span>
          <span class="code-comment">Implement preventive measures to stop recurrence</span>
 
-<span class="code-hl">Step 7 —</span> Document findings, actions, and outcomes
+<span class="code-hl">Step 6 —</span> Document findings/lessons learned, actions, and outcomes
          <span class="code-comment">Record what the problem was, what caused it, and what fixed it</span>
          <span class="code-comment">Update knowledge base — helps the whole team next time</span></pre>
   </div>
@@ -1123,7 +1140,7 @@ tbody tr:hover td { background: #f0fbf9; }
         <tr><td class="td-key">RAID</td><td>Redundant Array of Independent Disks</td><td>Combines multiple drives for speed and/or redundancy</td></tr>
         <tr><td class="td-key">UPS</td><td>Uninterruptible Power Supply</td><td>Battery backup that keeps systems running during brief power outages</td></tr>
         <tr><td class="td-key">KVM</td><td>Keyboard, Video, Mouse switch</td><td>Allows one keyboard/monitor/mouse to control multiple computers</td></tr>
-        <tr><td class="td-key">VDI</td><td>Virtual Desktop Infrastructure</td><td>Hosts desktop OS instances on a centralised server using <a href="virtualization-explained.html">virtualization</a> — thin clients connect</td></tr>
+        <tr><td class="td-key">VDI</td><td>Virtual Desktop Infrastructure</td><td>Hosts desktop OS instances on a centralized server using <a href="virtualization-explained.html">virtualization</a> — thin clients connect</td></tr>
         <tr><td class="td-key">IaaS</td><td>Infrastructure as a Service</td><td>Cloud provides VMs, storage, networking — you manage OS and apps (AWS EC2)</td></tr>
         <tr><td class="td-key">PaaS</td><td>Platform as a Service</td><td>Cloud provides runtime environment — you manage only the application code</td></tr>
         <tr><td class="td-key">SaaS</td><td>Software as a Service</td><td>Cloud provides the full application — you just use it (Microsoft 365, Salesforce)</td></tr>

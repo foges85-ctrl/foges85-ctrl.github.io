@@ -414,7 +414,7 @@ tbody tr:hover td{background:#fdf4ff;}
       "name": "Why Social Engineering Works — The Psychology",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Social engineering succeeds because it exploits normal human behavior rather than technical flaws. Understanding the psychological principles attackers use is tested directly on Security+:"
+        "text": "Social engineering succeeds because it exploits normal human behavior rather than technical flaws. The psychological principles below explain why the attacks work. SY0-701 no longer lists them as named objectives, but scenarios still use them:"
       }
     },
     {
@@ -422,7 +422,7 @@ tbody tr:hover td{background:#fdf4ff;}
       "name": "Phishing Attack Family",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Phishing = mass, untargeted. Spear phishing = targeted at a specific person/org. Whaling = spear phishing specifically targeting executives. Smishing = SMS. Vishing = voice/phone. The exam will describe a scenario and ask you to identify the attack type — the key differentiators are: the delivery channel (email/SMS/voice) and whether it's targeted or mass. A common exam trap: \"A CFO receives a personalised email asking for a wire transfer.\" The answer is whaling , not just spear phishing — the executive target is the defining characteristic."
+        "text": "Phishing = mass, untargeted. Spear phishing = targeted at a specific person/org. Whaling = spear phishing specifically targeting executives. Smishing = SMS. Vishing = voice/phone. The exam will describe a scenario and ask you to identify the attack type — the key differentiators are: the delivery channel (email/SMS/voice) and whether it's targeted or mass. A common exam trap: \"A CFO receives a personalized email asking for a wire transfer.\" The answer is whaling , not just spear phishing — the executive target is the defining characteristic."
       }
     },
     {
@@ -430,7 +430,7 @@ tbody tr:hover td{background:#fdf4ff;}
       "name": "Influence and Elicitation Techniques",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Security+ also tests elicitation — the art of extracting information through seemingly innocent conversation without the target realizing they're being manipulated."
+        "text": "Elicitation is the art of extracting information through seemingly innocent conversation without the target realizing they're being manipulated. It was named in the SY0-601 objectives; SY0-701 no longer lists it."
       }
     },
     {
@@ -438,7 +438,7 @@ tbody tr:hover td{background:#fdf4ff;}
       "name": "Defenses Against Social Engineering",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Security awareness training: Regular training is the single most effective defense — users who can recognize social engineering attempts are far less vulnerable. Include simulated phishing exercises. Verification procedures: Any request for credentials, access, or financial transactions must go through a verification process — no exceptions for urgency or authority claims. MFA everywhere: Even if credentials are stolen via phishing, MFA prevents account takeover. Authenticator apps are more resistant to real-time phishing than SMS OTPs."
+        "text": "Security awareness training: Regular training is the single most effective defense — users who can recognize social engineering attempts are far less vulnerable. Include simulated phishing exercises. Verification procedures: Any request for credentials, access, or financial transactions must go through a verification process — no exceptions for urgency or authority claims. MFA everywhere: Even if a password is stolen via phishing, MFA blocks most account takeovers. Authenticator apps resist SIM-swap attacks better than SMS, but only FIDO2/passkeys or smart cards resist real-time phishing."
       }
     },
     {
@@ -499,7 +499,7 @@ tbody tr:hover td{background:#fdf4ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/social-engineering-attacks.html",
   "inLanguage": "en"
 }
@@ -560,7 +560,7 @@ tbody tr:hover td{background:#fdf4ff;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -569,12 +569,12 @@ tbody tr:hover td{background:#fdf4ff;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ What is Social Engineering?</div>
       <div class="quick-answer-text">
-        Social engineering is the use of <strong>psychological manipulation</strong> to trick people into divulging confidential information or performing actions that compromise security. Rather than exploiting software vulnerabilities, social engineers exploit <strong>human vulnerabilities</strong> — trust, fear, urgency, authority, and helpfulness. It is the most common initial attack vector in data breaches and the most heavily tested topic on the Security+ exam.
+        Social engineering is the use of <strong>psychological manipulation</strong> to trick people into divulging confidential information or performing actions that compromise security. Rather than exploiting software vulnerabilities, social engineers exploit <strong>human vulnerabilities</strong> — trust, fear, urgency, authority, and helpfulness. It is the most common initial attack vector in data breaches and a core Security+ topic (SY0-701 objectives 2.2 and 5.6).
       </div>
     </div>
 
     <h2>Why Social Engineering Works — The Psychology</h2>
-    <p>Social engineering succeeds because it exploits normal human behavior rather than technical flaws. Understanding the psychological principles attackers use is tested directly on Security+:</p>
+    <p>Social engineering succeeds because it exploits normal human behavior rather than technical flaws. The psychological principles below explain why the attacks work. SY0-701 no longer lists them as named objectives, but scenarios still use them:</p>
 
     <div class="table-wrap">
       <table>
@@ -606,7 +606,7 @@ tbody tr:hover td{background:#fdf4ff;}
       <div class="attack-card">
         <div class="attack-label">Targeted email attack</div>
         <div class="attack-title">Spear Phishing</div>
-        <div class="attack-how">A targeted phishing attack against a specific individual or organization. The attacker researches the target — their role, colleagues, projects, tools — and crafts a highly personalised email that appears completely legitimate. Much higher success rate than generic phishing.</div>
+        <div class="attack-how">A targeted phishing attack against a specific individual or organization. The attacker researches the target — their role, colleagues, projects, tools — and crafts a highly personalized email that appears completely legitimate. Much higher success rate than generic phishing.</div>
         <div class="attack-example"><strong>Example:</strong> An attacker finds a CFO's name on LinkedIn, sees they use DocuSign for contracts, and sends: "Hi [CFO name], please review and sign the attached contract from [known vendor name]." The attachment contains a macro that installs a RAT.</div>
         <div class="attack-defend"><strong>Defenses:</strong> Limit public information on LinkedIn/social media, out-of-band verification for financial or sensitive requests, email sandboxing, security awareness training for targeted roles.</div>
       </div>
@@ -622,7 +622,7 @@ tbody tr:hover td{background:#fdf4ff;}
       <div class="attack-card">
         <div class="attack-label">SMS-based attack</div>
         <div class="attack-title">Smishing (SMS Phishing)</div>
-        <div class="attack-how">Phishing delivered via text message (SMS). People tend to trust SMS more than email and are less likely to scrutinise links in texts. Attackers impersonate banks, delivery companies (FedEx, UPS), or government agencies.</div>
+        <div class="attack-how">Phishing delivered via text message (SMS). People tend to trust SMS more than email and are less likely to scrutinize links in texts. Attackers impersonate banks, delivery companies (FedEx, UPS), or government agencies.</div>
         <div class="attack-example"><strong>Example:</strong> "USPS: Your package could not be delivered. Update your delivery address here: [short URL]" — the link leads to a fake USPS page that collects name, address, and credit card details.</div>
         <div class="attack-defend"><strong>Defenses:</strong> Never click links in unsolicited texts; go directly to the official website instead. Mobile security awareness training. Report smishing texts to 7726 (SPAM).</div>
       </div>
@@ -640,7 +640,7 @@ tbody tr:hover td{background:#fdf4ff;}
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ Phishing family exam tip</div>
       <p><strong>Phishing</strong> = mass, untargeted. <strong>Spear phishing</strong> = targeted at a specific person/org. <strong>Whaling</strong> = spear phishing specifically targeting executives. <strong>Smishing</strong> = SMS. <strong>Vishing</strong> = voice/phone. The exam will describe a scenario and ask you to identify the attack type — the key differentiators are: the delivery channel (email/SMS/voice) and whether it's targeted or mass.</p>
-      <p>A common exam trap: "A CFO receives a personalised email asking for a wire transfer." The answer is <strong>whaling</strong>, not just spear phishing — the executive target is the defining characteristic.</p>
+      <p>A common exam trap: "A CFO receives a personalized email asking for a wire transfer." The answer is <strong>whaling</strong>, not just spear phishing — the executive target is the defining characteristic.</p>
     </div>
 
     <h2>Deception and Impersonation Attacks</h2>
@@ -674,7 +674,7 @@ tbody tr:hover td{background:#fdf4ff;}
       <div class="attack-card">
         <div class="attack-label">Discarded data attack</div>
         <div class="attack-title">Dumpster Diving</div>
-        <div class="attack-how">Searching through physical trash for sensitive information — printed documents, old hard drives, post-it notes with passwords, organisational charts, system diagrams, invoices, or anything that reveals useful information about the target.</div>
+        <div class="attack-how">Searching through physical trash for sensitive information — printed documents, old hard drives, post-it notes with passwords, organizational charts, system diagrams, invoices, or anything that reveals useful information about the target.</div>
         <div class="attack-example"><strong>Example:</strong> An attacker recovers a discarded printed email thread from a company's recycling bin that reveals internal server names, IP addresses, and a project timeline that helps them plan an attack.</div>
         <div class="attack-defend"><strong>Defenses:</strong> Cross-cut shredders for all printed documents, secure hard drive destruction policy (not just deletion), clean desk policy, secure bin disposal contracts for organizations.</div>
       </div>
@@ -698,7 +698,7 @@ tbody tr:hover td{background:#fdf4ff;}
     </div>
 
     <h2>Influence and Elicitation Techniques</h2>
-    <p>Security+ also tests elicitation — the art of extracting information through seemingly innocent conversation without the target realizing they're being manipulated.</p>
+    <p>Elicitation is the art of extracting information through seemingly innocent conversation without the target realizing they're being manipulated. It was named in the SY0-601 objectives; SY0-701 no longer lists it.</p>
 
     <div class="table-wrap">
       <table>
@@ -716,10 +716,10 @@ tbody tr:hover td{background:#fdf4ff;}
     <h2>Defenses Against Social Engineering</h2>
 
     <div class="callout">
-      <div class="callout-label">Organisational Defenses</div>
+      <div class="callout-label">Organizational Defenses</div>
       <p><strong>Security awareness training:</strong> Regular training is the single most effective defense — users who can recognize social engineering attempts are far less vulnerable. Include simulated phishing exercises.</p>
       <p><strong>Verification procedures:</strong> Any request for credentials, access, or financial transactions must go through a verification process — no exceptions for urgency or authority claims.</p>
-      <p><strong>MFA everywhere:</strong> Even if credentials are stolen via phishing, MFA prevents account takeover. Authenticator apps are more resistant to real-time phishing than SMS OTPs.</p>
+      <p><strong>MFA everywhere:</strong> Even if a password is stolen via phishing, MFA blocks most account takeovers. Authenticator apps resist SIM-swap attacks better than SMS, but only FIDO2/passkeys or smart cards resist real-time phishing.</p>
       <p><strong>Zero Trust mindset:</strong> Never trust, always verify — treat every request as potentially malicious regardless of how legitimate it appears.</p>
       <p><strong>Physical security:</strong> Security vestibules, visitor management, clean desk policies, and shredding all reduce physical attack surface.</p>
       <p><strong>Email controls:</strong> SPF, DKIM, DMARC reduce email spoofing. Email gateways filter known-malicious domains and attachments.</p>
@@ -730,10 +730,10 @@ tbody tr:hover td{background:#fdf4ff;}
     <h2>Exam Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario-item">💬 "An attacker sends thousands of identical emails claiming to be from a bank, asking recipients to verify their account details. What type of attack is this?" → <strong>Phishing — mass, untargeted email attack impersonating a legitimate organization.</strong></div>
-      <div class="scenario-item">💬 "An attacker researches a target company's CFO on LinkedIn, learns their assistant's name, and sends a personalised email asking for an urgent wire transfer. What type of attack is this?" → <strong>Whaling — targeted spear phishing attack against an executive.</strong></div>
+      <div class="scenario-item">💬 "An attacker researches a target company's CFO on LinkedIn, learns their assistant's name, and sends a personalized email asking for an urgent wire transfer. What type of attack is this?" → <strong>Whaling — targeted spear phishing attack against an executive.</strong></div>
       <div class="scenario-item">💬 "An employee receives a text message saying their bank account has been locked and to click a link to restore access. What type of attack is this?" → <strong>Smishing — phishing delivered via SMS.</strong></div>
       <div class="scenario-item">💬 "A caller impersonates the IT help desk and asks an employee for their password to fix a system problem. What two attack types does this combine?" → <strong>Vishing (voice phishing) and pretexting (fabricated IT support scenario).</strong></div>
-      <div class="scenario-item">💬 "USB drives labeled 'Confidential — Q4 Layoffs' are left in the company car park. Employees plug them in and their workstations are compromised. What type of attack is this?" → <strong>Baiting — uses physical media and human curiosity to deliver malware.</strong></div>
+      <div class="scenario-item">💬 "USB drives labeled 'Confidential — Q4 Layoffs' are left in the company parking lot. Employees plug them in and their workstations are compromised. What type of attack is this?" → <strong>Baiting — uses physical media and human curiosity to deliver malware.</strong></div>
       <div class="scenario-item">💬 "An attacker walks closely behind an employee as they badge through a secure door and enters the building without scanning their own badge. What is this called?" → <strong>Tailgating — physical access gained by following an authorized person without their awareness.</strong></div>
       <div class="scenario-item">💬 "Which technical defense prevents email domain spoofing by allowing domain owners to specify authorized mail servers?" → <strong>SPF (Sender Policy Framework) — combined with DKIM and DMARC for comprehensive anti-spoofing.</strong></div>
       <div class="scenario-item">💬 "An attacker compromises a website frequented by security researchers to deliver malware to visiting researchers. What type of attack is this?" → <strong>Watering hole attack — the attacker poisons a site the targets are expected to visit.</strong></div>

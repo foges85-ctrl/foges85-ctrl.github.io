@@ -486,7 +486,7 @@ tbody tr:hover td{background:var(--light);}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/risk-management.html",
   "inLanguage": "en"
 }
@@ -531,7 +531,7 @@ tbody tr:hover td{background:var(--light);}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap"><div class="article-body">
@@ -575,7 +575,7 @@ tbody tr:hover td{background:var(--light);}
 <p>A web server worth <strong>$400,000</strong> faces a DDoS threat with an <strong>exposure factor of 25%</strong> and an <strong>ARO of 4</strong> (occurs 4 times per year on average).</p>
 <p><strong>SLE</strong> = $400,000 × 0.25 = <strong>$100,000</strong></p>
 <p><strong>ALE</strong> = $100,000 × 4 = <strong>$400,000/year</strong></p>
-<p>A DDoS mitigation service costing $150,000/year that reduces the ARO to 1 would produce an ALE of $100,000 — saving $250,000/year. The control is clearly worth implementing.</p>
+<p>A DDoS mitigation service costing $150,000/year that reduces the ARO to 1 would produce an ALE of $100,000, a $300,000/year reduction in expected loss. After the $150,000 cost, the control's net value is $150,000/year ($400,000 − $100,000 − $150,000). The control is clearly worth implementing.</p>
 </div>
 
 <h2>The Four Risk Response Strategies</h2>
@@ -599,7 +599,7 @@ tbody tr:hover td{background:var(--light);}
 <h2>Exam Scenarios</h2>
 <div class="exam-scenarios">
 <div class="scenario"><div class="scenario-q">A company's security team calculates that a server has an asset value of $300,000, an exposure factor of 50% for fire damage, and a fire occurs on average once every 5 years. What is the ALE?</div>
-<div class="scenario-a"><strong>SLE</strong> = $300,000 × 0.5 = $150,000. <strong>ARO</strong> = 1/5 = 0.2. <strong>ALE</strong> = $150,000 × 0.2 = <strong>$30,000/year.</strong> If a sprinkler system costs $10,000/year and reduces the exposure factor to 10%, the new ALE = $60,000 × 0.2 = $12,000 — saving $18,000/year against a $10,000 cost. Worth implementing.</div></div>
+<div class="scenario-a"><strong>SLE</strong> = $300,000 × 0.5 = $150,000. <strong>ARO</strong> = 1/5 = 0.2. <strong>ALE</strong> = $150,000 × 0.2 = <strong>$30,000/year.</strong> If a sprinkler system costs $10,000/year and reduces the exposure factor to 10%, the new SLE = $300,000 × 0.1 = $30,000. New ALE = $30,000 × 0.2 = $6,000, saving $24,000/year against a $10,000 cost (net $14,000). Worth implementing.</div></div>
 <div class="scenario"><div class="scenario-q">A security team determines that the cost of encrypting archived data would exceed the potential impact of a breach. They document this decision and proceed without encryption. What risk response strategy is this?</div>
 <div class="scenario-a"><strong>Answer: Risk acceptance.</strong> The team has made a deliberate, documented decision to accept the risk because the mitigation cost exceeds the expected loss. This is not negligence — it's a valid risk management decision when documented and approved by appropriate stakeholders.</div></div>
 <div class="scenario"><div class="scenario-q">After implementing firewalls, IDS/IPS, and regular patching, a company still faces some residual network intrusion risk. What should they do with this remaining risk?</div>
@@ -615,7 +615,7 @@ tbody tr:hover td{background:var(--light);}
 
 <p>A <strong>procedure</strong> is the specific step-by-step process for implementing a policy — the "how." An encryption procedure specifies which encryption algorithms to use, how keys are generated and stored, and which systems fall within scope. Procedures are more detailed than policies and change more frequently as technology evolves. An employee following a procedure should be able to complete the required task by following the documented steps.</p>
 
-<p>A <strong>standard</strong> defines specific technical requirements — acceptable encryption algorithms, minimum password lengths, approved authentication protocols. Standards establish the baseline that all systems must meet. A password standard might specify: minimum 12 characters, at least one uppercase, lowercase, number, and special character, cannot reuse last 24 passwords. Standards bridge the gap between the policy ("passwords must be complex") and procedures ("here's how to configure password policy in Active Directory").</p>
+<p>A <strong>standard</strong> defines specific technical requirements — acceptable encryption algorithms, minimum password lengths, approved authentication protocols. Standards establish the baseline that all systems must meet. A password standard aligned with NIST SP 800-63B-4 (July 2025) might specify: minimum 15 characters (8 if used with MFA), checked against a breached-password blocklist, no composition rules or periodic expiry. Security+ still lists length, complexity, reuse, and expiration as password concepts, so know those terms for the exam. Standards bridge the gap between the policy ("passwords must be strong") and procedures ("here's how to configure password policy in Active Directory").</p>
 
 <p>A <strong>guideline</strong> provides recommended practices that are not mandatory — unlike standards (which must be followed), guidelines are advisory. "Consider using password managers to manage complex credentials" is a guideline. For exam purposes: policies are mandatory, standards are mandatory, procedures are mandatory, guidelines are optional/advisory.</p>
 
@@ -633,9 +633,9 @@ tbody tr:hover td{background:var(--light);}
 
 <p>Security controls are the countermeasures used to reduce risk. For the Security+ exam, you must be able to categorize controls by both their <strong>type</strong> (what they do) and their <strong>category</strong> (how they're implemented). These classifications appear throughout the exam in questions about selecting appropriate controls for specific risk scenarios.</p>
 
-<p><strong>Control types by function:</strong> <strong>Preventive controls</strong> stop an incident from occurring — a firewall that blocks malicious traffic, a PIN requirement on a phone, or a locked server room door prevent specific threats from materializing. <strong>Detective controls</strong> identify when an incident has occurred — IDS alerts, audit logs, and security cameras detect events but don't prevent them. Detection enables timely response. <strong>Corrective controls</strong> restore systems to normal after an incident — restoring from backup after ransomware, patching a vulnerability after it's exploited, or rebuilding a compromised server. <strong>Deterrent controls</strong> discourage attackers without necessarily stopping them — warning banners, visible security cameras, and "premises monitored by CCTV" signs make attackers less likely to attempt an attack by increasing perceived risk of detection. <strong>Compensating controls</strong> are alternatives deployed when the ideal control is not feasible — using additional network monitoring (compensating) when a legacy system cannot be patched (preferred control).</p>
+<p><strong>Control types by function:</strong> <strong>Preventive controls</strong> stop an incident from occurring — a firewall that blocks malicious traffic, a PIN requirement on a phone, or a locked server room door prevent specific threats from materializing. <strong>Detective controls</strong> identify when an incident has occurred — IDS alerts, audit logs, and security cameras detect events but don't prevent them. Detection enables timely response. <strong>Corrective controls</strong> restore systems to normal after an incident — restoring from backup after ransomware, patching a vulnerability after it's exploited, or rebuilding a compromised server. <strong>Deterrent controls</strong> discourage attackers without necessarily stopping them — warning banners, visible security cameras, and "premises monitored by CCTV" signs make attackers less likely to attempt an attack by increasing perceived risk of detection. <strong>Compensating controls</strong> are alternatives deployed when the ideal control is not feasible — using additional network monitoring (compensating) when a legacy system cannot be patched (preferred control). <strong>Directive controls</strong> tell people what to do or not do — a policy requiring encrypted file transfers, or an "authorized personnel only" sign — and rely on people following them.</p>
 
-<p><strong>Control categories:</strong> <strong>Technical controls</strong> (also called logical controls) use technology — firewalls, encryption, access control lists, MFA, and antivirus are all technical controls. <strong>Administrative controls</strong> (also called managerial controls) use policies, procedures, and training — security awareness programs, acceptable use policies, background checks, and change management processes are administrative controls. <strong>Physical controls</strong> protect physical assets and spaces — door locks, security guards, CCTV cameras, badge readers, and biometric access systems are physical controls. For exam scenarios: when asked for a physical control, think barriers, locks, and physical access systems. When asked for an administrative control, think policies and training.</p>
+<p><strong>Control categories:</strong> <strong>Technical controls</strong> (also called logical controls) use technology — firewalls, encryption, access control lists, MFA, and antivirus are all technical controls. <strong>Managerial controls</strong> (sometimes called administrative controls) are the policies, risk assessments, and procedures that direct the security program — acceptable use policies, risk assessments, and change management processes are managerial controls. <strong>Operational controls</strong> are carried out by people rather than systems — security awareness training and security guards are operational controls. <strong>Physical controls</strong> protect physical assets and spaces — door locks, fencing, CCTV cameras, badge readers, and biometric access systems are physical controls. For exam scenarios: when asked for a physical control, think barriers, locks, and physical access systems. When asked for a managerial control, think policies and risk assessments; for an operational control, think people carrying out a process, such as training or guard duty.</p>
 
 <h2>Risk Appetite, Risk Tolerance, and Risk Threshold</h2>
 

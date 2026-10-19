@@ -406,7 +406,7 @@ tbody tr:hover td{background:#eff6ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/wireless-networking.html",
   "inLanguage": "en"
 }
@@ -460,7 +460,7 @@ tbody tr:hover td{background:#eff6ff;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated May 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -469,7 +469,7 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ Quick Answer</div>
       <div class="quick-answer-text">
-        Key 802.11 standards: <strong>802.11n (Wi-Fi 4)</strong> = 2.4/5GHz, 600 Mbps. <strong>802.11ac (Wi-Fi 5)</strong> = 5GHz only, 3.5 Gbps. <strong>802.11ax (Wi-Fi 6)</strong> = 2.4/5/6GHz, 9.6 Gbps. Security evolution: <strong>WEP</strong> = broken. <strong>WPA</strong> = legacy. <strong>WPA2</strong> = AES-CCMP, vulnerable to offline dictionary attacks. <strong>WPA3</strong> = SAE — current standard, resists offline attacks. Enterprise: <strong>802.1X + RADIUS</strong> for per-user auth. 2.4GHz = 3 non-overlapping channels (1, 6, 11), longer range. 5GHz = 24+ channels, faster, shorter range. Wireless attacks: evil twin, rogue AP, deauthentication, jamming.
+        Key 802.11 standards: <strong>802.11n (Wi-Fi 4)</strong> = 2.4/5GHz, 600 Mbps. <strong>802.11ac (Wi-Fi 5)</strong> = 5GHz only, 3.5 Gbps. <strong>802.11ax (Wi-Fi 6)</strong> = 2.4/5/6GHz, 9.6 Gbps. <strong>802.11be (Wi-Fi 7)</strong> = 2.4/5/6GHz, 320 MHz channels (6GHz only), Multi-Link Operation — the newest standard. Security evolution: <strong>WEP</strong> = broken. <strong>WPA</strong> = legacy. <strong>WPA2</strong> = AES-CCMP, vulnerable to offline dictionary attacks. <strong>WPA3</strong> = SAE — current standard, resists offline attacks. Enterprise: <strong>802.1X + RADIUS</strong> for per-user auth. 2.4GHz = 3 non-overlapping channels (1, 6, 11), longer range. 5GHz = 24+ channels, faster, shorter range. Wireless attacks: evil twin, rogue AP, deauthentication, jamming.
       </div>
     </div>
 
@@ -489,6 +489,7 @@ tbody tr:hover td{background:#eff6ff;}
           <tr><td class="td-term">802.11n</td><td>Wi-Fi 4</td><td>2.4 + 5 GHz</td><td>600 Mbps</td><td>First dual-band standard; introduced MIMO (multiple antennas)</td></tr>
           <tr><td class="td-term">802.11ac</td><td>Wi-Fi 5</td><td>5 GHz only</td><td>3.5 Gbps</td><td>MU-MIMO, wider channels (80/160MHz), beamforming</td></tr>
           <tr><td class="td-term">802.11ax</td><td>Wi-Fi 6/6E</td><td>2.4 + 5 + 6 GHz</td><td>9.6 Gbps</td><td>OFDMA for dense environments; Wi-Fi 6E adds 6GHz band</td></tr>
+          <tr><td class="td-term">802.11be</td><td>Wi-Fi 7</td><td>2.4 + 5 + 6 GHz</td><td>~46 Gbps (industry-cited)</td><td>320 MHz channels (6GHz), Multi-Link Operation (MLO), 4K QAM; Wi-Fi CERTIFIED 7 launched January 2024</td></tr>
         </tbody>
       </table>
     </div>
@@ -497,7 +498,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="exam-tip-label">🎯 Exam Tip — Three Speed Facts to Memorize</div>
       <p><strong>802.11a and 802.11g are both 54 Mbps</strong> — same speed, different bands (a=5GHz, g=2.4GHz). This is a classic trick question.</p>
       <p><strong>802.11ac is 5GHz only</strong> — it does not operate on 2.4GHz. If the scenario requires dual-band, the answer is 802.11n or 802.11ax.</p>
-      <p><strong>802.11ax = Wi-Fi 6</strong> — the answer to any "most current standard" question.</p>
+      <p><strong>802.11ax = Wi-Fi 6</strong> and <strong>802.11be = Wi-Fi 7</strong> — Wi-Fi 7 is the newest standard. The A+ and Network+ objectives say only "802.11 standards," so read the answer choices carefully rather than assuming one letter is always the "most current" answer.</p>
     </div>
 
     <h2>2.4 GHz vs 5 GHz</h2>
@@ -616,7 +617,7 @@ tbody tr:hover td{background:#eff6ff;}
       </div>
       <div class="attack-card orange">
         <div class="attack-name">Rogue Access Point</div>
-        <div class="attack-desc">An <strong>unauthorised AP plugged into the corporate wired network</strong> — by an employee for convenience, or by an attacker. Creates an uncontrolled wireless entry point that bypasses perimeter controls. <strong>Defense:</strong> WIDS/WIPS, 802.1X on all switch ports (NAC), regular RF surveys, physical security.</div>
+        <div class="attack-desc">An <strong>unauthorized AP plugged into the corporate wired network</strong> — by an employee for convenience, or by an attacker. Creates an uncontrolled wireless entry point that bypasses perimeter controls. <strong>Defense:</strong> WIDS/WIPS, 802.1X on all switch ports (NAC), regular RF surveys, physical security.</div>
       </div>
       <div class="attack-card purple">
         <div class="attack-name">Deauthentication Attack</div>
@@ -665,7 +666,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <h2>Wireless Frequencies and Regulatory Considerations</h2>
 
-<p>Wi-Fi operates in licensed spectrum bands, and the regulatory environment affects which channels are available and at what transmit power levels. For A+ and Network+ exam purposes, the key regulatory concepts are channel availability, transmit power limits, and the DFS requirement.</p>
+<p>Wi-Fi operates in unlicensed spectrum bands, but regulations still govern them — the regulatory environment affects which channels are available and at what transmit power levels. For A+ and Network+ exam purposes, the key regulatory concepts are channel availability, transmit power limits, and the DFS requirement.</p>
 
 <p>In the 5GHz band, channels are divided into several groups. Channels 36–48 are UNII-1 and can be used at lower power levels indoors. Channels 52–64 and 100–144 are UNII-2 and UNII-2e, and these channels require <strong>DFS (Dynamic Frequency Selection)</strong> — the AP must listen for radar signals (used by weather radar and military radar systems that share these frequencies) before transmitting. If radar is detected, the AP must immediately vacate that channel and switch to a clear one. This is why APs on DFS channels occasionally lose clients briefly during a channel switch — they detected radar and moved. Channels 149–165 are UNII-3 and allow the highest transmit power levels, making them popular for outdoor and longer-range deployments.</p>
 
@@ -713,7 +714,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <div class="callout">
       <div class="callout-label">Wi-Fi 6E and the 6GHz Band</div>
-      <p><strong>Wi-Fi 6E</strong> extends 802.11ax into the <strong>6GHz band</strong>, which was opened by the FCC in 2020. The 6GHz band offers approximately 1,200 MHz of spectrum — compared to 70 MHz on 2.4GHz and 500 MHz on 5GHz. This means up to <strong>seven additional 160MHz-wide channels</strong>, virtually eliminating interference and congestion. Wi-Fi 6E devices require a tri-band adapter. The 6GHz band has shorter range than 5GHz (higher frequency attenuates more), so it is best suited for high-density indoor environments. Older Wi-Fi 6 devices do not support 6GHz — they require a firmware upgrade or replacement.</p>
+      <p><strong>Wi-Fi 6E</strong> extends 802.11ax into the <strong>6GHz band</strong>, which was opened by the FCC in 2020. The 6GHz band offers approximately 1,200 MHz of spectrum — compared to 70 MHz on 2.4GHz and 500 MHz on 5GHz. This means up to <strong>seven additional 160MHz-wide channels</strong>, virtually eliminating interference and congestion. Wi-Fi 6E devices require a tri-band adapter. The 6GHz band has shorter range than 5GHz (higher frequency attenuates more), so it is best suited for high-density indoor environments. Older Wi-Fi 6 devices do not support 6GHz — the adapter must be replaced with a Wi-Fi 6E or Wi-Fi 7 one.</p>
     </div>
 
     <div class="cta-box">
