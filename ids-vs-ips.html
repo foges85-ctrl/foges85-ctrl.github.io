@@ -403,7 +403,7 @@ tbody tr:hover td{background:var(--light);}
       "name": "The Core Difference — Detection vs Prevention",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The fundamental distinction between IDS and IPS is what they do when they identify a threat. An IDS (Intrusion Detection System) passively monitors network traffic or host activity, compares it against known threat signatures or behavioural baselines, and generates alerts when suspicious activity is detected. It does not interfere with traffic — it only observes and reports. A security analyst reviews the alerts and decides whether and how to respond. An IPS (Intrusion Prevention System) sits inline with traffic — all traffic flows through it — and can actively drop packets, terminate conne…"
+        "text": "The fundamental distinction between IDS and IPS is what they do when they identify a threat. An IDS (Intrusion Detection System) passively monitors network traffic or host activity, compares it against known threat signatures or behavioral baselines, and generates alerts when suspicious activity is detected. It does not interfere with traffic — it only observes and reports. A security analyst reviews the alerts and decides whether and how to respond. An IPS (Intrusion Prevention System) sits inline with traffic — all traffic flows through it — and can actively drop packets, terminate conne…"
       }
     },
     {
@@ -419,7 +419,7 @@ tbody tr:hover td{background:var(--light);}
       "name": "Detection Methods — Signature vs Anomaly vs Policy",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Signature-based detection compares observed traffic or activity against a database of known attack signatures. If traffic matches a signature (a known SQL injection pattern, a specific malware command-and-control beacon, a recognisable exploit attempt), an alert is triggered or the traffic is blocked. Signature-based detection is highly accurate for known threats and generates few false positives — but it cannot detect novel (zero-day) attacks for which no signature exists yet. Signatures must be updated regularly to remain effective. Anomaly-based detection (also called behavior-based or …"
+        "text": "Signature-based detection compares observed traffic or activity against a database of known attack signatures. If traffic matches a signature (a known SQL injection pattern, a specific malware command-and-control beacon, a recognizable exploit attempt), an alert is triggered or the traffic is blocked. Signature-based detection is highly accurate for known threats and generates few false positives — but it cannot detect novel (zero-day) attacks for which no signature exists yet. Signatures must be updated regularly to remain effective. Anomaly-based detection (also called behavior-based or …"
       }
     },
     {
@@ -539,7 +539,7 @@ tbody tr:hover td{background:var(--light);}
 </div>
 
 <h2>The Core Difference — Detection vs Prevention</h2>
-<p>The fundamental distinction between IDS and IPS is what they do when they identify a threat. An <strong>IDS (Intrusion Detection System)</strong> passively monitors network traffic or host activity, compares it against known threat signatures or behavioural baselines, and generates alerts when suspicious activity is detected. It does not interfere with traffic — it only observes and reports. A security analyst reviews the alerts and decides whether and how to respond.</p>
+<p>The fundamental distinction between IDS and IPS is what they do when they identify a threat. An <strong>IDS (Intrusion Detection System)</strong> passively monitors network traffic or host activity, compares it against known threat signatures or behavioral baselines, and generates alerts when suspicious activity is detected. It does not interfere with traffic — it only observes and reports. A security analyst reviews the alerts and decides whether and how to respond.</p>
 <p>An <strong>IPS (Intrusion Prevention System)</strong> sits inline with traffic — all traffic flows through it — and can actively drop packets, terminate connections, or modify traffic in real time when a threat is detected. The IPS doesn't wait for human review; it acts automatically based on configured policies. This makes IPS more effective at stopping attacks but introduces risk: a misconfigured IPS or a false positive can block legitimate traffic, causing outages.</p>
 
 <h2>IDS vs IPS — Key Differences</h2>
@@ -563,7 +563,7 @@ tbody tr:hover td{background:var(--light);}
 <p>A comprehensive security architecture uses both: NIDS/NIPS at network chokepoints (internet perimeter, between network zones, before critical servers) and HIDS/HIPS on critical endpoints (domain controllers, database servers, privileged workstations).</p>
 
 <h2>Detection Methods — Signature vs Anomaly vs Policy</h2>
-<p><strong>Signature-based detection</strong> compares observed traffic or activity against a database of known attack signatures. If traffic matches a signature (a known SQL injection pattern, a specific malware command-and-control beacon, a recognisable exploit attempt), an alert is triggered or the traffic is blocked. Signature-based detection is highly accurate for known threats and generates few false positives — but it cannot detect novel (zero-day) attacks for which no signature exists yet. Signatures must be updated regularly to remain effective.</p>
+<p><strong>Signature-based detection</strong> compares observed traffic or activity against a database of known attack signatures. If traffic matches a signature (a known SQL injection pattern, a specific malware command-and-control beacon, a recognizable exploit attempt), an alert is triggered or the traffic is blocked. Signature-based detection is highly accurate for known threats and generates few false positives — but it cannot detect novel (zero-day) attacks for which no signature exists yet. Signatures must be updated regularly to remain effective.</p>
 <p><strong>Anomaly-based detection</strong> (also called behavior-based or heuristic detection) establishes a baseline of normal activity and alerts on deviations from that baseline. A user who normally downloads 10 MB of data per day suddenly transferring 10 GB would trigger an anomaly alert. This approach can detect zero-day attacks and insider threats that signature-based systems miss, but it generates significantly more false positives — normal behavior changes (end of quarter data exports, system updates) can look like anomalies.</p>
 <p><strong>Policy-based detection</strong> evaluates traffic against administrator-defined rules — not signatures of known attacks, but explicit policies. "No SSH traffic should leave the network" is a policy — any SSH connection going outbound triggers a policy violation alert. Policy-based detection requires the administrator to define the rules explicitly, but generates very precise alerts for specific policy violations.</p>
 

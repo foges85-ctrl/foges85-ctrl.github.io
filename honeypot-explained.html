@@ -425,7 +425,7 @@ tbody tr:hover td{background:var(--light);}
       "name": "Canary Tokens and Honeyfiles",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A honeyfile (or canary file) is a file placed in a file share or database that looks valuable — a file named passwords.xlsx or customer_data.csv — but contains no real data. When anyone opens or downloads the file, an alert is triggered. Any access to a honeyfile is almost certainly unauthorised — a legitimate user doesn't need to open a file called passwords.xlsx that isn't in any documented workflow. Honeyfiles are highly effective for detecting insider threats and attackers who have already established a foothold and are searching for data to exfiltrate. Canary tokens extend this concept…"
+        "text": "A honeyfile (or canary file) is a file placed in a file share or database that looks valuable — a file named passwords.xlsx or customer_data.csv — but contains no real data. When anyone opens or downloads the file, an alert is triggered. Any access to a honeyfile is almost certainly unauthorized — a legitimate user doesn't need to open a file called passwords.xlsx that isn't in any documented workflow. Honeyfiles are highly effective for detecting insider threats and attackers who have already established a foothold and are searching for data to exfiltrate. Canary tokens extend this concept…"
       }
     },
     {
@@ -441,7 +441,7 @@ tbody tr:hover td{background:var(--light);}
       "name": "Deception Technology at Scale",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Modern deception technology platforms (Attivo Networks, Illusive Networks, Cymulate) automate honeypot deployment at scale across the entire network. Rather than a few manually configured honeypots, these platforms deploy decoy systems, accounts, credentials, and files across every subnet — making deception pervasive. An attacker performing lateral movement in such an environment has a high probability of interacting with a decoy before reaching real assets. The decoy interaction triggers an immediate, high-confidence alert — far more actionable than SIEM correlations that might have dozens…"
+        "text": "Modern deception technology platforms (such as Thinkst Canary, or the deception tools SentinelOne and Proofpoint acquired from Attivo Networks and Illusive) automate honeypot deployment at scale across the entire network. Rather than a few manually configured honeypots, these platforms deploy decoy systems, accounts, credentials, and files across every subnet — making deception pervasive. An attacker performing lateral movement in such an environment has a high probability of interacting with a decoy before reaching real assets. The decoy interaction triggers an immediate, high-confidence alert — far more actionable than SIEM correlations that might have dozens…"
       }
     },
     {
@@ -510,7 +510,7 @@ tbody tr:hover td{background:var(--light);}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/honeypot-explained.html",
   "inLanguage": "en"
 }
@@ -557,7 +557,7 @@ tbody tr:hover td{background:var(--light);}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -592,7 +592,7 @@ tbody tr:hover td{background:var(--light);}
     <p>A <strong>honeynet</strong> is a network of interconnected honeypots that creates a realistic-looking environment — multiple servers with different roles (web server, database, file server, domain controller) that an attacker can move between laterally. Honeynets are used primarily for threat intelligence research. By observing how attackers move through the honeynet, what tools they use, and what they're ultimately after, security researchers gain detailed insight into current attack campaigns and techniques. The Honeynet Project is the leading open-source honeypot research organization and publishes threat intelligence derived from global honeynet deployments.</p>
 
     <h2>Canary Tokens and Honeyfiles</h2>
-    <p>A <strong>honeyfile</strong> (or canary file) is a file placed in a file share or database that looks valuable — a file named <code>passwords.xlsx</code> or <code>customer_data.csv</code> — but contains no real data. When anyone opens or downloads the file, an alert is triggered. Any access to a honeyfile is almost certainly unauthorised — a legitimate user doesn't need to open a file called <code>passwords.xlsx</code> that isn't in any documented workflow. Honeyfiles are highly effective for detecting insider threats and attackers who have already established a foothold and are searching for data to exfiltrate.</p>
+    <p>A <strong>honeyfile</strong> (or canary file) is a file placed in a file share or database that looks valuable — a file named <code>passwords.xlsx</code> or <code>customer_data.csv</code> — but contains no real data. When anyone opens or downloads the file, an alert is triggered. Any access to a honeyfile is almost certainly unauthorized — a legitimate user doesn't need to open a file called <code>passwords.xlsx</code> that isn't in any documented workflow. Honeyfiles are highly effective for detecting insider threats and attackers who have already established a foothold and are searching for data to exfiltrate.</p>
     <p><strong>Canary tokens</strong> extend this concept beyond files. A canary token can be embedded in a document (a unique URL that phones home when the document is opened), a web page, an email, a database record, or even source code. Each token is unique — when triggered, the alert identifies exactly which token was accessed, from what IP address, at what time. Tools like canarytokens.org make it trivial to deploy canary tokens across an environment. Detecting the activation of a canary token in a shared drive is a reliable indicator that an insider is searching for sensitive data or an attacker has already compromised a user account.</p>
 
     
@@ -601,7 +601,7 @@ tbody tr:hover td{background:var(--light);}
     <p><strong>Database honeypots</strong> are fake database servers containing fabricated but realistic-looking data — customer records, financial data, user credentials — placed on the internal network. An attacker who compromises the network and searches for databases will find the honeypot first. Any connection to the honeypot database is an immediate high-fidelity alert. <strong>Credential honeypots</strong> are fake user accounts (often named something like "admin-backup" or "svc-backup") with realistic-looking credentials. If anyone uses these credentials — they appear in legitimate places like fake IT documentation — it means someone has accessed those documents and extracted the credentials, indicating a breach.</p>
 
     <h2>Deception Technology at Scale</h2>
-    <p>Modern deception technology platforms (Attivo Networks, Illusive Networks, Cymulate) automate honeypot deployment at scale across the entire network. Rather than a few manually configured honeypots, these platforms deploy decoy systems, accounts, credentials, and files across every subnet — making deception pervasive. An attacker performing lateral movement in such an environment has a high probability of interacting with a decoy before reaching real assets. The decoy interaction triggers an immediate, high-confidence alert — far more actionable than SIEM correlations that might have dozens of legitimate-looking events mixed in. Deception technology represents an evolution of the honeypot concept from individual systems to an organization-wide detection layer.</p>
+    <p>Modern deception technology platforms (such as Thinkst Canary, or the deception tools SentinelOne and Proofpoint acquired from Attivo Networks and Illusive) automate honeypot deployment at scale across the entire network. Rather than a few manually configured honeypots, these platforms deploy decoy systems, accounts, credentials, and files across every subnet — making deception pervasive. An attacker performing lateral movement in such an environment has a high probability of interacting with a decoy before reaching real assets. The decoy interaction triggers an immediate, high-confidence alert — far more actionable than SIEM correlations that might have dozens of legitimate-looking events mixed in. Deception technology represents an evolution of the honeypot concept from individual systems to an organization-wide detection layer.</p>
     <h2>Honeypot Legal and Ethical Considerations</h2>
     <p>Honeypots operate in a legal gray area that the Security+ exam occasionally touches. Deploying a honeypot on your own network to detect intruders is legal and unambiguous. The concern arises with <strong>entrapment</strong> — can an organization be held liable for luring attackers into committing crimes against the honeypot? In practice, honeypots are considered legal as long as they don't actively solicit attacks (they're passive — attackers discover them through their own scanning) and the organization doesn't manufacture the criminal intent. The attacker chose to probe and attack the honeypot; the organization merely made a target available. Always consult legal counsel before deploying high-interaction honeypots that might be used as evidence in prosecution.</p>
 
@@ -616,7 +616,7 @@ tbody tr:hover td{background:var(--light);}
       </div>
       <div class="scenario">
         <div class="scenario-q">A security engineer places a file named "employee_salaries_2026.xlsx" in a shared drive, containing fake data with a tracking URL embedded. What type of control is this?</div>
-        <div class="scenario-a"><strong>Answer: A honeyfile (canary token).</strong> This is a deception technology used to detect unauthorised access to sensitive-looking files. When anyone opens the file, the embedded URL makes a network request that triggers an alert identifying who accessed it. Any access to this file is suspicious — legitimate users have no documented need for this file.</div>
+        <div class="scenario-a"><strong>Answer: A honeyfile (canary token).</strong> This is a deception technology used to detect unauthorized access to sensitive-looking files. When anyone opens the file, the embedded URL makes a network request that triggers an alert identifying who accessed it. Any access to this file is suspicious — legitimate users have no documented need for this file.</div>
       </div>
       <div class="scenario">
         <div class="scenario-q">A researcher wants to observe attacker behavior after full system compromise to understand their tools and techniques. Which type of honeypot is most appropriate?</div>

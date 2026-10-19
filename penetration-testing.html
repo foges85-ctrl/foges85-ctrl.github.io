@@ -408,10 +408,10 @@ tbody tr:hover td{background:var(--light);}
     },
     {
       "@type": "Question",
-      "name": "Black Box, White Box, and Gray Box Testing",
+      "name": "Known, Partially Known, and Unknown Environment Testing (White, Gray, and Black Box)",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Black box testing is the most realistic simulation of an external attacker — the pen tester starts with only the organization's name and discovers everything else through reconnaissance. It's the most time-consuming approach because significant time is spent on information gathering that internal teams already know. Black box tests are good for validating the external perimeter but may miss internal vulnerabilities due to time constraints. White box testing provides the pen tester with complete information about the target — network diagrams, source code, infrastructure documentation, and s…"
+        "text": "SY0-701 (objective 5.5) uses the terms known environment (white box), partially known environment (gray box), and unknown environment (black box). Unknown environment (black box) testing is the most realistic simulation of an external attacker — the pen tester starts with only the organization's name and discovers everything else through reconnaissance. It's the most time-consuming approach because significant time is spent on information gathering that internal teams already know. Black box tests are good for validating the external perimeter but may miss internal vulnerabilities due to time constraints. Known environment (white box) testing provides the pen tester with complete information about the target — network diagrams, source code, infrastructure documentation, and s…"
       }
     },
     {
@@ -504,7 +504,7 @@ tbody tr:hover td{background:var(--light);}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/penetration-testing.html",
   "inLanguage": "en"
 }
@@ -533,7 +533,7 @@ tbody tr:hover td{background:var(--light);}
 <nav class="breadcrumb"><a href="/">Home</a><span>›</span><a href="network-attacks.html">Security</a><span>›</span><span>Penetration Testing</span></nav>
 <div class="page-hero-badge">⚔️ Security+</div>
 <h1>Penetration Testing — <span>Phases, Types &amp; Rules of Engagement</span></h1>
-<p class="page-hero-sub">How penetration testing works for CompTIA Security+ — the five phases, black/white/gray box testing, authorization requirements, and what the exam actually asks.</p>
+<p class="page-hero-sub">How penetration testing works for CompTIA Security+ — the five phases, known/partially known/unknown environment (white/gray/black box) testing, authorization requirements, and what the exam actually asks.</p>
 <div class="cert-badges"><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
 </div></section>
 
@@ -544,20 +544,20 @@ tbody tr:hover td{background:var(--light);}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap"><div class="article-body">
 
 <div class="quick-answer">
 <div class="quick-answer-label">Quick Reference</div>
-<div class="quick-answer-text">Penetration testing is <strong>authorized, simulated attack</strong> on an organization's systems to identify exploitable vulnerabilities and measure real-world risk. Five phases: <strong>Reconnaissance → Scanning → Exploitation → Post-Exploitation → Reporting</strong>. Always requires <strong>written authorization</strong> (rules of engagement) before starting. Three types by knowledge level: <strong>Black box</strong> (no prior info), <strong>white box</strong> (full info), <strong>gray box</strong> (partial info).</div>
+<div class="quick-answer-text">Penetration testing is <strong>authorized, simulated attack</strong> on an organization's systems to identify exploitable vulnerabilities and measure real-world risk. Five phases: <strong>Reconnaissance → Scanning → Exploitation → Post-Exploitation → Reporting</strong>. Always requires <strong>written authorization</strong> (rules of engagement) before starting. Three types by knowledge level (SY0-701 terms): <strong>Unknown environment</strong> (black box, no prior info), <strong>known environment</strong> (white box, full info), <strong>partially known environment</strong> (gray box, partial info).</div>
 </div>
 
 <h2>What Penetration Testing Is — and Is Not</h2>
 <p>A penetration test (pen test) is an authorized simulated attack on an organization's systems, networks, or applications. The goal is to identify vulnerabilities that are actually exploitable — not just theoretically present — and determine what business impact a real attacker could achieve. A pen tester thinks and acts like an attacker within defined boundaries, documenting every step so the organization can understand and address the real risks they face.</p>
 <p>The critical distinction from vulnerability scanning: <strong>vulnerability scanning identifies weaknesses; penetration testing exploits them</strong>. A scan might report 200 vulnerabilities across your systems. A pen tester determines which of those 200 can actually be exploited given your specific environment, which can be combined into attack chains, and what a real attacker could ultimately access — database contents, Active Directory credentials, financial records. This actionable, evidence-based risk assessment is why penetration testing is required by PCI-DSS, SOC 2, and other compliance frameworks.</p>
-<p>What pen testing is not: it is not hacking without permission. Every penetration test requires <strong>explicit written authorization</strong>. Performing an unauthorised pen test — even on your own systems — creates serious legal exposure under computer fraud and abuse laws. Even with a signed contract, pen testers must stay within the defined scope — testing systems that weren't in scope is a scope violation that can terminate the engagement and create liability.</p>
+<p>What pen testing is not: it is not hacking without permission. Every penetration test requires <strong>explicit written authorization</strong>. Performing an unauthorized pen test — even on your own systems — creates serious legal exposure under computer fraud and abuse laws. Even with a signed contract, pen testers must stay within the defined scope — testing systems that weren't in scope is a scope violation that can terminate the engagement and create liability.</p>
 
 <h2>The Five Phases of Penetration Testing</h2>
 <div class="card-grid">
@@ -568,18 +568,22 @@ tbody tr:hover td{background:var(--light);}
 <div class="card"><div class="card-icon">📄</div><div class="card-title">5. Reporting</div><div class="card-label" style="color:var(--purple);">Document &amp; remediate</div><div class="card-desc">Comprehensive report: executive summary (business impact for leadership), technical findings (each vulnerability, evidence, reproduction steps), and remediation recommendations prioritized by risk. The deliverable that justifies the engagement.</div></div>
 </div>
 
-<h2>Black Box, White Box, and Gray Box Testing</h2>
+<h2>Known, Partially Known, and Unknown Environment Testing (White, Gray, and Black Box)</h2>
+<p>SY0-701 objective 5.5 uses the environment terms: <strong>known environment</strong> (traditionally called white box), <strong>partially known environment</strong> (gray box), and <strong>unknown environment</strong> (black box). You'll still see the box names in industry and in older study material, so know both sets.</p>
 <div class="table-wrap"><table>
 <thead><tr><th>Type</th><th>Tester Knowledge</th><th>Simulates</th><th>Best For</th></tr></thead>
 <tbody>
-<tr><td class="td-label">Black Box</td><td>No prior information — same as an external attacker</td><td>External attacker with no inside knowledge</td><td>Testing external perimeter realism</td></tr>
-<tr><td class="td-label">White Box</td><td>Full information: network diagrams, source code, credentials, architecture</td><td>Insider threat or post-breach attacker</td><td>Thorough internal coverage, code review</td></tr>
-<tr><td class="td-label">Gray Box</td><td>Partial information — some credentials, network ranges, general architecture</td><td>Attacker with some inside knowledge (ex-employee, vendor)</td><td>Most realistic real-world scenario</td></tr>
+<tr><td class="td-label">Unknown environment (black box)</td><td>No prior information — same as an external attacker</td><td>External attacker with no inside knowledge</td><td>Testing external perimeter realism</td></tr>
+<tr><td class="td-label">Known environment (white box)</td><td>Full information: network diagrams, source code, credentials, architecture</td><td>Insider threat or post-breach attacker</td><td>Thorough internal coverage, code review</td></tr>
+<tr><td class="td-label">Partially known environment (gray box)</td><td>Partial information — some credentials, network ranges, general architecture</td><td>Attacker with some inside knowledge (ex-employee, vendor)</td><td>Most realistic real-world scenario</td></tr>
 </tbody>
 </table></div>
-<p><strong>Black box</strong> testing is the most realistic simulation of an external attacker — the pen tester starts with only the organization's name and discovers everything else through reconnaissance. It's the most time-consuming approach because significant time is spent on information gathering that internal teams already know. Black box tests are good for validating the external perimeter but may miss internal vulnerabilities due to time constraints.</p>
-<p><strong>White box</strong> testing provides the pen tester with complete information about the target — network diagrams, source code, infrastructure documentation, and sometimes credentials. This allows the most thorough assessment — the tester spends all their time finding and exploiting vulnerabilities rather than discovering the attack surface. White box is most common for code reviews, internal assessments, and compliance-driven testing where thorough coverage matters more than realism.</p>
-<p><strong>Gray box</strong> is the most common real-world approach — the pen tester has some prior knowledge (IP ranges, an unprivileged user account, high-level architecture) but not complete information. This balances realism with thoroughness. It simulates an attacker who has done some reconnaissance, has an initial foothold, or has obtained some insider information — statistically the most common initial position of real attackers.</p>
+<p><strong>Unknown environment</strong> (black box) testing is the most realistic simulation of an external attacker — the pen tester starts with only the organization's name and discovers everything else through reconnaissance. It's the most time-consuming approach because significant time is spent on information gathering that internal teams already know. Black box tests are good for validating the external perimeter but may miss internal vulnerabilities due to time constraints.</p>
+<p><strong>Known environment</strong> (white box) testing provides the pen tester with complete information about the target — network diagrams, source code, infrastructure documentation, and sometimes credentials. This allows the most thorough assessment — the tester spends all their time finding and exploiting vulnerabilities rather than discovering the attack surface. White box is most common for code reviews, internal assessments, and compliance-driven testing where thorough coverage matters more than realism.</p>
+<p><strong>Partially known environment</strong> (gray box) testing is the most common real-world approach — the pen tester has some prior knowledge (IP ranges, an unprivileged user account, high-level architecture) but not complete information. This balances realism with thoroughness. It simulates an attacker who has done some reconnaissance, has an initial foothold, or has obtained some insider information — statistically the most common initial position of real attackers.</p>
+
+<h2>Other Penetration Test Types in SY0-701</h2>
+<p>Objective 5.5 also lists test types by purpose. <strong>Physical</strong> testing targets physical security controls: locks, badge readers, tailgating, and unattended workstations. <strong>Offensive</strong> testing simulates an attacker (the red team role). <strong>Defensive</strong> testing exercises detection and response (the blue team role). <strong>Integrated</strong> testing combines the two so attackers and defenders share findings as they go (often called purple teaming). The same objective lists <strong>passive and active reconnaissance</strong>, covered below.</p>
 
 <h2>Rules of Engagement — What Must Be Agreed Before Testing</h2>
 <p>Rules of engagement (ROE) define the scope, boundaries, and conditions of a penetration test. They must be documented in writing and signed by an authorized representative of the target organization before any testing begins. Key elements: <strong>Scope</strong> — which IP ranges, applications, physical locations, and systems are in scope versus explicitly out of scope. <strong>Timing</strong> — when testing can occur (business hours only? 24/7? specific maintenance windows?). <strong>Authorized techniques</strong> — is social engineering allowed? Physical access attempts? Denial of service testing? <strong>Emergency contacts</strong> — who to call if testing causes unintended damage. <strong>Data handling</strong> — how will any sensitive data discovered during testing be handled and disposed of?</p>
@@ -599,14 +603,14 @@ tbody tr:hover td{background:var(--light);}
 
     <h2>Post-Exploitation — What Attackers Do After Getting In</h2>
     <p>The post-exploitation phase is where penetration tests demonstrate real business impact. After gaining initial access to a system, a skilled attacker (and pen tester) works to expand their access through privilege escalation and lateral movement. <strong>Privilege escalation</strong> — moving from a low-privilege account (standard user) to a high-privilege account (local administrator, domain administrator) — is often achievable through misconfigured services, unpatched local vulnerabilities, or weak service account passwords. A single unprivileged user account is often sufficient initial access to eventually achieve domain administrator through a chain of exploits.</p>
-    <p><strong>Lateral movement</strong> techniques include Pass-the-Hash (using captured NTLM hashes to authenticate to other systems without knowing the plaintext password), Kerberoasting (requesting service tickets for service accounts and cracking them offline to obtain plaintext passwords), and using legitimate tools like PsExec, WMI, and PowerShell remoting that exist on every Windows system to move between hosts without triggering antivirus. These are the techniques that make Security+ questions about "living off the land" relevant — attackers increasingly use built-in system tools to avoid detection.</p>
+    <p><strong>Lateral movement</strong> techniques include Pass-the-Hash (using captured NTLM hashes to authenticate to other systems without knowing the plaintext password), Kerberoasting (requesting service tickets for service accounts and cracking them offline to obtain plaintext passwords), and using built-in tools like WMI and PowerShell remoting, along with admin utilities like PsExec (a Microsoft Sysinternals download), to move between hosts without triggering antivirus. These are the techniques that make Security+ questions about "living off the land" relevant — attackers increasingly use built-in system tools to avoid detection.</p>
 
     <h2>Exam Scenarios</h2>
 <div class="exam-scenarios">
 <div class="scenario"><div class="scenario-q">A penetration tester discovers systems outside the agreed scope that appear to have critical vulnerabilities. What should the tester do?</div>
 <div class="scenario-a"><strong>Answer: Stop testing those systems immediately and notify the client.</strong> Testing out-of-scope systems violates the rules of engagement regardless of how critical the vulnerabilities appear. The tester should document the discovery and report it to the client so they can decide whether to expand the scope in writing. Testing out-of-scope systems creates legal liability for the tester.</div></div>
 <div class="scenario"><div class="scenario-q">A company wants to test how their security team responds when an attacker has obtained standard user credentials. Which type of penetration test is most appropriate?</div>
-<div class="scenario-a"><strong>Answer: Gray box testing.</strong> The scenario involves a tester with limited credentials — a standard user account — which is partial prior knowledge. This simulates a realistic scenario where an attacker obtained credentials through phishing or a previous breach and tests the organization's ability to detect and respond to authenticated insider-level attack activity.</div></div>
+<div class="scenario-a"><strong>Answer: Partially known environment (gray box) testing.</strong> The scenario involves a tester with limited credentials — a standard user account — which is partial prior knowledge. This simulates a realistic scenario where an attacker obtained credentials through phishing or a previous breach and tests the organization's ability to detect and respond to authenticated insider-level attack activity.</div></div>
 <div class="scenario"><div class="scenario-q">After exploiting a vulnerability on a web server, a pen tester attempts to use the compromised server to access internal database servers. What phase of the penetration test does this represent?</div>
 <div class="scenario-a"><strong>Answer: Post-exploitation</strong> (specifically lateral movement within post-exploitation). The tester has already gained initial access (exploitation phase) and is now expanding their foothold by moving to additional systems. This phase demonstrates the real business impact — an attacker's ability to reach sensitive data after initial compromise.</div></div>
 </div>

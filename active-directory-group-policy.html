@@ -463,7 +463,7 @@ tbody tr:hover td{background:#eff6ff;}
       "name": "GPO Commands — gpupdate and gpresult",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "GPOs are normally applied at startup (Computer Configuration) and logon (User Configuration), then refreshed every 90 minutes (± 30 minutes random offset) in the background. To force an immediate refresh without rebooting or logging off: When multiple GPOs apply to a user or computer, the final merged result is the Resultant Set of Policy (RSoP) . This is what the machine actually enforces after all inheritance, filtering, and conflicts are resolved. You can view the RSoP using gpresult /r , the RSoP snap-in ( rsop.msc ), or the Group Policy Results wizard in GPMC. RSoP is the primary troub…"
+        "text": "GPOs are normally applied at startup (Computer Configuration) and logon (User Configuration), then refreshed in the background every 90 minutes plus a random offset of up to 30 minutes (domain controllers every 5 minutes). To force an immediate refresh without rebooting or logging off: When multiple GPOs apply to a user or computer, the final merged result is the Resultant Set of Policy (RSoP) . This is what the machine actually enforces after all inheritance, filtering, and conflicts are resolved. You can view the RSoP using gpresult /r , the RSoP snap-in ( rsop.msc ), or the Group Policy Results wizard in GPMC. RSoP is the primary troub…"
       }
     },
     {
@@ -524,7 +524,7 @@ tbody tr:hover td{background:#eff6ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/active-directory-group-policy.html",
   "inLanguage": "en"
 }
@@ -589,7 +589,7 @@ tbody tr:hover td{background:#eff6ff;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -782,7 +782,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <h2>GPO Commands — gpupdate and gpresult</h2>
 
-    <p>GPOs are normally applied at startup (Computer Configuration) and logon (User Configuration), then refreshed every 90 minutes (± 30 minutes random offset) in the background. To force an immediate refresh without rebooting or logging off:</p>
+    <p>GPOs are normally applied at startup (Computer Configuration) and logon (User Configuration), then refreshed in the background every 90 minutes plus a random offset of up to 30 minutes (domain controllers every 5 minutes). To force an immediate refresh without rebooting or logging off:</p>
 
     <div class="cmd-block">
       <div class="cmd-label">Windows Command Prompt / PowerShell</div>

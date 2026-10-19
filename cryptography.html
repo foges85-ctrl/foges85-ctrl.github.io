@@ -687,7 +687,7 @@ tbody tr:hover td { background: #f6f9ff; }
       "name": "How HTTPS uses both types together",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "HTTPS is the clearest real-world example of asymmetric and symmetric encryption working together. Understanding this flow is directly tested on Security+: From this point on, all traffic is encrypted with the fast symmetric session key. Asymmetric encryption was only used to safely exchange it."
+        "text": "HTTPS is the clearest real-world example of asymmetric and symmetric encryption working together. Understanding this flow is directly tested on Security+: From this point on, all traffic is encrypted with the fast symmetric session key. Asymmetric cryptography was only used to authenticate the server and agree on that key. (In TLS 1.2 and earlier, the browser could instead encrypt a session key with the server's RSA public key — RSA key transport, which TLS 1.3 removed.)"
       }
     },
     {
@@ -695,7 +695,7 @@ tbody tr:hover td { background: #f6f9ff; }
       "name": "Hashing — proving integrity, not confidentiality",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Hashing is fundamentally different from encryption. Encryption is a two-way process — you encrypt data, then decrypt it later. Hashing is one-way — you put data in, get a fixed-length output (called a hash or digest), and you cannot reverse it to get the original data back. Hashing is used to verify integrity — that data hasn't been altered. Password storage, file verification, and digital signatures all rely on hashing. \"hello\" → SHA-256 → 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 \"Hello\" → SHA-256 → 185f8db32921bd46d35cc8b2a3e2c6e8e2e89f1e1f2c3d4e5f6a7b8c9d0e1f2a Ch…"
+        "text": "Hashing is fundamentally different from encryption. Encryption is a two-way process — you encrypt data, then decrypt it later. Hashing is one-way — you put data in, get a fixed-length output (called a hash or digest), and you cannot reverse it to get the original data back. Hashing is used to verify integrity — that data hasn't been altered. Password storage, file verification, and digital signatures all rely on hashing. \"hello\" → SHA-256 → 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 \"Hello\" → SHA-256 → 185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969 Ch…"
       }
     },
     {
@@ -772,7 +772,7 @@ tbody tr:hover td { background: #f6f9ff; }
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/cryptography.html",
   "inLanguage": "en"
 }
@@ -837,7 +837,7 @@ tbody tr:hover td { background: #f6f9ff; }
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <!-- ARTICLE -->
@@ -880,7 +880,7 @@ tbody tr:hover td { background: #f6f9ff; }
       <div class="exam-tip-label">⚡ Exam tip — symmetric vs asymmetric</div>
       <p><strong>Speed question:</strong> "Which encryption type is faster?" → Symmetric. Always.</p>
       <p><strong>Key exchange question:</strong> "Which solves the key distribution problem?" → Asymmetric.</p>
-      <p>In practice, most secure systems use both — asymmetric encryption to securely exchange a symmetric key, then <a href="symmetric-vs-asymmetric-encryption.html">symmetric encryption</a> for the actual data. This is exactly how HTTPS/TLS works.</p>
+      <p>In practice, most secure systems use both — asymmetric cryptography to securely establish a symmetric key, then <a href="symmetric-vs-asymmetric-encryption.html">symmetric encryption</a> for the actual data. This is how HTTPS/TLS works.</p>
     </div>
 
     <h2>How HTTPS uses both types together</h2>
@@ -903,16 +903,16 @@ tbody tr:hover td { background: #f6f9ff; }
       <div class="flow-step">
         <div class="flow-step-icon">🔐</div>
         <div class="flow-step-label">Step 3</div>
-        <div class="flow-step-title">Browser generates symmetric session key, encrypts with public key</div>
+        <div class="flow-step-title">Browser and server run an ephemeral (EC)DHE key exchange; the server signs it with its certificate's private key</div>
       </div>
       <div class="flow-arrow">→</div>
       <div class="flow-step">
         <div class="flow-step-icon">✅</div>
         <div class="flow-step-label">Step 4</div>
-        <div class="flow-step-title">Server decrypts with private key — both sides share the session key</div>
+        <div class="flow-step-title">Both sides derive the same symmetric session key — it is never sent over the network</div>
       </div>
     </div>
-    <p>From this point on, all traffic is encrypted with the fast symmetric session key. Asymmetric encryption was only used to safely exchange it.</p>
+    <p>From this point on, all traffic is encrypted with the fast symmetric session key. Asymmetric cryptography was only used to authenticate the server and agree on that key. (In TLS 1.2 and earlier, the browser could instead encrypt a session key with the server's RSA public key — RSA key transport, which TLS 1.3 removed.)</p>
 
     <h2>Common encryption algorithms — the ones the exam tests</h2>
 
@@ -943,7 +943,7 @@ tbody tr:hover td { background: #f6f9ff; }
             <td class="td-name">3DES</td>
             <td><span class="td-type type-sym">Symmetric</span></td>
             <td>112 or 168-bit</td>
-            <td>Applies DES three times to improve security. Legacy — being phased out in favor of AES.</td>
+            <td>Applies DES three times to improve security. Legacy — disallowed by NIST for new encryption since 2024 (decrypt-only for legacy data); replaced by AES.</td>
           </tr>
           <tr>
             <td class="td-name">RSA</td>
@@ -982,7 +982,7 @@ tbody tr:hover td { background: #f6f9ff; }
     <div class="code-block">
       <div class="code-label">How hashing works</div>
       <pre>"hello"   <span class="code-hl">→ SHA-256 →</span>  2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824
-"Hello"   <span class="code-hl">→ SHA-256 →</span>  185f8db32921bd46d35cc8b2a3e2c6e8e2e89f1e1f2c3d4e5f6a7b8c9d0e1f2a
+"Hello"   <span class="code-hl">→ SHA-256 →</span>  185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969
 
 <span class="code-comment">Change one character → completely different hash output
 The original input cannot be recovered from the hash</span></pre>

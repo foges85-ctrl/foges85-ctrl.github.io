@@ -487,7 +487,7 @@ tbody tr:hover td{background:var(--light);}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/email-security.html",
   "inLanguage": "en"
 }
@@ -532,7 +532,7 @@ tbody tr:hover td{background:var(--light);}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap"><div class="article-body">
@@ -630,7 +630,7 @@ tbody tr:hover td{background:var(--light);}
 
 <p>A common exam question type presents a scenario and asks which technology is needed. Key patterns: if the scenario says emails are arriving that appear to come from your CEO's domain but were not sent by your organization, deploy <strong>DMARC with p=reject</strong>. If it asks how you verify that an email was not modified between sending and receiving, the answer is <strong>DKIM</strong> (the digital signature). If it asks how to prevent others from reading a confidential email even if it's intercepted on a mail server, the answer is <strong>S/MIME encryption</strong>.</p>
 
-<p>Port numbers are also tested: SMTP on port <strong>25</strong> (server-to-server), SMTP submission on port <strong>587</strong> (client-to-server with auth), POP3 on port <strong>110</strong> (or 995 with SSL), IMAP on port <strong>143</strong> (or 993 with SSL). The secure variants (SMTPS on 465, POP3S on 995, IMAPS on 993) use implicit TLS. STARTTLS upgrades an existing connection on port 587 or 143.</p>
+<p>Port numbers are also tested: SMTP on port <strong>25</strong> (server-to-server), SMTP submission on port <strong>587</strong> (client-to-server with auth), POP3 on port <strong>110</strong> (or 995 with SSL), IMAP on port <strong>143</strong> (or 993 with SSL). The secure variants (port 465 submissions, POP3S on 995, IMAPS on 993) use implicit TLS. (For Network+, note that N10-009 labels port 587 as SMTPS.) STARTTLS upgrades an existing connection on port 587 or 143.</p>
 
 <h2>Additional Email Security Protocols</h2>
 
@@ -659,7 +659,7 @@ tbody tr:hover td{background:var(--light);}
 <tbody>
 <tr><td class="td-term">25</td><td>SMTP</td><td>Server-to-server email relay (MTA to MTA). Should not be open to the internet for general use — spammers abuse open relays on port 25.</td><td>Unencrypted by default; STARTTLS optional</td></tr>
 <tr><td class="td-term">587</td><td>SMTP Submission</td><td>Client-to-server email submission (email client to mail server). Requires authentication. The correct port for email client configuration.</td><td>Requires authentication; STARTTLS mandatory</td></tr>
-<tr><td class="td-term">465</td><td>SMTPS (legacy)</td><td>Legacy SSL-wrapped SMTP. Deprecated but still supported by some servers for backward compatibility.</td><td>SSL/TLS encrypted (implicit)</td></tr>
+<tr><td class="td-term">465</td><td>Submissions (implicit TLS)</td><td>Client submission with TLS from the first byte. Re-standardized by RFC 8314 (2018) and preferred over STARTTLS on 587. Exam note: Network+ N10-009 lists SMTPS as port 587.</td><td>TLS encrypted (implicit)</td></tr>
 <tr><td class="td-term">110</td><td>POP3</td><td>Email retrieval — downloads and typically deletes from server. Simple but doesn't sync across devices.</td><td>Unencrypted; POP3S on port 995</td></tr>
 <tr><td class="td-term">143</td><td>IMAP</td><td>Email retrieval — syncs email state across multiple devices. Leaves email on server.</td><td>Unencrypted; IMAPS on port 993</td></tr>
 </tbody>

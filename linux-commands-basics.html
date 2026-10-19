@@ -469,7 +469,7 @@ tbody tr:hover td{background:#f0fdf9;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/linux-commands-basics.html",
   "inLanguage": "en"
 }
@@ -517,7 +517,7 @@ tbody tr:hover td{background:#f0fdf9;}
     </nav>
     <div class="page-hero-badge">CompTIA A+ 220-1202 · Network+ · Security+</div>
     <h1>Linux Commands <span>for CompTIA Exams</span></h1>
-    <p class="page-hero-sub">Every Linux command tested on CompTIA A+, Network+, and Security+ — with syntax, key flags, real-world usage, and exam scenarios. Covers the new A+ 220-1202 Linux additions plus Network+ and Security+ command-line topics.</p>
+    <p class="page-hero-sub">Linux commands for CompTIA A+ 220-1202 (objective 1.9) and Network+ N10-009 (objective 5.5), plus commands that support Security+ scenarios — with syntax, key flags, real-world usage, and exam scenarios.</p>
   </div>
 </section>
 
@@ -529,7 +529,7 @@ tbody tr:hover td{background:#f0fdf9;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -538,7 +538,7 @@ tbody tr:hover td{background:#f0fdf9;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ Why Linux Matters for CompTIA Now</div>
       <div class="quick-answer-text">
-        The A+ 220-1202 (Core 2) exam added Linux to its scope — you need to know basic navigation, file permissions, and process management commands. Network+ tests Linux networking commands (<code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px;">ifconfig</code>, <code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px;">ip</code>, <code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px;">netstat</code>). Security+ tests log analysis, file integrity, and hardening commands. <strong>You don't need to be a Linux admin — you need to recognize what each command does and pick the right one for a given scenario.</strong>
+        A+ has covered Linux for several versions; 220-1202 (Core 2) objective 1.9 lists file management, permissions, package management, networking, and informational commands such as top and ps, plus common configuration files. Network+ tests Linux networking commands (<code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px;">ifconfig</code>, <code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px;">ip</code>, <code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px;">netstat</code>). Security+ SY0-701 doesn't list Linux commands, but its scenarios involve log analysis, file integrity, and hardening, which these commands support. <strong>You don't need to be a Linux admin — you need to recognize what each command does and pick the right one for a given scenario.</strong>
       </div>
     </div>
 
@@ -549,13 +549,16 @@ tbody tr:hover td{background:#f0fdf9;}
         <div class="cert-scope-title" style="color:var(--teal)">A+ 220-1202</div>
         <div class="cert-scope-items">
           <ul style="list-style:none;padding:0;">
-            <li>📁 ls, cd, pwd, mkdir, rm</li>
-            <li>📄 cat, cp, mv, touch</li>
-            <li>🔐 chmod, chown</li>
-            <li>👤 sudo, su</li>
-            <li>📦 apt, yum (package mgmt)</li>
+            <li>📁 ls, pwd, mv, cp, rm</li>
             <li>🔍 grep, find</li>
-            <li>📊 ps, top, kill</li>
+            <li>🔐 chmod, chown</li>
+            <li>💽 fsck, mount</li>
+            <li>👤 su, sudo; root account</li>
+            <li>📦 apt, dnf (package mgmt)</li>
+            <li>🌐 ip, ping, curl, dig, traceroute</li>
+            <li>📊 man, cat, top, ps, du, df</li>
+            <li>📝 nano; /etc/passwd, /etc/shadow, /etc/hosts, /etc/fstab, /etc/resolv.conf</li>
+            <li>⚙️ systemd, kernel, bootloader</li>
           </ul>
         </div>
       </div>
@@ -574,7 +577,7 @@ tbody tr:hover td{background:#f0fdf9;}
         </div>
       </div>
       <div class="cert-scope-card">
-        <div class="cert-scope-title" style="color:var(--purple)">Security+ SY0-701</div>
+        <div class="cert-scope-title" style="color:var(--purple)">Security+ SY0-701 (practical, not a listed objective)</div>
         <div class="cert-scope-items">
           <ul style="list-style:none;padding:0;">
             <li>📋 journalctl, tail -f</li>
@@ -906,7 +909,7 @@ tbody tr:hover td{background:#f0fdf9;}
         </div>
       </div>
       <div class="cmd-body">
-        <div class="cmd-desc">Linux software is installed via package managers. <strong>apt</strong> is used on Debian/Ubuntu. <strong>yum</strong> and <strong>dnf</strong> are used on Red Hat/CentOS/Fedora. The A+ exam tests awareness of both — you need to know which distro family uses which tool.</div>
+        <div class="cmd-desc">Linux software is installed via package managers. <strong>apt</strong> is used on Debian/Ubuntu. <strong>dnf</strong> is used on current Red Hat/Fedora systems, with <strong>yum</strong> as its legacy predecessor on older ones. The 220-1202 objectives list apt and dnf — you need to know which distro family uses which tool.</div>
         <div class="syntax-block"><code><span class="cmd-comment"># Debian / Ubuntu (apt)</span>
 <span class="cmd-kw">sudo apt update</span>                <span class="cmd-comment"># refresh package list</span>
 <span class="cmd-kw">sudo apt upgrade</span>               <span class="cmd-comment"># upgrade all installed packages</span>
@@ -917,7 +920,7 @@ tbody tr:hover td{background:#f0fdf9;}
 <span class="cmd-kw">sudo yum update</span>                <span class="cmd-comment"># update packages (older systems)</span>
 <span class="cmd-kw">sudo dnf install</span> <span class="cmd-arg">httpd</span>         <span class="cmd-comment"># install package (newer Fedora/RHEL)</span>
 <span class="cmd-kw">sudo dnf remove</span> <span class="cmd-arg">httpd</span>          <span class="cmd-comment"># remove package</span></code></div>
-        <div class="cmd-tip"><strong>Exam tip:</strong> apt = Ubuntu/Debian. yum/dnf = RHEL/CentOS/Fedora. <code style="font-family:'DM Mono',monospace;">apt update</code> refreshes the list of available packages — it doesn't install anything. <code style="font-family:'DM Mono',monospace;">apt upgrade</code> actually installs the updates. You need to run update before upgrade or you may install an outdated version.</div>
+        <div class="cmd-tip"><strong>Exam tip:</strong> apt = Ubuntu/Debian. dnf = RHEL/Fedora (yum on older systems). <code style="font-family:'DM Mono',monospace;">apt update</code> refreshes the list of available packages — it doesn't install anything. <code style="font-family:'DM Mono',monospace;">apt upgrade</code> actually installs the updates. You need to run update before upgrade or you may install an outdated version.</div>
       </div>
     </div>
 
@@ -926,19 +929,19 @@ tbody tr:hover td{background:#f0fdf9;}
       <table>
         <thead><tr><th>Command</th><th>Purpose</th><th>Key Flag / Example</th><th>Certs</th></tr></thead>
         <tbody>
-          <tr><td class="td-mono td-term">ls -la</td><td>List files with permissions + hidden</td><td><code class="td-mono">-l</code> long, <code class="td-mono">-a</code> hidden</td><td>A+, Network+, Security+</td></tr>
-          <tr><td class="td-mono td-term">chmod 755</td><td>Set file permissions (octal)</td><td>7=rwx, 6=rw, 5=rx, 4=r</td><td>A+, Security+</td></tr>
-          <tr><td class="td-mono td-term">chown user:grp</td><td>Change file ownership</td><td><code class="td-mono">-R</code> recursive</td><td>A+, Security+</td></tr>
-          <tr><td class="td-mono td-term">sudo</td><td>Run command as root</td><td><code class="td-mono">sudo -i</code> = root shell</td><td>A+, Security+</td></tr>
-          <tr><td class="td-mono td-term">grep -i "term"</td><td>Search text in file</td><td><code class="td-mono">-i</code> case-insensitive, <code class="td-mono">-v</code> invert</td><td>A+, Security+</td></tr>
-          <tr><td class="td-mono td-term">find / -name</td><td>Locate files by name/attribute</td><td><code class="td-mono">-perm 777</code> find world-writable</td><td>A+, Security+</td></tr>
-          <tr><td class="td-mono td-term">ps aux</td><td>Show all running processes</td><td>pipe to grep to filter</td><td>A+, Security+</td></tr>
-          <tr><td class="td-mono td-term">kill -9 PID</td><td>Force-kill a process</td><td>SIGKILL = cannot be blocked</td><td>A+</td></tr>
-          <tr><td class="td-mono td-term">ifconfig / ip addr</td><td>View network interfaces + IPs</td><td><code class="td-mono">ip addr show eth0</code></td><td>Network+, Security+</td></tr>
-          <tr><td class="td-mono td-term">netstat -tulnp</td><td>Show listening ports + processes</td><td>t=TCP u=UDP l=listen n=numeric</td><td>Network+, Security+</td></tr>
-          <tr><td class="td-mono td-term">apt / yum / dnf</td><td>Install software packages</td><td>apt=Debian/Ubuntu, yum=RHEL</td><td>A+</td></tr>
-          <tr><td class="td-mono td-term">tail -f /var/log</td><td>Live-follow a log file</td><td><code class="td-mono">-f</code> = follow (real-time)</td><td>Security+</td></tr>
-          <tr><td class="td-mono td-term">sha256sum file</td><td>Generate/verify file hash</td><td>Used for file integrity verification</td><td>Security+</td></tr>
+          <tr><td class="td-mono td-term">ls -la</td><td>List files with permissions + hidden</td><td><code class="td-mono">-l</code> long, <code class="td-mono">-a</code> hidden</td><td>A+, Network+, Security+ (practical)</td></tr>
+          <tr><td class="td-mono td-term">chmod 755</td><td>Set file permissions (octal)</td><td>7=rwx, 6=rw, 5=rx, 4=r</td><td>A+, Security+ (practical)</td></tr>
+          <tr><td class="td-mono td-term">chown user:grp</td><td>Change file ownership</td><td><code class="td-mono">-R</code> recursive</td><td>A+, Security+ (practical)</td></tr>
+          <tr><td class="td-mono td-term">sudo</td><td>Run command as root</td><td><code class="td-mono">sudo -i</code> = root shell</td><td>A+, Security+ (practical)</td></tr>
+          <tr><td class="td-mono td-term">grep -i "term"</td><td>Search text in file</td><td><code class="td-mono">-i</code> case-insensitive, <code class="td-mono">-v</code> invert</td><td>A+, Security+ (practical)</td></tr>
+          <tr><td class="td-mono td-term">find / -name</td><td>Locate files by name/attribute</td><td><code class="td-mono">-perm 777</code> find world-writable</td><td>A+, Security+ (practical)</td></tr>
+          <tr><td class="td-mono td-term">ps aux</td><td>Show all running processes</td><td>pipe to grep to filter</td><td>A+, Security+ (practical)</td></tr>
+          <tr><td class="td-mono td-term">kill -9 PID</td><td>Force-kill a process</td><td>SIGKILL = cannot be blocked</td><td>Not in 220-1202 obj. 1.9</td></tr>
+          <tr><td class="td-mono td-term">ifconfig / ip addr</td><td>View network interfaces + IPs</td><td><code class="td-mono">ip addr show eth0</code></td><td>Network+, Security+ (practical)</td></tr>
+          <tr><td class="td-mono td-term">netstat -tulnp</td><td>Show listening ports + processes</td><td>t=TCP u=UDP l=listen n=numeric</td><td>Network+, Security+ (practical)</td></tr>
+          <tr><td class="td-mono td-term">apt / yum / dnf</td><td>Install software packages</td><td>apt=Debian/Ubuntu, dnf=RHEL (yum legacy)</td><td>A+</td></tr>
+          <tr><td class="td-mono td-term">tail -f /var/log</td><td>Live-follow a log file</td><td><code class="td-mono">-f</code> = follow (real-time)</td><td>Security+ (practical)</td></tr>
+          <tr><td class="td-mono td-term">sha256sum file</td><td>Generate/verify file hash</td><td>Used for file integrity verification</td><td>Security+ (practical)</td></tr>
         </tbody>
       </table>
     </div>
@@ -950,7 +953,7 @@ tbody tr:hover td{background:#f0fdf9;}
       <div class="scenario-item">💬 "An admin needs to check which process is listening on port 443. Which command shows listening ports with their associated process IDs?" → <strong><code style="font-family:'DM Mono',monospace;">netstat -tulnp</code> or <code style="font-family:'DM Mono',monospace;">ss -tulnp</code> — the <code style="font-family:'DM Mono',monospace;">p</code> flag adds process name and PID to the output.</strong></div>
       <div class="scenario-item">💬 "After a suspected intrusion, a forensic analyst needs to find all files modified in the last 24 hours. Which command is correct?" → <strong><code style="font-family:'DM Mono',monospace;">find / -mtime -1</code> — <code style="font-family:'DM Mono',monospace;">-mtime -1</code> = modified less than 1 day ago. This helps identify what was changed during an attack.</strong></div>
       <div class="scenario-item">💬 "A Linux admin needs to search the auth log for all failed SSH login attempts. Which command is most appropriate?" → <strong><code style="font-family:'DM Mono',monospace;">grep -i "failed" /var/log/auth.log</code> — the <code style="font-family:'DM Mono',monospace;">-i</code> flag makes the search case-insensitive, catching "Failed", "FAILED", etc. This is a core incident response skill.</strong></div>
-      <div class="scenario-item">💬 "A user on Ubuntu needs to install the curl package. They are not the root user. Which command is correct?" → <strong><code style="font-family:'DM Mono',monospace;">sudo apt install curl</code> — Ubuntu uses <code style="font-family:'DM Mono',monospace;">apt</code> (Debian-based). <code style="font-family:'DM Mono',monospace;">sudo</code> is required since package installation needs root privileges. On RHEL/CentOS it would be <code style="font-family:'DM Mono',monospace;">sudo yum install curl</code>.</strong></div>
+      <div class="scenario-item">💬 "A user on Ubuntu needs to install the curl package. They are not the root user. Which command is correct?" → <strong><code style="font-family:'DM Mono',monospace;">sudo apt install curl</code> — Ubuntu uses <code style="font-family:'DM Mono',monospace;">apt</code> (Debian-based). <code style="font-family:'DM Mono',monospace;">sudo</code> is required since package installation needs root privileges. On RHEL/Fedora it would be <code style="font-family:'DM Mono',monospace;">sudo dnf install curl</code>.</strong></div>
       <div class="scenario-item">💬 "An SSH private key file has permissions set to 644. When attempting to connect, SSH refuses to use the key. What is the problem?" → <strong>SSH rejects keys that are too permissive. Private key files must be <code style="font-family:'DM Mono',monospace;">chmod 600</code> (owner read/write only). Run <code style="font-family:'DM Mono',monospace;">chmod 600 ~/.ssh/id_rsa</code> to fix.</strong></div>
     </div>
 

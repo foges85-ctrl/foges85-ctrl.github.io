@@ -658,7 +658,7 @@ tbody tr:hover td{background:var(--light);}
 
     <h2>Why CompTIA added this</h2>
 
-    <p>Exam objectives follow the field. Between the 220-1102 and 220-1202 revisions, AI stopped being a separate category of product and started appearing inside tools support teams already run &mdash; ticketing, remote monitoring, documentation search, email security, endpoint tooling. A tech starting a help desk job now is likely to meet AI-generated output on day one, whether or not anyone mentioned it. The risks therefore landed on the support desk before the governance did: someone has to decide whether it is acceptable to paste a customer's error log into a chatbot, and often that person is a tier-one tech deciding in the moment. Hence an objective about judgement rather than technology.</p>
+    <p>Exam objectives follow the field. Between the 220-1102 and 220-1202 revisions, AI stopped being a separate category of product and started appearing inside tools support teams already run &mdash; ticketing, remote monitoring, documentation search, email security, endpoint tooling. A tech starting a help desk job now is likely to meet AI-generated output on day one, whether or not anyone mentioned it. The risks therefore landed on the support desk before the governance did: someone has to decide whether it is acceptable to paste a customer's error log into a chatbot, and often that person is a tier-one tech deciding in the moment. Hence an objective about judgment rather than technology.</p>
 
     <h2>Application integration</h2>
 
@@ -666,13 +666,13 @@ tbody tr:hover td{background:var(--light);}
 
     <ul>
       <li><strong>Ticketing systems</strong> suggesting a category or priority as a ticket is created, or drafting a first response for the tech to edit.</li>
-      <li><strong>RMM and monitoring platforms</strong> summarising an alert storm into a probable root cause instead of four hundred alerts.</li>
+      <li><strong>RMM and monitoring platforms</strong> summarizing an alert storm into a probable root cause instead of four hundred alerts.</li>
       <li><strong>Documentation and knowledge-base search</strong> answering in prose rather than returning a list of articles.</li>
       <li><strong>Email security</strong> scoring messages for social-engineering indicators &mdash; a natural fit with <a href="email-security.html">email security</a> and <a href="social-engineering-attacks.html">social engineering attacks</a>.</li>
-      <li><strong>Endpoint tooling</strong> flagging anomalous process behaviour, as described under <a href="endpoint-detection-response.html">endpoint detection and response</a>.</li>
+      <li><strong>Endpoint tooling</strong> flagging anomalous process behavior, as described under <a href="endpoint-detection-response.html">endpoint detection and response</a>.</li>
     </ul>
 
-    <p>Integration changes the trust question. A suggestion appearing in a field looks like part of the application, indistinguishable from a database lookup, and techs accept it with less scrutiny than identical text from a chatbot &mdash; purely because of where it appeared. So know three things about any tool in your stack: whether it has AI features, whether they can be disabled, and whether using them sends data outside the organisation. The third turns an integration question into a <a href="data-loss-prevention.html">data loss prevention</a> question.</p>
+    <p>Integration changes the trust question. A suggestion appearing in a field looks like part of the application, indistinguishable from a database lookup, and techs accept it with less scrutiny than identical text from a chatbot &mdash; purely because of where it appeared. So know three things about any tool in your stack: whether it has AI features, whether they can be disabled, and whether using them sends data outside the organization. The third turns an integration question into a <a href="data-loss-prevention.html">data loss prevention</a> question.</p>
 
     <h2>Policy</h2>
 
@@ -682,7 +682,7 @@ tbody tr:hover td{background:var(--light);}
 
     <p>An acceptable use policy for AI answers a few concrete questions: which tools are approved, what data may never be entered, whether output must be reviewed by a human before it reaches a customer or production system, and who owns the output.</p>
 
-    <p>In many organisations no such policy exists yet, and the absence of a policy is not the absence of use &mdash; staff use these tools anyway, without guidance, and the organisation carries a risk it cannot describe. Three provisions cover most of the exposure:</p>
+    <p>In many organizations no such policy exists yet, and the absence of a policy is not the absence of use &mdash; staff use these tools anyway, without guidance, and the organization carries a risk it cannot describe. Three provisions cover most of the exposure:</p>
 
     <ul>
       <li><strong>Name the approved tools.</strong> A short allow-list beats a general prohibition nobody follows.</li>
@@ -696,7 +696,7 @@ tbody tr:hover td{background:var(--light);}
 
     <p>Plagiarism looks like an odd inclusion until you remember that support runs on written documentation. A tech resolves a ticket, asks a model to write it up, and pastes the result into the knowledge base unreviewed. That article is now indistinguishable from one written by the engineer who performed the fix &mdash; and if it contains an error, the error is institutional: the next three techs follow it, and the fourth escalates a problem the documentation caused. Marking generated drafts as generated is what keeps a knowledge base trustworthy.</p>
 
-    <p>There is an external dimension too. Vendor documentation and published technical writing are copyrighted work, and reproducing them through a model does not change the licence. A customer-facing knowledge base built from unattributed content is a legal problem as well as a quality one.</p>
+    <p>There is an external dimension too. Vendor documentation and published technical writing are copyrighted work, and reproducing them through a model does not change the license. A customer-facing knowledge base built from unattributed content is a legal problem as well as a quality one.</p>
 
     <h2>Limitations</h2>
 
@@ -706,7 +706,7 @@ tbody tr:hover td{background:var(--light);}
 
     <p>Bias is a systematic skew inherited from training data or design choices. It is not random error &mdash; it is being wrong consistently, in the same direction, which is what makes it hard to notice.</p>
 
-    <p>In support work it surfaces quietly. A model asked to recommend hardware favours whatever was most written about in training, which tracks marketing volume rather than reliability. A triage model trained on historical tickets inherits that history: if one department's tickets were deprioritised before, it learns to deprioritise them. Tickets in imperfect English can score as less urgent because the model associates fluency with importance. None of these announce themselves as errors &mdash; they look like the tool working normally.</p>
+    <p>In support work it surfaces quietly. A model asked to recommend hardware favors whatever was most written about in training, which tracks marketing volume rather than reliability. A triage model trained on historical tickets inherits that history: if one department's tickets were deprioritized before, it learns to deprioritize them. Tickets in imperfect English can score as less urgent because the model associates fluency with importance. None of these announce themselves as errors &mdash; they look like the tool working normally.</p>
 
     <h3>Hallucinations</h3>
 
@@ -714,7 +714,7 @@ tbody tr:hover td{background:var(--light);}
 
     <p>Take the concrete case. A tech troubleshooting a Windows error asks an AI tool for a fix and gets a registry path, a value name, a DWORD, and an instruction to set it to 1 and reboot. The path is plausible and the naming convention is right. The key does not exist in any build of Windows. The damage is what happens next: the tech creates it, because creating a missing key looks like the remedy for a missing key. Either an hour is gone, or something breaks and there is now an undocumented change on a production machine &mdash; and it goes into the ticket as the fix, and the knowledge base permanently.</p>
 
-    <p>The countermeasure is unglamorous: anything specific and checkable &mdash; a path, a command, a port, a version, an identifier &mdash; gets verified against vendor documentation before it is run. That is the <em>test the theory</em> step of the <a href="troubleshooting-methodology.html">CompTIA troubleshooting methodology</a>, and knowing <a href="windows-registry.html">how the Windows registry is structured</a> is what lets you recognise a fabricated path on sight.</p>
+    <p>The countermeasure is unglamorous: anything specific and checkable &mdash; a path, a command, a port, a version, an identifier &mdash; gets verified against vendor documentation before it is run. That is the <em>test the theory</em> step of the <a href="troubleshooting-methodology.html">CompTIA troubleshooting methodology</a>, and knowing <a href="windows-registry.html">how the Windows registry is structured</a> is what lets you recognize a fabricated path on sight.</p>
 
     <h3>Accuracy</h3>
 
@@ -733,9 +733,9 @@ tbody tr:hover td{background:var(--light);}
 
     <h3>Data security</h3>
 
-    <p>When you type into a public AI tool, that text leaves your organisation. Depending on product and tier it may be transmitted to a third party, retained in logs, reviewed by staff for abuse monitoring, used to improve the service, and it becomes subject to that provider's breach exposure.</p>
+    <p>When you type into a public AI tool, that text leaves your organization. Depending on product and tier it may be transmitted to a third party, retained in logs, reviewed by staff for abuse monitoring, used to improve the service, and it becomes subject to that provider's breach exposure.</p>
 
-    <p>Here is the case that matters. A tech stuck on a client's routing problem pastes the running configuration into a public chatbot. That config plausibly contains internal subnets, device hostnames, the WAN IP, VPN peer addresses, SNMP community strings and administrative usernames &mdash; a map of the client's network, disclosed to a third party by someone who does not own it. Even if nothing is breached, the organisation can no longer state that the data stayed inside its boundary, which may be exactly what its contract requires. There is usually no retraction mechanism.</p>
+    <p>Here is the case that matters. A tech stuck on a client's routing problem pastes the running configuration into a public chatbot. That config plausibly contains internal subnets, device hostnames, the WAN IP, VPN peer addresses, SNMP community strings and administrative usernames &mdash; a map of the client's network, disclosed to a third party by someone who does not own it. Even if nothing is breached, the organization can no longer state that the data stayed inside its boundary, which may be exactly what its contract requires. There is usually no retraction mechanism.</p>
 
     <p>A private deployment changes that shape: running a model inside your own environment, or a contractually isolated tenant, keeps input within your governance boundary and existing controls &mdash; the same boundary logic <a href="cloud-security.html">cloud security</a> describes, and why <a href="encryption-types.html">encryption in transit and at rest</a> belongs in the conversation.</p>
 
@@ -749,7 +749,7 @@ tbody tr:hover td{background:var(--light);}
 
     <p>Data privacy is the regulated subset of the data security problem. Some categories carry legal obligations regardless of internal policy: personally identifiable information, health information, cardholder data, student records, and anything covered by a confidentiality clause.</p>
 
-    <p>Support tickets are full of it. A single ticket might carry a user's full name, phone numbers, home address, employee ID and a description of the accessibility accommodation their software needs. Pasting that into a public tool to summarise it is a disclosure of personal &mdash; possibly health-related &mdash; data, and the tech is unlikely to have registered it as such, because they were thinking about the summary rather than the payload.</p>
+    <p>Support tickets are full of it. A single ticket might carry a user's full name, phone numbers, home address, employee ID and a description of the accessibility accommodation their software needs. Pasting that into a public tool to summarize it is a disclosure of personal &mdash; possibly health-related &mdash; data, and the tech is unlikely to have registered it as such, because they were thinking about the summary rather than the payload.</p>
 
     <p>So treat the prompt box as the external system it is: redact before you paste. Replace names with roles, strip identifiers, reduce the input to the technical facts. Usually the problem is answerable without any identifying detail at all &mdash; meaning the data was never needed for the question.</p>
 
@@ -767,12 +767,12 @@ tbody tr:hover td{background:var(--light);}
           <tr><td class="td-term">Client or regulated data</td><td>Not suitable without explicit approval</td><td>Suitable where existing controls and contracts already permit</td></tr>
           <tr><td class="td-term">Cost</td><td>Free tier or per-seat subscription; no infrastructure</td><td>Infrastructure, licensing and staff time &mdash; a real project</td></tr>
           <tr><td class="td-term">Setup and maintenance</td><td>None; available immediately</td><td>Provisioning, updates and access control are yours</td></tr>
-          <tr><td class="td-term">Typical use case</td><td>Learning a concept, drafting non-sensitive text, sanitised problems</td><td>Real tickets, configurations, logs and internal documentation</td></tr>
+          <tr><td class="td-term">Typical use case</td><td>Learning a concept, drafting non-sensitive text, sanitized problems</td><td>Real tickets, configurations, logs and internal documentation</td></tr>
         </tbody>
       </table>
     </div>
 
-    <p>The rule that follows: a sanitised, generic question is fine in a public tool; anything carrying real organisational or client data is not, unless the deployment is approved to receive it.</p>
+    <p>The rule that follows: a sanitized, generic question is fine in a public tool; anything carrying real organizational or client data is not, unless the deployment is approved to receive it.</p>
 
     <h2>Frequently asked questions</h2>
 

@@ -504,7 +504,7 @@ tbody tr:hover td{background:var(--light);}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/network-topologies.html",
   "inLanguage": "en"
 }
@@ -533,7 +533,7 @@ tbody tr:hover td{background:var(--light);}
 <nav class="breadcrumb"><a href="/">Home</a><span>›</span><a href="networking.html">Networking</a><span>›</span><span>Network Topologies</span></nav>
 <div class="page-hero-badge">🔗 Network+</div>
 <h1>Network Topologies — <span>Star, Bus, Ring, Mesh</span></h1>
-<p class="page-hero-sub">Every network topology tested on CompTIA Network+ — physical and logical designs, failure modes, scalability, and real-world use cases.</p>
+<p class="page-hero-sub">The topologies and architectures in CompTIA Network+ N10-009 objective 1.6, plus the legacy bus and ring designs — physical and logical designs, failure modes, scalability, and real-world use cases.</p>
 <div class="cert-badges"><span class="cert-badge cb-teal">A+ 220-1201</span><span class="cert-badge cb-blue">Network+ N10-009</span></div>
 </div></section>
 
@@ -544,14 +544,14 @@ tbody tr:hover td{background:var(--light);}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap"><div class="article-body">
 
 <div class="quick-answer">
 <div class="quick-answer-label">Quick Reference</div>
-<div class="quick-answer-text"><strong>Star</strong> = all devices connect to a central switch — most common in modern networks. <strong>Bus</strong> = all devices on a single cable — legacy, single point of failure. <strong>Ring</strong> = devices connected in a loop — legacy, one cable break disrupts the ring. <strong>Mesh</strong> = every device connects to every other — most redundant, used in WANs and wireless. <strong>Hybrid</strong> = combination, most real-world networks are hybrid star-mesh or star-bus.</div>
+<div class="quick-answer-text"><strong>Star</strong> = all devices connect to a central switch — most common in modern networks. <strong>Bus</strong> = all devices on a single cable — legacy, single point of failure, no longer in the N10-009 objectives. <strong>Ring</strong> = devices connected in a loop — legacy, one cable break disrupts the ring, no longer in the N10-009 objectives. <strong>Mesh</strong> = every device connects to every other — most redundant, used in WANs and wireless. <strong>Hybrid</strong> = combination, most real-world networks are hybrid star-mesh or star-bus.</div>
 </div>
 
 <h2>Why Network Topology Matters</h2>
@@ -568,19 +568,19 @@ tbody tr:hover td{background:var(--light);}
 
 <h2>Bus Topology</h2>
 <div class="card-grid">
-<div class="card"><div class="card-icon">📏</div><div class="card-title">Bus</div><div class="card-label" style="color:var(--muted);">Legacy — Thinnet / Thicknet Ethernet</div><div class="card-desc">All devices connect to a <strong>single shared cable</strong> (the bus) via T-connectors. <strong>Single point of failure:</strong> any break in the cable. Terminators required at each end.</div></div>
+<div class="card"><div class="card-icon">📏</div><div class="card-title">Bus</div><div class="card-label" style="color:var(--muted);">Legacy — Thinnet / Thicknet Ethernet · not in N10-009</div><div class="card-desc">All devices connect to a <strong>single shared cable</strong> (the bus) via T-connectors. <strong>Single point of failure:</strong> any break in the cable. Terminators required at each end.</div></div>
 </div>
 <p>Bus topology connects all devices to a single coaxial cable called the backbone or bus. Each device taps into the cable using a T-connector (Thinnet/10BASE2) or vampire tap (Thicknet/10BASE5). Terminators at each end of the cable prevent signal reflection. When a device transmits, its signal travels the entire length of the cable in both directions and is received by all devices — the intended recipient accepts the packet, others ignore it.</p>
 <p>The critical failure characteristic: <strong>any break anywhere in the cable brings down the entire network segment</strong>. If a T-connector is accidentally disconnected, the bus is split into two unterminated segments, and all devices lose connectivity. This made bus topology extremely fragile in practice and is why it was replaced by star topology for all new installations.</p>
-<p>Bus topology is legacy — no modern networks use it. It appears on the exam as a historical reference point and as a contrast to star topology. If you see a scenario about "coaxial cable Ethernet" or "10BASE2" or "devices losing connectivity when one cable is disconnected," that's bus topology.</p>
+<p>Bus topology is legacy — no modern networks use it, and it is no longer listed in the Network+ N10-009 objectives. It is still a useful contrast to star topology, and it shows up in older study material. If you see a scenario about "coaxial cable Ethernet" or "10BASE2" or "devices losing connectivity when one cable is disconnected," that's bus topology.</p>
 
 <h2>Ring Topology</h2>
 <div class="card-grid">
-<div class="card"><div class="card-icon">🔄</div><div class="card-title">Ring</div><div class="card-label" style="color:var(--muted);">Legacy — Token Ring / FDDI</div><div class="card-desc">Devices connect in a <strong>closed loop</strong>. Data passes from device to device around the ring. <strong>Single point of failure:</strong> any break disrupts the ring (unless dual-ring).</div></div>
+<div class="card"><div class="card-icon">🔄</div><div class="card-title">Ring</div><div class="card-label" style="color:var(--muted);">Legacy — Token Ring / FDDI · not in N10-009</div><div class="card-desc">Devices connect in a <strong>closed loop</strong>. Data passes from device to device around the ring. <strong>Single point of failure:</strong> any break disrupts the ring (unless dual-ring).</div></div>
 </div>
 <p>In a ring topology, each device connects to exactly two neighbors, forming a closed loop. Data travels in one direction around the ring, passing through each device until it reaches its destination. Token Ring (802.5) used a token-passing mechanism — only the device holding the token could transmit, eliminating collisions but also limiting throughput. FDDI (Fiber Distributed Data Interface) used a dual-ring design for redundancy — if the primary ring broke, the secondary ring took over.</p>
 <p>A single ring has the same fundamental weakness as bus topology — one break disrupts the entire ring. The dual-ring architecture (FDDI) addressed this by allowing the ring to "heal" around a break by connecting the two rings at either side of the break, forming a smaller ring. This concept of self-healing rings was ahead of its time and is echoed in modern SONET/SDH ring architectures used in carrier networks.</p>
-<p>Ring topology is legacy for LAN connections but appears on the exam in the context of historical Token Ring networks and WAN/carrier ring architectures. The key distinction from bus: in a ring, a break disrupts only one direction of travel (in a single ring), and dual-ring designs can survive a single break.</p>
+<p>Ring topology is legacy for LAN connections and is no longer listed in the Network+ N10-009 objectives, though you will still see it in older study material on Token Ring and in WAN/carrier ring architectures. The key distinction from bus: in a ring, a break disrupts only one direction of travel (in a single ring), and dual-ring designs can survive a single break.</p>
 
 <h2>Mesh Topology</h2>
 <div class="card-grid">
@@ -593,6 +593,18 @@ tbody tr:hover td{background:var(--light);}
 <h2>Hybrid Topology</h2>
 <p>Almost all real-world enterprise networks use hybrid topologies — combinations of two or more basic topologies. The most common hybrid is <strong>star-bus</strong> (multiple star networks connected via a common backbone) and <strong>star-mesh</strong> (a core of meshed switches with star-connected access layer devices). A typical three-tier enterprise network uses star topology at the access layer (user devices connecting to access switches), partial mesh at the distribution layer (distribution switches connecting to multiple access and core switches), and full mesh at the core layer (core routers and switches fully interconnected for maximum performance and redundancy).</p>
 <p>For the exam: when a question asks "what topology provides the most redundancy?" the answer is mesh. When it asks "what topology is most commonly used in modern LANs?" the answer is star. Hybrid isn't usually a direct answer to a topology question but describes how real enterprise networks combine multiple topologies.</p>
+
+<h2>Spine and Leaf</h2>
+<p>Spine and leaf is a two-tier data center design. Servers connect to <strong>leaf</strong> switches, and every leaf switch connects to every <strong>spine</strong> switch. Leaf switches do not connect to each other, and spine switches do not connect to each other. Traffic between any two servers on different leaf switches crosses the same number of hops (leaf → spine → leaf), which keeps latency predictable. To add server ports you add leaf switches; to add bandwidth between leaves you add spine switches.</p>
+
+<h2>Three-Tier Hierarchical Model and Collapsed Core</h2>
+<p>The <strong>three-tier hierarchical model</strong> splits a campus network into <strong>core</strong> (high-speed backbone), <strong>distribution</strong> (aggregates access switches and applies policy and routing between VLANs), and <strong>access</strong> (where end devices plug in). A <strong>collapsed core</strong> design merges the core and distribution layers into one layer, leaving two tiers. It costs less and suits smaller networks or single buildings, but it scales less well than a full three-tier design.</p>
+
+<h2>Point to Point</h2>
+<p>A point-to-point topology is a direct link between exactly two endpoints — for example, a leased line between two offices or a wireless bridge between two buildings. Nothing else shares the link, but the link itself is a single point of failure unless a second path is added.</p>
+
+<h2>Traffic Flows: North-South vs East-West</h2>
+<p><strong>North-south</strong> traffic enters or leaves the data center or network — for example, a user on the internet reaching a web server. <strong>East-west</strong> traffic moves between systems inside the data center — for example, a web server querying a database server. Spine-and-leaf designs are built to handle heavy east-west traffic, and security controls placed only at the perimeter see north-south traffic but not east-west traffic.</p>
 
 <h2>Physical vs Logical Topology</h2>
 <p>The exam specifically distinguishes these two concepts. <strong>Physical topology</strong> is the actual physical layout — where the cables run, where the devices are located, what the network looks like if you walked through the building and mapped every cable. <strong>Logical topology</strong> is how data actually flows — the path that frames and packets take through the network, regardless of physical layout.</p>

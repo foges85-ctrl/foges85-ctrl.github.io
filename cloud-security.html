@@ -473,7 +473,7 @@ tbody tr:hover td{background:var(--light);}
       "name": "Exam Scenarios",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Cloud security is 18% of Domain 3. See the full Security+ study guide for all 5 domains."
+        "text": "Cloud security falls under Domain 3 (Security Architecture), which is 18% of the exam. See the full Security+ study guide for all 5 domains."
       }
     }
   ]
@@ -526,7 +526,7 @@ tbody tr:hover td{background:var(--light);}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/cloud-security.html",
   "inLanguage": "en"
 }
@@ -590,7 +590,7 @@ tbody tr:hover td{background:var(--light);}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -618,8 +618,8 @@ tbody tr:hover td{background:var(--light);}
           </tr>
         </thead>
         <tbody>
-          <tr><td>Physical infrastructure, datacentre</td><td><span class="tag-provider">Provider</span></td><td><span class="tag-provider">Provider</span></td><td><span class="tag-provider">Provider</span></td></tr>
-          <tr><td>Hypervisor / virtualisation layer</td><td><span class="tag-provider">Provider</span></td><td><span class="tag-provider">Provider</span></td><td><span class="tag-provider">Provider</span></td></tr>
+          <tr><td>Physical infrastructure, datacenter</td><td><span class="tag-provider">Provider</span></td><td><span class="tag-provider">Provider</span></td><td><span class="tag-provider">Provider</span></td></tr>
+          <tr><td>Hypervisor / virtualization layer</td><td><span class="tag-provider">Provider</span></td><td><span class="tag-provider">Provider</span></td><td><span class="tag-provider">Provider</span></td></tr>
           <tr><td>Operating system (patching, hardening)</td><td><span class="tag-customer">Customer</span></td><td><span class="tag-provider">Provider</span></td><td><span class="tag-provider">Provider</span></td></tr>
           <tr><td>Runtime / middleware</td><td><span class="tag-customer">Customer</span></td><td><span class="tag-provider">Provider</span></td><td><span class="tag-provider">Provider</span></td></tr>
           <tr><td>Application code and configuration</td><td><span class="tag-customer">Customer</span></td><td><span class="tag-customer">Customer</span></td><td><span class="tag-provider">Provider</span></td></tr>
@@ -653,7 +653,7 @@ tbody tr:hover td{background:var(--light);}
       <div class="tool-card teal-accent">
         <div class="tc-acronym">CWPP</div>
         <div class="tc-title">Cloud Workload Protection Platform</div>
-        <div class="tc-desc">Secures workloads running in the cloud — VMs, containers, and serverless functions. Provides runtime protection, vulnerability scanning, and behavioural monitoring for cloud-hosted compute resources. Where CSPM focuses on configuration, CWPP focuses on <strong>what's running on the infrastructure</strong>.<br><br><strong>Exam trigger:</strong> A company needs to protect containers and VMs running in their cloud environment at runtime → CWPP.</div>
+        <div class="tc-desc">Secures workloads running in the cloud — VMs, containers, and serverless functions. Provides runtime protection, vulnerability scanning, and behavioral monitoring for cloud-hosted compute resources. Where CSPM focuses on configuration, CWPP focuses on <strong>what's running on the infrastructure</strong>.<br><br><strong>Exam trigger:</strong> A company needs to protect containers and VMs running in their cloud environment at runtime → CWPP.</div>
       </div>
       <div class="tool-card red-accent">
         <div class="tc-acronym">SASE</div>
@@ -716,7 +716,7 @@ tbody tr:hover td{background:var(--light);}
     <div class="callout">
       <div class="callout-label">Serverless Security — Key Exam Points</div>
       <p><strong>Each function should have its own IAM role</strong> with minimum permissions. Giving all functions the same broad role means a vulnerable function can access resources it never needs.</p>
-      <p><strong>Injection attacks still apply.</strong> If a serverless function passes user input to a database query without sanitising it, it's vulnerable to SQL injection the same as any other application.</p>
+      <p><strong>Injection attacks still apply.</strong> If a serverless function passes user input to a database query without sanitizing it, it's vulnerable to SQL injection the same as any other application.</p>
       <p><strong>Third-party dependencies are a supply chain risk.</strong> Serverless functions rely on libraries — a compromised library (like the Log4j vulnerability) affects every function that includes it.</p>
       <p><strong>Cold starts can mask attacks.</strong> Functions that are infrequently called may not have logging configured consistently — ensure every invocation is logged.</p>
     </div>
@@ -758,13 +758,13 @@ tbody tr:hover td{background:var(--light);}
       <div class="scenario-item">An organization uses AWS and wants to ensure all newly deployed EC2 instances have encrypted storage volumes and that no root access keys exist. The company cannot manually review 500 accounts. What is the most efficient approach? <strong>CSPM with automated remediation — or AWS Config with automated compliance rules and Lambda remediation functions. CSPM tools can enforce policies at scale across all accounts and auto-remediate violations like unencrypted volumes.</strong></div>
       <div class="scenario-item">A developer's laptop is compromised, and the attacker finds AWS access keys hardcoded in a Python script committed to GitHub. What should the company do immediately, and how should this be prevented long-term? <strong>Immediate: revoke the compromised access keys, audit CloudTrail for any actions taken with those keys, and assess what resources were accessed. Prevention: use AWS Secrets Manager or IAM roles instead of static credentials, implement pre-commit hooks that scan for credentials, and enable GitHub's secret scanning feature.</strong></div>
       <div class="scenario-item">A company migrates from on-premises to IaaS. After migration, a VM is compromised because the OS has not been patched in six months. Who is responsible? <strong>The customer. In IaaS, the cloud provider secures the physical infrastructure and hypervisor. The customer is responsible for OS patching, hardening, and configuration. The provider did not fail — the customer failed to maintain their OS.</strong></div>
-      <div class="scenario-item">A containerised application is running in production. A security scan finds that the container image is based on an OS version with a critical vulnerability. What is the correct remediation approach? <strong>Rebuild the container image using a patched base image and redeploy — do not patch the running container. Containers should be treated as immutable. Patching a running container creates configuration drift and the patch won't persist if the container restarts.</strong></div>
+      <div class="scenario-item">A containerized application is running in production. A security scan finds that the container image is based on an OS version with a critical vulnerability. What is the correct remediation approach? <strong>Rebuild the container image using a patched base image and redeploy — do not patch the running container. Containers should be treated as immutable. Patching a running container creates configuration drift and the patch won't persist if the container restarts.</strong></div>
     </div>
 
     <div class="cta-box">
       <div class="cta-box-text">
         <h3>Studying for Security+ SY0-701?</h3>
-        <p>Cloud security is 18% of Domain 3. See the full Security+ study guide for all 5 domains.</p>
+        <p>Cloud security falls under Domain 3 (Security Architecture), which is 18% of the exam. See the full Security+ study guide for all 5 domains.</p>
       </div>
       <a href="comptia-security-plus-study-guide.html" class="btn-purple">Security+ Study Guide →</a>
     </div>

@@ -802,7 +802,7 @@ a:hover { text-decoration: underline; }
       "name": "nbtstat — NetBIOS Name Resolution",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "nbtstat displays NetBIOS over TCP/IP statistics and name tables. It's used in Windows environments to troubleshoot name resolution issues when devices can't find each other by computer name on a local network. Less common than the others but it does appear on the A+ exam."
+        "text": "nbtstat displays NetBIOS over TCP/IP statistics and name tables. It's used in Windows environments to troubleshoot name resolution issues when devices can't find each other by computer name on a local network. Less common than the others, and it is not in the current A+ 220-1202 objectives."
       }
     },
     {
@@ -818,7 +818,7 @@ a:hover { text-decoration: underline; }
       "name": "Linux & macOS Network Commands",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The Network+ and Security+ exams test Linux and macOS equivalents alongside Windows commands. In enterprise environments, servers and network devices almost always run Linux — knowing these commands is essential for both certifications and real-world IT work. The ip command is the current standard on Linux, replacing the older ifconfig . It controls IP addresses, routes, and interfaces. dig (Domain Information Groper) is the Linux/macOS equivalent of nslookup — and much more powerful. Security+ tests it for DNS reconnaissance and troubleshooting."
+        "text": "The Network+ N10-009 and A+ 220-1202 objectives include Linux commands alongside Windows ones — Network+ 5.5 lists tcpdump, dig, netstat, ip/ifconfig, arp, and Nmap, and A+ 1.9 lists ip, ping, curl, dig, and traceroute. In enterprise environments, servers and network devices almost always run Linux — knowing these commands is essential for both certifications and real-world IT work. The ip command is the current standard on Linux, replacing the older ifconfig . It controls IP addresses, routes, and interfaces. dig (Domain Information Groper) is the Linux/macOS equivalent of nslookup — and much more powerful. It is listed in both the Network+ N10-009 (5.5) and A+ 220-1202 (1.9) objectives."
       }
     }
   ]
@@ -871,7 +871,7 @@ a:hover { text-decoration: underline; }
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/network-troubleshooting-commands.html",
   "inLanguage": "en"
 }
@@ -927,7 +927,7 @@ a:hover { text-decoration: underline; }
     <div class="page-hero-badge">CompTIA A+ · Troubleshooting</div>
     <h1>Network Troubleshooting <span>Commands</span></h1>
     <p class="page-hero-sub">
-      The six commands every IT technician uses daily — ipconfig, ping, tracert, nslookup, netstat, and nbtstat. What each one does, when to use it, and exactly how it appears on the A+ exam.
+      The core Windows network commands — ipconfig, ping, tracert, nslookup, netstat, pathping, hostname, and net use from the A+ 220-1202 objectives, plus the legacy nbtstat. What each one does, when to use it, and how it appears on the A+ exam.
     </p>
     <nav class="cmd-nav">
       <a href="#ipconfig">ipconfig</a>
@@ -936,6 +936,7 @@ a:hover { text-decoration: underline; }
       <a href="#nslookup">nslookup</a>
       <a href="#netstat">netstat</a>
       <a href="#nbtstat">nbtstat</a>
+      <a href="#more-a-plus">pathping / hostname / net use</a>
       <a href="#cheatsheet">Cheat Sheet</a>
     </nav>
   </div>
@@ -949,14 +950,14 @@ a:hover { text-decoration: underline; }
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <!-- ARTICLE -->
 <div class="article-wrap">
   <div class="article-body">
 
-    <p>When a network stops working, you don't guess — you run commands and read the output. These six tools are the core of Windows network troubleshooting, and all of them appear on the CompTIA A+ exam. Learning them in order is the fastest way to build a real diagnostic workflow.</p>
+    <p>When a network stops working, you don't guess — you run commands and read the output. These six tools have long been the core of Windows network troubleshooting. Five of them — ipconfig, ping, tracert, nslookup, and netstat — are in the CompTIA A+ 220-1202 objectives; nbtstat is not in the current objectives. The objectives also list pathping, hostname, and net use, covered after nbtstat below. Learning them in order is the fastest way to build a real diagnostic workflow.</p>
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ How to study this page</div>
@@ -1011,8 +1012,8 @@ a:hover { text-decoration: underline; }
         <p class="cmd-block-desc"><strong>ping</strong> sends test packets to a destination and measures the response. It tells you whether a device is reachable and how long packets take to get there. The sequence matters — ping loopback first, then your own IP, then the gateway, then an external IP, then a domain name. Each step isolates a different layer of the problem.</p>
 
         <div class="cmd-syntax">
-          <span class="cmd-prompt">C:\&gt;</span>ping <span class="cmd-flag">127.0.0.1</span><span class="cmd-comment">— loopback: tests the NIC itself</span><br>
-          <span class="cmd-prompt">C:\&gt;</span>ping <span class="cmd-flag">192.168.1.25</span><span class="cmd-comment">— your own IP: confirms TCP/IP stack</span><br>
+          <span class="cmd-prompt">C:\&gt;</span>ping <span class="cmd-flag">127.0.0.1</span><span class="cmd-comment">— loopback: tests the local TCP/IP stack (not the NIC)</span><br>
+          <span class="cmd-prompt">C:\&gt;</span>ping <span class="cmd-flag">192.168.1.25</span><span class="cmd-comment">— your own IP: confirms the address is bound to the adapter</span><br>
           <span class="cmd-prompt">C:\&gt;</span>ping <span class="cmd-flag">192.168.1.1</span><span class="cmd-comment">— default gateway: tests local routing</span><br>
           <span class="cmd-prompt">C:\&gt;</span>ping <span class="cmd-flag">8.8.8.8</span><span class="cmd-comment">— external IP: tests internet (bypasses DNS)</span><br>
           <span class="cmd-prompt">C:\&gt;</span>ping <span class="cmd-flag">google.com</span><span class="cmd-comment">— domain name: tests DNS resolution</span>
@@ -1158,7 +1159,7 @@ a:hover { text-decoration: underline; }
         <span class="cmd-block-tag">NetBIOS / Windows Names</span>
       </div>
       <div class="cmd-block-body">
-        <p class="cmd-block-desc"><strong>nbtstat</strong> displays NetBIOS over TCP/IP statistics and name tables. It's used in Windows environments to troubleshoot name resolution issues when devices can't find each other by computer name on a local network. Less common than the others but it does appear on the A+ exam.</p>
+        <p class="cmd-block-desc"><strong>nbtstat</strong> displays NetBIOS over TCP/IP statistics and name tables. It's used in Windows environments to troubleshoot name resolution issues when devices can't find each other by computer name on a local network. Less common than the others, and it is not in the current A+ 220-1202 objectives.</p>
 
         <div class="cmd-syntax">
           <span class="cmd-prompt">C:\&gt;</span>nbtstat <span class="cmd-flag">-n</span><span class="cmd-comment">— local NetBIOS name table</span><br>
@@ -1167,6 +1168,62 @@ a:hover { text-decoration: underline; }
         </div>
 
         <div class="cmd-usewhen">Devices on a local Windows network can't find each other by computer name, even though IP connectivity works fine. nbtstat -n shows the local machine's registered NetBIOS names.</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- PATHPING / HOSTNAME / NET USE -->
+    <h2 id="more-a-plus">pathping, hostname, and net use — Also in the A+ Objectives</h2>
+
+    <p>The A+ 220-1202 objectives (1.5) list three more commands worth knowing here: <strong>pathping</strong> and <strong>net use</strong> (under Network, alongside ipconfig, ping, netstat, nslookup, and tracert) and <strong>hostname</strong> (under Informational).</p>
+
+    <div class="cmd-block">
+      <div class="cmd-block-header">
+        <span class="cmd-block-name">pathping</span>
+        <span class="cmd-block-tag">Route + Packet Loss</span>
+      </div>
+      <div class="cmd-block-body">
+        <p class="cmd-block-desc"><strong>pathping</strong> combines ping and tracert. It first traces the route, then sends test packets to every hop over a period of time and reports packet loss at each one. It takes longer than tracert, but it shows where along the path packets are being dropped.</p>
+
+        <div class="cmd-syntax">
+          <span class="cmd-prompt">C:\&gt;</span>pathping <span class="cmd-flag">8.8.8.8</span><span class="cmd-comment">— trace the route and measure loss at each hop</span><br>
+          <span class="cmd-prompt">C:\&gt;</span>pathping <span class="cmd-flag">-n 8.8.8.8</span><span class="cmd-comment">— same, without resolving hop names</span>
+        </div>
+
+        <div class="cmd-usewhen">A connection works but is slow or drops intermittently, and you need to see which hop is losing packets.</div>
+      </div>
+    </div>
+
+    <div class="cmd-block">
+      <div class="cmd-block-header">
+        <span class="cmd-block-name">hostname</span>
+        <span class="cmd-block-tag">Computer Name</span>
+      </div>
+      <div class="cmd-block-body">
+        <p class="cmd-block-desc"><strong>hostname</strong> prints the name of the computer you are on. It is the quickest way to confirm which machine you are working on, especially in a remote session.</p>
+
+        <div class="cmd-syntax">
+          <span class="cmd-prompt">C:\&gt;</span>hostname<span class="cmd-comment">— display this computer's name</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmd-block">
+      <div class="cmd-block-header">
+        <span class="cmd-block-name">net use</span>
+        <span class="cmd-block-tag">Network Drives</span>
+      </div>
+      <div class="cmd-block-body">
+        <p class="cmd-block-desc"><strong>net use</strong> lists, connects, and disconnects mapped network drives and other shared resources.</p>
+
+        <div class="cmd-syntax">
+          <span class="cmd-prompt">C:\&gt;</span>net use<span class="cmd-comment">— list current network connections</span><br>
+          <span class="cmd-prompt">C:\&gt;</span>net use <span class="cmd-flag">Z: \\server\share</span><span class="cmd-comment">— map a drive letter to a share</span><br>
+          <span class="cmd-prompt">C:\&gt;</span>net use <span class="cmd-flag">Z: /delete</span><span class="cmd-comment">— disconnect the mapped drive</span>
+        </div>
+
+        <div class="cmd-usewhen">A user's mapped drive is missing or points to the wrong share.</div>
       </div>
     </div>
 
@@ -1228,7 +1285,7 @@ a:hover { text-decoration: underline; }
     <!-- LINUX / MACOS COMMANDS -->
     <h2 id="linux">Linux &amp; macOS Network Commands</h2>
 
-    <p>The Network+ and Security+ exams test Linux and macOS equivalents alongside Windows commands. In enterprise environments, servers and network devices almost always run Linux — knowing these commands is essential for both certifications and real-world IT work.</p>
+    <p>The Network+ N10-009 and A+ 220-1202 objectives include Linux commands alongside Windows ones — Network+ 5.5 lists tcpdump, dig, netstat, ip/ifconfig, arp, and Nmap, and A+ 1.9 lists ip, ping, curl, dig, and traceroute. In enterprise environments, servers and network devices almost always run Linux — knowing these commands is essential for both certifications and real-world IT work.</p>
 
     <h3>ip — The Modern Linux Network Tool</h3>
     <p>The <code>ip</code> command is the current standard on Linux, replacing the older <code>ifconfig</code>. It controls IP addresses, routes, and interfaces.</p>
@@ -1258,7 +1315,7 @@ a:hover { text-decoration: underline; }
     </div>
 
     <h3>dig — DNS Lookup (Linux/macOS)</h3>
-    <p><code>dig</code> (Domain Information Groper) is the Linux/macOS equivalent of <code>nslookup</code> — and much more powerful. Security+ tests it for DNS reconnaissance and troubleshooting.</p>
+    <p><code>dig</code> (Domain Information Groper) is the Linux/macOS equivalent of <code>nslookup</code> — and much more powerful. It is listed in both the Network+ N10-009 (5.5) and A+ 220-1202 (1.9) objectives.</p>
 
     <div class="cmd-block">
       <div class="cmd-title">dig — DNS Query Tool</div>
@@ -1305,7 +1362,7 @@ a:hover { text-decoration: underline; }
     <!-- ARP -->
     <h2 id="arp">arp — View and Manage the ARP Cache</h2>
 
-    <p>The ARP (Address Resolution Protocol) cache maps IP addresses to MAC addresses on the local network. The <code>arp</code> command lets you view, add, and delete these entries. It's tested on both Network+ and Security+ — particularly in the context of ARP spoofing attacks.</p>
+    <p>The ARP (Address Resolution Protocol) cache maps IP addresses to MAC addresses on the local network. The <code>arp</code> command lets you view, add, and delete these entries. It's listed in the Network+ N10-009 objectives (5.5), and ARP spoofing — a form of on-path attack — is a Security+ topic.</p>
 
     <div class="cmd-block">
       <div class="cmd-title">arp — ARP Cache Commands</div>
@@ -1341,7 +1398,7 @@ a:hover { text-decoration: underline; }
     <!-- CURL / WGET -->
     <h2 id="curl">curl and wget — Test HTTP/S Connectivity</h2>
 
-    <p>While ping tests ICMP reachability, <code>curl</code> and <code>wget</code> test actual application-layer (HTTP/S) connectivity. They're used in Network+ and Security+ troubleshooting scenarios for web service verification, certificate checking, and API testing.</p>
+    <p>While ping tests ICMP reachability, <code>curl</code> and <code>wget</code> test actual application-layer (HTTP/S) connectivity. They're used for web service verification, certificate checking, and API testing, and curl is listed in the A+ 220-1202 Linux objectives (1.9).</p>
 
     <div class="cmd-block">
       <div class="cmd-title">curl — HTTP/S Testing</div>
@@ -1356,9 +1413,9 @@ a:hover { text-decoration: underline; }
     </div>
 
     <!-- TCPDUMP / WIRESHARK -->
-    <h2 id="tcpdump">tcpdump — Packet Capture (Security+ / Network+)</h2>
+    <h2 id="tcpdump">tcpdump — Packet Capture (Network+)</h2>
 
-    <p><code>tcpdump</code> is a command-line packet analyser for Linux and macOS. It captures live network traffic for analysis — the CLI equivalent of Wireshark. It's a core Security+ tool for network forensics and incident response, and appears directly in Network+ troubleshooting scenarios.</p>
+    <p><code>tcpdump</code> is a command-line packet analyzer for Linux and macOS. It captures live network traffic for analysis — the CLI equivalent of Wireshark. It's widely used for network forensics and incident response, and it is listed in the Network+ N10-009 objectives (5.5).</p>
 
     <div class="cmd-block">
       <div class="cmd-title">tcpdump — Common Usage</div>
@@ -1374,13 +1431,13 @@ a:hover { text-decoration: underline; }
     </div>
 
     <div class="callout callout-amber" style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:16px 0;font-size:14px;">
-      <strong>⚡ Security+ exam tip:</strong> tcpdump and Wireshark capture files use the <code>.pcap</code> format. In incident response scenarios, a packet capture is considered volatile evidence — it should be collected early. Wireshark is the GUI version; tcpdump is the CLI version. Both analyze the same .pcap files.
+      <strong>⚡ Exam tip:</strong> tcpdump and Wireshark capture files use the <code>.pcap</code> format. In incident response scenarios, a packet capture is considered volatile evidence — it should be collected early. Wireshark is the GUI version; tcpdump is the CLI version. Both analyze the same .pcap files.
     </div>
 
     <!-- NMAP -->
-    <h2 id="nmap">nmap — Network Scanner (Security+ / Network+)</h2>
+    <h2 id="nmap">nmap — Network Scanner (Network+)</h2>
 
-    <p><code>nmap</code> (Network Mapper) scans networks to discover hosts and open ports. It's a fundamental tool for both network administration and security assessments — and one of the most commonly referenced tools on the Security+ exam.</p>
+    <p><code>nmap</code> (Network Mapper) scans networks to discover hosts and open ports. It's a fundamental tool for both network administration and security assessments — and it is listed by name in the Network+ N10-009 objectives (5.5).</p>
 
     <div class="cmd-block">
       <div class="cmd-title">nmap — Common Scan Types</div>
@@ -1397,7 +1454,7 @@ a:hover { text-decoration: underline; }
     </div>
 
     <div class="callout callout-amber" style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:16px 0;font-size:14px;">
-      <strong>⚡ Security+ exam tip:</strong> nmap is a dual-use tool — used by administrators for asset discovery and by attackers for reconnaissance. A SYN scan (<code>-sS</code>) is called a "stealth scan" because it never completes the three-way handshake, making it harder to detect in logs. <strong>Always get written authorization before scanning networks you don't own.</strong>
+      <strong>⚡ Exam tip:</strong> nmap is a dual-use tool — used by administrators for asset discovery and by attackers for reconnaissance. A SYN scan (<code>-sS</code>) is called a "stealth scan" because it never completes the three-way handshake, making it harder to detect in logs. <strong>Always get written authorization before scanning networks you don't own.</strong>
     </div>
 
     <p>nmap runs on a desktop or laptop and it's the most capable scanner there is — but depending on whether you're sitting at a computer or working from your phone on a client site, a friendlier desktop GUI or a mobile scanner might fit the moment better. Our guide to network scanning tools for IT techs breaks down <a href="network-scanning-tools.html">how the desktop and mobile scanners compare</a>, from nmap and Angry IP Scanner to the mobile apps.</p>
@@ -1451,7 +1508,7 @@ a:hover { text-decoration: underline; }
       </div>
       <div class="cheat-row">
         <div class="cheat-cmd">ping 127.0.0.1</div>
-        <div class="cheat-use">Test loopback — confirms NIC and TCP/IP stack work</div>
+        <div class="cheat-use">Test loopback — confirms the local TCP/IP stack works (not the NIC)</div>
       </div>
       <div class="cheat-row">
         <div class="cheat-cmd">ping [gateway]</div>
@@ -1476,6 +1533,18 @@ a:hover { text-decoration: underline; }
       <div class="cheat-row">
         <div class="cheat-cmd">netstat -a</div>
         <div class="cheat-use">Show all active connections and listening ports</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-cmd">pathping [destination]</div>
+        <div class="cheat-use">Trace the route, then measure packet loss at each hop</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-cmd">hostname</div>
+        <div class="cheat-use">Display this computer's name</div>
+      </div>
+      <div class="cheat-row">
+        <div class="cheat-cmd">net use</div>
+        <div class="cheat-use">List, map, or disconnect network drives</div>
       </div>
       <div class="cheat-row">
         <div class="cheat-cmd">nbtstat -n</div>
@@ -1539,7 +1608,7 @@ a:hover { text-decoration: underline; }
       <div class="summary-item"><strong>netstat -a</strong> shows open ports and active connections on your machine</div>
       <div class="summary-item"><strong>ipconfig /release → /renew</strong> is the fix when you have an APIPA (169.254.x.x) address</div>
       <div class="summary-item"><strong>Linux uses <code>ip addr</code>, <code>ss</code>, and <code>dig</code></strong> — the modern replacements for ifconfig, netstat, and nslookup</div>
-      <div class="summary-item"><strong>tcpdump -w capture.pcap</strong> saves packets for Wireshark analysis — key for Security+ incident response</div>
+      <div class="summary-item"><strong>tcpdump -w capture.pcap</strong> saves packets for Wireshark analysis — key for incident response</div>
       <div class="summary-item"><strong>nmap -sn</strong> discovers live hosts; <strong>nmap -sV</strong> identifies running services — fundamental recon and audit tool</div>
       <div class="summary-item"><strong>Two IPs mapped to the same MAC in arp -a</strong> = ARP spoofing in progress</div>
     </div>

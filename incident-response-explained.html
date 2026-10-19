@@ -15,8 +15,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/incident-response-explained.html">
-<title>The 6 Phases of Incident Response — PICERL Explained</title>
-<meta name="description" content="Walk through every phase of incident response — preparation, identification, containment, eradication, recovery, and lessons learned — with the exam…">
+<title>The 7 Steps of Incident Response — SY0-701 Process Explained</title>
+<meta name="description" content="Walk through every step of incident response — preparation, detection, analysis, containment, eradication, recovery, and lessons learned — with the exam…">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -413,10 +413,10 @@ tbody tr:hover td{background:#fdf4ff;}
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "The 6 Phases of Incident Response — PICERL",
+      "name": "The 7 Steps of Incident Response (SY0-701)",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "CompTIA follows the PICERL model (also aligned with NIST SP 800-61). Memorize the acronym and what each phase involves — the exam will give you a scenario and ask which phase is being performed. Memorize the order: Preparation → Identification → Containment → Eradication → Recovery → Lessons Learned. The exam gives scenarios like \"After removing malware, the team verifies the system is clean and reconnects it to the network\" — that's Recovery , not Eradication. Containment before Eradication is the most common wrong-order trap. You contain first (stop the spread), then eradicate (remove the…"
+        "text": "Security+ SY0-701 (objective 4.8) lists seven steps in the incident response process: Preparation, Detection, Analysis, Containment, Eradication, Recovery, and Lessons learned. Memorize the order and what each step involves — the exam will give you a scenario and ask which step is being performed. You may also see PICERL, the six-phase SANS model, which combines Detection and Analysis into a single Identification phase. NIST SP 800-61 Rev. 3 (April 2025) takes a different approach: it maps incident response onto the CSF 2.0 functions, with Govern, Identify, and Protect as preparation, Detect, Respond, and Recover as the response itself, and lessons learned feeding improvement across all of them. Memorize the order: Preparation → Detection → Analysis → Containment → Eradication → Recovery → Lessons Learned. The exam gives scenarios like \"After removing malware, the team verifies the system is clean and reconnects it to the network\" — that's Recovery , not Eradication. Containment before Eradication is the most common wrong-order trap. You contain first (stop the spread), then eradicate (remove the…"
       }
     },
     {
@@ -424,7 +424,7 @@ tbody tr:hover td{background:#fdf4ff;}
       "name": "Indicators of Compromise (IoCs)",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "IoCs are evidence that a system or network has been compromised. Recognizing IoCs is tested in the Identification phase:"
+        "text": "IoCs are evidence that a system or network has been compromised. Recognizing IoCs is part of the Detection and Analysis steps:"
       }
     },
     {
@@ -469,7 +469,7 @@ tbody tr:hover td{background:#fdf4ff;}
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "The 6 Phases of Incident Response — PICERL Explained",
+      "name": "The 7 Steps of Incident Response — SY0-701 Process Explained",
       "item": "https://itstudyhub.org/incident-response-explained.html"
     }
   ]
@@ -478,14 +478,14 @@ tbody tr:hover td{background:#fdf4ff;}
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="IT Study Hub">
   <meta property="og:url" content="https://itstudyhub.org/incident-response-explained.html">
-  <meta property="og:title" content="The 6 Phases of Incident Response — PICERL Explained">
-  <meta property="og:description" content="Walk through every phase of incident response — preparation, identification, containment, eradication, recovery, and lessons learned — with the exam…">
+  <meta property="og:title" content="The 7 Steps of Incident Response — SY0-701 Process Explained">
+  <meta property="og:description" content="Walk through every step of incident response — preparation, detection, analysis, containment, eradication, recovery, and lessons learned — with the exam…">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "The 6 Phases of Incident Response \u2014 PICERL Explained",
+  "headline": "The 7 Steps of Incident Response \u2014 SY0-701 Process Explained",
   "author": {
     "@type": "Person",
     "name": "Sean Fogarty",
@@ -501,7 +501,7 @@ tbody tr:hover td{background:#fdf4ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/incident-response-explained.html",
   "inLanguage": "en"
 }
@@ -550,7 +550,7 @@ tbody tr:hover td{background:#fdf4ff;}
     </nav>
     <div class="page-hero-badge">CompTIA Security+ · SY0-701 · 2026</div>
     <h1>Incident Response <span>Explained</span></h1>
-    <p class="page-hero-sub">The 6-phase incident response process (PICERL), what happens at each phase, indicators of compromise, containment strategies, forensic evidence handling, and every IR concept tested on CompTIA Security+ SY0-701.</p>
+    <p class="page-hero-sub">The 7-step incident response process from Security+ SY0-701, what happens at each step, indicators of compromise, containment strategies, forensic evidence handling, and every IR concept tested on CompTIA Security+ SY0-701.</p>
   </div>
 </section>
 
@@ -562,7 +562,7 @@ tbody tr:hover td{background:#fdf4ff;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -571,12 +571,12 @@ tbody tr:hover td{background:#fdf4ff;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ What is Incident Response?</div>
       <div class="quick-answer-text">
-        Incident response (IR) is the <strong>structured process an organization follows when a security incident occurs</strong> — from the moment a threat is detected through containment, eradication, recovery, and a post-incident review. The goal is to minimize damage, reduce recovery time, and prevent recurrence. CompTIA Security+ tests the <strong>six-phase IR process</strong> extensively — you must know what happens at each phase and in what order.
+        Incident response (IR) is the <strong>structured process an organization follows when a security incident occurs</strong> — from the moment a threat is detected through containment, eradication, recovery, and a post-incident review. The goal is to minimize damage, reduce recovery time, and prevent recurrence. CompTIA Security+ SY0-701 tests the <strong>seven-step IR process</strong> (objective 4.8) extensively — you must know what happens at each step and in what order.
       </div>
     </div>
 
-    <h2>The 6 Phases of Incident Response — PICERL</h2>
-    <p>CompTIA follows the <strong>PICERL</strong> model (also aligned with NIST SP 800-61). Memorize the acronym and what each phase involves — the exam will give you a scenario and ask which phase is being performed.</p>
+    <h2>The 7 Steps of Incident Response (SY0-701)</h2>
+    <p>Security+ SY0-701 (objective 4.8) lists seven steps in the incident response process: Preparation, Detection, Analysis, Containment, Eradication, Recovery, and Lessons learned. Memorize the order and what each step involves — the exam will give you a scenario and ask which step is being performed. You may also see <strong>PICERL</strong>, the six-phase SANS model, which combines Detection and Analysis into a single Identification phase. NIST SP 800-61 Rev. 3 (April 2025) takes a different approach: it maps incident response onto the CSF 2.0 functions, with Govern, Identify, and Protect as preparation, Detect, Respond, and Recover as the response itself, and lessons learned feeding improvement across all of them.</p>
 
     <div class="step-flow">
       <div class="step-item">
@@ -586,7 +586,7 @@ tbody tr:hover td{background:#fdf4ff;}
             <span class="step-title">Preparation</span>
             <span class="step-abbr">P</span>
           </div>
-          <div class="step-desc">Everything done <em>before</em> an incident occurs — building the capability to respond effectively. This is the most important phase because an organization that hasn't prepared will be reactive and disorganised when an incident hits.</div>
+          <div class="step-desc">Everything done <em>before</em> an incident occurs — building the capability to respond effectively. This is the most important phase because an organization that hasn't prepared will be reactive and disorganized when an incident hits.</div>
           <div class="step-key"><strong>Key actions:</strong> Develop and document the IR plan, form the incident response team (IRT), define roles and responsibilities, establish communication procedures, deploy detection tools (SIEM, IDS/IPS), conduct tabletop exercises, create and maintain asset inventory, establish relationships with law enforcement and legal counsel, set up a secure out-of-band communication channel for use during incidents.</div>
         </div>
       </div>
@@ -594,15 +594,26 @@ tbody tr:hover td{background:#fdf4ff;}
         <div class="step-num">2</div>
         <div class="step-content">
           <div class="step-header">
-            <span class="step-title">Identification</span>
-            <span class="step-abbr">I</span>
+            <span class="step-title">Detection</span>
+            <span class="step-abbr">D</span>
           </div>
-          <div class="step-desc">Detecting that an incident has occurred and determining its scope. Not every alert is an incident — this phase distinguishes real incidents from false positives and establishes the nature and extent of the compromise.</div>
-          <div class="step-key"><strong>Key actions:</strong> Monitor logs and SIEM alerts, identify indicators of compromise (IoCs), determine the scope and affected systems, classify the incident by severity, assign incident ID and begin documentation, notify the incident response team and management. <strong>First responder priority: preserve evidence before taking any remediation action.</strong></div>
+          <div class="step-desc">Recognizing that something may be wrong — an alert, log entry, user report, or threat-hunting finding points to a possible incident.</div>
+          <div class="step-key"><strong>Key actions:</strong> Monitor logs and SIEM alerts, review IDS/IPS and EDR alerts, take reports from users and the help desk, identify indicators of compromise (IoCs).</div>
         </div>
       </div>
       <div class="step-item">
         <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-header">
+            <span class="step-title">Analysis</span>
+            <span class="step-abbr">A</span>
+          </div>
+          <div class="step-desc">Confirming whether an incident has occurred and determining its scope. Not every alert is an incident — this step distinguishes real incidents from false positives and establishes the nature and extent of the compromise.</div>
+          <div class="step-key"><strong>Key actions:</strong> Validate alerts and rule out false positives, determine the scope and affected systems, classify the incident by severity, assign incident ID and begin documentation, notify the incident response team and management. <strong>First responder priority: preserve evidence before taking any remediation action.</strong></div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
         <div class="step-content">
           <div class="step-header">
             <span class="step-title">Containment</span>
@@ -613,7 +624,7 @@ tbody tr:hover td{background:#fdf4ff;}
         </div>
       </div>
       <div class="step-item">
-        <div class="step-num">4</div>
+        <div class="step-num">5</div>
         <div class="step-content">
           <div class="step-header">
             <span class="step-title">Eradication</span>
@@ -624,7 +635,7 @@ tbody tr:hover td{background:#fdf4ff;}
         </div>
       </div>
       <div class="step-item">
-        <div class="step-num">5</div>
+        <div class="step-num">6</div>
         <div class="step-content">
           <div class="step-header">
             <span class="step-title">Recovery</span>
@@ -635,7 +646,7 @@ tbody tr:hover td{background:#fdf4ff;}
         </div>
       </div>
       <div class="step-item">
-        <div class="step-num">6</div>
+        <div class="step-num">7</div>
         <div class="step-content">
           <div class="step-header">
             <span class="step-title">Lessons Learned</span>
@@ -648,14 +659,14 @@ tbody tr:hover td{background:#fdf4ff;}
     </div>
 
     <div class="exam-tip">
-      <div class="exam-tip-label">⚡ PICERL exam tips</div>
-      <p><strong>Memorize the order:</strong> Preparation → Identification → Containment → Eradication → Recovery → Lessons Learned. The exam gives scenarios like "After removing malware, the team verifies the system is clean and reconnects it to the network" — that's <strong>Recovery</strong>, not Eradication.</p>
+      <div class="exam-tip-label">⚡ IR process exam tips</div>
+      <p><strong>Memorize the order:</strong> Preparation → Detection → Analysis → Containment → Eradication → Recovery → Lessons Learned. The exam gives scenarios like "After removing malware, the team verifies the system is clean and reconnects it to the network" — that's <strong>Recovery</strong>, not Eradication.</p>
       <p><strong>Containment before Eradication</strong> is the most common wrong-order trap. You contain first (stop the spread), then eradicate (remove the threat). Jumping to eradication while the attacker still has active access can alert them and cause them to destroy evidence or cause more damage.</p>
-      <p><strong>Evidence preservation is always priority in Identification.</strong> If the exam asks "What should the first responder do first?" the answer is almost always preserve evidence (memory dump, disk image) before taking action that might alter it.</p>
+      <p><strong>Evidence preservation is always priority during Detection and Analysis.</strong> If the exam asks "What should the first responder do first?" the answer is almost always preserve evidence (memory dump, disk image) before taking action that might alter it.</p>
     </div>
 
     <h2>Indicators of Compromise (IoCs)</h2>
-    <p>IoCs are evidence that a system or network has been compromised. Recognizing IoCs is tested in the Identification phase:</p>
+    <p>IoCs are evidence that a system or network has been compromised. Recognizing IoCs is part of the Detection and Analysis steps:</p>
 
     <div class="table-wrap">
       <table>
@@ -665,7 +676,7 @@ tbody tr:hover td{background:#fdf4ff;}
           <tr><td class="td-term">Host IoCs</td><td>Unexpected processes running, new scheduled tasks or startup entries, modified system files, disabled security tools, new user accounts created, privilege escalation events</td><td>Malware persistence, attacker maintaining foothold, lateral movement</td></tr>
           <tr><td class="td-term">Account IoCs</td><td>Login at unusual times or from unusual locations, multiple failed logins followed by success, accounts accessing resources they never have before, new admin accounts</td><td>Credential compromise, brute force attack, insider threat</td></tr>
           <tr><td class="td-term">Log IoCs</td><td>Gaps in log data (logs cleared or deleted), mass log events, Event ID 4624 (successful login) from unusual source, Event ID 4720 (account created)</td><td>Attacker covering tracks, automated attack tools running</td></tr>
-          <tr><td class="td-term">File IoCs</td><td>Unknown executables, files with double extensions (.pdf.exe), files in unusual locations (%temp%, AppData), recently modified system binaries, files with no creation date</td><td>Malware dropped on system, trojanised applications</td></tr>
+          <tr><td class="td-term">File IoCs</td><td>Unknown executables, files with double extensions (.pdf.exe), files in unusual locations (%temp%, AppData), recently modified system binaries, files with no creation date</td><td>Malware dropped on system, trojanized applications</td></tr>
         </tbody>
       </table>
     </div>
@@ -729,7 +740,7 @@ tbody tr:hover td{background:#fdf4ff;}
 
     <h2>Exam Scenarios</h2>
     <div class="scenario-list">
-      <div class="scenario-item">💬 "A security analyst notices unusual outbound traffic to an unknown external IP at 3am. They confirm the traffic is malicious. What phase of IR are they in?" → <strong>Identification — detecting and confirming that an incident has occurred.</strong></div>
+      <div class="scenario-item">💬 "A security analyst notices unusual outbound traffic to an unknown external IP at 3am. They confirm the traffic is malicious. What phase of IR are they in?" → <strong>Analysis — the anomaly has been detected, and confirming it is malicious establishes that an incident has occurred.</strong></div>
       <div class="scenario-item">💬 "After confirming ransomware on a workstation, the team disconnects it from the network. What phase is this?" → <strong>Containment — isolating the affected system to stop the spread before eradicating the malware.</strong></div>
       <div class="scenario-item">💬 "The IR team removes malware from all affected systems and patches the exploited vulnerability. What phase is this?" → <strong>Eradication — removing the threat and closing the vulnerability that allowed it in.</strong></div>
       <div class="scenario-item">💬 "Systems are restored from clean backups and monitored closely after being reconnected to the network. What phase is this?" → <strong>Recovery — returning systems to normal operation after the threat has been eradicated.</strong></div>
@@ -737,7 +748,7 @@ tbody tr:hover td{background:#fdf4ff;}
       <div class="scenario-item">💬 "The IR team is updating the IR plan based on what went wrong during a recent ransomware incident. What phase is this?" → <strong>Lessons Learned (Post-Incident Review) — the final phase that feeds improvements back into Preparation.</strong></div>
       <div class="scenario-item">💬 "Why should eradication not happen before containment?" → <strong>Containment stops the spread first. Starting eradication while the attacker has active access can alert them, cause them to destroy evidence, escalate the attack, or move laterally to systems not yet identified.</strong></div>
       <div class="scenario-item">💬 "A forensic investigator creates a bit-for-bit copy of a compromised hard drive and hashes both the original and copy. What is the hash used to prove?" → <strong>Integrity — the hash proves the forensic copy is identical to the original and has not been altered, establishing its validity as evidence (chain of custody).</strong></div>
-      <div class="scenario-item">💬 "Which PICERL phase involves training staff, developing IR plans, and running tabletop exercises?" → <strong>Preparation — all proactive activities that occur before an incident happen in this phase.</strong></div>
+      <div class="scenario-item">💬 "Which incident response step involves training staff, developing IR plans, and running tabletop exercises?" → <strong>Preparation — all proactive activities that occur before an incident happen in this phase.</strong></div>
       <div class="scenario-item">💬 "An organization suffers a data breach affecting customer PII. Who should be notified first — the public, law enforcement, or legal counsel?" → <strong>Legal counsel — they determine regulatory notification requirements, timing, and guide all other communications to avoid legal liability.</strong></div>
     </div>
 

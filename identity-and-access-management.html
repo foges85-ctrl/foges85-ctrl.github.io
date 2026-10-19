@@ -21,7 +21,7 @@
 <link rel="canonical" href="https://itstudyhub.org/identity-and-access-management.html">
 
 <title>Identity & Access Management Explained — MFA, SSO, PAM & RBAC</title>
-<meta name="description" content="IAM is 28% of Security+ for a reason. Master MFA, SSO, LDAP, PAM, and access control models — and learn how to answer the scenario questions that separate…">
+<meta name="description" content="IAM (objective 4.6) sits in Security Operations, the largest Security+ domain at 28%. Master MFA, SSO, LDAP, PAM, and access control models — and learn how to answer the scenario questions that separate…">
 
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -656,7 +656,7 @@ tbody tr:hover td { background: #f6f9ff; }
       "name": "Access control models",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Access control models define how permissions are assigned and enforced. Security+ tests all four models — know the defining characteristic of each and be able to identify which model a given scenario describes: DAC: Owner decides. \"The file owner can share it with whoever they want.\" MAC: Labels decide. \"The system prevents a Secret-cleared user from accessing Top Secret data regardless of what anyone wants.\""
+        "text": "Access control models define how permissions are assigned and enforced. Security+ SY0-701 lists five models (mandatory, discretionary, role-based, rule-based, attribute-based) — know the defining characteristic of each and be able to identify which model a given scenario describes: DAC: Owner decides. \"The file owner can share it with whoever they want.\" MAC: Labels decide. \"The system prevents a Secret-cleared user from accessing Top Secret data regardless of what anyone wants.\""
       }
     },
     {
@@ -719,7 +719,7 @@ tbody tr:hover td { background: #f6f9ff; }
   <meta property="og:site_name" content="IT Study Hub">
   <meta property="og:url" content="https://itstudyhub.org/identity-and-access-management.html">
   <meta property="og:title" content="Identity & Access Management Explained — MFA, SSO, PAM &">
-  <meta property="og:description" content="IAM is 28% of Security+ for a reason. Master MFA, SSO, LDAP, PAM, and access control models — and learn how to answer the scenario questions that separate…">
+  <meta property="og:description" content="IAM (objective 4.6) sits in Security Operations, the largest Security+ domain at 28%. Master MFA, SSO, LDAP, PAM, and access control models — and learn how to answer the scenario questions that separate…">
 
 <script type="application/ld+json">
 {
@@ -741,7 +741,7 @@ tbody tr:hover td { background: #f6f9ff; }
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/identity-and-access-management.html",
   "inLanguage": "en"
 }
@@ -792,7 +792,7 @@ tbody tr:hover td { background: #f6f9ff; }
       <span>›</span>
       <span>Identity and Access Management</span>
     </nav>
-    <div class="page-hero-badge">CompTIA Security+ · Core Domain</div>
+    <div class="page-hero-badge">CompTIA Security+ · Objective 4.6</div>
     <h1>Identity and <span>Access Management</span></h1>
     <p class="page-hero-sub">MFA, SSO, Zero Trust, LDAP, PAM, and access control models — every IAM concept tested on CompTIA Security+ SY0-701, explained clearly with exam scenarios.</p>
   </div>
@@ -806,7 +806,7 @@ tbody tr:hover td { background: #f6f9ff; }
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <!-- ARTICLE -->
@@ -933,7 +933,7 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <h2>Access control models</h2>
 
-    <p>Access control models define how permissions are assigned and enforced. Security+ tests all four models — know the defining characteristic of each and be able to identify which model a given scenario describes:</p>
+    <p>Access control models define how permissions are assigned and enforced. Security+ SY0-701 lists five models (mandatory, discretionary, role-based, rule-based, attribute-based) — know the defining characteristic of each and be able to identify which model a given scenario describes:</p>
 
     <div class="table-wrap">
       <table>
@@ -970,6 +970,12 @@ tbody tr:hover td { background: #f6f9ff; }
             <td>Most flexible — combines user, resource, environment attributes for fine-grained control</td>
             <td>Zero Trust environments, complex cloud policies</td>
           </tr>
+          <tr>
+            <td class="td-term">Rule-Based</td>
+            <td>System-enforced rules set by an administrator</td>
+            <td>Rules apply to every request regardless of who the user is or what role they hold</td>
+            <td>Firewall ACLs, time-of-day login restrictions</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -979,6 +985,7 @@ tbody tr:hover td { background: #f6f9ff; }
       <p><strong>DAC:</strong> Owner decides. "The file owner can share it with whoever they want."</p>
       <p><strong>MAC:</strong> Labels decide. "The system prevents a Secret-cleared user from accessing Top Secret data regardless of what anyone wants."</p>
       <p><strong>RBAC:</strong> Role decides. "All managers get the same access automatically because of their role."</p>
+      <p><strong>Rule-based:</strong> Rules decide. "The firewall ACL blocks this traffic no matter who the user is or what role they hold."</p>
       <p><strong>ABAC:</strong> Policy evaluates everything. "Access is granted only if the user is in HR, the device is compliant, and it's during business hours."</p>
     </div>
 

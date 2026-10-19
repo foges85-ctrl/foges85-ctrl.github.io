@@ -789,7 +789,7 @@ a:hover { text-decoration: underline; }
       "name": "IPv6 Transition Mechanisms — Network+ Deep Dive",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The Network+ exam tests how organizations migrate from IPv4 to IPv6. Three transition mechanisms appear regularly: dual stack, tunnelling, and NAT64/translation."
+        "text": "The Network+ exam tests how organizations migrate from IPv4 to IPv6. Three transition mechanisms appear regularly: dual stack, tunneling, and NAT64/translation."
       }
     }
   ]
@@ -842,7 +842,7 @@ a:hover { text-decoration: underline; }
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/ipv4-vs-ipv6.html",
   "inLanguage": "en"
 }
@@ -911,7 +911,7 @@ a:hover { text-decoration: underline; }
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <!-- ARTICLE -->
@@ -1204,13 +1204,13 @@ a:hover { text-decoration: underline; }
 
     <h2>IPv6 Transition Mechanisms — Network+ Deep Dive</h2>
 
-    <p>The Network+ exam tests how organizations migrate from IPv4 to IPv6. Three transition mechanisms appear regularly: dual stack, tunnelling, and NAT64/translation.</p>
+    <p>The Network+ exam tests how organizations migrate from IPv4 to IPv6. Three transition mechanisms appear regularly: dual stack, tunneling, and NAT64/translation.</p>
 
     <table class="info-table">
       <thead><tr><th>Mechanism</th><th>How It Works</th><th>Exam Key Fact</th></tr></thead>
       <tbody>
         <tr><td><strong>Dual Stack</strong></td><td>Device runs both IPv4 and IPv6 simultaneously — uses whichever is appropriate per destination</td><td>Preferred method — most common in enterprise migration. Both stacks fully operational.</td></tr>
-        <tr><td><strong>6to4 Tunnelling</strong></td><td>Encapsulates IPv6 packets inside IPv4 packets to cross IPv4-only infrastructure</td><td>IPv6 traffic treated as payload — used when IPv6-only islands need to communicate across IPv4 network</td></tr>
+        <tr><td><strong>6to4 Tunneling</strong></td><td>Encapsulates IPv6 packets inside IPv4 packets to cross IPv4-only infrastructure</td><td>IPv6 traffic treated as payload — used when IPv6-only islands need to communicate across IPv4 network</td></tr>
         <tr><td><strong>Teredo</strong></td><td>Tunnels IPv6 over UDP/IPv4 — works through NAT devices</td><td>Microsoft-developed; used when 6to4 fails behind NAT. Port 3544.</td></tr>
         <tr><td><strong>NAT64</strong></td><td>Translates between IPv6 and IPv4 at the network boundary</td><td>Allows IPv6-only clients to reach IPv4 servers — used in mobile networks</td></tr>
         <tr><td><strong>ISATAP</strong></td><td>Intra-Site Automatic Tunnel Addressing Protocol — tunnels IPv6 over IPv4 within a site</td><td>Embeds IPv4 address in IPv6 address; less common than dual stack</td></tr>
@@ -1223,7 +1223,7 @@ a:hover { text-decoration: underline; }
       <tbody>
         <tr><td><strong>Static</strong></td><td>Manually configured IPv6 address</td><td>Used for servers and infrastructure devices</td></tr>
         <tr><td><strong>DHCPv6 (Stateful)</strong></td><td>DHCPv6 server assigns address and tracks leases</td><td>Like DHCP for IPv4 — full control over assignments</td></tr>
-        <tr><td><strong>SLAAC</strong></td><td>Stateless Address Autoconfiguration — device generates its own address from prefix in Router Advertisement + EUI-64 or random</td><td>No DHCP server needed — router advertises /64 prefix, device self-configures. Privacy extensions randomise the interface ID.</td></tr>
+        <tr><td><strong>SLAAC</strong></td><td>Stateless Address Autoconfiguration — device generates its own address from prefix in Router Advertisement + EUI-64 or random</td><td>No DHCP server needed — router advertises /64 prefix, device self-configures. Privacy extensions randomize the interface ID.</td></tr>
         <tr><td><strong>DHCPv6 (Stateless)</strong></td><td>SLAAC for address + DHCPv6 for DNS/options only</td><td>Hybrid — router provides prefix, DHCPv6 provides DNS servers</td></tr>
       </tbody>
     </table>
@@ -1239,7 +1239,7 @@ a:hover { text-decoration: underline; }
     <table class="info-table">
       <thead><tr><th>Topic</th><th>IPv4</th><th>IPv6</th></tr></thead>
       <tbody>
-        <tr><td><strong>IPsec</strong></td><td>Optional — added as extension</td><td>Mandatory in spec (though often not enforced in practice)</td></tr>
+        <tr><td><strong>IPsec</strong></td><td>Optional — added as extension</td><td>Originally mandatory (RFC 4294); now a SHOULD, not a MUST (RFC 6434/8504)</td></tr>
         <tr><td><strong>NAT</strong></td><td>Used everywhere — hides internal addresses</td><td>Not used — every device has public address (privacy concern)</td></tr>
         <tr><td><strong>ARP spoofing</strong></td><td>ARP used to resolve IP→MAC</td><td>NDP (Neighbor Discovery Protocol) replaces ARP — NDP spoofing is equivalent attack</td></tr>
         <tr><td><strong>Broadcast</strong></td><td>Broadcast traffic exists — used for ARP, DHCP</td><td>No broadcast — uses multicast instead (reduces attack surface)</td></tr>
@@ -1249,7 +1249,7 @@ a:hover { text-decoration: underline; }
     </table>
 
     <div class="callout callout-amber">
-      <strong>⚡ Security+ exam tip — IPv6 tunnel bypass:</strong> A common exam scenario involves an attacker using IPv6 tunnelling to bypass IPv4-focused security controls. If a firewall is configured to filter IPv4 traffic only and doesn't inspect tunnelled IPv6, an attacker can encapsulate IPv6 attacks inside IPv4 packets. Dual-stack environments must have IPv6 security controls in place — not just IPv4.
+      <strong>⚡ Security+ exam tip — IPv6 tunnel bypass:</strong> A common exam scenario involves an attacker using IPv6 tunneling to bypass IPv4-focused security controls. If a firewall is configured to filter IPv4 traffic only and doesn't inspect tunneled IPv6, an attacker can encapsulate IPv6 attacks inside IPv4 packets. Dual-stack environments must have IPv6 security controls in place — not just IPv4.
     </div>
 
     <h2>Network+ and Security+ Exam Scenarios</h2>
@@ -1260,8 +1260,8 @@ a:hover { text-decoration: underline; }
         <div class="scenario-a"><strong>SLAAC (Stateless Address Autoconfiguration).</strong> The router sends a Router Advertisement (RA) containing the /64 network prefix. The device combines this prefix with a self-generated interface ID (from EUI-64 or random) to form a complete /128 address.</div>
       </div>
       <div class="scenario-card">
-        <div class="scenario-q">An organization is migrating to IPv6 but still has many IPv4-only servers. Which transition strategy allows clients to use both protocols without tunnelling?</div>
-        <div class="scenario-a"><strong>Dual stack.</strong> Dual stack is the preferred migration approach — devices run both IPv4 and IPv6 simultaneously and use whichever is appropriate. No tunnelling overhead or translation complexity.</div>
+        <div class="scenario-q">An organization is migrating to IPv6 but still has many IPv4-only servers. Which transition strategy allows clients to use both protocols without tunneling?</div>
+        <div class="scenario-a"><strong>Dual stack.</strong> Dual stack is the preferred migration approach — devices run both IPv4 and IPv6 simultaneously and use whichever is appropriate. No tunneling overhead or translation complexity.</div>
       </div>
       <div class="scenario-card">
         <div class="scenario-q">A security team notices devices are getting unexpected IPv6 default gateway assignments from an unknown source on the LAN. What attack is occurring?</div>

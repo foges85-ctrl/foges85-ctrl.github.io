@@ -369,7 +369,7 @@ tbody tr:hover td{background:#eff6ff;}
   "mainEntity": [
     {"@type":"Question","name":"What is BIOS?","acceptedAnswer":{"@type":"Answer","text":"BIOS (Basic Input/Output System) is firmware stored on a small chip on the motherboard. It is the first software that runs when a computer is powered on. BIOS performs the POST (Power-On Self-Test), initializes hardware components, and then hands off to the bootloader to load the operating system. Traditional BIOS uses a 16-bit processor mode, has a text-based interface, and supports only MBR-partitioned drives up to 2 TB."}},
     {"@type":"Question","name":"What is UEFI and how is it different from BIOS?","acceptedAnswer":{"@type":"Answer","text":"UEFI (Unified Extensible Firmware Interface) is the modern replacement for BIOS. UEFI supports drives larger than 2 TB (using GPT partitioning instead of MBR), has a graphical mouse-enabled interface, boots faster, supports Secure Boot (which prevents unsigned bootloaders from running), and uses 32-bit or 64-bit processor mode. All modern computers ship with UEFI rather than traditional BIOS."}},
-    {"@type":"Question","name":"What is Secure Boot?","acceptedAnswer":{"@type":"Answer","text":"Secure Boot is a UEFI feature that prevents the computer from booting unsigned or unrecognised bootloaders and operating systems. When enabled, the firmware checks the digital signature of every boot component against a database of trusted keys. If the signature doesn't match, the system refuses to boot that component. This prevents bootkits and rootkits from loading before the OS. Secure Boot is required for Windows 11."}},
+    {"@type":"Question","name":"What is Secure Boot?","acceptedAnswer":{"@type":"Answer","text":"Secure Boot is a UEFI feature that prevents the computer from booting unsigned or unrecognized bootloaders and operating systems. When enabled, the firmware checks the digital signature of every boot component against a database of trusted keys. If the signature doesn't match, the system refuses to boot that component. This prevents bootkits and rootkits from loading before the OS. Windows 11 requires UEFI firmware that is Secure Boot capable (enabling it is strongly recommended)."}},
     {"@type":"Question","name":"What does POST stand for and what does it do?","acceptedAnswer":{"@type":"Answer","text":"POST stands for Power-On Self-Test. It is the diagnostic process the BIOS/UEFI runs every time the computer starts. POST checks that essential hardware components — CPU, RAM, storage, and keyboard — are present and functional. If POST succeeds, the system beeps once and proceeds to boot. If POST fails, the system issues a series of beep codes or displays an error on screen to identify the failing component."}}
   ]
 }
@@ -403,7 +403,7 @@ tbody tr:hover td{background:#eff6ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/bios-uefi-explained.html",
   "inLanguage": "en"
 }
@@ -457,7 +457,7 @@ tbody tr:hover td{background:#eff6ff;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -466,7 +466,7 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ Quick Answer</div>
       <div class="quick-answer-text">
-        <strong>BIOS</strong> (Basic Input/Output System) is the legacy firmware that initializes hardware and boots the OS. <strong>UEFI</strong> (Unified Extensible Firmware Interface) is its modern replacement — it supports drives over 2 TB, has a graphical interface, boots faster, and adds <strong>Secure Boot</strong> to prevent unauthorised bootloaders. Every time a PC starts, <strong>POST</strong> (Power-On Self-Test) runs first to verify hardware is functional. You access BIOS/UEFI settings by pressing a key (Del, F2, F10) during POST. <strong>Windows 11 requires UEFI with Secure Boot and TPM 2.0.</strong>
+        <strong>BIOS</strong> (Basic Input/Output System) is the legacy firmware that initializes hardware and boots the OS. <strong>UEFI</strong> (Unified Extensible Firmware Interface) is its modern replacement — it supports drives over 2 TB, has a graphical interface, boots faster, and adds <strong>Secure Boot</strong> to prevent unauthorized bootloaders. Every time a PC starts, <strong>POST</strong> (Power-On Self-Test) runs first to verify hardware is functional. You access BIOS/UEFI settings by pressing a key (Del, F2, F10) during POST. <strong>Windows 11 requires UEFI firmware that is Secure Boot capable, plus TPM 2.0.</strong>
       </div>
     </div>
 
@@ -485,7 +485,7 @@ tbody tr:hover td{background:#eff6ff;}
           <tr><td class="td-term">Partition table</td><td>MBR (Master Boot Record)</td><td>GPT (GUID Partition Table) — also supports MBR</td></tr>
           <tr><td class="td-term">Max drive size</td><td>2 TB (MBR limit)</td><td>9.4 ZB (GPT limit — effectively unlimited)</td></tr>
           <tr><td class="td-term">Max primary partitions</td><td>4 (MBR)</td><td>128 (GPT)</td></tr>
-          <tr><td class="td-term">Secure Boot</td><td>Not supported</td><td>Supported (required for Windows 11)</td></tr>
+          <tr><td class="td-term">Secure Boot</td><td>Not supported</td><td>Supported (Secure Boot capability required for Windows 11)</td></tr>
           <tr><td class="td-term">Boot speed</td><td>Slower initialization</td><td>Faster — can use fast boot to skip POST</td></tr>
           <tr><td class="td-term">Network boot</td><td>PXE boot support</td><td>HTTP boot + PXE boot</td></tr>
           <tr><td class="td-term">Storage location</td><td>ROM / Flash chip on motherboard</td><td>Flash chip on motherboard (NVRAM)</td></tr>
@@ -558,16 +558,16 @@ tbody tr:hover td{background:#eff6ff;}
 
     <h2>Secure Boot</h2>
 
-    <p>Secure Boot is a UEFI security feature that prevents the computer from loading unauthorised bootloaders and early-startup drivers. When Secure Boot is enabled, the UEFI firmware checks the digital signature of each boot component — bootloader, kernel modules, UEFI drivers — against a database of trusted signatures (the <strong>db</strong> database) and a blocklist of known-bad signatures (the <strong>dbx</strong> database).</p>
+    <p>Secure Boot is a UEFI security feature that prevents the computer from loading unauthorized bootloaders and early-startup drivers. When Secure Boot is enabled, the UEFI firmware checks the digital signature of each boot component — bootloader, kernel modules, UEFI drivers — against a database of trusted signatures (the <strong>db</strong> database) and a blocklist of known-bad signatures (the <strong>dbx</strong> database).</p>
 
     <p>If the signature is trusted, the component loads. If the signature is missing or doesn't match a trusted key, the firmware refuses to load it and displays a Secure Boot violation error. This prevents <strong>bootkits</strong> — malware that loads before the OS and is invisible to antivirus software running inside the OS.</p>
 
-    <p><strong>Windows 11 requires Secure Boot to be enabled.</strong> Most Linux distributions also support Secure Boot via Microsoft-signed shim bootloaders. When dual-booting or installing a custom OS, you may need to enroll additional trusted keys or temporarily disable Secure Boot — though disabling it reduces security.</p>
+    <p><strong>Windows 11 requires UEFI firmware that is Secure Boot capable</strong> (enabling it is strongly recommended). Most Linux distributions also support Secure Boot via Microsoft-signed shim bootloaders. When dual-booting or installing a custom OS, you may need to enroll additional trusted keys or temporarily disable Secure Boot — though disabling it reduces security.</p>
 
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 Secure Boot vs TPM — Know the Difference</div>
       <p><strong>Secure Boot</strong> = verifies the bootloader and early OS components haven't been tampered with. Enforced by UEFI firmware. Prevents bootkits.</p>
-      <p><strong>TPM</strong> (Trusted Platform Module) = a hardware chip that stores cryptographic keys, certificates, and measurements of the boot state. Used by BitLocker to seal encryption keys and detect boot tampering. Both Secure Boot and TPM 2.0 are required for Windows 11.</p>
+      <p><strong>TPM</strong> (Trusted Platform Module) = a hardware chip that stores cryptographic keys, certificates, and measurements of the boot state. Used by BitLocker to seal encryption keys and detect boot tampering. Windows 11 requires TPM 2.0 and Secure Boot–capable UEFI firmware.</p>
       <p>They work together: Secure Boot ensures only trusted boot code runs; TPM records and seals measurements of the trusted boot state. If the boot chain changes (e.g., malware modifies the bootloader), TPM detects the change and BitLocker prompts for recovery key.</p>
     </div>
 
@@ -585,7 +585,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="concept-card">
         <div class="concept-icon">🔒</div>
         <div class="concept-name">BIOS / Supervisor Password</div>
-        <div class="concept-desc">A password that must be entered to access BIOS settings. Prevents unauthorised users from changing boot order, disabling Secure Boot, or altering hardware configuration. A separate <strong>boot password</strong> can require a password before the OS loads.</div>
+        <div class="concept-desc">A password that must be entered to access BIOS settings. Prevents unauthorized users from changing boot order, disabling Secure Boot, or altering hardware configuration. A separate <strong>boot password</strong> can require a password before the OS loads.</div>
       </div>
       <div class="concept-card">
         <div class="concept-icon">⚡</div>
@@ -595,7 +595,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="concept-card">
         <div class="concept-icon">🖥️</div>
         <div class="concept-name">Virtualization Support (VT-x / AMD-V)</div>
-        <div class="concept-desc">Enables CPU-level hardware virtualisation. Must be <strong>enabled in BIOS</strong> before hypervisors like Hyper-V, VirtualBox, or VMware Workstation can run 64-bit guest VMs. Often disabled by default on new systems.</div>
+        <div class="concept-desc">Enables CPU-level hardware virtualization. Must be <strong>enabled in BIOS</strong> before hypervisors like Hyper-V, VirtualBox, or VMware Workstation can run 64-bit guest VMs. Often disabled by default on new systems.</div>
       </div>
       <div class="concept-card">
         <div class="concept-icon">🌡️</div>
@@ -619,9 +619,9 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="scenario-list">
       <div class="scenario-item"><strong>Scenario:</strong> A technician turns on a computer and hears 3 short beeps. The screen is blank. What is the most likely cause? <strong>Answer: RAM failure.</strong> Reseat or replace the RAM sticks. Multiple short beeps during POST indicate a memory error on most BIOS implementations.</div>
       <div class="scenario-item"><strong>Scenario:</strong> Every time a computer is unplugged from power overnight, the system clock resets to January 1, 2000 and the boot order changes. What component needs to be replaced? <strong>Answer: The CMOS battery (CR2032).</strong> A dead CMOS battery causes BIOS settings to reset when main power is removed.</div>
-      <div class="scenario-item"><strong>Scenario:</strong> A user wants to install Windows 11 but the installer reports that the PC doesn't meet requirements. The CPU and RAM are sufficient. What two BIOS settings should the technician check first? <strong>Answer: Secure Boot (must be enabled) and TPM 2.0 (must be present and enabled).</strong> Both are mandatory Windows 11 requirements.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> A user wants to install Windows 11 but the installer reports that the PC doesn't meet requirements. The CPU and RAM are sufficient. What two BIOS settings should the technician check first? <strong>Answer: UEFI boot mode / Secure Boot capability and TPM 2.0 (must be present and enabled).</strong> Both are mandatory Windows 11 requirements; turning Secure Boot on is strongly recommended but not itself required.</div>
       <div class="scenario-item"><strong>Scenario:</strong> A technician needs to boot a PC from a USB drive to run a diagnostic tool. The PC currently boots straight to Windows without showing POST. What are the two options? <strong>Answer: (1) Enter BIOS and change boot order to put USB first, or (2) press F11/F12 during startup for a one-time boot device selection menu.</strong> If fast boot is enabled, it may need to be disabled first.</div>
-      <div class="scenario-item"><strong>Scenario:</strong> A technician installs VirtualBox on a Windows PC but cannot create 64-bit virtual machines. Only 32-bit is available. What is the most likely cause? <strong>Answer: Hardware virtualisation (VT-x or AMD-V) is disabled in BIOS.</strong> Enable it in BIOS/UEFI settings under CPU or Advanced settings.</div>
+      <div class="scenario-item"><strong>Scenario:</strong> A technician installs VirtualBox on a Windows PC but cannot create 64-bit virtual machines. Only 32-bit is available. What is the most likely cause? <strong>Answer: Hardware virtualization (VT-x or AMD-V) is disabled in BIOS.</strong> Enable it in BIOS/UEFI settings under CPU or Advanced settings.</div>
       <div class="scenario-item"><strong>Scenario:</strong> What is the difference between MBR and GPT, and when does it matter for the A+ exam? <strong>Answer: MBR (used with legacy BIOS) supports a maximum of 2 TB and 4 primary partitions. GPT (used with UEFI) supports drives over 2 TB and up to 128 partitions.</strong> When installing Windows on a drive larger than 2 TB, GPT partitioning is required.</div>
     </div>
 
@@ -629,7 +629,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <p>For A+ candidates, the distinction between legacy BIOS and UEFI affects several practical decisions that appear in exam scenarios and in real-world field work.</p>
 
-    <p><strong>Drive partition scheme</strong>: legacy BIOS systems use <strong>MBR (Master Boot Record)</strong> partitioning; UEFI systems use <strong>GPT (GUID Partition Table)</strong>. MBR limits drives to <strong>2 TB maximum</strong> and allows a maximum of <strong>4 primary partitions</strong>. GPT supports drives up to 9.4 ZB (effectively unlimited) and allows up to 128 primary partitions. If you're installing Windows on a drive larger than 2 TB, GPT is required — which means UEFI mode must be used. If you're installing Windows 11, GPT + UEFI + Secure Boot + TPM 2.0 are all mandatory. For exam scenarios: if a technician reports that a new 4 TB drive is only showing 2 TB capacity, the likely cause is MBR partitioning — convert to GPT and use UEFI mode to access the full capacity.</p>
+    <p><strong>Drive partition scheme</strong>: legacy BIOS systems use <strong>MBR (Master Boot Record)</strong> partitioning; UEFI systems use <strong>GPT (GUID Partition Table)</strong>. MBR limits drives to <strong>2 TB maximum</strong> and allows a maximum of <strong>4 primary partitions</strong>. GPT supports drives up to 9.4 ZB (effectively unlimited) and allows up to 128 primary partitions. If you're installing Windows on a drive larger than 2 TB, GPT is required — which means UEFI mode must be used. If you're installing Windows 11, GPT + UEFI (Secure Boot capable) + TPM 2.0 are all mandatory. For exam scenarios: if a technician reports that a new 4 TB drive is only showing 2 TB capacity, the likely cause is MBR partitioning — convert to GPT and use UEFI mode to access the full capacity.</p>
 
     <p><strong>Boot modes</strong>: most modern systems support both UEFI native mode and UEFI with <strong>CSM (Compatibility Support Module)</strong> enabled. CSM provides legacy BIOS emulation, allowing older operating systems and bootloaders to work on UEFI hardware. When CSM is enabled, the system can boot MBR disks; when CSM is disabled (pure UEFI mode), only GPT disks with UEFI bootloaders are supported. Windows 11 requires CSM to be disabled. If a technician installs a UEFI-capable OS but the system won't boot, checking whether the drive was formatted as MBR instead of GPT is a common diagnostic step.</p>
 
@@ -680,7 +680,7 @@ tbody tr:hover td{background:#eff6ff;}
       <a href="windows-troubleshooting.html" class="related-link">Windows Troubleshooting</a>
       <a href="storage-types.html" class="related-link">Storage Types (HDD, SSD, NVMe)</a>
       <a href="raid-levels.html" class="related-link">RAID Levels Explained</a>
-      <a href="virtualization-explained.html" class="related-link">Virtualisation Explained</a>
+      <a href="virtualization-explained.html" class="related-link">Virtualization Explained</a>
       <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
       <a href="comptia-aplus-study-guide.html" class="related-link">Full A+ Study Guide</a>
       <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>

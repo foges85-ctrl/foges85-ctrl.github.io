@@ -382,7 +382,7 @@ tbody tr:hover td{background:#eff6ff;}
       "name": "What is Docker?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Docker is the most widely used container platform. It provides the Docker Engine (the runtime that runs containers), the Dockerfile format (instructions for building images), and Docker Hub (the default public registry for sharing images). Docker made containers accessible to everyday developers and is the de facto standard for containerisation."
+        "text": "Docker is the most widely used container platform. It provides the Docker Engine (the runtime that runs containers), the Dockerfile format (instructions for building images), and Docker Hub (the default public registry for sharing images). Docker made containers accessible to everyday developers and is the de facto standard for containerization."
       }
     },
     {
@@ -390,7 +390,7 @@ tbody tr:hover td{background:#eff6ff;}
       "name": "What is Kubernetes?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Kubernetes (K8s) is an open-source container orchestration platform originally developed by Google. It automates deploying, scaling, and managing containerised applications across clusters of machines. Kubernetes handles scheduling containers onto nodes, restarting failed containers, scaling up when traffic spikes, and rolling updates with zero downtime."
+        "text": "Kubernetes (K8s) is an open-source container orchestration platform originally developed by Google. It automates deploying, scaling, and managing containerized applications across clusters of machines. Kubernetes handles scheduling containers onto nodes, restarting failed containers, scaling up when traffic spikes, and rolling updates with zero downtime."
       }
     }
   ]
@@ -433,7 +433,7 @@ tbody tr:hover td{background:#eff6ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/containers-and-docker.html",
   "inLanguage": "en"
 }
@@ -467,7 +467,7 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="nav-links" id="navLinks">
       <a href="/">Home</a>
       <a href="cloud-concepts.html">Cloud Concepts</a>
-      <a href="virtualization-explained.html">Virtualisation</a>
+      <a href="virtualization-explained.html">Virtualization</a>
       <a href="best-study-resources.html" class="nav-cta">Study Resources</a>
     </div>
   </div>
@@ -494,7 +494,7 @@ tbody tr:hover td{background:#eff6ff;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -513,7 +513,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <p>The core problem containers solve is the classic "it works on my machine" problem. Before containers, an application that worked perfectly in a developer's local environment might fail in production because of subtle differences in library versions, OS configuration, or installed software. A container bundles the application and its exact dependencies together, so it runs identically regardless of where it's deployed — a developer's laptop, a test server, or a production cloud environment.</p>
 
-    <p>Containers are <strong>ephemeral by design</strong>. When a container stops, any data written inside it is lost unless explicitly saved to external storage. This makes containers ideal for stateless services — web servers, APIs, microservices — where each instance is identical and disposable. For stateful applications like databases, you mount external persistent storage volumes.</p>
+    <p>Containers are <strong>ephemeral by design</strong>. When a container is removed (or replaced by a new one from the image), any data written inside it is lost unless explicitly saved to external storage. This makes containers ideal for stateless services — web servers, APIs, microservices — where each instance is identical and disposable. For stateful applications like databases, you mount external persistent storage volumes.</p>
 
     <h2>Containers vs Virtual Machines</h2>
 
@@ -681,7 +681,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <p>Container networking is how containers communicate with each other and with the outside world. Understanding the basic networking models is useful for both exam questions and real-world troubleshooting.</p>
 
-    <p>By default, Docker creates a <strong>bridge network</strong> — a private internal network on the host where containers can communicate with each other using their container names as hostnames. The Docker host's network is separate; containers reach the outside via NAT through the host's IP address. This is the default for most single-host deployments.</p>
+    <p>By default, Docker creates a <strong>bridge network</strong> — a private internal network on the host where containers can reach each other by IP address. Create a user-defined bridge network (<code>docker network create</code>) to get automatic name resolution, so containers can use each other's names as hostnames. The Docker host's network is separate; containers reach the outside via NAT through the host's IP address. This is the default for most single-host deployments.</p>
 
     <p>The <strong>host network mode</strong> removes network isolation between the container and the Docker host — the container shares the host's network namespace directly, using the host's IP address. This provides the best network performance but eliminates container network isolation. Use this only when performance is critical and the security implications are understood.</p>
 
@@ -699,9 +699,9 @@ tbody tr:hover td{background:#eff6ff;}
 
     <p>Container images are built from base images pulled from registries, and those base images contain operating system packages, libraries, and runtimes that may have known vulnerabilities. <strong>Container image scanning</strong> is the practice of analyzing images for known CVEs (Common Vulnerabilities and Exposures) in the packages they contain — similar to vulnerability scanning for traditional systems, but applied at the image layer before containers are ever deployed.</p>
 
-    <p>Tools like Trivy, Anchore, Snyk, and cloud-native scanner integrations (AWS ECR scanning, Azure Defender for Container Registries) can scan images in CI/CD pipelines, blocking deployment if critical or high-severity vulnerabilities are found. This is the container equivalent of "shift left" security — catching vulnerabilities before they reach production.</p>
+    <p>Tools like Trivy, Anchore, Snyk, and cloud-native scanner integrations (AWS ECR scanning, Microsoft Defender for Containers) can scan images in CI/CD pipelines, blocking deployment if critical or high-severity vulnerabilities are found. This is the container equivalent of "shift left" security — catching vulnerabilities before they reach production.</p>
 
-    <p><strong>Supply chain risk</strong> in containers is a significant concern. When you run <code>FROM ubuntu:22.04</code> in a Dockerfile, you're trusting that the ubuntu image on Docker Hub hasn't been tampered with. <strong>Image signing</strong> (using Docker Content Trust or Sigstore/cosign) allows image publishers to cryptographically sign images, and container runtimes can be configured to only run signed images from trusted publishers. This prevents "typosquatting" attacks where malicious images are published under names similar to popular images (e.g., <code>nginix</code> instead of <code>nginx</code>).</p>
+    <p><strong>Supply chain risk</strong> in containers is a significant concern. When you run <code>FROM ubuntu:22.04</code> in a Dockerfile, you're trusting that the ubuntu image on Docker Hub hasn't been tampered with. <strong>Image signing</strong> (using Sigstore/cosign or Notary Project Notation; Docker Content Trust is being retired) allows image publishers to cryptographically sign images, and container runtimes can be configured to only run signed images from trusted publishers. This prevents "typosquatting" attacks where malicious images are published under names similar to popular images (e.g., <code>nginix</code> instead of <code>nginx</code>).</p>
 
     <p>Best practices for container image security include using minimal base images (Alpine Linux or distroless images reduce the attack surface dramatically), never running containers as root, pinning base image versions rather than using mutable tags like <code>latest</code>, and regularly rebuilding images to incorporate security patches from updated base images.</p>
 
@@ -722,7 +722,7 @@ tbody tr:hover td{background:#eff6ff;}
     
 <h2>Related Articles</h2>
     <div class="related-grid">
-      <a href="virtualization-explained.html" class="related-link">Virtualisation Explained</a>
+      <a href="virtualization-explained.html" class="related-link">Virtualization Explained</a>
       <a href="cloud-concepts.html" class="related-link">Cloud Concepts (IaaS/PaaS/SaaS)</a>
       <a href="cloud-security.html" class="related-link">Cloud Security (CASB, CSPM)</a>
       <a href="serverless-computing.html" class="related-link">Serverless Computing</a>
@@ -886,7 +886,7 @@ tbody tr:hover td{background:#eff6ff;}
     </div>
     <div class="footer-links">
       <div class="footer-links-title">Related</div>
-      <a href="virtualization-explained.html">Virtualisation</a>
+      <a href="virtualization-explained.html">Virtualization</a>
       <a href="serverless-computing.html">Serverless Computing</a>
       <a href="aws-vs-azure-vs-gcp.html">AWS vs Azure vs GCP</a>
     </div>

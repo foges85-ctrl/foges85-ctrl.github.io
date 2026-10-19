@@ -680,7 +680,7 @@ tbody tr:hover td { background: #faf4ff; }
       "name": "LDAP directory structure",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "LDAP directories are organized as a hierarchical tree called the Directory Information Tree (DIT) . Every entry in the tree is called a Distinguished Name (DN) — a unique path that identifies exactly where an object sits in the hierarchy. Domain: company.com Tree root (DC = Domain Component): DC=company,DC=com ← root of the domain │ ├── OU=Users,DC=company,DC=com ← Organisational Unit │ ├── CN=John Smith,OU=Users,DC=company,DC=com │ └── CN=Jane Doe,OU=Users,DC=company,DC=com │ ├── OU=Computers,DC=company,DC=com │ └── CN=DESKTOP-01,OU=Computers,DC=company,DC=com │ └── OU=Groups,DC=company,DC…"
+        "text": "LDAP directories are organized as a hierarchical tree called the Directory Information Tree (DIT) . Every entry in the tree is called a Distinguished Name (DN) — a unique path that identifies exactly where an object sits in the hierarchy. Domain: company.com Tree root (DC = Domain Component): DC=company,DC=com ← root of the domain │ ├── OU=Users,DC=company,DC=com ← Organizational Unit │ ├── CN=John Smith,OU=Users,DC=company,DC=com │ └── CN=Jane Doe,OU=Users,DC=company,DC=com │ ├── OU=Computers,DC=company,DC=com │ └── CN=DESKTOP-01,OU=Computers,DC=company,DC=com │ └── OU=Groups,DC=company,DC…"
       }
     },
     {
@@ -688,7 +688,7 @@ tbody tr:hover td { background: #faf4ff; }
       "name": "How LDAP authentication works",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "When an application needs to verify a user's credentials against a directory, it uses an LDAP bind operation — connecting to the directory server and authenticating. There are two types of bind:"
+        "text": "When an application needs to verify a user's credentials against a directory, it uses an LDAP bind operation — connecting to the directory server and authenticating. There are three common types of bind:"
       }
     },
     {
@@ -704,7 +704,7 @@ tbody tr:hover td { background: #faf4ff; }
       "name": "LDAP injection — the Security+ attack",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "LDAP injection is an attack that targets applications which build LDAP queries using unsanitised user input — the LDAP equivalent of SQL injection. If an application constructs an LDAP filter by directly concatenating user-supplied values, an attacker can manipulate the filter to bypass authentication or extract directory data. Vulnerable application builds this LDAP filter: (&(uid= [username input] )(password= [password input] ))"
+        "text": "LDAP injection is an attack that targets applications which build LDAP queries using unsanitized user input — the LDAP equivalent of SQL injection. If an application constructs an LDAP filter by directly concatenating user-supplied values, an attacker can manipulate the filter to bypass authentication or extract directory data. Vulnerable application builds this LDAP filter: (&(uid= [username input] )(password= [password input] ))"
       }
     },
     {
@@ -765,7 +765,7 @@ tbody tr:hover td { background: #faf4ff; }
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/ldap-explained.html",
   "inLanguage": "en"
 }
@@ -832,7 +832,7 @@ tbody tr:hover td { background: #faf4ff; }
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <!-- ARTICLE -->
@@ -842,7 +842,7 @@ tbody tr:hover td { background: #faf4ff; }
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ What is LDAP?</div>
       <div class="quick-answer-text">
-        LDAP (Lightweight Directory Access Protocol) is a protocol used to <strong>access and manage directory services</strong> — centralised databases that store information about users, computers, groups, and resources on a network. It runs over <strong>TCP/UDP port 389</strong> (plaintext) or <strong>port 636</strong> (LDAPS — LDAP over TLS). Microsoft's Active Directory is the most widely deployed directory service and uses LDAP as its access protocol. When you log into a Windows domain, LDAP is doing the work of looking up your account.
+        LDAP (Lightweight Directory Access Protocol) is a protocol used to <strong>access and manage directory services</strong> — centralized databases that store information about users, computers, groups, and resources on a network. It runs over <strong>TCP/UDP port 389</strong> (plaintext) or <strong>port 636</strong> (LDAPS — LDAP over TLS). Microsoft's Active Directory is the most widely deployed directory service and uses LDAP as its access protocol. When you log into a Windows domain, LDAP is doing the work of looking up your account.
       </div>
     </div>
 
@@ -892,7 +892,7 @@ tbody tr:hover td { background: #faf4ff; }
           <tr>
             <td class="td-term">LDAP</td>
             <td><strong>TCP/UDP 389</strong></td>
-            <td class="td-bad">✗ Plaintext — credentials visible in traffic</td>
+            <td class="td-bad">✗ Plaintext by default (simple bind) — credentials visible in traffic</td>
             <td>Legacy environments only — should not be used for authentication over untrusted networks</td>
           </tr>
           <tr>
@@ -928,7 +928,7 @@ tbody tr:hover td { background: #faf4ff; }
 
 <span class="code-hl">DC=company,DC=com</span>                           <span class="code-comment">← root of the domain</span>
   │
-  ├── <span class="code-teal">OU=Users,DC=company,DC=com</span>              <span class="code-comment">← Organisational Unit</span>
+  ├── <span class="code-teal">OU=Users,DC=company,DC=com</span>              <span class="code-comment">← Organizational Unit</span>
   │     ├── <span class="code-blue">CN=John Smith,OU=Users,DC=company,DC=com</span>
   │     └── <span class="code-blue">CN=Jane Doe,OU=Users,DC=company,DC=com</span>
   │
@@ -943,13 +943,13 @@ tbody tr:hover td { background: #faf4ff; }
       <div class="callout-label">📌 DN components — what the abbreviations mean</div>
       <p><strong>DN (Distinguished Name)</strong> — the full unique path to an object. Example: <code style="font-family:'DM Mono',monospace;font-size:12px;background:var(--light);padding:2px 6px;border-radius:4px;">CN=John Smith,OU=Users,DC=company,DC=com</code></p>
       <p><strong>CN (Common Name)</strong> — the name of the object itself (a user, group, or computer).</p>
-      <p><strong>OU (Organisational Unit)</strong> — a container for grouping objects. Like a folder. You apply <a href="active-directory-group-policy.html">Group Policy</a> at the OU level in Active Directory.</p>
+      <p><strong>OU (Organizational Unit)</strong> — a container for grouping objects. Like a folder. You apply <a href="active-directory-group-policy.html">Group Policy</a> at the OU level in Active Directory.</p>
       <p><strong>DC (Domain Component)</strong> — one label of the domain name. <code style="font-family:'DM Mono',monospace;font-size:12px;background:var(--light);padding:2px 6px;border-radius:4px;">company.com</code> becomes <code style="font-family:'DM Mono',monospace;font-size:12px;background:var(--light);padding:2px 6px;border-radius:4px;">DC=company,DC=com</code>.</p>
     </div>
 
     <h2>How LDAP authentication works</h2>
 
-    <p>When an application needs to verify a user's credentials against a directory, it uses an LDAP <strong>bind</strong> operation — connecting to the directory server and authenticating. There are two types of bind:</p>
+    <p>When an application needs to verify a user's credentials against a directory, it uses an LDAP <strong>bind</strong> operation — connecting to the directory server and authenticating. There are three common types of bind:</p>
 
     <div class="concept-grid">
       <div class="concept-card">
@@ -963,6 +963,12 @@ tbody tr:hover td { background: #faf4ff; }
         <div class="concept-label">With credentials</div>
         <div class="concept-title">Simple Bind</div>
         <div class="concept-desc">Authenticate with a DN and password. The password is sent in plaintext unless LDAPS or StartTLS is used. This is why using LDAPS (port 636) is critical — simple bind over plain LDAP exposes passwords.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🎟️</div>
+        <div class="concept-label">Negotiated mechanism</div>
+        <div class="concept-title">SASL Bind</div>
+        <div class="concept-desc">Authenticate through a SASL mechanism such as Kerberos or NTLM (negotiated via GSS-SPNEGO). Domain-joined Windows clients use SASL bind by default, and it can sign and seal (encrypt) the LDAP traffic — so AD traffic on port 389 is not automatically plaintext.</div>
       </div>
     </div>
 
@@ -996,15 +1002,15 @@ tbody tr:hover td { background: #faf4ff; }
 
     <h2>LDAP injection — the Security+ attack</h2>
 
-    <p>LDAP injection is an attack that targets applications which build LDAP queries using unsanitised user input — the LDAP equivalent of SQL injection. If an application constructs an LDAP filter by directly concatenating user-supplied values, an attacker can manipulate the filter to bypass authentication or extract directory data.</p>
+    <p>LDAP injection is an attack that targets applications which build LDAP queries using unsanitized user input — the LDAP equivalent of SQL injection. If an application constructs an LDAP filter by directly concatenating user-supplied values, an attacker can manipulate the filter to bypass authentication or extract directory data.</p>
 
     <div class="warning">
       <div class="warning-label">⚠️ LDAP injection — how it works</div>
       <p><strong>Vulnerable application builds this LDAP filter:</strong></p>
       <p><code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(220,38,38,0.08);padding:4px 8px;border-radius:4px;display:block;margin:8px 0;">(&(uid=<em>[username input]</em>)(password=<em>[password input]</em>))</code></p>
-      <p><strong>Attacker enters as username:</strong> <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(220,38,38,0.08);padding:4px 8px;border-radius:4px;">admin)(&(password=*</code></p>
-      <p>This manipulates the filter to always return true, bypassing the password check entirely and logging in as admin with any password.</p>
-      <p><strong>Prevention:</strong> Input validation and sanitisation — escape special LDAP characters in user input before building queries. Use parameterised LDAP queries where available.</p>
+      <p><strong>Attacker enters as username:</strong> <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(220,38,38,0.08);padding:4px 8px;border-radius:4px;">admin)(&amp;)</code></p>
+      <p>The filter becomes <code style="font-family:'DM Mono',monospace;font-size:12px;">(&amp;(uid=admin)(&amp;))(password=anything))</code>. <code style="font-family:'DM Mono',monospace;font-size:12px;">(&amp;)</code> is the LDAP "always true" filter, and servers that process only the first complete filter evaluate <code style="font-family:'DM Mono',monospace;font-size:12px;">(&amp;(uid=admin)(&amp;))</code> — matching admin and skipping the password check entirely, so the attacker logs in as admin with any password.</p>
+      <p><strong>Prevention:</strong> Input validation and sanitization — escape special LDAP characters in user input before building queries. Use parameterized LDAP queries where available.</p>
     </div>
 
     <h2>LDAP security hardening</h2>
@@ -1023,7 +1029,7 @@ tbody tr:hover td { background: #faf4ff; }
 <span class="code-hl">Restrict LDAP access by IP</span>   <span class="code-comment">→ Only allow LDAP queries from app servers</span>
                               <span class="code-comment">   Use firewall rules to block port 389/636 elsewhere</span>
 
-<span class="code-hl">Sanitise LDAP queries</span>        <span class="code-comment">→ Escape special characters to prevent LDAP injection</span>
+<span class="code-hl">Sanitize LDAP queries</span>        <span class="code-comment">→ Escape special characters to prevent LDAP injection</span>
                               <span class="code-comment">   Treat all user input as untrusted</span></pre>
     </div>
 
@@ -1034,7 +1040,7 @@ tbody tr:hover td { background: #faf4ff; }
       <div class="scenario-item">💬 "An application authenticates users against Active Directory. A packet capture shows credentials are being sent in plaintext. What should be implemented?" → <strong>LDAPS on port 636 — LDAP over TLS encrypts credentials in transit</strong></div>
       <div class="scenario-item">💬 "Which port does LDAP use for unencrypted directory queries?" → <strong>TCP/UDP port 389</strong></div>
       <div class="scenario-item">💬 "Which port does LDAPS use for encrypted directory queries?" → <strong>TCP port 636</strong></div>
-      <div class="scenario-item">💬 "An attacker manipulates a login form's input field to bypass LDAP authentication entirely. What attack is this?" → <strong>LDAP injection — unsanitised input allows manipulation of the LDAP query filter</strong></div>
+      <div class="scenario-item">💬 "An attacker manipulates a login form's input field to bypass LDAP authentication entirely. What attack is this?" → <strong>LDAP injection — unsanitized input allows manipulation of the LDAP query filter</strong></div>
       <div class="scenario-item">💬 "What is the unique path that identifies an object's location in an LDAP directory tree?" → <strong>Distinguished Name (DN) — e.g. CN=John Smith,OU=Users,DC=company,DC=com</strong></div>
       <div class="scenario-item">💬 "Which LDAP operation is used to authenticate to a directory server with a DN and password?" → <strong>Bind — specifically a Simple Bind when using a DN and password combination</strong></div>
       <div class="scenario-item">💬 "Active Directory uses which two protocols for authentication and directory access?" → <strong>Kerberos (authentication tickets) and LDAP (directory queries)</strong></div>

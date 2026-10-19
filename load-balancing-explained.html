@@ -405,7 +405,7 @@ tbody tr:hover td{background:#eff6ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/load-balancing-explained.html",
   "inLanguage": "en"
 }
@@ -459,7 +459,7 @@ tbody tr:hover td{background:#eff6ff;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated May 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -681,7 +681,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="scenario-item"><strong>Scenario 2:</strong> A company wants to route requests to <strong>/api/</strong> to a separate pool of API servers while all other requests go to the main web server pool. <em>Answer:</em> This requires a <strong>Layer 7 (application layer) load balancer</strong> with content-based routing rules. An L4 load balancer cannot inspect URLs.</div>
       <div class="scenario-item"><strong>Scenario 3:</strong> A load balancer fails and all web traffic goes down. How should the architecture be improved? <em>Answer:</em> Deploy a second load balancer in an <strong>active/active or active/passive HA pair</strong> using VRRP to share a virtual IP address. If the primary fails, the secondary takes over the VIP automatically.</div>
       <div class="scenario-item"><strong>Scenario 4:</strong> One server in a four-server pool is significantly more powerful than the others. Traffic should reflect this difference. <em>Answer:</em> Use <strong>weighted round-robin</strong> (assign a higher weight to the more powerful server) or <strong>weighted least connections</strong> so the powerful server receives proportionally more requests.</div>
-      <div class="scenario-item"><strong>Scenario 5:</strong> A company wants to offload SSL processing from backend web servers to reduce their CPU load. <em>Answer:</em> Configure <strong>SSL termination (SSL offloading)</strong> on the load balancer. The load balancer decrypts HTTPS from clients and forwards plain HTTP (or re-encrypted HTTPS) to backend servers, centralising all TLS processing at the load balancer.</div>
+      <div class="scenario-item"><strong>Scenario 5:</strong> A company wants to offload SSL processing from backend web servers to reduce their CPU load. <em>Answer:</em> Configure <strong>SSL termination (SSL offloading)</strong> on the load balancer. The load balancer decrypts HTTPS from clients and forwards plain HTTP (or re-encrypted HTTPS) to backend servers, centralizing all TLS processing at the load balancer.</div>
     </div>
 
     <h2>Load Balancer Deployment Architectures</h2>
@@ -710,7 +710,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <p><strong>Azure</strong> provides Azure Load Balancer (Layer 4, internal and public) and Azure Application Gateway (Layer 7 with WAF capabilities, similar to AWS ALB). Azure Front Door adds global GSLB, CDN, and WAF in a unified service. <strong>Google Cloud</strong> similarly offers Cloud Load Balancing with multiple tiers covering Layer 4 and Layer 7, internal and external traffic.</p>
 
-    <p>In cloud environments, load balancers integrate with auto-scaling groups — when the load balancer's health checks show that backend instances are overloaded (high CPU, high connection count), the auto-scaling group automatically launches additional instances and registers them with the load balancer. When load decreases, instances are terminated. This creates truly elastic capacity that scales with demand without manual intervention — a key cloud advantage over on-premises deployments.</p>
+    <p>In cloud environments, load balancers integrate with auto-scaling groups — when monitoring metrics (such as CPU or requests per target) cross a threshold, a scaling policy launches additional instances and registers them with the load balancer, while the load balancer's health checks get failed instances replaced. When load decreases, instances are terminated. This creates truly elastic capacity that scales with demand without manual intervention — a key cloud advantage over on-premises deployments.</p>
 
     <h2>Load Balancer Security Considerations</h2>
 

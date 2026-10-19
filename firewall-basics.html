@@ -857,7 +857,7 @@ a:hover { text-decoration: underline; }
     },
     {
       "@type": "Question",
-      "name": "DMZ — Demilitarised Zone",
+      "name": "DMZ — Demilitarized Zone",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "A DMZ is a network segment that sits between the public internet and the internal private network — a middle ground for servers that need to be publicly accessible (web servers, email servers, DNS servers) without exposing the internal network to direct internet access. Internet │ ▼ [ Firewall — outer ] ← allows HTTP/HTTPS inbound to DMZ servers │ ▼ [ DMZ — public servers ] ← web server, email server, public DNS │ ▼ [ Firewall — inner ] ← strict rules, very little DMZ→internal allowed │ ▼ Internal network — private (databases, file servers, workstations) 📌 Why a DMZ matters If a web server …"
@@ -913,7 +913,7 @@ a:hover { text-decoration: underline; }
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/firewall-basics.html",
   "inLanguage": "en"
 }
@@ -980,7 +980,7 @@ a:hover { text-decoration: underline; }
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <!-- ARTICLE -->
@@ -1141,7 +1141,7 @@ a:hover { text-decoration: underline; }
       </div>
       <div class="type-card">
         <div class="type-card-icon">🧠</div>
-        <div class="type-card-name">Application-layer Firewall (WAF)</div>
+        <div class="type-card-name">Application-layer / Proxy Firewall</div>
         <div class="type-card-tag">Layer 7</div>
         <div class="type-card-desc">Inspects the actual content of traffic — HTTP requests, DNS queries, email contents. Can block specific applications, websites, or types of content. Operates at Layer 7 (Application) of the OSI model. More powerful but slower.</div>
       </div>
@@ -1312,7 +1312,7 @@ a:hover { text-decoration: underline; }
 
     <hr class="divider">
 
-    <h2>DMZ — Demilitarised Zone</h2>
+    <h2>DMZ — Demilitarized Zone</h2>
 
     <p>A DMZ is a network segment that sits between the public internet and the internal private network — a middle ground for servers that need to be publicly accessible (web servers, email servers, DNS servers) without exposing the internal network to direct internet access.</p>
 
@@ -1406,7 +1406,7 @@ a:hover { text-decoration: underline; }
       <div class="fw-scenario-item">💬 "Which firewall type can identify traffic by application rather than just port number?" → <strong>Next-Generation Firewall (NGFW) — uses deep packet inspection at Layer 7</strong></div>
       <div class="fw-scenario-item">💬 "A web application is being attacked with SQL injection. Which security device is specifically designed to block this?" → <strong>WAF (Web Application Firewall)</strong></div>
       <div class="fw-scenario-item">💬 "Which is configured on a router interface and filters packets based on IP address and port with no connection tracking?" → <strong>ACL (Access Control List) — stateless packet filtering</strong></div>
-      <div class="fw-scenario-item">💬 "A firewall rule allows HTTPS (443) inbound but a user reports they cannot browse the web. The firewall logs show outbound traffic is being blocked. What is the most likely cause?" → <strong>The outbound allow rule is missing — the firewall is blocking the return traffic. Either add an outbound allow rule or verify the firewall is stateful and tracking the connection.</strong></div>
+      <div class="fw-scenario-item">💬 "A firewall rule allows HTTPS (443) inbound but a user reports they cannot browse the web. The firewall logs show outbound traffic is being blocked. What is the most likely cause?" → <strong>No outbound rule permits the clients' TCP 80/443 (and DNS 53) traffic — the blocked outbound packets are the users' own requests, and the inbound 443 rule only matters for hosting a web server. Add an outbound allow; a stateful firewall then lets the replies back in automatically.</strong></div>
     </div>
 
     <hr class="divider">

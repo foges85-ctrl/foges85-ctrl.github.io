@@ -400,7 +400,7 @@ tbody tr:hover td{background:#eff6ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/hardware-components-guide.html",
   "inLanguage": "en"
 }
@@ -454,7 +454,7 @@ tbody tr:hover td{background:#eff6ff;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -588,7 +588,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="comp-body">
         <p>The motherboard is the central hub that physically connects and allows communication between every other component. It contains the CPU socket, RAM slots, PCIe slots (for GPU and expansion cards), M.2 slots (for NVMe SSDs), SATA connectors (for drives), USB headers, and the chipset that manages data flow between components.</p>
         <p><strong>Form factors</strong> define the physical size and mounting hole pattern: <strong>ATX</strong> (standard full-size, 305×244mm) fits in full-tower and mid-tower cases; <strong>Micro-ATX</strong> (244×244mm) is smaller; <strong>Mini-ITX</strong> (170×170mm) is the smallest common form factor for compact builds.</p>
-        <p>The <strong>chipset</strong> (Intel: Z790, B760; AMD: X670, B650) determines which CPU generations are supported, how many PCIe lanes are available, and which features are unlocked (CPU overclocking is typically only available on Intel Z-series and AMD X-series chipsets).</p>
+        <p>The <strong>chipset</strong> (Intel: Z790, B760; AMD: X670, B650) determines which CPU generations are supported, how many PCIe lanes are available, and which features are unlocked (CPU overclocking is typically only available on Intel Z-series chipsets; on AMD, X- and B-series chipsets support it, but A-series chipsets do not).</p>
         <p>The <strong>PCIe (Peripheral Component Interconnect Express) bus</strong> is the high-speed interface for GPUs, NVMe SSDs, and expansion cards. PCIe x16 slots (full bandwidth) are used for GPUs; PCIe x4 and x1 slots are used for other expansion cards. PCIe 4.0 doubles the bandwidth of PCIe 3.0; PCIe 5.0 doubles it again.</p>
         <div class="comp-row">
           <span class="comp-tag">CPU socket must match CPU brand/generation</span>
@@ -627,10 +627,10 @@ tbody tr:hover td{background:#eff6ff;}
         <thead><tr><th>Connector / Port</th><th>What It's For</th><th>A+ Notes</th></tr></thead>
         <tbody>
           <tr><td class="td-term">SATA</td><td>HDD and SATA SSD data + power</td><td>L-shaped connector, 6 Gbps (SATA III)</td></tr>
-          <tr><td class="td-term">M.2 slot</td><td>NVMe SSDs (and some SATA SSDs)</td><td>Keying: B key (SATA/NVMe), M key (NVMe only)</td></tr>
+          <tr><td class="td-term">M.2 slot</td><td>NVMe SSDs (and some SATA SSDs)</td><td>Keying: B key (SATA or PCIe x2), M key (PCIe x4/NVMe and SATA — check the board)</td></tr>
           <tr><td class="td-term">PCIe x16</td><td>Discrete GPU</td><td>Largest slot; GPU requires significant power</td></tr>
           <tr><td class="td-term">PCIe x1</td><td>Sound cards, network cards, USB expansion</td><td>Smaller slot</td></tr>
-          <tr><td class="td-term">USB-A / USB-C</td><td>Peripherals, storage, charging</td><td>USB 3.2 Gen 2 = 10 Gbps; USB4 = up to 40 Gbps</td></tr>
+          <tr><td class="td-term">USB-A / USB-C</td><td>Peripherals, storage, charging</td><td>USB 3.2 Gen 2 = 10 Gbps; USB4 = up to 40 Gbps (USB4 Version 2.0: up to 80 Gbps)</td></tr>
           <tr><td class="td-term">Thunderbolt 4</td><td>High-speed peripherals, docks, external GPU</td><td>Uses USB-C connector; up to 40 Gbps</td></tr>
           <tr><td class="td-term">24-pin ATX</td><td>Motherboard main power from PSU</td><td>Largest PSU connector on the motherboard</td></tr>
           <tr><td class="td-term">8-pin EPS / CPU power</td><td>CPU power from PSU</td><td>Separate from 24-pin; near CPU socket</td></tr>
@@ -688,7 +688,7 @@ tbody tr:hover td{background:#eff6ff;}
           <tr><td class="td-term">RJ-11</td><td>Telephone</td><td>6-pin telephone connector. Smaller than RJ-45. Used for DSL modems and analog phone lines. Common exam trick: distinguish from RJ-45 by size.</td></tr>
           <tr><td class="td-term">DB-9 (RS-232)</td><td>Serial</td><td>9-pin serial port. Legacy connector for serial communication, still found on industrial equipment, network devices, and UPS units.</td></tr>
           <tr><td class="td-term">PCIe x16</td><td>Expansion</td><td>Long slot on motherboard for discrete GPUs. PCIe 4.0 x16 = 64 GB/s bandwidth, PCIe 5.0 x16 = 128 GB/s.</td></tr>
-          <tr><td class="td-term">M.2</td><td>Storage</td><td>Small rectangular slot for NVMe SSDs and Wi-Fi cards. M-key (notch on right) for NVMe; B+M key for SATA. Check key type before purchase.</td></tr>
+          <tr><td class="td-term">M.2</td><td>Storage</td><td>Small rectangular slot for NVMe SSDs and Wi-Fi cards. M-key (notch on right) for NVMe, though many M-key slots also accept SATA M.2 drives; B+M key drives are usually SATA. Check key type before purchase.</td></tr>
         </tbody>
       </table>
     </div>

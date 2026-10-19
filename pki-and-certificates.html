@@ -515,7 +515,7 @@ tbody tr:hover td{background:#fdf4ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/pki-and-certificates.html",
   "inLanguage": "en"
 }
@@ -576,7 +576,7 @@ tbody tr:hover td{background:#fdf4ff;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -621,7 +621,7 @@ tbody tr:hover td{background:#fdf4ff;}
       <table>
         <thead><tr><th>Field</th><th>What It Contains</th><th>Exam Note</th></tr></thead>
         <tbody>
-          <tr><td class="td-term">Subject</td><td>The identity the certificate belongs to — for a website: the domain name (Common Name / CN). For a user: name and email.</td><td>The CN field is what browsers check against the URL — mismatch = certificate error</td></tr>
+          <tr><td class="td-term">Subject</td><td>The identity the certificate belongs to — for a website: the domain name (Common Name / CN). For a user: name and email.</td><td>Browsers check the hostname against the Subject Alternative Name (SAN) — mismatch = certificate error. The CN is legacy and is ignored for matching by modern browsers.</td></tr>
           <tr><td class="td-term">Issuer</td><td>The CA that signed this certificate — identifies which CA to validate the signature against</td><td>Browser walks the chain: subject → issuer → issuer's issuer → root</td></tr>
           <tr><td class="td-term">Public Key</td><td>The certificate owner's public key — this is the key you encrypt with or use to verify signatures</td><td>The whole point of the certificate — binding this key to the subject identity</td></tr>
           <tr><td class="td-term">Validity Period</td><td>Not Before / Not After dates — the certificate is only valid within this window</td><td>Expired certificates cause browser warnings — common A+ support scenario</td></tr>
@@ -642,7 +642,7 @@ tbody tr:hover td{background:#fdf4ff;}
           <tr><td class="td-term">Domain Validation (DV)</td><td>Verifies ownership of the domain only — automated, fast, cheap (Let's Encrypt is free DV). No identity verification of the organization.</td><td>Most HTTPS sites use DV — doesn't mean the site is trustworthy, just that the connection is encrypted</td></tr>
           <tr><td class="td-term">Organization Validation (OV)</td><td>Verifies domain ownership AND that the organization is legally registered. CA manually validates the organization's details.</td><td>Shows organization name in certificate details — more trust than DV</td></tr>
           <tr><td class="td-term">Extended Validation (EV)</td><td>Strictest vetting — thorough legal and operational verification. Historically showed green address bar, now shows organization name in cert details.</td><td>Highest assurance — banking and financial sites. Most browsers have removed the green bar but the cert still contains richer identity info.</td></tr>
-          <tr><td class="td-term">Wildcard Certificate</td><td>A single certificate covering a domain and all its subdomains — *.company.com covers mail.company.com, vpn.company.com, etc.</td><td>Compromise of a wildcard cert exposes all subdomains — broader attack surface than individual certs</td></tr>
+          <tr><td class="td-term">Wildcard Certificate</td><td>A single certificate covering all single-level subdomains of a domain — *.company.com covers mail.company.com and vpn.company.com. It does not cover company.com itself unless that name is added as a SAN, and it does not cover a.b.company.com.</td><td>Compromise of a wildcard cert exposes all subdomains — broader attack surface than individual certs</td></tr>
           <tr><td class="td-term">SAN Certificate</td><td>Subject Alternative Name — one certificate valid for multiple specific domains (company.com AND company.net AND shop.company.com)</td><td>More flexible than wildcard — lists exact domains rather than a wildcard pattern</td></tr>
           <tr><td class="td-term">Code Signing Certificate</td><td>Used by software developers to sign executable code — proves the code came from the stated developer and hasn't been modified</td><td>Windows SmartScreen checks for code signing — unsigned executables trigger warnings</td></tr>
           <tr><td class="td-term">Client Certificate</td><td>Issued to individual users or devices — used for mutual TLS authentication where both sides present certificates</td><td>Used in 802.1X (EAP-TLS), VPN client authentication, smart card logon</td></tr>
@@ -712,6 +712,11 @@ tbody tr:hover td{background:#fdf4ff;}
       </table>
     </div>
 
+    <div class="callout">
+      <div class="callout-label">Exam vs Real World</div>
+      <p><strong>Exam:</strong> know CRL, OCSP, and OCSP stapling. <strong>Real world:</strong> since 2024–25, public CAs have been moving back to CRLs. The CA/Browser Forum made CRLs required and OCSP optional for public TLS certificates (Ballot SC-063), and Let's Encrypt turned off its OCSP service on August 6, 2025.</p>
+    </div>
+
     <h2>Certificate Pinning</h2>
     <p><strong>Certificate pinning</strong> (also called public key pinning) is a defense against rogue or compromised CAs. Normally, a browser trusts any certificate signed by any CA in its trust store — meaning if any CA is compromised, an attacker could get a fraudulent cert for any domain.</p>
     <p>With pinning, an application hardcodes (pins) the expected certificate or public key for a specific server. If the presented certificate doesn't match the pin, the connection is rejected — even if the certificate is otherwise valid and CA-signed. Used by high-security applications like banking apps and mobile applications to prevent MITM attacks even in corporate environments that perform SSL inspection.</p>
@@ -736,12 +741,12 @@ tbody tr:hover td{background:#fdf4ff;}
     <h2>Exam Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario-item">💬 "A user receives a browser warning that a website's certificate is not trusted. The site uses an internal CA. What is the most likely cause?" → <strong>The internal CA's root certificate is not in the user's trust store. Fix: distribute the internal root CA certificate via Group Policy to domain-joined machines.</strong></div>
-      <div class="scenario-item">💬 "Which certificate type covers a domain and all its immediate subdomains with a single certificate?" → <strong>Wildcard certificate — *.company.com covers any single-level subdomain (mail.company.com, vpn.company.com) but not sub-subdomains (a.b.company.com).</strong></div>
+      <div class="scenario-item">💬 "Which certificate type covers all single-level subdomains of a domain with a single certificate?" → <strong>Wildcard certificate — *.company.com covers any single-level subdomain (mail.company.com, vpn.company.com) but not sub-subdomains (a.b.company.com).</strong></div>
       <div class="scenario-item">💬 "An organization's root CA must be kept offline. What is the purpose of an intermediate CA?" → <strong>The intermediate CA handles day-to-day certificate issuance so the root CA never needs to be brought online — protecting the root's private key from exposure.</strong></div>
       <div class="scenario-item">💬 "What mechanism allows a web server to include a pre-fetched revocation status in the TLS handshake without the client contacting the CA?" → <strong>OCSP Stapling — the server staples a signed OCSP response to the handshake, eliminating the client's need to query the OCSP responder.</strong></div>
       <div class="scenario-item">💬 "A banking app rejects a valid, CA-signed certificate during a corporate SSL inspection deployment. What feature is causing this?" → <strong>Certificate pinning — the app is hardcoded to only accept the bank's specific certificate or public key, rejecting any substitute even if it's legitimately CA-signed.</strong></div>
       <div class="scenario-item">💬 "TLS uses both asymmetric and symmetric cryptography. Which is used for authentication and which for data encryption?" → <strong>Asymmetric (RSA or ECC) for authentication and key exchange during the handshake. Symmetric (AES) for encrypting actual data — asymmetric is too slow for bulk data transfer.</strong></div>
-      <div class="scenario-item">💬 "What DNS record type can restrict which Certificate Authorities are permitted to issue certificates for a domain?" → <strong>CAA (Certification Authority Authorization) record — lists the CAs authorized to issue certs for the domain, preventing unauthorised CAs from doing so.</strong></div>
+      <div class="scenario-item">💬 "What DNS record type can restrict which Certificate Authorities are permitted to issue certificates for a domain?" → <strong>CAA (Certification Authority Authorization) record — lists the CAs authorized to issue certs for the domain, preventing unauthorized CAs from doing so.</strong></div>
       <div class="scenario-item">💬 "What is the difference between a self-signed certificate and a CA-signed certificate?" → <strong>A self-signed certificate is signed by the same entity it was issued to — no third-party verification. Browsers don't trust it by default. A CA-signed certificate is vouched for by a trusted third-party CA.</strong></div>
     </div>
 

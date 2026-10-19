@@ -457,7 +457,7 @@ tbody tr:hover td{background:var(--light);}
       "name": "When Would You Still See a Hub?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Hubs are obsolete for network access, but they appear in one specific legitimate use case: network monitoring via a tap . A passive network tap or a hub can be used to connect a packet analyser (Wireshark) to monitor all traffic on a segment without being in the traffic path. More commonly, a switch's SPAN port (port mirroring) accomplishes this without the collision domain problem. The exam question \"a technician needs to capture all traffic between two devices — which device allows this?\" accepts both hub and SPAN port as correct answers depending on context. In modern environments, SPAN …"
+        "text": "Hubs are obsolete for network access, but they appear in one specific legitimate use case: network monitoring via a tap . A passive network tap or a hub can be used to connect a packet analyzer (Wireshark) to monitor all traffic on a segment without being in the traffic path. More commonly, a switch's SPAN port (port mirroring) accomplishes this without the collision domain problem. The exam question \"a technician needs to capture all traffic between two devices — which device allows this?\" accepts both hub and SPAN port as correct answers depending on context. In modern environments, SPAN …"
       }
     }
   ]
@@ -510,7 +510,7 @@ tbody tr:hover td{background:var(--light);}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/hub-vs-switch-vs-router.html",
   "inLanguage": "en"
 }
@@ -557,7 +557,7 @@ tbody tr:hover td{background:var(--light);}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -606,14 +606,14 @@ tbody tr:hover td{background:var(--light);}
     <h2>Collision Domains vs Broadcast Domains — The Exam Distinction</h2>
     <p>Two terms that constantly trip up exam candidates: collision domains and broadcast domains. A <strong>collision domain</strong> is the set of devices that could cause a collision if they transmit simultaneously. In a hub, all connected devices share one collision domain — if two devices transmit at once, their signals collide. Each port on a switch is its own collision domain — a device on port 1 and a device on port 2 can transmit simultaneously without collision. A router interface is also its own collision domain. The rule: <strong>hubs don't break collision domains; switches and routers do</strong>.</p>
     <p>A <strong>broadcast domain</strong> is the set of devices that receive a Layer 2 broadcast (destination MAC FF:FF:FF:FF:FF:FF). Every device connected to a switch (in the same VLAN) receives broadcasts sent to that VLAN. A switch does not break broadcast domains — all devices in the same VLAN share one broadcast domain. A router does break broadcast domains — broadcasts cannot cross a router (unless explicitly relayed, as DHCP relay does). VLANs on a switch also create separate broadcast domains. The rule: <strong>only routers and VLANs break broadcast domains; switches and hubs do not</strong>.</p>
-    <p>Quick test: a network has 1 hub with 4 devices and 1 switch with 4 devices, connected together through a router. How many collision domains and broadcast domains? Answer: the hub's 4 devices share 1 collision domain, each of the switch's 4 ports is its own collision domain = 5 total collision domains. The hub side is 1 broadcast domain, the switch side is 1 broadcast domain, the router separates them = 2 broadcast domains.</p>
+    <p>Quick test: a network has 1 hub with 4 devices and 1 switch with 4 devices, connected together through a router. How many collision domains and broadcast domains? Answer: the hub's 4 devices share 1 collision domain, the switch's 4 device ports plus its uplink to the router are 5 separate collision domains = 6 total collision domains. The hub side is 1 broadcast domain, the switch side is 1 broadcast domain, the router separates them = 2 broadcast domains.</p>
 
     <h2>When Would You Still See a Hub?</h2>
-    <p>Hubs are obsolete for network access, but they appear in one specific legitimate use case: <strong>network monitoring via a tap</strong>. A passive network tap or a hub can be used to connect a packet analyser (Wireshark) to monitor all traffic on a segment without being in the traffic path. More commonly, a switch's <strong>SPAN port</strong> (port mirroring) accomplishes this without the collision domain problem. The exam question "a technician needs to capture all traffic between two devices — which device allows this?" accepts both hub and SPAN port as correct answers depending on context. In modern environments, SPAN is always preferred.</p>
+    <p>Hubs are obsolete for network access, but they appear in one specific legitimate use case: <strong>network monitoring via a tap</strong>. A passive network tap or a hub can be used to connect a packet analyzer (Wireshark) to monitor all traffic on a segment without being in the traffic path. More commonly, a switch's <strong>SPAN port</strong> (port mirroring) accomplishes this without the collision domain problem. The exam question "a technician needs to capture all traffic between two devices — which device allows this?" accepts both hub and SPAN port as correct answers depending on context. In modern environments, SPAN is always preferred.</p>
     <h2>Exam Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario">
-        <div class="scenario-q">All devices on a network segment can see each other's traffic using a packet analyser. Which device is connecting them?</div>
+        <div class="scenario-q">All devices on a network segment can see each other's traffic using a packet analyzer. Which device is connecting them?</div>
         <div class="scenario-a"><strong>Answer: A hub.</strong> Hubs flood all traffic to all ports, making every connected device able to capture all traffic. A switch forwards frames only to the destination port, so a device on one switch port cannot normally capture traffic destined for a different port.</div>
       </div>
       <div class="scenario">
@@ -625,8 +625,8 @@ tbody tr:hover td{background:var(--light);}
         <div class="scenario-a"><strong>Answer: It floods the frame to all ports except the one it arrived on.</strong> This is called an unknown unicast flood. The switch hasn't learned which port that MAC is connected to yet, so it behaves like a hub for that specific frame. When the destination device responds, the switch learns its port and adds it to the MAC address table.</div>
       </div>
       <div class="scenario">
-        <div class="scenario-q">An administrator wants to reduce the number of collision domains on a network currently using hubs. What should they replace the hubs with?</div>
-        <div class="scenario-a"><strong>Answer: Switches.</strong> Each port on a switch is its own collision domain — two devices connected to different switch ports never compete for the same medium. A switch with 24 ports creates 24 separate collision domains. Replacing a hub with a switch eliminates collisions entirely for full-duplex connections, dramatically improving network performance.</div>
+        <div class="scenario-q">An administrator wants to reduce collisions on a network currently using hubs. What should they replace the hubs with?</div>
+        <div class="scenario-a"><strong>Answer: Switches.</strong> Each port on a switch is its own collision domain — two devices connected to different switch ports never compete for the same medium. A switch with 24 ports creates 24 separate collision domains, so replacing hubs actually increases the number of collision domains while making each one smaller. Replacing a hub with a switch eliminates collisions entirely for full-duplex connections, dramatically improving network performance.</div>
       </div>
     </div>
 

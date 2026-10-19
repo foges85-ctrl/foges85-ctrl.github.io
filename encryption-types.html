@@ -459,7 +459,7 @@ tbody tr:hover td{background:#fdf4ff;}
       "name": "Quick Reference — All Algorithms",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "When your browser connects to an HTTPS site, the TLS handshake uses asymmetric encryption (RSA or ECDHE) to securely exchange a session key. Once both sides have the session key, all data is encrypted with symmetric AES because it's much faster. Hashing (SHA-256) is used for the MAC to verify message integrity. This is why hybrid encryption exists: RSA is too slow to encrypt your entire Netflix stream, but it's perfect for encrypting the 256-bit AES key that will. Once both sides share the AES key securely, speed wins. A digital signature uses asymmetric encryption in reverse : you encrypt …"
+        "text": "When your browser connects to an HTTPS site, the TLS handshake uses asymmetric cryptography to agree on a session key: TLS 1.3 uses ECDHE key exchange, with RSA or ECDSA used only to sign the handshake. Once both sides have the session key, all data is encrypted with symmetric AES because it's much faster. In TLS 1.3, AES-GCM both encrypts and authenticates each record; SHA-256/384 is used for key derivation (HKDF) and the handshake transcript hash. This is why hybrid encryption exists: RSA is too slow to encrypt your entire Netflix stream. In TLS 1.2 and earlier, RSA key transport could instead encrypt the pre-master secret from which the AES session keys are derived (TLS 1.3 removed RSA key transport). Either way, once both sides share the AES key securely, speed wins. A digital signature uses asymmetric encryption in reverse : you encrypt …"
       }
     },
     {
@@ -520,7 +520,7 @@ tbody tr:hover td{background:#fdf4ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/encryption-types.html",
   "inLanguage": "en"
 }
@@ -580,7 +580,7 @@ tbody tr:hover td{background:#fdf4ff;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -894,8 +894,8 @@ tbody tr:hover td{background:#fdf4ff;}
 
     <div class="callout">
       <div class="callout-label">How HTTPS (Hybrid Encryption) Actually Works</div>
-      <p>When your browser connects to an HTTPS site, the TLS handshake uses <strong>asymmetric encryption (RSA or ECDHE)</strong> to securely exchange a session key. Once both sides have the session key, all data is encrypted with <strong>symmetric AES</strong> because it's much faster. Hashing (SHA-256) is used for the MAC to verify message integrity.</p>
-      <p>This is why hybrid encryption exists: RSA is too slow to encrypt your entire Netflix stream, but it's perfect for encrypting the 256-bit AES key that will. Once both sides share the AES key securely, speed wins.</p>
+      <p>When your browser connects to an HTTPS site, the TLS handshake uses <strong>asymmetric cryptography</strong> to agree on a session key: TLS 1.3 uses <strong>ECDHE</strong> key exchange, with RSA or ECDSA used only to sign the handshake. Once both sides have the session key, all data is encrypted with <strong>symmetric AES</strong> because it's much faster. In TLS 1.3, AES-GCM both encrypts and authenticates each record; hashing (SHA-256/384) is used for key derivation (HKDF) and the handshake transcript hash.</p>
+      <p>This is why hybrid encryption exists: RSA is too slow to encrypt your entire Netflix stream. In TLS 1.2 and earlier, RSA key transport could instead encrypt the pre-master secret from which the AES session keys are derived (TLS 1.3 removed RSA key transport). Either way, once both sides share the AES key securely, speed wins.</p>
     </div>
 
     <div class="callout">
@@ -910,7 +910,7 @@ tbody tr:hover td{background:#fdf4ff;}
       <div class="scenario-item">💬 "A company needs to encrypt large volumes of data at rest efficiently. Which type of encryption should they use?" → <strong>Symmetric encryption (specifically AES-256). Symmetric is fast and efficient for bulk data. Asymmetric would be far too slow for this purpose.</strong></div>
       <div class="scenario-item">💬 "Two parties need to exchange an encryption key securely over an untrusted network without having met before. Which algorithm is designed specifically for this?" → <strong>Diffie-Hellman key exchange — specifically designed to establish a shared secret over an insecure channel. ECDHE (elliptic curve DHE) adds perfect forward secrecy.</strong></div>
       <div class="scenario-item">💬 "A user downloads a file and wants to verify it hasn't been tampered with during transit. Which cryptographic function provides file integrity?" → <strong>Hashing — specifically SHA-256. The provider publishes the expected hash; the user runs SHA-256 on the downloaded file and compares. A mismatch means the file was modified.</strong></div>
-      <div class="scenario-item">💬 "An organization's security audit finds that MD5 is being used for password hashing. What is the main concern?" → <strong>MD5 is broken — collision attacks allow crafting inputs that produce the same hash. For passwords, this means pre-computed rainbow tables can crack MD5 hashes quickly. Replace with bcrypt, Argon2, or at minimum SHA-256 with salting.</strong></div>
+      <div class="scenario-item">💬 "An organization's security audit finds that MD5 is being used for password hashing. What is the main concern?" → <strong>MD5 is a fast hash, so attackers can test billions of password guesses per second, and unsalted MD5 hashes fall to pre-computed rainbow tables. (MD5's collision weakness matters for signatures and integrity, not password cracking.) Replace it with Argon2id, bcrypt, scrypt, or PBKDF2 with a unique salt per password.</strong></div>
       <div class="scenario-item">💬 "A developer needs to choose between RSA-2048 and ECC-256 for a mobile application. Which is recommended and why?" → <strong>ECC-256 — achieves equivalent security to RSA-3072 with a much smaller key size. Smaller keys mean faster operations and lower battery consumption, making ECC the preferred choice for mobile and IoT devices.</strong></div>
       <div class="scenario-item">💬 "Which encryption algorithm does WPA2 use?" → <strong>AES with CCMP (Counter Mode CBC-MAC Protocol). WPA used TKIP (RC4-based, now deprecated). WPA3 uses AES-GCMP which is even stronger. On the exam: WPA2 = AES, WPA = TKIP, WEP = RC4 (all broken).</strong></div>
     </div>

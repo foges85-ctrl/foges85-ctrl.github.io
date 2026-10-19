@@ -684,7 +684,7 @@ tbody tr:hover td { background: #f4f8ff; }
       "name": "NTP in enterprise networks",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "In a well-designed enterprise network, NTP follows a hierarchy that mirrors the stratum model. Rather than having every device query a public internet NTP server directly — which wastes bandwidth and creates an external dependency — the network designates internal NTP servers that sync from public sources and serve time to everything internally. Internet │ ▼ Public NTP servers (Stratum 1 — pool.ntp.org, time.google.com) │ ▼ Internal NTP server (Stratum 2 — domain controller or dedicated server) │ ├── Core switches / routers (Stratum 3) ├── Access layer switches (Stratum 3) ├── Servers (Stra…"
+        "text": "In a well-designed enterprise network, NTP follows a hierarchy that mirrors the stratum model. Rather than having every device query a public internet NTP server directly — which wastes bandwidth and creates an external dependency — the network designates internal NTP servers that sync from public sources and serve time to everything internally. Internet │ ▼ Public NTP servers (e.g., pool.ntp.org, time.google.com) │ ▼ Internal NTP server (Stratum 2 — domain controller or dedicated server) │ ├── Core switches / routers (Stratum 3) ├── Access layer switches (Stratum 3) ├── Servers (Stra…"
       }
     },
     {
@@ -753,7 +753,7 @@ tbody tr:hover td { background: #f4f8ff; }
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/ntp-explained.html",
   "inLanguage": "en"
 }
@@ -808,7 +808,7 @@ tbody tr:hover td { background: #f4f8ff; }
     </nav>
     <div class="page-hero-badge">CompTIA Network+ · Security+ · 2026</div>
     <h1>What is <span>NTP?</span></h1>
-    <p class="page-hero-sub">Network Time Protocol — why accurate time matters in networking, stratum levels, how NTP synchronizes clocks, NTP security risks, and every NTP concept tested on CompTIA Network+ and Security+.</p>
+    <p class="page-hero-sub">Network Time Protocol — why accurate time matters in networking, stratum levels, how NTP synchronizes clocks, NTP security risks, and the PTP and NTS time protocols listed in the CompTIA Network+ N10-009 objectives.</p>
   </div>
 </section>
 
@@ -820,7 +820,7 @@ tbody tr:hover td { background: #f4f8ff; }
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <!-- ARTICLE -->
@@ -879,11 +879,11 @@ tbody tr:hover td { background: #f4f8ff; }
       </div>
       <div class="stratum-row">
         <div class="stratum-badge s1">Stratum 1</div>
-        <div class="stratum-desc"><strong>Primary time servers</strong> — computers directly connected to a Stratum 0 source. These are the public NTP servers (pool.ntp.org, time.google.com, time.cloudflare.com). Highly accurate, typically within microseconds.</div>
+        <div class="stratum-desc"><strong>Primary time servers</strong> — computers directly connected to a Stratum 0 source. Highly accurate, typically within microseconds. Public NTP services such as pool.ntp.org, time.google.com, and time.cloudflare.com trace back to Stratum 1 sources, but they are not all Stratum 1 themselves — many pool.ntp.org servers are Stratum 2 or 3.</div>
       </div>
       <div class="stratum-row">
         <div class="stratum-badge s2">Stratum 2</div>
-        <div class="stratum-desc"><strong>Secondary servers</strong> — sync from Stratum 1. Most enterprise internal NTP servers are Stratum 2. They serve time to internal clients and reduce load on public Stratum 1 servers.</div>
+        <div class="stratum-desc"><strong>Secondary servers</strong> — sync from Stratum 1. Most enterprise internal NTP servers are Stratum 2. They serve time to internal clients and reduce load on public time servers.</div>
       </div>
       <div class="stratum-row">
         <div class="stratum-badge s3">Stratum 3–15</div>
@@ -929,6 +929,16 @@ tbody tr:hover td { background: #f4f8ff; }
       <p>Both use <strong>UDP port 123</strong>. The exam distinguishes them by use case — SNTP for simple/embedded devices, NTP for infrastructure.</p>
     </div>
 
+        <h2>PTP and NTS — the other time protocols on Network+</h2>
+
+    <p>The Network+ N10-009 objectives (3.4) list three time protocols: NTP, <strong>Precision Time Protocol (PTP)</strong>, and <strong>Network Time Security (NTS)</strong>.</p>
+
+    <div class="callout">
+      <div class="callout-label">📌 PTP vs NTS</div>
+      <p><strong>PTP</strong> (IEEE 1588) synchronizes clocks far more precisely than NTP — sub-microsecond on a local network — by using hardware timestamping in network adapters and switches. Devices sync from a <strong>grandmaster</strong> clock. It is used where tight timing matters, such as telecom networks, financial trading, industrial control, and broadcast.</p>
+      <p><strong>NTS</strong> (RFC 8915, 2020) adds security to NTP itself. The client first runs a TLS-based key exchange (NTS-KE) with the server, then uses the resulting keys to authenticate every NTP packet. It is the modern replacement for shared symmetric keys, because it doesn't require pre-sharing a secret with every client.</p>
+    </div>
+
     <h2>NTP in enterprise networks</h2>
 
     <p>In a well-designed enterprise network, NTP follows a hierarchy that mirrors the stratum model. Rather than having every device query a public internet NTP server directly — which wastes bandwidth and creates an external dependency — the network designates internal NTP servers that sync from public sources and serve time to everything internally.</p>
@@ -938,7 +948,7 @@ tbody tr:hover td { background: #f4f8ff; }
       <pre><span class="code-comment">Internet</span>
     │
     ▼
-<span class="code-hl">Public NTP servers</span>  <span class="code-comment">(Stratum 1 — pool.ntp.org, time.google.com)</span>
+<span class="code-hl">Public NTP servers</span>  <span class="code-comment">(e.g., pool.ntp.org, time.google.com)</span>
     │
     ▼
 <span class="code-hl">Internal NTP server</span>  <span class="code-comment">(Stratum 2 — domain controller or dedicated server)</span>
@@ -948,6 +958,8 @@ tbody tr:hover td { background: #f4f8ff; }
     ├── <span class="code-teal">Servers</span>                    <span class="code-comment">(Stratum 3)</span>
     └── <span class="code-teal">Workstations</span>               <span class="code-comment">(Stratum 3-4, via domain)</span></pre>
     </div>
+
+    <p>The stratum numbers above assume the internal server syncs from a Stratum 1 source. If it syncs from a Stratum 2 pool server, the internal server is Stratum 3 and every level below it shifts down by one.</p>
 
     <p>On Windows domain networks, the <strong>Primary Domain Controller (PDC) Emulator</strong> is typically the internal NTP authority. All domain-joined machines automatically sync their clocks through the domain hierarchy, which is why Kerberos authentication works reliably — every device on the domain shares the same time source.</p>
 
@@ -964,12 +976,12 @@ tbody tr:hover td { background: #f4f8ff; }
     <div class="warning">
       <div class="warning-label">⚠️ NTP spoofing / time poisoning</div>
       <p>An attacker on the network sends fake NTP responses to shift a device's clock. If successful, this can <strong>expire or invalidate SSL/TLS certificates</strong>, cause Kerberos authentication failures, invalidate log timestamps, or cause time-based one-time passwords (TOTP) to fail.</p>
-      <p><strong>Mitigation:</strong> Use NTPv4 with authentication (NTP authentication uses MD5 or SHA keys to verify server identity), restrict NTP sources to trusted internal servers only.</p>
+      <p><strong>Mitigation:</strong> Use NTPv4 with authentication (symmetric keys verify the server's identity — MD5 keys are legacy and deprecated by RFC 8573 in favor of AES-CMAC; NTS is the modern option), restrict NTP sources to trusted internal servers only.</p>
     </div>
 
     <div class="callout">
       <div class="callout-label">📌 NTP authentication</div>
-      <p>NTPv4 supports symmetric key authentication — the client and server share a secret key and the server signs its time responses. This prevents an attacker from injecting fake NTP responses because they don't know the key.</p>
+      <p>NTPv4 supports symmetric key authentication — the client and server share a secret key and the server signs its time responses. This prevents an attacker from injecting fake NTP responses because they don't know the key. MD5 keys are legacy — RFC 8573 deprecates MD5 for NTP authentication in favor of AES-CMAC — and <strong>NTS</strong> (above) is the modern alternative.</p>
       <p>On Cisco devices: configured with <code style="font-family:'DM Mono',monospace;font-size:12px;background:var(--light);padding:2px 6px;border-radius:4px;">ntp authenticate</code> and <code style="font-family:'DM Mono',monospace;font-size:12px;background:var(--light);padding:2px 6px;border-radius:4px;">ntp authentication-key</code> commands. The exam may reference this as a hardening step.</p>
     </div>
 
@@ -991,7 +1003,9 @@ tbody tr:hover td { background: #f4f8ff; }
 <span class="code-teal">Logs:</span>       Cannot correlate events across devices with different times
 
 <span class="code-hl">SNTP:</span>       Simplified NTP — single server, no drift correction
-<span class="code-hl">NTP auth:</span>   MD5 or SHA key — prevents time spoofing
+<span class="code-hl">NTP auth:</span>   Symmetric key (MD5 legacy, AES-CMAC preferred) or NTS — prevents time spoofing
+<span class="code-hl">PTP:</span>        IEEE 1588 — sub-microsecond sync, hardware timestamping
+<span class="code-hl">NTS:</span>        RFC 8915 — TLS key exchange, then authenticated NTP packets
 
 <span class="code-teal">NTP amplification:</span>  monlist command abused for DDoS reflection</pre>
     </div>
@@ -1006,7 +1020,7 @@ tbody tr:hover td { background: #f4f8ff; }
       <div class="scenario-item">💬 "A security analyst is investigating an incident but finds that log timestamps from different devices don't align. What should be implemented to prevent this?" → <strong>NTP — synchronize all devices to a common time source so log timestamps are consistent</strong></div>
       <div class="scenario-item">💬 "An attacker sends a small spoofed UDP packet to a public NTP server and the victim receives a large flood of traffic in response. What attack is this?" → <strong>NTP amplification attack — the attacker exploits the monlist command to amplify traffic toward the victim</strong></div>
       <div class="scenario-item">💬 "Which simplified version of NTP is used on embedded and IoT devices where full NTP is too resource-intensive?" → <strong>SNTP — Simple Network Time Protocol, also uses UDP port 123</strong></div>
-      <div class="scenario-item">💬 "What NTP feature prevents attackers from injecting fake time responses?" → <strong>NTP authentication — shared MD5 or SHA keys that the client uses to verify the server's responses are legitimate</strong></div>
+      <div class="scenario-item">💬 "What NTP feature prevents attackers from injecting fake time responses?" → <strong>NTP authentication — shared symmetric keys (MD5 is legacy; AES-CMAC is preferred) that the client uses to verify the server's responses, or Network Time Security (NTS) on modern deployments</strong></div>
     </div>
 
     <hr class="divider">

@@ -433,7 +433,7 @@ tbody tr:hover td{background:#eff6ff;}
       "name": "DNS Attacks Targeting Records",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "DNS Spoofing / Cache Poisoning: Attacker injects malicious A records into a DNS resolver's cache — victims querying that resolver get a fake IP and are redirected to an attacker-controlled server. Defense: DNSSEC (cryptographically signs DNS records). DNS Hijacking: Attacker modifies legitimate DNS records (by compromising the registrar account or DNS provider) — everyone resolving the domain gets the attacker's IP. Defense: registrar account MFA, registry lock. DNS Zone Transfer Attack: Unauthorised zone transfer (AXFR) reveals all DNS records for a domain — a complete map of the organisat…"
+        "text": "DNS Spoofing / Cache Poisoning: Attacker injects malicious A records into a DNS resolver's cache — victims querying that resolver get a fake IP and are redirected to an attacker-controlled server. Defense: DNSSEC (cryptographically signs DNS records). DNS Hijacking: Attacker modifies legitimate DNS records (by compromising the registrar account or DNS provider) — everyone resolving the domain gets the attacker's IP. Defense: registrar account MFA, registry lock. DNS Zone Transfer Attack: Unauthorized zone transfer (AXFR) reveals all DNS records for a domain — a complete map of the organizat…"
       }
     },
     {
@@ -494,7 +494,7 @@ tbody tr:hover td{background:#eff6ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/dns-record-types.html",
   "inLanguage": "en"
 }
@@ -554,7 +554,7 @@ tbody tr:hover td{background:#eff6ff;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -647,7 +647,7 @@ ftp.example.com.    IN  CNAME  example.com.</div>
           <div class="record-tag">Zone Authority</div>
         </div>
         <div class="record-body">
-          <div class="record-desc">Identifies the <strong>authoritative name servers for a DNS zone</strong>. NS records tell the DNS system which servers hold the official records for a domain. Every domain registered on the internet has NS records pointing to at least two authoritative name servers for redundancy. NS records are set at the domain registrar and propagated to the root DNS servers.</div>
+          <div class="record-desc">Identifies the <strong>authoritative name servers for a DNS zone</strong>. NS records tell the DNS system which servers hold the official records for a domain. Every domain registered on the internet has NS records pointing to at least two authoritative name servers for redundancy. NS records are set at your registrar, which publishes them to the TLD registry's servers (e.g., the .com servers).</div>
           <div class="record-example">example.com.    IN  NS  ns1.exampledns.com.
 example.com.    IN  NS  ns2.exampledns.com.</div>
           <div class="record-exam"><strong>Exam use case:</strong> "Which DNS record type identifies the authoritative name servers for a domain?" → NS. If DNS for a domain is completely broken (no records resolve), checking NS records at the registrar is the first troubleshooting step.</div>
@@ -771,8 +771,8 @@ _sip._tcp.example.com.       IN  SRV  10 100 5060  voip.example.com.</div>
       <div class="callout-label">Security+ DNS attack types</div>
       <p><strong>DNS Spoofing / Cache Poisoning:</strong> Attacker injects malicious A records into a DNS resolver's cache — victims querying that resolver get a fake IP and are redirected to an attacker-controlled server. Defense: DNSSEC (cryptographically signs DNS records).</p>
       <p><strong>DNS Hijacking:</strong> Attacker modifies legitimate DNS records (by compromising the registrar account or DNS provider) — everyone resolving the domain gets the attacker's IP. Defense: registrar account MFA, registry lock.</p>
-      <p><strong>DNS Zone Transfer Attack:</strong> Unauthorised zone transfer (AXFR) reveals all DNS records for a domain — a complete map of the organization's infrastructure. Defense: restrict zone transfers to authorized secondary servers only.</p>
-      <p><strong>DNS Tunnelling:</strong> Data exfiltration encoded in DNS queries/responses — bypasses firewalls that allow DNS traffic. Defense: DNS query monitoring, restrict outbound DNS to trusted resolvers.</p>
+      <p><strong>DNS Zone Transfer Attack:</strong> Unauthorized zone transfer (AXFR) reveals all DNS records for a domain — a complete map of the organization's infrastructure. Defense: restrict zone transfers to authorized secondary servers only.</p>
+      <p><strong>DNS Tunneling:</strong> Data exfiltration encoded in DNS queries/responses — bypasses firewalls that allow DNS traffic. Defense: DNS query monitoring, restrict outbound DNS to trusted resolvers.</p>
     </div>
 
     <hr class="divider">

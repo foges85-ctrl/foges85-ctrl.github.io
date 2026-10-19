@@ -782,7 +782,7 @@ tbody tr:hover td { background: #faf4ff; }
         <div class="attack-label">Ticket theft attack</div>
         <div class="attack-title">Pass-the-Ticket (PtT)</div>
         <div class="attack-how">An attacker steals a valid Kerberos ticket from memory (using tools like Mimikatz) and uses it to authenticate as the victim — without knowing their password. Since the ticket is already encrypted and valid, the KDC accepts it. The attacker effectively impersonates the victim for the ticket's remaining lifetime.</div>
-        <div class="attack-defend"><strong>Defense:</strong> Credential Guard (isolates LSASS in a virtualised environment), short ticket lifetimes, monitoring for anomalous ticket usage from unexpected IPs, and privileged access workstations (PAWs).</div>
+        <div class="attack-defend"><strong>Defense:</strong> Credential Guard (isolates LSASS in a virtualized environment), short ticket lifetimes, monitoring for anomalous ticket usage from unexpected IPs, and privileged access workstations (PAWs).</div>
       </div>
       <div class="attack-card">
         <div class="attack-label">Forged TGT attack</div>
@@ -844,7 +844,7 @@ tbody tr:hover td { background: #faf4ff; }
       <div class="scenario-item">💬 "An attacker compromises the krbtgt account hash and uses it to create forged tickets that grant domain admin access for any user. What is this attack?" → <strong>Golden Ticket attack — requires resetting the krbtgt password twice to remediate</strong></div>
       <div class="scenario-item">💬 "An attacker requests service tickets for all SPN-registered service accounts and cracks them offline. No account lockouts occur. What is this attack?" → <strong>Kerberoasting — use Managed Service Accounts with long auto-rotating passwords to defend</strong></div>
       <div class="scenario-item">💬 "What is the initial ticket issued by the Kerberos Authentication Service after a user provides valid credentials?" → <strong>TGT — Ticket-Granting Ticket, used to request individual service tickets without re-entering credentials</strong></div>
-      <div class="scenario-item">💬 "An organization wants to prevent Kerberos ticket theft from memory. Which Windows feature should be enabled?" → <strong>Credential Guard — isolates LSASS in a virtualisation-based security environment, preventing Mimikatz-style ticket extraction</strong></div>
+      <div class="scenario-item">💬 "An organization wants to prevent Kerberos ticket theft from memory. Which Windows feature should be enabled?" → <strong>Credential Guard — isolates LSASS in a virtualization-based security environment, preventing Mimikatz-style ticket extraction</strong></div>
       <div class="scenario-item">💬 "Which Kerberos attack exploits accounts that have pre-authentication disabled?" → <strong>AS-REP Roasting — the KDC returns encrypted data without verifying identity first, which can be cracked offline</strong></div>
     </div>
 

@@ -415,10 +415,10 @@ tbody tr:hover td{background:var(--light);}
     },
     {
       "@type": "Question",
-      "name": "OWASP Top 10 (2021)",
+      "name": "OWASP Top 10 (2021 edition)",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "OWASP (Open Worldwide Application Security Project) publishes the Top 10 Web Application Security Risks — a consensus list of the most critical vulnerabilities, updated based on real-world breach data. The current version is from 2021."
+        "text": "OWASP (Open Worldwide Application Security Project) publishes the Top 10 Web Application Security Risks — a consensus list of the most critical vulnerabilities, updated based on real-world breach data. The list on this page is the 2021 edition; OWASP has since published the Top 10:2025, which moves Security Misconfiguration to #2, adds Software Supply Chain Failures and Mishandling of Exceptional Conditions, and folds SSRF into Broken Access Control."
       }
     },
     {
@@ -514,7 +514,7 @@ tbody tr:hover td{background:var(--light);}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/application-security.html",
   "inLanguage": "en"
 }
@@ -559,7 +559,7 @@ tbody tr:hover td{background:var(--light);}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap"><div class="article-body">
@@ -573,8 +573,8 @@ tbody tr:hover td{background:var(--light);}
 <p>Applications are now the most common attack surface in organizations. The network perimeter has shrunk while web applications, APIs, and cloud-native services have exploded in number. According to breach data, the majority of successful attacks target the application layer — not the network. The Security+ exam covers application security across multiple domains, particularly Domain 2 (Threats and Vulnerabilities) and Domain 3 (Security Architecture).</p>
 <p>Application security (AppSec) means building and maintaining software in a way that protects it against threats. It encompasses secure development practices, vulnerability testing, code review, and runtime protection. The most important framework for understanding common web application vulnerabilities is the OWASP Top 10.</p>
 
-<h2>OWASP Top 10 (2021)</h2>
-<p>OWASP (Open Worldwide Application Security Project) publishes the Top 10 Web Application Security Risks — a consensus list of the most critical vulnerabilities, updated based on real-world breach data. The current version is from 2021.</p>
+<h2>OWASP Top 10 (2021 edition)</h2>
+<p>OWASP (Open Worldwide Application Security Project) publishes the Top 10 Web Application Security Risks — a consensus list of the most critical vulnerabilities, updated based on real-world breach data. The list below is the 2021 edition; OWASP has since published the Top 10:2025 (see the summary after the list).</p>
 
 <div class="owasp-list">
 <div class="owasp-item"><span class="owasp-num">A01</span><div class="owasp-content"><div class="owasp-title">Broken Access Control</div><div class="owasp-desc">Users can act outside their intended permissions — e.g., accessing another user's data by changing a URL parameter. <strong>Moved to #1 in 2021.</strong> Fix: enforce access control server-side on every request.</div></div></div>
@@ -587,6 +587,12 @@ tbody tr:hover td{background:var(--light);}
 <div class="owasp-item"><span class="owasp-num">A08</span><div class="owasp-content"><div class="owasp-title">Software & Data Integrity Failures</div><div class="owasp-desc">Code and infrastructure updates without integrity verification — e.g., insecure CI/CD pipelines, unsigned software updates. Includes <strong>supply chain attacks</strong> (SolarWinds-style). Fix: code signing, verify checksums, secure pipelines.</div></div></div>
 <div class="owasp-item"><span class="owasp-num">A09</span><div class="owasp-content"><div class="owasp-title">Security Logging & Monitoring Failures</div><div class="owasp-desc">Insufficient logging means attacks go undetected. No alerts on login failures, high-value transactions, or privilege escalations. Fix: centralized logging (SIEM), monitoring, incident response procedures.</div></div></div>
 <div class="owasp-item"><span class="owasp-num">A10</span><div class="owasp-content"><div class="owasp-title">Server-Side Request Forgery (SSRF)</div><div class="owasp-desc">Application fetches a remote resource based on user-supplied URL — attacker can make the server request internal resources (cloud metadata, internal APIs). New in 2021. Fix: allowlist permitted destinations, disable HTTP redirections.</div></div></div>
+</div>
+
+<div class="callout callout-teal">
+<div class="callout-label">💡 What changed in the OWASP Top 10:2025</div>
+<p>The 2025 list is: A01 Broken Access Control, A02 Security Misconfiguration, A03 Software Supply Chain Failures, A04 Cryptographic Failures, A05 Injection, A06 Insecure Design, A07 Authentication Failures, A08 Software or Data Integrity Failures, A09 Security Logging &amp; Alerting Failures, A10 Mishandling of Exceptional Conditions.</p>
+<p><strong>Key changes:</strong> SSRF is rolled into Broken Access Control; Software Supply Chain Failures expands the 2021 "Vulnerable &amp; Outdated Components" category; Mishandling of Exceptional Conditions (improper error handling, failing open) is new; A07 and A09 are renamed.</p>
 </div>
 
 <h2>SQL Injection Deep Dive</h2>
@@ -659,7 +665,7 @@ tbody tr:hover td{background:var(--light);}
 <div class="card-icon">💉</div>
 <div class="card-title">Fuzzing</div>
 <div class="card-label" style="color:var(--teal);">Fuzz Testing</div>
-<div class="card-desc">Sends <strong>random, unexpected, or malformed input</strong> to an application to find crashes, exceptions, and memory errors that indicate vulnerabilities. Effective at finding buffer overflows and input validation issues. Can be dumb (random) or smart (mutation-based).</div>
+<div class="card-desc">Sends <strong>random, unexpected, or malformed input</strong> to an application to find crashes, exceptions, and memory errors that indicate vulnerabilities. Effective at finding buffer overflows and input validation issues. Can be dumb (random input or mutations of sample inputs) or smart (aware of the input format or protocol).</div>
 </div>
 <div class="card">
 <div class="card-icon">🔍</div>

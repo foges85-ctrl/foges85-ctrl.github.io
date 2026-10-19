@@ -1067,7 +1067,7 @@ a:hover { text-decoration: underline; }
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/dhcp.html",
   "inLanguage": "en"
 }
@@ -1136,7 +1136,7 @@ a:hover { text-decoration: underline; }
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated May 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <!-- ARTICLE -->
@@ -1401,7 +1401,7 @@ a:hover { text-decoration: underline; }
         <div class="dhcp-concept-icon">📌</div>
         <div class="dhcp-concept-label">Fixed assignment</div>
         <div class="dhcp-concept-title">DHCP Reservation</div>
-        <div class="dhcp-concept-desc">Maps a specific MAC address to a specific IP address. The device still uses DHCP but always receives the same IP. Best of both worlds — centralised management with a predictable address for printers, APs, and servers.</div>
+        <div class="dhcp-concept-desc">Maps a specific MAC address to a specific IP address. The device still uses DHCP but always receives the same IP. Best of both worlds — centralized management with a predictable address for printers, APs, and servers.</div>
       </div>
       <div class="dhcp-concept-card">
         <div class="dhcp-concept-icon">⏱️</div>
@@ -1438,7 +1438,7 @@ Client          <span class="dhcp-teal">◄──unicast──</span> Router</pr
     <div class="dhcp-callout">
       <div class="dhcp-callout-label">📌 ip helper-address — the Cisco command</div>
       <p>On Cisco routers, the relay agent is configured per interface with <strong>ip helper-address [DHCP server IP]</strong>. This is the most commonly tested implementation detail for Network+.</p>
-      <p>The relay agent forwards not just DHCP traffic but also several other broadcast-based protocols by default — DNS, TFTP, <a href="ntp-explained.html">NTP</a>, and others on their standard ports.</p>
+      <p>The relay agent forwards not just DHCP traffic but also several other UDP broadcast services by default — DNS (53), TFTP (69), Time (37), NetBIOS (137/138), TACACS (49), and others. <a href="ntp-explained.html">NTP</a> (123) is not included.</p>
     </div>
 
     <div class="exam-tip" style="background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:18px 22px;margin-bottom:28px;">
@@ -1467,7 +1467,7 @@ Client          <span class="dhcp-teal">◄──unicast──</span> Router</pr
     <hr class="divider">
 
     <h2>Rogue DHCP Servers</h2>
-    <p>A rogue DHCP server is an unauthorised device on the network that responds to DHCP Discover messages. Because DHCP is first-come-first-served, if the rogue server responds faster than the legitimate one, it wins — and can hand out false IP addresses, a wrong <a href="default-gateway.html">default gateway</a> (routing traffic through an attacker's machine), or a malicious DNS server (redirecting web traffic).</p>
+    <p>A rogue DHCP server is an unauthorized device on the network that responds to DHCP Discover messages. Because DHCP is first-come-first-served, if the rogue server responds faster than the legitimate one, it wins — and can hand out false IP addresses, a wrong <a href="default-gateway.html">default gateway</a> (routing traffic through an attacker's machine), or a malicious DNS server (redirecting web traffic).</p>
 
     <div class="dhcp-warning">
       <div class="dhcp-warning-label">⚠️ Rogue DHCP — a common attack vector</div>
@@ -1487,7 +1487,7 @@ Client          <span class="dhcp-teal">◄──unicast──</span> Router</pr
       <div class="summary-item">A DHCP lease is <strong>temporary</strong> — the device renews it automatically before expiry</div>
       <div class="summary-item">If DHCP fails, the device falls back to <strong>APIPA (169.254.x.x)</strong> with no internet</div>
       <div class="summary-item"><strong>Scope</strong> = address pool · <strong>Exclusion</strong> = addresses DHCP skips · <strong>Reservation</strong> = fixed IP per MAC address</div>
-      <div class="summary-item">A <strong>DHCP relay agent</strong> (ip helper-address) forwards DHCP broadcasts across routers to a centralised server</div>
+      <div class="summary-item">A <strong>DHCP relay agent</strong> (ip helper-address) forwards DHCP broadcasts across routers to a centralized server</div>
       <div class="summary-item">A <strong>rogue DHCP server</strong> can hijack clients — mitigate with <strong>DHCP snooping</strong> on managed switches</div>
     </div>
 

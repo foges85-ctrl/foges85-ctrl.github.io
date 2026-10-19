@@ -10,10 +10,10 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/deception-technologies.html">
 <title>Deception Technologies Explained — Honeypots, Honeynets,</title>
-<meta name="description" content="Deception technologies for CompTIA Security+ SY0-701 — honeypots, honeynets, honeyfiles, canary tokens, DNS sinkholes, and fake telemetry for detecting…">
+<meta name="description" content="Deception technologies for CompTIA Security+ SY0-701 — honeypots, honeynets, honeyfiles, and honeytokens, plus canary tokens, DNS sinkholes, and fake telemetry for detecting…">
 <meta property="og:type" content="article"><meta property="og:url" content="https://itstudyhub.org/deception-technologies.html">
 <meta property="og:title" content="Deception Technologies — Honeypots, Honeynets, Honeyfiles & Canary Tokens">
-<meta property="og:description" content="Honeypots, honeynets, honeyfiles, canary tokens, and DNS sinkholes explained for CompTIA Security+ SY0-701.">
+<meta property="og:description" content="Honeypots, honeynets, honeyfiles, and honeytokens for CompTIA Security+ SY0-701, plus canary tokens and DNS sinkholes explained.">
 <meta property="og:image" content="https://itstudyhub.org/favicon-512x512.png">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -418,7 +418,7 @@ tbody tr:hover td{background:var(--light);}
       "name": "Canary Tokens",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Canary tokens (popularized by the open-source canarytokens.org project) are unique identifiers embedded into documents, URLs, credentials, or other assets. When the token is triggered — a document opened, a URL fetched, credentials entered — it sends a notification to the defender, including the attacker's IP address, time, and sometimes additional context."
+        "text": "Canary tokens (popularized by the open-source canarytokens.org project) are unique identifiers embedded into documents, URLs, credentials, or other assets. When the token is triggered — a document opened, a URL fetched, credentials entered — it sends a notification to the defender, including the attacker's IP address, time, and sometimes additional context. Canary tokens are a kind of honeytoken — the SY0-701 term for fake data (credentials, API keys, database records) planted so that any use of it signals an attacker."
       }
     },
     {
@@ -482,7 +482,7 @@ tbody tr:hover td{background:var(--light);}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/deception-technologies.html",
   "inLanguage": "en"
 }
@@ -515,7 +515,7 @@ tbody tr:hover td{background:var(--light);}
 <nav class="breadcrumb"><a href="/">Home</a><span>›</span><span>Deception Technologies</span></nav>
 <div class="page-hero-badge">🍯 Security+</div>
 <h1>Deception Technologies — <span>Honeypots, Honeyfiles &amp; Canary Tokens</span></h1>
-<p class="page-hero-sub">How organizations use fake assets — honeypots, honeynets, honeyfiles, canary tokens, and DNS sinkholes — to detect attackers, slow them down, and gather intelligence. All tested on Security+ SY0-701.</p>
+<p class="page-hero-sub">How organizations use fake assets — honeypots, honeynets, honeyfiles, canary tokens, and DNS sinkholes — to detect attackers, slow them down, and gather intelligence. Security+ SY0-701 lists honeypots, honeynets, honeyfiles, and honeytokens; DNS sinkholes and fake telemetry are from the previous exam version and real-world practice.</p>
 <div class="cert-badges"><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
 </div></section>
 
@@ -527,19 +527,19 @@ tbody tr:hover td{background:var(--light);}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap"><div class="article-body">
 
 <div class="quick-answer">
 <div class="quick-answer-label">Quick Reference</div>
-<div class="quick-answer-text"><strong>Honeypot</strong> = decoy system that lures attackers — any interaction is suspicious. <strong>Honeynet</strong> = network of honeypots that simulates a full environment. <strong>Honeyfile</strong> = fake sensitive file that alerts when opened or accessed. <strong>Canary token</strong> = unique identifier embedded in a file/URL that triggers an alert when used. <strong>DNS sinkhole</strong> = redirects malicious domain queries to a controlled IP to block C2 and detect infected hosts. <strong>Fake telemetry</strong> = false data planted to mislead attackers about the real environment.</div>
+<div class="quick-answer-text"><strong>Honeypot</strong> = decoy system that lures attackers — any interaction is suspicious. <strong>Honeynet</strong> = network of honeypots that simulates a full environment. <strong>Honeyfile</strong> = fake sensitive file that alerts when opened or accessed. <strong>Honeytoken</strong> = fake data (a credential, API key, or database record) that alerts when anyone uses it. <strong>Canary token</strong> = a kind of honeytoken — a unique identifier embedded in a file/URL that triggers an alert when used. <strong>DNS sinkhole</strong> = redirects malicious domain queries to a controlled IP to block C2 and detect infected hosts. <strong>Fake telemetry</strong> = false data planted to mislead attackers about the real environment.</div>
 </div>
 
 <h2>What Are Deception Technologies?</h2>
 <p>Deception technologies are security controls that use fake, decoy, or misleading assets to detect attackers, waste their time, and gather intelligence about their techniques. The core insight is powerful: <strong>legitimate users have no reason to interact with decoy assets</strong>. Any interaction with a honeypot, honeyfile, or canary token is inherently suspicious — it generates a high-fidelity, low-noise alert that an attacker is present.</p>
-<p>This makes deception technologies especially valuable for detecting attackers who have already bypassed perimeter defenses and are moving laterally — the exact scenario where traditional signature-based tools often fail. Security+ Domain 2 covers deception and disruption technologies as part of vulnerability mitigation strategies.</p>
+<p>This makes deception technologies especially valuable for detecting attackers who have already bypassed perimeter defenses and are moving laterally — the exact scenario where traditional signature-based tools often fail. Security+ objective 1.2 (Domain 1) covers deception and disruption technology: honeypots, honeynets, honeyfiles, and honeytokens.</p>
 
 <h2>Honeypots</h2>
 <p>A honeypot is a decoy computer system, server, or network service designed to attract attackers. It looks like a legitimate, valuable target — but it's monitored closely, and any interaction triggers an alert. Honeypots serve two purposes: detection (knowing an attacker is present) and intelligence gathering (learning how attackers operate).</p>
@@ -573,13 +573,13 @@ tbody tr:hover td{background:var(--light);}
 </div>
 
 <h2>Canary Tokens</h2>
-<p>Canary tokens (popularized by the open-source canarytokens.org project) are unique identifiers embedded into documents, URLs, credentials, or other assets. When the token is triggered — a document opened, a URL fetched, credentials entered — it sends a notification to the defender, including the attacker's IP address, time, and sometimes additional context.</p>
+<p>Canary tokens (popularized by the open-source canarytokens.org project) are unique identifiers embedded into documents, URLs, credentials, or other assets. When the token is triggered — a document opened, a URL fetched, credentials entered — it sends a notification to the defender, including the attacker's IP address, time, and sometimes additional context. Canary tokens are a kind of <strong>honeytoken</strong> — the SY0-701 term for fake data (credentials, API keys, database records) planted so that any use of it signals an attacker.</p>
 
 <div class="card-grid">
 <div class="card">
 <div class="card-icon">📄</div>
 <div class="card-title">Word/PDF Canary</div>
-<div class="card-desc">A document with an embedded image URL. When opened, the image loads from the attacker's machine — the canary fires, revealing their IP address. Works even if the file is exfiltrated.</div>
+<div class="card-desc">A document with an embedded image URL. When opened, the attacker's machine fetches the image from the canary server — the canary fires, revealing their IP address. Works even if the file is exfiltrated.</div>
 </div>
 <div class="card">
 <div class="card-icon">🔑</div>
@@ -599,7 +599,7 @@ tbody tr:hover td{background:var(--light);}
 </div>
 
 <h2>DNS Sinkhole</h2>
-<p>A DNS sinkhole is a DNS server that intercepts queries for known malicious domains and returns a controlled IP address instead of the real one. When malware on an internal host tries to contact its command-and-control (C2) server by domain name, the sinkhole redirects that traffic to a controlled server — blocking the communication and revealing which internal hosts are infected.</p>
+<p>A DNS sinkhole is a DNS server that intercepts queries for known malicious domains and returns a controlled IP address instead of the real one. When malware on an internal host tries to contact its command-and-control (C2) server by domain name, the sinkhole redirects that traffic to a controlled server — blocking the communication and revealing which internal hosts are infected. <em>Exam note: SY0-701 doesn't list DNS sinkholes; they were a deception item on the previous version (SY0-601) and remain a common real-world control.</em></p>
 
 <div class="callout callout-purple">
 <div class="callout-label">📝 DNS Sinkhole — How It Works</div>
@@ -612,7 +612,7 @@ tbody tr:hover td{background:var(--light);}
 <p>DNS sinkholes are extremely effective for detecting malware on internal hosts — especially infected machines that have no obvious symptoms. Any host connecting to the sinkhole IP is compromised or at minimum suspicious. This is why threat intelligence feeds of known malicious domains are so valuable when fed into a DNS sinkhole system.</p>
 
 <h2>Fake Telemetry and Breadcrumbs</h2>
-<p>Advanced deception strategies go beyond static honeypots to create an entire deceptive layer throughout the network. Fake telemetry means planting realistic-looking but false data — fake credentials in memory, fake server listings in Active Directory, fake API keys in environment variables. An attacker enumerating the environment finds "valuable" assets that are all monitored traps.</p>
+<p>Advanced deception strategies go beyond static honeypots to create an entire deceptive layer throughout the network. Fake telemetry means planting realistic-looking but false data — fake credentials in memory, fake server listings in Active Directory, fake API keys in environment variables. An attacker enumerating the environment finds "valuable" assets that are all monitored traps. <em>Exam note: fake telemetry was a deception item on the previous Security+ version (SY0-601); SY0-701 doesn't list it.</em></p>
 <p><strong>Breadcrumbs</strong> are planted clues that lead attackers toward honeypots and away from real assets. A honeytoken credential in a developer's environment points to a fake server — the attacker follows the trail and walks into a monitored trap, while the real servers remain untouched and undetected.</p>
 
 <h2>Exam Scenarios</h2>

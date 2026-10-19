@@ -488,7 +488,7 @@ tbody tr:hover td{background:var(--light);}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/digital-forensics.html",
   "inLanguage": "en"
 }
@@ -533,14 +533,14 @@ tbody tr:hover td{background:var(--light);}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap"><div class="article-body">
 
 <div class="quick-answer">
 <div class="quick-answer-label">Quick Reference</div>
-<div class="quick-answer-text"><strong>Chain of custody</strong> = documented record of who handled evidence, when, and what was done with it. <strong>Order of volatility</strong> = collect evidence in order from most volatile (RAM) to least (paper). <strong>Write blocker</strong> = hardware/software that prevents modification of evidence during imaging. <strong>Forensic image</strong> = bit-for-bit copy of storage media verified by hash. <strong>Legal hold</strong> = suspension of normal data deletion in response to anticipated litigation. <strong>e-Discovery</strong> = electronic discovery of data for legal proceedings.</div>
+<div class="quick-answer-text"><strong>Chain of custody</strong> = documented record of who handled evidence, when, and what was done with it. <strong>Order of volatility</strong> = collect evidence in order from most volatile (registers, cache, RAM) to least (archival media). <strong>Write blocker</strong> = hardware/software that prevents modification of evidence during imaging. <strong>Forensic image</strong> = bit-for-bit copy of storage media verified by hash. <strong>Legal hold</strong> = suspension of normal data deletion in response to anticipated litigation. <strong>e-Discovery</strong> = electronic discovery of data for legal proceedings.</div>
 </div>
 
 <h2>What Is Digital Forensics?</h2>
@@ -595,13 +595,13 @@ tbody tr:hover td{background:var(--light);}
 <p>Evidence must be collected in order from most volatile (lost soonest) to least volatile (persists longest). This is called the <strong>order of volatility</strong> and is a foundational forensic principle — RFC 3227 defines it. If you collect the hard drive image first while ignoring RAM, you've already lost all the volatile in-memory evidence.</p>
 
 <div class="volatility-list">
-<div class="vol-item"><span class="vol-rank">1st</span><span class="vol-source">CPU Registers & Cache</span><span class="vol-desc">Lost immediately if power is cut — nanoseconds</span></div>
-<div class="vol-item"><span class="vol-rank">2nd</span><span class="vol-source">RAM (System Memory)</span><span class="vol-desc">Lost when system powers off — contains running processes, encryption keys, network connections</span></div>
-<div class="vol-item"><span class="vol-rank">3rd</span><span class="vol-source">Network State / ARP Cache</span><span class="vol-desc">Active connections, routing tables, open sockets — changes constantly</span></div>
-<div class="vol-item"><span class="vol-rank">4th</span><span class="vol-source">Running Processes</span><span class="vol-desc">Process list, handles, environment variables — lost on reboot</span></div>
-<div class="vol-item"><span class="vol-rank">5th</span><span class="vol-source">Disk / Storage</span><span class="vol-desc">Files, registry, logs — persists but can be overwritten</span></div>
-<div class="vol-item"><span class="vol-rank">6th</span><span class="vol-source">Remote / External Logs</span><span class="vol-desc">SIEM, syslog server — retained per log retention policy</span></div>
-<div class="vol-item"><span class="vol-rank">7th</span><span class="vol-source">Physical Media / Paper</span><span class="vol-desc">Backups, printed documents — most persistent</span></div>
+<div class="vol-item"><span class="vol-rank">1st</span><span class="vol-source">Registers & Cache</span><span class="vol-desc">Lost immediately if power is cut — nanoseconds</span></div>
+<div class="vol-item"><span class="vol-rank">2nd</span><span class="vol-source">Routing Table, ARP Cache, Process Table, Kernel Statistics, Memory</span><span class="vol-desc">Network connections, running processes, encryption keys in RAM — lost when the system powers off</span></div>
+<div class="vol-item"><span class="vol-rank">3rd</span><span class="vol-source">Temporary File Systems</span><span class="vol-desc">Temp directories and RAM-backed file systems — often cleared on reboot</span></div>
+<div class="vol-item"><span class="vol-rank">4th</span><span class="vol-source">Disk</span><span class="vol-desc">Files, registry, logs — persists but can be overwritten</span></div>
+<div class="vol-item"><span class="vol-rank">5th</span><span class="vol-source">Remote Logging & Monitoring Data</span><span class="vol-desc">SIEM, syslog server — retained per log retention policy</span></div>
+<div class="vol-item"><span class="vol-rank">6th</span><span class="vol-source">Physical Configuration & Network Topology</span><span class="vol-desc">How systems are built and connected — changes slowly</span></div>
+<div class="vol-item"><span class="vol-rank">7th</span><span class="vol-source">Archival Media</span><span class="vol-desc">Backups and archives — most persistent</span></div>
 </div>
 
 <div class="callout callout-amber">
@@ -630,7 +630,7 @@ tbody tr:hover td{background:var(--light);}
 <div class="card">
 <div class="card-icon">🖼️</div>
 <div class="card-title">FTK (Forensic Toolkit)</div>
-<div class="card-desc">Commercial forensic suite by AccessData. Disk imaging, file carving, email analysis, password cracking, registry analysis. <strong>FTK Imager</strong> (free version) widely used for acquisitions.</div>
+<div class="card-desc">Commercial forensic suite (originally AccessData, now Exterro). Disk imaging, file carving, email analysis, password cracking, registry analysis. <strong>FTK Imager</strong> (free version) widely used for acquisitions.</div>
 </div>
 <div class="card">
 <div class="card-icon">🔮</div>

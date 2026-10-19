@@ -418,7 +418,7 @@ tbody tr:hover td{background:var(--light);}
       "name": "MFA Fatigue Attacks — Push Bombing",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "MFA fatigue (push bombing) is an attack where an adversary who has stolen valid credentials repeatedly sends MFA push notifications to the victim's phone, hoping the victim approves one out of frustration, confusion, or distraction. The Uber breach in 2022 succeeded largely through MFA fatigue — the attacker sent continuous Duo pushes until the victim approved one. Mitigations: Number matching (the push shows a number you must match to a number on screen — prevents blind approval), phishing-resistant MFA (FIDO2/hardware tokens eliminate push notifications entirely), rate limiting push notif…"
+        "text": "MFA fatigue (push bombing) is an attack where an adversary who has stolen valid credentials repeatedly sends MFA push notifications to the victim's phone, hoping the victim approves one out of frustration, confusion, or distraction. The Uber breach in 2022 succeeded largely through MFA fatigue — the attacker sent continuous Duo pushes until the victim approved one. Mitigations: Number matching (the push shows a number you must match to a number on screen — prevents blind approval), phishing-resistant MFA (FIDO2 security keys eliminate push notifications entirely), rate limiting push notif…"
       }
     },
     {
@@ -482,7 +482,7 @@ tbody tr:hover td{background:var(--light);}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-18",
   "url": "https://itstudyhub.org/mfa-explained.html",
   "inLanguage": "en"
 }
@@ -527,7 +527,7 @@ tbody tr:hover td{background:var(--light);}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap"><div class="article-body">
@@ -553,9 +553,10 @@ tbody tr:hover td{background:var(--light);}
 <thead><tr><th>Type</th><th>How It Works</th><th>Strength</th><th>Exam Key Point</th></tr></thead>
 <tbody>
 <tr><td class="td-label">TOTP</td><td>Time-based one-time password — generates a 6-digit code every 30 seconds using a shared secret + current time. Google Authenticator, Authy.</td><td>Strong</td><td>Code expires in 30 seconds — replay attacks fail</td></tr>
-<tr><td class="td-label">HOTP</td><td>HMAC-based one-time password — generates a code based on a counter that increments with each use. Older RSA SecurID tokens use this.</td><td>Moderate</td><td>Counter-based, not time-based — codes don't expire automatically</td></tr>
+<tr><td class="td-label">HOTP</td><td>HMAC-based one-time password — generates a code based on a counter that increments with each use. OATH event-based hardware tokens (and YubiKey's OATH-HOTP mode) use this.</td><td>Moderate</td><td>Counter-based, not time-based — codes don't expire automatically</td></tr>
 <tr><td class="td-label">Push Notification</td><td>App on your phone receives a push asking "Approve this login?" — you tap Approve or Deny. Microsoft Authenticator, Duo.</td><td>Strong</td><td>Vulnerable to MFA fatigue attacks (push bombing)</td></tr>
-<tr><td class="td-label">Hardware Token</td><td>Physical device (YubiKey, RSA SecurID) generates codes or uses USB/NFC to authenticate. Cannot be phished remotely.</td><td>Very Strong</td><td>Most phishing-resistant MFA — code never entered manually</td></tr>
+<tr><td class="td-label">OTP Hardware Token</td><td>Physical device (such as RSA SecurID) displays a one-time code that the user types into the login page.</td><td>Strong</td><td>Strong, but phishable — a real-time phishing proxy can capture the typed code</td></tr>
+<tr><td class="td-label">FIDO2 Security Key</td><td>Physical key (such as YubiKey) authenticates over USB/NFC with public-key cryptography — no code is typed.</td><td>Strongest</td><td>Phishing-resistant — the signature is bound to the real site's domain</td></tr>
 <tr><td class="td-label">SMS OTP</td><td>One-time code sent via text message. Weakest MFA option — susceptible to SIM swapping.</td><td>Weak</td><td>Better than no MFA, but weakest option on exam questions</td></tr>
 <tr><td class="td-label">FIDO2 / Passkeys</td><td>Cryptographic key pair — private key stays on device, public key with server. No password transmitted. WebAuthn standard.</td><td>Strongest</td><td>Phishing-resistant by design — no shared secret to steal</td></tr>
 </tbody>
@@ -569,7 +570,7 @@ tbody tr:hover td{background:var(--light);}
 <div class="callout callout-red">
 <div class="callout-label">⚠️ Attack to Know for the Exam</div>
 <p><strong>MFA fatigue (push bombing)</strong> is an attack where an adversary who has stolen valid credentials repeatedly sends MFA push notifications to the victim's phone, hoping the victim approves one out of frustration, confusion, or distraction. The Uber breach in 2022 succeeded largely through MFA fatigue — the attacker sent continuous Duo pushes until the victim approved one.</p>
-<p><strong>Mitigations:</strong> Number matching (the push shows a number you must match to a number on screen — prevents blind approval), phishing-resistant MFA (FIDO2/hardware tokens eliminate push notifications entirely), rate limiting push notifications, and user awareness training.</p>
+<p><strong>Mitigations:</strong> Number matching (the push shows a number you must match to a number on screen — prevents blind approval), phishing-resistant MFA (FIDO2 security keys eliminate push notifications entirely), rate limiting push notifications, and user awareness training.</p>
 </div>
 
 <h2>Smart Cards and PIV</h2>
@@ -588,9 +589,9 @@ tbody tr:hover td{background:var(--light);}
 <div class="scenario"><div class="scenario-q">An attacker obtained an employee's username and password through phishing. They are now unable to access the corporate VPN. What control is preventing access?</div>
 <div class="scenario-a"><strong>Answer: Multi-factor authentication (MFA).</strong> The stolen password alone satisfies only the knowledge factor. Without the second factor (possession or inherence), authentication fails. This is the core value proposition of MFA — credential theft alone is insufficient.</div></div>
 <div class="scenario"><div class="scenario-q">A security team reports that employees are receiving dozens of unexpected MFA push notifications they did not initiate, and one employee approved a push by mistake. What attack is occurring?</div>
-<div class="scenario-a"><strong>Answer: MFA fatigue attack (push bombing).</strong> The attacker has valid credentials and is flooding the victim with push notifications hoping for accidental approval. Mitigations include switching to number-matching MFA or phishing-resistant FIDO2/hardware tokens.</div></div>
+<div class="scenario-a"><strong>Answer: MFA fatigue attack (push bombing).</strong> The attacker has valid credentials and is flooding the victim with push notifications hoping for accidental approval. Mitigations include switching to number-matching MFA or phishing-resistant FIDO2 security keys.</div></div>
 <div class="scenario"><div class="scenario-q">A company requires the most phishing-resistant authentication method available for privileged accounts. Which MFA type should they implement?</div>
-<div class="scenario-a"><strong>Answer: FIDO2 hardware security keys (such as YubiKey).</strong> FIDO2 is phishing-resistant by design — the private key never leaves the device and authentication is domain-bound. No secret can be captured by a phishing page. Hardware tokens are the strongest option on the exam when phishing resistance is the requirement.</div></div>
+<div class="scenario-a"><strong>Answer: FIDO2 hardware security keys (such as YubiKey).</strong> FIDO2 is phishing-resistant by design — the private key never leaves the device and authentication is domain-bound. No secret can be captured by a phishing page. FIDO2 hardware security keys are the strongest option on the exam when phishing resistance is the requirement.</div></div>
 <div class="scenario"><div class="scenario-q">A user is issued a government-issued card with an embedded chip that requires a PIN before granting access to workstations. How many authentication factors does this represent?</div>
 <div class="scenario-a"><strong>Answer: Two factors.</strong> The smart card (PIV/CAC) represents something you have; the PIN represents something you know. A smart card used with a PIN is MFA by itself — you need both the physical card and knowledge of the PIN.</div></div>
 </div>
@@ -616,7 +617,7 @@ tbody tr:hover td{background:var(--light);}
 
 <p><strong>Hardware security keys</strong> (YubiKey, Google Titan Key, FIDO2 keys) provide stronger security through public-key cryptography. The private key never leaves the hardware device — no network interception or phishing can capture it. The authentication is cryptographically bound to the domain being authenticated, so a phishing site for fake-bank.com cannot use a response generated for real-bank.com. For high-security roles (system administrators, finance executives, executives with access to sensitive systems), hardware keys are the recommended MFA method. The trade-off is cost ($25–$60 per key), physical provisioning (keys must be distributed to users), and the risk of loss (requiring a backup key enrollment process).</p>
 
-<p><strong>SMS OTP</strong> is convenient because it requires no app installation or hardware, but SIM-swapping attacks make it the weakest MFA option. NIST SP 800-63B categorizes SMS OTP as a restricted authenticator and recommends against it for high-value accounts. For exam scenarios: when the question says "most secure MFA option," the answer is hardware token or FIDO2. When it says "easiest to deploy at scale without device enrollment," SMS OTP is often the answer — with the caveat that it's the weakest option.</p>
+<p><strong>SMS OTP</strong> is convenient because it requires no app installation or hardware, but SIM-swapping attacks make it the weakest MFA option. NIST SP 800-63B-4 classifies SMS OTP as a restricted authenticator, so verifiers that allow it must also offer an alternative. For exam scenarios: when the question says "most secure MFA option," the answer is a FIDO2 hardware security key (such as a YubiKey). When it says "easiest to deploy at scale without device enrollment," SMS OTP is often the answer — with the caveat that it's the weakest option.</p>
 
 <h2>MFA Implementation Methods by Platform</h2>
 
@@ -640,7 +641,7 @@ tbody tr:hover td{background:var(--light);}
 
 <p>The most common OOB method is <strong>SMS OTP</strong> — you log in via web browser, and a one-time code is sent to your phone via SMS. The authentication requires both channels: your computer (which the attacker may have compromised) and your phone (a separate channel). Phone calls delivering a spoken OTP are another OOB method. Modern OOB authentication using push notifications to an authenticator app is more secure than SMS because the push channel uses the app's own encrypted connection rather than the SMS network.</p>
 
-<p>SMS OOB is considered the weakest form of MFA because the SMS channel can be compromised via <strong>SIM swapping</strong> — an attack where the attacker convinces the mobile carrier to transfer the victim's phone number to a SIM card the attacker controls. Once they have the phone number, all SMS messages (including OTP codes) are delivered to the attacker. For this reason, NIST SP 800-63-3 restricts SMS OTP to specific use cases and recommends app-based or hardware alternatives.</p>
+<p>SMS OOB is considered the weakest form of MFA because the SMS channel can be compromised via <strong>SIM swapping</strong> — an attack where the attacker convinces the mobile carrier to transfer the victim's phone number to a SIM card the attacker controls. Once they have the phone number, all SMS messages (including OTP codes) are delivered to the attacker. For this reason, NIST SP 800-63B-4 classifies SMS (PSTN) OTP as a restricted authenticator: a verifier that allows it must offer users an alternative authenticator and warn them of the risks.</p>
 
 <h2>MFA and Single Sign-On (SSO)</h2>
 
@@ -652,9 +653,9 @@ tbody tr:hover td{background:var(--light);}
 
 <div class="callout">
   <div class="callout-label">Compliance Requirements for MFA</div>
-  <p><strong>PCI-DSS v4.0</strong>: Requires MFA for all access into the cardholder data environment (CDE), for all remote access, and for all administrative access. Single-factor authentication is not acceptable for any privileged access in PCI scope.</p>
+  <p><strong>PCI DSS v4.0.1</strong> (Req. 8.4): MFA is required for all non-console access into the cardholder data environment (CDE), including administrative access, and for all remote network access from outside the entity's network that could access or impact the CDE.</p>
   <p><strong>HIPAA</strong>: Does not mandate MFA explicitly but the Security Rule's access control requirements effectively make it a best practice for any system processing ePHI. HHS has issued guidance strongly recommending MFA for covered entities.</p>
-  <p><strong>NIST SP 800-63-3</strong>: Defines authentication assurance levels (AAL1/2/3). AAL2 requires MFA; AAL3 requires hardware cryptographic authenticators (FIDO2/smart cards). Federal systems handling sensitive data require AAL2 or higher.</p>
+  <p><strong>NIST SP 800-63-4</strong> (final July 2025): Defines authentication assurance levels (AAL1/2/3). AAL2 requires MFA, and verifiers must offer at least one phishing-resistant option; AAL3 requires a phishing-resistant authenticator whose private key is non-exportable and held in hardware (such as a FIDO2 hardware security key or a PIV/CAC smart card) — synced passkeys cannot be used at AAL3. Federal systems handling sensitive data require AAL2 or higher.</p>
 </div>
 
 <h2>Related Articles</h2>
