@@ -650,6 +650,46 @@ tbody tr:hover td { background: #f6f9ff; }
   }
 }
 /* ---- end mobile nav ---- */
+
+/* ── AFFILIATE BOX (same rules as dns.html) ── */
+.affiliate-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px; padding: 28px 32px;
+  margin-bottom: 36px; position: relative; overflow: hidden;
+}
+.affiliate-box::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.affiliate-tag {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 8px;
+}
+.affiliate-box h2 {
+  font-family: 'Outfit', sans-serif; font-size: 18px;
+  font-weight: 700; color: var(--white); margin-bottom: 6px;
+}
+.affiliate-box p { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 18px; }
+.affiliate-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+.aff-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 18px; border-radius: 9px; font-size: 14px;
+  font-weight: 600; transition: transform 0.15s, filter 0.15s;
+  white-space: nowrap; text-decoration: none;
+}
+.aff-btn:hover { transform: translateY(-2px); filter: brightness(1.05); text-decoration: none; }
+.aff-btn-primary { background: var(--teal); color: var(--navy); }
+.aff-btn-secondary { background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.15); }
+
+/* ── BODY TEXT LINKS ── */
+.article-body p > a:not([class]), .guide-wrap p > a:not([class]) { color:#155bd9; text-decoration:underline; }
+
+/* ── AFFILIATE BOX FIXES ── */
+@media (max-width:600px){ .aff-btn { white-space:normal; } }
+.affiliate-box h2 { margin-top:0; }
 </style>
 
 <script type="application/ld+json">
