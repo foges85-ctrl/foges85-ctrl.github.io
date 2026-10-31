@@ -461,14 +461,6 @@ tbody tr:hover td{background:#fdf4ff;}
         "@type": "Answer",
         "text": "When your browser connects to an HTTPS site, the TLS handshake uses asymmetric cryptography to agree on a session key: TLS 1.3 uses ECDHE key exchange, with RSA or ECDSA used only to sign the handshake. Once both sides have the session key, all data is encrypted with symmetric AES because it's much faster. In TLS 1.3, AES-GCM both encrypts and authenticates each record; SHA-256/384 is used for key derivation (HKDF) and the handshake transcript hash. This is why hybrid encryption exists: RSA is too slow to encrypt your entire Netflix stream. In TLS 1.2 and earlier, RSA key transport could instead encrypt the pre-master secret from which the AES session keys are derived (TLS 1.3 removed RSA key transport). Either way, once both sides share the AES key securely, speed wins. A digital signature uses asymmetric encryption in reverse : you encrypt …"
       }
-    },
-    {
-      "@type": "Question",
-      "name": "Exam Scenarios",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "See the best courses, practice exams, and study guides for SY0-701."
-      }
     }
   ]
 }
@@ -520,7 +512,7 @@ tbody tr:hover td{background:#fdf4ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-10-18",
+  "dateModified": "2026-10-31",
   "url": "https://itstudyhub.org/encryption-types.html",
   "inLanguage": "en"
 }
@@ -591,6 +583,11 @@ tbody tr:hover td{background:#fdf4ff;}
       <div class="quick-answer-text">
         <strong>Symmetric encryption</strong> uses one key for both encryption and decryption — fast, efficient, used for bulk data. <strong>Asymmetric encryption</strong> uses a key pair (public + private) — slower but solves the key distribution problem. <strong>Hashing</strong> is one-way — produces a fixed-length digest that cannot be reversed. <strong>Hybrid encryption</strong> combines both: asymmetric to securely exchange a symmetric key, then symmetric for the actual data. <strong>This is how HTTPS works.</strong>
       </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">📅 Security+ exam version (October 2026)</div>
+      <p>Security+ V8 (SY0-801) is scheduled to launch on or around November 17, 2026. SY0-701 remains available until June 11, 2027 (English), so this page covers SY0-701.</p>
     </div>
 
     <h2>The Four Types at a Glance</h2>

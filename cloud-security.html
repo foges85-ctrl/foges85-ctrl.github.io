@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/cloud-security.html">
-<title>How to Secure Cloud Environments — CASB, CSPM & Shared</title>
+<title>How to Secure the Cloud — CASB, CSPM &amp; Shared Responsibility</title>
 <meta name="description" content="Shared responsibility model, CASB, CSPM, cloud misconfigurations, and data sovereignty — cloud security concepts for CompTIA Security+ SY0-701.">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -467,14 +467,6 @@ tbody tr:hover td{background:var(--light);}
         "@type": "Answer",
         "text": "IaC tools (Terraform, CloudFormation) define infrastructure in configuration files. Misconfigurations in IaC templates deploy insecure infrastructure at scale. Scanning IaC templates before deployment (using tools like Checkov or tfsec) catches misconfigurations before they reach production — this is \"shift left\" security applied to infrastructure. Cloud providers offer virtual firewalls as security groups (AWS) or network security groups (Azure). Unlike traditional firewalls, these are stateful and attached to individual resources rather than network segments. Each resource should have its…"
       }
-    },
-    {
-      "@type": "Question",
-      "name": "Exam Scenarios",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Cloud security falls under Domain 3 (Security Architecture), which is 18% of the exam. See the full Security+ study guide for all 5 domains."
-      }
     }
   ]
 }
@@ -494,7 +486,7 @@ tbody tr:hover td{background:var(--light);}
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "How to Secure Cloud Environments — CASB, CSPM & Shared",
+      "name": "How to Secure the Cloud — CASB, CSPM & Shared Responsibility",
       "item": "https://itstudyhub.org/cloud-security.html"
     }
   ]
@@ -503,14 +495,14 @@ tbody tr:hover td{background:var(--light);}
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="IT Study Hub">
   <meta property="og:url" content="https://itstudyhub.org/cloud-security.html">
-  <meta property="og:title" content="How to Secure Cloud Environments — CASB, CSPM & Shared">
+  <meta property="og:title" content="How to Secure the Cloud — CASB, CSPM &amp; Shared Responsibility">
   <meta property="og:description" content="What does">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "How to Secure Cloud Environments \u2014 CASB, CSPM & Shared",
+  "headline": "How to Secure the Cloud — CASB, CSPM & Shared Responsibility",
   "author": {
     "@type": "Person",
     "name": "Sean Fogarty",
@@ -526,7 +518,7 @@ tbody tr:hover td{background:var(--light);}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-10-18",
+  "dateModified": "2026-10-31",
   "url": "https://itstudyhub.org/cloud-security.html",
   "inLanguage": "en"
 }
@@ -601,6 +593,11 @@ tbody tr:hover td{background:var(--light);}
       <div class="quick-answer-text">
         Security+ SY0-701 expanded cloud security significantly from SY0-601. The key concepts: <strong>shared responsibility model</strong> (who owns what in IaaS/PaaS/SaaS), <strong>CASB</strong> (cloud access security broker — visibility and control over SaaS usage), <strong>CSPM</strong> (cloud security posture management — detecting misconfigurations), <strong>serverless and container security</strong>, and the top <strong>cloud misconfigurations</strong> that lead to breaches. Scenarios ask you to select the right tool or identify the vulnerability in a described cloud architecture.
       </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">📅 Security+ exam version (October 2026)</div>
+      <p>Security+ V8 (SY0-801) is scheduled to launch on or around November 17, 2026. SY0-701 remains available until June 11, 2027 (English), so this page covers SY0-701.</p>
     </div>
 
     <h2>The Shared Responsibility Model — Who Owns What</h2>

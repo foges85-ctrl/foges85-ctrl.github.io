@@ -10,10 +10,10 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/mfa-explained.html">
 <title>MFA Explained — Multi-Factor Authentication Types, TOTP & Passkeys</title>
-<meta name="description" content="Multi-factor authentication explained for CompTIA Security+ SY0-701 — the three factors, TOTP vs HOTP, push notifications, hardware tokens, FIDO2, MFA…">
+<meta name="description" content="Multi-factor authentication explained for CompTIA Security+ SY0-701 — the four factors, TOTP vs HOTP, push notifications, hardware tokens, FIDO2, MFA…">
 <meta property="og:type" content="article"><meta property="og:url" content="https://itstudyhub.org/mfa-explained.html">
 <meta property="og:title" content="MFA Explained — Multi-Factor Authentication for Security+">
-<meta property="og:description" content="The three authentication factors, TOTP vs HOTP, push notifications, FIDO2, MFA fatigue attacks, and every MFA concept tested on Security+ SY0-701.">
+<meta property="og:description" content="The four authentication factors, TOTP vs HOTP, push notifications, FIDO2, MFA fatigue attacks, and every MFA concept tested on Security+ SY0-701.">
 <meta property="og:image" content="https://itstudyhub.org/favicon-512x512.png">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -399,7 +399,7 @@ tbody tr:hover td{background:var(--light);}
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "The Three Authentication Factors",
+      "name": "The Four Authentication Factors",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Authentication factors are categories of proof that verify your identity. MFA works because compromising one factor category does not compromise another — a stolen password doesn't give an attacker your fingerprint, and stealing your phone doesn't reveal your password."
@@ -482,7 +482,7 @@ tbody tr:hover td{background:var(--light);}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-10-18",
+  "dateModified": "2026-10-31",
   "url": "https://itstudyhub.org/mfa-explained.html",
   "inLanguage": "en"
 }
@@ -515,7 +515,7 @@ tbody tr:hover td{background:var(--light);}
 <nav class="breadcrumb"><a href="/">Home</a><span>›</span><span>MFA Explained</span></nav>
 <div class="page-hero-badge">🔐 Security+</div>
 <h1>Multi-Factor Authentication — <span>MFA Explained</span></h1>
-<p class="page-hero-sub">The three authentication factors, TOTP vs HOTP, push notifications, hardware tokens, FIDO2, MFA fatigue attacks, and every MFA concept tested on CompTIA Security+ SY0-701.</p>
+<p class="page-hero-sub">The four authentication factors, TOTP vs HOTP, push notifications, hardware tokens, FIDO2, MFA fatigue attacks, and every MFA concept tested on CompTIA Security+ SY0-701.</p>
 <div class="cert-badges"><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
 </div></section>
 
@@ -534,17 +534,22 @@ tbody tr:hover td{background:var(--light);}
 
 <div class="quick-answer">
 <div class="quick-answer-label">Quick Reference</div>
-<div class="quick-answer-text"><strong>MFA requires two or more factors from different categories</strong> to authenticate: <strong>something you know</strong> (password, PIN), <strong>something you have</strong> (authenticator app, hardware token, smart card), <strong>something you are</strong> (fingerprint, face, iris). The key word is <em>different</em> — two passwords is not MFA. MFA defeats credential theft attacks because a stolen password alone cannot satisfy the second factor.</div>
+<div class="quick-answer-text"><strong>MFA requires two or more factors from different categories</strong> to authenticate. Security+ SY0-701 (objective 4.6) lists four: <strong>something you know</strong> (password, PIN), <strong>something you have</strong> (authenticator app, hardware token, smart card), <strong>something you are</strong> (fingerprint, face, iris), and <strong>somewhere you are</strong> (GPS or network location). The key word is <em>different</em> — two passwords is not MFA. MFA defeats credential theft attacks because a stolen password alone cannot satisfy the second factor.</div>
 </div>
 
-<h2>The Three Authentication Factors</h2>
+<div class="callout">
+  <div class="callout-label">📅 Security+ exam version (October 2026)</div>
+  <p>Security+ V8 (SY0-801) is scheduled to launch on or around November 17, 2026. SY0-701 remains available until June 11, 2027 (English), so this page covers SY0-701.</p>
+</div>
+
+<h2>The Four Authentication Factors</h2>
 <p>Authentication factors are categories of proof that verify your identity. MFA works because compromising one factor category does not compromise another — a stolen password doesn't give an attacker your fingerprint, and stealing your phone doesn't reveal your password.</p>
 
 <div class="card-grid">
 <div class="card"><div class="card-icon">🧠</div><div class="card-title">Something You Know</div><div class="card-label" style="color:var(--purple);">Knowledge factor</div><div class="card-desc"><strong>Passwords, PINs, passphrases, security questions.</strong> The most common factor — and the weakest when used alone. Susceptible to phishing, credential stuffing, brute force, and password reuse attacks. Must always be combined with at least one other factor.</div></div>
 <div class="card"><div class="card-icon">📱</div><div class="card-title">Something You Have</div><div class="card-label" style="color:var(--purple);">Possession factor</div><div class="card-desc"><strong>Authenticator apps, hardware tokens (YubiKey), smart cards, OTP via SMS.</strong> Requires physical possession of a device or object. An attacker who steals your password still can't authenticate without also stealing your phone or token.</div></div>
 <div class="card"><div class="card-icon">👆</div><div class="card-title">Something You Are</div><div class="card-label" style="color:var(--purple);">Inherence factor</div><div class="card-desc"><strong>Fingerprint, face recognition, iris scan, voice recognition, vein pattern.</strong> Biometric factors are highly convenient but raise privacy concerns and can occasionally be spoofed — high-quality photos can fool some face recognition systems.</div></div>
-<div class="card"><div class="card-icon">📍</div><div class="card-title">Somewhere You Are</div><div class="card-label" style="color:var(--purple);">Location factor</div><div class="card-desc"><strong>GPS location, IP geolocation, network location.</strong> A fourth factor sometimes cited on the exam. Restricts access to users within a physical location or network range. Common in Zero Trust — "deny access from outside the corporate network unless VPN connected."</div></div>
+<div class="card"><div class="card-icon">📍</div><div class="card-title">Somewhere You Are</div><div class="card-label" style="color:var(--purple);">Location factor</div><div class="card-desc"><strong>GPS location, IP geolocation, network location.</strong> The fourth factor in the SY0-701 list (objective 4.6). Restricts access to users within a physical location or network range. Common in Zero Trust — "deny access from outside the corporate network unless VPN connected."</div></div>
 </div>
 
 <h2>MFA Types — TOTP, HOTP, Push, and Hardware Tokens</h2>
@@ -607,7 +612,7 @@ tbody tr:hover td{background:var(--light);}
 
 <p><strong>Biometrics alone are not MFA.</strong> Fingerprint unlock on a phone is a single factor (something you are). It's a replacement for a PIN (something you know) — substituting one factor type for another. A phone that unlocks with fingerprint only (no PIN fallback) uses single-factor authentication, just with a biometric factor instead of a knowledge factor. MFA requires fingerprint AND PIN, or fingerprint AND an authenticator code — two different categories together.</p>
 
-<p><strong>Location as a factor is supplementary, not definitive.</strong> While location can be used as an additional signal in adaptive authentication, IP geolocation is imprecise and can be spoofed with VPNs. The exam recognizes location as a fourth factor but doesn't treat it as a substitute for knowledge, possession, or inherence factors in standard MFA scenarios.</p>
+<p><strong>Location as a factor is supplementary, not definitive.</strong> While location can be used as an additional signal in adaptive authentication, IP geolocation is imprecise and can be spoofed with VPNs. SY0-701 lists location as the fourth factor, but the exam doesn't treat it as a substitute for knowledge, possession, or inherence factors in standard MFA scenarios.</p>
 
 <h2>Authenticator Apps vs Hardware Tokens — Practical Comparison</h2>
 
