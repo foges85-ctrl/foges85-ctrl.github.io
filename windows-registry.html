@@ -397,6 +397,12 @@ tbody tr:hover td{background:var(--light);}
   }
 }
 /* ---- end mobile nav ---- */
+
+/* Round 5 follow-up: keep wide tables and long code inside the 390px viewport */
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;}
+.table-scroll>table{margin-bottom:0;}
+pre{max-width:100%;overflow-x:auto;}
+:not(pre)>code{overflow-wrap:anywhere;}
 </style>
 
 
@@ -446,7 +452,7 @@ tbody tr:hover td{background:var(--light);}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-10-18",
+  "dateModified": "2026-10-31",
   "url": "https://itstudyhub.org/windows-registry.html",
   "inLanguage": "en"
 }
@@ -578,7 +584,7 @@ tbody tr:hover td{background:var(--light);}
 
     <h2>Registry vs Group Policy — How They Interact</h2>
     <p>Group Policy Objects (GPOs) in Active Directory domains enforce settings by writing values to specific registry keys at login. Many Group Policy settings map directly to registry values — a GPO that disables the Control Panel writes a DWORD value to a specific HKCU key. If a user attempts to change that setting directly in the registry, the GPO re-applies at the next login or policy refresh (every 90 minutes by default) and overwrites the user's change. This is why "the setting keeps reverting" is a common symptom of Group Policy enforcement rather than a technical error — the admin is fighting a GPO without realizing it. The <code>gpresult /r</code> command shows which GPOs are applied to a user and computer, and is the first diagnostic tool when registry changes don't persist.</p>
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario">
         <div class="scenario-q">A technician removes a malware executable but the malware re-appears after each reboot. Where should the technician look next?</div>
@@ -615,7 +621,7 @@ tbody tr:hover td{background:var(--light);}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

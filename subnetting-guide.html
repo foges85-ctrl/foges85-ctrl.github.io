@@ -546,7 +546,7 @@ tbody tr:hover td{background:#eff6ff;}
     </nav>
     <div class="page-hero-badge">CompTIA Network+ N10-009 · A+ 220-1201</div>
     <h1>Subnetting Guide — <span>Magic Number Method</span>, VLSM & PBQ Practice</h1>
-    <p class="page-hero-sub">The fastest subnetting method for exam conditions, every CIDR prefix from /8 to /30, VLSM for variable-size subnets, and full performance-based question walkthroughs for Network+ N10-009.</p>
+    <p class="page-hero-sub">A fast subnetting method for exam conditions, a CIDR reference table for the common prefixes, VLSM for variable-size subnets, and full PBQ-style practice walkthroughs for Network+ N10-009.</p>
     <div class="cert-badges">
       <span class="cert-badge cb-teal">A+ 220-1201</span>
       <span class="cert-badge cb-blue">Network+ N10-009</span>
@@ -571,7 +571,7 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ The Key Insight</div>
       <div class="quick-answer-text">
-        Subnetting is not memorization — it's a <strong>repeating pattern</strong>. Every subnet has a block size (how many addresses it contains), and subnets always start at multiples of that block size. Once you know the <strong>magic number</strong> for any prefix length, you can find any subnet's network address, broadcast address, and usable host range in under 30 seconds. That's the entire skill the exam tests.
+        Subnetting is not memorization — it's a <strong>repeating pattern</strong>. Every subnet has a block size (how many addresses it contains), and subnets always start at multiples of that block size. Once you know the <strong>magic number</strong> for any prefix length, you can find any subnet's network address, broadcast address, and usable host range in under 30 seconds. That's the entire skill.
       </div>
     </div>
 
@@ -623,7 +623,7 @@ tbody tr:hover td{background:#eff6ff;}
       </div>
     </div>
 
-    <h2>Complete CIDR Reference Table — /8 through /30</h2>
+    <h2>CIDR Reference Table — /8, /16 and /24 through /32</h2>
 
     <div class="table-wrap">
       <table>
@@ -656,7 +656,7 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 Memorize This Pattern — Magic Numbers Are Powers of 2</div>
       <p>The magic numbers for /25 through /30 are: <strong>128 · 64 · 32 · 16 · 8 · 4</strong>. Each one is half the previous. If you forget the block size for a prefix, just start at 128 for /25 and halve it for each step: /25=128, /26=64, /27=32, /28=16, /29=8, /30=4.</p>
-      <p><strong>/30 is the most important small subnet</strong> — 2 usable hosts, used for point-to-point WAN links between routers. The exam tests this frequently in router configuration scenarios.</p>
+      <p><strong>/30 is the most important small subnet</strong> — 2 usable hosts, used for point-to-point WAN links between routers. Know it for router configuration scenarios.</p>
     </div>
 
     <h2>Worked Examples — Step by Step</h2>
@@ -722,7 +722,7 @@ tbody tr:hover td{background:#eff6ff;}
         <div class="we-step"><div class="ws-num">4.</div><div class="ws-content">Example subnet <span class="ws-mono">10.0.0.0/30</span>: Router A = 10.0.0.1, Router B = 10.0.0.2, Broadcast = 10.0.0.3</div></div>
       </div>
       <div class="we-answer">
-        <div class="wa-label">✓ Answer — /30 is always the correct answer for point-to-point router links</div>
+        <div class="wa-label">✓ Answer — /30 is the traditional choice for point-to-point router links. /31 (<a href="https://www.rfc-editor.org/rfc/rfc3021" target="_blank" rel="noopener" style="color:#00786a;text-decoration:underline;">RFC 3021</a>) is also used for point-to-point links and needs only the 2 addresses.</div>
         <div class="wa-values">
           <div class="wa-val"><span class="wv-label">CIDR: </span><span class="wv-val">/30</span></div>
           <div class="wa-val"><span class="wv-label">Mask: </span><span class="wv-val">255.255.255.252</span></div>
@@ -735,7 +735,7 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="worked-example">
       <div class="we-header">
         <div class="we-title">Example 4 — Identify the host's subnet from a given IP</div>
-        <span class="we-badge wb-hard">Harder — PBQ Style</span>
+        <span class="we-badge wb-hard">Harder — Practice</span>
       </div>
       <div class="we-problem">A network admin receives an alert that 172.16.50.200/27 is unreachable. What subnet is this host on? Can it communicate directly with 172.16.50.220?</div>
       <div class="we-steps">
@@ -756,7 +756,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <h2>VLSM — Variable Length Subnet Masking</h2>
 
-    <p>VLSM lets you use <strong>different subnet sizes within the same address space</strong> — so you're not wasting addresses by giving every department the same block size. Instead of one /24 = 8 equal /27 subnets, VLSM lets you give Sales a /25 (126 hosts), IT a /27 (30 hosts), and the WAN link a /30 (2 hosts). This is standard practice in real networks and is tested on Network+.</p>
+    <p>VLSM lets you use <strong>different subnet sizes within the same address space</strong> — so you're not wasting addresses by giving every department the same block size. Instead of one /24 = 8 equal /27 subnets, VLSM lets you give Sales a /25 (126 hosts), IT a /27 (30 hosts), and the WAN link a /30 (2 hosts). This is standard practice in real networks.</p>
 
     <div class="callout purple">
       <div class="callout-label">VLSM — The Rule</div>
@@ -836,8 +836,8 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 Three Subnetting Traps to Avoid</div>
       <p><strong>The network and broadcast addresses are not usable.</strong> A /26 has 64 addresses but only 62 usable hosts (subtract 2, always). If you need "64 hosts", don't pick /26 (only 62 usable) — /25 (126 usable) is correct.</p>
-      <p><strong>/31 is a special case.</strong> Technically 2¹ − 2 = 0 usable hosts, but RFC 3021 permits /31 for point-to-point links because no broadcast is needed. The exam occasionally includes /31 — know that it's used for P2P links and has 2 assignable addresses.</p>
-      <p><strong>Don't confuse subnets-from-/24 with total subnets.</strong> A /26 gives you 4 subnets when splitting a /24. But if you're splitting a /22, you get many more. Always read the question — it will tell you the parent block you're subnetting from.</p>
+      <p><strong>/31 is a special case.</strong> Technically 2¹ − 2 = 0 usable hosts, but RFC 3021 permits /31 for point-to-point links because no broadcast is needed. Know that /31 is used for P2P links and has 2 assignable addresses.</p>
+      <p><strong>Don't confuse subnets-from-/24 with total subnets.</strong> A /26 gives you 4 subnets when splitting a /24. But if you're splitting a /22, you get many more. Always check the question for the parent block you're subnetting from.</p>
     </div>
 
     <div class="cta-box">
@@ -855,11 +855,11 @@ tbody tr:hover td{background:#eff6ff;}
     <h2>Subnetting Practice Problems — Work Through These</h2>
     <p>The only way to get fast at subnetting is repetition. Here are worked examples at increasing difficulty.</p>
     <p><strong>Problem 1 (basic):</strong> Given 192.168.5.0/24, divide into 4 equal subnets. You need 4 subnets from a /24. 2^2 = 4, so borrow 2 bits → /26. Block size: 256 − 192 = 64. Subnets: 192.168.5.0/26 (hosts .1–.62, broadcast .63), 192.168.5.64/26 (hosts .65–.126, broadcast .127), 192.168.5.128/26 (hosts .129–.190, broadcast .191), 192.168.5.192/26 (hosts .193–.254, broadcast .255). Each subnet has 62 usable hosts.</p>
-    <p><strong>Problem 2 (exam style):</strong> A host has IP address 172.16.45.200/20. What is its network address? /20 means the first 20 bits are network. In the third octet, 20 − 16 = 4 bits are network bits. The subnet boundary in the third octet: 256/2^4 = 16. 45 ÷ 16 = 2 remainder 13. Network starts at 2×16 = 32. Network address: <strong>172.16.32.0</strong>. Broadcast: 172.16.47.255. Host range: 172.16.32.1 – 172.16.47.254.</p>
+    <p><strong>Problem 2 (harder):</strong> A host has IP address 172.16.45.200/20. What is its network address? /20 means the first 20 bits are network. In the third octet, 20 − 16 = 4 bits are network bits. The subnet boundary in the third octet: 256/2^4 = 16. 45 ÷ 16 = 2 remainder 13. Network starts at 2×16 = 32. Network address: <strong>172.16.32.0</strong>. Broadcast: 172.16.47.255. Host range: 172.16.32.1 – 172.16.47.254.</p>
     <p><strong>Problem 3 (VLSM):</strong> You have 10.0.0.0/24. Allocate subnets for: Engineering (100 hosts), Sales (50 hosts), Management (20 hosts), WAN link (2 hosts). Largest first: Engineering needs /25 (126 usable) → 10.0.0.0/25. Sales needs /26 (62 usable) → 10.0.0.128/26. Management needs /27 (30 usable) → 10.0.0.192/27. WAN link needs /30 (2 usable) → 10.0.0.224/30.</p>
 
-    <h2>Common Subnetting Mistakes on the Exam</h2>
-    <p><strong>Forgetting the network and broadcast addresses.</strong> A /24 has 256 addresses but only 254 usable hosts — .0 is the network address, .255 is the broadcast. This is always 2 addresses lost per subnet, regardless of size. A /30 has 4 addresses: network (.0), two usable hosts (.1 and .2), and broadcast (.3). The minimum usable subnet is /30 for a point-to-point link needing exactly 2 hosts. (/31 is a special case for point-to-point links that eliminates the network/broadcast overhead, but this is rarely tested at A+/Network+ level.)</p>
+    <h2>Common Subnetting Mistakes</h2>
+    <p><strong>Forgetting the network and broadcast addresses.</strong> A /24 has 256 addresses but only 254 usable hosts — .0 is the network address, .255 is the broadcast. This is always 2 addresses lost per subnet, regardless of size. A /30 has 4 addresses: network (.0), two usable hosts (.1 and .2), and broadcast (.3). The minimum usable subnet is /30 for a point-to-point link needing exactly 2 hosts. (/31 is a special case for point-to-point links that eliminates the network/broadcast overhead.)</p>
     <p><strong>Miscounting subnets created.</strong> When the question asks "how many subnets does /26 create from a /24?", the answer is 4 (you borrowed 2 bits, 2^2 = 4). When it asks "how many /26 subnets exist in a /8?", that requires more care: a /8 has 2^(26−8) = 2^18 = 262,144 /26 subnets. Know which question is being asked.</p>
     <p><strong>CIDR notation confusion.</strong> /24 is the prefix length (the number of network bits), not the subnet mask. The subnet mask for /24 is 255.255.255.0. The subnet mask for /26 is 255.255.255.192 (because 11000000 in the fourth octet = 128+64 = 192). Practice converting between CIDR notation and dotted-decimal subnet masks until it's automatic.</p>
 
@@ -872,7 +872,7 @@ tbody tr:hover td{background:#eff6ff;}
       <a href="ipv4-vs-ipv6.html" class="related-link">IPv4 vs IPv6</a>
       <a href="tcp-ip-model.html" class="related-link">TCP/IP Model</a>
       <a href="ports-and-protocols.html" class="related-link">Ports & Protocols</a>
-      <a href="comptia-network-plus-study-guide.html" class="related-link">Network+ Complete Study Guide</a>
+      <a href="comptia-network-plus-study-guide.html" class="related-link">Network+ Study Guide</a>
       <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
     </div>
   </div>
@@ -887,7 +887,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/wireless-networking.html">
 <title>Wireless Networking — 802.11 Standards, WPA3 & Attacks</title>
-<meta name="description" content="802.11 a/b/g/n/ac/ax, 2.4GHz vs 5GHz, WPA2 vs WPA3, 802.1X auth, evil twin, rogue AP, and deauth attacks — complete Network+ and Security+ wireless coverage.">
+<meta name="description" content="802.11 a/b/g/n/ac/ax, 2.4GHz vs 5GHz, WPA2 vs WPA3, 802.1X auth, evil twin, rogue AP, and deauth attacks, explained for Network+ and Security+ study.">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -377,7 +377,7 @@ tbody tr:hover td{background:#eff6ff;}
   <meta property="og:site_name" content="IT Study Hub">
   <meta property="og:url" content="https://itstudyhub.org/wireless-networking.html">
   <meta property="og:title" content="Wireless Networking Explained — 802.11 Standards, WPA3 & Wi-Fi Security | Network+">
-  <meta property="og:description" content="802.11 a/b/g/n/ac/ax standards, 2.4GHz vs 5GHz, WPA2 vs WPA3, 802.1X wireless auth, evil twin, rogue AP, deauthentication attacks — complete Network+ and Security+ coverage.">
+  <meta property="og:description" content="802.11 a/b/g/n/ac/ax standards, 2.4GHz vs 5GHz, WPA2 vs WPA3, 802.1X wireless auth, evil twin, rogue AP, deauthentication attacks, explained for Network+ and Security+ study.">
 
 <script type="application/ld+json">
 {
@@ -399,7 +399,7 @@ tbody tr:hover td{background:#eff6ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-10-18",
+  "dateModified": "2026-10-31",
   "url": "https://itstudyhub.org/wireless-networking.html",
   "inLanguage": "en"
 }
@@ -441,7 +441,7 @@ tbody tr:hover td{background:#eff6ff;}
     </nav>
     <div class="page-hero-badge">CompTIA Network+ · Security+ · Wi-Fi</div>
     <h1>Wireless Networking <span>Explained</span></h1>
-    <p class="page-hero-sub">802.11 standards, 2.4GHz vs 5GHz, channels, WEP through WPA3, 802.1X enterprise auth, and wireless attacks — every Wi-Fi concept tested on CompTIA Network+ and Security+.</p>
+    <p class="page-hero-sub">802.11 standards, 2.4GHz vs 5GHz, channels, WEP through WPA3, 802.1X enterprise auth, and wireless attacks — the core Wi-Fi concepts for CompTIA Network+ and Security+.</p>
   </div>
 </section>
 
@@ -468,7 +468,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <h2>802.11 Wireless Standards</h2>
 
-    <p>The 802.11 standard family defines how Wi-Fi works. Each revision improves speed, efficiency, or range. For the exam, know the frequency bands, maximum theoretical throughput, and Wi-Fi generation names.</p>
+    <p>The 802.11 standard family defines how Wi-Fi works. Each revision improves speed, efficiency, or range. Know the frequency bands, maximum theoretical throughput, and Wi-Fi generation names.</p>
 
     <div class="table-wrap">
       <table>
@@ -489,7 +489,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 Exam Tip — Three Speed Facts to Memorize</div>
-      <p><strong>802.11a and 802.11g are both 54 Mbps</strong> — same speed, different bands (a=5GHz, g=2.4GHz). This is a classic trick question.</p>
+      <p><strong>802.11a and 802.11g are both 54 Mbps</strong> — same speed, different bands (a=5GHz, g=2.4GHz). Easy to mix up.</p>
       <p><strong>802.11ac is 5GHz only</strong> — it does not operate on 2.4GHz. If the scenario requires dual-band, the answer is 802.11n or 802.11ax.</p>
       <p><strong>802.11ax = Wi-Fi 6</strong> and <strong>802.11be = Wi-Fi 7</strong> — Wi-Fi 7 is the newest standard. The A+ and Network+ objectives say only "802.11 standards," so read the answer choices carefully rather than assuming one letter is always the "most current" answer.</p>
     </div>
@@ -528,7 +528,7 @@ tbody tr:hover td{background:#eff6ff;}
           <div class="sec-item"><strong>Encryption:</strong> RC4 stream cipher with 40 or 104-bit keys</div>
           <div class="sec-item"><strong>Fatal flaw:</strong> 24-bit IV (Initialization Vector) reuse — attackers crack the key by collecting ~50,000 packets (minutes with modern tools)</div>
           <div class="sec-item"><strong>Status:</strong> Cryptographically broken since 2001. Banned by PCI-DSS. Never use.</div>
-          <div class="sec-item"><strong>Exam tip:</strong> Always the wrong answer — if WEP appears as an option, eliminate it immediately</div>
+          <div class="sec-item"><strong>Exam tip:</strong> Never an acceptable choice for securing a network — rule it out whenever the most secure option is needed</div>
         </div>
       </div>
       <div class="sec-card">
@@ -647,7 +647,7 @@ tbody tr:hover td{background:#eff6ff;}
       </div>
     </div>
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
 
     <div class="scenario-list">
       <div class="scenario-item"><strong>Scenario 1:</strong> Users keep getting disconnected from Wi-Fi, and during reconnection an attacker in the building captures their WPA2 handshake. What attack is this, and what stops it? <em>Answer:</em> <strong>Deauthentication (deauth) attack</strong>. The attacker sends spoofed deauth frames forcing reconnects. Fix: deploy <strong>WPA3</strong> (SAE resists offline cracking) and enable <strong>802.11w Protected Management Frames</strong> to authenticate management frames and block spoofed deauths.</div>
@@ -659,7 +659,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <h2>Wireless Frequencies and Regulatory Considerations</h2>
 
-<p>Wi-Fi operates in unlicensed spectrum bands, but regulations still govern them — the regulatory environment affects which channels are available and at what transmit power levels. For A+ and Network+ exam purposes, the key regulatory concepts are channel availability, transmit power limits, and the DFS requirement.</p>
+<p>Wi-Fi operates in unlicensed spectrum bands, but regulations still govern them — the regulatory environment affects which channels are available and at what transmit power levels. For A+ and Network+, focus on these key regulatory concepts: channel availability, transmit power limits, and the DFS requirement.</p>
 
 <p>In the 5GHz band, channels are divided into several groups. Channels 36–48 are UNII-1 and can be used at lower power levels indoors. Channels 52–64 and 100–144 are UNII-2 and UNII-2e, and these channels require <strong>DFS (Dynamic Frequency Selection)</strong> — the AP must listen for radar signals (used by weather radar and military radar systems that share these frequencies) before transmitting. If radar is detected, the AP must immediately vacate that channel and switch to a clear one. This is why APs on DFS channels occasionally lose clients briefly during a channel switch — they detected radar and moved. Channels 149–165 are UNII-3 and allow the highest transmit power levels, making them popular for outdoor and longer-range deployments.</p>
 
@@ -667,17 +667,17 @@ tbody tr:hover td{background:#eff6ff;}
 
 <h2>MIMO, MU-MIMO, and OFDMA</h2>
 
-    <p>Understanding the antenna and multiplexing technologies behind modern Wi-Fi standards is increasingly important for the exam, especially the differences between Wi-Fi generations.</p>
+    <p>Understanding the antenna and multiplexing technologies behind modern Wi-Fi standards is increasingly important, especially the differences between Wi-Fi generations.</p>
 
     <p><strong>MIMO (Multiple-Input, Multiple-Output)</strong> was introduced with 802.11n (Wi-Fi 4). Instead of a single antenna, MIMO uses multiple antennas at both the transmitter and receiver to send and receive multiple spatial streams simultaneously. A 2×2:2 MIMO AP has 2 transmit antennas, 2 receive antennas, and can handle 2 simultaneous spatial streams — doubling throughput compared to a single antenna. Enterprise-class 802.11n APs often support 3×3:3 or 4×4:4 configurations.</p>
 
     <p><strong>MU-MIMO (Multi-User MIMO)</strong>, introduced in 802.11ac Wave 2 (Wi-Fi 5), extends MIMO to serve multiple clients simultaneously. Single-user MIMO (SU-MIMO) only transmits to one device at a time — other devices wait their turn. MU-MIMO allows the AP to transmit to multiple devices in parallel using spatial multiplexing. Wi-Fi 5 supported MU-MIMO downlink (AP to client) only. <strong>Wi-Fi 6 (802.11ax) extends MU-MIMO to uplink</strong> as well, and supports up to 8 simultaneous spatial streams.</p>
 
-    <p><strong>OFDMA (Orthogonal Frequency-Division Multiple Access)</strong> is a major Wi-Fi 6 feature and a key exam topic when the question mentions dense environments or IoT. Traditional Wi-Fi (OFDM in 802.11a/g/n/ac) assigns the entire channel to one device for each transmission. OFDMA divides the channel into smaller frequency units called <strong>Resource Units (RUs)</strong> and allocates different RUs to different clients simultaneously. This dramatically reduces latency and improves efficiency in high-density environments — stadiums, airports, offices with many IoT devices — because the AP can serve many small devices simultaneously rather than making them queue for channel access.</p>
+    <p><strong>OFDMA (Orthogonal Frequency-Division Multiple Access)</strong> is a major Wi-Fi 6 feature; think OFDMA when a scenario mentions dense environments or IoT. Traditional Wi-Fi (OFDM in 802.11a/g/n/ac) assigns the entire channel to one device for each transmission. OFDMA divides the channel into smaller frequency units called <strong>Resource Units (RUs)</strong> and allocates different RUs to different clients simultaneously. This dramatically reduces latency and improves efficiency in high-density environments — stadiums, airports, offices with many IoT devices — because the AP can serve many small devices simultaneously rather than making them queue for channel access.</p>
 
     <h2>Wireless Network Architecture Concepts</h2>
 
-    <p>The exam tests specific wireless terminology describing how wireless networks are structured. Make sure you know these terms precisely.</p>
+    <p>Learn the specific terminology that describes how wireless networks are structured. Make sure you know these terms precisely.</p>
 
     <div class="table-wrap">
       <table>
@@ -695,7 +695,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <h2>Common Wireless Troubleshooting Issues</h2>
 
-    <p>Network+ tests practical troubleshooting in addition to theory. Here are the most common wireless problems and their root causes that appear in exam scenarios.</p>
+    <p>Practical troubleshooting matters as much as theory. Here are the most common wireless problems and their root causes.</p>
 
     <p><strong>Slow wireless speeds despite strong signal</strong> are often caused by <strong>co-channel interference</strong> (too many APs on the same channel in the same area), or by <strong>legacy devices</strong> on the network. When even one 802.11b device is present on a 2.4GHz network, the AP enables a protection mechanism that dramatically reduces throughput for all devices. Separating legacy and modern devices onto different SSIDs/bands resolves this.</p>
 
@@ -740,7 +740,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

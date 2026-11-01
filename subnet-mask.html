@@ -21,7 +21,7 @@
 <link rel="canonical" href="https://itstudyhub.org/subnet-mask.html">
 
 <title>What Is a Subnet Mask and What Does It Actually Do?</title>
-<meta name="description" content="How subnet masks decide local vs routed traffic, CIDR notation, common masks, default gateway interaction, and the subnet scenarios on CompTIA A+ and Network+.">
+<meta name="description" content="How subnet masks decide local vs routed traffic, CIDR notation, common masks, default gateway interaction, and practice subnet scenarios for CompTIA A+ and Network+.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1089,6 +1089,16 @@ tbody tr:hover td { background: #f6f9ff; }
 
 /* ── BODY TEXT LINKS ── */
 .article-body p > a:not([class]), .guide-wrap p > a:not([class]) { color:#155bd9; text-decoration:underline; }
+
+/* Round 5 follow-up: let summary text wrap as one line of text (was split into flex columns) */
+.summary-item{display:block;position:relative;padding-left:48px;}
+.summary-item::before{position:absolute;left:16px;top:14px;margin-top:0;}
+
+/* Round 5 follow-up: keep wide tables and long code inside the 390px viewport */
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;}
+.table-scroll>table{margin-bottom:0;}
+pre{max-width:100%;overflow-x:auto;}
+:not(pre)>code{overflow-wrap:anywhere;}
 </style>
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -1406,9 +1416,9 @@ Mask: 255.255.255.0</pre>
 
     <h2>CIDR Notation — The Network+ Way to Write Subnet Masks</h2>
 
-    <p>The A+ exam uses dotted-decimal subnet masks like <code>255.255.255.0</code>. The Network+ exam adds <strong>CIDR notation</strong> (Classless Inter-Domain Routing), which expresses the same mask as a prefix length — a slash followed by the number of network bits.</p>
+    <p>For A+, know dotted-decimal subnet masks like <code>255.255.255.0</code>. For Network+, also know <strong>CIDR notation</strong> (Classless Inter-Domain Routing), which expresses the same mask as a prefix length — a slash followed by the number of network bits.</p>
 
-    <table class="info-table">
+    <div class="table-scroll"><table class="info-table">
       <thead><tr><th>Subnet Mask</th><th>CIDR</th><th>Hosts per Subnet</th><th>Common Use</th></tr></thead>
       <tbody>
         <tr><td><code>255.0.0.0</code></td><td><code>/8</code></td><td>16,777,214</td><td>Class A private (10.x.x.x)</td></tr>
@@ -1421,7 +1431,7 @@ Mask: 255.255.255.0</pre>
         <tr><td><code>255.255.255.252</code></td><td><code>/30</code></td><td>2</td><td>Point-to-point WAN links</td></tr>
         <tr><td><code>255.255.255.255</code></td><td><code>/32</code></td><td>1</td><td>Single host route or loopback</td></tr>
       </tbody>
-    </table>
+    </table></div>
 
     <div class="callout callout-amber">
       <strong>⚡ Network+ exam tip:</strong> Hosts per subnet = 2<sup>host bits</sup> − 2. Subtract 2 because the first address is the network address and the last is the broadcast address. For a /26: 32 − 26 = 6 host bits → 2<sup>6</sup> − 2 = 62 usable hosts.
@@ -1429,7 +1439,7 @@ Mask: 255.255.255.0</pre>
 
     <h2>Subnet Masks and Network Segmentation — The Security+ Angle</h2>
 
-    <p>On the Security+ exam, subnet masks aren't just about addressing — they're a <strong>security tool</strong>. Proper subnetting is one of the primary methods used to implement <a href="network-segmentation.html">network segmentation</a>, which limits the blast <a href="radius-explained.html">radius</a> of a breach.</p>
+    <p>For Security+, subnet masks aren't just about addressing — they're a <strong>security tool</strong>. Proper subnetting is one of the primary methods used to implement <a href="network-segmentation.html">network segmentation</a>, which limits the blast <a href="radius-explained.html">radius</a> of a breach.</p>
 
     <h3>Why Segmentation Matters</h3>
     <p>If every device on your network shares the same subnet (e.g., 192.168.1.0/24), a compromised device can reach every other device directly at Layer 2. Segmenting the network with different subnets forces all inter-segment traffic through a router or firewall, where it can be inspected and filtered.</p>
@@ -1439,7 +1449,7 @@ Mask: 255.255.255.0</pre>
     </div>
 
     <h3>Common Segmentation Architectures</h3>
-    <table class="info-table">
+    <div class="table-scroll"><table class="info-table">
       <thead><tr><th>Zone</th><th>Typical Subnet</th><th>What Belongs Here</th></tr></thead>
       <tbody>
         <tr><td><strong>Internal LAN</strong></td><td><code>10.0.1.0/24</code></td><td>Workstations, internal services</td></tr>
@@ -1449,13 +1459,13 @@ Mask: 255.255.255.0</pre>
         <tr><td><strong>IoT / OT</strong></td><td><code>10.0.5.0/24</code></td><td>Cameras, sensors, industrial devices</td></tr>
         <tr><td><strong>Management</strong></td><td><code>10.0.100.0/24</code></td><td>Network gear management interfaces</td></tr>
       </tbody>
-    </table>
+    </table></div>
 
     <div class="callout callout-amber">
       <strong>⚡ Security+ exam tip:</strong> Microsegmentation takes this further — each workload or application gets its own security boundary, enforced by software-defined networking rather than physical subnets. Zero Trust architecture relies heavily on microsegmentation: traffic between segments is always verified, never implicitly trusted regardless of subnet.
     </div>
 
-    <h2>Network+ Exam Scenarios</h2>
+    <h2>Network+ Practice Scenarios</h2>
 
     <div class="exam-scenarios">
       <div class="scenario-card">
@@ -1510,7 +1520,7 @@ Mask: 255.255.255.0</pre>
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>
