@@ -420,54 +420,6 @@ tbody tr:hover td{background:var(--light);}
 .article-body p > a:not([class]), .guide-wrap p > a:not([class]) { color:#155bd9; text-decoration:underline; }
 </style>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "The 6 Steps (A+) - Memorize This Order",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "1. Identify the Problem → 2. Establish a Theory of Probable Cause → 3. Test the Theory → 4. Establish a Plan of Action and Implement the Solution → 5. Verify Full System Functionality → 6. Document Findings"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How the Network+ Version Differs (7 Steps)",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Network+ N10-009 teaches the same process with seven steps, and on Network+ it is a tested objective (5.1). The first three steps match A+. After that, the numbering shifts, because Network+ splits planning and implementing into separate steps. If you're studying for Network+, use the Network+ numbering."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "The Loopback Ping Sequence",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "ping 127.0.0.1 - tests the local TCP/IP stack. If this fails, the NIC driver or TCP/IP stack is corrupt. ping [own IP] - confirms the NIC has a valid IP configuration assigned. ping [default gateway] - tests Layer 3 reachability on the local subnet. If this fails, check subnet mask, cable, or VLAN. ping 8.8.8.8 (external IP) - confirms internet routing works. If this succeeds but hostnames fail, DNS is the problem. ping google.com (hostname) - tests DNS resolution. If this fails but IP ping succeeds, fix the DNS server setting."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Change Management and Troubleshooting",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "In enterprise environments, step 4 - establishing a plan of action and implementing the solution - intersects with change management. Any fix that changes a production system typically requires a change request approved by a change advisory board (CAB) before implementation. On a production system, \"implement the fix immediately\" is the wrong instinct. The correct approach is: document the proposed change, get approval, plan a rollback, schedule a maintenance window, then implement. In the Network+ version, the same work spans two steps: the impact assessment and approval belong to step 4 (\"identify potential effects\"), and the implementation is step 5."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Troubleshooting Connectivity — The OSI Layer Approach",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "For network troubleshooting specifically, the OSI model provides a structured framework for isolating where a problem exists. Working bottom-up from the physical layer to the application layer — or top-down from application to physical — prevents jumping to conclusions and ensures no layer is skipped. The Network+ objectives name this directly under step 2: \"consider multiple approaches\" — top-to-bottom/bottom-to-top OSI model, and divide and conquer."
-      }
-    }
-  ]
-}
-</script>
 
 <script type="application/ld+json">
 {
@@ -813,7 +765,7 @@ tbody tr:hover td{background:var(--light);}
 
     <p><strong>Printer not printing at all</strong>: Start with Layer 1 — is it powered on, online, connected? Check the control panel for error codes. Is there paper? Is a toner/ink cartridge empty or improperly seated? Move to Layer 2/3 — is the printer visible on the network? Can you ping its IP? Is the IP address correct and not conflicting with another device? Move to Layer 7 — is the correct driver installed? Is the correct printer selected as default? Is there a job stuck in the print queue that's blocking subsequent jobs?</p>
 
-    <p><strong>Print quality issues</strong> are almost always Layer 1/physical: streaks or lines on laser printer output indicate a scratched or worn drum or dirty fuser roller. Faded output indicates low toner. Smearing or unfused toner indicates a failed fuser. Ghosting (faint duplicate images on the page) indicates a worn drum that isn't fully cleaning between passes. On inkjet printers, banding or missing colors indicate clogged print heads — run the printer's head cleaning cycle and nozzle check print.</p>
+    <p><strong>Print quality issues</strong> are almost always Layer 1/physical: streaks or lines on <a href="printer-types-explained.html">laser printer</a> output indicate a scratched or worn drum or dirty fuser roller. Faded output indicates low toner. Smearing or unfused toner indicates a failed fuser. Ghosting (faint duplicate images on the page) indicates a worn drum that isn't fully cleaning between passes. On inkjet printers, banding or missing colors indicate clogged print heads — run the printer's head cleaning cycle and nozzle check print.</p>
 
     <div class="cta-box">
       <div class="cta-box-text">

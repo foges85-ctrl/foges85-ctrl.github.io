@@ -422,72 +422,10 @@ tbody tr:hover td{background:#fdf4ff;}
   }
 }
 /* ---- end mobile nav ---- */
+/* ── BODY TEXT LINKS ── */
+.article-body p > a:not([class]), .guide-wrap p > a:not([class]) { color:#155bd9; text-decoration:underline; }
 </style>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "The Problem Zero Trust Solves",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Traditional network security relied on a hard perimeter — like a castle with a moat. Get inside the walls (VPN, office network) and you were trusted. This model breaks down in the modern world of remote work, cloud services, BYOD, and sophisticated attackers who can breach the perimeter or already be inside as malicious insiders."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Core Principles of Zero Trust",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "\"Never trust, always verify\" is the common tagline for Zero Trust. The SY0-701 objectives themselves use control-plane/data-plane vocabulary (Policy Engine, Policy Administrator, Policy Enforcement Point). If a scenario describes a security model where internal users are not automatically trusted and every request is verified, the answer is Zero Trust. If it mentions implicit trust — that's the traditional model Zero Trust replaces."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Zero Trust Key Terms for the Exam",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "These are related but different concepts. Defense in depth layers multiple security controls (firewall + IDS + antivirus + MFA) — but can still have implicit trust inside those layers. Zero Trust is an architectural philosophy that eliminates implicit trust entirely. In practice, Zero Trust uses defense-in-depth techniques (MFA, encryption, segmentation, logging) but applies them with the principle that no entity is ever trusted by default — the \"never trust\" mindset is the distinguishing factor. On the exam, if the scenario involves eliminating implicit trust or not trusting the internal n…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why Perimeter Security Failed — The Case for Zero Trust",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Traditional network security was built on a castle-and-moat model: everything inside the corporate network perimeter was trusted, everything outside was untrusted. Firewalls and VPNs enforced this boundary. This model broke down for three interconnected reasons. First, the perimeter dissolved — remote work, cloud services, and mobile devices mean corporate data and users now exist everywhere, not inside a defined network edge. Second, breaches proved the assumption wrong — once an attacker got inside the perimeter (through phishing, a compromised endpoint, or a vulnerable VPN), they could m…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "The Five Pillars of Zero Trust",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Identity verification is the foundation. Every user, device, and service must prove its identity before accessing any resource. This means strong authentication (MFA at minimum, ideally phishing-resistant MFA using FIDO2 hardware keys or passkeys), continuous identity validation (not just at login but throughout the session), and integration with an identity provider (Okta, Microsoft Entra ID (formerly Azure AD), Ping Identity). Passwords alone are not sufficient in a Zero Trust architecture. Device health extends verification beyond identity to the device itself. A user may be legitimate, but if they're logging in from…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Zero Trust in Practice — Real Implementations",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Pure Zero Trust is an architectural goal rather than a single product you install. Real implementations use combinations of: Identity Provider (IdP) for centralized authentication (Microsoft Entra ID (formerly Azure AD), Okta), MFA on all authentication flows, Conditional Access policies that evaluate device compliance and risk signals before granting access, ZTNA (Zero Trust Network Access) replacing VPN with identity-aware proxies that grant access per-application rather than per-network, microsegmentation tools (Illumio, Guardicore) to enforce east-west traffic controls, and SASE (Secure Access Service Edge) that del…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Zero Trust vs Traditional VPN",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Traditional VPNs grant network-level access — once connected, a user typically has access to the entire internal network segment. Zero Trust Network Access (ZTNA) grants application-level access — a user is granted access only to the specific applications their role requires, with all other resources invisible and unreachable from their session. This is a fundamental difference: a VPN breach gives an attacker broad internal access, while a ZTNA breach (if the attacker can even complete authentication) gives them access only to specific applications. This is why Security+ SY0-701 frames ZTNA…"
-      }
-    }
-  ]
-}
-</script>
 
 <script type="application/ld+json">
 {
@@ -787,8 +725,8 @@ tbody tr:hover td{background:#fdf4ff;}
     <p>Zero Trust addresses all three by replacing the perimeter assumption with a simple rule: <strong>trust nothing, verify everything, regardless of network location</strong>. A user on the corporate network is not more trusted than a user on their home connection. A service account is not trusted just because it's on an internal server. Every access request is authenticated and authorized based on identity, device health, and context — every time.</p>
 
     <h2>The Five Pillars of Zero Trust</h2>
-    <p><strong>Identity verification</strong> is the foundation. Every user, device, and service must prove its identity before accessing any resource. This means strong authentication (MFA at minimum, ideally phishing-resistant MFA using FIDO2 hardware keys or passkeys), continuous identity validation (not just at login but throughout the session), and integration with an identity provider (Okta, Microsoft Entra ID (formerly Azure AD), Ping Identity). Passwords alone are not sufficient in a Zero Trust architecture.</p>
-    <p><strong>Device health</strong> extends verification beyond identity to the device itself. A user may be legitimate, but if they're logging in from an unmanaged personal device with an outdated OS and no endpoint protection, the risk profile of that session is very different from a company-managed, patched, EDR-protected laptop. Zero Trust considers device posture — patch level, security software status, certificate presence — as part of the access decision. This is enforced through device compliance policies in MDM solutions (Microsoft Intune, Jamf).</p>
+    <p><strong>Identity verification</strong> is the foundation. Every user, device, and service must prove its identity before accessing any resource. This means strong authentication (MFA at minimum, ideally <a href="mfa-explained.html">phishing-resistant MFA</a> using FIDO2 hardware keys or passkeys), continuous identity validation (not just at login but throughout the session), and integration with an identity provider (Okta, Microsoft Entra ID (formerly Azure AD), Ping Identity). Passwords alone are not sufficient in a Zero Trust architecture.</p>
+    <p><strong>Device health</strong> extends verification beyond identity to the device itself. A user may be legitimate, but if they're logging in from an unmanaged personal device with an outdated OS and no endpoint protection, the risk profile of that session is very different from a company-managed, patched, EDR-protected laptop. Zero Trust considers device posture — patch level, security software status, certificate presence — as part of the access decision. This is enforced through device compliance policies in <a href="mobile-device-management.html">MDM solutions</a> (Microsoft Intune, Jamf).</p>
     <p><strong>Least privilege access</strong> ensures users and services only have the permissions they actually need for their role, granted for the minimum time necessary. This extends to just-in-time (JIT) access — privileged access is not permanently assigned but granted on request, used for the task, then revoked. Permanent administrator accounts are replaced with accounts that can escalate temporarily when needed and be audited completely.</p>
     <p><strong>Microsegmentation</strong> replaces flat internal networks where everything can talk to everything with small, isolated segments where traffic between segments requires explicit authorization. A database server should only accept connections from the specific application servers that legitimately query it — not from every device on the corporate network. If an attacker compromises a workstation in a microsegmented network, they're contained in that segment and cannot reach the database without triggering another authentication and authorization check.</p>
     <p><strong>Continuous monitoring</strong> treats security as a real-time process rather than a gate at login. User behavior analytics (UEBA), SIEM correlation, and EDR telemetry feed into continuous risk scoring. If a user who normally logs in from New York suddenly authenticates from Eastern Europe and starts downloading large volumes of data, that behavioral anomaly triggers additional verification or access suspension — even though their initial authentication was legitimate.</p>
