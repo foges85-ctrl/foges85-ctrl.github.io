@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/load-balancing-explained.html">
 <title>Load Balancing Explained — Algorithms, L4 vs L7 & HA</title>
-<meta name="description" content="Round-robin, least connections, IP hash, L4 vs L7 load balancing, session persistence, and high availability — everything tested on CompTIA Network+ and Security+.">
+<meta name="description" content="Round-robin, least connections, IP hash, L4 vs L7 load balancing, session persistence, and high availability — what to know for CompTIA Network+ and Security+.">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -376,7 +376,7 @@ tbody tr:hover td{background:#eff6ff;}
   <meta property="og:site_name" content="IT Study Hub">
   <meta property="og:url" content="https://itstudyhub.org/load-balancing-explained.html">
   <meta property="og:title" content="Load Balancing Explained — Algorithms, L4 vs L7 & High Availability | Network+">
-  <meta property="og:description" content="Round-robin, least connections, IP hash, L4 vs L7 load balancing, session persistence, and high availability — everything tested on CompTIA Network+ and Security+.">
+  <meta property="og:description" content="Round-robin, least connections, IP hash, L4 vs L7 load balancing, session persistence, and high availability — what to know for CompTIA Network+ and Security+.">
 
 <script type="application/ld+json">
 {
@@ -440,7 +440,7 @@ tbody tr:hover td{background:#eff6ff;}
     </nav>
     <div class="page-hero-badge">CompTIA Network+ · Security+ · High Availability</div>
     <h1>Load Balancing <span>Explained</span></h1>
-    <p class="page-hero-sub">Algorithms, Layer 4 vs Layer 7, session persistence, and high availability — everything you need to know about load balancing for CompTIA Network+ and Security+ exams.</p>
+    <p class="page-hero-sub">Algorithms, Layer 4 vs Layer 7, session persistence, and high availability, explained for CompTIA Network+ and Security+ study.</p>
   </div>
 </section>
 
@@ -583,7 +583,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 Exam Tip — Sticky Sessions Trade-off</div>
-      <p>The exam may present a scenario where <strong>users are randomly losing their sessions</strong>. This is the classic symptom of a stateful application running behind a load balancer <em>without</em> session persistence configured. The fix is either: (1) enable sticky sessions on the load balancer, or (2) refactor the application to use a shared session store.</p>
+      <p>Watch for this scenario: <strong>users are randomly losing their sessions</strong>. This is the classic symptom of a stateful application running behind a load balancer <em>without</em> session persistence configured. The fix is either: (1) enable sticky sessions on the load balancer, or (2) refactor the application to use a shared session store.</p>
       <p><strong>Also remember:</strong> if a sticky server fails, that client's session is lost regardless of persistence settings — the session data only existed on that server.</p>
     </div>
 
@@ -667,7 +667,7 @@ tbody tr:hover td{background:#eff6ff;}
       <p><strong>ADC (Application Delivery Controller)</strong> — an enterprise load balancer with advanced features: SSL termination, WAF, compression, caching (e.g. F5 BIG-IP, Citrix ADC).</p>
     </div>
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
 
     <div class="scenario-list">
       <div class="scenario-item"><strong>Scenario 1:</strong> Users report they are randomly logged out when browsing an e-commerce site. The site uses a three-server web farm behind a load balancer. <em>Answer:</em> The load balancer does not have session persistence configured. Enable sticky sessions (cookie-based affinity) on the load balancer, or migrate session storage to a shared Redis cache.</div>
@@ -693,11 +693,11 @@ tbody tr:hover td{background:#eff6ff;}
 
     <p>When a user resolves a domain like <code>www.example.com</code>, instead of getting a single IP address back from DNS, the GSLB-aware DNS server returns the IP address of the data center that is healthiest, closest to the user, and least loaded. If the US East data center fails all health checks, the GSLB DNS stops returning its IP — traffic is automatically directed to US West or Europe instead, achieving geographic failover without user intervention. Major CDN providers (Cloudflare, Akamai, AWS Route 53) implement GSLB through their anycast routing and traffic management features.</p>
 
-    <p>For exam scenarios: if the question asks how a company can direct users to the nearest data center automatically, or how traffic can fail over between geographically distributed data centers, the answer involves <strong>GSLB</strong> or DNS-based traffic management. The key differentiator from standard load balancing is that GSLB operates at the DNS level and spans multiple geographic locations.</p>
+    <p>To direct users to the nearest data center automatically, or to fail traffic over between geographically distributed data centers, use <strong>GSLB</strong> or DNS-based traffic management. The key differentiator from standard load balancing is that GSLB operates at the DNS level and spans multiple geographic locations.</p>
 
     <h2>Load Balancing in Cloud Environments</h2>
 
-    <p>All major cloud providers offer managed load balancing services that eliminate the need to deploy and manage load balancer appliances. Understanding cloud load balancing options is increasingly relevant for Network+ and is directly tested on cloud certification paths.</p>
+    <p>All major cloud providers offer managed load balancing services that eliminate the need to deploy and manage load balancer appliances. Understanding cloud load balancing options is increasingly relevant for Network+ and for cloud certification paths.</p>
 
     <p><strong>AWS</strong> offers three load balancer types: ALB (Application Load Balancer) for Layer 7 HTTP/HTTPS traffic with content-based routing and WebSocket support; NLB (Network Load Balancer) for Layer 4 TCP/UDP traffic with ultra-low latency and static IP addresses; and GWLB (Gateway Load Balancer) for routing traffic through third-party security appliances. The ALB is the most commonly used for web applications.</p>
 
@@ -745,7 +745,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

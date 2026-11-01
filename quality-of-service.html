@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/quality-of-service.html">
 <title>Quality of Service (QoS) — DSCP, Shaping & Queuing</title>
-<meta name="description" content="QoS, DSCP markings, traffic shaping vs policing, queuing mechanisms (FIFO, WFQ, PQ, CBWFQ), CoS, and bandwidth management — complete Network+ exam coverage.">
+<meta name="description" content="QoS, DSCP markings, traffic shaping vs policing, queuing mechanisms (FIFO, WFQ, PQ, CBWFQ), CoS, and bandwidth management — explained for Network+.">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -366,7 +366,7 @@ tbody tr:hover td{background:#eff6ff;}
   <meta property="og:site_name" content="IT Study Hub">
   <meta property="og:url" content="https://itstudyhub.org/quality-of-service.html">
   <meta property="og:title" content="Quality of Service (QoS) Explained — DSCP, Traffic Shaping & Queuing | Network+">
-  <meta property="og:description" content="QoS, DSCP markings, traffic shaping vs policing, queuing mechanisms (FIFO, WFQ, PQ, CBWFQ), CoS, and bandwidth management — complete Network+ exam coverage.">
+  <meta property="og:description" content="QoS, DSCP markings, traffic shaping vs policing, queuing mechanisms (FIFO, WFQ, PQ, CBWFQ), CoS, and bandwidth management — explained for Network+.">
 
 <script type="application/ld+json">
 {
@@ -430,7 +430,7 @@ tbody tr:hover td{background:#eff6ff;}
     </nav>
     <div class="page-hero-badge">CompTIA Network+ · Traffic Management · QoS</div>
     <h1>Quality of Service <span>(QoS) Explained</span></h1>
-    <p class="page-hero-sub">DSCP markings, traffic shaping vs policing, queuing mechanisms, CoS, and bandwidth management — everything tested on CompTIA Network+ with clear explanations and exam scenarios.</p>
+    <p class="page-hero-sub">DSCP markings, traffic shaping vs policing, queuing mechanisms, CoS, and bandwidth management — what to know for CompTIA Network+ with clear explanations and practice scenarios.</p>
   </div>
 </section>
 
@@ -643,7 +643,7 @@ tbody tr:hover td{background:#eff6ff;}
       <p><strong>Never trust markings from the internet</strong> — ISPs strip or ignore DSCP markings at their boundaries. QoS works within your network, not across arbitrary internet paths.</p>
     </div>
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
 
     <div class="scenario-list">
       <div class="scenario-item"><strong>Scenario 1:</strong> Users report poor voice call quality when the network is heavily loaded with large file transfers. What QoS technique should be implemented? <em>Answer:</em> Configure <strong>LLQ (Low Latency Queuing)</strong> with a strict priority queue for voice traffic (DSCP EF = 46). Limit file transfer traffic to a separate CBWFQ class with capped bandwidth. Voice will always be forwarded immediately from the priority queue.</div>
@@ -689,7 +689,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <p>IntServ guarantees bandwidth mathematically — if a path is reserved, those resources are held exclusively for that flow regardless of other traffic. This makes IntServ the only model that can provide <strong>absolute, deterministic QoS guarantees</strong>. However, this comes at a massive scalability cost: every router along the path must maintain per-flow state for every active reservation. In a network carrying millions of simultaneous flows, this is computationally infeasible.</p>
 
-    <p>For exam purposes: IntServ/RSVP is the older, per-flow reservation model that <strong>doesn't scale</strong> to large networks. It appears in exam questions as the contrast to DiffServ — when you need to identify which model uses per-flow reservations, the answer is IntServ. DiffServ (DSCP-based) replaced IntServ as the practical enterprise QoS model because it marks traffic at the edges and applies class-based treatment in the core without per-flow state.</p>
+    <p>For exam purposes: IntServ/RSVP is the older, per-flow reservation model that <strong>doesn't scale</strong> to large networks. It serves as the contrast to DiffServ — when you need to identify which model uses per-flow reservations, the answer is IntServ. DiffServ (DSCP-based) replaced IntServ as the practical enterprise QoS model because it marks traffic at the edges and applies class-based treatment in the core without per-flow state.</p>
 
     <h2>QoS in Wireless Networks</h2>
 
@@ -729,7 +729,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

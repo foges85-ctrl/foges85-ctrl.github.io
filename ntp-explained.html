@@ -780,7 +780,7 @@ tbody tr:hover td { background: #f4f8ff; }
 
     <h2>Why accurate time matters in networking</h2>
 
-    <p>Time synchronization sounds like a minor housekeeping task, but it underpins some of the most critical functions in a network. These are the real-world consequences of clocks being out of sync — and the reason the exam treats NTP as a significant protocol:</p>
+    <p>Time synchronization sounds like a minor housekeeping task, but it underpins some of the most critical functions in a network. These are the real-world consequences of clocks being out of sync — and the reason NTP matters:</p>
 
     <div class="table-wrap">
       <table>
@@ -836,9 +836,9 @@ tbody tr:hover td { background: #f4f8ff; }
     </div>
 
     <div class="exam-tip">
-      <div class="exam-tip-label">⚡ Stratum — what the exam tests</div>
+      <div class="exam-tip-label">⚡ Stratum — what to know</div>
       <p><strong>Lower stratum = more accurate.</strong> Stratum 0 is the reference source. Stratum 1 is closest to it. A device at Stratum 3 synchronizes from a Stratum 2 server, which synchronizes from Stratum 1.</p>
-      <p>The exam may ask: "An NTP server synchronizes directly from an atomic clock. What stratum level is it?" → <strong>Stratum 1</strong>. Or: "Which stratum level represents the most accurate time source?" → <strong>Stratum 0</strong> (the reference clock itself, not on the network).</p>
+      <p>Practice: "An NTP server synchronizes directly from an atomic clock. What stratum level is it?" → <strong>Stratum 1</strong>. Or: "Which stratum level represents the most accurate time source?" → <strong>Stratum 0</strong> (the reference clock itself, not on the network).</p>
     </div>
 
     <h2>How NTP synchronization works</h2>
@@ -870,7 +870,7 @@ tbody tr:hover td { background: #f4f8ff; }
       <div class="callout-label">📌 NTP vs SNTP</div>
       <p><strong>NTP</strong> (Network Time Protocol) — full implementation with drift correction, multiple server polling, and statistical filtering. Used on servers and network infrastructure. Accurate to within milliseconds.</p>
       <p><strong>SNTP</strong> (Simple NTP) — simplified version that uses a single server without drift correction. Used on embedded devices, IoT, and simple clients where full NTP complexity isn't needed. Less accurate but much lighter weight.</p>
-      <p>Both use <strong>UDP port 123</strong>. The exam distinguishes them by use case — SNTP for simple/embedded devices, NTP for infrastructure.</p>
+      <p>Both use <strong>UDP port 123</strong>. Distinguish them by use case — SNTP for simple/embedded devices, NTP for infrastructure.</p>
     </div>
 
         <h2>PTP and NTS — the other time protocols on Network+</h2>
@@ -909,7 +909,7 @@ tbody tr:hover td { background: #f4f8ff; }
 
     <h2>NTP security risks</h2>
 
-    <p>NTP is a trusted but often overlooked attack surface. Three NTP-related attacks appear on Security+:</p>
+    <p>NTP is a trusted but often overlooked attack surface. Three NTP-related attacks to know for Security+:</p>
 
     <div class="warning">
       <div class="warning-label">⚠️ NTP amplification attack (DDoS)</div>
@@ -926,7 +926,7 @@ tbody tr:hover td { background: #f4f8ff; }
     <div class="callout">
       <div class="callout-label">📌 NTP authentication</div>
       <p>NTPv4 supports symmetric key authentication — the client and server share a secret key and the server signs its time responses. This prevents an attacker from injecting fake NTP responses because they don't know the key. MD5 keys are legacy — RFC 8573 deprecates MD5 for NTP authentication in favor of AES-CMAC — and <strong>NTS</strong> (above) is the modern alternative.</p>
-      <p>On Cisco devices: configured with <code style="font-family:'DM Mono',monospace;font-size:12px;background:var(--light);padding:2px 6px;border-radius:4px;">ntp authenticate</code> and <code style="font-family:'DM Mono',monospace;font-size:12px;background:var(--light);padding:2px 6px;border-radius:4px;">ntp authentication-key</code> commands. The exam may reference this as a hardening step.</p>
+      <p>On Cisco devices: configured with <code style="font-family:'DM Mono',monospace;font-size:12px;background:var(--light);padding:2px 6px;border-radius:4px;">ntp authenticate</code> and <code style="font-family:'DM Mono',monospace;font-size:12px;background:var(--light);padding:2px 6px;border-radius:4px;">ntp authentication-key</code> commands. Know this as a hardening step.</p>
     </div>
 
     <h2>Quick reference — NTP facts for the exam</h2>
@@ -954,7 +954,7 @@ tbody tr:hover td { background: #f4f8ff; }
 <span class="code-teal">NTP amplification:</span>  monlist command abused for DDoS reflection</pre>
     </div>
 
-    <h2>Exam scenarios</h2>
+    <h2>Practice scenarios</h2>
 
     <div class="scenario-list">
       <div class="scenario-item">💬 "Users on a Windows domain are suddenly unable to authenticate. The help desk finds that one workstation's clock is 10 minutes ahead of the domain controller. What is the most likely cause of the authentication failure?" → <strong>Kerberos requires clock skew to be within 5 minutes — a 10-minute difference causes authentication tickets to be rejected</strong></div>
@@ -1004,7 +1004,7 @@ tbody tr:hover td { background: #f4f8ff; }
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

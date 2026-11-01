@@ -499,7 +499,7 @@ tbody tr:hover td{background:#f0fdf4;}
     </nav>
     <div class="page-hero-badge">CompTIA A+ · Network+ · Security+ · 2026</div>
     <h1>Virtualization <span>Explained</span></h1>
-    <p class="page-hero-sub">Virtualization is the practice of running multiple virtual computers — each with its own OS, CPU, RAM, and disk — on a single physical machine, managed by software called a hypervisor. CompTIA A+ Core 1 (220-1201), Network+, and Security+ test Type 1 vs Type 2 hypervisors, VMs vs containers, IaaS/PaaS/SaaS cloud models, snapshots, and the security risks of shared hardware.</p>
+    <p class="page-hero-sub">Virtualization is the practice of running multiple virtual computers — each with its own OS, CPU, RAM, and disk — on a single physical machine, managed by software called a hypervisor. CompTIA A+ Core 1 (220-1201), Network+, and Security+ cover Type 1 vs Type 2 hypervisors, VMs vs containers, IaaS/PaaS/SaaS cloud models, snapshots, and the security risks of shared hardware.</p>
   </div>
 </section>
 
@@ -525,7 +525,7 @@ tbody tr:hover td{background:#f0fdf4;}
     </div>
 
     <h2>What's the difference between Type 1 and Type 2 hypervisors?</h2>
-    <p>A key virtualization concept on the A+ Core 1 (220-1201) exam is the distinction between Type 1 and Type 2 hypervisors. They differ in where they run relative to the host operating system:</p>
+    <p>A key virtualization concept for A+ Core 1 (220-1201) is the distinction between Type 1 and Type 2 hypervisors. They differ in where they run relative to the host operating system:</p>
 
     <div class="compare-grid">
       <div class="compare-card highlight">
@@ -554,11 +554,11 @@ tbody tr:hover td{background:#f0fdf4;}
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ Type 1 vs Type 2 — The one-line test</div>
-      <p><strong>Type 1 = no host OS underneath</strong> (bare metal). <strong>Type 2 = runs on top of a host OS</strong> (hosted). The exam gives you a scenario — "A company wants maximum performance for production VMs running 24/7 in a data center." → Type 1. "A developer wants to test software in different OS environments on their laptop." → Type 2.</p>
+      <p><strong>Type 1 = no host OS underneath</strong> (bare metal). <strong>Type 2 = runs on top of a host OS</strong> (hosted). Practice with scenarios — "A company wants maximum performance for production VMs running 24/7 in a data center." → Type 1. "A developer wants to test software in different OS environments on their laptop." → Type 2.</p>
       <p>Remember: <strong>VMware ESXi = Type 1. VMware Workstation = Type 2.</strong> Both are VMware products but fundamentally different architectures.</p>
     </div>
 
-    <h2>What are the key virtualization concepts on the A+ exam?</h2>
+    <h2>What are the key virtualization concepts for A+?</h2>
 
     <div class="table-wrap">
       <table>
@@ -595,7 +595,7 @@ tbody tr:hover td{background:#f0fdf4;}
     </div>
 
     <h2>What is IaaS vs PaaS vs SaaS?</h2>
-    <p>Cloud computing is virtualization at scale — providers like AWS, Azure, and Google Cloud run massive hypervisor farms and rent virtual resources. The A+ Core 1 (220-1201) and Network+ exams test the three cloud service models:</p>
+    <p>Cloud computing is virtualization at scale — providers like AWS, Azure, and Google Cloud run massive hypervisor farms and rent virtual resources. The A+ Core 1 (220-1201) and Network+ objectives cover the three cloud service models:</p>
 
     <div class="table-wrap">
       <table>
@@ -613,7 +613,7 @@ tbody tr:hover td{background:#f0fdf4;}
       <p><strong>Public cloud:</strong> Resources shared among multiple customers on provider infrastructure (AWS, Azure, GCP). Most cost-effective, least control.</p>
       <p><strong>Private cloud:</strong> Cloud infrastructure dedicated to a single organization — either on-premises or hosted. Full control, higher cost.</p>
       <p><strong>Hybrid cloud:</strong> Combination of public and private — workloads move between them based on need. Common enterprise model.</p>
-      <p><strong>Community cloud:</strong> Shared infrastructure for organizations with similar requirements (government agencies, healthcare providers). Less common on the exam but present.</p>
+      <p><strong>Community cloud:</strong> Shared infrastructure for organizations with similar requirements (government agencies, healthcare providers). Less common, but know it.</p>
     </div>
 
     <h2>What are the main security concerns with virtualization?</h2>
@@ -632,7 +632,7 @@ tbody tr:hover td{background:#f0fdf4;}
 
     <hr class="divider">
 
-    <h2>What are real exam scenarios for virtualization?</h2>
+    <h2>What are practice scenarios for virtualization?</h2>
     <div class="scenario-list">
       <div class="scenario-item">💬 "A company wants to run multiple server workloads on dedicated hardware with maximum performance and no host OS. Which hypervisor type should they use?" → <strong>Type 1 (bare-metal) hypervisor — runs directly on hardware. Examples: VMware ESXi, Microsoft Hyper-V (Windows Server role).</strong></div>
       <div class="scenario-item">💬 "A developer wants to test an application on Windows and Ubuntu on their Windows laptop. Which virtualization solution is most appropriate?" → <strong>Type 2 hypervisor (hosted) — VMware Workstation or VirtualBox runs as an application on the host Windows OS.</strong></div>
@@ -663,11 +663,11 @@ tbody tr:hover td{background:#f0fdf4;}
 
     <h2>How do containers differ from VMs in isolation and security?</h2>
     <p>Containers (Docker, Kubernetes pods) are a lighter-weight alternative to VMs. Where a VM runs a full guest OS on top of the hypervisor, a container shares the host OS kernel and runs only the application and its dependencies. This makes containers <strong>significantly faster to start</strong> (seconds vs minutes), <strong>much smaller</strong> (megabytes vs gigabytes), and <strong>more portable</strong> — a container that runs on a developer's laptop runs identically in production. The trade-off is weaker isolation: containers share the kernel, so a kernel vulnerability can potentially affect all containers on a host. VMs provide stronger isolation because each has its own kernel.</p>
-    <p>On the exam: the key distinction is isolation level. VMs = stronger isolation, higher overhead. Containers = lighter weight, weaker isolation, better for microservices and CI/CD pipelines. Security+ specifically tests container security risks: image vulnerabilities (a vulnerable base image affects every container built from it), container escape (breaking out of container isolation to the host), and the importance of running containers as non-root users.</p>
+    <p>On the exam: the key distinction is isolation level. VMs = stronger isolation, higher overhead. Containers = lighter weight, weaker isolation, better for microservices and CI/CD pipelines. For Security+, know container security risks: image vulnerabilities (a vulnerable base image affects every container built from it), container escape (breaking out of container isolation to the host), and the importance of running containers as non-root users.</p>
 
     <h2>How are cloud computing and virtualization connected?</h2>
     <p>Cloud computing is built on virtualization. When you provision an EC2 instance on AWS or a VM on Azure, you're getting a virtual machine running on Amazon's or Microsoft's physical hypervisor infrastructure. The cloud provider manages the physical hardware and hypervisor (Type 1); you manage the guest OS and everything above it. This is exactly the IaaS shared responsibility model — the provider owns the virtualization layer, the customer owns the OS.</p>
-    <p>Understanding this connection makes cloud concepts on the exam easier to reason through. Questions about what a customer is responsible for in IaaS become intuitive when you understand that the customer is essentially renting a VM — they control the guest OS and above, just like a Type 2 hypervisor user controls their VM but not the underlying host OS or hardware.</p>
+    <p>Understanding this connection makes cloud concepts easier to reason through. Questions about what a customer is responsible for in IaaS become intuitive when you understand that the customer is essentially renting a VM — they control the guest OS and above, just like a Type 2 hypervisor user controls their VM but not the underlying host OS or hardware.</p>
 
     
 <h2>Related Articles</h2>
@@ -696,7 +696,7 @@ tbody tr:hover td{background:#f0fdf4;}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

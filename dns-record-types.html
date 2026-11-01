@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/dns-record-types.html">
 <title>DNS Record Types Explained — A, MX, CNAME, TXT & More</title>
-<meta name="description" content="Know your DNS records cold before the exam — what each record type does, when you use it, and how A, AAAA, MX, CNAME, PTR, TXT, and CAA records appear in…">
+<meta name="description" content="Know your DNS records cold before the exam — what each record type does, when you use it, and how A, AAAA, MX, CNAME, PTR, TXT, and CAA records work in practice.">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -432,7 +432,7 @@ tbody tr:hover td{background:#eff6ff;}
   <meta property="og:site_name" content="IT Study Hub">
   <meta property="og:url" content="https://itstudyhub.org/dns-record-types.html">
   <meta property="og:title" content="DNS Record Types Explained — A, MX, CNAME, TXT & More">
-  <meta property="og:description" content="Know your DNS records cold before the exam — what each record type does, when you use it, and how A, AAAA, MX, CNAME, PTR, TXT, and CAA records appear in…">
+  <meta property="og:description" content="Know your DNS records cold before the exam — what each record type does, when you use it, and how A, AAAA, MX, CNAME, PTR, TXT, and CAA records work in practice.">
 
 <script type="application/ld+json">
 {
@@ -502,7 +502,7 @@ tbody tr:hover td{background:#eff6ff;}
     </nav>
     <div class="page-hero-badge">CompTIA Network+ · Security+ · 2026</div>
     <h1>DNS Record Types <span>Explained</span></h1>
-    <p class="page-hero-sub">A, AAAA, MX, CNAME, PTR, NS, SOA, TXT, CAA, and SRV records — what each one does, real zone file examples, DNS security records (SPF, DKIM, DMARC), and every DNS record type tested on CompTIA Network+ and Security+.</p>
+    <p class="page-hero-sub">A, AAAA, MX, CNAME, PTR, NS, SOA, TXT, CAA, and SRV records — what each one does, real zone file examples, DNS security records (SPF, DKIM, DMARC), and the DNS record types to know for CompTIA Network+ and Security+.</p>
   </div>
 </section>
 
@@ -523,7 +523,7 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ What are DNS Records?</div>
       <div class="quick-answer-text">
-        A DNS record is an entry in a DNS zone file that maps a name to a value — most commonly a domain name to an IP address, but also defining which server handles email, pointing subdomains to other names, and publishing security policy information. Different record <strong>types</strong> serve different purposes. The exam tests whether you know <strong>which record type solves which problem</strong> — not just that A records exist, but that an A record is the answer when "a host needs to resolve a name to an IPv4 address."
+        A DNS record is an entry in a DNS zone file that maps a name to a value — most commonly a domain name to an IP address, but also defining which server handles email, pointing subdomains to other names, and publishing security policy information. Different record <strong>types</strong> serve different purposes. Know <strong>which record type solves which problem</strong> — not just that A records exist, but that an A record is the answer when "a host needs to resolve a name to an IPv4 address."
       </div>
     </div>
 
@@ -541,7 +541,7 @@ tbody tr:hover td{background:#eff6ff;}
           <div class="record-desc">Maps a <strong>hostname to an IPv4 address</strong>. The most fundamental DNS record — every website and server you reach by name relies on an A record. A single hostname can have multiple A records (for load balancing or redundancy).</div>
           <div class="record-example">www.example.com.    IN  A    93.184.216.34
 mail.example.com.   IN  A    93.184.216.35</div>
-          <div class="record-exam"><strong>Exam use case:</strong> "A user can ping 93.184.216.34 but not www.example.com — what record is missing or misconfigured?" → A record. Any time a name fails to resolve to an IPv4 address, the A record is the first suspect.</div>
+          <div class="record-exam"><strong>Practice scenario:</strong> "A user can ping 93.184.216.34 but not www.example.com — what record is missing or misconfigured?" → A record. Any time a name fails to resolve to an IPv4 address, the A record is the first suspect.</div>
         </div>
       </div>
 
@@ -554,7 +554,7 @@ mail.example.com.   IN  A    93.184.216.35</div>
         <div class="record-body">
           <div class="record-desc">Maps a <strong>hostname to an IPv6 address</strong>. Called "quad-A" — the four As reference the fact that IPv6 addresses are four times the length of IPv4. Functionally identical to the A record but for 128-bit IPv6 addresses. Modern dual-stack deployments have both A and AAAA records for the same hostname.</div>
           <div class="record-example">www.example.com.    IN  AAAA  2606:2800:220:1:248:1893:25c8:1946</div>
-          <div class="record-exam"><strong>Exam use case:</strong> "Which DNS record type resolves a hostname to an IPv6 address?" → AAAA. Easy points if you remember: A = IPv4, AAAA = IPv6.</div>
+          <div class="record-exam"><strong>Practice scenario:</strong> "Which DNS record type resolves a hostname to an IPv6 address?" → AAAA. Easy to remember: A = IPv4, AAAA = IPv6.</div>
         </div>
       </div>
 
@@ -568,7 +568,7 @@ mail.example.com.   IN  A    93.184.216.35</div>
           <div class="record-desc">Specifies the <strong>mail server responsible for accepting email for a domain</strong>. MX records include a priority value — lower number means higher priority. When email is sent to user@example.com, the sending server queries DNS for MX records to find where to deliver it. MX records point to hostnames (not IPs directly) — the hostname must have its own A record.</div>
           <div class="record-example">example.com.    IN  MX  10  mail1.example.com.
 example.com.    IN  MX  20  mail2.example.com.  ; backup</div>
-          <div class="record-exam"><strong>Exam use case:</strong> "Email to the domain is not being delivered. Which DNS record type should be checked?" → MX. Also: "Which server receives email for a domain?" → the server pointed to by the MX record with the lowest priority number.</div>
+          <div class="record-exam"><strong>Practice scenario:</strong> "Email to the domain is not being delivered. Which DNS record type should be checked?" → MX. Also: "Which server receives email for a domain?" → the server pointed to by the MX record with the lowest priority number.</div>
         </div>
       </div>
 
@@ -582,7 +582,7 @@ example.com.    IN  MX  20  mail2.example.com.  ; backup</div>
           <div class="record-desc">Creates an <strong>alias from one hostname to another</strong> (the canonical name). Instead of pointing directly to an IP, a CNAME points to another hostname which then resolves to an IP. Commonly used to point multiple names (www, ftp, mail) to a single canonical hostname so you only update one A record when the IP changes. <strong>A CNAME cannot coexist with other records for the same name</strong> — and cannot be used for the zone apex (naked domain like example.com).</div>
           <div class="record-example">www.example.com.    IN  CNAME  example.com.
 ftp.example.com.    IN  CNAME  example.com.</div>
-          <div class="record-exam"><strong>Exam use case:</strong> "An admin wants www.example.com and ftp.example.com to resolve to the same server without managing two A records. Which record type?" → CNAME. Key trap: CNAME points to a hostname, not an IP — the canonical name must have an A record.</div>
+          <div class="record-exam"><strong>Practice scenario:</strong> "An admin wants www.example.com and ftp.example.com to resolve to the same server without managing two A records. Which record type?" → CNAME. Key trap: CNAME points to a hostname, not an IP — the canonical name must have an A record.</div>
         </div>
       </div>
 
@@ -596,7 +596,7 @@ ftp.example.com.    IN  CNAME  example.com.</div>
           <div class="record-desc">The <strong>reverse of an A record</strong> — maps an IP address back to a hostname. PTR records live in special reverse lookup zones (in-addr.arpa for IPv4). Used for reverse DNS lookups — tools like <code>nslookup</code> and <code>dig</code> use PTR records when you query an IP to find its name. Email servers check PTR records to verify sending mail servers are legitimate.</div>
           <div class="record-example">; Reverse zone for 93.184.216.0/24
 34.216.184.93.in-addr.arpa.  IN  PTR  www.example.com.</div>
-          <div class="record-exam"><strong>Exam use case:</strong> "Which DNS record type is used in a reverse lookup zone?" → PTR. "A technician runs nslookup with an IP address and gets a hostname — which record type was queried?" → PTR.</div>
+          <div class="record-exam"><strong>Practice scenario:</strong> "Which DNS record type is used in a reverse lookup zone?" → PTR. "A technician runs nslookup with an IP address and gets a hostname — which record type was queried?" → PTR.</div>
         </div>
       </div>
 
@@ -610,7 +610,7 @@ ftp.example.com.    IN  CNAME  example.com.</div>
           <div class="record-desc">Identifies the <strong>authoritative name servers for a DNS zone</strong>. NS records tell the DNS system which servers hold the official records for a domain. Every domain registered on the internet has NS records pointing to at least two authoritative name servers for redundancy. NS records are set at your registrar, which publishes them to the TLD registry's servers (e.g., the .com servers).</div>
           <div class="record-example">example.com.    IN  NS  ns1.exampledns.com.
 example.com.    IN  NS  ns2.exampledns.com.</div>
-          <div class="record-exam"><strong>Exam use case:</strong> "Which DNS record type identifies the authoritative name servers for a domain?" → NS. If DNS for a domain is completely broken (no records resolve), checking NS records at the registrar is the first troubleshooting step.</div>
+          <div class="record-exam"><strong>Practice scenario:</strong> "Which DNS record type identifies the authoritative name servers for a domain?" → NS. If DNS for a domain is completely broken (no records resolve), checking NS records at the registrar is the first troubleshooting step.</div>
         </div>
       </div>
 
@@ -628,7 +628,7 @@ example.com.    IN  NS  ns2.exampledns.com.</div>
                           900        ; Retry
                           604800     ; Expire
                           300 )      ; Minimum TTL</div>
-          <div class="record-exam"><strong>Exam use case:</strong> "Which DNS record marks the beginning of a zone and contains the zone serial number?" → SOA. The serial number is how secondary DNS servers know when the zone has been updated and needs to be transferred.</div>
+          <div class="record-exam"><strong>Practice scenario:</strong> "Which DNS record marks the beginning of a zone and contains the zone serial number?" → SOA. The serial number is how secondary DNS servers know when the zone has been updated and needs to be transferred.</div>
         </div>
       </div>
 
@@ -645,7 +645,7 @@ example.com.  IN  TXT  "v=spf1 ip4:93.184.216.34 ip4:93.184.216.35 -all"
 
 ; DMARC policy
 _dmarc.example.com.  IN  TXT  "v=DMARC1; p=reject; rua=mailto:dmarc@example.com"</div>
-          <div class="record-exam"><strong>Exam use case:</strong> "An organization wants to prevent email spoofing — attackers sending email that appears to come from their domain. Which DNS records should be configured?" → SPF (TXT record), DKIM (TXT record), DMARC (TXT record). All three live in TXT records. SPF = who can send. DKIM = prove the email wasn't tampered with. DMARC = what to do when SPF/DKIM fail.</div>
+          <div class="record-exam"><strong>Practice scenario:</strong> "An organization wants to prevent email spoofing — attackers sending email that appears to come from their domain. Which DNS records should be configured?" → SPF (TXT record), DKIM (TXT record), DMARC (TXT record). All three live in TXT records. SPF = who can send. DKIM = prove the email wasn't tampered with. DMARC = what to do when SPF/DKIM fail.</div>
         </div>
       </div>
 
@@ -659,7 +659,7 @@ _dmarc.example.com.  IN  TXT  "v=DMARC1; p=reject; rua=mailto:dmarc@example.com"
           <div class="record-desc">Specifies <strong>which Certificate Authorities are permitted to issue SSL/TLS certificates for a domain</strong>. If a CAA record is present, CAs that check (required by the CA/Browser Forum) will refuse to issue certificates for the domain unless they are listed. Prevents rogue or compromised CAs from issuing fraudulent certificates for your domain without your permission.</div>
           <div class="record-example">example.com.  IN  CAA  0 issue "letsencrypt.org"
 example.com.  IN  CAA  0 issue "digicert.com"</div>
-          <div class="record-exam"><strong>Exam use case (Security+):</strong> "Which DNS record restricts which Certificate Authorities can issue certificates for a domain?" → CAA. Directly referenced in the PKI and certificate management Security+ domain. Cross-references with the PKI and digital certificates article.</div>
+          <div class="record-exam"><strong>Practice scenario (Security+):</strong> "Which DNS record restricts which Certificate Authorities can issue certificates for a domain?" → CAA. Directly referenced in the PKI and certificate management Security+ domain. Cross-references with the PKI and digital certificates article.</div>
         </div>
       </div>
 
@@ -676,7 +676,7 @@ _kerberos._tcp.example.com.  IN  SRV  10 100 88  dc1.example.com.
 
 ; SIP VoIP service
 _sip._tcp.example.com.       IN  SRV  10 100 5060  voip.example.com.</div>
-          <div class="record-exam"><strong>Exam use case:</strong> "Active Directory clients use which DNS record type to locate domain controllers?" → SRV. AD is entirely dependent on SRV records — if SRV records are missing or corrupt, domain join, authentication, and Group Policy all fail.</div>
+          <div class="record-exam"><strong>Practice scenario:</strong> "Active Directory clients use which DNS record type to locate domain controllers?" → SRV. AD is entirely dependent on SRV records — if SRV records are missing or corrupt, domain join, authentication, and Group Policy all fail.</div>
         </div>
       </div>
 
@@ -686,9 +686,9 @@ _sip._tcp.example.com.       IN  SRV  10 100 5060  voip.example.com.</div>
       <div class="exam-tip-label">⚡ Key exam distinctions</div>
       <p><strong>A vs AAAA:</strong> A = IPv4. AAAA = IPv6. That's the entire difference.</p>
       <p><strong>CNAME vs A:</strong> CNAME points to another hostname (alias). A record points to an IP. CNAME cannot be used at the zone apex (example.com itself — only subdomains like www.example.com).</p>
-      <p><strong>MX priority:</strong> Lower number = higher priority. If MX 10 is unreachable, senders try MX 20. Easy to get backwards on the exam.</p>
+      <p><strong>MX priority:</strong> Lower number = higher priority. If MX 10 is unreachable, senders try MX 20. Easy to get backwards.</p>
       <p><strong>PTR = reverse DNS</strong> — IP to hostname. Lives in in-addr.arpa zones. Used by email servers to verify sender legitimacy.</p>
-      <p><strong>SPF/DKIM/DMARC all live in TXT records</strong> — the exam tests whether you know the function of each. SPF = which servers can send. DKIM = email signing/verification. DMARC = enforcement policy when SPF/DKIM fail.</p>
+      <p><strong>SPF/DKIM/DMARC all live in TXT records</strong> — know the function of each. SPF = which servers can send. DKIM = email signing/verification. DMARC = enforcement policy when SPF/DKIM fail.</p>
     </div>
 
     <h2>DNS Security — SPF, DKIM, DMARC in Depth</h2>
@@ -737,7 +737,7 @@ _sip._tcp.example.com.       IN  SRV  10 100 5060  voip.example.com.</div>
 
     <hr class="divider">
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario-item">💬 "Users can access a website by IP but not by hostname. Which DNS record type is most likely missing?" → <strong>A record — the forward lookup mapping the hostname to the IPv4 address is missing or misconfigured.</strong></div>
       <div class="scenario-item">💬 "An administrator configures DNS so that both www.example.com and shop.example.com resolve to the same server. Rather than creating two A records, they want to manage a single IP. Which record type achieves this?" → <strong>CNAME — create CNAME records for www and shop pointing to the canonical hostname, which has a single A record. Update only the A record when the IP changes.</strong></div>
@@ -784,7 +784,7 @@ _sip._tcp.example.com.       IN  SRV  10 100 5060  voip.example.com.</div>
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

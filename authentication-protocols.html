@@ -481,7 +481,7 @@ tbody tr:hover td{background:var(--light);}
     <nav class="breadcrumb"><a href="/">Home</a><span>›</span><span>Security</span></nav>
     <div class="page-hero-badge">🔑 Security</div>
     <h1>Authentication Protocols — <span>Kerberos, NTLM, RADIUS, TACACS+</span></h1>
-    <p class="page-hero-sub">Authentication protocols verify the identity of a user or device before granting access. The five tested on CompTIA — Kerberos, NTLM, RADIUS, TACACS+, and LDAP — each have a distinct purpose, port, and known weakness. Be able to pick the right one for each scenario.</p>
+    <p class="page-hero-sub">Authentication protocols verify the identity of a user or device before granting access. The five to know for CompTIA — Kerberos, NTLM, RADIUS, TACACS+, and LDAP — each have a distinct purpose, port, and known weakness. Be able to pick the right one for each scenario.</p>
     <div class="cert-badges"><span class="cert-badge cb-teal">A+ 220-1201</span><span class="cert-badge cb-blue">Network+ N10-009</span><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
   </div>
 </section>
@@ -501,7 +501,7 @@ tbody tr:hover td{background:var(--light);}
 
     <div class="quick-answer">
       <div class="quick-answer-label">Quick Reference</div>
-      <div class="quick-answer-text"><strong>Authentication protocols</strong> verify the identity of a user or device before granting access. The five tested on CompTIA: <strong>Kerberos</strong> = Windows domain authentication — tickets, KDC, port 88. <strong>NTLM</strong> = legacy Windows auth — challenge/response, no KDC required. <strong>RADIUS</strong> = centralized AAA for network access — VPN, WiFi 802.1X, port 1812/1813. <strong>TACACS+</strong> = Cisco's AAA protocol — separates authentication/authorization/accounting, port 49. <strong>LDAP</strong> = directory lookup protocol — queries Active Directory, port 389 (636 for LDAPS).</div>
+      <div class="quick-answer-text"><strong>Authentication protocols</strong> verify the identity of a user or device before granting access. The five to know for CompTIA: <strong>Kerberos</strong> = Windows domain authentication — tickets, KDC, port 88. <strong>NTLM</strong> = legacy Windows auth — challenge/response, no KDC required. <strong>RADIUS</strong> = centralized AAA for network access — VPN, WiFi 802.1X, port 1812/1813. <strong>TACACS+</strong> = Cisco's AAA protocol — separates authentication/authorization/accounting, port 49. <strong>LDAP</strong> = directory lookup protocol — queries Active Directory, port 389 (636 for LDAPS).</div>
     </div>
 
     <div class="callout">
@@ -509,8 +509,8 @@ tbody tr:hover td{background:var(--light);}
       <p>Security+ V8 (SY0-801) is scheduled to launch on or around November 17, 2026. SY0-701 remains available until June 11, 2027 (English), so this page covers SY0-701.</p>
     </div>
 
-    <h2>Why are authentication protocols tested on CompTIA exams?</h2>
-    <p>Authentication protocols define how a system proves that a user or device is who they claim to be. Different environments use different protocols depending on the scale, the type of access being controlled, and the vendor ecosystem involved. CompTIA tests authentication protocols across all three exams — A+ focuses on Windows domain authentication (Kerberos, NTLM), Network+ adds network access protocols (RADIUS, 802.1X), and Security+ expects understanding of the security properties and weaknesses of each protocol.</p>
+    <h2>Why do authentication protocols matter?</h2>
+    <p>Authentication protocols define how a system proves that a user or device is who they claim to be. Different environments use different protocols depending on the scale, the type of access being controlled, and the vendor ecosystem involved. Study them for all three exams — for A+, focus on Windows domain authentication (Kerberos, NTLM); for Network+, add network access protocols (RADIUS, 802.1X); and for Security+, know the security properties and weaknesses of each protocol.</p>
 
     <h2>How does Kerberos authentication work?</h2>
     <p>Kerberos is the default authentication protocol for Windows Active Directory domains (and modern Linux/macOS in enterprise environments). It uses a <strong>ticket-based</strong> system that allows users to prove their identity without sending their password across the network repeatedly. Three components: the <strong>KDC (Key Distribution Center)</strong> — runs on every domain controller and issues tickets; the <strong>TGT (Ticket Granting Ticket)</strong> — a time-limited credential issued after initial login that proves identity; and <strong>service tickets</strong> — issued by the KDC in exchange for the TGT to grant access to specific services.</p>
@@ -528,7 +528,7 @@ tbody tr:hover td{background:var(--light);}
 
     <h2>What is TACACS+ and how does it differ from RADIUS?</h2>
     <p>TACACS+ (Terminal Access Controller Access-Control System Plus) is Cisco's proprietary AAA protocol, used primarily for authenticating administrators to network devices — routers, switches, and firewalls. Key difference from RADIUS: TACACS+ separates authentication, authorization, and accounting into three independent processes that can be handled by different servers. RADIUS combines authentication and authorization. TACACS+ uses <strong>TCP port 49</strong> and encrypts the entire packet body (not just the password, like RADIUS). This makes TACACS+ more appropriate for device administration where the full session needs protection.</p>
-    <p>When to use TACACS+ vs RADIUS: <strong>TACACS+</strong> for authenticating network device administrators (SSH/Telnet to routers and switches), <strong>RADIUS</strong> for authenticating end users accessing the network (WiFi, VPN, 802.1X). This distinction appears directly on exam questions.</p>
+    <p>When to use TACACS+ vs RADIUS: <strong>TACACS+</strong> for authenticating network device administrators (SSH/Telnet to routers and switches), <strong>RADIUS</strong> for authenticating end users accessing the network (WiFi, VPN, 802.1X). Know this distinction.</p>
 
     <h2>What is LDAP and how is it used in authentication?</h2>
     <p>LDAP (Lightweight Directory Access Protocol) is not an authentication protocol per se — it's a protocol for querying and modifying directory services like Active Directory. When RADIUS needs to verify a user's credentials against Active Directory, it queries AD using LDAP. When an application needs to look up a user's group memberships or email address, it queries AD using LDAP. Port <strong>389</strong> for LDAP (unencrypted), port <strong>636</strong> for LDAPS (LDAP over TLS — encrypted). A third option is LDAP with STARTTLS, which upgrades an unencrypted port 389 connection to encrypted using the STARTTLS command.</p>
@@ -536,7 +536,7 @@ tbody tr:hover td{background:var(--light);}
     
     <h2>What is 802.1X port-based authentication?</h2>
     <p>802.1X is the IEEE standard for port-based network access control — it defines how RADIUS integrates with network devices to authenticate endpoints before allowing network access. Three roles: the <strong>supplicant</strong> (the device requesting access — a laptop, phone, or IP camera), the <strong>authenticator</strong> (the network device enforcing access — a switch port or wireless AP), and the <strong>authentication server</strong> (the RADIUS server that validates credentials). When a device connects to an 802.1X-enabled switch port, the port blocks all traffic except the EAP (Extensible Authentication Protocol) authentication exchange. The supplicant provides credentials, the switch forwards them to the RADIUS server, and if authentication succeeds, the switch opens the port to normal traffic. If authentication fails, the port remains blocked — even a physically connected device gets no network access without valid credentials.</p>
-    <p>802.1X on wired networks eliminates the risk of someone plugging a laptop into an Ethernet port in a conference room and accessing the corporate network without credentials. On wireless networks, WPA2/3-Enterprise requires 802.1X — connecting to the SSID requires authentication through the RADIUS server rather than a shared password. The EAP methods used within 802.1X vary: EAP-TLS (mutual certificate authentication — the strongest), PEAP (the client authenticates with a username/password, the server authenticates with a certificate — most common in enterprise WiFi), and EAP-TTLS are the most common exam-relevant methods.</p>
+    <p>802.1X on wired networks eliminates the risk of someone plugging a laptop into an Ethernet port in a conference room and accessing the corporate network without credentials. On wireless networks, WPA2/3-Enterprise requires 802.1X — connecting to the SSID requires authentication through the RADIUS server rather than a shared password. The EAP methods used within 802.1X vary: EAP-TLS (mutual certificate authentication — the strongest), PEAP (the client authenticates with a username/password, the server authenticates with a certificate — most common in enterprise WiFi), and EAP-TTLS are the most common methods to know.</p>
     <h2>How do Kerberos, NTLM, RADIUS, TACACS+, and LDAP compare?</h2>
     <div class="table-wrap"><table>
       <thead><tr><th>Protocol</th><th>Port</th><th>Transport</th><th>Primary Use</th><th>Encryption</th></tr></thead>
@@ -549,7 +549,7 @@ tbody tr:hover td{background:var(--light);}
       </tbody>
     </table></div>
 
-    <h2>What are real exam scenarios for authentication protocols?</h2>
+    <h2>What are practice scenarios for authentication protocols?</h2>
     <div class="scenario-list">
       <div class="scenario">
         <div class="scenario-q">A company wants employees to authenticate to the corporate WiFi using their Active Directory username and password rather than a shared passphrase. Which protocols are required?</div>
@@ -586,7 +586,7 @@ tbody tr:hover td{background:var(--light);}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

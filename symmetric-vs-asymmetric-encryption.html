@@ -514,9 +514,9 @@ tbody tr:hover td{background:var(--light);}
 
     <h2>Symmetric Encryption — Fast, One Key</h2>
     <p>Symmetric algorithms use mathematical operations (substitution, permutation, XOR) that are efficient for processors to execute. Encrypting a 1 GB file with AES-256 takes milliseconds. This speed makes symmetric encryption the right choice for encrypting data at rest (full-disk encryption, database encryption, file encryption) and bulk data in transit. The major algorithms:</p>
-    <p><strong>AES (Advanced Encryption Standard)</strong> — the current standard for symmetric encryption worldwide. Key sizes: 128-bit, 192-bit, or 256-bit. AES-256 is considered quantum-resistant for the foreseeable future. Used in everything from TLS sessions to BitLocker and FileVault disk encryption. The exam's go-to answer for "which symmetric algorithm is the strongest/most current?"</p>
-    <p><strong>DES (Data Encryption Standard)</strong> — the predecessor to AES, using a 56-bit key. DES is broken — a 56-bit key can be exhaustively searched in hours with modern hardware. Never use DES for anything new. Appears on the exam as the historical context for why AES was developed.</p>
-    <p><strong>3DES (Triple DES)</strong> — applies DES three times with different keys to compensate for DES's weakness, achieving effective 112-bit security. Better than DES but significantly slower than AES and considered legacy. NIST has disallowed it for new encryption since 2024 (decrypt-only for legacy data); AES replaces it. The exam answer for "which is stronger, DES or 3DES?" is 3DES — but both are weaker than AES.</p>
+    <p><strong>AES (Advanced Encryption Standard)</strong> — the current standard for symmetric encryption worldwide. Key sizes: 128-bit, 192-bit, or 256-bit. AES-256 is considered quantum-resistant for the foreseeable future. Used in everything from TLS sessions to BitLocker and FileVault disk encryption. The answer to "which symmetric algorithm is the strongest/most current?"</p>
+    <p><strong>DES (Data Encryption Standard)</strong> — the predecessor to AES, using a 56-bit key. DES is broken — a 56-bit key can be exhaustively searched in hours with modern hardware. Never use DES for anything new. Know it as the historical context for why AES was developed.</p>
+    <p><strong>3DES (Triple DES)</strong> — applies DES three times with different keys to compensate for DES's weakness, achieving effective 112-bit security. Better than DES but significantly slower than AES and considered legacy. NIST has disallowed it for new encryption since 2024 (decrypt-only for legacy data); AES replaces it. Between DES and 3DES, 3DES is stronger — but both are weaker than AES.</p>
     <p>The fundamental problem with symmetric encryption: <strong>key distribution</strong>. If Alice wants to send Bob an encrypted message using AES, they both need the same key. But how does Alice get the key to Bob securely? She can't email it unencrypted — anyone intercepting the email gets the key and can decrypt everything. She could meet Bob in person, but that's impractical at scale. Asymmetric encryption solves this problem.</p>
 
     <h2>Asymmetric Encryption — Two Keys, Solved Key Distribution</h2>
@@ -526,7 +526,7 @@ tbody tr:hover td{background:var(--light);}
 
     <h2>Digital Signatures — Asymmetric in Reverse</h2>
     <p>Digital signatures use asymmetric keys in the opposite direction from encryption. To sign a document: the sender creates a hash of the document, then encrypts the hash with their <strong>private key</strong> — this encrypted hash is the digital signature. Recipients verify the signature by decrypting it with the sender's <strong>public key</strong> — if the decrypted hash matches the hash they compute from the document, the signature is valid and proves two things: the document was signed by whoever holds the private key (authentication) and the document hasn't been modified since it was signed (integrity).</p>
-    <p>On the exam: encryption uses the recipient's public key. Signing uses the sender's private key. Verifying a signature uses the sender's public key. Decryption uses the recipient's private key. These four operations trip up candidates who confuse which key does what.</p>
+    <p>On the exam: encryption uses the recipient's public key. Signing uses the sender's private key. Verifying a signature uses the sender's public key. Decryption uses the recipient's private key. Don't mix up which key does what in these four operations.</p>
 
     <h2>Hybrid Encryption — How TLS/HTTPS Actually Works</h2>
     <p>Real-world systems use both symmetric and asymmetric encryption together: asymmetric to solve key distribution, symmetric for the actual data transfer. TLS (Transport Layer Security — the protocol behind HTTPS) works this way: the client and server use asymmetric key exchange (RSA or Diffie-Hellman) to agree on a symmetric session key, then use that session key with AES to encrypt the actual data. This gives the best of both worlds: secure key exchange from asymmetric, fast bulk encryption from symmetric. This is called a <strong>hybrid cryptosystem</strong> and is the foundation of essentially all secure internet communication.</p>
@@ -534,7 +534,7 @@ tbody tr:hover td{background:var(--light);}
     
     <h2>Key Length and Security Equivalence</h2>
     <p>Symmetric and asymmetric algorithms use key lengths that aren't directly comparable — a 256-bit AES key does not provide the same security as a 256-bit RSA key. This is because AES security scales linearly with key length (256-bit AES requires 2^256 brute force attempts), while RSA security depends on the difficulty of factoring large numbers, which is easier than brute force for the same key size. The NIST equivalence table: <strong>128-bit symmetric</strong> ≈ <strong>3072-bit RSA</strong> ≈ <strong>256-bit ECC</strong>. <strong>256-bit symmetric (AES-256)</strong> ≈ <strong>15360-bit RSA</strong> ≈ <strong>512-bit ECC</strong>. This is why ECC is increasingly preferred over RSA — a 256-bit ECC key provides the same security as a 3072-bit RSA key, but is far smaller and faster to process. For mobile devices and TLS 1.3, ECC is now the default.</p>
-    <p><strong>Perfect Forward Secrecy (PFS)</strong> is a property of key exchange algorithms like Diffie-Hellman Ephemeral (DHE) and Elliptic Curve Diffie-Hellman Ephemeral (ECDHE). PFS ensures that compromising the server's long-term private key (e.g., through a breach) does not allow decryption of past recorded sessions. Each TLS session using DHE/ECDHE generates a unique session key that is never stored — when the session ends, the key is discarded. Past sessions cannot be decrypted even if the server's certificate private key is later obtained. TLS 1.3 mandates PFS by removing cipher suites that lack it. The exam tests PFS in the context of TLS configuration and what it protects against.</p>
+    <p><strong>Perfect Forward Secrecy (PFS)</strong> is a property of key exchange algorithms like Diffie-Hellman Ephemeral (DHE) and Elliptic Curve Diffie-Hellman Ephemeral (ECDHE). PFS ensures that compromising the server's long-term private key (e.g., through a breach) does not allow decryption of past recorded sessions. Each TLS session using DHE/ECDHE generates a unique session key that is never stored — when the session ends, the key is discarded. Past sessions cannot be decrypted even if the server's certificate private key is later obtained. TLS 1.3 mandates PFS by removing cipher suites that lack it. Know PFS in the context of TLS configuration and what it protects against.</p>
     <h2>Comparison Table</h2>
     <div class="table-wrap"><table>
       <thead><tr><th>Property</th><th>Symmetric</th><th>Asymmetric</th></tr></thead>
@@ -548,7 +548,7 @@ tbody tr:hover td{background:var(--light);}
       </tbody>
     </table></div>
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario">
         <div class="scenario-q">A company needs to encrypt 10 TB of data on a NAS server. Which type of encryption should they use and why?</div>
@@ -560,7 +560,7 @@ tbody tr:hover td{background:var(--light);}
       </div>
       <div class="scenario">
         <div class="scenario-q">Which encryption algorithm is considered the current standard for symmetric encryption and is used in full-disk encryption tools like BitLocker?</div>
-        <div class="scenario-a"><strong>Answer: AES (Advanced Encryption Standard)</strong>, specifically AES-256. BitLocker, FileVault, VeraCrypt, and virtually all modern full-disk encryption tools use AES. DES and 3DES are legacy algorithms — DES is broken, 3DES is deprecated. The exam answer for "strongest current symmetric algorithm" is always AES.</div>
+        <div class="scenario-a"><strong>Answer: AES (Advanced Encryption Standard)</strong>, specifically AES-256. BitLocker, FileVault, VeraCrypt, and virtually all modern full-disk encryption tools use AES. DES and 3DES are legacy algorithms — DES is broken, 3DES is deprecated. The strongest current symmetric algorithm is AES.</div>
       </div>
     </div>
 
@@ -585,7 +585,7 @@ tbody tr:hover td{background:var(--light);}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

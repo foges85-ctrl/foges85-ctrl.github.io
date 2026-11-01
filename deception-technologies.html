@@ -402,7 +402,7 @@ tbody tr:hover td{background:var(--light);}
       "name": "What Are Deception Technologies?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Deception technologies are security controls that use fake, decoy, or misleading assets to detect attackers, waste their time, and gather intelligence about their techniques. The core insight is powerful: legitimate users have no reason to interact with decoy assets . Any interaction with a honeypot, honeyfile, or canary token is inherently suspicious — it generates a high-fidelity, low-noise alert that an attacker is present."
+        "text": "Deception technologies are security controls that use fake, decoy, or misleading assets to detect attackers, waste their time, and gather intelligence about their techniques. The core insight is powerful: legitimate users have no reason to interact with decoy assets. Any interaction with a honeypot, honeyfile, or canary token is inherently suspicious — it generates a high-fidelity, low-noise alert that an attacker is present."
       }
     }
   ]
@@ -483,7 +483,7 @@ tbody tr:hover td{background:var(--light);}
 <nav class="breadcrumb"><a href="/">Home</a><span>›</span><span>Deception Technologies</span></nav>
 <div class="page-hero-badge">🍯 Security+</div>
 <h1>Deception Technologies — <span>Honeypots, Honeyfiles &amp; Canary Tokens</span></h1>
-<p class="page-hero-sub">How organizations use fake assets — honeypots, honeynets, honeyfiles, canary tokens, and DNS sinkholes — to detect attackers, slow them down, and gather intelligence. Security+ SY0-701 lists honeypots, honeynets, honeyfiles, and honeytokens; DNS sinkholes and fake telemetry are from the previous exam version and real-world practice.</p>
+<p class="page-hero-sub">How organizations use fake assets — honeypots, honeynets, honeyfiles, canary tokens, and DNS sinkholes — to detect attackers, slow them down, and gather intelligence. Security+ SY0-701 lists honeypots, honeynets, honeyfiles, and honeytokens; DNS sinkholes and fake telemetry are covered here as common real-world controls.</p>
 <div class="cert-badges"><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
 </div></section>
 
@@ -572,7 +572,7 @@ tbody tr:hover td{background:var(--light);}
 </div>
 
 <h2>DNS Sinkhole</h2>
-<p>A DNS sinkhole is a DNS server that intercepts queries for known malicious domains and returns a controlled IP address instead of the real one. When malware on an internal host tries to contact its command-and-control (C2) server by domain name, the sinkhole redirects that traffic to a controlled server — blocking the communication and revealing which internal hosts are infected. <em>Exam note: SY0-701 doesn't list DNS sinkholes; they were a deception item on the previous version (SY0-601) and remain a common real-world control.</em></p>
+<p>A DNS sinkhole is a DNS server that intercepts queries for known malicious domains and returns a controlled IP address instead of the real one. When malware on an internal host tries to contact its command-and-control (C2) server by domain name, the sinkhole redirects that traffic to a controlled server — blocking the communication and revealing which internal hosts are infected. <em>Note: DNS sinkholes remain a common real-world control.</em></p>
 
 <div class="callout callout-purple">
 <div class="callout-label">📝 DNS Sinkhole — How It Works</div>
@@ -585,10 +585,10 @@ tbody tr:hover td{background:var(--light);}
 <p>DNS sinkholes are extremely effective for detecting malware on internal hosts — especially infected machines that have no obvious symptoms. Any host connecting to the sinkhole IP is compromised or at minimum suspicious. This is why threat intelligence feeds of known malicious domains are so valuable when fed into a DNS sinkhole system.</p>
 
 <h2>Fake Telemetry and Breadcrumbs</h2>
-<p>Advanced deception strategies go beyond static honeypots to create an entire deceptive layer throughout the network. Fake telemetry means planting realistic-looking but false data — fake credentials in memory, fake server listings in Active Directory, fake API keys in environment variables. An attacker enumerating the environment finds "valuable" assets that are all monitored traps. <em>Exam note: fake telemetry was a deception item on the previous Security+ version (SY0-601); SY0-701 doesn't list it.</em></p>
+<p>Advanced deception strategies go beyond static honeypots to create an entire deceptive layer throughout the network. Fake telemetry means planting realistic-looking but false data — fake credentials in memory, fake server listings in Active Directory, fake API keys in environment variables. An attacker enumerating the environment finds "valuable" assets that are all monitored traps.</p>
 <p><strong>Breadcrumbs</strong> are planted clues that lead attackers toward honeypots and away from real assets. A honeytoken credential in a developer's environment points to a fake server — the attacker follows the trail and walks into a monitored trap, while the real servers remain untouched and undetected.</p>
 
-<h2>Exam Scenarios</h2>
+<h2>Practice Scenarios</h2>
 <div class="exam-scenarios">
 <div class="scenario">
 <div class="scenario-q">A security team wants to detect unauthorized access to their file server by insiders. They place a file named "executive_salaries_2025.xlsx" in a shared folder and configure an alert when it's opened. What type of deception technology is this?</div>
@@ -630,7 +630,7 @@ tbody tr:hover td{background:var(--light);}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

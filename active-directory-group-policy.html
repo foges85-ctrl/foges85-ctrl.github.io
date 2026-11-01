@@ -629,7 +629,7 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 LSDOU — GPO Processing Order</div>
       <p><strong>Local → Site → Domain → OU</strong> — memorize this order. Remember: later = higher priority. An OU policy overrides a Domain policy on the same setting. If two GPOs at the same level conflict, the one with the <strong>lower link order number</strong> (higher priority in GPMC) wins.</p>
-      <p>The exam may also ask: which GPO wins when there's a conflict? The answer is always the one that applies <strong>last</strong> in the LSDOU order — unless Enforcement is set, which inverts this.</p>
+      <p>Which GPO wins when there's a conflict? The one that applies <strong>last</strong> in the LSDOU order — unless Enforcement is set, which inverts this.</p>
     </div>
 
     <h2>Inheritance, Blocking, and Enforcement</h2>
@@ -779,7 +779,7 @@ tbody tr:hover td{background:#eff6ff;}
       </table>
     </div>
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario-item">💬 "An administrator needs to enforce a password policy requiring a minimum of 12 characters and complexity for all users in the domain. Where should this GPO be configured?" → <strong>The Default Domain Policy, linked to the domain root — password policies must be configured at the domain level to apply to all domain user accounts. Password policy settings in OUs below the domain level do not affect domain account passwords (they only affect local accounts). The setting path is Computer Configuration → Policies → Windows Settings → Security Settings → Account Policies → Password Policy.</strong></div>
       <div class="scenario-item">💬 "A GPO is linked to the domain and configured to set the desktop wallpaper. An administrator in the Sales OU applies Block Inheritance to prevent domain policies from flowing in. A domain admin then sets the wallpaper GPO as Enforced. What wallpaper do Sales users see?" → <strong>The enforced domain GPO wallpaper — Enforcement overrides Block Inheritance. Once a GPO link is marked as Enforced, it cannot be blocked by any child OU. Domain admins use Enforcement to guarantee critical policies (like security baselines) apply everywhere regardless of OU-level blocking.</strong></div>
@@ -821,7 +821,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

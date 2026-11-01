@@ -39,7 +39,7 @@
   "@type":"FAQPage",
   "mainEntity":[
     {"@type":"Question","name":"What is a network scanner and what does it actually do?","acceptedAnswer":{"@type":"Answer","text":"It discovers what's present and reachable on a network. Working bottom-up, it runs host discovery (an ICMP ping sweep, and ARP on a local segment) to find live devices, scans ports on those hosts to see which services are listening, and often attempts service and OS detection to identify what's running. The result is an inventory: which addresses are up, which ports are open, and what sits behind them."}},
-    {"@type":"Question","name":"Is nmap on the CompTIA Network+ and Security+ exams?","acceptedAnswer":{"@type":"Answer","text":"Yes. nmap is the reference scanning tool both exams point to, and the underlying concepts \u2014 host discovery, ping sweeps, port scanning, and service/OS detection \u2014 are testable. Network+ covers scanning under network discovery and documentation; Security+ covers it under reconnaissance and vulnerability identification. Knowing what nmap does and how to read its output is exam-relevant no matter which scanner you use day to day."}},
+    {"@type":"Question","name":"Should I learn nmap for CompTIA Network+ and Security+?","acceptedAnswer":{"@type":"Answer","text":"Yes. nmap is the standard scanning tool, and its underlying concepts \u2014 host discovery, ping sweeps, port scanning, and service/OS detection \u2014 are worth knowing for both. Network+ covers scanning under network discovery and documentation; Security+ covers it under reconnaissance and vulnerability identification. Knowing what nmap does and how to read its output is useful no matter which scanner you use day to day."}},
     {"@type":"Question","name":"Is it legal to scan a network?","acceptedAnswer":{"@type":"Answer","text":"Only scan networks you own or have explicit written permission to test. Your own home lab or a client's network under a signed engagement is fine. Scanning a network you don't control \u2014 a coffee shop, an employer's network without authorization, a stranger's Wi-Fi \u2014 can violate computer-misuse laws and acceptable-use policies even if you never touch a device. Port scanning is treated as reconnaissance and can trigger security alerts. When in doubt, get written authorization first."}},
     {"@type":"Question","name":"What's the best free network scanner?","acceptedAnswer":{"@type":"Answer","text":"On a computer, nmap \u2014 free, open source, and the most capable option there is. If its command line is too much, Angry IP Scanner is also free and open source with a simple GUI across Windows, Mac, and Linux. On a phone, Fing has a genuinely usable permanent free tier for basic device discovery, capped at three manual scans a day. Free-tier limits and prices are as of 2026 and change, so verify before relying on them."}},
     {"@type":"Question","name":"Can a phone app replace nmap?","acceptedAnswer":{"@type":"Answer","text":"No. Nothing on mobile matches nmap's depth of port scanning, service detection, OS fingerprinting, and scripting. Mobile scanners are for a different situation \u2014 you're in a server closet, a client's office, or a basement with only your phone and need a quick picture of the network. For serious work at a desk, nmap is the answer; the phone is for when you don't have a computer in hand."}},
@@ -492,7 +492,7 @@ table.cmp tr.me th,table.cmp tr.me td{background:rgba(0,194,168,.07);}
 
     <div class="lede-callout">
       <div class="lede-label">The short answer</div>
-      <p>If you're sitting at a desk, <strong>nmap</strong> is free, open source, and more capable than anything on your phone &mdash; it's the professional standard, and it's what the CompTIA exams reference. If nmap's command line is too much, <strong>Angry IP Scanner</strong> is the easy, free desktop GUI. Mobile scanners exist for a different situation entirely: you're standing in a server closet, a client's office, or a basement with only your phone. Pick the tool for where you actually are &mdash; and a phone is not a substitute for nmap when a computer is within reach.</p>
+      <p>If you're sitting at a desk, <strong>nmap</strong> is free, open source, and more capable than anything on your phone &mdash; it's the professional standard. If nmap's command line is too much, <strong>Angry IP Scanner</strong> is the easy, free desktop GUI. Mobile scanners exist for a different situation entirely: you're standing in a server closet, a client's office, or a basement with only your phone. Pick the tool for where you actually are &mdash; and a phone is not a substitute for nmap when a computer is within reach.</p>
     </div>
 
     <p>Discovering what's on a network is one of the most basic things an IT tech does, and it shows up everywhere: studying for CompTIA Network+ or Security+, troubleshooting why a device isn't reachable on a client's LAN, or mapping out a home lab. The tool you should reach for depends almost entirely on one thing &mdash; <strong>where you're standing.</strong> This page compares the serious desktop scanners against the mobile ones, honestly, so you can pick the right one for the moment you're in. If you're still working through the fundamentals, our <a href="network-troubleshooting-commands.html">network troubleshooting commands</a> and <a href="comptia-network-plus-domains.html">Network+ domains</a> guides pair well with this one.</p>
@@ -500,7 +500,7 @@ table.cmp tr.me th,table.cmp tr.me td{background:rgba(0,194,168,.07);}
     <p>Here's the thing worth saying up front, because a lot of "best network scanner app" lists bury it: <strong>the desktop tools are the serious tools.</strong> nmap has been the professional standard for decades, it's free, and nothing on a phone comes close to its depth. Mobile scanners aren't trying to beat nmap &mdash; they're solving a different problem, which is "I only have my phone right now and I need to see what's on this network." Both are legitimate. Confusing them is where people waste money. If you'd rather see these apps taken two at a time instead of five at once, that's the format of our <a href="https://appmatchup.com/">head-to-head app comparisons at AppMatchup</a>.</p>
 
     <h2>What a scanner actually does</h2>
-    <p>Before the tools, the concepts &mdash; because this is the part the CompTIA exams test, and understanding it makes every scanner's output readable. A network scanner works from the bottom up: first it finds live hosts, then it finds open ports on those hosts, then it tries to identify what's running behind them. Four techniques do most of the work:</p>
+    <p>Before the tools, the concepts &mdash; because this is the part to know for CompTIA exams, and understanding it makes every scanner's output readable. A network scanner works from the bottom up: first it finds live hosts, then it finds open ports on those hosts, then it tries to identify what's running behind them. Four techniques do most of the work:</p>
 
     <div class="step-flow">
       <div class="step-item">
@@ -543,7 +543,7 @@ table.cmp tr.me th,table.cmp tr.me td{background:rgba(0,194,168,.07);}
 
     <div class="exam-tip">
       <div class="exam-tip-label">Exam tip</div>
-      <p>On <strong>Network+</strong>, scanning shows up under network discovery and documentation &mdash; know that a ping sweep uses ICMP and that ARP works only within a broadcast domain. On <strong>Security+</strong>, the same activity is framed as <strong>reconnaissance</strong>: port scanning is an early step in both penetration testing and real attacks, which is exactly why unauthorized scanning is treated seriously. Both exams point at <strong>nmap</strong> as the reference tool.</p>
+      <p>On <strong>Network+</strong>, scanning falls under network discovery and documentation &mdash; know that a ping sweep uses ICMP and that ARP works only within a broadcast domain. On <strong>Security+</strong>, the same activity falls under <strong>reconnaissance</strong>: port scanning is an early step in both penetration testing and real attacks, which is exactly why unauthorized scanning is treated seriously. Learn <strong>nmap</strong> as the reference tool for both.</p>
     </div>
 
     <h2>The honest breakdown</h2>
@@ -553,7 +553,7 @@ table.cmp tr.me th,table.cmp tr.me td{background:rgba(0,194,168,.07);}
     <div class="app-block">
       <p class="app-name">nmap</p>
       <p class="app-bestfor">Best for: anyone sitting at a computer &mdash; this is the answer</p>
-      <p>nmap is free, open source, and the professional standard for network scanning, and it has been for decades. It runs on Windows, Mac, and Linux, and it does everything the four techniques above describe and far more: granular port scanning, accurate service and version detection, OS fingerprinting, and a whole scripting engine for deeper checks. It's the tool the Network+ and Security+ exams reference, so learning it does double duty &mdash; you're studying and building a real skill at the same time. <b>If you're at a computer, start here and stop here.</b> Nothing on mobile beats it, and it costs nothing.</p>
+      <p>nmap is free, open source, and the professional standard for network scanning, and it has been for decades. It runs on Windows, Mac, and Linux, and it does everything the four techniques above describe and far more: granular port scanning, accurate service and version detection, OS fingerprinting, and a whole scripting engine for deeper checks. Learning it for Network+ and Security+ does double duty &mdash; you're studying and building a real skill at the same time. <b>If you're at a computer, start here and stop here.</b> Nothing on mobile beats it, and it costs nothing.</p>
       <p class="con"><b>Trade-offs:</b> it's command-line first, and the learning curve is genuinely steep &mdash; the flags, scan types, and output take time to get comfortable with. There's a GUI (Zenmap) that softens the edges, but nmap rewards learning the CLI. If the terminal is a wall you're not ready to climb today, the next tool is for you.</p>
     </div>
 
@@ -607,7 +607,7 @@ table.cmp tr.me th,table.cmp tr.me td{background:rgba(0,194,168,.07);}
             <th>nmap</th>
             <td>Windows, Mac, Linux (desktop)</td>
             <td><span class="cmp-chip chip-free">Free &middot; open source</span></td>
-            <td>Deep scanning at a desk &mdash; the exam standard</td>
+            <td>Deep scanning at a desk &mdash; the professional standard</td>
             <td>No &mdash; it's a scanner</td>
           </tr>
           <tr>
@@ -669,8 +669,8 @@ table.cmp tr.me th,table.cmp tr.me td{background:rgba(0,194,168,.07);}
       <p class="faq-a">It discovers what's present and reachable on a network. Working bottom-up, it runs host discovery (an ICMP ping sweep, and ARP on a local segment) to find live devices, scans ports on those hosts to see which services are listening, and often attempts service and OS detection to identify what's running. The result is an inventory: which addresses are up, which ports are open, and what sits behind them.</p>
     </div>
     <div class="faq-item">
-      <p class="faq-q">Is nmap on the CompTIA Network+ and Security+ exams?</p>
-      <p class="faq-a">Yes. nmap is the reference scanning tool both exams point to, and the underlying concepts &mdash; host discovery, ping sweeps, port scanning, and service/OS detection &mdash; are testable. Network+ covers scanning under network discovery and documentation; Security+ covers it under reconnaissance and vulnerability identification. Knowing what nmap does and how to read its output is exam-relevant no matter which scanner you use day to day.</p>
+      <p class="faq-q">Should I learn nmap for CompTIA Network+ and Security+?</p>
+      <p class="faq-a">Yes. nmap is the standard scanning tool, and its underlying concepts &mdash; host discovery, ping sweeps, port scanning, and service/OS detection &mdash; are worth knowing for both. Network+ covers scanning under network discovery and documentation; Security+ covers it under reconnaissance and vulnerability identification. Knowing what nmap does and how to read its output is useful no matter which scanner you use day to day.</p>
     </div>
     <div class="faq-item">
       <p class="faq-q">Is it legal to scan a network?</p>

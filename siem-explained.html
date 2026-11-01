@@ -472,7 +472,7 @@ tbody tr:hover td{background:var(--light);}
 <nav class="breadcrumb"><a href="/">Home</a><span>›</span><a href="incident-response-playbook.html">Security Operations</a><span>›</span><span>SIEM</span></nav>
 <div class="page-hero-badge">📊 Security+</div>
 <h1>SIEM Explained — <span>Security Information and Event Management</span></h1>
-<p class="page-hero-sub">How SIEM works, what it's used for, and how it appears on CompTIA Security+ SY0-701 — the 28% Security Operations domain's central tool.</p>
+<p class="page-hero-sub">How SIEM works, what it's used for, and what to know for CompTIA Security+ SY0-701 — the 28% Security Operations domain's central tool.</p>
 <div class="cert-badges"><span class="cert-badge cb-purple">Security+ SY0-701 Domain 4</span></div>
 </div></section>
 
@@ -519,7 +519,7 @@ tbody tr:hover td{background:var(--light);}
 <h2>SIEM vs SOAR — Understanding the Difference</h2>
 <p><strong>SIEM</strong> detects threats and notifies analysts. The analyst then decides what to do and takes manual action — blocks an IP in the firewall, disables an account in Active Directory, quarantines an endpoint via EDR. This human-in-the-loop response introduces latency: an attack can progress significantly in the minutes or hours between alert generation and analyst response.</p>
 <p><strong>SOAR (Security Orchestration, Automation, and Response)</strong> adds automated response playbooks on top of SIEM alerts. When a SIEM alert fires, a SOAR playbook can automatically: enrich the alert with threat intelligence, check the affected account's history, disable the account if a confidence threshold is met, quarantine the endpoint, create a ticket with all context pre-populated, and notify the on-call analyst — all within seconds of the initial alert. SOAR doesn't replace human analysts; it handles repetitive, time-sensitive response tasks automatically and provides analysts with context-rich tickets for complex decisions.</p>
-<p>On the exam: SIEM = detect and alert. SOAR = detect, alert, AND automate response. A question asking which technology "automatically responds to security incidents" is asking for SOAR. A question asking which technology "aggregates and correlates logs" is asking for SIEM.</p>
+<p>On the exam: SIEM = detect and alert. SOAR = detect, alert, AND automate response. If the requirement is to "automatically respond to security incidents," that's SOAR. If it's to "aggregate and correlate logs," that's SIEM.</p>
 
 <h2>Common SIEM Use Cases</h2>
 <p><strong>Brute force and credential stuffing detection:</strong> Correlation rules fire when authentication failure counts exceed thresholds. The SIEM correlates failed logins across multiple systems — the same IP attempting to log into the VPN, web application, and email simultaneously is a stronger signal than attempts on one system alone.</p>
@@ -534,7 +534,7 @@ tbody tr:hover td{background:var(--light);}
     <p>Normalized events flow into the <strong>correlation engine</strong>, where rules evaluate incoming events against time windows and conditions. The correlation engine is essentially a real-time database query engine that continuously asks: "has this pattern appeared in the last N minutes?" When a pattern matches, an alert is generated and routed to the ticketing system and analyst dashboard. Events that don't match any rules are stored in the log database for forensic search — most SIEM implementations retain logs for 90 days to 7 years depending on compliance requirements.</p>
 
     <h2>Alert Fatigue — The Biggest SIEM Operations Challenge</h2>
-    <p>Alert fatigue is the operational enemy of effective SIEM. When a SIEM generates hundreds or thousands of alerts per day — many of them false positives — analysts quickly learn to skim alerts rather than investigate them thoroughly. The result is that real threats are missed because they're buried in noise. Managing alert fatigue is a critical SIEM operations skill that the Security+ exam tests indirectly through questions about tuning and false positives.</p>
+    <p>Alert fatigue is the operational enemy of effective SIEM. When a SIEM generates hundreds or thousands of alerts per day — many of them false positives — analysts quickly learn to skim alerts rather than investigate them thoroughly. The result is that real threats are missed because they're buried in noise. Managing alert fatigue is a critical SIEM operations skill; know how tuning reduces false positives.</p>
     <p>Reducing alert fatigue requires tuning correlation rules to reduce false positives, implementing alert prioritization (Critical alerts get immediate attention, Informational alerts are reviewed in batch), suppressing known-good activity (whitelisting authorized administrative accounts that trigger brute force rules, excluding known vulnerability scanners from IDS alerts), and using threat intelligence feeds to automatically prioritize alerts involving known malicious IPs or domains. A well-tuned SIEM generates tens of meaningful alerts per day that all warrant investigation — not thousands of alerts that analysts learn to ignore.</p>
 
     <h2>Key SIEM Use Cases for the Exam</h2>
@@ -542,7 +542,7 @@ tbody tr:hover td{background:var(--light);}
     <p><strong>Insider threat detection:</strong> Behavior that deviates from a user's baseline triggers anomaly alerts. A user who downloads 500 MB of files at 2am on a Sunday when they've never worked outside business hours is statistically anomalous. SIEM User and Entity Behavior Analytics (UEBA) builds behavioral baselines and alerts on deviations without requiring a specific signature for the attack technique.</p>
     <p><strong>Compliance evidence:</strong> Every major compliance framework (PCI-DSS Requirement 10, HIPAA, SOC 2 CC7) requires centralized logging and monitoring. A SIEM provides the audit trail that auditors examine to verify that logging is active, events are reviewed, and incidents are responded to within required timeframes. The SIEM's reports become the primary evidence that compliance obligations are being met.</p>
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
 <div class="exam-scenarios">
 <div class="scenario"><div class="scenario-q">A SOC analyst needs a single interface to view security events from the firewall, domain controller, email gateway, and endpoint protection platform simultaneously. Which technology provides this?</div>
 <div class="scenario-a"><strong>Answer: SIEM.</strong> SIEM aggregates logs from all sources into a centralized platform with a unified interface. Without SIEM, an analyst would need to log into each system separately and manually correlate events — impractical at enterprise scale.</div></div>
@@ -571,7 +571,7 @@ tbody tr:hover td{background:var(--light);}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

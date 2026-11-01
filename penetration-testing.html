@@ -469,7 +469,7 @@ tbody tr:hover td{background:var(--light);}
 <nav class="breadcrumb"><a href="/">Home</a><span>›</span><a href="network-attacks.html">Security</a><span>›</span><span>Penetration Testing</span></nav>
 <div class="page-hero-badge">⚔️ Security+</div>
 <h1>Penetration Testing — <span>Phases, Types &amp; Rules of Engagement</span></h1>
-<p class="page-hero-sub">How penetration testing works for CompTIA Security+ — the five phases, known/partially known/unknown environment (white/gray/black box) testing, authorization requirements, and what the exam actually asks.</p>
+<p class="page-hero-sub">How penetration testing works for CompTIA Security+ — the five phases, known/partially known/unknown environment (white/gray/black box) testing, authorization requirements, and what to know for the exam.</p>
 <div class="cert-badges"><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
 </div></section>
 
@@ -528,7 +528,7 @@ tbody tr:hover td{background:var(--light);}
 
 <h2>Rules of Engagement — What Must Be Agreed Before Testing</h2>
 <p>Rules of engagement (ROE) define the scope, boundaries, and conditions of a penetration test. They must be documented in writing and signed by an authorized representative of the target organization before any testing begins. Key elements: <strong>Scope</strong> — which IP ranges, applications, physical locations, and systems are in scope versus explicitly out of scope. <strong>Timing</strong> — when testing can occur (business hours only? 24/7? specific maintenance windows?). <strong>Authorized techniques</strong> — is social engineering allowed? Physical access attempts? Denial of service testing? <strong>Emergency contacts</strong> — who to call if testing causes unintended damage. <strong>Data handling</strong> — how will any sensitive data discovered during testing be handled and disposed of?</p>
-<p>On the exam: "what must be obtained before beginning a penetration test?" The answer is <strong>written authorization</strong> or <strong>rules of engagement</strong>. This is non-negotiable. A pen tester who begins testing without written authorization — even at verbal request from a manager — has no legal protection if something goes wrong.</p>
+<p>Practice question: "what must be obtained before beginning a penetration test?" The answer is <strong>written authorization</strong> or <strong>rules of engagement</strong>. This is non-negotiable. A pen tester who begins testing without written authorization — even at verbal request from a manager — has no legal protection if something goes wrong.</p>
 
 <h2>Pen Testing Report Components</h2>
 <p>A professional penetration test report contains two primary sections. The <strong>executive summary</strong> is written for non-technical leadership — it describes the overall risk posture, the most critical findings, and the business impact of what was discovered. It avoids technical jargon and focuses on business consequences. The <strong>technical findings</strong> section documents each discovered vulnerability in detail: severity rating, description, evidence (screenshots, output), step-by-step reproduction procedure, affected systems, and specific remediation recommendations. Each finding is prioritized so the remediation team knows what to fix first.</p>
@@ -546,7 +546,7 @@ tbody tr:hover td{background:var(--light);}
     <p>The post-exploitation phase is where penetration tests demonstrate real business impact. After gaining initial access to a system, a skilled attacker (and pen tester) works to expand their access through privilege escalation and lateral movement. <strong>Privilege escalation</strong> — moving from a low-privilege account (standard user) to a high-privilege account (local administrator, domain administrator) — is often achievable through misconfigured services, unpatched local vulnerabilities, or weak service account passwords. A single unprivileged user account is often sufficient initial access to eventually achieve domain administrator through a chain of exploits.</p>
     <p><strong>Lateral movement</strong> techniques include Pass-the-Hash (using captured NTLM hashes to authenticate to other systems without knowing the plaintext password), Kerberoasting (requesting service tickets for service accounts and cracking them offline to obtain plaintext passwords), and using built-in tools like WMI and PowerShell remoting, along with admin utilities like PsExec (a Microsoft Sysinternals download), to move between hosts without triggering antivirus. These are the techniques that make Security+ questions about "living off the land" relevant — attackers increasingly use built-in system tools to avoid detection.</p>
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
 <div class="exam-scenarios">
 <div class="scenario"><div class="scenario-q">A penetration tester discovers systems outside the agreed scope that appear to have critical vulnerabilities. What should the tester do?</div>
 <div class="scenario-a"><strong>Answer: Stop testing those systems immediately and notify the client.</strong> Testing out-of-scope systems violates the rules of engagement regardless of how critical the vulnerabilities appear. The tester should document the discovery and report it to the client so they can decide whether to expand the scope in writing. Testing out-of-scope systems creates legal liability for the tester.</div></div>
@@ -575,7 +575,7 @@ tbody tr:hover td{background:var(--light);}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

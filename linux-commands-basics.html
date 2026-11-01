@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/linux-commands-basics.html">
 <title>Linux Commands Every CompTIA Candidate Must Know</title>
-<meta name="description" content="Linux commands for CompTIA exams — ls, chmod, grep, ps, ip, and sudo with syntax, flags, and exam scenarios. Everything tested on CompTIA A+ 220-1202 and Linux+.">
+<meta name="description" content="Linux commands for CompTIA exams — ls, chmod, grep, ps, ip, and sudo with syntax, flags, and practice scenarios for CompTIA A+ 220-1202 and Linux+.">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -447,7 +447,7 @@ tbody tr:hover td{background:#f0fdf9;}
   <meta property="og:site_name" content="IT Study Hub">
   <meta property="og:url" content="https://itstudyhub.org/linux-commands-basics.html">
   <meta property="og:title" content="Linux Commands Every CompTIA Candidate Must Know">
-  <meta property="og:description" content="These are the Linux commands that show up on CompTIA exams — ls, chmod, grep, ps, ip, and more.">
+  <meta property="og:description" content="These are the Linux commands to know for CompTIA exams — ls, chmod, grep, ps, ip, and more.">
 
 <script type="application/ld+json">
 {
@@ -517,7 +517,7 @@ tbody tr:hover td{background:#f0fdf9;}
     </nav>
     <div class="page-hero-badge">CompTIA A+ 220-1202 · Network+ · Security+</div>
     <h1>Linux Commands <span>for CompTIA Exams</span></h1>
-    <p class="page-hero-sub">Linux commands for CompTIA A+ 220-1202 (objective 1.9) and Network+ N10-009 (objective 5.5), plus commands that support Security+ scenarios — with syntax, key flags, real-world usage, and exam scenarios.</p>
+    <p class="page-hero-sub">Linux commands for CompTIA A+ 220-1202 (objective 1.9) and Network+ N10-009 (objective 5.5), plus commands that support Security+ scenarios — with syntax, key flags, real-world usage, and practice scenarios.</p>
   </div>
 </section>
 
@@ -538,7 +538,7 @@ tbody tr:hover td{background:#f0fdf9;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ Why Linux Matters for CompTIA Now</div>
       <div class="quick-answer-text">
-        A+ has covered Linux for several versions; 220-1202 (Core 2) objective 1.9 lists file management, permissions, package management, networking, and informational commands such as top and ps, plus common configuration files. Network+ tests Linux networking commands (<code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px;">ifconfig</code>, <code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px;">ip</code>, <code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px;">netstat</code>). Security+ SY0-701 doesn't list Linux commands, but its scenarios involve log analysis, file integrity, and hardening, which these commands support. <strong>You don't need to be a Linux admin — you need to recognize what each command does and pick the right one for a given scenario.</strong>
+        A+ has covered Linux for several versions; 220-1202 (Core 2) objective 1.9 lists file management, permissions, package management, networking, and informational commands such as top and ps, plus common configuration files. Network+ objective 5.5 covers Linux networking commands (<code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px;">ifconfig</code>, <code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px;">ip</code>, <code style="background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px;">netstat</code>). For Security+ SY0-701, these commands support log analysis, file integrity, and hardening work. <strong>You don't need to be a Linux admin — you need to recognize what each command does and pick the right one for a given scenario.</strong>
       </div>
     </div>
 
@@ -547,7 +547,7 @@ tbody tr:hover td{background:#f0fdf9;}
       <p>Security+ V8 (SY0-801) is scheduled to launch on or around November 17, 2026. SY0-701 remains available until June 11, 2027 (English), so this page covers SY0-701.</p>
     </div>
 
-    <h2>What Each Cert Tests</h2>
+    <h2>Commands to Know for Each Cert</h2>
 
     <div class="cert-scope">
       <div class="cert-scope-card">
@@ -582,7 +582,7 @@ tbody tr:hover td{background:#f0fdf9;}
         </div>
       </div>
       <div class="cert-scope-card">
-        <div class="cert-scope-title" style="color:var(--purple)">Security+ SY0-701 (practical, not a listed objective)</div>
+        <div class="cert-scope-title" style="color:var(--purple)">Security+ SY0-701 (practical use)</div>
         <div class="cert-scope-items">
           <ul style="list-style:none;padding:0;">
             <li>📋 journalctl, tail -f</li>
@@ -645,7 +645,7 @@ tbody tr:hover td{background:#f0fdf9;}
 <span class="cmd-kw">rm</span> <span class="cmd-arg">file.txt</span>                 <span class="cmd-comment"># delete a file</span>
 <span class="cmd-kw">rm</span> <span class="cmd-flag">-r</span> <span class="cmd-arg">folder</span>               <span class="cmd-comment"># delete directory and all contents (recursive)</span>
 <span class="cmd-kw">rm</span> <span class="cmd-flag">-rf</span> <span class="cmd-arg">folder</span>              <span class="cmd-comment"># force delete — no prompts (dangerous!)</span></code></div>
-        <div class="cmd-tip"><strong>Exam tip:</strong> <code style="font-family:'DM Mono',monospace;">rm -rf</code> is non-recoverable — no Recycle Bin in Linux. The exam may present a scenario asking which flag deletes a directory and its contents: <code style="font-family:'DM Mono',monospace;">-r</code> (recursive). <code style="font-family:'DM Mono',monospace;">~</code> always means the current user's home directory.</div>
+        <div class="cmd-tip"><strong>Exam tip:</strong> <code style="font-family:'DM Mono',monospace;">rm -rf</code> is non-recoverable — no Recycle Bin in Linux. Know which flag deletes a directory and its contents: <code style="font-family:'DM Mono',monospace;">-r</code> (recursive). <code style="font-family:'DM Mono',monospace;">~</code> always means the current user's home directory.</div>
       </div>
     </div>
 
@@ -669,7 +669,7 @@ tbody tr:hover td{background:#f0fdf9;}
 <span class="cmd-kw">mv</span> <span class="cmd-arg">old.txt new.txt</span>          <span class="cmd-comment"># rename a file</span>
 <span class="cmd-kw">mv</span> <span class="cmd-arg">file.txt /tmp/</span>           <span class="cmd-comment"># move a file to another directory</span>
 <span class="cmd-kw">touch</span> <span class="cmd-arg">newfile.txt</span>           <span class="cmd-comment"># create empty file / update timestamp</span></code></div>
-        <div class="cmd-tip"><strong>Exam tip:</strong> <code style="font-family:'DM Mono',monospace;">mv</code> is both move AND rename — if the destination is in the same directory, it renames. <code style="font-family:'DM Mono',monospace;">cat /etc/passwd</code> is a common Security+ scenario — the passwd file stores user account info (not actual passwords, which are in <code style="font-family:'DM Mono',monospace;">/etc/shadow</code>).</div>
+        <div class="cmd-tip"><strong>Exam tip:</strong> <code style="font-family:'DM Mono',monospace;">mv</code> is both move AND rename — if the destination is in the same directory, it renames. <code style="font-family:'DM Mono',monospace;">cat /etc/passwd</code> is worth knowing for Security+ — the passwd file stores user account info (not actual passwords, which are in <code style="font-family:'DM Mono',monospace;">/etc/shadow</code>).</div>
       </div>
     </div>
 
@@ -687,7 +687,7 @@ tbody tr:hover td{background:#f0fdf9;}
         </div>
       </div>
       <div class="cmd-body">
-        <div class="cmd-desc">Controls who can read, write, and execute a file. The most permission-related command on the exam. Permissions are set for three entities: <strong>owner (u)</strong>, <strong>group (g)</strong>, and <strong>others (o)</strong>. Can be set symbolically (<code style="font-family:'DM Mono',monospace;">+x</code>) or numerically (octal notation).</div>
+        <div class="cmd-desc">Controls who can read, write, and execute a file. The core permissions command. Permissions are set for three entities: <strong>owner (u)</strong>, <strong>group (g)</strong>, and <strong>others (o)</strong>. Can be set symbolically (<code style="font-family:'DM Mono',monospace;">+x</code>) or numerically (octal notation).</div>
         <div class="syntax-block"><code><span class="cmd-kw">chmod</span> <span class="cmd-arg">755</span> <span class="cmd-arg">script.sh</span>         <span class="cmd-comment"># owner=rwx, group=rx, others=rx</span>
 <span class="cmd-kw">chmod</span> <span class="cmd-arg">644</span> <span class="cmd-arg">file.txt</span>          <span class="cmd-comment"># owner=rw, group=r, others=r (typical file)</span>
 <span class="cmd-kw">chmod</span> <span class="cmd-arg">600</span> <span class="cmd-arg">private.key</span>       <span class="cmd-comment"># owner=rw only — SSH keys must be 600</span>
@@ -791,7 +791,7 @@ tbody tr:hover td{background:#f0fdf9;}
         </div>
       </div>
       <div class="cmd-body">
-        <div class="cmd-desc">Searches for a pattern in files or piped output. Arguably the most useful command for log analysis and Security+ forensics scenarios. Combined with <code style="font-family:'DM Mono',monospace;">|</code> (pipe), it filters the output of other commands.</div>
+        <div class="cmd-desc">Searches for a pattern in files or piped output. Arguably the most useful command for log analysis and forensics work. Combined with <code style="font-family:'DM Mono',monospace;">|</code> (pipe), it filters the output of other commands.</div>
         <div class="syntax-block"><code><span class="cmd-kw">grep</span> <span class="cmd-arg">"error"</span> <span class="cmd-arg">/var/log/syslog</span>    <span class="cmd-comment"># find lines containing "error"</span>
 <span class="cmd-kw">grep</span> <span class="cmd-flag">-i</span> <span class="cmd-arg">"failed"</span> <span class="cmd-arg">auth.log</span>     <span class="cmd-comment"># case-insensitive search</span>
 <span class="cmd-kw">grep</span> <span class="cmd-flag">-r</span> <span class="cmd-arg">"password"</span> <span class="cmd-arg">/etc/</span>      <span class="cmd-comment"># recursive search through directory</span>
@@ -866,7 +866,7 @@ tbody tr:hover td{background:#f0fdf9;}
         </div>
       </div>
       <div class="cmd-body">
-        <div class="cmd-desc"><code style="font-family:'DM Mono',monospace;">ifconfig</code> is the legacy command for network interface configuration, still widely used and tested. <code style="font-family:'DM Mono',monospace;">ip addr</code> is the modern replacement. Both show IP addresses, MAC addresses, and interface status. CompTIA tests both.</div>
+        <div class="cmd-desc"><code style="font-family:'DM Mono',monospace;">ifconfig</code> is the legacy command for network interface configuration, still widely used. <code style="font-family:'DM Mono',monospace;">ip addr</code> is the modern replacement. Both show IP addresses, MAC addresses, and interface status. Know both.</div>
         <div class="syntax-block"><code><span class="cmd-kw">ifconfig</span>                       <span class="cmd-comment"># show all active interfaces</span>
 <span class="cmd-kw">ifconfig</span> <span class="cmd-arg">eth0</span>                  <span class="cmd-comment"># show specific interface</span>
 <span class="cmd-kw">ifconfig</span> <span class="cmd-arg">eth0</span> <span class="cmd-arg">192.168.1.10</span>    <span class="cmd-comment"># assign IP address (temporary)</span>
@@ -875,7 +875,7 @@ tbody tr:hover td{background:#f0fdf9;}
 <span class="cmd-kw">ip addr show</span> <span class="cmd-arg">eth0</span>             <span class="cmd-comment"># show specific interface</span>
 <span class="cmd-kw">ip link set</span> <span class="cmd-arg">eth0</span> <span class="cmd-arg">up</span>           <span class="cmd-comment"># bring interface up</span>
 <span class="cmd-kw">ip route show</span>                  <span class="cmd-comment"># display routing table</span></code></div>
-        <div class="cmd-tip"><strong>Exam tip:</strong> ifconfig is being replaced by the <code style="font-family:'DM Mono',monospace;">ip</code> command suite but both appear on exams. Key output to read: <code style="font-family:'DM Mono',monospace;">inet</code> = IPv4 address, <code style="font-family:'DM Mono',monospace;">inet6</code> = IPv6 address, <code style="font-family:'DM Mono',monospace;">ether</code> = MAC address, <code style="font-family:'DM Mono',monospace;">lo</code> = loopback interface (127.0.0.1).</div>
+        <div class="cmd-tip"><strong>Exam tip:</strong> ifconfig is being replaced by the <code style="font-family:'DM Mono',monospace;">ip</code> command suite, but know both. Key output to read: <code style="font-family:'DM Mono',monospace;">inet</code> = IPv4 address, <code style="font-family:'DM Mono',monospace;">inet6</code> = IPv6 address, <code style="font-family:'DM Mono',monospace;">ether</code> = MAC address, <code style="font-family:'DM Mono',monospace;">lo</code> = loopback interface (127.0.0.1).</div>
       </div>
     </div>
 
@@ -951,7 +951,7 @@ tbody tr:hover td{background:#f0fdf9;}
       </table>
     </div>
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario-item">💬 "A security analyst needs to find all files on a Linux system with world-writable permissions. Which command accomplishes this?" → <strong><code style="font-family:'DM Mono',monospace;">find / -perm 777</code> — searches the entire filesystem for files where owner, group, and others all have full rwx permissions. These are a security risk.</strong></div>
       <div class="scenario-item">💬 "A technician creates a shell script but cannot execute it. The file permissions show <code style="font-family:'DM Mono',monospace;">-rw-r--r--</code>. Which command adds execute permission for the owner only?" → <strong><code style="font-family:'DM Mono',monospace;">chmod u+x script.sh</code> — <code style="font-family:'DM Mono',monospace;">u</code> = user (owner), <code style="font-family:'DM Mono',monospace;">+x</code> = add execute. Alternatively <code style="font-family:'DM Mono',monospace;">chmod 744</code> gives owner rwx, group r, others r.</strong></div>
@@ -998,7 +998,7 @@ tbody tr:hover td{background:#f0fdf9;}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

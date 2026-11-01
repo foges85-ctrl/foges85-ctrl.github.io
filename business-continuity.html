@@ -469,7 +469,7 @@ tbody tr:hover td{background:var(--light);}
 <nav class="breadcrumb"><a href="/">Home</a><span>›</span><a href="incident-response-playbook.html">Security</a><span>›</span><span>Business Continuity</span></nav>
 <div class="page-hero-badge">🔄 Security+ / Network+</div>
 <h1>Business Continuity — <span>BCP, DRP, RTO, RPO</span></h1>
-<p class="page-hero-sub">Business continuity planning and disaster recovery for CompTIA — every acronym, metric, backup type, and site type tested on Security+ and Network+.</p>
+<p class="page-hero-sub">Business continuity planning and disaster recovery for CompTIA — every acronym, metric, backup type, and site type to know for Security+ and Network+.</p>
 <div class="cert-badges"><span class="cert-badge cb-blue">Network+ N10-009</span><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
 </div></section>
 
@@ -520,7 +520,7 @@ tbody tr:hover td{background:var(--light);}
 <div class="card"><div class="card-icon">📈</div><div class="card-title">Incremental Backup</div><div class="card-label" style="color:var(--blue);">Changes since last backup</div><div class="card-desc">Backs up only data changed <strong>since the last backup of any type</strong>. Fastest to create, uses least storage. <strong>Slowest recovery</strong> — must restore full + every incremental in sequence.</div></div>
 <div class="card"><div class="card-icon">📊</div><div class="card-title">Differential Backup</div><div class="card-label" style="color:var(--purple);">Changes since last full</div><div class="card-desc">Backs up data changed <strong>since the last full backup</strong>. Middle ground — grows over time, faster recovery than incremental (restore full + latest differential only).</div></div>
 </div>
-<p>The exam tests this in calculation scenarios: "A company runs a full backup Sunday, incremental backups Monday through Saturday. The system fails Saturday evening. How many backup sets are needed for recovery?" Answer: 7 — the Sunday full plus all 6 daily incrementals. If they used differential instead: only 2 — the Sunday full plus Saturday's differential (which contains all changes since Sunday).</p>
+<p>Practice this with calculation scenarios: "A company runs a full backup Sunday, incremental backups Monday through Saturday. The system fails Saturday evening. How many backup sets are needed for recovery?" Answer: 7 — the Sunday full plus all 6 daily incrementals. If they used differential instead: only 2 — the Sunday full plus Saturday's differential (which contains all changes since Sunday).</p>
 
 <h2>Recovery Site Types</h2>
 <div class="table-wrap"><table>
@@ -540,7 +540,7 @@ tbody tr:hover td{background:var(--light);}
 <p>The <strong>3-2-1 backup rule</strong> is the industry-standard guideline for backup strategy: keep <strong>3</strong> copies of data (the production copy plus 2 backups), on <strong>2</strong> different types of media (disk and tape, or local and cloud), with <strong>1</strong> copy stored off-site. This protects against: single backup failure (3 copies), a storage type failure like NAS controller failure affecting all connected drives (2 media types), and site-level disasters like fire or flood (1 off-site copy).</p>
 <p>Ransomware has updated this to the <strong>3-2-1-1-0</strong> rule: the additional "1" is an immutable or air-gapped copy that ransomware cannot reach (offline tape, immutable cloud storage with object lock), and the "0" means zero errors verified in backup restore testing. Untested backups are not reliable backups — organizations routinely discover their backup sets are corrupt or incomplete only when they need them after a disaster.</p>
 
-<h2>Exam Scenarios</h2>
+<h2>Practice Scenarios</h2>
 <div class="exam-scenarios">
 <div class="scenario"><div class="scenario-q">A company's RPO for its financial database is 15 minutes. What backup strategy meets this requirement?</div>
 <div class="scenario-a"><strong>Answer:</strong> Transaction log backups every 15 minutes, or <strong>synchronous replication</strong> to a secondary site for an effective RPO of near-zero. A daily full backup does not meet a 15-minute RPO — up to 23 hours and 45 minutes of data could be lost. The RPO drives backup frequency: shorter RPO requires more frequent backups or continuous replication.</div></div>
@@ -571,7 +571,7 @@ tbody tr:hover td{background:var(--light);}
 
 <h2>Mean Time to Repair and Mean Time Between Failures</h2>
 
-<p>Two metrics appear on both Network+ (objective 3.3) and Security+ (objective 5.2) in the context of hardware reliability and service availability planning: <strong>MTBF (Mean Time Between Failures)</strong> and <strong>MTTR (Mean Time to Repair)</strong>.</p>
+<p>Two metrics are listed in both the Network+ (objective 3.3) and Security+ (objective 5.2) objectives in the context of hardware reliability and service availability planning: <strong>MTBF (Mean Time Between Failures)</strong> and <strong>MTTR (Mean Time to Repair)</strong>.</p>
 
 <p><strong>MTBF</strong> is the average time a component or system operates without failure. A hard drive with an MTBF of 500,000 hours doesn't mean it will last that long — it's a statistical measure derived from failure rates across large populations of drives under specific conditions. MTBF is used to predict component reliability, justify redundancy (low MTBF = more critical to have spares), and set maintenance schedules. Higher MTBF = more reliable. For availability calculations: <strong>Availability = MTBF / (MTBF + MTTR)</strong>. A system with a 1,000-hour MTBF and a 10-hour MTTR has 99% availability.</p>
 
@@ -581,7 +581,7 @@ tbody tr:hover td{background:var(--light);}
 
 <h2>Testing and Maintaining BCP/DRP</h2>
 
-<p>A disaster recovery plan that has never been tested is a hypothesis, not a recovery capability. Testing is how organizations discover gaps — misconfigured backups that don't restore, runbooks with outdated server names, staff who don't know their roles — before a real disaster exposes these failures. The Security+ exam tests the different types of BCP/DRP tests in ascending order of thoroughness and cost.</p>
+<p>A disaster recovery plan that has never been tested is a hypothesis, not a recovery capability. Testing is how organizations discover gaps — misconfigured backups that don't restore, runbooks with outdated server names, staff who don't know their roles — before a real disaster exposes these failures. Know the different types of BCP/DRP tests in ascending order of thoroughness and cost.</p>
 
 <div class="table-wrap"><table>
 <thead><tr><th>Test Type</th><th>What Happens</th><th>Disruption</th><th>Exam Notes</th></tr></thead>
@@ -630,7 +630,7 @@ tbody tr:hover td{background:var(--light);}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

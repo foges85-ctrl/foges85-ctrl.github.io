@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/spanning-tree-protocol.html">
 <title>How STP Prevents Broadcast Storms — Root Bridge, Port States</title>
-<meta name="description" content="STP and RSTP — root bridge election, port states, BPDU, PortFast, and BPDU Guard — how STP prevents loops and the scenarios tested on CompTIA Network+ N10-009.">
+<meta name="description" content="STP and RSTP — root bridge election, port states, BPDU, PortFast, and BPDU Guard — how STP prevents loops and practice scenarios for CompTIA Network+ N10-009.">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -446,7 +446,7 @@ tbody tr:hover td{background:var(--light);}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-31",
   "url": "https://itstudyhub.org/spanning-tree-protocol.html",
   "inLanguage": "en"
 }
@@ -493,7 +493,7 @@ tbody tr:hover td{background:var(--light);}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated June 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -539,9 +539,9 @@ tbody tr:hover td{background:var(--light);}
     <p>Standard 802.1D STP runs one instance for the entire network — one Root Bridge is elected and all VLANs use the same topology. This creates an inefficiency: all traffic must flow through the single Root Bridge path, leaving redundant links idle. <strong>PVST+ (Per-VLAN Spanning Tree Plus)</strong> is Cisco's proprietary enhancement that runs a separate STP instance for each VLAN. This allows different VLANs to have different Root Bridges and use different links — effectively load-balancing traffic across redundant links by having VLAN 10 prefer one uplink and VLAN 20 prefer another. Rapid-PVST+ combines PVST+ with RSTP's faster convergence.</p>
     <p><strong>MST (Multiple Spanning Tree — IEEE 802.1s)</strong> is the standards-based alternative to PVST+. Rather than one instance per VLAN (which becomes unmanageable with hundreds of VLANs), MST maps multiple VLANs to a smaller number of STP instances. VLANs with similar topology requirements share an MST instance. MST is more scalable than PVST+ for large networks but requires careful planning. On the exam, PVST+ is Cisco-specific and per-VLAN; MST is standards-based and groups VLANs into instances.</p>
 
-    <h2>Common STP Exam Keywords</h2>
-    <p>The exam uses specific terms to signal STP scenarios. <strong>"Broadcast storm"</strong> — STP is not functioning or a loop exists; BPDUs are not being exchanged. <strong>"Intermittent connectivity"</strong> — STP reconvergence is disrupting traffic; a link is flapping, causing repeated STP state changes. <strong>"30-second delay when connecting"</strong> — STP is running on an access port without PortFast; enable PortFast on end-device ports. <strong>"Unauthorized switch connected to access port"</strong> — enable BPDU Guard to shut down the port when a BPDU is received. <strong>"Which switch is the Root Bridge?"</strong> — lowest priority wins, then lowest MAC as tiebreaker; configure the priority explicitly to control Root Bridge placement rather than relying on MAC address luck.</p>
-    <h2>Exam Scenarios</h2>
+    <h2>Common STP Troubleshooting Keywords</h2>
+    <p>Watch for specific terms that signal STP problems. <strong>"Broadcast storm"</strong> — STP is not functioning or a loop exists; BPDUs are not being exchanged. <strong>"Intermittent connectivity"</strong> — STP reconvergence is disrupting traffic; a link is flapping, causing repeated STP state changes. <strong>"30-second delay when connecting"</strong> — STP is running on an access port without PortFast; enable PortFast on end-device ports. <strong>"Unauthorized switch connected to access port"</strong> — enable BPDU Guard to shut down the port when a BPDU is received. <strong>"Which switch is the Root Bridge?"</strong> — lowest priority wins, then lowest MAC as tiebreaker; configure the priority explicitly to control Root Bridge placement rather than relying on MAC address luck.</p>
+    <h2>Practice Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario">
         <div class="scenario-q">Users experience 30–50 second connectivity delays every time they plug their laptop into a switch port. What feature should be enabled to fix this?</div>
@@ -578,7 +578,7 @@ tbody tr:hover td{background:var(--light);}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

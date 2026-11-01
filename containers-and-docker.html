@@ -541,12 +541,12 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 Key Distinction to Remember</div>
       <p><strong>Image = blueprint (read-only, stored in a registry).</strong> <strong>Container = running instance of an image (writable, ephemeral).</strong></p>
-      <p>Many exam questions and interview questions hinge on this distinction. You push/pull images to/from registries. You start/stop/delete containers on hosts.</p>
+      <p>Know this distinction cold. You push/pull images to/from registries. You start/stop/delete containers on hosts.</p>
     </div>
 
     <h2>Container Registries</h2>
 
-    <p>A container registry is a repository for storing and distributing Docker images. Understanding the major registries is important for cloud certification exams:</p>
+    <p>A container registry is a repository for storing and distributing Docker images. Know the major registries for cloud certification study:</p>
 
     <div class="table-wrap">
       <table>
@@ -602,12 +602,12 @@ tbody tr:hover td{background:#eff6ff;}
 
     <div class="callout">
       <div class="callout-label">Docker Swarm vs Kubernetes</div>
-      <p>Docker has its own built-in orchestration tool called <strong>Docker Swarm</strong>, which is simpler to set up than Kubernetes but less powerful and less widely adopted in production. For small deployments and teams new to orchestration, Swarm is easier to learn. For large-scale, production-grade workloads, Kubernetes is the industry standard. Most cloud certification exams focus on Kubernetes.</p>
+      <p>Docker has its own built-in orchestration tool called <strong>Docker Swarm</strong>, which is simpler to set up than Kubernetes but less powerful and less widely adopted in production. For small deployments and teams new to orchestration, Swarm is easier to learn. For large-scale, production-grade workloads, Kubernetes is the industry standard, so focus your study on Kubernetes.</p>
     </div>
 
     <h2>Container Security</h2>
 
-    <p>Containers introduce specific security considerations that appear on Security+ and cloud security exams:</p>
+    <p>Containers introduce specific security considerations to know for Security+ and cloud security study:</p>
 
     <p><strong>Image vulnerabilities</strong> — container images are built on top of base OS images (e.g. Ubuntu, Alpine Linux) that may contain known CVEs. Regularly scanning images and rebuilding them against updated base images is essential. Use minimal base images (Alpine Linux is ~5MB vs Ubuntu's ~70MB) to reduce the attack surface.</p>
 
@@ -622,7 +622,7 @@ tbody tr:hover td{background:#eff6ff;}
       <p><strong>Container escape</strong> is the buzzword for the container-specific attack where a malicious process breaks out of container isolation. <strong>Image scanning</strong> is the control. <strong>Running containers as non-root</strong> is the hardening technique. These three points cover the majority of container security questions on Security+ SY0-701 Domain 3.</p>
     </div>
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
 
     <div class="scenario-list">
       <div class="scenario-item"><strong>Scenario:</strong> A team needs to deploy the same application across development, staging, and production and ensure it behaves identically in each environment. What technology is best suited? <strong>Answer: Containers (Docker)</strong> — the image ensures a consistent environment from dev to prod.</div>
@@ -644,7 +644,7 @@ tbody tr:hover td{background:#eff6ff;}
 
 <h2>Container Networking</h2>
 
-    <p>Container networking is how containers communicate with each other and with the outside world. Understanding the basic networking models is useful for both exam questions and real-world troubleshooting.</p>
+    <p>Container networking is how containers communicate with each other and with the outside world. Understanding the basic networking models is useful for both exam prep and real-world troubleshooting.</p>
 
     <p>By default, Docker creates a <strong>bridge network</strong> — a private internal network on the host where containers can reach each other by IP address. Create a user-defined bridge network (<code>docker network create</code>) to get automatic name resolution, so containers can use each other's names as hostnames. The Docker host's network is separate; containers reach the outside via NAT through the host's IP address. This is the default for most single-host deployments.</p>
 
@@ -674,7 +674,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <p><strong>Docker Compose</strong> is a tool for defining and running multi-container applications using a YAML configuration file (<code>docker-compose.yml</code>). Instead of starting individual containers with lengthy <code>docker run</code> commands and manually linking them, Compose lets you define the entire application stack — services, networks, volumes, environment variables, port mappings — in a single declarative file. A single <code>docker-compose up</code> command starts the entire stack.</p>
 
-    <p>For exam purposes, the distinction between Docker Compose and Kubernetes is important. Docker Compose is designed for <strong>single-host development environments</strong> — it manages containers on one machine and is great for local development and testing. <strong>Kubernetes</strong> is designed for <strong>multi-host production deployments</strong> — it manages containers across clusters of servers with health checking, auto-scaling, rolling updates, and self-healing. When exam scenarios mention production deployment at scale, the answer is Kubernetes (or a managed equivalent). When scenarios mention local development or simple multi-container applications, Docker Compose is appropriate.</p>
+    <p>For exam purposes, the distinction between Docker Compose and Kubernetes is important. Docker Compose is designed for <strong>single-host development environments</strong> — it manages containers on one machine and is great for local development and testing. <strong>Kubernetes</strong> is designed for <strong>multi-host production deployments</strong> — it manages containers across clusters of servers with health checking, auto-scaling, rolling updates, and self-healing. When a scenario mentions production deployment at scale, the answer is Kubernetes (or a managed equivalent). When scenarios mention local development or simple multi-container applications, Docker Compose is appropriate.</p>
 
     <div class="cta-box">
       <div class="cta-box-text">
@@ -708,7 +708,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

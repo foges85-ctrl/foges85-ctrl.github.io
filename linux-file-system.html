@@ -528,7 +528,7 @@ tbody tr:hover td{background:#f0fdf9;}
     </nav>
     <div class="page-hero-badge">CompTIA A+ 220-1202 — Operating Systems</div>
     <h1>Linux <span>File System</span> Explained</h1>
-    <p class="page-hero-sub">Directory structure, file system types, permissions, inodes, and mount points — everything the CompTIA A+ 220-1202 Operating Systems domain tests about how Linux organizes files.</p>
+    <p class="page-hero-sub">Directory structure, file system types, permissions, inodes, and mount points — what to know for the CompTIA A+ 220-1202 Operating Systems domain about how Linux organizes files.</p>
   </div>
 </section>
 
@@ -664,7 +664,7 @@ tbody tr:hover td{background:#f0fdf9;}
             <td class="td-term">FAT32</td>
             <td>USB drives, cross-platform</td>
             <td>Compatible with Windows, macOS, Linux. Max file size 4 GB — cannot store files larger than 4 GB. No permissions or journaling.</td>
-            <td>Common on USB drives — 4 GB limit is exam-tested</td>
+            <td>Common on USB drives — know the 4 GB file size limit</td>
           </tr>
           <tr>
             <td class="td-term">exFAT</td>
@@ -801,9 +801,9 @@ tbody tr:hover td{background:#f0fdf9;}
 
     <p>This covers the directory tree, permissions, inodes and mount points at the depth of the A+ objectives. It does not cover POSIX ACLs beyond the basic <code class="mono">rwx</code> triads, SELinux or AppArmor contexts, LVM, filesystem tuning, or recovery from a damaged superblock &mdash; those are Linux+ and administration topics rather than A+ ones. Where a distribution diverges from the standard (Ubuntu's Snap mount points, for instance), this page follows the FHS rather than the distribution.</p>
 
-    <p>For scope: CompTIA's published <a href="https://www.comptia.org/en-us/certifications/a/core-1-and-2-v15/" target="_blank" rel="noopener">A+ Core 1 and Core 2 (V15) exam details</a> put Operating Systems at <strong>28% of Core 2</strong>, with a passing score of <strong>700 out of 900</strong>. The current versions, <strong>220-1201</strong> and <strong>220-1202</strong>, launched on <strong>25 March 2025</strong>. Linux file-system questions sit inside that 28%, alongside Windows and macOS.</p>
+    <p>For scope: CompTIA's published <a href="https://www.comptia.org/en-us/certifications/a/core-1-and-2-v15/" target="_blank" rel="noopener">A+ Core 1 and Core 2 (V15) exam details</a> put Operating Systems at <strong>28% of Core 2</strong>, with a passing score of <strong>700 out of 900</strong>. The current versions, <strong>220-1201</strong> and <strong>220-1202</strong>, launched on <strong>25 March 2025</strong>. Linux file systems fall under that domain, alongside Windows and macOS.</p>
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario-item">💬 "A Linux technician needs to find where a web server's configuration file is stored. Which directory should they look in?" → <strong>/etc — all system-wide configuration files are stored in /etc. For Apache, the config would be /etc/apache2/apache2.conf. For Nginx, /etc/nginx/nginx.conf. If you need to change how a service behaves, the config file is always in /etc.</strong></div>
       <div class="scenario-item">💬 "A technician notices a Linux server is running low on disk space. Which directory should they check first for large log files that might be consuming space?" → <strong>/var/log — log files are stored in /var (variable data). Common large logs include /var/log/syslog, /var/log/auth.log, and application-specific logs. The du -sh /var/log/* command shows each log file's size. Old logs can often be safely compressed or rotated.</strong></div>
@@ -845,7 +845,7 @@ tbody tr:hover td{background:#f0fdf9;}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

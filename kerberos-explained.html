@@ -585,7 +585,7 @@ tbody tr:hover td { background: #faf4ff; }
     </nav>
     <div class="page-hero-badge">CompTIA Network+ · Security+ · 2026</div>
     <h1>What is <span>Kerberos?</span></h1>
-    <p class="page-hero-sub">How Kerberos authentication works, the KDC, TGT and service tickets, the 5-minute clock skew rule, Kerberos attacks — Pass-the-Ticket, Golden Ticket, Kerberoasting — and every Kerberos concept tested on CompTIA Security+.</p>
+    <p class="page-hero-sub">How Kerberos authentication works, the KDC, TGT and service tickets, the 5-minute clock skew rule, Kerberos attacks — Pass-the-Ticket, Golden Ticket, Kerberoasting — and the core Kerberos concepts for CompTIA Security+.</p>
   </div>
 </section>
 
@@ -666,7 +666,7 @@ tbody tr:hover td { background: #faf4ff; }
 
     <h2>How Kerberos authentication works — step by step</h2>
 
-    <p>The full Kerberos flow involves six message exchanges across three parties. This sequence is tested on Security+ — understand each step and what it proves:</p>
+    <p>The full Kerberos flow involves six message exchanges across three parties. Know this sequence for Security+ — understand each step and what it proves:</p>
 
     <div class="step-flow">
       <div class="step-item">
@@ -714,7 +714,7 @@ tbody tr:hover td { background: #faf4ff; }
     </div>
 
     <div class="exam-tip">
-      <div class="exam-tip-label">⚡ The key insight the exam tests</div>
+      <div class="exam-tip-label">⚡ The key insight</div>
       <p>Kerberos is built on <strong>mutual trust without sharing passwords</strong>. The user proves identity to the KDC once. Services trust tickets issued by the KDC without ever seeing the user's password. The KDC never has to be contacted for every resource access — just once per service per session.</p>
       <p><strong>Port 88</strong> — TCP and UDP. The KDC listens on 88. Know it alongside the 5-minute clock skew rule.</p>
     </div>
@@ -727,10 +727,10 @@ tbody tr:hover td { background: #faf4ff; }
       <div class="callout-label">📌 Why this matters — the NTP connection</div>
       <p>This is exactly why <strong>NTP is critical in Active Directory environments</strong>. If a domain-joined machine's clock drifts more than 5 minutes from the Domain Controller (which runs the KDC), <strong>all Kerberos authentication fails</strong> for that machine — users cannot log in, cannot access shared drives, cannot authenticate to any domain service.</p>
       <p>The most common cause is a VM that was suspended and resumed with a stale clock, or a machine that couldn't reach its NTP source. The fix is always: correct the clock first, then re-authenticate.</p>
-      <p>Exam scenario: "Users on a workstation suddenly cannot log into the domain. No network changes were made. The most likely cause?" → <strong>Clock skew — the workstation's clock has drifted beyond the 5-minute Kerberos tolerance.</strong></p>
+      <p>Practice scenario: "Users on a workstation suddenly cannot log into the domain. No network changes were made. The most likely cause?" → <strong>Clock skew — the workstation's clock has drifted beyond the 5-minute Kerberos tolerance.</strong></p>
     </div>
 
-    <h2>Kerberos attacks — Security+ exam targets</h2>
+    <h2>Kerberos attacks — what to know for Security+</h2>
 
     <p>For Security+, learn to recognize each attack by name, understand the mechanism, and know the defense. These attacks target different stages of the Kerberos ticket chain:</p>
 
@@ -792,7 +792,7 @@ tbody tr:hover td { background: #faf4ff; }
   <span class="code-purple">AS-REP Roasting</span>   Offline cracking when pre-auth is disabled</pre>
     </div>
 
-    <h2>Exam scenarios</h2>
+    <h2>Practice scenarios</h2>
 
     <div class="scenario-list">
       <div class="scenario-item">💬 "Which authentication protocol does Active Directory use by default for domain logins?" → <strong>Kerberos — runs on TCP/UDP port 88, uses the KDC on the Domain Controller</strong></div>
@@ -841,7 +841,7 @@ tbody tr:hover td { background: #faf4ff; }
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

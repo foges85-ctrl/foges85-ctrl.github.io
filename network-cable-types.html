@@ -500,7 +500,7 @@ tbody tr:hover td{background:#f0fdf4;}
     </nav>
     <div class="page-hero-badge">CompTIA A+ · 220-1201 · 2026</div>
     <h1>Network Cable Types <span>Explained</span></h1>
-    <p class="page-hero-sub">Cat5e, Cat6, Cat6a, Cat7, single-mode fiber, multimode fiber, coaxial — speeds, distances, connectors, plenum vs riser ratings, and every cable concept tested on the CompTIA A+ 220-1201 exam.</p>
+    <p class="page-hero-sub">Cat5e, Cat6, Cat6a, Cat7, single-mode fiber, multimode fiber, coaxial — speeds, distances, connectors, plenum vs riser ratings, and the core cable concepts for the CompTIA A+ 220-1201 exam.</p>
   </div>
 </section>
 
@@ -521,7 +521,7 @@ tbody tr:hover td{background:#f0fdf4;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ Cable Types at a Glance</div>
       <div class="quick-answer-text">
-        The A+ exam tests three cable families: <strong>twisted pair (Cat5e through Cat8)</strong> for most LAN runs, <strong>fiber optic (single-mode and multimode)</strong> for long distances and high speeds, and <strong>coaxial</strong> for cable internet and legacy TV/CCTV. The key distinctions are <strong>Cat5e vs Cat6 speeds and distances</strong>, <strong>single-mode vs multimode fiber</strong>, and <strong>plenum vs riser vs PVC jacket ratings</strong>.
+        Know three cable families: <strong>twisted pair (Cat5e through Cat8)</strong> for most LAN runs, <strong>fiber optic (single-mode and multimode)</strong> for long distances and high speeds, and <strong>coaxial</strong> for cable internet and legacy TV/CCTV. The key distinctions are <strong>Cat5e vs Cat6 speeds and distances</strong>, <strong>single-mode vs multimode fiber</strong>, and <strong>plenum vs riser vs PVC jacket ratings</strong>.
       </div>
     </div>
 
@@ -636,10 +636,10 @@ tbody tr:hover td{background:#f0fdf4;}
       <table>
         <thead><tr><th>Connector</th><th>Type</th><th>Exam Note</th></tr></thead>
         <tbody>
-          <tr><td class="td-term">LC (Lucent Connector)</td><td>Small form factor, push-pull latch — most common in modern data centers and SFP transceivers</td><td>Most common fiber connector on the A+ exam — small, used in SFP/SFP+ ports on switches and NICs</td></tr>
+          <tr><td class="td-term">LC (Lucent Connector)</td><td>Small form factor, push-pull latch — most common in modern data centers and SFP transceivers</td><td>Know this one first — small, used in SFP/SFP+ ports on switches and NICs</td></tr>
           <tr><td class="td-term">SC (Subscriber Connector)</td><td>Square, push-pull snap-in connector — larger than LC, older standard</td><td>"Square connector" — used in older fiber infrastructure, still common in campus and WAN applications</td></tr>
           <tr><td class="td-term">ST (Straight Tip)</td><td>Round bayonet-style connector, twist-lock — older standard</td><td>"Pointy/round tip with a twist" — found in legacy multimode installations, less common now</td></tr>
-          <tr><td class="td-term">MT-RJ</td><td>Duplex connector — carries both transmit and receive in a single small connector body</td><td>Less common — appears occasionally on A+ as a legacy connector type</td></tr>
+          <tr><td class="td-term">MT-RJ</td><td>Duplex connector — carries both transmit and receive in a single small connector body</td><td>Less common — a legacy connector type</td></tr>
         </tbody>
       </table>
     </div>
@@ -674,7 +674,7 @@ tbody tr:hover td{background:#f0fdf4;}
     <div class="callout">
       <div class="callout-label">Fire rating substitution rule</div>
       <p>You can always substitute a <strong>higher-rated cable in a lower-rated space</strong> but never the reverse. <strong>Plenum can go anywhere.</strong> Riser can replace PVC in riser spaces. PVC cannot be used in plenum or riser spaces.</p>
-      <p>The A+ exam scenario: "A technician needs to run cable above a drop ceiling in an office building. Which cable jacket is required?" → <strong>Plenum</strong> — the space above drop ceilings is always a plenum space.</p>
+      <p>Practice scenario: "A technician needs to run cable above a drop ceiling in an office building. Which cable jacket is required?" → <strong>Plenum</strong>, assuming the space above the ceiling is used for air handling (a plenum space), as it often is in office buildings.</p>
     </div>
 
     <h2>Copper Connectors</h2>
@@ -693,7 +693,7 @@ tbody tr:hover td{background:#f0fdf4;}
 
     <hr class="divider">
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario-item">💬 "A company needs to run cable 80 meters to support 10 Gbps Ethernet. Which cable category is required?" → <strong>Cat6a — Cat6 only supports 10 Gbps up to 55 meters. Cat6a supports 10 Gbps for the full 100-meter standard run.</strong></div>
       <div class="scenario-item">💬 "A technician needs to run network cable above a drop ceiling. Which jacket rating is required by fire code?" → <strong>Plenum — drop ceilings are plenum spaces where HVAC air circulates. Plenum cable produces low smoke and low toxicity when burned.</strong></div>
@@ -721,12 +721,12 @@ tbody tr:hover td{background:#f0fdf4;}
     <h2>Fiber Optic Cable — Single-Mode vs Multi-Mode</h2>
     <p><strong>Single-mode fiber (SMF)</strong> has a very thin core (8–10 microns) and carries light in a single path (mode) from a laser light source. Because there's only one light path, there's no modal dispersion — different light paths arriving at slightly different times — which allows single-mode to transmit data over extremely long distances (2–120 km depending on the application) at very high speeds. Single-mode is used for long-haul runs: between buildings on a campus, between datacenters, and in WAN links. The laser transceivers required for SMF are more expensive than multi-mode equipment.</p>
     <p><strong>Multi-mode fiber (MMF)</strong> has a larger core (50 or 62.5 microns) and carries light in multiple paths simultaneously, using LED or VCSEL (vertical-cavity surface-emitting laser) light sources. Multi-mode is cheaper and easier to work with but is limited to shorter distances — typically 300–400 meters for 10 Gbps applications (OM3/OM4 cable). Multi-mode is used within buildings and datacenters where distances are shorter and cost matters. The color coding helps identify types: SMF is typically yellow, OM1/OM2 MMF is orange, OM3 MMF is aqua, OM4 MMF is magenta/violet.</p>
-    <p>On the exam: a company needs to connect two buildings 800 meters apart with 10 Gbps fiber. Multi-mode or single-mode? <strong>Single-mode</strong> — multi-mode's distance limitation is too short for 800 meters at that speed. A datacenter needs to connect server racks 50 meters apart with 40 Gbps fiber. Multi-mode or single-mode? Either works at that distance, but <strong>multi-mode</strong> is typically chosen for short datacenter runs due to lower cost.</p>
+    <p>Practice scenario: a company needs to connect two buildings 800 meters apart with 10 Gbps fiber. Multi-mode or single-mode? <strong>Single-mode</strong> — multi-mode's distance limitation is too short for 800 meters at that speed. A datacenter needs to connect server racks 50 meters apart with 40 Gbps fiber. Multi-mode or single-mode? Either works at that distance, but <strong>multi-mode</strong> is typically chosen for short datacenter runs due to lower cost.</p>
 
     <h2>Cable Connectors — What Goes on What</h2>
-    <p>The connector is as important as the cable on the exam. <strong>RJ-45</strong> is the standard 8-pin connector used for Ethernet (twisted pair) connections. All Cat5e through Cat6a cables terminate in RJ-45 at patch panels, wall jacks, and network equipment. <strong>RJ-11</strong> is the smaller 4 or 6-pin connector used for telephone lines — if you see an RJ-11, it's phone, not Ethernet. Confusing RJ-45 and RJ-11 is a classic A+ trap question.</p>
+    <p>The connector is as important as the cable. <strong>RJ-45</strong> is the standard 8-pin connector used for Ethernet (twisted pair) connections. All Cat5e through Cat6a cables terminate in RJ-45 at patch panels, wall jacks, and network equipment. <strong>RJ-11</strong> is the smaller 4 or 6-pin connector used for telephone lines — if you see an RJ-11, it's phone, not Ethernet. Don't confuse RJ-45 and RJ-11.</p>
     <p>Fiber connectors vary by application. <strong>LC (Local Connector)</strong> is the most common in modern datacenter and enterprise applications — it's small, uses a latch mechanism, and is the connector on most SFP transceivers. <strong>SC (Subscriber Connector)</strong> is a push-pull square connector, common in older installations and some WAN equipment. <strong>ST (Straight Tip)</strong> is a bayonet-style twist-lock connector, now largely legacy. <strong>MTP/MPO</strong> is a high-density multi-fiber connector used in trunk cables for datacenter backbone — can carry 12 or 24 fibers in a single connector.</p>
-    <p>Coaxial cable uses <strong>F-type</strong> connectors for cable TV and internet (the threaded connector on the back of a cable modem), <strong>BNC connectors</strong> in older Thinnet Ethernet (10BASE2) and some CCTV applications, and <strong>N-type</strong> connectors for larger coax in antenna and wireless applications. For the exam, know the F-type and BNC coax connectors.</p>
+    <p>Coaxial cable uses <strong>F-type</strong> connectors for cable TV and internet (the threaded connector on the back of a cable modem), <strong>BNC connectors</strong> in older Thinnet Ethernet (10BASE2) and some CCTV applications, and <strong>N-type</strong> connectors for larger coax in antenna and wireless applications. Know the F-type and BNC coax connectors.</p>
 
     <h2>Cable Testing Tools</h2>
     <p>Be able to match the right tool to the right cable testing task. A <strong>cable tester</strong> (continuity tester) sends a signal through each wire in a cable and verifies all connections are correct — it can detect open circuits (broken wire), shorts (two wires touching), and miswiring (wires crossed). A basic cable tester won't tell you the cable's performance characteristics, just whether it's physically intact. A <strong>TDR (Time Domain Reflectometer)</strong> sends a pulse down the cable and measures reflections to precisely locate faults — it can tell you a break or impedance mismatch is at exactly 47 meters from one end. TDRs are more expensive and used when you need to find faults in existing cable runs without pulling the cable.</p>
@@ -757,7 +757,7 @@ tbody tr:hover td{background:#f0fdf4;}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

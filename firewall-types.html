@@ -481,7 +481,7 @@ tbody tr:hover td{background:var(--light);}
     <nav class="breadcrumb"><a href="/">Home</a><span>›</span><span>Security</span></nav>
     <div class="page-hero-badge">🔥 Security</div>
     <h1>Firewall Types — <span>Packet Filter, Stateful, NGFW, WAF</span></h1>
-    <p class="page-hero-sub">Every firewall type tested on CompTIA — what layer each operates at, what it can and cannot inspect, and how to choose the right type for every exam scenario.</p>
+    <p class="page-hero-sub">Every firewall type to know for CompTIA — what layer each operates at, what it can and cannot inspect, and how to choose the right type for any scenario.</p>
     <div class="cert-badges"><span class="cert-badge cb-blue">Network+ N10-009</span><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
   </div>
 </section>
@@ -510,7 +510,7 @@ tbody tr:hover td{background:var(--light);}
     </div>
 
     <h2>Why Firewall Types Matter for the Exam</h2>
-    <p>The CompTIA exams don't just ask "what is a firewall" — they present scenarios requiring you to choose the correct firewall type for a specific requirement. Protecting a web application from SQL injection requires a WAF, not a stateful firewall. Blocking outbound connections to known malicious domains requires an NGFW with threat intelligence, not a packet filter. Understanding what each type can and cannot do is the key to answering these scenario questions correctly.</p>
+    <p>Don't stop at "what is a firewall" — be able to choose the correct firewall type for a specific requirement. Protecting a web application from SQL injection requires a WAF, not a stateful firewall. Blocking outbound connections to known malicious domains requires an NGFW with threat intelligence, not a packet filter. Understanding what each type can and cannot do is the key to answering these scenario questions correctly.</p>
 
     <h2>Packet Filtering Firewall — Layer 3/4, Stateless</h2>
     <p>The oldest and simplest firewall type, packet filtering inspects each packet in isolation against a rule set. Rules match on: source IP address, destination IP address, source port, destination port, and protocol (TCP/UDP/ICMP). If a packet matches a permit rule, it passes; if it matches a deny rule or no rule, it's dropped. "Stateless" means the firewall has no memory of previous packets — it evaluates every packet independently, with no awareness of whether it belongs to an established connection.</p>
@@ -522,11 +522,11 @@ tbody tr:hover td{background:var(--light);}
 
     <h2>Next-Generation Firewall (NGFW)</h2>
     <p>NGFWs extend stateful inspection with capabilities that operate at Layer 7 (Application layer): <strong>Deep Packet Inspection (DPI)</strong> examines packet payloads, not just headers — it can identify applications regardless of port (identifying Facebook traffic on port 443 even though it looks like HTTPS). <strong>Application awareness</strong> allows rules like "block Netflix but allow YouTube" rather than just "block port X." <strong>Integrated IPS</strong> detects and blocks attack signatures inline. <strong>TLS/SSL inspection</strong> decrypts encrypted traffic for inspection, then re-encrypts it — essential since most web traffic is now HTTPS. <strong>Threat intelligence feeds</strong> automatically block connections to known malicious IP addresses and domains.</p>
-    <p>NGFWs are the current enterprise standard for perimeter firewalls. Major vendors include Palo Alto Networks, Fortinet, Cisco Firepower, and Check Point. The exam distinguishes NGFWs from traditional firewalls primarily through application awareness and DPI — if a scenario requires controlling applications by name or inspecting traffic content, the answer is NGFW.</p>
+    <p>NGFWs are the current enterprise standard for perimeter firewalls. Major vendors include Palo Alto Networks, Fortinet, Cisco Firepower, and Check Point. NGFWs differ from traditional firewalls primarily through application awareness and DPI — if a scenario requires controlling applications by name or inspecting traffic content, the answer is NGFW.</p>
 
     <h2>Web Application Firewall (WAF)</h2>
     <p>A WAF operates at Layer 7 and specializes in protecting web applications from application-layer attacks. It understands HTTP/HTTPS and inspects web requests and responses for attack patterns: SQL injection, cross-site scripting (XSS), cross-site request forgery (CSRF), path traversal, command injection, and other OWASP Top 10 vulnerabilities. A traditional stateful firewall sees a web request as "TCP port 443 traffic from an allowed IP" — it cannot tell the difference between a legitimate login attempt and one containing a SQL injection payload. A WAF inspects the payload of every HTTP request and blocks those containing attack patterns.</p>
-    <p>WAFs are deployed in front of web servers and web application servers. Cloud WAF services (AWS WAF, Cloudflare WAF, Azure Application Gateway WAF) protect internet-facing applications without requiring on-premises hardware. The exam question trigger for WAF: any scenario involving protecting a web application from application-layer attacks — especially SQL injection or XSS. "Which firewall protects against OWASP Top 10 attacks?" → WAF.</p>
+    <p>WAFs are deployed in front of web servers and web application servers. Cloud WAF services (AWS WAF, Cloudflare WAF, Azure Application Gateway WAF) protect internet-facing applications without requiring on-premises hardware. The trigger for WAF: any scenario involving protecting a web application from application-layer attacks — especially SQL injection or XSS. "Which firewall protects against OWASP Top 10 attacks?" → WAF.</p>
 
     <h2>Proxy Firewall</h2>
     <p>A proxy firewall acts as an intermediary for all traffic — clients connect to the proxy, the proxy inspects the content, and the proxy makes a new connection to the destination. Unlike stateful firewalls that inspect packet headers, a proxy firewall terminates the client connection, fully reassembles and inspects the application-layer content, then originates a new connection to the server. This provides the most complete inspection but introduces latency. Forward proxies handle outbound client requests (filtering what users can access). Reverse proxies handle inbound requests to servers (protecting web applications, similar to WAF functionality). Application-layer proxies that reconstruct content provide protection against protocol-level evasion techniques that can bypass packet-based inspection.</p>
@@ -545,12 +545,12 @@ tbody tr:hover td{background:var(--light);}
 
     
     <h2>Implicit Deny — The Foundation of Firewall Rules</h2>
-    <p>A core firewall concept tested on both Network+ and Security+ is <strong>implicit deny</strong>: any traffic not explicitly permitted by a firewall rule is denied by default. Most firewalls are configured with a final rule of "deny all" at the bottom of the rule set — traffic that doesn't match any permit rule is dropped. This is the correct security posture: the default is to block, and specific traffic is explicitly allowed. The opposite — implicit permit — would allow all traffic by default unless specifically blocked, which is far too permissive for a security boundary.</p>
+    <p>A core firewall concept for both Network+ and Security+ is <strong>implicit deny</strong>: any traffic not explicitly permitted by a firewall rule is denied by default. Most firewalls are configured with a final rule of "deny all" at the bottom of the rule set — traffic that doesn't match any permit rule is dropped. This is the correct security posture: the default is to block, and specific traffic is explicitly allowed. The opposite — implicit permit — would allow all traffic by default unless specifically blocked, which is far too permissive for a security boundary.</p>
     <p>Firewall rules are evaluated in order — the first matching rule is applied and evaluation stops. This creates the critical concept of <strong>rule ordering</strong>: more specific rules must appear before more general rules. A specific deny rule placed after a broad permit rule will never be reached — the broad permit matches first. Watch for this: "why is the more specific deny rule not working?" — because a broader permit rule appears before it in the list.</p>
 
     <h2>Stateful Firewall and NAT — Why They Work Together</h2>
     <p>Network Address Translation (NAT) is commonly implemented on the same device as a stateful firewall. NAT translates private IP addresses to a public IP address for outbound traffic, and the state table maintains the mapping of which internal host made which outbound connection — so when the response comes back, it knows which internal host to forward it to. This state tracking is fundamentally the same mechanism as stateful firewall connection tracking: both track the source, destination, port, and state of each connection. NAT on a home router provides a degree of firewall-like protection simply because inbound packets that don't match an existing NAT state table entry have no internal address to be forwarded to — they're dropped by default. This "NAT as firewall" effect is not true firewall protection but is why home routers provide some protection even without explicit firewall rules.</p>
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario">
         <div class="scenario-q">A company's web application is being attacked with SQL injection attempts through port 443. The existing stateful firewall is not blocking the attacks. What should they deploy?</div>
@@ -587,7 +587,7 @@ tbody tr:hover td{background:var(--light);}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

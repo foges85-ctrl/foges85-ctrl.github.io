@@ -500,7 +500,7 @@ tbody tr:hover td{background:#fdf4ff;}
     </nav>
     <div class="page-hero-badge">CompTIA Security+ · SY0-701 · 2026</div>
     <h1>PKI and <span>Digital Certificates</span> Explained</h1>
-    <p class="page-hero-sub">Certificate authorities, X.509, certificate types, the TLS handshake, OCSP, CRL, certificate pinning, and every PKI concept tested on CompTIA Security+ SY0-701 — with real exam scenarios.</p>
+    <p class="page-hero-sub">Certificate authorities, X.509, certificate types, the TLS handshake, OCSP, CRL, certificate pinning, and every PKI concept to know for CompTIA Security+ SY0-701 — with practice scenarios.</p>
   </div>
 </section>
 
@@ -565,9 +565,9 @@ tbody tr:hover td{background:#fdf4ff;}
           <tr><td class="td-term">Subject</td><td>The identity the certificate belongs to — for a website: the domain name (Common Name / CN). For a user: name and email.</td><td>Browsers check the hostname against the Subject Alternative Name (SAN) — mismatch = certificate error. The CN is legacy and is ignored for matching by modern browsers.</td></tr>
           <tr><td class="td-term">Issuer</td><td>The CA that signed this certificate — identifies which CA to validate the signature against</td><td>Browser walks the chain: subject → issuer → issuer's issuer → root</td></tr>
           <tr><td class="td-term">Public Key</td><td>The certificate owner's public key — this is the key you encrypt with or use to verify signatures</td><td>The whole point of the certificate — binding this key to the subject identity</td></tr>
-          <tr><td class="td-term">Validity Period</td><td>Not Before / Not After dates — the certificate is only valid within this window</td><td>Expired certificates cause browser warnings — common A+ support scenario</td></tr>
+          <tr><td class="td-term">Validity Period</td><td>Not Before / Not After dates — the certificate is only valid within this window</td><td>Expired certificates cause browser warnings — common support scenario</td></tr>
           <tr><td class="td-term">Serial Number</td><td>Unique number assigned by the CA — used to identify the certificate in revocation lists</td><td>CRLs and OCSP use the serial number to check revocation status</td></tr>
-          <tr><td class="td-term">Signature Algorithm</td><td>The algorithm the CA used to sign the certificate (e.g. SHA-256 with RSA)</td><td>Weak signature algorithms (MD5, SHA-1) are a security red flag on Security+</td></tr>
+          <tr><td class="td-term">Signature Algorithm</td><td>The algorithm the CA used to sign the certificate (e.g. SHA-256 with RSA)</td><td>Weak signature algorithms (MD5, SHA-1) are a security red flag</td></tr>
           <tr><td class="td-term">Subject Alternative Name</td><td>Additional domains or IPs the certificate is valid for — modern certificates use SAN instead of just CN</td><td>Wildcard certs use *.domain.com in the SAN</td></tr>
           <tr><td class="td-term">CA Signature</td><td>The CA's digital signature over the certificate data — proves the CA verified and endorsed this certificate</td><td>If signature verification fails, the certificate has been tampered with</td></tr>
         </tbody>
@@ -593,7 +593,7 @@ tbody tr:hover td{background:#fdf4ff;}
     </div>
 
     <h2>The TLS Handshake — How HTTPS Works</h2>
-    <p>Every HTTPS connection starts with a TLS handshake that uses PKI to authenticate the server and negotiate encryption. Understanding each step is tested on Security+:</p>
+    <p>Every HTTPS connection starts with a TLS handshake that uses PKI to authenticate the server and negotiate encryption. Understand each step for Security+:</p>
 
     <div class="step-flow">
       <div class="step-item">
@@ -634,7 +634,7 @@ tbody tr:hover td{background:#fdf4ff;}
     </div>
 
     <div class="exam-tip">
-      <div class="exam-tip-label">⚡ TLS key insight the exam tests</div>
+      <div class="exam-tip-label">⚡ TLS key insight</div>
       <p>TLS uses <strong>asymmetric cryptography to establish trust and exchange keys</strong>, then switches to <strong>symmetric encryption for the actual data</strong>. Asymmetric is used because it enables authentication without prior shared secrets. Symmetric is used for data because it's much faster. The handshake is slow; the data transfer is fast.</p>
       <p><strong>Forward secrecy</strong> (perfect forward secrecy / PFS): Using ephemeral Diffie-Hellman means the session key is never transmitted and is discarded after the session. Even if the server's private key is later compromised, past session recordings cannot be decrypted.</p>
     </div>
@@ -679,7 +679,7 @@ tbody tr:hover td{background:#fdf4ff;}
 
     <hr class="divider">
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario-item">💬 "A user receives a browser warning that a website's certificate is not trusted. The site uses an internal CA. What is the most likely cause?" → <strong>The internal CA's root certificate is not in the user's trust store. Fix: distribute the internal root CA certificate via Group Policy to domain-joined machines.</strong></div>
       <div class="scenario-item">💬 "Which certificate type covers all single-level subdomains of a domain with a single certificate?" → <strong>Wildcard certificate — *.company.com covers any single-level subdomain (mail.company.com, vpn.company.com) but not sub-subdomains (a.b.company.com).</strong></div>
@@ -727,7 +727,7 @@ tbody tr:hover td{background:#fdf4ff;}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

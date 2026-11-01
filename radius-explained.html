@@ -598,7 +598,7 @@ tbody tr:hover td { background: #f4f8ff; }
     </nav>
     <div class="page-hero-badge">CompTIA Network+ · Security+ · 2026</div>
     <h1>What is <span>RADIUS?</span></h1>
-    <p class="page-hero-sub">AAA authentication explained — what RADIUS is, how it works, RADIUS vs TACACS+, 802.1X network access control, and every RADIUS concept tested on CompTIA Network+ and Security+.</p>
+    <p class="page-hero-sub">AAA authentication explained — what RADIUS is, how it works, RADIUS vs TACACS+, 802.1X network access control, and the RADIUS concepts to know for CompTIA Network+ and Security+.</p>
   </div>
 </section>
 
@@ -626,7 +626,7 @@ tbody tr:hover td { background: #f4f8ff; }
 
     <h2>AAA — the three functions RADIUS provides</h2>
 
-    <p>RADIUS is described as an AAA protocol. Before diving into the mechanics, it helps to understand what each A stands for — these are tested individually on both Network+ and Security+:</p>
+    <p>RADIUS is described as an AAA protocol. Before diving into the mechanics, it helps to understand what each A stands for — know each one individually for both Network+ and Security+:</p>
 
     <div class="aaa-grid">
       <div class="aaa-card auth">
@@ -681,7 +681,7 @@ tbody tr:hover td { background: #f4f8ff; }
       <div class="exam-tip-label">⚡ RADIUS ports — cold recall</div>
       <p><strong>UDP 1812</strong> — RADIUS authentication and authorization (Access-Request, Access-Accept, Access-Reject). Defined in <a href="https://www.rfc-editor.org/rfc/rfc2865" target="_blank" rel="noopener">RFC 2865</a>.</p>
       <p><strong>UDP 1813</strong> — RADIUS accounting (session start, stop, and interim updates). Defined in <a href="https://www.rfc-editor.org/rfc/rfc2866" target="_blank" rel="noopener">RFC 2866</a>.</p>
-      <p>Older implementations used UDP 1645 and 1646 respectively. Both RFCs note that those early ports conflict with other registered services and that 1812 and 1813 are the officially assigned ports. The exam may reference these legacy ports. Know both pairs. RADIUS uses UDP (not TCP) because it handles its own retransmission logic.</p>
+      <p>Older implementations used UDP 1645 and 1646 respectively. Both RFCs note that those early ports conflict with other registered services and that 1812 and 1813 are the officially assigned ports. Know both pairs. RADIUS uses UDP (not TCP) because it handles its own retransmission logic.</p>
     </div>
 
     <h2>RadSec — RADIUS over TLS</h2>
@@ -781,10 +781,10 @@ tbody tr:hover td { background: #f4f8ff; }
       <div class="callout-label">📌 Why 802.1X matters for Security+</div>
       <p>Without 802.1X, anyone who physically plugs into a switch port gets network access. With 802.1X, <strong>every device must authenticate before any traffic is allowed</strong> — unauthenticated devices are placed in a quarantine VLAN or blocked entirely.</p>
       <p>This is the standard defense against <strong>rogue device attacks</strong> — an attacker plugging a laptop into an empty switch port and accessing the internal network. 802.1X prevents this at the port level.</p>
-      <p>The exam may describe 802.1X as <strong>"port-based NAC (Network Access Control)"</strong> — this is the same thing.</p>
+      <p>802.1X is also described as <strong>"port-based NAC (Network Access Control)"</strong> — this is the same thing.</p>
     </div>
 
-    <h2>EAP methods — what the exam tests</h2>
+    <h2>EAP methods — what to know</h2>
 
     <div class="table-wrap">
       <table>
@@ -817,8 +817,8 @@ tbody tr:hover td { background: #f4f8ff; }
     </div>
 
     <div class="exam-tip">
-      <div class="exam-tip-label">⚡ EAP-TLS is always the most secure answer</div>
-      <p>If the exam asks which EAP method provides the highest security, the answer is <strong>EAP-TLS</strong> — it uses certificates on both sides (mutual authentication), eliminates passwords entirely, and provides the strongest protection against MITM attacks.</p>
+      <div class="exam-tip-label">⚡ EAP-TLS is the most secure EAP method</div>
+      <p>The EAP method with the highest security is <strong>EAP-TLS</strong> — it uses certificates on both sides (mutual authentication), eliminates passwords entirely, and provides the strongest protection against MITM attacks.</p>
       <p>The tradeoff is infrastructure cost — you need a PKI to issue client certificates. PEAP is the practical middle ground: strong security without requiring client certificates.</p>
     </div>
 
@@ -848,7 +848,7 @@ tbody tr:hover td { background: #f4f8ff; }
 
     <p>Common RADIUS server implementations include <strong>Microsoft NPS</strong> (Network Policy Server — built into Windows Server), <strong>FreeRADIUS</strong> (open source, widely used on Linux), and <strong>Cisco ISE</strong> (Identity Services Engine — enterprise NAC platform).</p>
 
-    <h2>Exam scenarios</h2>
+    <h2>Practice scenarios</h2>
 
     <div class="scenario-list">
       <div class="scenario-item">💬 "A company wants to authenticate VPN users against Active Directory from a central server rather than storing credentials on the VPN appliance. Which protocol should they use?" → <strong>RADIUS — centralized AAA, forwards credentials to Active Directory for verification</strong></div>
@@ -897,7 +897,7 @@ tbody tr:hover td { background: #f4f8ff; }
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

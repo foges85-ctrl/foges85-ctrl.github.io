@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/zero-trust-security.html">
 <title>What Is Zero Trust Security and Why Is “Never Trust, Always Verify” the Rule?</title>
-<meta name="description" content="Zero Trust — never trust always verify, microsegmentation, least privilege, ZTNA vs VPN, and every Zero Trust concept tested on CompTIA Security+ SY0-701.">
+<meta name="description" content="Zero Trust — never trust always verify, microsegmentation, least privilege, ZTNA vs VPN, and every Zero Trust concept to know for CompTIA Security+ SY0-701.">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -521,7 +521,7 @@ tbody tr:hover td{background:#fdf4ff;}
     </nav>
     <div class="page-hero-badge">CompTIA Security+ SY0-701 — Named Concept</div>
     <h1>Zero Trust Security <span>Explained</span></h1>
-    <p class="page-hero-sub">Never trust, always verify — Zero Trust is explicitly named in Security+ SY0-701. Learn the core principles, pillars, how it differs from traditional perimeter security, and every scenario type that appears on the exam.</p>
+    <p class="page-hero-sub">Never trust, always verify — Zero Trust is explicitly named in Security+ SY0-701. Learn the core principles, pillars, how it differs from traditional perimeter security, and practice scenarios.</p>
   </div>
 </section>
 
@@ -606,7 +606,7 @@ tbody tr:hover td{background:#fdf4ff;}
     </div>
 
     <div class="exam-tip">
-      <div class="exam-tip-label">🎯 The Phrase That Appears on the Exam</div>
+      <div class="exam-tip-label">🎯 The Phrase to Know</div>
       <p><strong>"Never trust, always verify"</strong> is the common tagline for Zero Trust. The SY0-701 objectives themselves use control-plane/data-plane vocabulary (see the PDP and PEP terms below). If a scenario describes a security model where internal users are not automatically trusted and every request is verified, the answer is Zero Trust. If it mentions <strong>implicit trust</strong> — that's the traditional model Zero Trust replaces.</p>
     </div>
 
@@ -641,7 +641,7 @@ tbody tr:hover td{background:#fdf4ff;}
       </div>
       <div class="pillar-body">
         <div class="pillar-desc"><strong>Microsegmentation</strong> divides the network into small, isolated zones so that even if an attacker breaches one segment, they cannot move laterally to others. Instead of flat east-west traffic across the internal network, every connection between segments requires authentication and authorization.</div>
-        <div class="pillar-detail"><strong>Technologies:</strong> Software-defined networking (SDN), VLANs, firewall rules between segments, east-west traffic inspection, Software-Defined Perimeter (SDP). <strong>Exam term:</strong> microsegmentation is a core Zero Trust technique. SY0-701 tests it under segmentation.</div>
+        <div class="pillar-detail"><strong>Technologies:</strong> Software-defined networking (SDN), VLANs, firewall rules between segments, east-west traffic inspection, Software-Defined Perimeter (SDP). <strong>Exam term:</strong> microsegmentation is a core Zero Trust technique. Study it alongside segmentation.</div>
       </div>
     </div>
 
@@ -675,10 +675,10 @@ tbody tr:hover td{background:#fdf4ff;}
       <table>
         <thead><tr><th>Term</th><th>Definition</th><th>Why It Matters</th></tr></thead>
         <tbody>
-          <tr><td class="td-term">Microsegmentation</td><td>Dividing the network into small isolated zones with access controls between each segment</td><td>Prevents lateral movement — SY0-701 tests it under segmentation</td></tr>
+          <tr><td class="td-term">Microsegmentation</td><td>Dividing the network into small isolated zones with access controls between each segment</td><td>Prevents lateral movement — study it alongside segmentation</td></tr>
           <tr><td class="td-term">Implicit trust</td><td>Trusting a user or device based solely on network location (being inside the perimeter)</td><td>This is what Zero Trust eliminates — the old model</td></tr>
           <tr><td class="td-term">ZTNA</td><td>Zero Trust Network Access — grants access to specific applications, not the whole network (replaces VPN)</td><td>Modern alternative to traditional VPN</td></tr>
-          <tr><td class="td-term">Least privilege</td><td>Users get the minimum access needed for their role — no more</td><td>Core Zero Trust principle, also tested standalone</td></tr>
+          <tr><td class="td-term">Least privilege</td><td>Users get the minimum access needed for their role — no more</td><td>Core Zero Trust principle, also a standalone principle</td></tr>
           <tr><td class="td-term">Just-in-time (JIT)</td><td>Privileged access granted only when needed and automatically revoked after — not persistent</td><td>Reduces window of exposure for privileged accounts</td></tr>
           <tr><td class="td-term">Continuous validation</td><td>Re-verifying identity and device health throughout a session, not just at login</td><td>Detects session hijacking and behavioral anomalies</td></tr>
           <tr><td class="td-term">Policy decision point (PDP)</td><td>The component that evaluates access requests against policy and makes allow/deny decisions</td><td>Part of NIST Zero Trust architecture framework</td></tr>
@@ -701,10 +701,10 @@ tbody tr:hover td{background:#fdf4ff;}
 
     <p>For scope: CompTIA's published <a href="https://www.comptia.org/en-us/certifications/security/" target="_blank" rel="noopener">Security+ SY0-701 exam details</a> show <strong>SY0-701 launched on 7 November 2023</strong>, runs a <strong>maximum of 90 questions in 90 minutes</strong>, and requires <strong>750 on a scale of 100&ndash;900</strong> to pass. General Security Concepts, where Zero Trust sits (objective 1.2), is <strong>12%</strong> of the exam.</p>
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario-item">💬 "A company implements a policy requiring all users — including those on the internal corporate network — to authenticate with MFA before accessing any resource. Internal traffic is inspected and no device is trusted by default. Which security model does this describe?" → <strong>Zero Trust — specifically the "never trust, always verify" principle. The key indicator is that internal network location provides no implicit trust.</strong></div>
-      <div class="scenario-item">💬 "An attacker compromises a workstation on the corporate network but cannot access any other systems because each server-to-server connection requires separate authentication. Which Zero Trust technique prevented lateral movement?" → <strong>Microsegmentation — dividing the network into isolated segments so that a breach in one area cannot spread to others without re-authentication. SY0-701 tests this under segmentation.</strong></div>
+      <div class="scenario-item">💬 "An attacker compromises a workstation on the corporate network but cannot access any other systems because each server-to-server connection requires separate authentication. Which Zero Trust technique prevented lateral movement?" → <strong>Microsegmentation — dividing the network into isolated segments so that a breach in one area cannot spread to others without re-authentication.</strong></div>
       <div class="scenario-item">💬 "An organization wants to replace their VPN with a solution that grants remote users access to specific applications rather than the entire corporate network. Which technology implements this?" → <strong>ZTNA (Zero Trust Network Access) — provides application-level access rather than network-level access, a core Zero Trust replacement for traditional VPN.</strong></div>
       <div class="scenario-item">💬 "A security architect proposes granting privileged access to administrators only when needed for a specific task, with access automatically revoked after the task is complete. What is this technique called?" → <strong>Just-in-time (JIT) access — a Zero Trust technique that eliminates persistent privileged accounts, reducing the window of exposure if credentials are stolen.</strong></div>
       <div class="scenario-item">💬 "Which Zero Trust principle assumes that attackers may already be inside the network and designs security controls to minimize the impact of a breach?" → <strong>"Assume breach" — the third core Zero Trust principle. It shifts focus from purely preventing breaches to limiting blast radius, detecting attackers quickly, and containing damage through segmentation and logging.</strong></div>
@@ -733,11 +733,11 @@ tbody tr:hover td{background:#fdf4ff;}
 
     <h2>Zero Trust in Practice — Real Implementations</h2>
     <p>Pure Zero Trust is an architectural goal rather than a single product you install. Real implementations use combinations of: <strong>Identity Provider (IdP)</strong> for centralized authentication (Microsoft Entra ID (formerly Azure AD), Okta), <strong>MFA</strong> on all authentication flows, <strong>Conditional Access policies</strong> that evaluate device compliance and risk signals before granting access, <strong>ZTNA (Zero Trust Network Access)</strong> replacing VPN with identity-aware proxies that grant access per-application rather than per-network, <strong>microsegmentation tools</strong> (Illumio, Guardicore) to enforce east-west traffic controls, and <strong>SASE</strong> (Secure Access Service Edge) that delivers network security as a cloud service for distributed workforces.</p>
-    <p>On the exam: Zero Trust is tested primarily as a concept and architecture, not as a specific configuration task. Know the core principle (never trust, always verify), the three main controls (strong identity verification, least privilege, microsegmentation), and the contrast with the traditional perimeter model. SY0-701 specifically added Zero Trust as a significant topic area — any scenario describing a security architecture for a remote-first or cloud-heavy organization is likely testing Zero Trust concepts.</p>
+    <p>Study Zero Trust primarily as a concept and architecture, not as a specific configuration task. Know the core principle (never trust, always verify), the three main controls (strong identity verification, least privilege, microsegmentation), and the contrast with the traditional perimeter model. Zero Trust is in the SY0-701 objectives (1.2) — when a scenario describes a security architecture for a remote-first or cloud-heavy organization, consider Zero Trust concepts.</p>
 
     <h2>Zero Trust vs Traditional VPN</h2>
     <p>Traditional VPNs grant <strong>network-level access</strong> — once connected, a user typically has access to the entire internal network segment. Zero Trust Network Access (ZTNA) grants <strong>application-level access</strong> — a user is granted access only to the specific applications their role requires, with all other resources invisible and unreachable from their session. This is a fundamental difference: a VPN breach gives an attacker broad internal access, while a ZTNA breach (if the attacker can even complete authentication) gives them access only to specific applications.</p>
-    <p>This is why Security+ SY0-701 frames ZTNA as a VPN replacement rather than a complement. From an exam perspective: traditional VPN = perimeter model (trusted once inside), ZTNA = Zero Trust (verified per application, per session).</p>
+    <p>This is why ZTNA is framed as a VPN replacement rather than a complement. From an exam perspective: traditional VPN = perimeter model (trusted once inside), ZTNA = Zero Trust (verified per application, per session).</p>
 
     
 <h2>Related Articles</h2>
@@ -766,7 +766,7 @@ tbody tr:hover td{background:#fdf4ff;}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

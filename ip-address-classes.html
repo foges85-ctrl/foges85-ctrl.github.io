@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/ip-address-classes.html">
 <title>IP Address Classes Explained — Class A, B, C and Why It Matters</title>
-<meta name="description" content="IP address classes seem outdated but still show up on CompTIA exams. Learn Class A, B, and C ranges, private vs public IPs, loopback, and APIPA — and…">
+<meta name="description" content="IP address classes seem outdated but are still worth knowing for CompTIA exams. Learn Class A, B, and C ranges, private vs public IPs, loopback, and APIPA — and…">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -452,7 +452,7 @@ tbody tr:hover td{background:#f0fdf9;}
   <meta property="og:site_name" content="IT Study Hub">
   <meta property="og:url" content="https://itstudyhub.org/ip-address-classes.html">
   <meta property="og:title" content="IP Address Classes Explained — Class A, B, C and Why It Matters">
-  <meta property="og:description" content="IP address classes seem outdated but still show up on CompTIA exams. Learn Class A, B, and C ranges, private vs public IPs, loopback, and APIPA — and…">
+  <meta property="og:description" content="IP address classes seem outdated but are still worth knowing for CompTIA exams. Learn Class A, B, and C ranges, private vs public IPs, loopback, and APIPA — and…">
 
 <script type="application/ld+json">
 {
@@ -522,7 +522,7 @@ tbody tr:hover td{background:#f0fdf9;}
     </nav>
     <div class="page-hero-badge">CompTIA A+ · Network+ · Core Concept</div>
     <h1>IP Address <span>Classes Explained</span></h1>
-    <p class="page-hero-sub">Class A, B, C, D, and E — what the ranges are, how many hosts each supports, public vs private addresses, loopback, APIPA, and exactly what CompTIA tests on IP addressing.</p>
+    <p class="page-hero-sub">Class A, B, C, D, and E — what the ranges are, how many hosts each supports, public vs private addresses, loopback, APIPA, and what to know about IP addressing for CompTIA exams.</p>
   </div>
 </section>
 
@@ -543,7 +543,7 @@ tbody tr:hover td{background:#f0fdf9;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ Quick Answer</div>
       <div class="quick-answer-text">
-        IPv4 addresses are divided into five classes (A–E) based on the first octet. <strong>Classes A, B, and C are used for unicast hosts.</strong> Class D is multicast. Class E is reserved. For the exam, the critical numbers are: <strong>Class A starts with 1–126, Class B with 128–191, Class C with 192–223.</strong> Private ranges (<a href="https://www.rfc-editor.org/rfc/rfc1918" target="_blank" rel="noopener">RFC 1918</a>) are 10.x.x.x, 172.16–31.x.x, and 192.168.x.x. Loopback is 127.0.0.1. APIPA is 169.254.x.x.
+        IPv4 addresses are divided into five classes (A–E) based on the first octet. <strong>Classes A, B, and C are used for unicast hosts.</strong> Class D is multicast. Class E is reserved. The critical numbers to know are: <strong>Class A starts with 1–126, Class B with 128–191, Class C with 192–223.</strong> Private ranges (<a href="https://www.rfc-editor.org/rfc/rfc1918" target="_blank" rel="noopener">RFC 1918</a>) are 10.x.x.x, 172.16–31.x.x, and 192.168.x.x. Loopback is 127.0.0.1. APIPA is 169.254.x.x.
       </div>
     </div>
 
@@ -749,7 +749,7 @@ tbody tr:hover td{background:#f0fdf9;}
       </table>
     </div>
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
 
     <div class="scenario-list">
       <div class="scenario-item">💬 "A technician runs ipconfig and sees the IP address 169.254.45.12. What does this indicate?" → <strong>DHCP failure — APIPA address. The device cannot reach a DHCP server and has self-assigned a 169.254.x.x address. Check: Is the DHCP server running? Is the network cable connected? Is the switch port up?</strong></div>
@@ -778,7 +778,7 @@ tbody tr:hover td{background:#f0fdf9;}
 
     <h2>Loopback and Localhost</h2>
     <p>The <strong>127.0.0.0/8</strong> range is reserved for loopback — testing the local TCP/IP stack without sending traffic to the network. <span style="font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 5px;border-radius:4px;">ping 127.0.0.1</span> (or <span style="font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 5px;border-radius:4px;">ping localhost</span>) is always the first step in network troubleshooting — if this fails, the TCP/IP stack on the local machine is broken. If it succeeds, the stack works and the problem is elsewhere (physical cable, switch, router, DNS, or remote server).</p>
-    <p>The address <strong>0.0.0.0</strong> has a special meaning: in routing tables it represents the default route (send traffic here if no specific route matches). In a server binding context it means "listen on all available interfaces." You won't be assigned 0.0.0.0 as a host address, but you'll see it in routing tables and firewall rules on the exam.</p>
+    <p>The address <strong>0.0.0.0</strong> has a special meaning: in routing tables it represents the default route (send traffic here if no specific route matches). In a server binding context it means "listen on all available interfaces." You won't be assigned 0.0.0.0 as a host address, but you'll see it in routing tables and firewall rules.</p>
 
     <h2>IPv4 Exhaustion and the Transition to IPv6</h2>
     <p>The IPv4 address space (approximately 4.3 billion addresses) was officially exhausted at the IANA level in 2011. Regional internet registries have since allocated their remaining pools. NAT (Network Address Translation) has extended the life of IPv4 by allowing thousands of private IP addresses to share a single public IP, but IPv6 is the long-term solution. IPv6 uses 128-bit addresses (compared to IPv4's 32-bit), providing approximately 3.4 × 10^38 addresses — enough that every device on Earth can have a globally unique address.</p>
@@ -811,7 +811,7 @@ tbody tr:hover td{background:#f0fdf9;}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://itstudyhub.org/dns-security.html">
 <title>DNS Security — DNSSEC, DoH, DoT & Cache Poisoning</title>
-<meta name="description" content="DNSSEC, DNS over HTTPS (DoH), DNS over TLS (DoT), cache poisoning, DNS hijacking, and split-horizon DNS — complete coverage for CompTIA Security+ and Network+ exams.">
+<meta name="description" content="DNSSEC, DNS over HTTPS (DoH), DNS over TLS (DoT), cache poisoning, DNS hijacking, and split-horizon DNS, explained for CompTIA Security+ and Network+ study.">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -376,7 +376,7 @@ tbody tr:hover td{background:#eff6ff;}
   <meta property="og:site_name" content="IT Study Hub">
   <meta property="og:url" content="https://itstudyhub.org/dns-security.html">
   <meta property="og:title" content="DNS Security Explained — DNSSEC, DNS over HTTPS, Cache Poisoning | Security+">
-  <meta property="og:description" content="DNSSEC, DNS over HTTPS (DoH), DNS over TLS (DoT), cache poisoning, DNS hijacking, and split-horizon DNS — complete coverage for CompTIA Security+ and Network+ exams.">
+  <meta property="og:description" content="DNSSEC, DNS over HTTPS (DoH), DNS over TLS (DoT), cache poisoning, DNS hijacking, and split-horizon DNS, explained for CompTIA Security+ and Network+ study.">
 
 <script type="application/ld+json">
 {
@@ -398,7 +398,7 @@ tbody tr:hover td{background:#eff6ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-31",
   "url": "https://itstudyhub.org/dns-security.html",
   "inLanguage": "en"
 }
@@ -440,7 +440,7 @@ tbody tr:hover td{background:#eff6ff;}
     </nav>
     <div class="page-hero-badge">CompTIA Security+ · Network+ · DNS</div>
     <h1>DNS Security <span>Explained</span></h1>
-    <p class="page-hero-sub">DNSSEC, DNS over HTTPS (DoH), DNS over TLS (DoT), cache poisoning, DNS hijacking, and split-horizon DNS — complete coverage for CompTIA Security+ and Network+ exams.</p>
+    <p class="page-hero-sub">DNSSEC, DNS over HTTPS (DoH), DNS over TLS (DoT), cache poisoning, DNS hijacking, and split-horizon DNS, explained for CompTIA Security+ and Network+ study.</p>
   </div>
 </section>
 
@@ -452,7 +452,7 @@ tbody tr:hover td{background:#eff6ff;}
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated May 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <div class="article-wrap">
@@ -561,7 +561,7 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 Exam Tip — DoH vs DoT Port Numbers</div>
       <p><strong>DoH = port 443</strong> (HTTPS port — blends with web traffic). <strong>DoT = port 853</strong> (unique DNS-over-TLS port — visible and blockable).</p>
-      <p>The exam may present a scenario where a company wants encrypted DNS but needs to maintain the ability to monitor and filter DNS traffic. The answer is <strong>DoT (port 853)</strong> — not DoH, because DoH blends into HTTPS and cannot be separately filtered.</p>
+      <p>Consider a scenario where a company wants encrypted DNS but needs to maintain the ability to monitor and filter DNS traffic. The answer is <strong>DoT (port 853)</strong> — not DoH, because DoH blends into HTTPS and cannot be separately filtered.</p>
     </div>
 
     <h2>Split-Horizon DNS</h2>
@@ -622,7 +622,7 @@ tbody tr:hover td{background:#eff6ff;}
       </table>
     </div>
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
 
     <div class="scenario-list">
       <div class="scenario-item"><strong>Scenario 1:</strong> Users are being redirected to a fake banking site even though they type the correct URL. Investigation reveals the local DNS resolver has incorrect records for the bank's domain. What attack occurred and what is the primary defense? <em>Answer:</em> <strong>DNS cache poisoning</strong>. The attacker injected false records into the resolver's cache. The primary defense is <strong>DNSSEC</strong> — cryptographic signatures on DNS records allow the resolver to detect and reject tampered responses.</div>
@@ -635,7 +635,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <h2>DNS Record Types and Security Relevance</h2>
 
-<p>Understanding DNS record types is both a Network+ exam requirement and essential context for understanding why DNS security controls like DNSSEC, SPF, DKIM, and DMARC work the way they do — since all of them rely on specific DNS record types.</p>
+<p>Know DNS record types for Network+; they're also essential context for understanding why DNS security controls like DNSSEC, SPF, DKIM, and DMARC work the way they do — since all of them rely on specific DNS record types.</p>
 
 <p><strong>A record</strong>: maps a hostname to an IPv4 address. The most common DNS record type. When you look up google.com, the A record returns its IPv4 address. <strong>AAAA record</strong>: maps a hostname to an IPv6 address. Both A and AAAA records are targeted by DNS spoofing attacks — an attacker who can forge a response can redirect traffic for any hostname.</p>
 
@@ -669,7 +669,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <h2>Recursive vs Authoritative DNS Servers</h2>
 
-    <p>Understanding the distinction between recursive and authoritative DNS servers is a fundamental networking concept tested on Network+ and relevant to DNS security discussions.</p>
+    <p>Understanding the distinction between recursive and authoritative DNS servers is a fundamental networking concept for Network+ and relevant to DNS security discussions.</p>
 
     <p><strong>Authoritative DNS servers</strong> hold the actual DNS records for a zone — they are the canonical source of truth for a domain's IP addresses, mail records, and other records. When you register a domain and publish DNS records through your registrar or DNS hosting provider (Route 53, Cloudflare DNS), you are configuring authoritative servers. They only answer queries about zones they are authoritative for.</p>
 
@@ -707,7 +707,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

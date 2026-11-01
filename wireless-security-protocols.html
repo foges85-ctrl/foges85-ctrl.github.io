@@ -508,7 +508,7 @@ tbody tr:hover td{background:#fdf4ff;}
     </nav>
     <div class="page-hero-badge">CompTIA Security+ · Network+ · 2026</div>
     <h1>Wireless Security <span>Protocols Explained</span></h1>
-    <p class="page-hero-sub">WEP, WPA, WPA2, WPA3 — Personal vs Enterprise modes, 802.1X, RADIUS authentication, EAP types (EAP-TLS, PEAP, EAP-FAST, EAP-TTLS), wireless attack types, and every wireless security concept tested on CompTIA Security+ SY0-701 and Network+.</p>
+    <p class="page-hero-sub">WEP, WPA, WPA2, WPA3 — Personal vs Enterprise modes, 802.1X, RADIUS authentication, EAP types (EAP-TLS, PEAP, EAP-FAST, EAP-TTLS), wireless attack types, and the wireless security concepts to know for CompTIA Security+ SY0-701 and Network+.</p>
   </div>
 </section>
 
@@ -529,7 +529,7 @@ tbody tr:hover td{background:#fdf4ff;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ Wireless Security in One Paragraph</div>
       <div class="quick-answer-text">
-        Wireless security protocols protect Wi-Fi traffic from eavesdropping and unauthorized access. They have evolved from the completely broken <strong>WEP</strong> (1997) through the transitional <strong>WPA</strong> (2003) and widely deployed <strong>WPA2</strong> (2004) to the current standard <strong>WPA3</strong> (2018). Each protocol comes in two modes: <strong>Personal</strong> (pre-shared key — for homes and small offices) and <strong>Enterprise</strong> (802.1X with a RADIUS server — for corporate environments, providing per-user authentication). The exam tests which protocol to recommend, which is insecure, and how 802.1X/EAP authentication works.
+        Wireless security protocols protect Wi-Fi traffic from eavesdropping and unauthorized access. They have evolved from the completely broken <strong>WEP</strong> (1997) through the transitional <strong>WPA</strong> (2003) and widely deployed <strong>WPA2</strong> (2004) to the current standard <strong>WPA3</strong> (2018). Each protocol comes in two modes: <strong>Personal</strong> (pre-shared key — for homes and small offices) and <strong>Enterprise</strong> (802.1X with a RADIUS server — for corporate environments, providing per-user authentication). Know which protocol to recommend, which is insecure, and how 802.1X/EAP authentication works.
       </div>
     </div>
 
@@ -552,7 +552,7 @@ tbody tr:hover td{background:#fdf4ff;}
         <div class="proto-right">
           <div class="proto-encryption">Encryption: RC4 stream cipher · 64-bit or 128-bit key · Static key</div>
           <div class="proto-desc">Wired Equivalent Privacy — the original 802.11 security protocol. Uses <strong>RC4</strong> with a static pre-shared key and a flawed IV (Initialization Vector) implementation. IVs repeat after ~16 million packets, allowing attackers to collect enough traffic to crack the key in minutes using freely available tools. <strong>Never use WEP under any circumstances</strong> — it provides no meaningful security.</div>
-          <div class="proto-exam"><strong>Exam note:</strong> WEP is always the wrong answer when asked which protocol to use. It's the correct answer when asked which protocol is completely broken and should never be used. The IV flaw is the specific weakness to remember.</div>
+          <div class="proto-exam"><strong>Exam note:</strong> Never recommend WEP. It is completely broken and should never be used. The IV flaw is the specific weakness to remember.</div>
         </div>
       </div>
 
@@ -597,12 +597,12 @@ tbody tr:hover td{background:#fdf4ff;}
     </div>
 
     <div class="exam-tip">
-      <div class="exam-tip-label">⚡ The encryption association the exam tests</div>
+      <div class="exam-tip-label">⚡ The encryption association to know</div>
       <p><strong>WEP = RC4 (static key, broken IVs)</strong> — completely insecure, never use.</p>
       <p><strong>WPA = TKIP</strong> — transitional, deprecated, still RC4 underneath.</p>
       <p><strong>WPA2 = AES/CCMP</strong> — current standard, strong encryption, acceptable.</p>
       <p><strong>WPA3 = SAE + PMF (AES-CCMP; GCMP-256 in 192-bit mode)</strong> — recommended, forward secrecy, no offline dictionary attacks.</p>
-      <p>The exam will often list all four and ask which provides the highest security or which should be used for a new enterprise deployment. The answer is always WPA3. If WPA3 isn't available, WPA2 Enterprise.</p>
+      <p>For the highest security or a new enterprise deployment, choose WPA3. If WPA3 isn't available, WPA2 Enterprise.</p>
     </div>
 
     <p>The dates here are worth holding onto. The Wi-Fi Alliance <a href="https://www.wi-fi.org/news-events/newsroom/wi-fi-alliance-introduces-wi-fi-certified-wpa3-security" target="_blank" rel="noopener">introduced WPA3 on 25 June 2018</a>, and WPA3 support became <strong>mandatory for new Wi-Fi CERTIFIED devices on 1 July 2020</strong> &mdash; which is why hardware sold since then generally offers it even where networks still run WPA2. Per that same announcement, all WPA3 networks &ldquo;require use of Protected Management Frames&rdquo;, where WPA2 leaves PMF optional; WPA3-Personal replaces the pre-shared key with Simultaneous Authentication of Equals (SAE); and WPA3-Enterprise offers an optional mode at &ldquo;the equivalent of 192-bit cryptographic strength&rdquo;.</p>
@@ -649,7 +649,7 @@ tbody tr:hover td{background:#fdf4ff;}
       <table>
         <thead><tr><th>EAP Type</th><th>How It Works</th><th>Security Level</th><th>Exam Note</th></tr></thead>
         <tbody>
-          <tr><td class="td-term">EAP-TLS</td><td>Mutual certificate authentication — both the client AND the server present digital certificates. Most secure EAP type.</td><td>Highest — mutual authentication with certificates prevents MITM</td><td>Requires PKI infrastructure — certificates on every client device. Most complex to deploy but most secure. Ask the Security+ exam what the most secure EAP type is → EAP-TLS.</td></tr>
+          <tr><td class="td-term">EAP-TLS</td><td>Mutual certificate authentication — both the client AND the server present digital certificates. Most secure EAP type.</td><td>Highest — mutual authentication with certificates prevents MITM</td><td>Requires PKI infrastructure — certificates on every client device. Most complex to deploy but most secure. Most secure EAP type → EAP-TLS.</td></tr>
           <tr><td class="td-term">PEAP</td><td>Protected EAP — creates an encrypted TLS tunnel using a <em>server certificate only</em>, then sends username/password inside the tunnel. Client doesn't need a certificate.</td><td>Good — server authenticated by certificate, credentials protected by tunnel</td><td>Most common enterprise EAP type. Only server needs a certificate (cheaper to deploy than EAP-TLS). Client authenticates with username/password or MS-CHAPv2 inside the TLS tunnel.</td></tr>
           <tr><td class="td-term">EAP-TTLS</td><td>EAP Tunneled TLS — similar to PEAP. Creates a TLS tunnel using a server certificate, then sends credentials inside. Supports a wider range of inner authentication methods than PEAP.</td><td>Good — similar security to PEAP</td><td>More flexible than PEAP for inner authentication methods. Less common on Windows networks (PEAP is the Microsoft default).</td></tr>
           <tr><td class="td-term">EAP-FAST</td><td>EAP Flexible Authentication via Secure Tunneling — Cisco's replacement for LEAP. Uses a PAC (Protected Access Credential) instead of a server certificate to create the tunnel.</td><td>Good — no certificate required, but PAC management adds complexity</td><td>Cisco proprietary. Designed for environments where certificate infrastructure isn't available. PAC = the Cisco alternative to a server certificate for tunnel establishment.</td></tr>
@@ -662,7 +662,7 @@ tbody tr:hover td{background:#fdf4ff;}
       <div class="callout-label">EAP-TLS vs PEAP — the key distinction</div>
       <p><strong>EAP-TLS:</strong> Both client and server have certificates. Mutual authentication. Most secure but most complex — requires PKI with certificates deployed to every client device.</p>
       <p><strong>PEAP:</strong> Only the server has a certificate. The server proves its identity to the client via certificate; the client proves its identity with username/password inside the encrypted TLS tunnel. Easier to deploy (no client certificates), nearly as secure if the server certificate is properly validated.</p>
-      <p>The exam asks: "Which EAP type requires certificates on both the client and the server?" → <strong>EAP-TLS</strong>. "Which EAP type requires only a server certificate?" → <strong>PEAP or EAP-TTLS</strong>.</p>
+      <p>Practice questions: "Which EAP type requires certificates on both the client and the server?" → <strong>EAP-TLS</strong>. "Which EAP type requires only a server certificate?" → <strong>PEAP or EAP-TTLS</strong>.</p>
     </div>
 
     <p>EAP is a framework, not a single method, which is why the table above has so many rows. The framework is specified in <a href="https://www.rfc-editor.org/rfc/rfc3748" target="_blank" rel="noopener">RFC 3748</a>; EAP-TLS, the certificate-based method, is specified separately in <a href="https://www.rfc-editor.org/rfc/rfc5216" target="_blank" rel="noopener">RFC 5216</a>. Reading the first page of each is the fastest way to see why some methods need a client certificate and others only need a server one.</p>
@@ -704,7 +704,7 @@ tbody tr:hover td{background:#fdf4ff;}
 
     <p>This page covers the protocols and the attacks against them at Security+ depth. It does not cover RF planning, channel and power design, antenna selection, or wireless survey work &mdash; those belong to Network+ and to vendor wireless tracks. It also does not walk through configuring a specific controller or access point, since the menus differ by vendor and change between firmware releases. Where WPA2 and WPA3 behavior differs, this page describes the certified behavior rather than any one vendor's implementation of it.</p>
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario-item">💬 "A company is setting up Wi-Fi for 200 employees and needs per-user authentication with an audit trail. Which wireless security configuration should they use?" → <strong>WPA2-Enterprise or WPA3-Enterprise with 802.1X — each user authenticates individually through a RADIUS server, providing per-user access control and logging.</strong></div>
       <div class="scenario-item">💬 "Which wireless protocol is completely broken and should never be used under any circumstances?" → <strong>WEP — flawed IV implementation allows the encryption key to be cracked in minutes with freely available tools regardless of key length.</strong></div>
@@ -751,7 +751,7 @@ tbody tr:hover td{background:#fdf4ff;}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

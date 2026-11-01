@@ -528,7 +528,7 @@ tbody tr:hover td{background:#f5f3ff;}
     </nav>
     <div class="page-hero-badge">Network+ · Security+</div>
     <h1>Network <span>Segmentation</span> Explained</h1>
-    <p class="page-hero-sub">VLANs, DMZ, screened subnets, air gaps, and microsegmentation — how dividing a network into zones limits the blast radius of a breach. Tested on both Network+ and Security+.</p>
+    <p class="page-hero-sub">VLANs, DMZ, screened subnets, air gaps, and microsegmentation — how dividing a network into zones limits the blast radius of a breach. Know it for both Network+ and Security+.</p>
     <div class="cert-badges">
       <span class="cert-badge cb-blue">Network+ N10-009</span>
       <span class="cert-badge cb-purple">Security+ SY0-701</span>
@@ -636,8 +636,8 @@ tbody tr:hover td{background:#f5f3ff;}
 
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 DMZ vs Screened Subnet — Exam Language</div>
-      <p>CompTIA Security+ SY0-701 uses the term <strong>"screened subnet"</strong> rather than "DMZ" — they describe the same concept. Both refer to a network zone between the internet and the internal network where public-facing servers are placed. If you see "screened subnet" on the exam, think DMZ.</p>
-      <p>A <strong>dual-firewall DMZ</strong> (two separate firewalls) is more secure than a single firewall with three interfaces — if the outer firewall is compromised, the inner firewall still protects the internal network. This distinction may appear on Security+ scenario questions.</p>
+      <p>CompTIA Security+ SY0-701 uses the term <strong>"screened subnet"</strong> rather than "DMZ" — they describe the same concept. Both refer to a network zone between the internet and the internal network where public-facing servers are placed. Treat "screened subnet" as another name for a DMZ.</p>
+      <p>A <strong>dual-firewall DMZ</strong> (two separate firewalls) is more secure than a single firewall with three interfaces — if the outer firewall is compromised, the inner firewall still protects the internal network. Know this distinction for Security+ scenarios.</p>
     </div>
 
     <h2>VLANs in Detail</h2>
@@ -758,10 +758,10 @@ tbody tr:hover td{background:#f5f3ff;}
     <div class="callout blue">
       <div class="callout-label">Jump Server / Bastion Host</div>
       <p>A <strong>jump server</strong> (also called a bastion host or jump box) is a hardened server that acts as the only access point for administrators to reach a restricted network segment. Instead of allowing direct SSH or RDP into production servers, admins connect to the jump server first, then connect onward from there.</p>
-      <p>This creates a single audited chokepoint for all administrative traffic. If the jump server is compromised, the attacker still cannot reach production systems without additional credentials. Jump servers are tested on both Network+ (remote access) and Security+ (access control).</p>
+      <p>This creates a single audited chokepoint for all administrative traffic. If the jump server is compromised, the attacker still cannot reach production systems without additional credentials. Know jump servers for both Network+ (remote access) and Security+ (access control).</p>
     </div>
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario-item">💬 "A company wants to host a public web server that can be reached from the internet while keeping internal workstations protected. Which network design should the administrator implement?" → <strong>Place the web server in a DMZ (screened subnet) — a network zone separated from the internal network by a firewall. Internet users can reach the web server, but a second firewall prevents DMZ traffic from reaching the internal network. If the web server is compromised, the attacker faces another firewall before reaching internal systems.</strong></div>
       <div class="scenario-item">💬 "After a ransomware infection on a workstation, the malware spread to 30 other workstations on the same floor before being detected. Which network control would have most limited the spread?" → <strong>VLAN segmentation — placing workstations in separate VLANs with inter-VLAN routing controlled by a firewall would have contained lateral movement. Without segmentation, ransomware can spread freely across a flat Layer 2 network. With VLANs, the firewall can block or limit SMB traffic between segments.</strong></div>
@@ -803,7 +803,7 @@ tbody tr:hover td{background:#f5f3ff;}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

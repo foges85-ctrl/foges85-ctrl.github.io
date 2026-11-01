@@ -523,7 +523,7 @@ tbody tr:hover td{background:#f0fdf4;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ Why the Command Line Matters</div>
       <div class="quick-answer-text">
-        For the Windows command line on A+ Core 2, know not just "what does ipconfig do" but <strong>which specific switch solves the problem in the scenario</strong>. A user can't connect after moving to a new office (<code>ipconfig /release</code> and <code>/renew</code>). A user's profile is corrupted (<code>sfc /scannow</code>). You need to find what's running on port 443 (<code>netstat -an</code>). Knowing the command is step one — knowing the right switch is what the exam actually tests.
+        For the Windows command line on A+ Core 2, know not just "what does ipconfig do" but <strong>which specific switch solves the problem in the scenario</strong>. A user can't connect after moving to a new office (<code>ipconfig /release</code> and <code>/renew</code>). A user's profile is corrupted (<code>sfc /scannow</code>). You need to find what's running on port 443 (<code>netstat -an</code>). Knowing the command is step one — knowing the right switch is what solves the problem.
       </div>
     </div>
 
@@ -545,7 +545,7 @@ tbody tr:hover td{background:#f0fdf4;}
           <div class="cmd-syntax-row"><span class="cmd-syntax">ipconfig /flushdns</span><span class="cmd-comment">; clear the local DNS resolver cache</span></div>
           <div class="cmd-syntax-row"><span class="cmd-syntax">ipconfig /displaydns</span><span class="cmd-comment">; show cached DNS entries</span></div>
         </div>
-        <div class="cmd-exam"><strong>Exam scenarios:</strong> "User can't get online after moving to a new network — run <code>/release</code> then <code>/renew</code>." "User reaches wrong website despite URL being correct — run <code>/flushdns</code> to clear stale cached DNS entry." "169.254 address seen — DHCP failed, run <code>/release /renew</code> or check DHCP server."</div>
+        <div class="cmd-exam"><strong>Practice scenarios:</strong> "User can't get online after moving to a new network — run <code>/release</code> then <code>/renew</code>." "User reaches wrong website despite URL being correct — run <code>/flushdns</code> to clear stale cached DNS entry." "169.254 address seen — DHCP failed, run <code>/release /renew</code> or check DHCP server."</div>
       </div>
     </div>
 
@@ -581,7 +581,7 @@ tbody tr:hover td{background:#f0fdf4;}
           <div class="cmd-syntax-row"><span class="cmd-syntax">tracert 8.8.8.8</span><span class="cmd-comment">; trace path to Google DNS</span></div>
           <div class="cmd-syntax-row"><span class="cmd-syntax">tracert -d 8.8.8.8</span><span class="cmd-comment">; skip reverse DNS lookups (faster output)</span></div>
         </div>
-        <div class="cmd-exam"><strong>Exam scenarios:</strong> "A user has internet access but a specific website is slow — tracert identifies which hop is adding latency." "tracert fails at hop 3 — the router at that hop is unreachable or blocking ICMP." Linux/macOS equivalent: <code>traceroute</code>.</div>
+        <div class="cmd-exam"><strong>Practice scenarios:</strong> "A user has internet access but a specific website is slow — tracert identifies which hop is adding latency." "tracert fails at hop 3 — the router at that hop is unreachable or blocking ICMP." Linux/macOS equivalent: <code>traceroute</code>.</div>
       </div>
     </div>
 
@@ -600,7 +600,7 @@ tbody tr:hover td{background:#f0fdf4;}
           <div class="cmd-syntax-row"><span class="cmd-syntax">nslookup -type=MX gmail.com</span><span class="cmd-comment">; look up MX records for a domain</span></div>
           <div class="cmd-syntax-row"><span class="cmd-syntax">nslookup -type=TXT example.com</span><span class="cmd-comment">; retrieve TXT records (SPF, DMARC etc.)</span></div>
         </div>
-        <div class="cmd-exam"><strong>Exam scenarios:</strong> "A user can ping IPs but not hostnames — run nslookup to confirm DNS resolution is failing." "Email delivery is failing — run nslookup -type=MX to check MX records." "Check if DNS cache poisoning is occurring — query a trusted external DNS server to compare results."</div>
+        <div class="cmd-exam"><strong>Practice scenarios:</strong> "A user can ping IPs but not hostnames — run nslookup to confirm DNS resolution is failing." "Email delivery is failing — run nslookup -type=MX to check MX records." "Check if DNS cache poisoning is occurring — query a trusted external DNS server to compare results."</div>
       </div>
     </div>
 
@@ -621,7 +621,7 @@ tbody tr:hover td{background:#f0fdf4;}
           <div class="cmd-syntax-row"><span class="cmd-syntax">netstat -e</span><span class="cmd-comment">; Ethernet statistics — bytes sent/received, errors</span></div>
           <div class="cmd-syntax-row"><span class="cmd-syntax">netstat -r</span><span class="cmd-comment">; routing table (same as route print)</span></div>
         </div>
-        <div class="cmd-exam"><strong>Exam scenarios:</strong> "Identify which process is using port 8080 — run <code>netstat -ano</code> then find the PID in tasklist." "Suspected malware — run <code>netstat -an</code> to look for unexpected ESTABLISHED connections to external IPs."</div>
+        <div class="cmd-exam"><strong>Practice scenarios:</strong> "Identify which process is using port 8080 — run <code>netstat -ano</code> then find the PID in tasklist." "Suspected malware — run <code>netstat -an</code> to look for unexpected ESTABLISHED connections to external IPs."</div>
       </div>
     </div>
 
@@ -640,7 +640,7 @@ tbody tr:hover td{background:#f0fdf4;}
           <div class="cmd-syntax-row"><span class="cmd-syntax">sfc /verifyonly</span><span class="cmd-comment">; scan only, no repairs</span></div>
           <div class="cmd-syntax-row"><span class="cmd-syntax">DISM /Online /Cleanup-Image /RestoreHealth</span><span class="cmd-comment">; repair component store first if sfc fails</span></div>
         </div>
-        <div class="cmd-exam"><strong>Exam scenarios:</strong> "A user reports random application crashes and missing DLL errors — run <code>sfc /scannow</code> to repair corrupted system files." "sfc /scannow reports it could not repair some files — run DISM /RestoreHealth first, then re-run sfc."</div>
+        <div class="cmd-exam"><strong>Practice scenarios:</strong> "A user reports random application crashes and missing DLL errors — run <code>sfc /scannow</code> to repair corrupted system files." "sfc /scannow reports it could not repair some files — run DISM /RestoreHealth first, then re-run sfc."</div>
       </div>
     </div>
 
@@ -658,7 +658,7 @@ tbody tr:hover td{background:#f0fdf4;}
           <div class="cmd-syntax-row"><span class="cmd-syntax">chkdsk C: /r</span><span class="cmd-comment">; locate bad sectors + fix errors (implies /f, slower)</span></div>
           <div class="cmd-syntax-row"><span class="cmd-syntax">chkdsk D: /f /r</span><span class="cmd-comment">; fix + bad sector scan on data drive D:</span></div>
         </div>
-        <div class="cmd-exam"><strong>Exam scenarios:</strong> "A user reports files becoming corrupted and Windows showing disk errors — run <code>chkdsk /r</code> to check for bad sectors." "/f vs /r: <code>/f</code> fixes file system logical errors; <code>/r</code> does everything /f does plus physical bad sector scan."</div>
+        <div class="cmd-exam"><strong>Practice scenarios:</strong> "A user reports files becoming corrupted and Windows showing disk errors — run <code>chkdsk /r</code> to check for bad sectors." "/f vs /r: <code>/f</code> fixes file system logical errors; <code>/r</code> does everything /f does plus physical bad sector scan."</div>
       </div>
     </div>
 
@@ -677,7 +677,7 @@ tbody tr:hover td{background:#f0fdf4;}
           <div class="cmd-syntax-row"><span class="cmd-syntax">taskkill /IM notepad.exe</span><span class="cmd-comment">; terminate by image name</span></div>
           <div class="cmd-syntax-row"><span class="cmd-syntax">taskkill /PID 1234 /F</span><span class="cmd-comment">; force kill — use when graceful fails</span></div>
         </div>
-        <div class="cmd-exam"><strong>Exam scenarios:</strong> "From netstat -ano you found PID 4820 has an unexpected external connection — use tasklist to identify the process, then taskkill /PID 4820 /F to terminate it."</div>
+        <div class="cmd-exam"><strong>Practice scenarios:</strong> "From netstat -ano you found PID 4820 has an unexpected external connection — use tasklist to identify the process, then taskkill /PID 4820 /F to terminate it."</div>
       </div>
     </div>
 
@@ -718,7 +718,7 @@ tbody tr:hover td{background:#f0fdf4;}
           <div class="cmd-syntax-row"><span class="cmd-syntax">net user jsmith /delete</span><span class="cmd-comment">; delete account</span></div>
           <div class="cmd-syntax-row"><span class="cmd-syntax">net localgroup administrators jsmith /add</span><span class="cmd-comment">; add user to local admins group</span></div>
         </div>
-        <div class="cmd-exam"><strong>Exam scenarios:</strong> "An employee is on leave — disable their account: <code>net user jsmith /active:no</code>." "New temp worker needs a local account — <code>net user tempuser Pass1! /add</code>."</div>
+        <div class="cmd-exam"><strong>Practice scenarios:</strong> "An employee is on leave — disable their account: <code>net user jsmith /active:no</code>." "New temp worker needs a local account — <code>net user tempuser Pass1! /add</code>."</div>
       </div>
     </div>
 
@@ -736,7 +736,7 @@ tbody tr:hover td{background:#f0fdf4;}
           <div class="cmd-syntax-row"><span class="cmd-syntax">gpresult /r</span><span class="cmd-comment">; summary of applied policies for current user/computer</span></div>
           <div class="cmd-syntax-row"><span class="cmd-syntax">gpresult /h gp-report.html</span><span class="cmd-comment">; full HTML report of all applied GPOs</span></div>
         </div>
-        <div class="cmd-exam"><strong>Exam scenarios:</strong> "A new GPO was deployed but users aren't seeing the change — run <code>gpupdate /force</code> on affected machines." "Verify which GPOs are applying to a user — run <code>gpresult /r</code>."</div>
+        <div class="cmd-exam"><strong>Practice scenarios:</strong> "A new GPO was deployed but users aren't seeing the change — run <code>gpupdate /force</code> on affected machines." "Verify which GPOs are applying to a user — run <code>gpresult /r</code>."</div>
       </div>
     </div>
 
@@ -757,7 +757,7 @@ tbody tr:hover td{background:#f0fdf4;}
           <div class="cmd-syntax-row"><span class="cmd-syntax">list partition</span><span class="cmd-comment">; show partitions on selected disk</span></div>
           <div class="cmd-syntax-row"><span class="cmd-syntax">clean</span><span class="cmd-comment">; wipe all partition data from selected disk</span></div>
         </div>
-        <div class="cmd-exam"><strong>Exam scenarios:</strong> "Preparing a new drive for Windows installation — use diskpart to create and format partitions." "A drive shows as RAW — diskpart can reformat (after data backup)."</div>
+        <div class="cmd-exam"><strong>Practice scenarios:</strong> "Preparing a new drive for Windows installation — use diskpart to create and format partitions." "A drive shows as RAW — diskpart can reformat (after data backup)."</div>
       </div>
     </div>
 
@@ -774,7 +774,7 @@ tbody tr:hover td{background:#f0fdf4;}
           <div class="cmd-syntax-row"><span class="cmd-syntax">robocopy C:\Source D:\Dest /MIR</span><span class="cmd-comment">; mirror — exact copy, deletes files in dest not in source</span></div>
           <div class="cmd-syntax-row"><span class="cmd-syntax">xcopy C:\Source D:\Dest /E /H /Y</span><span class="cmd-comment">; copy all files, hidden files, no prompt to overwrite</span></div>
         </div>
-        <div class="cmd-exam"><strong>Exam note:</strong> robocopy is preferred over xcopy for A+ Core 2 — it's more reliable, handles long paths, and has better error handling. /MIR is used for backup sync jobs.</div>
+        <div class="cmd-exam"><strong>Exam note:</strong> robocopy is preferred over xcopy in practice — it's more reliable, handles long paths, and has better error handling. /MIR is used for backup sync jobs.</div>
       </div>
     </div>
 
@@ -806,13 +806,13 @@ tbody tr:hover td{background:#f0fdf4;}
     <div class="callout">
       <div class="callout-label">Opening the command prompt correctly</div>
       <p><strong>Standard CMD:</strong> Win+R → <code>cmd</code> → Enter. Limited privileges — cannot run commands that require admin.</p>
-      <p><strong>Elevated CMD (Run as Administrator):</strong> Search "cmd" → right-click → "Run as administrator." Required for sfc, chkdsk /f, net user changes, and most system commands. Many A+ exam scenarios specifically note that admin privileges are needed.</p>
-      <p><strong>PowerShell vs CMD:</strong> PowerShell is the modern shell and can run all CMD commands plus its own cmdlets. The A+ Core 2 exam tests CMD commands specifically — know both exist but focus on CMD syntax for the exam.</p>
+      <p><strong>Elevated CMD (Run as Administrator):</strong> Search "cmd" → right-click → "Run as administrator." Required for sfc, chkdsk /f, net user changes, and most system commands. Know which commands need admin privileges.</p>
+      <p><strong>PowerShell vs CMD:</strong> PowerShell is the modern shell and can run all CMD commands plus its own cmdlets. Focus on the CMD commands in Core 2 objective 1.5 — know both shells exist, but practice CMD syntax.</p>
     </div>
 
     <hr class="divider">
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario-item">💬 "A user moved to a new building and cannot get an IP address. Their adapter shows 169.254.x.x. Which commands should the technician run?" → <strong><code>ipconfig /release</code> followed by <code>ipconfig /renew</code> — releases the failed APIPA address and requests a new DHCP lease on the new network.</strong></div>
       <div class="scenario-item">💬 "A user can ping 8.8.8.8 but cannot reach google.com by name. Which command diagnoses the DNS problem?" → <strong><code>nslookup google.com</code> — confirms DNS resolution is failing. Also run <code>ipconfig /flushdns</code> to clear any stale cached entries.</strong></div>
@@ -861,7 +861,7 @@ tbody tr:hover td{background:#f0fdf4;}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

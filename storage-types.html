@@ -514,7 +514,7 @@ tbody tr:hover td{background:#f0fdf4;}
     </nav>
     <div class="page-hero-badge">CompTIA A+ · 220-1201 · 2026</div>
     <h1>Storage Types <span>Explained</span></h1>
-    <p class="page-hero-sub">HDD, SSD, NVMe, M.2, SATA, PCIe, form factors, and RAID levels — every storage concept tested on the CompTIA A+ 220-1201 exam, explained clearly with real-world context.</p>
+    <p class="page-hero-sub">HDD, SSD, NVMe, M.2, SATA, PCIe, form factors, and RAID levels — every storage concept to know for the CompTIA A+ 220-1201 exam, explained clearly with real-world context.</p>
   </div>
 </section>
 
@@ -535,7 +535,7 @@ tbody tr:hover td{background:#f0fdf4;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ Storage at a Glance</div>
       <div class="quick-answer-text">
-        The A+ exam tests three storage technology generations: <strong>HDD</strong> (magnetic spinning disks — slow but cheap), <strong>SATA SSD</strong> (flash storage on the SATA bus — much faster than HDD), and <strong>NVMe SSD</strong> (flash storage on the PCIe bus — the fastest consumer storage available). Form factors include <strong>2.5-inch</strong> (laptops/desktops), <strong>3.5-inch</strong> (desktops), and <strong>M.2</strong> (small stick form factor, can be SATA or NVMe). <strong>RAID</strong> combines multiple drives for redundancy or performance.
+        Know three storage technology generations: <strong>HDD</strong> (magnetic spinning disks — slow but cheap), <strong>SATA SSD</strong> (flash storage on the SATA bus — much faster than HDD), and <strong>NVMe SSD</strong> (flash storage on the PCIe bus — the fastest consumer storage available). Form factors include <strong>2.5-inch</strong> (laptops/desktops), <strong>3.5-inch</strong> (desktops), and <strong>M.2</strong> (small stick form factor, can be SATA or NVMe). <strong>RAID</strong> combines multiple drives for redundancy or performance.
       </div>
     </div>
 
@@ -603,13 +603,13 @@ tbody tr:hover td{background:#f0fdf4;}
           <tr><td class="td-term">3.5-inch</td><td>Standard desktop</td><td>HDDs only — desktops and NAS enclosures</td><td>Requires 4-pin Molex or SATA power; fits desktop drive bays</td></tr>
           <tr><td class="td-term">2.5-inch</td><td>Laptop size</td><td>HDDs and SATA SSDs — laptops and desktops with adapter bracket</td><td>Thinner than 3.5" — most laptop drives are 2.5"</td></tr>
           <tr><td class="td-term">M.2</td><td>Small stick (22mm wide)</td><td>SATA SSDs OR NVMe SSDs — determined by the drive's key type</td><td>M.2 is a form factor, not a protocol — check if slot is SATA, NVMe, or both</td></tr>
-          <tr><td class="td-term">mSATA</td><td>Mini card</td><td>Older SATA SSDs — mostly legacy laptops and embedded systems</td><td>Replaced by M.2 — still appears on A+ exam as legacy connector</td></tr>
+          <tr><td class="td-term">mSATA</td><td>Mini card</td><td>Older SATA SSDs — mostly legacy laptops and embedded systems</td><td>Replaced by M.2 — still worth knowing as a legacy connector</td></tr>
         </tbody>
       </table>
     </div>
 
     <h3>M.2 Key Types</h3>
-    <p>M.2 drives have a notch called a "key" that determines compatibility. This is a common A+ exam topic because M.2 slots and drives must have matching keys:</p>
+    <p>M.2 drives have a notch called a "key" that determines compatibility. This matters because M.2 slots and drives must have matching keys:</p>
 
     <div class="table-wrap">
       <table>
@@ -629,7 +629,7 @@ tbody tr:hover td{background:#f0fdf4;}
     </div>
 
     <h2>RAID — Redundant Array of Independent Disks</h2>
-    <p>RAID combines multiple drives to provide either <strong>fault tolerance</strong> (data survives a drive failure) or <strong>improved performance</strong> (or both). The A+ exam tests RAID 0, 1, 5, 6, and 10 — you must know how each works, the minimum drives required, and what happens when a drive fails.</p>
+    <p>RAID combines multiple drives to provide either <strong>fault tolerance</strong> (data survives a drive failure) or <strong>improved performance</strong> (or both). For A+, know RAID 0, 1, 5, 6, and 10 — how each works, the minimum drives required, and what happens when a drive fails.</p>
 
     <div class="raid-grid">
 
@@ -740,7 +740,7 @@ tbody tr:hover td{background:#f0fdf4;}
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ RAID exam tips</div>
-      <p><strong>RAID is NOT a backup.</strong> This is the most important RAID concept on the exam. RAID protects against drive failure — it does not protect against accidental deletion, ransomware, or corruption (which replicates to all mirrors instantly). Backups and RAID serve different purposes.</p>
+      <p><strong>RAID is NOT a backup.</strong> This is the most important RAID concept. RAID protects against drive failure — it does not protect against accidental deletion, ransomware, or corruption (which replicates to all mirrors instantly). Backups and RAID serve different purposes.</p>
       <p><strong>RAID 0 has no fault tolerance</strong> — any drive failure destroys all data. <strong>RAID 1 and RAID 5 can each survive one drive failure</strong>; <strong>RAID 6 survives two</strong>. <strong>RAID 10 can survive one failure per mirror pair</strong>. "Which RAID level provides redundancy with the best write performance?" → <strong>RAID 10</strong>.</p>
     </div>
 
@@ -760,7 +760,7 @@ tbody tr:hover td{background:#f0fdf4;}
 
     <hr class="divider">
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario-item">💬 "A user installs an M.2 drive into a new laptop and it is not detected. The drive is NVMe but the M.2 slot only supports SATA. What is the issue?" → <strong>Protocol mismatch — the M.2 slot is SATA-only and does not support NVMe (PCIe). The drive requires a slot with PCIe/NVMe support.</strong></div>
       <div class="scenario-item">💬 "A hard drive makes a clicking sound during operation. What does this typically indicate?" → <strong>Imminent drive failure — the read/write head is failing (head crash or bearing failure). Back up data immediately.</strong></div>
@@ -805,7 +805,7 @@ tbody tr:hover td{background:#f0fdf4;}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>
