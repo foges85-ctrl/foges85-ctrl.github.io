@@ -390,6 +390,9 @@ tbody tr:hover td{background:var(--light);}
   }
 }
 /* ---- end mobile nav ---- */
+
+/* ── Body text links (Oct 2026) ── */
+.article-body p a:not([class]), .article-body li a:not([class]), .article-body td a:not([class]) { color:#155bd9; text-decoration:underline; }
 </style>
 
 
@@ -558,7 +561,7 @@ tbody tr:hover td{background:var(--light);}
 
 <p>Several MFA concepts are frequently misunderstood or tested as trick questions on Security+ exams. Being aware of these specific traps will help you avoid losing points on otherwise well-understood topics.</p>
 
-<p><strong>Two-step verification is not the same as two-factor authentication.</strong> Two-step verification simply means two sequential authentication steps — these steps could both be knowledge factors (password then a security question). True MFA requires factors from two different categories. The exam may present scenarios where a system uses "two-step" login but both steps are knowledge-based — that is not MFA. Only when different factor categories are combined does it count as MFA.</p>
+<p><strong>Two-step verification is not the same as two-factor authentication.</strong> Two-step verification simply means two sequential authentication steps — these steps could both be knowledge factors (password then a security question). True MFA requires factors from two different categories. If a system uses "two-step" login but both steps are knowledge-based, that is not MFA. Only when different factor categories are combined does it count as MFA. Password length, complexity and lockout settings for a Windows PC are covered in <a href="workstation-and-browser-hardening.html">workstation and browser hardening</a>.</p>
 
 <p><strong>The order of factor verification does not determine which factor is "primary."</strong> Some exam candidates assume the password is always factor 1 and the OTP is factor 2, but this is just convention. The authentication is equally valid regardless of which factor is verified first. What matters is that factors from at least two different categories are required before access is granted.</p>
 

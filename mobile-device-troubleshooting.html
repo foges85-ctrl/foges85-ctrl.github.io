@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/mobile-device-troubleshooting.html">
+
+<title>Mobile Device Troubleshooting for CompTIA A+ (5.4, 3.2, 3.3)</title>
+<meta name="description" content="Symptom tables for CompTIA A+ mobile troubleshooting: hardware issues (220-1201 objective 5.4), mobile OS and app issues (220-1202 3.2) and mobile security issues (3.3), with fixes from Apple and Google.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--teal2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--navy);
+  letter-spacing: -0.3px;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.logo-img { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+
+.nav-links a {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+  text-decoration: none;
+}
+
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.active { color: var(--navy); background: var(--light); }
+
+.nav-links a.nav-cta {
+  background: var(--navy);
+  color: var(--white) !important;
+  padding: 8px 18px;
+  border-radius: 8px;
+  margin-left: 6px;
+  transition: background 0.15s, transform 0.1s;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 44px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+  padding: 52px 28px 60px;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(0,194,168,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.page-hero-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 18px;
+  font-family: 'DM Mono', monospace;
+}
+
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; text-decoration: none; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+
+.page-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(0,194,168,0.15);
+  border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(24px, 4vw, 38px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.18;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+
+.page-hero h1 span { color: var(--teal); }
+
+.page-hero-sub {
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+/* ── ARTICLE LAYOUT ── */
+.article-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 52px 28px 80px;
+}
+
+@media (max-width: 768px) { .article-wrap { padding: 32px 16px 60px; } }
+
+.article-body h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.3px;
+  margin: 40px 0 14px;
+}
+
+.article-body h2:first-child { margin-top: 0; }
+
+.article-body p {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.75;
+  margin-bottom: 14px;
+}
+
+.article-body strong { color: var(--navy); font-weight: 700; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+/* ── APIPA ALERT BANNER ── */
+.apipa-banner {
+  background: var(--navy);
+  border-radius: 14px;
+  padding: 22px 26px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.apipa-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 100% 50%, rgba(0,194,168,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.apipa-banner-ip {
+  font-family: 'DM Mono', monospace;
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--teal);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.apipa-banner-info { flex: 1; }
+
+.apipa-banner-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 4px;
+}
+
+.apipa-banner-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.apipa-banner-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 2px;
+}
+
+/* ── TRIGGER STEPS ── */
+.trigger-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 28px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+
+.trigger-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+
+.trigger-step:last-child { border-bottom: none; }
+
+.trigger-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.trigger-step:nth-child(3) .trigger-num { background: #f97316; }
+
+.trigger-text { font-size: 14px; color: var(--text); line-height: 1.6; }
+.trigger-text strong { color: var(--navy); }
+
+/* ── CODE BLOCK ── */
+.code-block {
+  background: var(--navy);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 4px 0 20px;
+  overflow-x: auto;
+}
+
+.code-block pre {
+  font-family: 'DM Mono', monospace;
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.code-block .code-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.code-highlight { color: var(--teal); }
+
+/* ── CAUSES GRID ── */
+.causes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 560px) { .causes-grid { grid-template-columns: 1fr; } }
+
+.cause-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 16px;
+  box-shadow: var(--card-shadow);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.cause-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(249,115,22,0.1);
+  border-radius: 8px;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* ── MEMORY TRICK ── */
+.memory-trick {
+  background: linear-gradient(135deg, #f0faf8, #e8f4ff);
+  border: 1px solid rgba(0,194,168,0.25);
+  border-left: 4px solid var(--teal);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 4px 0 28px;
+}
+
+.memory-trick-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--teal2);
+  margin-bottom: 8px;
+}
+
+.memory-trick-phrase {
+  font-family: 'Outfit', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.memory-trick-sub {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.memory-trick-sub strong { color: var(--navy); }
+
+/* ── FIX STEPS ── */
+.fix-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.fix-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: var(--card-shadow);
+}
+
+.fix-step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: var(--navy);
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.fix-step-content { flex: 1; }
+
+.fix-step-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.fix-step-detail {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.fix-step-detail code {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  background: var(--light);
+  color: var(--navy);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+/* ── REAL WORLD SCENARIO ── */
+.scenario-box {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 28px;
+}
+
+.scenario-header {
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.scenario-step {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  align-items: flex-start;
+}
+
+.scenario-step-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--slate);
+  white-space: nowrap;
+  padding-top: 2px;
+  min-width: 72px;
+}
+
+.scenario-step-content {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.scenario-step-content em { color: var(--muted); font-style: italic; }
+
+.scenario-result {
+  background: linear-gradient(135deg, #f0faf8, #edfaf7);
+  border: 1px solid rgba(0,194,168,0.2);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.65;
+  margin-top: 14px;
+}
+
+.scenario-result strong { color: var(--navy); }
+
+/* ── EXAM TIP ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060;
+  border-left: 4px solid #f0c000;
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin: 4px 0 28px;
+}
+
+.exam-tip-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #b08000;
+  margin-bottom: 10px;
+}
+
+.exam-tip p {
+  font-size: 14px;
+  color: #5a4000;
+  margin-bottom: 8px;
+  line-height: 1.65;
+}
+
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #3a2800; }
+
+/* ── SUMMARY LIST ── */
+.summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.summary-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 16px;
+  font-size: 14px;
+  color: var(--text);
+  box-shadow: var(--card-shadow);
+}
+
+.summary-item::before {
+  content: '✓';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: rgba(0,194,168,0.12);
+  color: var(--teal2);
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── AFFILIATE BOX ── */
+.affiliate-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.affiliate-box::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.affiliate-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+
+.affiliate-box h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.affiliate-box p { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 18px; }
+.affiliate-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.aff-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.15s, filter 0.15s;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.aff-btn:hover { transform: translateY(-2px); filter: brightness(1.05); text-decoration: none; }
+.aff-btn-primary { background: var(--teal); color: var(--navy); }
+.aff-btn-secondary { background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.15); }
+
+/* ── RELATED ARTICLES ── */
+.related-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+@media (max-width: 560px) { .related-grid { grid-template-columns: 1fr; } }
+
+.related-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s, color 0.15s;
+  box-shadow: var(--card-shadow);
+}
+
+.related-link:hover {
+  border-color: rgba(0,194,168,0.3);
+  color: var(--teal2);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.related-link::before { content: '→'; color: var(--teal2); font-size: 13px; flex-shrink: 0; }
+
+/* ── CTA BOX ── */
+.cta-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-box-text h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.btn:hover { transform: translateY(-2px); text-decoration: none; }
+.btn-teal { background: var(--teal); color: var(--navy); box-shadow: 0 6px 20px rgba(0,194,168,0.3); }
+.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; text-decoration: none; }
+.footer-links a:hover { color: var(--teal); }
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 28px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .footer { padding: 36px 16px; }
+  .footer-bottom { flex-direction: column; }
+  .cta-box { flex-direction: column; align-items: flex-start; }
+  .apipa-banner { flex-direction: column; gap: 10px; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-hero-inner { animation: fadeUp 0.6s ease both; }
+
+.footer-email { color:rgba(255,255,255,0.55); }
+.footer-pp { color:rgba(255,255,255,0.55); }
+
+/* ── CERTFLASH APP BANNER ── */
+.app-banner {
+  background: linear-gradient(90deg, #0d1f3c 0%, #0a2a50 100%);
+  border-bottom: 1px solid rgba(0,194,168,0.25);
+  padding: 9px 48px 9px 28px;
+  text-align: center;
+  position: relative;
+  z-index: 101;
+}
+.app-banner-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.app-banner-text {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.82);
+  letter-spacing: 0.1px;
+}
+.app-banner-text strong { color: var(--teal); font-weight: 700; }
+.app-banner-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--teal);
+  color: var(--navy) !important;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 5px 15px;
+  border-radius: 100px;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.1s;
+}
+.app-banner-cta:hover { background: #00a896; color: var(--navy) !important; transform: translateY(-1px); }
+.app-banner-close {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.35);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 6px;
+  transition: color 0.15s;
+}
+.app-banner-close:hover { color: rgba(255,255,255,0.75); }
+@media (max-width: 600px) {
+  .app-banner { padding: 8px 40px 8px 16px; }
+  .app-banner-text { font-size: 12.5px; }
+}
+
+/* ── AUTHOR BAR ── */
+.author-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+.author-bar-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.author-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800; font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.author-info {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.author-name {
+  font-size: 14px; font-weight: 700; color: var(--navy);
+}
+.author-creds {
+  font-size: 12px; color: var(--muted);
+}
+.author-date {
+  margin-left: auto;
+  font-size: 12px; color: var(--muted);
+  white-space: nowrap;
+}
+@media (max-width: 768px) {
+  .author-bar-inner { padding: 12px 16px; }
+  .author-date { display: none; }
+}
+
+
+/* ── AUTHOR BIO ── */
+.author-bio {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 36px 28px;
+}
+.author-bio-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+.author-bio-avatar {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800; font-size: 22px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.author-bio-content { flex: 1; }
+.author-bio-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .8px; text-transform: uppercase;
+  color: var(--teal2, #00a892);
+  margin-bottom: 6px;
+}
+.author-bio-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px; font-weight: 800;
+  color: var(--navy); margin-bottom: 4px;
+}
+.author-bio-creds {
+  font-size: 13px; color: var(--muted);
+  margin-bottom: 12px;
+}
+.author-bio-text {
+  font-size: 14px; color: var(--text);
+  line-height: 1.7; margin-bottom: 14px;
+}
+.author-bio-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 600;
+  color: var(--blue, #1a6cff);
+  text-decoration: none;
+}
+.author-bio-link:hover { text-decoration: underline; }
+@media (max-width: 600px) {
+  .author-bio-inner { flex-direction: column; gap: 16px; }
+  .author-bio-avatar { width: 52px; height: 52px; font-size: 18px; }
+  .author-bio { padding: 28px 16px; }
+}
+
+
+/* ── FROM FOGARTY HOLDINGS PORTFOLIO ── */
+.footer-portfolio {
+  max-width: 1100px;
+  margin: 0 auto 24px;
+  padding: 22px 0 26px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-portfolio-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 18px;
+}
+.footer-portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: end;
+}
+.footer-portfolio-app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 92px;
+}
+.footer-portfolio-app-meta { display: flex; align-items: center; gap: 12px; }
+.footer-portfolio-app-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  display: block;
+  background: rgba(255,255,255,0.04);
+}
+.footer-portfolio-app-text { display: flex; flex-direction: column; gap: 2px; }
+.footer-portfolio-app-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.3;
+}
+.footer-portfolio-app-desc {
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.4;
+}
+.footer-portfolio-badge { display: inline-block; line-height: 0; }
+.footer-portfolio-badge img { height: 40px; width: auto; display: block; }
+@media (max-width: 640px) {
+  .footer-portfolio-grid { grid-template-columns: 1fr; gap: 22px; }
+  .footer-portfolio-app { min-height: 0; }
+}
+
+/* ---- MOBILE NAV: collapsible menu (added 2026-08-05) ---- */
+.nav-toggle { display: none; }
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0 10px;
+    background: rgba(255,255,255,0.94);
+    border: 1px solid rgba(10,22,40,0.18);
+    border-radius: 8px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background: #0a1628;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* The open panel expands the navbar itself instead of overlaying the page, so
+     it sits on the navbar's own painted background and each page's own link
+     colours stay legible on it. No navbar colour is assumed here. */
+  .navbar .nav-inner { flex-wrap: wrap; }
+  .navbar.open .nav-inner { height: auto; padding-bottom: 10px; }
+  .navbar .nav-links {
+    display: none;
+    width: 100%;
+    order: 3;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    margin: 0;
+    padding: 4px 0 0;
+    list-style: none;
+    overflow-x: visible;
+    overflow-y: auto;
+    max-height: 70vh;
+  }
+  .navbar.open .nav-links { display: flex; }
+  .navbar .nav-links li { list-style: none; width: 100%; margin: 0; }
+  .navbar .nav-links a {
+    display: block;
+    width: 100%;
+    font-size: 15px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    white-space: normal;
+  }
+  .navbar .nav-links a.nav-cta {
+    margin-left: 0;
+    margin-top: 4px;
+    padding: 14px 18px;
+    text-align: center;
+  }
+}
+/* ---- end mobile nav ---- */
+
+/* ── AFFILIATE BOX FIXES ── */
+@media (max-width:600px){ .aff-btn { white-space:normal; } }
+.affiliate-box h2 { margin-top:0; }
+/* quick-answer box: copied verbatim from ip-address-classes.html */
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(0,194,168,.15) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#5eead4;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+
+/* ── Round 3 link contrast (Oct 2026) ── */
+.article-body p a:not([class]), .article-body li a:not([class]), .article-body td a:not([class]) { color:#155bd9; text-decoration:underline; }
+
+/* ── Round 4 page additions ── */
+.article-body h3{font-family:'Outfit',sans-serif;font-size:17px;font-weight:800;color:var(--navy);margin:28px 0 10px;}
+.article-body ul,.article-body ol{margin:0 0 16px 22px;}
+.article-body li{font-size:15px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.article-body code{font-family:'DM Mono',monospace;font-size:13px;background:var(--light);padding:1px 6px;border-radius:5px;}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:32px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:520px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.75);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 16px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 16px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+.td-term{font-weight:700;color:var(--navy);}
+.obj-box{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--navy);border-radius:12px;padding:16px 20px;margin:0 0 28px;}
+.obj-box-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;}
+.obj-box p{margin-bottom:6px;font-size:14px;}
+.obj-box p:last-child{margin-bottom:0;}
+.steps-official{counter-reset:none;}
+.src-list li{font-size:13.5px;}
+.article-body p a:not([class]), .article-body li a:not([class]), .article-body td a:not([class]), .obj-box a:not([class]) { color:#155bd9; text-decoration:underline; }
+
+</style>
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
+     crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "A+ Study Guide",
+      "item": "https://itstudyhub.org/comptia-aplus-study-guide.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Mobile Device Troubleshooting",
+      "item": "https://itstudyhub.org/mobile-device-troubleshooting.html"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mobile Device Troubleshooting for CompTIA A+ (5.4, 3.2, 3.3)",
+  "description": "Symptom tables for CompTIA A+ mobile troubleshooting: hardware issues (220-1201 objective 5.4), mobile OS and app issues (220-1202 3.2) and mobile security issues (3.3), with fixes from Apple and Google.",
+  "author": {
+    "@type": "Person",
+    "name": "Sean Fogarty",
+    "url": "https://itstudyhub.org/about.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "IT Study Hub",
+    "url": "https://itstudyhub.org",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://itstudyhub.org/favicon-512x512.png"
+    }
+  },
+  "datePublished": "2026-10-31",
+  "dateModified": "2026-10-31",
+  "url": "https://itstudyhub.org/mobile-device-troubleshooting.html",
+  "mainEntityOfPage": "https://itstudyhub.org/mobile-device-troubleshooting.html",
+  "inLanguage": "en"
+}
+</script>
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="IT Study Hub">
+  <meta property="og:url" content="https://itstudyhub.org/mobile-device-troubleshooting.html">
+  <meta property="og:title" content="Mobile Device Troubleshooting for CompTIA A+ (5.4, 3.2, 3.3)">
+  <meta property="og:description" content="Symptom tables for CompTIA A+ mobile troubleshooting: hardware issues (220-1201 objective 5.4), mobile OS and app issues (220-1202 3.2) and mobile security issues (3.3), with fixes from Apple and Google.">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<!-- CERTFLASH APP BANNER -->
+<div class="app-banner" id="certflashBanner">
+  <div class="app-banner-inner">
+    <span class="app-banner-text">📱 iOS App — <strong>CertFlash</strong>: CompTIA flashcards built for exam day.</span>
+    <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835?pt=128750067&ct=itstudyhub&mt=8"
+       class="app-banner-cta" target="_blank" rel="noopener noreferrer">
+      Get it on the App Store ↗
+    </a>
+  </div>
+  <button class="app-banner-close" aria-label="Dismiss"
+    onclick="document.getElementById('certflashBanner').style.display='none'">×</button>
+</div>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo-link">
+      <img src="favicon-128x128.png" alt="IT Study Hub Logo" class="logo-img" width="52" height="52">
+      <span>IT Study Hub</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"
+      onclick="var b=this.closest('.navbar'),o=b.classList.toggle('open');this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'Close menu':'Open menu');">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="/">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="/">Home</a>
+      <span>›</span>
+      <a href="comptia-aplus-study-guide.html">A+ Study Guide</a>
+      <span>›</span>
+      <span>Mobile Device Troubleshooting</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · 220-1201 5.4 · 220-1202 3.2 &amp; 3.3</div>
+    <h1>Mobile Device <span>Troubleshooting</span></h1>
+    <p class="page-hero-sub">
+      Hardware, OS, app and security problems on phones and tablets, organized as symptom tables with causes and fixes from Apple and Android documentation.
+    </p>
+  </div>
+</section>
+
+<div class="author-bar">
+  <div class="author-bar-inner">
+    <div class="author-avatar">SF</div>
+    <div class="author-info">
+      <span class="author-name">Sean Fogarty</span>
+      <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
+    </div>
+    <div class="author-date">Updated October 2026</div>
+  </div>
+</div>
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Quick Answer</div>
+      <div class="quick-answer-text">
+        <strong>Mobile troubleshooting for A+ spans three objectives: hardware symptoms such as battery, screen, charging, port and liquid problems (220-1201 objective 5.4), OS and app problems such as crashes, failed updates, battery drain and Wi-Fi/Bluetooth/NFC trouble (220-1202 objective 3.2), and security issues such as unofficial app stores, developer mode, jailbreaking or rooting, and their symptoms (220-1202 objective 3.3).</strong> Start with the least invasive fix: restart, update, check settings and storage, test in safe mode, and only then reset or repair.
+      </div>
+    </div>
+
+    <div class="obj-box">
+      <div class="obj-box-label">CompTIA A+ objectives on this page</div>
+      <p><strong>220-1201 5.4</strong> Given a scenario, troubleshoot common mobile device issues.</p>
+      <p><strong>220-1202 3.2</strong> Given a scenario, troubleshoot common mobile OS and application issues.</p>
+      <p><strong>220-1202 3.3</strong> Given a scenario, troubleshoot common mobile OS and application security issues.</p>
+      <p>Wording from the official <a href="https://lecbyo.files.cmp.optimizely.com/download/34be017cb73211ef8985a6f347fbf652" target="_blank" rel="noopener">220-1201</a> and <a href="https://lecbyo.files.cmp.optimizely.com/download/cefedfb2b8a511ef809306d06d323538" target="_blank" rel="noopener">220-1202</a> exam objectives (document version 4.0). Fixes are sourced to Apple Support and Google&rsquo;s Android, Pixel and Google Play help. Pixel pages describe Google Pixel phones; menus on other Android phones can differ.</p>
+    </div>
+
+    <h2>How do you troubleshoot common mobile device hardware issues?</h2>
+    <p>Match the symptom to its most likely cause, try the safe, reversible fixes first, and send the device for repair when the problem is physical. These are the 14 symptoms objective 5.4 lists.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Symptom</th><th>Likely causes</th><th>What to do</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Poor battery health</td><td>Batteries are consumables whose capacity declines with age; iPhone shows Battery Health and a &ldquo;Service&rdquo; label, and Pixel 8a and later show &ldquo;Reduced&rdquo; below 80% capacity (<a href="https://support.apple.com/en-us/120745" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/pixelphone/answer/15738128?hl=en" target="_blank" rel="noopener">Google</a>). An aged battery makes unexpected shutdowns more likely (<a href="https://support.apple.com/en-us/101575" target="_blank" rel="noopener">Apple</a>).</td><td>Check battery health in Settings; replace the battery when the device recommends it (<a href="https://support.apple.com/en-us/101575" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/pixelphone/answer/15738128?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Swollen battery</td><td>Signs include a phone that looks thicker than usual or a bulging back cover (Google lists these for an affected Pixel 7a batch) (<a href="https://support.google.com/pixelphone/answer/16043453?hl=en" target="_blank" rel="noopener">Google</a>); Google&rsquo;s Pixel guidance says swelling can lift the screen and an exposed battery can overheat (<a href="https://support.google.com/pixelphone/answer/15738128?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Stop using it, set it on a flat surface, don&rsquo;t press it back in place, pry it open or try to repair it, and don&rsquo;t put it in household trash; arrange repair (<a href="https://support.google.com/pixelphone/answer/15738128?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Broken screen</td><td>Physical damage such as cracks or chips; flicker, lines or no display may also be hardware (<a href="https://support.google.com/pixelphone/answer/16250690?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Inspect the screen (<a href="https://support.google.com/android/answer/7666942?hl=en" target="_blank" rel="noopener">Google</a>), then arrange repair; Apple&rsquo;s warranty doesn&rsquo;t cover accidental damage (<a href="https://support.apple.com/iphone/repair/screen-replacement" target="_blank" rel="noopener">Apple</a>).</td></tr>
+          <tr><td class="td-term">Improper charging</td><td>A dirty or damaged charging port, a damaged or unsupported cable or adapter, or a charger not designed for devices; heat or cold can pause charging, and features such as Optimized Battery Charging can hold at 80% (<a href="https://support.apple.com/en-us/108805" target="_blank" rel="noopener">Apple</a>, <a href="https://support.apple.com/en-us/118431" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/pixelphone/answer/7167687?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Clear debris from the port, try another cable and adapter, remove the case, and let the device charge for 30 minutes before deciding it needs service (<a href="https://support.apple.com/en-us/108805" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/pixelphone/answer/7167687?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Poor/no connectivity</td><td>No cellular coverage, an inactive account, a damaged SIM or missing carrier settings update; on Pixel, Battery Saver turns off 5G, and heat can weaken signal (<a href="https://support.apple.com/en-us/120000" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/pixelphone/answer/14116080?hl=en" target="_blank" rel="noopener">Google</a>, <a href="https://support.apple.com/en-us/118431" target="_blank" rel="noopener">Apple</a>).</td><td>Toggle Airplane Mode, check for a carrier settings update, reseat or replace the SIM, and confirm the account with the carrier (<a href="https://support.apple.com/en-us/120000" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/android/answer/2651367?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Liquid damage</td><td>Water resistance isn&rsquo;t permanent and decreases with wear; liquid damage isn&rsquo;t covered by Apple&rsquo;s or Google&rsquo;s warranty (<a href="https://support.apple.com/en-us/108039" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/pixelphone/answer/7533279?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Tap the iPhone gently with the connector facing down, don&rsquo;t use heat, rice or cotton swabs, and wait at least 5 hours before wired charging (<a href="https://support.apple.com/en-us/108039" target="_blank" rel="noopener">Apple</a>); if a liquid alert appears, drying can take up to 24 hours (<a href="https://support.apple.com/en-us/102643" target="_blank" rel="noopener">Apple</a>); dry a Pixel at room temperature (<a href="https://support.google.com/pixelphone/answer/7533279?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Overheating</td><td>Use outside Apple&rsquo;s 0&ndash;35&deg;C (32&ndash;95&deg;F) operating range for iPhone and iPad, being left in a car, or the same issues that drain the battery; the device may dim the screen, slow down or shut off to protect itself (<a href="https://support.apple.com/en-us/118431" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/pixelphone/answer/3333708?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Unplug it, move it somewhere cooler and out of the sun, and don&rsquo;t use it until it cools; use only cases made for that phone (<a href="https://support.apple.com/en-us/118431" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/pixelphone/answer/3333708?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Digitizer issues</td><td>The touch layer not registering correctly. Neither vendor uses the word &ldquo;digitizer&rdquo;; both cover screens that respond intermittently or not at all (<a href="https://support.apple.com/en-us/102567" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/pixelphone/answer/6010316?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Clean the screen and remove cases, screen protectors and accessories (<a href="https://support.apple.com/en-us/102567" target="_blank" rel="noopener">Apple</a>). On Android, drag a finger corner to corner to find dead areas and test in safe mode (<a href="https://support.google.com/android/answer/7666942?hl=en" target="_blank" rel="noopener">Google</a>). If it persists, arrange repair.</td></tr>
+          <tr><td class="td-term">Physically damaged ports</td><td>A dirty or damaged port triggers accessory alerts; charging while the connector is wet can corrode the pins permanently (<a href="https://support.apple.com/en-us/108805" target="_blank" rel="noopener">Apple</a>, <a href="https://support.apple.com/en-us/102643" target="_blank" rel="noopener">Apple</a>).</td><td>If a dry iPhone shows the liquid-detection alert with every Apple cable, it likely needs service; if it happens with only one cable or accessory, suspect that item (<a href="https://support.apple.com/en-us/102643" target="_blank" rel="noopener">Apple</a>). Check for lint and a seated cable (<a href="https://support.google.com/pixelphone/answer/7167687?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Malware</td><td>Apps from untrusted sources or modified (jailbroken/rooted) systems; misleading security pop-ups are a scam tactic (<a href="https://support.apple.com/guide/iphone/unauthorized-modification-of-ios-iph9385bb26a/ios" target="_blank" rel="noopener">Apple</a>, <a href="https://support.apple.com/en-us/102568" target="_blank" rel="noopener">Apple</a>).</td><td>Install apps only from trusted stores, keep Google Play Protect on so it can remove harmful apps (<a href="https://support.google.com/googleplay/answer/2812853?hl=en" target="_blank" rel="noopener">Google</a>), and remove configuration profiles that shouldn&rsquo;t be there (<a href="https://support.apple.com/guide/personal-safety/review-and-delete-configuration-profiles-ips327569a75/web" target="_blank" rel="noopener">Apple</a>).</td></tr>
+          <tr><td class="td-term">Cursor drift/touch calibration</td><td>Touches registering in the wrong place or without input. The Apple and Google support pages cited here don&rsquo;t describe a touch-calibration tool.</td><td>Treat it like a digitizer problem: clean, remove protectors, and test in safe mode. Pixel offers Touch diagnostics and Adaptive touch or Screen protector mode (<a href="https://support.google.com/pixelphone/answer/6010316?hl=en" target="_blank" rel="noopener">Google</a>). Apple&rsquo;s Touch Accommodations, an accessibility feature for fine-motor needs, changes how the screen responds to touches; it isn&rsquo;t a calibration tool (<a href="https://support.apple.com/en-us/102222" target="_blank" rel="noopener">Apple</a>).</td></tr>
+          <tr><td class="td-term">Unable to install new applications</td><td>Low storage (Google cites under 1 GB), a weak connection, wrong date/time, or a missing payment method even for free apps (<a href="https://support.google.com/googleplay/answer/14122894?hl=en" target="_blank" rel="noopener">Google</a>, <a href="https://support.apple.com/en-us/102632" target="_blank" rel="noopener">Apple</a>). Play Protect can block an app known to be harmful from installing (<a href="https://support.google.com/googleplay/answer/2812853?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Free up storage, check the connection and automatic date/time, restart and retry (<a href="https://support.google.com/googleplay/answer/14122894?hl=en" target="_blank" rel="noopener">Google</a>, <a href="https://support.apple.com/en-us/102632" target="_blank" rel="noopener">Apple</a>).</td></tr>
+          <tr><td class="td-term">Stylus does not work</td><td>For Apple Pencil: an incompatible Pencil model, an uncharged Pencil, Bluetooth off, or outdated iPadOS (<a href="https://support.apple.com/en-us/108788" target="_blank" rel="noopener">Apple</a>).</td><td>Update iPadOS, charge the Pencil, turn on Bluetooth, forget and re-pair it, and remove iPad cases; if Pair never appears, get service (<a href="https://support.apple.com/en-us/108788" target="_blank" rel="noopener">Apple</a>).</td></tr>
+          <tr><td class="td-term">Degraded performance</td><td>An aged battery (iPhone performance management), heat, or storage under 10% free (<a href="https://support.apple.com/en-us/101575" target="_blank" rel="noopener">Apple</a>, <a href="https://support.apple.com/en-us/118431" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/android/answer/7667018?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Check battery health, let the device cool, and free up storage (<a href="https://support.apple.com/en-us/101575" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/android/answer/7667018?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Swollen batteries get the most caution: Google&rsquo;s Pixel guidance says swelling alone isn&rsquo;t a safety concern, but a lifted screen lets in liquid and dust, and an exposed battery can overheat and cause injury (<a href="https://support.google.com/pixelphone/answer/15738128?hl=en" target="_blank" rel="noopener">Google</a>).</p>
+
+    <h2>How do you fix mobile OS and app problems?</h2>
+    <p>Work from the app outward: close and reopen the app, update it, check storage and connectivity, restart the device, and use safe mode to rule out a problem app before resetting anything. These are the items in objective 3.2.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Issue</th><th>Likely causes</th><th>What to do</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Application fails to launch</td><td>A problem in the app itself, an outdated version, or a problem with the app&rsquo;s stored data (Android suggests clearing the app&rsquo;s cache and data) (<a href="https://support.apple.com/en-us/119876" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/android/answer/2668665?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Force-close and reopen it, update it, then delete and reinstall it (app data may be lost); if only one app fails, contact its developer (<a href="https://support.apple.com/en-us/119876" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/android/answer/2668665?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Application fails to close/crashes</td><td>An unresponsive app; jailbroken iOS can cause crashes and freezes (<a href="https://support.apple.com/guide/iphone/unauthorized-modification-of-ios-iph9385bb26a/ios" target="_blank" rel="noopener">Apple</a>).</td><td>Close it from the app switcher (close apps only when they&rsquo;re unresponsive) (<a href="https://support.apple.com/en-us/109359" target="_blank" rel="noopener">Apple</a>), or Force stop on Android, which isn&rsquo;t available for every app (<a href="https://support.google.com/pixelphone/answer/6090599?hl=en" target="_blank" rel="noopener">Google</a>). Force restart a frozen device (<a href="https://support.apple.com/en-us/118259" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/android/answer/7664998?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Application fails to update</td><td>Billing or verification problems, Low Data Mode turning off automatic updates, or stuck Google Play downloads (<a href="https://support.apple.com/en-us/102632" target="_blank" rel="noopener">Apple</a>, <a href="https://support.apple.com/en-us/102433" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/googleplay/answer/14122894?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Restart and retry, resolve billing messages, close and reopen the Play Store (<a href="https://support.apple.com/en-us/102632" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/googleplay/answer/14122894?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Application fails to install</td><td>Usually storage or store problems, as above (<a href="https://support.google.com/googleplay/answer/14122894?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Free up space; iOS can offload unused apps (<a href="https://support.apple.com/en-us/108905" target="_blank" rel="noopener">Apple</a>), and Android lists space in Settings &gt; Storage (<a href="https://support.google.com/android/answer/7431795?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Slow to respond</td><td>Network problems, storage under 10% free, a downloaded app, or battery-related performance management (<a href="https://support.google.com/android/answer/7667018?hl=en" target="_blank" rel="noopener">Google</a>, <a href="https://support.apple.com/en-us/101575" target="_blank" rel="noopener">Apple</a>).</td><td>Check the connection and storage, and boot into safe mode, which turns off downloaded apps, to find a problem app (<a href="https://support.google.com/android/answer/7667018?hl=en" target="_blank" rel="noopener">Google</a>). Closing all apps doesn&rsquo;t speed up an iPhone (<a href="https://support.apple.com/en-us/109359" target="_blank" rel="noopener">Apple</a>).</td></tr>
+          <tr><td class="td-term">OS fails to update</td><td>An unsupported device, not enough storage, a slow or blocked connection (a VPN or proxy can block update servers), or an incomplete download (<a href="https://support.apple.com/en-us/108905" target="_blank" rel="noopener">Apple</a>, <a href="https://support.apple.com/en-us/118575" target="_blank" rel="noopener">Apple</a>). Older Android devices can&rsquo;t always run newer versions (<a href="https://support.google.com/android/answer/7680439?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Back up, connect to power and Wi-Fi, free up space, delete and redownload the update; an Apple logo with no progress for minutes calls for recovery mode (<a href="https://support.apple.com/en-us/108905" target="_blank" rel="noopener">Apple</a>). On Android, charge to at least 75% (<a href="https://support.google.com/android/answer/7680439?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Battery life issues</td><td>A downloaded app using too much battery, weak signal, or normal background work after an update (<a href="https://support.google.com/pixelphone/answer/6090599?hl=en" target="_blank" rel="noopener">Google</a>, <a href="https://support.apple.com/en-us/120745" target="_blank" rel="noopener">Apple</a>). Jailbreaking can accelerate drain (<a href="https://support.apple.com/guide/iphone/unauthorized-modification-of-ios-iph9385bb26a/ios" target="_blank" rel="noopener">Apple</a>).</td><td>Check battery usage by app and restrict heavy apps, use Low Power Mode, and wait a few days after an update (<a href="https://support.apple.com/en-us/102432" target="_blank" rel="noopener">Apple</a>, <a href="https://support.apple.com/en-us/120745" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/pixelphone/answer/6090599?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Random reboots</td><td>An aged battery or cold, which Apple links to unexpected shutdowns, plus heat, low storage, accessories or a downloaded app (<a href="https://support.apple.com/en-us/101575" target="_blank" rel="noopener">Apple</a>, <a href="https://support.apple.com/en-us/118431" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/android/answer/7664448?hl=en" target="_blank" rel="noopener">Google</a>, <a href="https://support.google.com/pixelphone/answer/4582729?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Remove cases and battery packs, free up storage, then use safe mode and remove recent apps one at a time (<a href="https://support.google.com/android/answer/7664448?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Connectivity issues: Bluetooth</td><td>Accessory off, uncharged, not in pairing mode, paired elsewhere, or the app lacks Bluetooth permission (<a href="https://support.apple.com/en-us/111804" target="_blank" rel="noopener">Apple</a>).</td><td>Turn Bluetooth and the accessory off and on, pair again, check app permission, try 0000 or 1234 if a passcode is needed (<a href="https://support.apple.com/en-us/111804" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/android/answer/9769184?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Connectivity issues: Wi-Fi</td><td>Router or network problems, wrong date/time, VPN or security software, or a downloaded app (<a href="https://support.apple.com/en-us/111786" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/pixelphone/answer/6183600?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Test other devices, forget and rejoin the network, try the other band, and reset network settings only as a last resort (on iPhone it erases saved Wi-Fi, cellular, VPN and APN settings; on Pixel the option is Reset Bluetooth &amp; Wi-Fi) (<a href="https://support.apple.com/en-us/111786" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/pixelphone/answer/6183600?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Connectivity issues: Near-field communication (NFC)</td><td>NFC is short-range; payments fail if the device doesn&rsquo;t support NFC, NFC is off, there&rsquo;s no screen lock, a thick case or distance interrupts the signal, or the phone is rooted (<a href="https://support.apple.com/en-us/101554" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/wallet/answer/12200245?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Turn on NFC, set the default payment app, set a screen lock, unlock the phone and hold it near the antenna (<a href="https://support.google.com/wallet/answer/12200245?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Screen does not autorotate</td><td>Rotation lock is on, or the app doesn&rsquo;t support rotation (<a href="https://support.apple.com/en-us/118226" target="_blank" rel="noopener">Apple</a>).</td><td>Check Portrait Orientation Lock in Control Center or Auto-rotate in Display settings, test another app, then restart (<a href="https://support.apple.com/en-us/118226" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/accessibility/android/answer/6006961?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <h2>What mobile security concerns does objective 3.3 list?</h2>
+    <p>Four concerns: where apps come from, developer mode, root access or jailbreaking, and unauthorized or malicious apps, including apps that impersonate legitimate ones. Each weakens protections the platform normally enforces.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Concern</th><th>Why it matters</th><th>What to do</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Application source/unofficial application stores</td><td>Apple reviews every App Store app; alternative distribution (Brazil, Japan and the EU) gets Apple&rsquo;s baseline Notarization, with any further review left to each distributor, and Apple says it poses increased risks if not properly managed (<a href="https://support.apple.com/en-us/118128" target="_blank" rel="noopener">Apple</a>, <a href="https://support.apple.com/en-us/118110" target="_blank" rel="noopener">Apple</a>). Google warns unknown-source apps put the phone and personal information at risk (<a href="https://support.google.com/pixelphone/answer/7391672?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Review the marketplaces and web distributors in Settings &gt; Apps &gt; App Installation and remove any you don&rsquo;t trust (<a href="https://support.apple.com/en-us/118128" target="_blank" rel="noopener">Apple</a>); turn off &ldquo;Install unknown apps&rdquo; for sources on Android (<a href="https://support.google.com/pixelphone/answer/7391672?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Developer mode</td><td>iOS Developer Mode reduces device security and is meant for developers (<a href="https://developer.apple.com/documentation/xcode/enabling-developer-mode-on-a-device" target="_blank" rel="noopener">Apple Developer</a>); Android developer options expose features such as USB debugging (<a href="https://developer.android.com/studio/debug/dev-options" target="_blank" rel="noopener">Android Developers</a>).</td><td>Leave developer features off on users&rsquo; devices and turn them off if they aren&rsquo;t needed.</td></tr>
+          <tr><td class="td-term">Root access/jailbreak</td><td>Jailbreaking bypasses iOS security and can lead to malware, instability and apps that stop working (<a href="https://support.apple.com/guide/iphone/unauthorized-modification-of-ios-iph9385bb26a/ios" target="_blank" rel="noopener">Apple</a>); rooted or modified Android phones fail integrity checks and can&rsquo;t use Google Wallet tap to pay (<a href="https://developer.android.com/google/play/integrity/verdicts" target="_blank" rel="noopener">Android Developers</a>, <a href="https://support.google.com/wallet/answer/12200245?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Restore the original OS (<a href="https://support.google.com/wallet/answer/12200245?hl=en" target="_blank" rel="noopener">Google</a>); Apple may deny service for a modified iPhone (<a href="https://support.apple.com/guide/iphone/unauthorized-modification-of-ios-iph9385bb26a/ios" target="_blank" rel="noopener">Apple</a>).</td></tr>
+          <tr><td class="td-term">Unauthorized/malicious application (Application spoofing)</td><td>Apps that pose as something legitimate. Play Protect warns about apps that hide or misrepresent important information (<a href="https://support.google.com/googleplay/answer/2812853?hl=en" target="_blank" rel="noopener">Google</a>); Apple warns that some pop-ups trick users into installing unwanted software (<a href="https://support.apple.com/en-us/102524" target="_blank" rel="noopener">Apple</a>).</td><td>Check an app&rsquo;s ratings, reviews and download count before installing, report harmful apps, and keep Play Protect on (<a href="https://support.google.com/pixelphone/answer/7391672?hl=en" target="_blank" rel="noopener">Google</a>, <a href="https://support.google.com/googleplay/answer/2812853?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Organizations control many of these settings through device management; see <a href="mobile-device-management.html">mobile device management (MDM)</a>.</p>
+
+    <h2>Which symptoms point to a mobile security problem?</h2>
+    <p>Objective 3.3 lists nine symptoms. Most have ordinary explanations too, so confirm the cause before assuming compromise.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Symptom</th><th>Possible causes</th><th>What to do</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">High network traffic</td><td>Apps using data in the background.</td><td>iOS App Privacy Report (iOS 15.2 or later, once turned on) shows which domains each app contacted in the past 7 days, not how much data it used (<a href="https://support.apple.com/en-us/102188" target="_blank" rel="noopener">Apple</a>); check per-app cellular or mobile data use and turn it off for suspicious apps (<a href="https://support.apple.com/en-us/109323" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/pixelphone/answer/2819524?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Degraded response time</td><td>A downloaded app, a jailbroken system, or Lockdown Mode blocking some web technologies (<a href="https://support.google.com/android/answer/7665064?hl=en" target="_blank" rel="noopener">Google</a>, <a href="https://support.apple.com/guide/iphone/unauthorized-modification-of-ios-iph9385bb26a/ios" target="_blank" rel="noopener">Apple</a>, <a href="https://support.apple.com/en-us/105120" target="_blank" rel="noopener">Apple</a>).</td><td>Test in safe mode; if it goes away, an app is likely the cause (<a href="https://support.google.com/android/answer/7665064?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Data-usage limit notification</td><td>Usage reached a data warning set on the phone; carrier counts can differ (<a href="https://support.google.com/pixelphone/answer/2819524?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Find the apps using data and restrict background data with Data Saver or Low Data Mode (<a href="https://support.google.com/pixelphone/answer/2819524?hl=en" target="_blank" rel="noopener">Google</a>, <a href="https://support.apple.com/en-us/102433" target="_blank" rel="noopener">Apple</a>); ask the carrier for exact usage (<a href="https://support.apple.com/en-us/109323" target="_blank" rel="noopener">Apple</a>).</td></tr>
+          <tr><td class="td-term">Limited internet connectivity</td><td>Connected to Wi-Fi but no internet usually points to the router or internet connection; public networks may need a sign-in page (<a href="https://support.apple.com/en-us/111786" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/pixelphone/answer/6183600?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Test other devices on the network, complete any sign-in page, and restart the router (<a href="https://support.apple.com/en-us/111786" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/pixelphone/answer/6183600?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">No internet connectivity</td><td>An outage, VPN or security software, or a downloaded app (<a href="https://support.apple.com/en-us/111786" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/pixelphone/answer/6183600?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Restart, switch between Wi-Fi and mobile data, uninstall VPN or security software to test, and contact the ISP (<a href="https://support.google.com/android/answer/2651367?hl=en" target="_blank" rel="noopener">Google</a>, <a href="https://support.apple.com/en-us/111786" target="_blank" rel="noopener">Apple</a>).</td></tr>
+          <tr><td class="td-term">High number of ads</td><td>Site notifications you subscribed to, phishing-style ads, or malware (<a href="https://support.google.com/chrome/answer/95472?hl=en&co=GENIE.Platform%3DAndroid" target="_blank" rel="noopener">Google</a>, <a href="https://support.apple.com/en-us/102524" target="_blank" rel="noopener">Apple</a>).</td><td>Turn on pop-up blocking in Safari or Chrome, block site notifications, keep software updated, and scan for harmful apps (<a href="https://support.apple.com/en-us/102524" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/chrome/answer/95472?hl=en&co=GENIE.Platform%3DAndroid" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Fake security warnings</td><td>Misleading pop-ups that claim the device has a security problem are a scam tactic (<a href="https://support.apple.com/en-us/102568" target="_blank" rel="noopener">Apple</a>).</td><td>Don&rsquo;t interact with pop-ups that take over the screen; navigate away (<a href="https://support.apple.com/en-us/102524" target="_blank" rel="noopener">Apple</a>). Apple never asks you to disable security features (<a href="https://support.apple.com/en-us/102568" target="_blank" rel="noopener">Apple</a>); on Android, Google Play Protect is the built-in tool that checks for and warns about harmful apps (<a href="https://support.google.com/googleplay/answer/2812853?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+          <tr><td class="td-term">Unexpected application behavior</td><td>An app using permissions or data in ways you didn&rsquo;t expect, or an unwanted configuration profile (<a href="https://support.apple.com/en-us/102188" target="_blank" rel="noopener">Apple</a>, <a href="https://support.apple.com/guide/personal-safety/review-and-delete-configuration-profiles-ips327569a75/web" target="_blank" rel="noopener">Apple</a>).</td><td>Review and revoke app permissions (<a href="https://support.apple.com/en-us/102188" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/android/answer/9431959?hl=en" target="_blank" rel="noopener">Google</a>); iOS Safety Check can reset app privacy permissions (<a href="https://support.apple.com/guide/personal-safety/safety-check-iphone-ios-16-ips2aad835e1/web" target="_blank" rel="noopener">Apple</a>).</td></tr>
+          <tr><td class="td-term">Leaked personal files/data</td><td>A compromised account, a scam site that captured credentials, or apps from unknown sources (<a href="https://support.apple.com/en-us/102568" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/pixelphone/answer/7391672?hl=en" target="_blank" rel="noopener">Google</a>).</td><td>Change the account password, turn on two-factor or 2-Step Verification, and review signed-in devices and recent activity (<a href="https://support.apple.com/en-us/102568" target="_blank" rel="noopener">Apple</a>, <a href="https://support.google.com/accounts/answer/6294825?hl=en" target="_blank" rel="noopener">Google</a>).</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>For the same symptoms on a Windows PC, see <a href="soho-malware-removal.html">SOHO malware removal</a>.</p>
+
+    <h2>Practice scenarios</h2>
+    <p>These are original practice scenarios written for this page, not real exam questions.</p>
+    <p><strong>1. An iPhone stops charging at 80% every night.</strong> Before replacing anything, check whether Optimized Battery Charging, a charge limit or heat is holding the charge at 80% (<a href="https://support.apple.com/en-us/108805" target="_blank" rel="noopener">Apple</a>).</p>
+    <p><strong>2. An Android phone started rebooting randomly after the user installed several apps.</strong> Boot into safe mode; if the reboots stop, remove recently downloaded apps one at a time (<a href="https://support.google.com/android/answer/7664448?hl=en" target="_blank" rel="noopener">Google</a>).</p>
+    <p><strong>3. A user&rsquo;s phone shows constant ads and a &ldquo;your phone is infected&rdquo; pop-up urging an app download.</strong> Treat the warning as fake: don&rsquo;t install anything, close the page, block the site&rsquo;s notifications, and check installed apps with Play Protect.</p>
+
+    <h2>Related A+ Articles</h2>
+
+    <div class="related-grid">
+      <a href="mobile-device-management.html" class="related-link">Mobile Device Management (MDM)</a>
+      <a href="wireless-networking.html" class="related-link">Wireless Networking</a>
+      <a href="wifi-standards.html" class="related-link">Wi-Fi Standards</a>
+      <a href="malware-types.html" class="related-link">Malware Types Explained</a>
+      <a href="troubleshooting-methodology.html" class="related-link">Troubleshooting Methodology</a>
+      <a href="comptia-aplus-study-guide.html" class="related-link">CompTIA A+ Study Guide</a>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Studying for CompTIA A+?</h3>
+        <p>See the books, practice exams, and free resources that actually work.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn btn-teal">See Best Study Resources →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- AUTHOR BIO -->
+<div class="author-bio">
+  <div class="author-bio-inner">
+    <div class="author-bio-avatar">SF</div>
+    <div class="author-bio-content">
+      <div class="author-bio-label">Written by</div>
+      <div class="author-bio-name">Sean Fogarty</div>
+      <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-portfolio">
+    <div class="footer-portfolio-title">From Fogarty Holdings</div>
+    <div class="footer-portfolio-grid">
+      <div class="footer-portfolio-app">
+        <div class="footer-portfolio-app-meta">
+          <img class="footer-portfolio-app-icon" src="images/certflash-icon.png" alt="" />
+          <div class="footer-portfolio-app-text">
+            <div class="footer-portfolio-app-name">CertFlash</div>
+            <div class="footer-portfolio-app-desc">CompTIA Study Cards</div>
+          </div>
+        </div>
+        <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835?pt=128750067&ct=itstudyhub&mt=8"
+           class="footer-portfolio-badge"
+           target="_blank" rel="noopener"
+           aria-label="Download CertFlash on the App Store">
+          <svg class="footer-portfolio-badge-svg" width="135" height="40" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 119.66407 40">
+            <g>
+              <g>
+                <g>
+                  <path d="M110.13477,0H9.53468c-.3667,0-.729,0-1.09473.002-.30615.002-.60986.00781-.91895.0127A13.21476,13.21476,0,0,0,5.5171.19141a6.66509,6.66509,0,0,0-1.90088.627A6.43779,6.43779,0,0,0,1.99757,1.99707,6.25844,6.25844,0,0,0,.81935,3.61816a6.60119,6.60119,0,0,0-.625,1.90332,12.993,12.993,0,0,0-.1792,2.002C.00587,7.83008.00489,8.1377,0,8.44434V31.5586c.00489.3105.00587.6113.01515.9219a12.99232,12.99232,0,0,0,.1792,2.0019,6.58756,6.58756,0,0,0,.625,1.9043A6.20778,6.20778,0,0,0,1.99757,38.001a6.27445,6.27445,0,0,0,1.61865,1.1787,6.70082,6.70082,0,0,0,1.90088.6308,13.45514,13.45514,0,0,0,2.0039.1768c.30909.0068.6128.0107.91895.0107C8.80567,40,9.168,40,9.53468,40H110.13477c.3594,0,.7246,0,1.084-.002.3047,0,.6172-.0039.9219-.0107a13.279,13.279,0,0,0,2-.1768,6.80432,6.80432,0,0,0,1.9082-.6308,6.27742,6.27742,0,0,0,1.6172-1.1787,6.39482,6.39482,0,0,0,1.1816-1.6143,6.60413,6.60413,0,0,0,.6191-1.9043,13.50643,13.50643,0,0,0,.1856-2.0019c.0039-.3106.0039-.6114.0039-.9219.0078-.3633.0078-.7246.0078-1.0938V9.53613c0-.36621,0-.72949-.0078-1.09179,0-.30664,0-.61426-.0039-.9209a13.5071,13.5071,0,0,0-.1856-2.002,6.6177,6.6177,0,0,0-.6191-1.90332,6.46619,6.46619,0,0,0-2.7988-2.7998,6.76754,6.76754,0,0,0-1.9082-.627,13.04394,13.04394,0,0,0-2-.17676c-.3047-.00488-.6172-.01074-.9219-.01269-.3594-.002-.7246-.002-1.084-.002Z"/>
+                  <path d="M8.44483,39.125c-.30468,0-.602-.0039-.90429-.0107a12.68714,12.68714,0,0,1-1.86914-.1631,5.88381,5.88381,0,0,1-1.65674-.5479,5.40573,5.40573,0,0,1-1.397-1.0166,5.32082,5.32082,0,0,1-1.02051-1.3965,5.72186,5.72186,0,0,1-.543-1.6572,12.41351,12.41351,0,0,1-.1665-1.875c-.00634-.2109-.01464-.9131-.01464-.9131V8.44434S.88185,7.75293.8877,7.5498a12.37039,12.37039,0,0,1,.16553-1.87207,5.7555,5.7555,0,0,1,.54346-1.6621A5.37349,5.37349,0,0,1,2.61183,2.61768,5.56543,5.56543,0,0,1,4.01417,1.59521a5.82309,5.82309,0,0,1,1.65332-.54394A12.58589,12.58589,0,0,1,7.543.88721L8.44532.875H111.21387l.9131.0127a12.38493,12.38493,0,0,1,1.8584.16259,5.93833,5.93833,0,0,1,1.6709.54785,5.59374,5.59374,0,0,1,2.415,2.41993,5.76267,5.76267,0,0,1,.5352,1.64892,12.995,12.995,0,0,1,.1738,1.88721c.0029.2832.0029.5874.0029.89014.0079.375.0079.73193.0079,1.09179V30.4648c0,.3633,0,.7178-.0079,1.0752,0,.3252,0,.6231-.0039.9297a12.73126,12.73126,0,0,1-.1709,1.8535,5.739,5.739,0,0,1-.54,1.67,5.48029,5.48029,0,0,1-1.0156,1.3857,5.4129,5.4129,0,0,1-1.3994,1.0225,5.86168,5.86168,0,0,1-1.668.5498,12.54218,12.54218,0,0,1-1.8692.1631c-.2929.0068-.5996.0107-.8974.0107l-1.084.002Z" style="fill: #fff"/>
+                </g>
+                <g data-name="&lt;Group&gt;">
+                  <g data-name="&lt;Group&gt;">
+                    <g data-name="&lt;Group&gt;">
+                      <path data-name="&lt;Path&gt;" d="M24.99671,19.88935a5.14625,5.14625,0,0,1,2.45058-4.31771,5.26776,5.26776,0,0,0-4.15039-2.24376c-1.74624-.1833-3.43913,1.04492-4.329,1.04492-.90707,0-2.27713-1.02672-3.75247-.99637a5.52735,5.52735,0,0,0-4.65137,2.8367c-2.01111,3.482-.511,8.59939,1.41551,11.414.96388,1.37823,2.09037,2.91774,3.56438,2.86315,1.4424-.05983,1.98111-.91977,3.7222-.91977,1.72494,0,2.23035.91977,3.73427.88506,1.54777-.02512,2.52292-1.38435,3.453-2.77563a11.39931,11.39931,0,0,0,1.579-3.21589A4.97284,4.97284,0,0,1,24.99671,19.88935Z"/>
+                      <path data-name="&lt;Path&gt;" d="M22.15611,11.47681a5.06687,5.06687,0,0,0,1.159-3.62989,5.15524,5.15524,0,0,0-3.33555,1.72582,4.82131,4.82131,0,0,0-1.18934,3.4955A4.26259,4.26259,0,0,0,22.15611,11.47681Z"/>
+                    </g>
+                  </g>
+                  <g>
+                    <path d="M42.30178,27.13965h-4.7334l-1.13672,3.35645H34.42678l4.4834-12.418h2.083l4.4834,12.418H43.43752Zm-4.24316-1.54883h3.752L39.961,20.14355H39.9092Z"/>
+                    <path d="M55.1592,25.96973c0,2.81348-1.50586,4.62109-3.77832,4.62109a3.0693,3.0693,0,0,1-2.84863-1.584h-.043v4.48438h-1.8584V21.44238h1.79883v1.50586h.03418a3.21162,3.21162,0,0,1,2.88281-1.60059C53.64455,21.34766,55.1592,23.16406,55.1592,25.96973Zm-1.91016,0c0-1.833-.94727-3.03809-2.39258-3.03809-1.41992,0-2.375,1.23047-2.375,3.03809,0,1.82422.95508,3.0459,2.375,3.0459C52.30178,29.01563,53.249,27.81934,53.249,25.96973Z"/>
+                    <path d="M65.12453,25.96973c0,2.81348-1.50635,4.62109-3.77881,4.62109a3.0693,3.0693,0,0,1-2.84863-1.584h-.043v4.48438h-1.8584V21.44238h1.79883v1.50586h.03418a3.21162,3.21162,0,0,1,2.88281-1.60059C63.6094,21.34766,65.12453,23.16406,65.12453,25.96973Zm-1.91064,0c0-1.833-.94727-3.03809-2.39258-3.03809-1.41992,0-2.375,1.23047-2.375,3.03809,0,1.82422.95508,3.0459,2.375,3.0459C62.26662,29.01563,63.21389,27.81934,63.21389,25.96973Z"/>
+                    <path d="M71.70949,27.03613c.1377,1.23145,1.334,2.04,2.96875,2.04,1.56641,0,2.69336-.80859,2.69336-1.91895,0-.96387-.67969-1.541-2.28906-1.93652l-1.60937-.3877c-2.28027-.55078-3.33887-1.61719-3.33887-3.34766,0-2.14258,1.86719-3.61426,4.51758-3.61426,2.625,0,4.42383,1.47168,4.48438,3.61426h-1.876c-.1123-1.23926-1.13672-1.9873-2.63379-1.9873s-2.52148.75684-2.52148,1.8584c0,.87793.6543,1.39453,2.25488,1.79l1.36816.33594c2.54785.60254,3.60547,1.626,3.60547,3.44238,0,2.32324-1.84961,3.77832-4.793,3.77832-2.75391,0-4.61328-1.4209-4.7334-3.667Z"/>
+                    <path d="M83.34621,19.2998v2.14258h1.72168v1.47168H83.34621v4.99121c0,.77539.34473,1.13672,1.10156,1.13672a5.80752,5.80752,0,0,0,.61133-.043v1.46289a5.10351,5.10351,0,0,1-1.03223.08594c-1.833,0-2.54785-.68848-2.54785-2.44434V22.91406H80.16262V21.44238H81.479V19.2998Z"/>
+                    <path d="M86.064,25.96973c0-2.84863,1.67773-4.63867,4.29395-4.63867,2.625,0,4.29492,1.79,4.29492,4.63867,0,2.85645-1.66113,4.63867-4.29492,4.63867C87.72512,30.6084,86.064,28.82617,86.064,25.96973Zm6.69531,0c0-1.9541-.89551-3.10742-2.40137-3.10742s-2.40137,1.16211-2.40137,3.10742c0,1.96191.89551,3.10645,2.40137,3.10645S92.7593,27.93164,92.7593,25.96973Z"/>
+                    <path d="M96.18508,21.44238h1.77246v1.541h.043a2.1594,2.1594,0,0,1,2.17773-1.63574,2.86616,2.86616,0,0,1,.63672.06934v1.73828a2.59794,2.59794,0,0,0-.835-.1123,1.87264,1.87264,0,0,0-1.93652,2.083v5.37012h-1.8584Z"/>
+                    <path d="M109.38332,27.83691c-.25,1.64355-1.85059,2.77148-3.89844,2.77148-2.63379,0-4.26855-1.76465-4.26855-4.5957,0-2.83984,1.64355-4.68164,4.19043-4.68164,2.50488,0,4.08008,1.7207,4.08008,4.46582v.63672h-6.39453v.1123a2.358,2.358,0,0,0,2.43555,2.56445,2.04834,2.04834,0,0,0,2.09082-1.27344Zm-6.28223-2.70215h4.52637a2.1773,2.1773,0,0,0-2.2207-2.29785A2.292,2.292,0,0,0,103.10109,25.13477Z"/>
+                  </g>
+                </g>
+              </g>
+              <g data-name="&lt;Group&gt;">
+                <g>
+                  <path d="M37.82619,8.731a2.63964,2.63964,0,0,1,2.80762,2.96484c0,1.90625-1.03027,3.002-2.80762,3.002H35.67092V8.731Zm-1.22852,5.123h1.125a1.87588,1.87588,0,0,0,1.96777-2.146,1.881,1.881,0,0,0-1.96777-2.13379h-1.125Z"/>
+                  <path d="M41.68068,12.44434a2.13323,2.13323,0,1,1,4.24707,0,2.13358,2.13358,0,1,1-4.24707,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C44.57522,13.99463,45.01369,13.42432,45.01369,12.44434Z"/>
+                  <path d="M51.57326,14.69775h-.92187l-.93066-3.31641h-.07031l-.92676,3.31641h-.91309l-1.24121-4.50293h.90137l.80664,3.436h.06641l.92578-3.436h.85254l.92578,3.436h.07031l.80273-3.436h.88867Z"/>
+                  <path d="M53.85354,10.19482H54.709v.71533h.06641a1.348,1.348,0,0,1,1.34375-.80225,1.46456,1.46456,0,0,1,1.55859,1.6748v2.915h-.88867V12.00586c0-.72363-.31445-1.0835-.97168-1.0835a1.03294,1.03294,0,0,0-1.0752,1.14111v2.63428h-.88867Z"/>
+                  <path d="M59.09377,8.437h.88867v6.26074h-.88867Z"/>
+                  <path d="M61.21779,12.44434a2.13346,2.13346,0,1,1,4.24756,0,2.1338,2.1338,0,1,1-4.24756,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C64.11232,13.99463,64.5508,13.42432,64.5508,12.44434Z"/>
+                  <path d="M66.4009,13.42432c0-.81055.60352-1.27783,1.6748-1.34424l1.21973-.07031v-.38867c0-.47559-.31445-.74414-.92187-.74414-.49609,0-.83984.18213-.93848.50049h-.86035c.09082-.77344.81836-1.26953,1.83984-1.26953,1.12891,0,1.76563.562,1.76563,1.51318v3.07666h-.85547v-.63281h-.07031a1.515,1.515,0,0,1-1.35254.707A1.36026,1.36026,0,0,1,66.4009,13.42432Zm2.89453-.38477v-.37646l-1.09961.07031c-.62012.0415-.90137.25244-.90137.64941,0,.40527.35156.64111.835.64111A1.0615,1.0615,0,0,0,69.29543,13.03955Z"/>
+                  <path d="M71.34816,12.44434c0-1.42285.73145-2.32422,1.86914-2.32422a1.484,1.484,0,0,1,1.38086.79h.06641V8.437h.88867v6.26074h-.85156v-.71143h-.07031a1.56284,1.56284,0,0,1-1.41406.78564C72.0718,14.772,71.34816,13.87061,71.34816,12.44434Zm.918,0c0,.95508.4502,1.52979,1.20313,1.52979.749,0,1.21191-.583,1.21191-1.52588,0-.93848-.46777-1.52979-1.21191-1.52979C72.72121,10.91846,72.26613,11.49707,72.26613,12.44434Z"/>
+                  <path d="M79.23,12.44434a2.13323,2.13323,0,1,1,4.24707,0,2.13358,2.13358,0,1,1-4.24707,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C82.12453,13.99463,82.563,13.42432,82.563,12.44434Z"/>
+                  <path d="M84.66945,10.19482h.85547v.71533h.06641a1.348,1.348,0,0,1,1.34375-.80225,1.46456,1.46456,0,0,1,1.55859,1.6748v2.915H87.605V12.00586c0-.72363-.31445-1.0835-.97168-1.0835a1.03294,1.03294,0,0,0-1.0752,1.14111v2.63428h-.88867Z"/>
+                  <path d="M93.51516,9.07373v1.1416h.97559v.74854h-.97559V13.2793c0,.47168.19434.67822.63672.67822a2.96657,2.96657,0,0,0,.33887-.02051v.74023a2.9155,2.9155,0,0,1-.4834.04541c-.98828,0-1.38184-.34766-1.38184-1.21582v-2.543h-.71484v-.74854h.71484V9.07373Z"/>
+                  <path d="M95.70461,8.437h.88086v2.48145h.07031a1.3856,1.3856,0,0,1,1.373-.80664,1.48339,1.48339,0,0,1,1.55078,1.67871v2.90723H98.69v-2.688c0-.71924-.335-1.0835-.96289-1.0835a1.05194,1.05194,0,0,0-1.13379,1.1416v2.62988h-.88867Z"/>
+                  <path d="M104.76125,13.48193a1.828,1.828,0,0,1-1.95117,1.30273A2.04531,2.04531,0,0,1,100.73,12.46045a2.07685,2.07685,0,0,1,2.07617-2.35254c1.25293,0,2.00879.856,2.00879,2.27V12.688h-3.17969v.0498a1.1902,1.1902,0,0,0,1.19922,1.29,1.07934,1.07934,0,0,0,1.07129-.5459Zm-3.126-1.45117h2.27441a1.08647,1.08647,0,0,0-1.1084-1.1665A1.15162,1.15162,0,0,0,101.63527,12.03076Z"/>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </a>
+      </div>
+      <div class="footer-portfolio-app">
+        <div class="footer-portfolio-app-meta">
+          <img class="footer-portfolio-app-icon" src="images/netscanpro-icon.png" alt="" />
+          <div class="footer-portfolio-app-text">
+            <div class="footer-portfolio-app-name">NetScanPro</div>
+            <div class="footer-portfolio-app-desc">iOS Network Scanner</div>
+          </div>
+        </div>
+        <a href="https://apps.apple.com/us/app/netscanpro/id6762677151?pt=128750067&ct=itstudyhub&mt=8"
+           class="footer-portfolio-badge"
+           target="_blank" rel="noopener"
+           aria-label="Download NetScanPro on the App Store">
+          <svg class="footer-portfolio-badge-svg" width="135" height="40" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 119.66407 40">
+            <g>
+              <g>
+                <g>
+                  <path d="M110.13477,0H9.53468c-.3667,0-.729,0-1.09473.002-.30615.002-.60986.00781-.91895.0127A13.21476,13.21476,0,0,0,5.5171.19141a6.66509,6.66509,0,0,0-1.90088.627A6.43779,6.43779,0,0,0,1.99757,1.99707,6.25844,6.25844,0,0,0,.81935,3.61816a6.60119,6.60119,0,0,0-.625,1.90332,12.993,12.993,0,0,0-.1792,2.002C.00587,7.83008.00489,8.1377,0,8.44434V31.5586c.00489.3105.00587.6113.01515.9219a12.99232,12.99232,0,0,0,.1792,2.0019,6.58756,6.58756,0,0,0,.625,1.9043A6.20778,6.20778,0,0,0,1.99757,38.001a6.27445,6.27445,0,0,0,1.61865,1.1787,6.70082,6.70082,0,0,0,1.90088.6308,13.45514,13.45514,0,0,0,2.0039.1768c.30909.0068.6128.0107.91895.0107C8.80567,40,9.168,40,9.53468,40H110.13477c.3594,0,.7246,0,1.084-.002.3047,0,.6172-.0039.9219-.0107a13.279,13.279,0,0,0,2-.1768,6.80432,6.80432,0,0,0,1.9082-.6308,6.27742,6.27742,0,0,0,1.6172-1.1787,6.39482,6.39482,0,0,0,1.1816-1.6143,6.60413,6.60413,0,0,0,.6191-1.9043,13.50643,13.50643,0,0,0,.1856-2.0019c.0039-.3106.0039-.6114.0039-.9219.0078-.3633.0078-.7246.0078-1.0938V9.53613c0-.36621,0-.72949-.0078-1.09179,0-.30664,0-.61426-.0039-.9209a13.5071,13.5071,0,0,0-.1856-2.002,6.6177,6.6177,0,0,0-.6191-1.90332,6.46619,6.46619,0,0,0-2.7988-2.7998,6.76754,6.76754,0,0,0-1.9082-.627,13.04394,13.04394,0,0,0-2-.17676c-.3047-.00488-.6172-.01074-.9219-.01269-.3594-.002-.7246-.002-1.084-.002Z"/>
+                  <path d="M8.44483,39.125c-.30468,0-.602-.0039-.90429-.0107a12.68714,12.68714,0,0,1-1.86914-.1631,5.88381,5.88381,0,0,1-1.65674-.5479,5.40573,5.40573,0,0,1-1.397-1.0166,5.32082,5.32082,0,0,1-1.02051-1.3965,5.72186,5.72186,0,0,1-.543-1.6572,12.41351,12.41351,0,0,1-.1665-1.875c-.00634-.2109-.01464-.9131-.01464-.9131V8.44434S.88185,7.75293.8877,7.5498a12.37039,12.37039,0,0,1,.16553-1.87207,5.7555,5.7555,0,0,1,.54346-1.6621A5.37349,5.37349,0,0,1,2.61183,2.61768,5.56543,5.56543,0,0,1,4.01417,1.59521a5.82309,5.82309,0,0,1,1.65332-.54394A12.58589,12.58589,0,0,1,7.543.88721L8.44532.875H111.21387l.9131.0127a12.38493,12.38493,0,0,1,1.8584.16259,5.93833,5.93833,0,0,1,1.6709.54785,5.59374,5.59374,0,0,1,2.415,2.41993,5.76267,5.76267,0,0,1,.5352,1.64892,12.995,12.995,0,0,1,.1738,1.88721c.0029.2832.0029.5874.0029.89014.0079.375.0079.73193.0079,1.09179V30.4648c0,.3633,0,.7178-.0079,1.0752,0,.3252,0,.6231-.0039.9297a12.73126,12.73126,0,0,1-.1709,1.8535,5.739,5.739,0,0,1-.54,1.67,5.48029,5.48029,0,0,1-1.0156,1.3857,5.4129,5.4129,0,0,1-1.3994,1.0225,5.86168,5.86168,0,0,1-1.668.5498,12.54218,12.54218,0,0,1-1.8692.1631c-.2929.0068-.5996.0107-.8974.0107l-1.084.002Z" style="fill: #fff"/>
+                </g>
+                <g data-name="&lt;Group&gt;">
+                  <g data-name="&lt;Group&gt;">
+                    <g data-name="&lt;Group&gt;">
+                      <path data-name="&lt;Path&gt;" d="M24.99671,19.88935a5.14625,5.14625,0,0,1,2.45058-4.31771,5.26776,5.26776,0,0,0-4.15039-2.24376c-1.74624-.1833-3.43913,1.04492-4.329,1.04492-.90707,0-2.27713-1.02672-3.75247-.99637a5.52735,5.52735,0,0,0-4.65137,2.8367c-2.01111,3.482-.511,8.59939,1.41551,11.414.96388,1.37823,2.09037,2.91774,3.56438,2.86315,1.4424-.05983,1.98111-.91977,3.7222-.91977,1.72494,0,2.23035.91977,3.73427.88506,1.54777-.02512,2.52292-1.38435,3.453-2.77563a11.39931,11.39931,0,0,0,1.579-3.21589A4.97284,4.97284,0,0,1,24.99671,19.88935Z"/>
+                      <path data-name="&lt;Path&gt;" d="M22.15611,11.47681a5.06687,5.06687,0,0,0,1.159-3.62989,5.15524,5.15524,0,0,0-3.33555,1.72582,4.82131,4.82131,0,0,0-1.18934,3.4955A4.26259,4.26259,0,0,0,22.15611,11.47681Z"/>
+                    </g>
+                  </g>
+                  <g>
+                    <path d="M42.30178,27.13965h-4.7334l-1.13672,3.35645H34.42678l4.4834-12.418h2.083l4.4834,12.418H43.43752Zm-4.24316-1.54883h3.752L39.961,20.14355H39.9092Z"/>
+                    <path d="M55.1592,25.96973c0,2.81348-1.50586,4.62109-3.77832,4.62109a3.0693,3.0693,0,0,1-2.84863-1.584h-.043v4.48438h-1.8584V21.44238h1.79883v1.50586h.03418a3.21162,3.21162,0,0,1,2.88281-1.60059C53.64455,21.34766,55.1592,23.16406,55.1592,25.96973Zm-1.91016,0c0-1.833-.94727-3.03809-2.39258-3.03809-1.41992,0-2.375,1.23047-2.375,3.03809,0,1.82422.95508,3.0459,2.375,3.0459C52.30178,29.01563,53.249,27.81934,53.249,25.96973Z"/>
+                    <path d="M65.12453,25.96973c0,2.81348-1.50635,4.62109-3.77881,4.62109a3.0693,3.0693,0,0,1-2.84863-1.584h-.043v4.48438h-1.8584V21.44238h1.79883v1.50586h.03418a3.21162,3.21162,0,0,1,2.88281-1.60059C63.6094,21.34766,65.12453,23.16406,65.12453,25.96973Zm-1.91064,0c0-1.833-.94727-3.03809-2.39258-3.03809-1.41992,0-2.375,1.23047-2.375,3.03809,0,1.82422.95508,3.0459,2.375,3.0459C62.26662,29.01563,63.21389,27.81934,63.21389,25.96973Z"/>
+                    <path d="M71.70949,27.03613c.1377,1.23145,1.334,2.04,2.96875,2.04,1.56641,0,2.69336-.80859,2.69336-1.91895,0-.96387-.67969-1.541-2.28906-1.93652l-1.60937-.3877c-2.28027-.55078-3.33887-1.61719-3.33887-3.34766,0-2.14258,1.86719-3.61426,4.51758-3.61426,2.625,0,4.42383,1.47168,4.48438,3.61426h-1.876c-.1123-1.23926-1.13672-1.9873-2.63379-1.9873s-2.52148.75684-2.52148,1.8584c0,.87793.6543,1.39453,2.25488,1.79l1.36816.33594c2.54785.60254,3.60547,1.626,3.60547,3.44238,0,2.32324-1.84961,3.77832-4.793,3.77832-2.75391,0-4.61328-1.4209-4.7334-3.667Z"/>
+                    <path d="M83.34621,19.2998v2.14258h1.72168v1.47168H83.34621v4.99121c0,.77539.34473,1.13672,1.10156,1.13672a5.80752,5.80752,0,0,0,.61133-.043v1.46289a5.10351,5.10351,0,0,1-1.03223.08594c-1.833,0-2.54785-.68848-2.54785-2.44434V22.91406H80.16262V21.44238H81.479V19.2998Z"/>
+                    <path d="M86.064,25.96973c0-2.84863,1.67773-4.63867,4.29395-4.63867,2.625,0,4.29492,1.79,4.29492,4.63867,0,2.85645-1.66113,4.63867-4.29492,4.63867C87.72512,30.6084,86.064,28.82617,86.064,25.96973Zm6.69531,0c0-1.9541-.89551-3.10742-2.40137-3.10742s-2.40137,1.16211-2.40137,3.10742c0,1.96191.89551,3.10645,2.40137,3.10645S92.7593,27.93164,92.7593,25.96973Z"/>
+                    <path d="M96.18508,21.44238h1.77246v1.541h.043a2.1594,2.1594,0,0,1,2.17773-1.63574,2.86616,2.86616,0,0,1,.63672.06934v1.73828a2.59794,2.59794,0,0,0-.835-.1123,1.87264,1.87264,0,0,0-1.93652,2.083v5.37012h-1.8584Z"/>
+                    <path d="M109.38332,27.83691c-.25,1.64355-1.85059,2.77148-3.89844,2.77148-2.63379,0-4.26855-1.76465-4.26855-4.5957,0-2.83984,1.64355-4.68164,4.19043-4.68164,2.50488,0,4.08008,1.7207,4.08008,4.46582v.63672h-6.39453v.1123a2.358,2.358,0,0,0,2.43555,2.56445,2.04834,2.04834,0,0,0,2.09082-1.27344Zm-6.28223-2.70215h4.52637a2.1773,2.1773,0,0,0-2.2207-2.29785A2.292,2.292,0,0,0,103.10109,25.13477Z"/>
+                  </g>
+                </g>
+              </g>
+              <g data-name="&lt;Group&gt;">
+                <g>
+                  <path d="M37.82619,8.731a2.63964,2.63964,0,0,1,2.80762,2.96484c0,1.90625-1.03027,3.002-2.80762,3.002H35.67092V8.731Zm-1.22852,5.123h1.125a1.87588,1.87588,0,0,0,1.96777-2.146,1.881,1.881,0,0,0-1.96777-2.13379h-1.125Z"/>
+                  <path d="M41.68068,12.44434a2.13323,2.13323,0,1,1,4.24707,0,2.13358,2.13358,0,1,1-4.24707,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C44.57522,13.99463,45.01369,13.42432,45.01369,12.44434Z"/>
+                  <path d="M51.57326,14.69775h-.92187l-.93066-3.31641h-.07031l-.92676,3.31641h-.91309l-1.24121-4.50293h.90137l.80664,3.436h.06641l.92578-3.436h.85254l.92578,3.436h.07031l.80273-3.436h.88867Z"/>
+                  <path d="M53.85354,10.19482H54.709v.71533h.06641a1.348,1.348,0,0,1,1.34375-.80225,1.46456,1.46456,0,0,1,1.55859,1.6748v2.915h-.88867V12.00586c0-.72363-.31445-1.0835-.97168-1.0835a1.03294,1.03294,0,0,0-1.0752,1.14111v2.63428h-.88867Z"/>
+                  <path d="M59.09377,8.437h.88867v6.26074h-.88867Z"/>
+                  <path d="M61.21779,12.44434a2.13346,2.13346,0,1,1,4.24756,0,2.1338,2.1338,0,1,1-4.24756,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C64.11232,13.99463,64.5508,13.42432,64.5508,12.44434Z"/>
+                  <path d="M66.4009,13.42432c0-.81055.60352-1.27783,1.6748-1.34424l1.21973-.07031v-.38867c0-.47559-.31445-.74414-.92187-.74414-.49609,0-.83984.18213-.93848.50049h-.86035c.09082-.77344.81836-1.26953,1.83984-1.26953,1.12891,0,1.76563.562,1.76563,1.51318v3.07666h-.85547v-.63281h-.07031a1.515,1.515,0,0,1-1.35254.707A1.36026,1.36026,0,0,1,66.4009,13.42432Zm2.89453-.38477v-.37646l-1.09961.07031c-.62012.0415-.90137.25244-.90137.64941,0,.40527.35156.64111.835.64111A1.0615,1.0615,0,0,0,69.29543,13.03955Z"/>
+                  <path d="M71.34816,12.44434c0-1.42285.73145-2.32422,1.86914-2.32422a1.484,1.484,0,0,1,1.38086.79h.06641V8.437h.88867v6.26074h-.85156v-.71143h-.07031a1.56284,1.56284,0,0,1-1.41406.78564C72.0718,14.772,71.34816,13.87061,71.34816,12.44434Zm.918,0c0,.95508.4502,1.52979,1.20313,1.52979.749,0,1.21191-.583,1.21191-1.52588,0-.93848-.46777-1.52979-1.21191-1.52979C72.72121,10.91846,72.26613,11.49707,72.26613,12.44434Z"/>
+                  <path d="M79.23,12.44434a2.13323,2.13323,0,1,1,4.24707,0,2.13358,2.13358,0,1,1-4.24707,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C82.12453,13.99463,82.563,13.42432,82.563,12.44434Z"/>
+                  <path d="M84.66945,10.19482h.85547v.71533h.06641a1.348,1.348,0,0,1,1.34375-.80225,1.46456,1.46456,0,0,1,1.55859,1.6748v2.915H87.605V12.00586c0-.72363-.31445-1.0835-.97168-1.0835a1.03294,1.03294,0,0,0-1.0752,1.14111v2.63428h-.88867Z"/>
+                  <path d="M93.51516,9.07373v1.1416h.97559v.74854h-.97559V13.2793c0,.47168.19434.67822.63672.67822a2.96657,2.96657,0,0,0,.33887-.02051v.74023a2.9155,2.9155,0,0,1-.4834.04541c-.98828,0-1.38184-.34766-1.38184-1.21582v-2.543h-.71484v-.74854h.71484V9.07373Z"/>
+                  <path d="M95.70461,8.437h.88086v2.48145h.07031a1.3856,1.3856,0,0,1,1.373-.80664,1.48339,1.48339,0,0,1,1.55078,1.67871v2.90723H98.69v-2.688c0-.71924-.335-1.0835-.96289-1.0835a1.05194,1.05194,0,0,0-1.13379,1.1416v2.62988h-.88867Z"/>
+                  <path d="M104.76125,13.48193a1.828,1.828,0,0,1-1.95117,1.30273A2.04531,2.04531,0,0,1,100.73,12.46045a2.07685,2.07685,0,0,1,2.07617-2.35254c1.25293,0,2.00879.856,2.00879,2.27V12.688h-3.17969v.0498a1.1902,1.1902,0,0,0,1.19922,1.29,1.07934,1.07934,0,0,0,1.07129-.5459Zm-3.126-1.45117h2.27441a1.08647,1.08647,0,0,0-1.1084-1.1665A1.15162,1.15162,0,0,0,101.63527,12.03076Z"/>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free CompTIA study resources covering certifications, networking, security, and core IT concepts.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Pages</div>
+      <a href="/">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="best-a-plus.html">Best Study Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="dhcp.html">DHCP</a>
+      <a href="dns.html">DNS</a>
+      <a href="ports.html">Port Numbers</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 <a href="https://fogartyholdings.com" target="_blank" rel="noopener" style="color:inherit;">Fogarty Holdings LLC</a>. All rights reserved.</span>
+    <span class="footer-email"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>

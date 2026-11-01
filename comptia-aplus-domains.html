@@ -428,6 +428,9 @@ tbody tr:hover td{background:#f0fdf9;}
   }
 }
 /* ---- end mobile nav ---- */
+
+/* ── Body links (Oct 2026) ── */
+.domain-card a:not([class]), .article-body p a:not([class]), .article-body td a:not([class]) { color:#155bd9; text-decoration:underline; }
 </style>
 
 <script type="application/ld+json">
@@ -693,7 +696,7 @@ tbody tr:hover td{background:#f0fdf9;}
       </div>
       <div class="domain-bar-wrap"><div class="domain-bar" style="width:11%"></div></div>
       <div class="domain-body">
-        <div class="domain-desc">At 11% it's the smallest Core 1 domain, but it's 100% testable. Covers virtualization concepts (hypervisors, VMs, containers) and cloud service models (IaaS, PaaS, SaaS). <strong>Many A+ candidates underinvest here and lose easy points.</strong> The content is conceptual — no deep technical implementation required, just solid definitions and use case recognition.</div>
+        <div class="domain-desc">At 11% it's the smallest Core 1 domain. Covers virtualization concepts (hypervisors, VMs, containers) and cloud service models (IaaS, PaaS, SaaS). <strong>Many A+ candidates underinvest here and lose easy points.</strong> The content is conceptual — no deep technical implementation required, just solid definitions and use case recognition.</div>
         <div class="topic-grid">
           <div class="topic-item"><strong>Virtualization Concepts</strong>Type 1 vs Type 2 hypervisors, VM snapshots, VM migration, resource pooling, sandbox environments</div>
           <div class="topic-item"><strong>Cloud Service Models</strong>IaaS (manage OS up), PaaS (manage app up), SaaS (just use it), shared responsibility model</div>
@@ -718,7 +721,7 @@ tbody tr:hover td{background:#f0fdf9;}
       </div>
       <div class="domain-bar-wrap"><div class="domain-bar" style="width:28%"></div></div>
       <div class="domain-body">
-        <div class="domain-desc">The single biggest domain on Core 1 at 28% — roughly 25 questions. This is where the A+ earns its reputation as a practical certification. <strong>Scenario-based questions dominate: a technician observes a symptom, what's the most likely cause? What's the first step?</strong> CompTIA publishes a 6-step troubleshooting methodology with the A+ objectives (it is not tested as a formal objective, but it is the process for working these scenarios), and every hardware and network symptom from the other domains can appear here as a troubleshooting scenario.</div>
+        <div class="domain-desc">The single biggest domain on Core 1 at 28% — roughly 25 questions. This is where the A+ earns its reputation as a practical certification. <strong>Every objective in this domain starts &ldquo;Given a scenario, troubleshoot&rdquo;: work from a symptom to the most likely cause and the first step.</strong> CompTIA publishes a 6-step troubleshooting methodology with the A+ objectives (it is not tested as a formal objective, but it is the process for working these scenarios).</div>
         <div class="topic-grid">
           <div class="topic-item"><strong>Troubleshooting Methodology</strong>6 steps: identify the problem, establish theory, test theory, establish a plan and implement the solution, verify, document (published with the objectives, not formally tested)</div>
           <div class="topic-item"><strong>Storage Troubleshooting</strong>S.M.A.R.T. errors, clicking/grinding HDD, SSD wear indicators, RAID failure symptoms, boot failures</div>
@@ -727,7 +730,7 @@ tbody tr:hover td{background:#f0fdf9;}
           <div class="topic-item"><strong>Power Issues</strong>No POST, intermittent shutdowns, capacitor failure, PSU testing, UPS, surge protectors</div>
           <div class="topic-item"><strong>CPU & RAM Issues</strong>Overheating (thermal paste), POST beep codes, memory errors, Blue Screen of Death causes</div>
           <div class="topic-item"><strong>Printer Troubleshooting</strong>Paper jams, faded output, ghost images (drum/cleaning blade or fuser), smearing (fuser), lines on page, network printing failures</div>
-          <div class="topic-item"><strong>Mobile Troubleshooting</strong>Digitizer vs display damage, overheating battery, poor signal, app crashes, connectivity problems</div>
+          <div class="topic-item"><strong>Mobile Troubleshooting</strong>Digitizer vs display damage, overheating battery, poor signal, app crashes, connectivity problems (obj 5.4) — see <a href="mobile-device-troubleshooting.html">mobile device troubleshooting</a></div>
         </div>
         <div class="domain-tip"><strong>Study priority:</strong> Learn the 6-step troubleshooting methodology — CompTIA doesn't test it as a formal objective, but it's the process behind every scenario question. APIPA (169.254.x.x) appearing in ipconfig output means DHCP failed. S.M.A.R.T. errors are the early warning for drive failure. Printer troubleshooting symptoms (obj 5.6) — lines, faded prints, double/echo images, paper jams, frozen print queue — are a consistent topic.</div>
       </div>
@@ -780,7 +783,7 @@ tbody tr:hover td{background:#f0fdf9;}
           <div class="topic-item"><strong>Command Line (Windows)</strong>ipconfig, ping, tracert, netstat, nslookup, diskpart, sfc /scannow, chkdsk, net user</div>
           <div class="topic-item"><strong>Command Line (Linux)</strong>ls, pwd, chmod, chown, grep, find, ps, top, apt, sudo (obj 1.9)</div>
           <div class="topic-item"><strong>OS Installation & Upgrade</strong>Clean install vs upgrade, boot media creation, partition types (MBR vs GPT), driver installation, activation</div>
-          <div class="topic-item"><strong>macOS Basics</strong>Finder, System Preferences, Time Machine backup, Keychain, FileVault, Spotlight, Terminal basics</div>
+          <div class="topic-item"><strong>macOS Basics</strong>Finder, System Preferences, Time Machine backup, Keychain, FileVault, Spotlight, Terminal basics (obj 1.8) — see <a href="macos-features-and-tools.html">macOS features and tools</a></div>
           <div class="topic-item"><strong>Windows Networking</strong>Workgroup vs domain, network profiles (Public/Private/Domain), sharing settings, mapped drives, VPN client</div>
           <div class="topic-item"><strong>Application Management</strong>Installing/uninstalling apps, startup apps, Task Scheduler, Windows Update, app compatibility issues</div>
         </div>
@@ -805,13 +808,13 @@ tbody tr:hover td{background:#f0fdf9;}
           <div class="topic-item"><strong>Malware Types & Removal</strong>Virus, worm, trojan, ransomware, spyware, rootkit, keylogger — symptoms and removal steps</div>
           <div class="topic-item"><strong>Social Engineering</strong>Phishing, spear phishing, vishing, smishing, shoulder surfing, tailgating, dumpster diving</div>
           <div class="topic-item"><strong>Physical Security</strong>Cable locks, privacy screens, badge access, mantrap/access control vestibule, safe disposal</div>
-          <div class="topic-item"><strong>Logical Security Controls</strong>Least privilege, multifactor authentication, password policies, account lockout, Windows Hello</div>
+          <div class="topic-item"><strong>Logical Security Controls</strong>Least privilege, multifactor authentication, password policies, account lockout, Windows Hello — workstation and browser settings (obj 2.7 and 2.11) are in <a href="workstation-and-browser-hardening.html">workstation and browser hardening</a></div>
           <div class="topic-item"><strong>Data Encryption</strong>BitLocker, EFS (Encrypting File System), TPM chip role, full disk encryption vs file encryption</div>
           <div class="topic-item"><strong>Wireless Security</strong>WPA2 vs WPA3, disabling SSID broadcast, MAC filtering (limitations), rogue access points, evil twin</div>
-          <div class="topic-item"><strong>Malware Removal Process</strong>CompTIA's 10-step malware removal procedure (obj 2.6) — investigate and verify, quarantine, disable System Restore, remediate, update anti-malware, scan and remove (e.g., safe mode), reimage/reinstall, schedule scans, re-enable System Restore, educate the user</div>
+          <div class="topic-item"><strong>Malware Removal Process</strong>CompTIA's 10-step malware removal procedure (obj 2.6) — investigate and verify, quarantine, disable System Restore, remediate, update anti-malware, scan and remove (e.g., safe mode), reimage/reinstall, schedule scans, re-enable System Restore, educate the user — walked through in <a href="soho-malware-removal.html">SOHO malware removal steps</a></div>
           <div class="topic-item"><strong>Windows Security Tools</strong>Windows Defender, Windows Firewall, User Account Control (UAC), SmartScreen, Security Center</div>
         </div>
-        <div class="domain-tip"><strong>Study priority:</strong> The CompTIA malware removal process is directly tested — memorize the order (investigate and verify symptoms → quarantine → disable System Restore → remediate → update anti-malware → scan and removal techniques such as safe mode → reimage/reinstall → schedule scans and run updates → enable System Restore and create a restore point → educate the end user). Know BitLocker and TPM requirements. Social engineering attack types (phishing vs vishing vs smishing) are easy marks if you know the definitions.</div>
+        <div class="domain-tip"><strong>Study priority:</strong> Memorize the CompTIA malware removal order (investigate and verify symptoms → quarantine → disable System Restore → remediate → update anti-malware → scan and removal techniques such as safe mode → reimage/reinstall → schedule scans and run updates → enable System Restore and create a restore point → educate the end user). Know BitLocker and TPM requirements. Social engineering attack types (phishing vs vishing vs smishing) are easy marks if you know the definitions.</div>
       </div>
     </div>
 
@@ -827,16 +830,16 @@ tbody tr:hover td{background:#f0fdf9;}
       </div>
       <div class="domain-bar-wrap"><div class="domain-bar" style="width:23%"></div></div>
       <div class="domain-body">
-        <div class="domain-desc">The practical application of everything in the OS and Security domains. Scenario-based questions asking what a technician should do when Windows won't boot, an application crashes, or a machine is showing signs of malware infection. <strong>This and the OS domain together make up 51% of Core 2</strong> — they are the exam.</div>
+        <div class="domain-desc">The practical application of everything in the OS and Security domains. Scenario-based questions asking what a technician should do when Windows won't boot, an application crashes, or a machine is showing signs of malware infection. <strong>This and the OS domain together make up 51% of Core 2.</strong></div>
         <div class="topic-grid">
           <div class="topic-item"><strong>Windows Boot Issues</strong>Startup Repair, Recovery Environment (WinRE), bootrec commands (fixmbr, fixboot, rebuildbcd), Safe Mode types</div>
           <div class="topic-item"><strong>Application Crashes</strong>Event Viewer logs, application compatibility mode, DLL errors, services not starting, Task Manager intervention</div>
           <div class="topic-item"><strong>Malware Symptoms</strong>Slow performance, unexpected pop-ups, redirected browser, changed homepage, new toolbars, disabled Task Manager</div>
           <div class="topic-item"><strong>Windows Performance</strong>High CPU/RAM/disk usage diagnosis, indexing service, background processes, virtual memory/pagefile</div>
           <div class="topic-item"><strong>Profile & Account Issues</strong>Corrupt user profile, password reset, locked accounts, UPN/local account differences, roaming profiles</div>
-          <div class="topic-item"><strong>Mobile App Troubleshooting</strong>Force stop, clear cache vs clear data, app permissions, factory reset, iOS vs Android recovery modes</div>
+          <div class="topic-item"><strong>Mobile App Troubleshooting</strong>Force stop, clear cache vs clear data, app permissions, factory reset, iOS vs Android recovery modes (obj 3.2 and 3.3) — see <a href="mobile-device-troubleshooting.html">mobile OS and app troubleshooting</a></div>
         </div>
-        <div class="domain-tip"><strong>Study priority:</strong> Windows Recovery Environment tools are essential — know Startup Repair, System Restore, System Image Recovery, and Command Prompt options. The bootrec commands appear on performance-based questions. Malware symptom recognition (browser redirects, disabled security tools, high CPU with no visible process) is the core of software troubleshooting malware questions.</div>
+        <div class="domain-tip"><strong>Study priority:</strong> Windows Recovery Environment tools are essential — know Startup Repair, System Restore, System Image Recovery, and Command Prompt options. For the PC security symptoms objective 3.4 lists, see the symptom table in <a href="soho-malware-removal.html">SOHO malware removal</a>.</div>
       </div>
     </div>
 
@@ -887,8 +890,8 @@ tbody tr:hover td{background:#f0fdf9;}
 
     <div class="callout">
       <div class="callout-label">Performance-Based Questions (PBQs)</div>
-      <p>Both A+ exams include <strong>performance-based questions</strong> — interactive simulations where you configure a network, troubleshoot a scenario, or drag components into the correct order. PBQs appear at the start of the exam and cannot be skipped permanently (you can flag and return).</p>
-      <p>The most common PBQ formats on the A+ are: <strong>network configuration</strong> (setting up IP addresses, identifying cable types), <strong>troubleshooting simulations</strong> (following the 6-step methodology), and <strong>drag-and-drop ordering</strong> (malware removal steps, OSI layers). Practice these interactively — don't just read about them.</p>
+      <p>Both A+ exams include <strong>performance-based questions</strong> — interactive simulations where you configure a network, troubleshoot a scenario, or drag components into the correct order.</p>
+      <p>Practice hands-on tasks interactively — configuring network settings, working through a troubleshooting scenario, and putting procedures such as the malware removal steps in order — don't just read about them.</p>
     </div>
 
     <div class="cta-box">

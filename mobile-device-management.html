@@ -397,6 +397,9 @@ tbody tr:hover td{background:var(--light);}
   }
 }
 /* ---- end mobile nav ---- */
+
+/* ── Body text links (Oct 2026) ── */
+.article-body p a:not([class]), .article-body li a:not([class]), .article-body td a:not([class]) { color:#155bd9; text-decoration:underline; }
 </style>
 
 
@@ -538,12 +541,12 @@ tbody tr:hover td{background:var(--light);}
 
     <h2>Mobile Device Security Best Practices</h2>
     <p><strong>OS and app updates:</strong> Mobile OS updates frequently patch security vulnerabilities. MDM can report which devices are running outdated OS versions and can block network access for devices below a minimum version threshold. This compliance checking is a key MDM value proposition beyond just device configuration.</p>
-    <p><strong>Jailbreaking and rooting detection:</strong> Jailbroken iOS devices and rooted Android devices have bypassed security controls and can run unapproved software. MDM platforms detect jailbroken/rooted devices and can automatically quarantine them — blocking corporate email and VPN access until the device is restored to a compliant state.</p>
+    <p><strong>Jailbreaking and rooting detection:</strong> Jailbroken iOS devices and rooted Android devices have bypassed security controls and can run unapproved software. MDM platforms detect jailbroken/rooted devices and can automatically quarantine them — blocking corporate email and VPN access until the device is restored to a compliant state. What jailbreaking and rooting break on the device itself is covered in <a href="mobile-device-troubleshooting.html">mobile device troubleshooting</a>.</p>
     <p><strong>Containerization:</strong> Rather than managing the entire device, containerization creates an encrypted, isolated partition for corporate data and apps. Corporate content cannot be copied out of the container (no copy-paste to personal apps, no screenshots in corporate apps). This is MAM in practice — the container is managed by IT, everything outside it is untouched.</p>
 
     
     <h2>Mobile Device Security — Beyond MDM</h2>
-    <p>MDM is the management layer, but mobile device security includes several additional concepts tested on A+ and Security+. <strong>Sideloading</strong> — installing apps from sources other than the official app store (Google Play, Apple App Store) — bypasses the store's security review process and significantly increases malware risk. MDM policies can disable sideloading on enrolled devices. <strong>Carrier unlocking</strong> vs <strong>jailbreaking/rooting</strong>: carrier unlocking allows a phone to be used on different cellular networks — this is legal and doesn't affect security. Jailbreaking (iOS) and rooting (Android) bypass the OS security model and allow apps to gain system-level access — this compromises the device's security posture and should be detected and quarantined by MDM.</p>
+    <p>MDM is the management layer, but mobile device security includes several additional concepts in the A+ and Security+ objectives. <strong>Sideloading</strong> — installing apps from sources other than the official app store (Google Play, Apple App Store) — bypasses the store's security review process and significantly increases malware risk. MDM policies can disable sideloading on enrolled devices. <strong>Carrier unlocking</strong> vs <strong>jailbreaking/rooting</strong>: carrier unlocking allows a phone to be used on different cellular networks — this is legal and doesn't affect security. Jailbreaking (iOS) and rooting (Android) bypass the OS security model and allow apps to gain system-level access — this compromises the device's security posture and should be detected and quarantined by MDM.</p>
     <p><strong>Bring Your Own Application (BYOA)</strong> extends the BYOD concept to applications — employees use their preferred applications (personal Dropbox, WhatsApp) for work alongside corporate-approved apps. This creates data leakage risk: work files saved to personal Dropbox leave corporate control. DLP integrated with MAM addresses this by preventing corporate data from being opened in or shared with non-managed applications. The container model is the technical enforcement: corporate apps can only share data with other corporate apps within the managed container, not with personal apps outside it.</p>
     <p><strong>GPS tracking and remote location:</strong> MDM can use the device's GPS to track location. For company-owned devices this is standard practice — enabling recovery of lost/stolen devices and enforcement of geofencing policies. For BYOD devices, GPS tracking raises significant privacy concerns and should be disclosed clearly in the BYOD policy and employee agreement. Some MDM platforms allow location tracking to be disabled for BYOD while still enforcing security policies on managed apps.</p>
     <h2>Exam Scenarios</h2>

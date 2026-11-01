@@ -623,6 +623,9 @@ tbody tr:hover td { background: #f6f9ff; }
 
 /* ── Round 3 link contrast (Oct 2026) ── */
 .code-comment a { color:rgba(255,255,255,.75); text-decoration:underline; }
+
+/* ── Body text links (Oct 2026) ── */
+.article-body p a:not([class]), .article-body li a:not([class]), .article-body td a:not([class]) { color:#155bd9; text-decoration:underline; }
 </style>
 
 
@@ -943,7 +946,7 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <h2>Privileged Access Management (PAM)</h2>
 
-    <p>PAM is a security discipline focused on controlling, monitoring, and auditing privileged accounts — accounts with elevated permissions such as administrators, root users, and service accounts. Privileged accounts are the highest-value targets for attackers because they can do the most damage if compromised.</p>
+    <p>PAM is a security discipline focused on controlling, monitoring, and auditing privileged accounts — accounts with elevated permissions such as administrators, root users, and service accounts. Privileged accounts are the highest-value targets for attackers because they can do the most damage if compromised. On a single Windows PC, the same idea shows up as standard user accounts and a renamed or disabled built-in Administrator; see <a href="workstation-and-browser-hardening.html">workstation and browser hardening</a>.</p>
 
     <div class="table-wrap">
       <table>
@@ -980,7 +983,7 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <h2>Identity lifecycle management</h2>
 
-    <p>Identity lifecycle management covers how accounts are created, maintained, and removed throughout an employee's time at an organization. The exam tests this primarily through scenarios about what should happen at onboarding, role changes, and offboarding:</p>
+    <p>Identity lifecycle management covers how accounts are created, maintained, and removed throughout an employee's time at an organization. Know what should happen at onboarding, role changes, and offboarding:</p>
 
     <div class="code-block">
       <div class="code-label">Identity lifecycle — key concepts</div>

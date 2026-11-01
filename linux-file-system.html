@@ -557,7 +557,7 @@ tbody tr:hover td{background:#f0fdf9;}
 
     <h2>The Linux Directory Tree</h2>
 
-    <p>Unlike Windows (which uses drive letters like <code class="mono">C:\</code> and <code class="mono">D:\</code>), Linux has a single hierarchical file system rooted at <code class="mono">/</code>. All storage devices — internal drives, USB drives, network shares — are mounted somewhere within this tree. This design is called the <strong>Filesystem Hierarchy Standard (FHS)</strong>.</p>
+    <p>Unlike Windows (which uses drive letters like <code class="mono">C:\</code> and <code class="mono">D:\</code>), Linux has a single hierarchical file system rooted at <code class="mono">/</code>. All storage devices — internal drives, USB drives, network shares — are mounted somewhere within this tree. This design is called the <strong>Filesystem Hierarchy Standard (FHS)</strong>. macOS also uses forward-slash paths such as /Applications and /Users; its system folders are covered in <a href="macos-features-and-tools.html">macOS features and tools</a>.</p>
 
     <div class="dir-tree">
       <div class="dir-tree-title">Linux Directory Structure</div>
@@ -690,7 +690,7 @@ tbody tr:hover td{background:#f0fdf9;}
 
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 FAT32's 4 GB Limit</div>
-      <p><strong>FAT32 cannot store any single file larger than 4 GB.</strong> This is a hard limitation of the file system, not the drive size. A common A+ scenario: a user tries to copy a 6 GB video file to a USB drive and gets an error — the cause is FAT32 formatting. The fix is to reformat the drive as exFAT (cross-platform, no 4 GB limit) or NTFS (Windows/Linux only). The drive itself is not broken.</p>
+      <p><strong>FAT32 cannot store any single file larger than 4 GB.</strong> This is a hard limitation of the file system, not the drive size. A typical scenario: a user tries to copy a 6 GB video file to a USB drive and gets an error — the cause is FAT32 formatting. The fix is to reformat the drive as exFAT (cross-platform, no 4 GB limit) or NTFS (Windows/Linux only). The drive itself is not broken.</p>
     </div>
 
     <p>Defaults differ by distribution and change between releases. Red Hat's own documentation states that <a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/managing_file_systems/getting-started-with-xfs" target="_blank" rel="noopener">XFS &ldquo;is default in RHEL 10&rdquo;</a>, while the Debian and Ubuntu installers still default to ext4. Check the installer for the release in front of you rather than assuming.</p>
@@ -799,7 +799,7 @@ tbody tr:hover td{background:#f0fdf9;}
 
     <h2>What This Page Doesn't Cover</h2>
 
-    <p>This covers the directory tree, permissions, inodes and mount points at the depth CompTIA tests. It does not cover POSIX ACLs beyond the basic <code class="mono">rwx</code> triads, SELinux or AppArmor contexts, LVM, filesystem tuning, or recovery from a damaged superblock &mdash; those are Linux+ and administration topics rather than A+ ones. Where a distribution diverges from the standard (Ubuntu's Snap mount points, for instance), this page follows the FHS rather than the distribution.</p>
+    <p>This covers the directory tree, permissions, inodes and mount points at the depth of the A+ objectives. It does not cover POSIX ACLs beyond the basic <code class="mono">rwx</code> triads, SELinux or AppArmor contexts, LVM, filesystem tuning, or recovery from a damaged superblock &mdash; those are Linux+ and administration topics rather than A+ ones. Where a distribution diverges from the standard (Ubuntu's Snap mount points, for instance), this page follows the FHS rather than the distribution.</p>
 
     <p>For scope: CompTIA's published <a href="https://www.comptia.org/en-us/certifications/a/core-1-and-2-v15/" target="_blank" rel="noopener">A+ Core 1 and Core 2 (V15) exam details</a> put Operating Systems at <strong>28% of Core 2</strong>, with a passing score of <strong>700 out of 900</strong>. The current versions, <strong>220-1201</strong> and <strong>220-1202</strong>, launched on <strong>25 March 2025</strong>. Linux file-system questions sit inside that 28%, alongside Windows and macOS.</p>
 

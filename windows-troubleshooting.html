@@ -356,6 +356,9 @@ tbody tr:hover td{background:#eff6ff;}
   }
 }
 /* ---- end mobile nav ---- */
+
+/* ── Body text links (Oct 2026) ── */
+.article-body p a:not([class]), .article-body li a:not([class]), .article-body td a:not([class]) { color:#155bd9; text-decoration:underline; }
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"IT Study Hub","item":"https://itstudyhub.org/"},{"@type":"ListItem","position":2,"name":"Windows Troubleshooting","item":"https://itstudyhub.org/windows-troubleshooting.html"}]}
@@ -483,7 +486,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 A+ Exam — BSOD Troubleshooting Approach</div>
-      <p>The A+ exam doesn't require you to memorize every stop code, but you should know the general approach: <strong>(1) Note the stop code</strong>. <strong>(2) Check if it happens after a recent change</strong> (driver install, Windows update, new hardware). <strong>(3) Boot into Safe Mode</strong> — if it doesn't BSOD in Safe Mode, a third-party driver or startup program is the cause. <strong>(4) If hardware-related codes appear</strong> (memory, disk), test hardware. <strong>(5) Use sfc /scannow and DISM</strong> to repair corrupted system files.</p>
+      <p>Rather than memorizing every stop code, learn the general approach: <strong>(1) Note the stop code</strong>. <strong>(2) Check if it happens after a recent change</strong> (driver install, Windows update, new hardware). <strong>(3) Boot into Safe Mode</strong> — if it doesn't BSOD in Safe Mode, a third-party driver or startup program is the cause. <strong>(4) If hardware-related codes appear</strong> (memory, disk), test hardware. <strong>(5) Use sfc /scannow and DISM</strong> to repair corrupted system files.</p>
     </div>
 
     <h2>Safe Mode</h2>
@@ -500,7 +503,7 @@ tbody tr:hover td{background:#eff6ff;}
       <p><strong>Method 4 — If Windows won't boot:</strong> Interrupt boot 3 times in a row (power off during Windows logo). Windows automatically enters Automatic Repair / WinRE.</p>
     </div>
 
-    <p><strong>Safe Mode with Networking</strong> loads the same minimal environment as Safe Mode but adds network drivers, allowing internet access. Use this when you need Safe Mode but also need to download drivers or run online malware scans. <strong>Safe Mode with Command Prompt</strong> opens a command prompt instead of the Windows desktop — for advanced repairs.</p>
+    <p><strong>Safe Mode with Networking</strong> loads the same minimal environment as Safe Mode but adds network drivers, allowing internet access. Use this when you need Safe Mode but also need to download drivers or run online malware scans. For where safe mode fits in a malware cleanup, see the <a href="soho-malware-removal.html">SOHO malware removal procedure</a>. <strong>Safe Mode with Command Prompt</strong> opens a command prompt instead of the Windows desktop — for advanced repairs.</p>
 
     <h2>Windows Recovery Environment (WinRE)</h2>
 
