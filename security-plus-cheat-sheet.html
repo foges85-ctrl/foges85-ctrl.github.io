@@ -166,8 +166,8 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
 .footer-bottom { max-width: 1100px; margin: 28px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
 @media (max-width: 600px) { .footer { padding: 36px 16px; } .footer-bottom { flex-direction: column; } .footer-cols { grid-template-columns: 1fr; gap: 24px; } }
 
-.footer-email { color:rgba(255,255,255,0.4); }
-.footer-pp { color:rgba(255,255,255,0.4); }
+.footer-email { color:rgba(255,255,255,0.55); }
+.footer-pp { color:rgba(255,255,255,0.55); }
 
 /* TABLE WRAPPER */
 .table-wrap { overflow-x: auto; margin-bottom: 24px; border-radius: 10px; border: 1px solid var(--border); }
@@ -491,6 +491,70 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
   }
 }
 /* ---- end mobile nav ---- */
+/* ── AFFILIATE BOX ── */
+.affiliate-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.affiliate-box::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.affiliate-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+
+.affiliate-box h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.affiliate-box p { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 18px; }
+.affiliate-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.aff-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.15s, filter 0.15s;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.aff-btn:hover { transform: translateY(-2px); filter: brightness(1.05); text-decoration: none; }
+.aff-btn-primary { background: var(--teal); color: var(--navy); }
+.aff-btn-secondary { background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.15); }
+
+/* ── AFFILIATE BOX FIXES ── */
+@media (max-width:600px){ .aff-btn { white-space:normal; } }
+.affiliate-box h2 { margin-top:0; }
+
+/* ── Round 3 link contrast (Oct 2026) ── */
+.article-wrap p a:not([class]), .article-wrap li a:not([class]), .article-wrap td a:not([class]) { color:#155bd9; text-decoration:underline; }
+.article-wrap .callout a:not([class]) { color:#155bd9; text-decoration:underline; }
 </style>
 
 
@@ -633,7 +697,7 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
   <h2 id="crypto" class="section-title"><span class="s-icon">🔐</span> What cryptography algorithms are tested on Security+?</h2>
 
   <div class="callout callout-amber">
-    <strong>⚡ Exam tip:</strong> Know symmetric vs asymmetric, which algorithms are weak vs strong, and what each is used for. AES = encryption, SHA = hashing, RSA = key exchange/signatures. These distinctions appear constantly.
+    <strong>⚡ Exam tip:</strong> Know symmetric vs asymmetric, which algorithms are weak vs strong, and what each is used for. AES = encryption, SHA = hashing, RSA = key exchange/signatures.
   </div>
 
   <div class="table-wrap">
@@ -996,6 +1060,10 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
         <tr><td class="mono"><strong>XDR</strong></td><td>Extended Detection and Response</td><td>EDR extended across network, cloud, email — unified view</td></tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="callout callout-purple">
+    <strong>Full list:</strong> <a href="security-plus-acronyms.html">See the full SY0-701 acronym list</a> — all 336 entries from CompTIA&rsquo;s official list, each with a plain-English explanation.
   </div>
 
   <div class="callout callout-purple">

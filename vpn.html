@@ -401,8 +401,8 @@ tbody tr:hover td { background: #f6f9ff; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.footer-email { color:rgba(255,255,255,0.4); }
-.footer-pp { color:rgba(255,255,255,0.4); }
+.footer-email { color:rgba(255,255,255,0.55); }
+.footer-pp { color:rgba(255,255,255,0.55); }
 
 /* ── CERTFLASH APP BANNER ── */
 .app-banner {
@@ -818,7 +818,7 @@ tbody tr:hover td { background: #f6f9ff; }
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ What is a VPN?</div>
       <div class="quick-answer-text">
-        A VPN (Virtual Private Network) creates an <strong>encrypted tunnel</strong> between a device and a network over the public internet, making traffic appear to originate from the VPN endpoint rather than the user's actual location. It provides confidentiality, integrity, and authentication for traffic that would otherwise travel unprotected. On both Network+ and Security+ exams, VPNs are tested heavily — especially tunneling protocols, types, and split tunneling.
+        A VPN (Virtual Private Network) creates an <strong>encrypted tunnel</strong> between a device and a network over the public internet, making traffic appear to originate from the VPN endpoint rather than the user's actual location. It provides confidentiality, integrity, and authentication for traffic that would otherwise travel unprotected. For Network+ and Security+, focus on tunneling protocols, VPN types, and split tunneling.
       </div>
     </div>
 
@@ -942,7 +942,7 @@ tbody tr:hover td { background: #f6f9ff; }
             <td>TCP 1723</td>
             <td>MPPE (weak)</td>
             <td><span class="proto-badge badge-deprecated">Deprecated</span></td>
-            <td>Old Microsoft protocol. Encryption is broken — known vulnerabilities. Appears on exam as an example of weak/insecure VPN. Do not use.</td>
+            <td>Old Microsoft protocol. Encryption is broken — known vulnerabilities. An example of a weak/insecure VPN. Do not use.</td>
           </tr>
         </tbody>
       </table>
@@ -950,13 +950,13 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ PPTP on the exam</div>
-      <p>PPTP appears frequently on Security+ as the answer to "which VPN protocol is considered insecure?" Its encryption (MPPE) has known weaknesses and it should never be used on modern networks. If a question asks which VPN protocol to avoid or replace, <strong>PPTP</strong> is the answer.</p>
+      <p>PPTP is considered insecure. Its encryption (MPPE) has known weaknesses and it should never be used on modern networks. If a question asks which VPN protocol to avoid or replace, <strong>PPTP</strong> is the answer.</p>
       <p>Contrast with IPsec and OpenVPN — both are considered secure and current standards.</p>
     </div>
 
     <h2>IPsec modes and components — Security+ detail</h2>
 
-    <p>IPsec is the most heavily tested VPN technology on both Network+ and Security+. You need to know its two modes and two core protocols:</p>
+    <p>For IPsec on Network+ and Security+, you need to know its two modes and two core protocols:</p>
 
     <div class="code-block">
       <div class="code-label">IPsec — modes and protocols</div>
@@ -1006,7 +1006,7 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ Split tunneling exam angle</div>
-      <p>The Security+ exam frequently frames split tunneling as a <strong>security risk</strong>. The concern is that a remote employee's device connects to both the corporate VPN and the public internet simultaneously — if the device is compromised, an attacker could potentially use it as a pivot point into the corporate network.</p>
+      <p>Split tunneling is a <strong>security risk</strong>. The concern is that a remote employee's device connects to both the corporate VPN and the public internet simultaneously — if the device is compromised, an attacker could potentially use it as a pivot point into the corporate network.</p>
       <p>Exam question pattern: "Which VPN configuration poses the greatest security risk?" → <strong>Split tunneling</strong>.</p>
     </div>
 

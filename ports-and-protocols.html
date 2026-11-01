@@ -133,7 +133,7 @@ a{color:inherit;text-decoration:none;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
 .footer-links a:hover{color:var(--teal);}
 .footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.footer-pp{color:rgba(255,255,255,.4);}
+.footer-pp{color:rgba(255,255,255,.55);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── CERTFLASH APP BANNER ── */
@@ -517,7 +517,7 @@ a{color:inherit;text-decoration:none;}
     </nav>
     <div class="page-hero-badge">A+ · Network+ · Security+ Reference</div>
     <h1>CompTIA <span>Port Numbers</span> Cheat Sheet</h1>
-    <p class="page-hero-sub">The most commonly tested CompTIA ports are: 20/21 FTP, 22 SSH, 23 Telnet, 25 SMTP, 53 DNS, 67/68 DHCP, 80 HTTP, 110 POP3, 143 IMAP, 443 HTTPS, 445 SMB, and 3389 RDP. For every port the exam expects you to know the number, the protocol name, whether it runs on TCP or UDP, and any encrypted alternative.</p>
+    <p class="page-hero-sub">The core CompTIA ports to know are: 20/21 FTP, 22 SSH, 23 Telnet, 25 SMTP, 53 DNS, 67/68 DHCP, 80 HTTP, 110 POP3, 143 IMAP, 443 HTTPS, 445 SMB, and 3389 RDP. For every port, know the number, the protocol name, whether it runs on TCP or UDP, and any encrypted alternative.</p>
     <div class="cert-badges">
       <span class="cert-badge cb-teal">A+ 220-1201</span>
       <span class="cert-badge cb-blue">Network+ N10-009</span>
@@ -574,7 +574,7 @@ a{color:inherit;text-decoration:none;}
       <p><strong>DNS uses UDP port 53</strong> for standard queries — fast, low overhead, fits in one packet. <strong>DNS uses TCP port 53</strong> for zone transfers (replicating the full DNS database between servers) and responses larger than 512 bytes. The exam may ask which protocol DNS uses — answer UDP for lookups, TCP for zone transfers.</p>
     </div>
 
-    <h2>Which ports are most commonly tested on CompTIA exams?</h2>
+    <h2>Which ports should you know for CompTIA exams?</h2>
 
     <div class="qref-grid">
       <div class="qref-card"><div class="qref-port">20</div><div class="qref-info"><div class="qref-name">FTP Data</div><div class="qref-proto">TCP</div></div></div>
@@ -710,7 +710,7 @@ a{color:inherit;text-decoration:none;}
             <td class="port-num">23</td>
             <td class="port-name">Telnet</td>
             <td><span class="tag-tcp">TCP</span></td>
-            <td>Remote terminal access — unencrypted. Everything including passwords is sent in cleartext. Replaced by SSH (port 22). Still tested because it's a classic example of an insecure protocol that should be disabled.</td>
+            <td>Remote terminal access — unencrypted. Everything including passwords is sent in cleartext. Replaced by SSH (port 22). Still worth knowing as a classic example of an insecure protocol that should be disabled.</td>
             <td><span class="cert-dot dot-a">A+</span><span class="cert-dot dot-n">N+</span><span class="cert-dot dot-s">S+</span></td>
           </tr>
           <tr>
@@ -887,7 +887,7 @@ a{color:inherit;text-decoration:none;}
 
     <div class="callout">
       <div class="callout-label">Know Your Secure Replacements</div>
-      <p>The Security+ exam frequently tests whether you can identify which protocols are insecure and what their encrypted replacements are. These pairs are the most tested:</p>
+      <p>Know which protocols are insecure and what their encrypted replacements are. Know these pairs:</p>
       <p><strong>Telnet (23) → SSH (22)</strong> — Remote terminal access. Telnet sends everything in cleartext. SSH encrypts the session.</p>
       <p><strong>FTP (20/21) → SFTP or FTPS</strong> — SFTP runs over SSH (port 22). FTPS is FTP with TLS (port 990/21). Both encrypt credentials and data.</p>
       <p><strong>HTTP (80) → HTTPS (443)</strong> — Web traffic. HTTPS uses TLS to encrypt the connection.</p>

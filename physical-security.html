@@ -119,7 +119,7 @@ tbody tr:hover td{background:#fdf4ff;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
 .footer-links a:hover{color:var(--teal);}
 .footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.footer-pp{color:rgba(255,255,255,.4);}
+.footer-pp{color:rgba(255,255,255,.55);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── CERTFLASH APP BANNER ── */
@@ -525,7 +525,7 @@ tbody tr:hover td{background:#fdf4ff;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ Quick Answer</div>
       <div class="quick-answer-text">
-        Physical security controls protect facilities and hardware from unauthorized physical access. The exam tests four types of physical controls: <strong>deterrent</strong> (discourage attackers — fences, signs), <strong>preventive</strong> (stop access — mantraps, locks, badge readers), <strong>detective</strong> (identify incidents — cameras, motion sensors, logs), and <strong>corrective</strong> (respond after — guards, alarm response). <strong>The most tested physical security topic is the access control vestibule (mantrap)</strong> — know exactly how it works and why it prevents tailgating.
+        Physical security controls protect facilities and hardware from unauthorized physical access. The exam tests four types of physical controls: <strong>deterrent</strong> (discourage attackers — fences, signs), <strong>preventive</strong> (stop access — mantraps, locks, badge readers), <strong>detective</strong> (identify incidents — cameras, motion sensors, logs), and <strong>corrective</strong> (respond after — guards, alarm response). <strong>Pay special attention to the access control vestibule (mantrap)</strong> — know exactly how it works and why it prevents tailgating.
       </div>
     </div>
 
@@ -543,7 +543,7 @@ tbody tr:hover td{background:#fdf4ff;}
       </div>
       <div class="control-body">
         <div class="control-desc">A small enclosed space with <strong>two interlocking doors</strong> — the second door only unlocks after the first has closed and the person has been authenticated. Prevents tailgating (piggybacking) by ensuring only one person can enter at a time. CompTIA uses the term "access control vestibule" in SY0-701 — older materials and the real world still call it a mantrap.</div>
-        <div class="control-detail"><strong>How it works:</strong> Person enters through outer door (which locks behind them) → authenticates (badge, PIN, biometric) inside the vestibule → inner door unlocks. If authentication fails, the person is trapped in the vestibule for security personnel to respond. <strong>Exam trap:</strong> A mantrap prevents tailgating — it does NOT prevent someone with a stolen valid credential from entering.</div>
+        <div class="control-detail"><strong>How it works:</strong> Person enters through outer door (which locks behind them) → authenticates (badge, PIN, biometric) inside the vestibule → inner door unlocks. If authentication fails, the person is trapped in the vestibule for security personnel to respond. <strong>Key point:</strong> A mantrap prevents tailgating — it does NOT prevent someone with a stolen valid credential from entering.</div>
       </div>
     </div>
 
@@ -683,7 +683,7 @@ tbody tr:hover td{background:#fdf4ff;}
 
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 Degaussing Exam Trap</div>
-      <p><strong>Degaussing only works on magnetic media</strong> — HDDs and tape drives. It does NOT work on SSDs, USB drives, CDs/DVDs, or any flash/optical media because those don't use magnetic storage. The exam will try to trick you into choosing degaussing for an SSD — the correct answer for SSD disposal is physical destruction (shredding) or cryptographic erase.</p>
+      <p><strong>Degaussing only works on magnetic media</strong> — HDDs and tape drives. It does NOT work on SSDs, USB drives, CDs/DVDs, or any flash/optical media because those don't use magnetic storage. Don't pick degaussing for an SSD — the correct answer for SSD disposal is physical destruction (shredding) or cryptographic erase.</p>
     </div>
 
     <div class="callout">
@@ -720,7 +720,7 @@ tbody tr:hover td{background:#fdf4ff;}
     <p>The distinction between tailgating and piggybacking: <strong>tailgating</strong> is when an unauthorized person follows an authorized person through a door without the authorized person's knowledge or consent. <strong>Piggybacking</strong> is when the authorized person knowingly holds the door open for or allows an unauthorized person to enter — effectively a social engineering attack that exploits courtesy and authority. Both are physical security violations; mantraps address tailgating mechanically but piggybacking requires security awareness training to address.</p>
 
     <h2>Data Destruction Methods — What the Exam Tests</h2>
-    <p>Physical security extends to how data is destroyed when storage media is retired. CompTIA tests specific destruction methods and when each is appropriate. <strong>Shredding</strong> physically destroys the storage media (shredded hard drives, SSDs, optical discs) — appropriate for media that must be completely destroyed and cannot be reused. <strong>Degaussing</strong> exposes magnetic storage (HDDs, magnetic tape) to a powerful magnetic field that scrambles all data — effective for traditional hard drives but <strong>does not work on SSDs, USB drives, or optical media</strong> (which are not magnetic). This distinction is a common exam question.</p>
+    <p>Physical security extends to how data is destroyed when storage media is retired. CompTIA tests specific destruction methods and when each is appropriate. <strong>Shredding</strong> physically destroys the storage media (shredded hard drives, SSDs, optical discs) — appropriate for media that must be completely destroyed and cannot be reused. <strong>Degaussing</strong> exposes magnetic storage (HDDs, magnetic tape) to a powerful magnetic field that scrambles all data — effective for traditional hard drives but <strong>does not work on SSDs, USB drives, or optical media</strong> (which are not magnetic).</p>
     <p><strong>Overwriting (wiping)</strong> writes patterns of data (zeros, ones, or random data) over all sectors of a drive. NIST SP 800-88 Rev. 1 held that a single overwrite pass is sufficient to clear modern HDDs (Rev. 2, Sept 2025, is now current); the legacy DoD 5220.22-M method uses 3 passes (7 in its ECE variant) and still appears in some wiping tools. Overwriting is considered sufficient for most purposes. However, overwriting is not appropriate for <strong>highly classified or sensitive data</strong> — physical destruction is required. Also, overwriting HDDs with bad sectors may miss data in those sectors; again, physical destruction is the only guarantee. <strong>Incineration</strong> (burning) is the highest level of destruction, used for classified media that must be completely rendered unreadable under any circumstance.</p>
     <p>On the exam: a company needs to dispose of old hard drives containing financial records. They want to reuse the drives. What method is appropriate? Overwriting (wiping). They don't want to reuse them and want complete assurance? Shredding or incineration. They have old magnetic tape backups? Degaussing. The method depends on media type, sensitivity level, and whether reuse is required.</p>
 

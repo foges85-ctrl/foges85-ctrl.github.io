@@ -161,7 +161,7 @@ tbody tr:hover td{background:#eff6ff;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
 .footer-links a:hover{color:var(--teal);}
 .footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.footer-pp{color:rgba(255,255,255,.4);}
+.footer-pp{color:rgba(255,255,255,.55);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── CERTFLASH APP BANNER ── */
@@ -498,7 +498,7 @@ tbody tr:hover td{background:#eff6ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-10-18",
+  "dateModified": "2026-10-31",
   "url": "https://itstudyhub.org/subnetting-guide.html",
   "inLanguage": "en"
 }
@@ -834,8 +834,8 @@ tbody tr:hover td{background:#eff6ff;}
     </div>
 
     <div class="exam-tip">
-      <div class="exam-tip-label">🎯 Three Common Exam Traps in Subnetting Questions</div>
-      <p><strong>The network and broadcast addresses are not usable.</strong> A /26 has 64 addresses but only 62 usable hosts (subtract 2, always). Exam questions that give you "64 hosts" are testing whether you wrongly pick /26 (only 62 usable) instead of /25 (126 usable — correct).</p>
+      <div class="exam-tip-label">🎯 Three Subnetting Traps to Avoid</div>
+      <p><strong>The network and broadcast addresses are not usable.</strong> A /26 has 64 addresses but only 62 usable hosts (subtract 2, always). If you need "64 hosts", don't pick /26 (only 62 usable) — /25 (126 usable) is correct.</p>
       <p><strong>/31 is a special case.</strong> Technically 2¹ − 2 = 0 usable hosts, but RFC 3021 permits /31 for point-to-point links because no broadcast is needed. The exam occasionally includes /31 — know that it's used for P2P links and has 2 assignable addresses.</p>
       <p><strong>Don't confuse subnets-from-/24 with total subnets.</strong> A /26 gives you 4 subnets when splitting a /24. But if you're splitting a /22, you get many more. Always read the question — it will tell you the parent block you're subnetting from.</p>
     </div>

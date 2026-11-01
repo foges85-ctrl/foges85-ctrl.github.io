@@ -375,8 +375,8 @@ tbody tr:hover td { background: #f6f9ff; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.footer-email { color:rgba(255,255,255,0.4); }
-.footer-pp { color:rgba(255,255,255,0.4); }
+.footer-email { color:rgba(255,255,255,0.55); }
+.footer-pp { color:rgba(255,255,255,0.55); }
 
 /* ── CERTFLASH APP BANNER ── */
 .app-banner {
@@ -666,6 +666,12 @@ tbody tr:hover td { background: #f6f9ff; }
 
 /* ── BODY TEXT LINKS ── */
 .article-body p > a:not([class]), .guide-wrap p > a:not([class]) { color:#155bd9; text-decoration:underline; }
+
+/* ── Round 3 link contrast (Oct 2026) ── */
+a[style*="color:#1a6cff"] { color:#6ea8ff !important; }  /* 'Or compare paid … →' link sits on the navy .cta-box */
+
+/* ── Body-link styling for in-text links in .tip-desc (Oct 2026) ── */
+.tip-desc a:not([class]) { color:#155bd9; text-decoration:underline; }
 </style>
 
 
@@ -870,7 +876,7 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ Subnetting study strategy</div>
-      <p><strong>Learn the /24 to /32 range first</strong> — these are the most commonly tested. Know the <a href="subnet-mask.html">subnet mask</a>, number of subnets, and usable hosts for each prefix length without having to calculate from scratch.</p>
+      <p><strong>Learn the /24 to /32 range first</strong>. Know the <a href="subnet-mask.html">subnet mask</a>, number of subnets, and usable hosts for each prefix length without having to calculate from scratch.</p>
       <p><strong>Practice daily, not in marathon sessions.</strong> 15–20 subnetting problems every day for 4 weeks builds fluency faster than doing 100 problems on one weekend. Speed comes from repetition, not understanding alone.</p>
       <p>A free resource worth bookmarking: subnettingpractice.com — unlimited randomized problems with instant feedback.</p>
     </div>

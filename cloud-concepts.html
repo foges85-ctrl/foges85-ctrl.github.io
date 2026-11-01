@@ -143,7 +143,7 @@ tbody tr:hover td{background:#eff6ff;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
 .footer-links a:hover{color:var(--teal);}
 .footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.footer-pp{color:rgba(255,255,255,.4);}
+.footer-pp{color:rgba(255,255,255,.55);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── CERTFLASH APP BANNER ── */
@@ -549,7 +549,7 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ Quick Answer</div>
       <div class="quick-answer-text">
-        Cloud computing delivers IT resources over the internet on demand. The three service models are <strong>IaaS</strong> (you manage the OS up), <strong>PaaS</strong> (you manage the application up), and <strong>SaaS</strong> (the provider manages everything — you just use the software). The <strong>shared responsibility model</strong> defines who secures what — as you move from IaaS → PaaS → SaaS, the customer takes on less responsibility and the provider takes on more. <strong>This is the most tested cloud concept on Security+ SY0-701.</strong>
+        Cloud computing delivers IT resources over the internet on demand. The three service models are <strong>IaaS</strong> (you manage the OS up), <strong>PaaS</strong> (you manage the application up), and <strong>SaaS</strong> (the provider manages everything — you just use the software). The <strong>shared responsibility model</strong> defines who secures what — as you move from IaaS → PaaS → SaaS, the customer takes on less responsibility and the provider takes on more.
       </div>
     </div>
 
@@ -607,7 +607,7 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 Memory Aid — Pizza as a Service</div>
       <p>Think of it like pizza: <strong>IaaS = you buy ingredients and cook it yourself.</strong> <strong>PaaS = someone delivers the dough and sauce — you add toppings and bake.</strong> <strong>SaaS = pizza delivered to your door, fully cooked — you just eat it.</strong></p>
-      <p>The key question: <strong>who patches the operating system?</strong> IaaS = you do. PaaS = provider does. SaaS = provider does. This distinction appears constantly on Security+ scenarios.</p>
+      <p>The key question: <strong>who patches the operating system?</strong> IaaS = you do. PaaS = provider does. SaaS = provider does.</p>
     </div>
 
     <h2>The Shared Responsibility Model</h2>
@@ -747,7 +747,7 @@ tbody tr:hover td{background:#eff6ff;}
     
     <h2>The Economics of Cloud — Why Organizations Move to Cloud</h2>
     <p>Understanding why cloud exists helps you answer scenario questions about when to recommend cloud vs on-premises. Cloud's core economic argument is the shift from <strong>capital expenditure (CapEx) to operational expenditure (OpEx)</strong>. Buying servers, networking equipment, and datacenter space requires large upfront investment that depreciates over 3–5 years. Cloud replaces this with monthly operating costs that scale with actual usage — you pay for what you consume, when you consume it.</p>
-    <p>For start-ups and growing organizations this is transformative: a company can launch a globally distributed application without buying a single server. For established enterprises the calculus is more complex — at sufficient scale, owned infrastructure can be cheaper than cloud, but the operational overhead of maintaining it must be factored in. The exam doesn't ask you to calculate TCO (total cost of ownership), but it does expect you to understand the CapEx vs OpEx trade-off and when each model is appropriate.</p>
+    <p>For start-ups and growing organizations this is transformative: a company can launch a globally distributed application without buying a single server. For established enterprises the calculus is more complex — at sufficient scale, owned infrastructure can be cheaper than cloud, but the operational overhead of maintaining it must be factored in. Know the CapEx vs OpEx trade-off and when each model is appropriate.</p>
     <p><strong>Elasticity</strong> is the other key cloud advantage — the ability to scale resources up or down automatically based on demand. A retailer's website that handles 10x normal traffic on Black Friday doesn't need to own hardware capable of handling Black Friday traffic 365 days a year. Cloud auto-scaling provisions additional capacity when needed and releases it when demand drops. This is fundamentally different from on-premises where you must own enough hardware for peak load regardless of average utilization.</p>
 
     <h2>Multi-Cloud and Hybrid Cloud — Real-World Architectures</h2>
@@ -758,7 +758,7 @@ tbody tr:hover td{background:#eff6ff;}
     <h2>Cloud Service Models — What You Actually Manage</h2>
     <p>The practical impact of choosing IaaS vs PaaS vs SaaS is how much you manage. In <strong>IaaS</strong> (AWS EC2, Azure VMs, Google Compute Engine), you provision virtual machines and are responsible for everything on them: operating system installation and patching, application installation and configuration, security hardening, and monitoring. IaaS gives maximum control and flexibility at the cost of maximum operational responsibility. This is the right choice when you need specific OS configurations, run custom applications, or are "lifting and shifting" existing workloads to cloud.</p>
     <p>In <strong>PaaS</strong> (AWS Elastic Beanstalk, Azure App Service, Google App Engine), the platform manages the OS, runtime, and scaling automatically. You deploy your application code and the platform handles everything beneath it. PaaS is the right choice for development teams that want to focus on writing application code rather than managing infrastructure — a developer can deploy a web application without knowing anything about Linux administration or load balancer configuration. The trade-off is less control — you can't customize the underlying OS or choose specific runtime versions beyond what the platform offers.</p>
-    <p>In <strong>SaaS</strong> (Microsoft 365, Salesforce, Google Workspace, Dropbox), the provider manages everything including the application itself. You configure the application through the user interface or admin portal, but you cannot access the underlying infrastructure, operating system, or database. SaaS is the right choice for standard business applications where you don't need customization beyond what the vendor's settings allow. The exam often asks what you're responsible for in SaaS — the answer is always <strong>your data and user access management</strong>. Everything else is the provider's responsibility.</p>
+    <p>In <strong>SaaS</strong> (Microsoft 365, Salesforce, Google Workspace, Dropbox), the provider manages everything including the application itself. You configure the application through the user interface or admin portal, but you cannot access the underlying infrastructure, operating system, or database. SaaS is the right choice for standard business applications where you don't need customization beyond what the vendor's settings allow. In SaaS, you're responsible for <strong>your data and user access management</strong>. Everything else is the provider's responsibility.</p>
 
     <h2>Cloud Storage Types — Object, Block, and File</h2>
     <p><strong>Object storage</strong> (AWS S3, Azure Blob Storage, Google Cloud Storage) stores data as flat objects with metadata and a unique identifier. There is no directory hierarchy — objects are stored in "buckets" or "containers" and retrieved by key (essentially a filename). Object storage is massively scalable, cheaply priced, and designed for unstructured data: images, videos, backups, log files, static website assets. It is not suitable for workloads that need low-latency random read/write access (like databases).</p>

@@ -108,7 +108,7 @@ tbody tr:hover td{background:var(--light);}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
 .footer-links a:hover{color:var(--teal);}
 .footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.footer-pp{color:rgba(255,255,255,.4);}
+.footer-pp{color:rgba(255,255,255,.55);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── CERTFLASH APP BANNER ── */
@@ -396,6 +396,9 @@ tbody tr:hover td{background:var(--light);}
   }
 }
 /* ---- end mobile nav ---- */
+
+/* ── Round 3 link contrast (Oct 2026) ── */
+.article-body p a:not([class]), .article-body li a:not([class]), .article-body td a:not([class]) { color:#155bd9; text-decoration:underline; }
 </style>
 
 
@@ -473,7 +476,7 @@ tbody tr:hover td{background:var(--light);}
 <nav class="breadcrumb"><a href="/">Home</a><span>›</span><span>Security Frameworks</span></nav>
 <div class="page-hero-badge">🏛️ Security+</div>
 <h1>Security Frameworks — <span>NIST CSF, ISO 27001, SOC 2 & More</span></h1>
-<p class="page-hero-sub">NIST CSF, ISO 27001, SOC 2, CMMC, and CIS Controls explained — plus the critical distinction between frameworks and regulations that the Security+ exam loves to test.</p>
+<p class="page-hero-sub">NIST CSF, ISO 27001, SOC 2, CMMC, and CIS Controls explained — plus the critical distinction between frameworks and regulations.</p>
 <div class="cert-badges"><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
 </div></section>
 
@@ -530,7 +533,7 @@ tbody tr:hover td{background:var(--light);}
 
 <div class="callout callout-purple">
 <div class="callout-label">📝 Exam Tip — NIST CSF Function Order</div>
-<p>Remember the sequence: <strong>Identify → Protect → Detect → Respond → Recover</strong>. A common exam trap is to put "Detect" before "Protect" or to confuse "Respond" with "Recover." Respond = actions taken during/immediately after an incident. Recover = getting systems back to normal operation and learning from the event.</p>
+<p>Remember the sequence: <strong>Identify → Protect → Detect → Respond → Recover</strong>. Don't put "Detect" before "Protect" or confuse "Respond" with "Recover." Respond = actions taken during/immediately after an incident. Recover = getting systems back to normal operation and learning from the event.</p>
 </div>
 
 <p>NIST CSF version 2.0 &mdash; published as <a href="https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf" target="_blank" rel="noopener">NIST CSWP 29 on 26 February 2024</a> &mdash; added a sixth function, <strong>Govern</strong>, which sits above all five and covers organizational cybersecurity strategy, roles, policies, and oversight. NIST lists the six as GOVERN, IDENTIFY, PROTECT, DETECT, RESPOND and RECOVER. CSF 2.0 also expanded its applicability beyond critical infrastructure and added supply chain risk management guidance. The SY0-701 objectives don't list the CSF functions by name, so learn all six as CSF 2.0 defines them; older study materials may show only the original five.</p>
@@ -556,7 +559,7 @@ tbody tr:hover td{background:var(--light);}
 <p>SOC 2 audits assess controls against five <strong>Trust Service Criteria (TSC)</strong>: Security (required), Availability, Processing Integrity, Confidentiality, and Privacy. The Security criterion is always included; organizations choose which additional criteria are relevant.</p>
 
 <div class="callout callout-amber">
-<div class="callout-label">⚠️ Type 1 vs Type 2 — Exam Favorite</div>
+<div class="callout-label">⚠️ Type 1 vs Type 2</div>
 <p><strong>SOC 2 Type 1</strong>: Auditor assesses whether controls are <em>designed</em> appropriately at a specific point in time. Think: "do these controls look good on paper today?"</p>
 <p><strong>SOC 2 Type 2</strong>: Auditor assesses whether controls are <em>operating effectively</em> over a period of time (typically 6–12 months). Think: "did these controls actually work consistently?" Type 2 is more rigorous and more meaningful to customers.</p>
 </div>
@@ -608,7 +611,7 @@ tbody tr:hover td{background:var(--light);}
 <p>The Controls are versioned, and the version matters if you are comparing lists: the current release is <a href="https://www.cisecurity.org/controls" target="_blank" rel="noopener">CIS Critical Security Controls v8.1</a>, which contains <strong>18 controls</strong> &mdash; down from the 20 that older study material still describes.</p>
 
 <h2>Key Regulations to Know</h2>
-<p>These aren't frameworks — they're laws and regulatory requirements, plus PCI DSS, an industry standard that is mandatory by contract rather than by law. The Security+ exam expects you to recognize each one and understand what it protects.</p>
+<p>These aren't frameworks — they're laws and regulatory requirements, plus PCI DSS, an industry standard that is mandatory by contract rather than by law. For Security+, be able to recognize each one and understand what it protects.</p>
 
 <div class="table-wrap"><table>
 <thead><tr><th>Regulation</th><th>Full Name</th><th>What It Protects</th><th>Who It Applies To</th></tr></thead>

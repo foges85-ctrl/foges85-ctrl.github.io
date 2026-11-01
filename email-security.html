@@ -107,7 +107,7 @@ tbody tr:hover td{background:var(--light);}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
 .footer-links a:hover{color:var(--teal);}
 .footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.footer-pp{color:rgba(255,255,255,.4);}
+.footer-pp{color:rgba(255,255,255,.55);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── CERTFLASH APP BANNER ── */
@@ -501,7 +501,7 @@ tbody tr:hover td{background:var(--light);}
 
 <h2>Why Email Is a Prime Attack Vector</h2>
 <p>Email was designed without authentication in mind. The Simple Mail Transfer Protocol (SMTP) that has carried email since 1982 allows any server to claim to be sending from any domain — meaning a criminal can trivially send an email that appears to come from your CEO, your bank, or a government agency. Without additional controls, there's nothing in the protocol to stop it.</p>
-<p>This is why phishing remains the most common initial access technique in breaches — email spoofing is trivially easy without protective controls. SPF, DKIM, and DMARC are the three DNS-based standards that, when deployed together, make domain spoofing dramatically harder. The Security+ exam tests each one and expects you to understand what each does and how they complement each other.</p>
+<p>This is why phishing remains the most common initial access technique in breaches — email spoofing is trivially easy without protective controls. SPF, DKIM, and DMARC are the three DNS-based standards that, when deployed together, make domain spoofing dramatically harder. For Security+, understand what each one does and how they complement each other.</p>
 
 <h2>SPF — Sender Policy Framework</h2>
 <p>SPF is a DNS TXT record that lists every IP address and mail server authorized to send email on behalf of your domain. When a receiving mail server gets an email claiming to be from <code>@company.com</code>, it checks the SPF record in DNS for <code>company.com</code> and verifies that the sending server's IP is in the authorized list.</p>
@@ -585,7 +585,7 @@ tbody tr:hover td{background:var(--light);}
 
 <p>The exam tests your ability to identify which email security control addresses which threat. The threat model for email has three distinct layers: <strong>domain spoofing</strong> (an attacker sends email appearing to be from your domain), <strong>message tampering</strong> (an attacker modifies an email in transit), and <strong>content confidentiality</strong> (unauthorized parties reading email content). Each threat has a different solution: SPF and DMARC address domain spoofing; DKIM addresses message tampering through digital signatures; S/MIME addresses content confidentiality and sender authenticity through end-to-end encryption and digital signatures.</p>
 
-<p>A common exam question type presents a scenario and asks which technology is needed. Key patterns: if the scenario says emails are arriving that appear to come from your CEO's domain but were not sent by your organization, deploy <strong>DMARC with p=reject</strong>. If it asks how you verify that an email was not modified between sending and receiving, the answer is <strong>DKIM</strong> (the digital signature). If it asks how to prevent others from reading a confidential email even if it's intercepted on a mail server, the answer is <strong>S/MIME encryption</strong>.</p>
+<p>To pick the right technology for a scenario, use these patterns: if the scenario says emails are arriving that appear to come from your CEO's domain but were not sent by your organization, deploy <strong>DMARC with p=reject</strong>. If it asks how you verify that an email was not modified between sending and receiving, the answer is <strong>DKIM</strong> (the digital signature). If it asks how to prevent others from reading a confidential email even if it's intercepted on a mail server, the answer is <strong>S/MIME encryption</strong>.</p>
 
 <p>Port numbers are also tested: SMTP on port <strong>25</strong> (server-to-server), SMTP submission on port <strong>587</strong> (client-to-server with auth), POP3 on port <strong>110</strong> (or 995 with SSL), IMAP on port <strong>143</strong> (or 993 with SSL). The secure variants (port 465 submissions, POP3S on 995, IMAPS on 993) use implicit TLS. (For Network+, note that N10-009 labels port 587 as SMTPS.) STARTTLS upgrades an existing connection on port 587 or 143.</p>
 
@@ -634,7 +634,7 @@ tbody tr:hover td{background:var(--light);}
 
 <h2>Email Encryption in Transit vs End-to-End</h2>
 
-<p>A common exam topic is the distinction between email encryption in transit (server-to-server) and end-to-end encryption (sender to recipient). These solve different problems and have different guarantees.</p>
+<p>Know the distinction between email encryption in transit (server-to-server) and end-to-end encryption (sender to recipient). These solve different problems and have different guarantees.</p>
 
 <p><strong>TLS encryption in transit</strong> (SMTP with STARTTLS or implicit TLS) encrypts the connection between mail servers. The email is encrypted while moving between the servers, but it is decrypted and re-encrypted at each hop. The email is readable in plaintext at every mail server it passes through. This protects against passive network interception but not against a compromised or curious mail server administrator.</p>
 

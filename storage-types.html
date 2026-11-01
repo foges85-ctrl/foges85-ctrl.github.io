@@ -128,7 +128,7 @@ tbody tr:hover td{background:#f0fdf4;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
 .footer-links a:hover{color:var(--teal);}
 .footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.footer-email{color:rgba(255,255,255,.4);}.footer-pp{color:rgba(255,255,255,.4);}
+.footer-email{color:rgba(255,255,255,.55);}.footer-pp{color:rgba(255,255,255,.55);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── CERTFLASH APP BANNER ── */
@@ -624,7 +624,7 @@ tbody tr:hover td{background:#f0fdf4;}
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ A+ exam trap — M.2 ≠ NVMe</div>
-      <p><strong>M.2 is a form factor. NVMe is a protocol.</strong> A drive can be M.2 and use the SATA protocol (slower, ~500 MB/s). Another drive can be M.2 and use the NVMe protocol (faster, 3,500+ MB/s). The exam will give you a scenario where a user installs an M.2 drive into a new M.2 slot and it doesn't work — the most likely cause is a <strong>protocol mismatch</strong>: a SATA M.2 drive in an NVMe-only slot, or vice versa.</p>
+      <p><strong>M.2 is a form factor. NVMe is a protocol.</strong> A drive can be M.2 and use the SATA protocol (slower, ~500 MB/s). Another drive can be M.2 and use the NVMe protocol (faster, 3,500+ MB/s). If a user installs an M.2 drive into a new M.2 slot and it doesn't work, the most likely cause is a <strong>protocol mismatch</strong>: a SATA M.2 drive in an NVMe-only slot, or vice versa.</p>
       <p>Also: <strong>NVMe ≠ PCIe AIC</strong> — NVMe can come in M.2 or PCIe add-in card form. The protocol (NVMe) and the form factor (M.2 or AIC) are separate characteristics.</p>
     </div>
 
@@ -741,7 +741,7 @@ tbody tr:hover td{background:#f0fdf4;}
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ RAID exam tips</div>
       <p><strong>RAID is NOT a backup.</strong> This is the most important RAID concept on the exam. RAID protects against drive failure — it does not protect against accidental deletion, ransomware, or corruption (which replicates to all mirrors instantly). Backups and RAID serve different purposes.</p>
-      <p><strong>RAID 0 has no fault tolerance</strong> — any drive failure destroys all data. <strong>RAID 1 and RAID 5 can each survive one drive failure</strong>; <strong>RAID 6 survives two</strong>. <strong>RAID 10 can survive one failure per mirror pair</strong>. The exam frequently asks "which RAID level provides redundancy with the best write performance?" → <strong>RAID 10</strong>.</p>
+      <p><strong>RAID 0 has no fault tolerance</strong> — any drive failure destroys all data. <strong>RAID 1 and RAID 5 can each survive one drive failure</strong>; <strong>RAID 6 survives two</strong>. <strong>RAID 10 can survive one failure per mirror pair</strong>. "Which RAID level provides redundancy with the best write performance?" → <strong>RAID 10</strong>.</p>
     </div>
 
     <h2>Storage Speed Comparison</h2>

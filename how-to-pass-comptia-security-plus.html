@@ -375,8 +375,8 @@ tbody tr:hover td { background: #f9f6ff; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.footer-email { color:rgba(255,255,255,0.4); }
-.footer-pp { color:rgba(255,255,255,0.4); }
+.footer-email { color:rgba(255,255,255,0.55); }
+.footer-pp { color:rgba(255,255,255,0.55); }
 
 /* ── CERTFLASH APP BANNER ── */
 .app-banner {
@@ -703,6 +703,12 @@ tbody tr:hover td { background: #f9f6ff; }
 /* ── AFFILIATE BOX FIXES ── */
 @media (max-width:600px){ .aff-btn { white-space:normal; } }
 .affiliate-box h2 { margin-top:0; }
+
+/* ── Round 3 link contrast (Oct 2026) ── */
+a[style*="color:#1a6cff"] { color:#6ea8ff !important; }  /* 'Or compare paid … →' link sits on the navy .cta-box */
+
+/* ── Body-link styling for in-text links in .phase-task (Oct 2026) ── */
+.phase-task a:not([class]) { color:#155bd9; text-decoration:underline; }
 </style>
 
 
@@ -857,7 +863,7 @@ tbody tr:hover td { background: #f9f6ff; }
 
     <div class="callout">
       <div class="callout-label">📊 Security+ vs Network+ — what's actually different</div>
-      <p>Network+ tests whether you understand how networks are built and how traffic moves. Security+ tests whether you understand how those networks are attacked, defended, and governed. There's meaningful overlap — Security+ expects you to know networking fundamentals — but the focus shifts from "how does it work" to "how is it exploited and protected."</p>
+      <p>Network+ tests whether you understand how networks are built and how traffic moves. Security+ tests whether you understand how those networks are attacked, defended, and governed. There's meaningful overlap — you need networking fundamentals for Security+ — but the focus shifts from "how does it work" to "how is it exploited and protected."</p>
       <p><strong>If you have Network+, you already have the foundation.</strong> Ports, protocols, firewalls, and VPNs are review. The new material is <a href="threat-intelligence.html">threat intelligence</a>, identity and access management, cryptography, cloud security, <a href="incident-response-explained.html">incident response</a>, and governance frameworks — give these areas the most time.</p>
     </div>
 
@@ -906,7 +912,7 @@ tbody tr:hover td { background: #f9f6ff; }
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ The domain most candidates under-study</div>
-      <p><strong>Security Program Management & Oversight at 20%</strong> — risk management, compliance frameworks (NIST, ISO 27001, SOC 2), and data privacy laws (GDPR, HIPAA, CCPA) are consistently underestimated by technical candidates who focus almost entirely on attacks and defenses. This domain is heavily tested and the content is learnable quickly. Don't skip it.</p>
+      <p><strong>Security Program Management & Oversight at 20%</strong> — risk management, compliance frameworks (NIST, ISO 27001, SOC 2), and data privacy laws (GDPR, HIPAA, CCPA) are consistently underestimated by technical candidates who focus almost entirely on attacks and defenses. The content is learnable quickly. Don't skip it.</p>
     </div>
 
     <h2>How long does it take to study for Security+?</h2>
@@ -965,7 +971,7 @@ tbody tr:hover td { background: #f9f6ff; }
           </div>
         </div>
         <div class="phase-body">
-          <p>Start with threats, vulnerabilities, and mitigations, the second-largest domain (22%) and the one where scenario practice pays off most. Learn how each attack works conceptually, not just its name. Then cover cryptography thoroughly: symmetric vs asymmetric, hashing, PKI, and digital signatures appear constantly across multiple domains.</p>
+          <p>Start with threats, vulnerabilities, and mitigations, the second-largest domain (22%) and the one where scenario practice pays off most. Learn how each attack works conceptually, not just its name. Then cover cryptography thoroughly: symmetric vs asymmetric, hashing, PKI, and digital signatures connect to multiple domains. Keep the <a href="security-plus-acronyms.html">Security+ SY0-701 acronym list</a> open as you go; it covers every acronym on CompTIA&rsquo;s official list.</p>
           <div class="phase-task">Malware types — virus, worm, trojan, ransomware, rootkit, spyware — and how each spreads</div>
           <div class="phase-task">Social engineering — phishing, spear phishing, vishing, pretexting, tailgating</div>
           <div class="phase-task">Network attacks — MitM, DoS/DDoS, ARP poisoning, DNS spoofing, replay attacks</div>
@@ -983,7 +989,7 @@ tbody tr:hover td { background: #f9f6ff; }
           </div>
         </div>
         <div class="phase-body">
-          <p>Security architecture covers how secure environments are designed — <a href="zero-trust-security.html">Zero Trust</a>, <a href="network-segmentation.html">network segmentation</a>, cloud security models, and resilience. Identity and access management is one of the most consistently tested areas: <a href="mfa-explained.html">MFA</a>, SSO, access control models (DAC/MAC/RBAC/ABAC), and privileged access. Incident response requires knowing the phases in order.</p>
+          <p>Security architecture covers how secure environments are designed — <a href="zero-trust-security.html">Zero Trust</a>, <a href="network-segmentation.html">network segmentation</a>, cloud security models, and resilience. Identity and access management is a core area: <a href="mfa-explained.html">MFA</a>, SSO, access control models (DAC/MAC/RBAC/ABAC), and privileged access. Incident response requires knowing the phases in order.</p>
           <div class="phase-task">Zero Trust principles — verify explicitly, least privilege, assume breach</div>
           <div class="phase-task">IAM — MFA factors, SSO, SAML, LDAP/Kerberos, access control models</div>
           <div class="phase-task">Cloud security — shared responsibility model, IaaS/PaaS/SaaS, CASB, cloud-native controls</div>

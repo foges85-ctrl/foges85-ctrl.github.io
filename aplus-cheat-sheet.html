@@ -183,8 +183,8 @@ tbody tr:hover td { background: #f0fbf9; }
 
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-.footer-email { color:rgba(255,255,255,0.4); }
-.footer-pp { color:rgba(255,255,255,0.4); }
+.footer-email { color:rgba(255,255,255,0.55); }
+.footer-pp { color:rgba(255,255,255,0.55); }
 
 /* ── CERTFLASH APP BANNER ── */
 .app-banner {
@@ -505,6 +505,74 @@ tbody tr:hover td { background: #f0fbf9; }
   }
 }
 /* ---- end mobile nav ---- */
+/* ── AFFILIATE BOX ── */
+.affiliate-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.affiliate-box::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.affiliate-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+
+.affiliate-box h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.affiliate-box p { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 18px; }
+.affiliate-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.aff-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.15s, filter 0.15s;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.aff-btn:hover { transform: translateY(-2px); filter: brightness(1.05); text-decoration: none; }
+.aff-btn-primary { background: var(--teal); color: var(--navy); }
+.aff-btn-secondary { background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.15); }
+
+/* ── AFFILIATE BOX FIXES ── */
+@media (max-width:600px){ .aff-btn { white-space:normal; } }
+.affiliate-box h2 { margin-top:0; }
+
+/* ── Round 3 link contrast (Oct 2026) ── */
+.article-wrap p a:not([class]), .article-wrap li a:not([class]), .article-wrap td a:not([class]) { color:#155bd9; text-decoration:underline; }
+.mini-card-body a:not([class]) { color:#155bd9; text-decoration:underline; }
+.toc-link { color:#00786a; }
+
+/* ── Mobile: let the CertFlash button wrap (Oct 2026) ── */
+@media (max-width:600px){ .btn { white-space:normal; flex-shrink:1; max-width:100%; } }
 </style>
 
 
@@ -554,7 +622,7 @@ tbody tr:hover td { background: #f0fbf9; }
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-10-18",
+  "dateModified": "2026-10-31",
   "url": "https://itstudyhub.org/aplus-cheat-sheet.html",
   "inLanguage": "en"
 }
@@ -748,7 +816,7 @@ tbody tr:hover td { background: #f0fbf9; }
 
   <!-- RAM -->
   <h2 id="ram" class="section-title"><span class="s-icon">🧠</span> What RAM types are tested on the CompTIA A+?</h2>
-  <p class="section-intro">Know the pin counts, speeds, and form factors — the exam will give you a scenario where you need to identify the correct module type for a given system.</p>
+  <p class="section-intro">Know the pin counts, speeds, and form factors — be ready to identify the correct module type for a given system.</p>
 
   <div class="table-wrap">
     <table>
