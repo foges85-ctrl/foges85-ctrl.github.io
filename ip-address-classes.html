@@ -133,7 +133,7 @@ tbody tr:hover td{background:#f0fdf9;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
 .footer-links a:hover{color:var(--teal);}
 .footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.footer-pp{color:rgba(255,255,255,.4);}
+.footer-pp{color:rgba(255,255,255,.55);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── CERTFLASH APP BANNER ── */
@@ -556,7 +556,7 @@ tbody tr:hover td{background:#f0fdf9;}
     <p><strong>Range:</strong> 0.0.0.0 to 127.255.255.255. Two blocks inside it are reserved, 0.0.0.0/8 (&ldquo;this host on this network&rdquo;) and 127.0.0.0/8 (loopback), which is why usable Class A networks start with 1&ndash;126 (<a href="https://www.rfc-editor.org/rfc/rfc6890" target="_blank" rel="noopener">RFC 6890</a>). <strong>Default mask:</strong> 255.0.0.0 (/8) (<a href="https://learn.microsoft.com/en-us/troubleshoot/windows-client/networking/tcpip-addressing-and-subnetting" target="_blank" rel="noopener">Microsoft Learn</a>). <strong>Purpose:</strong> <a href="https://www.rfc-editor.org/rfc/rfc791" target="_blank" rel="noopener">RFC 791</a> splits a Class A address into a 7-bit network number and a 24-bit local address, the fewest networks and the most hosts per network of any class. The private block 10.0.0.0/8 (<a href="https://www.rfc-editor.org/rfc/rfc1918" target="_blank" rel="noopener">RFC 1918</a>) is inside Class A.</p>
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 Exam Tip — The Missing 127</div>
-      <p>You'll notice Class A goes from 1–126, not 1–127. <strong>127 is reserved for loopback</strong> (127.0.0.1 = localhost). The exam commonly asks "which address tests the local TCP/IP stack?" — the answer is always 127.0.0.1. The entire 127.0.0.0/8 range is loopback, but 127.0.0.1 is the specific address you need to know.</p>
+      <p>You'll notice Class A goes from 1–126, not 1–127. <strong>127 is reserved for loopback</strong> (127.0.0.1 = localhost). Which address tests the local TCP/IP stack? 127.0.0.1. The entire 127.0.0.0/8 range is loopback, but 127.0.0.1 is the specific address you need to know.</p>
     </div>
       <div class="class-card ca">
         <div class="class-card-header">
@@ -680,7 +680,7 @@ tbody tr:hover td{background:#f0fdf9;}
 
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 Exam Trap — 172.x.x.x</div>
-      <p>The Class B private range doesn't cover all of 172.x.x.x — it only covers <strong>172.16.x.x through 172.31.x.x</strong>. A common exam trick is to present 172.15.x.x or 172.32.x.x as a private address — both are public. If you see a 172.x address, check the second octet: it must be 16–31 to be private.</p>
+      <p>The Class B private range doesn't cover all of 172.x.x.x — it only covers <strong>172.16.x.x through 172.31.x.x</strong>. Watch for 172.15.x.x or 172.32.x.x presented as private addresses — both are public. If you see a 172.x address, check the second octet: it must be 16–31 to be private.</p>
     </div>
 
     <h2>Special IP Ranges You Must Know</h2>
@@ -771,7 +771,7 @@ tbody tr:hover td{background:#f0fdf9;}
     
     <h2>Classful vs Classless Addressing — Why Classes Are Now Legacy</h2>
     <p>IP address classes were the original system for allocating IP address space. Classes A, B and C were defined in <a href="https://www.rfc-editor.org/rfc/rfc791" target="_blank" rel="noopener">RFC 791</a> in 1981, and Class D and the reserved Class E are described in <a href="https://www.rfc-editor.org/rfc/rfc1112" target="_blank" rel="noopener">RFC 1112</a>. The system assigned blocks based on the first octet: Class A for large organizations needing millions of hosts, Class B for medium networks, Class C for small networks. In practice, this was extremely wasteful — a company needing 300 hosts had to receive a full Class B block (65,534 hosts) because Class C only provided 254. The resulting address exhaustion drove the shift to <strong>CIDR (Classless Inter-Domain Routing)</strong> in 1993.</p>
-    <p>CIDR replaced classful addressing by allowing any prefix length (e.g. /22, /26, /29) rather than forcing /8, /16, or /24 boundaries. A company needing 300 hosts can now be assigned a /23 (510 usable hosts) rather than a /16. This is why classful addressing is considered legacy — real networks use CIDR — but CompTIA A+ and Network+ still test classful knowledge because it underlies the private IP ranges, default gateway behavior, and APIPA concepts that appear on every exam.</p>
+    <p>CIDR replaced classful addressing by allowing any prefix length (e.g. /22, /26, /29) rather than forcing /8, /16, or /24 boundaries. A company needing 300 hosts can now be assigned a /23 (510 usable hosts) rather than a /16. This is why classful addressing is considered legacy — real networks use CIDR — but CompTIA A+ and Network+ still test classful knowledge because it underlies the private IP ranges, default gateway behavior, and APIPA concepts.</p>
 
     <h2>APIPA — Automatic Private IP Addressing</h2>
     <p>When a Windows computer that uses DHCP can&rsquo;t reach a DHCP server, it assigns itself an address from <strong>169.254.0.0/16</strong>, a feature called APIPA (Automatic Private IP Addressing). A device with a 169.254.x.x address can reach only other hosts on the same local segment, so the address is a symptom of a DHCP problem, not the root cause. For the full range rules, RFC 3927 and the fix sequence, see <a href="apipa.html">What Is APIPA?</a></p>

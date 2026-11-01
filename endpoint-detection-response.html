@@ -102,7 +102,7 @@ tbody tr:hover td{background:var(--light);}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
 .footer-links a:hover{color:var(--teal);}
 .footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.footer-pp{color:rgba(255,255,255,.4);}
+.footer-pp{color:rgba(255,255,255,.55);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── CERTFLASH APP BANNER ── */
@@ -390,6 +390,9 @@ tbody tr:hover td{background:var(--light);}
   }
 }
 /* ---- end mobile nav ---- */
+
+/* ── Round 3 link contrast (Oct 2026) ── */
+.article-body p a:not([class]), .article-body li a:not([class]), .article-body td a:not([class]) { color:#155bd9; text-decoration:underline; }
 </style>
 
 
@@ -605,7 +608,7 @@ tbody tr:hover td{background:var(--light);}
 
 <h2>EDR vs HIDS vs Traditional Antivirus</h2>
 
-<p>The exam distinguishes between these three related but distinct technologies, and scenario questions often ask which tool is appropriate for a given security objective.</p>
+<p>These are three related but distinct technologies; know which tool is appropriate for a given security objective.</p>
 
 <p><strong>Traditional antivirus</strong> (AV) uses signature-based detection — it maintains a database of known malware file hashes, byte patterns, and behavioral signatures. When a file is written or executed, AV scans it against the signature database. If there's a match, the file is quarantined or deleted. This works reliably against known, widely-distributed malware (commodity ransomware, email attachment threats) but is completely blind to novel or custom malware (zero-days, custom implants used by advanced threat actors) that don't match any known signatures. AV also doesn't record detailed telemetry and provides no investigation capability beyond the alert itself.</p>
 

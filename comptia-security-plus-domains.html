@@ -119,7 +119,7 @@ tbody tr:hover td{background:#fdf4ff;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
 .footer-links a:hover{color:var(--teal);}
 .footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.footer-pp{color:rgba(255,255,255,.4);}
+.footer-pp{color:rgba(255,255,255,.55);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── CERTFLASH APP BANNER ── */
@@ -407,6 +407,9 @@ tbody tr:hover td{background:#fdf4ff;}
   }
 }
 /* ---- end mobile nav ---- */
+
+/* ── Round 3 link contrast (Oct 2026) ── */
+.article-body p a:not([class]), .article-body li a:not([class]), .article-body td a:not([class]) { color:#155bd9; text-decoration:underline; }
 </style>
 
 
@@ -456,7 +459,7 @@ tbody tr:hover td{background:#fdf4ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-10-18",
+  "dateModified": "2026-10-31",
   "url": "https://itstudyhub.org/comptia-security-plus-domains.html",
   "inLanguage": "en"
 }
@@ -582,7 +585,7 @@ tbody tr:hover td{background:#fdf4ff;}
           <div class="topic-item"><strong>Security Frameworks</strong>NIST CSF, ISO 27001, CIS Controls — awareness of frameworks not deep memorization</div>
           <div class="topic-item"><strong>Physical Security</strong>Access control vestibules (mantraps), bollards, badge systems, cameras, secure areas</div>
         </div>
-        <div class="domain-tip"><strong>Study priority:</strong> Security control types (preventive/detective/corrective/compensating) are tested constantly throughout the exam — not just in this domain. Know the difference between each and be able to classify a given control correctly. Cryptography fundamentals underpin Domains 3 and 4.</div>
+        <div class="domain-tip"><strong>Study priority:</strong> Security control types (preventive/detective/corrective/compensating) apply throughout the objectives — not just in this domain. Know the difference between each and be able to classify a given control correctly. Cryptography fundamentals underpin Domains 3 and 4.</div>
       </div>
     </div>
 
@@ -636,7 +639,7 @@ tbody tr:hover td{background:#fdf4ff;}
           <div class="topic-item"><strong>Virtualization Security</strong>VM escape, hypervisor security, container security, serverless architecture risks</div>
           <div class="topic-item"><strong>Embedded & IoT Security</strong>Firmware security, segmenting IoT, RTOS security, supply chain risk for hardware</div>
         </div>
-        <div class="domain-tip"><strong>Study priority:</strong> The shared responsibility model for cloud (who secures what in IaaS vs PaaS vs SaaS) is heavily tested. Secure protocol substitutions (HTTP→HTTPS, Telnet→SSH, FTP→SFTP, SNMP v2→v3) are easy points — know all of them. Network segmentation scenarios (where to place the firewall, what goes in the DMZ) appear frequently.</div>
+        <div class="domain-tip"><strong>Study priority:</strong> Know the shared responsibility model for cloud (who secures what in IaaS vs PaaS vs SaaS). Secure protocol substitutions (HTTP→HTTPS, Telnet→SSH, FTP→SFTP, SNMP v2→v3) are easy points — know all of them. Practice network segmentation scenarios (where to place the firewall, what goes in the DMZ).</div>
       </div>
     </div>
 
@@ -664,7 +667,7 @@ tbody tr:hover td{background:#fdf4ff;}
           <div class="topic-item"><strong>Wireless Security</strong>WPA3, 802.1X Enterprise, EAP-TLS, PEAP, rogue AP detection, evil twin attacks</div>
           <div class="topic-item"><strong>Data Security</strong>Data classification, DLP, encryption at rest/in transit, data destruction methods, tokenization</div>
         </div>
-        <div class="domain-tip"><strong>Study priority:</strong> IAM concepts (least privilege, separation of duties, account lockout policy) appear in multiple questions. Incident response steps (their order and what happens in each) are directly tested. Order of volatility for digital forensics is a specific exam favorite. Spend the most time here.</div>
+        <div class="domain-tip"><strong>Study priority:</strong> Know IAM concepts (least privilege, separation of duties, account lockout policy), the incident response steps (their order and what happens in each), and the order of volatility for digital forensics. Spend the most time here.</div>
       </div>
     </div>
 
@@ -690,7 +693,7 @@ tbody tr:hover td{background:#fdf4ff;}
           <div class="topic-item"><strong>Third-Party Risk</strong>Vendor assessment, supply chain risk, SLAs, right to audit, data processing agreements</div>
           <div class="topic-item"><strong>Data Privacy</strong>PII, PHI, data sovereignty, privacy by design, data minimization, consent management</div>
         </div>
-        <div class="domain-tip"><strong>Study priority:</strong> Risk responses (accept/transfer/avoid/mitigate) with examples of each are tested directly — know which response applies to which scenario. RTO vs RPO distinction is a classic exam question. Compliance regulation applicability (HIPAA = healthcare, PCI-DSS = payment cards, GDPR = EU personal data) is straightforward points if you know the basics.</div>
+        <div class="domain-tip"><strong>Study priority:</strong> Know the risk responses (accept/transfer/avoid/mitigate) with examples of each — which response applies to which scenario. Know the RTO vs RPO distinction. Compliance regulation applicability (HIPAA = healthcare, PCI-DSS = payment cards, GDPR = EU personal data) is straightforward points if you know the basics.</div>
       </div>
     </div>
 
@@ -700,9 +703,9 @@ tbody tr:hover td{background:#fdf4ff;}
       <table>
         <thead><tr><th>Domain</th><th>Weight</th><th>Study Time %</th><th>Why</th></tr></thead>
         <tbody>
-          <tr><td class="td-term">4. Security Operations</td><td>28%</td><td>30%</td><td>Biggest domain — IAM, IR, forensics, and monitoring are all heavily tested with scenario questions</td></tr>
+          <tr><td class="td-term">4. Security Operations</td><td>28%</td><td>30%</td><td>Biggest domain — IAM, IR, forensics, and monitoring all need scenario practice</td></tr>
           <tr><td class="td-term">2. Threats, Vulnerabilities & Mitigations</td><td>22%</td><td>25%</td><td>Attack identification scenarios require genuine knowledge — you can't guess your way through these</td></tr>
-          <tr><td class="td-term">5. Security Program Management</td><td>20%</td><td>15%</td><td>Conceptual but consistently tested — risk responses and compliance basics are learnable quickly</td></tr>
+          <tr><td class="td-term">5. Security Program Management</td><td>20%</td><td>15%</td><td>Conceptual — risk responses and compliance basics are learnable quickly</td></tr>
           <tr><td class="td-term">3. Security Architecture</td><td>18%</td><td>15%</td><td>Cloud and secure protocol questions are very predictable — study the patterns</td></tr>
           <tr><td class="td-term">1. General Security Concepts</td><td>12%</td><td>15%</td><td>Small % but foundational vocabulary — weak here costs you points in every other domain</td></tr>
         </tbody>
@@ -733,6 +736,8 @@ tbody tr:hover td{background:#fdf4ff;}
       </table>
     </div>
 
+    <p>CompTIA&rsquo;s SY0-701 objectives document also includes an official acronym list. All 336 entries are explained in the <a href="security-plus-acronyms.html">Security+ SY0-701 acronym list</a>.</p>
+
     <div class="cta-box">
       <div class="cta-box-text">
         <h3>Ready to start studying?</h3>
@@ -743,7 +748,7 @@ tbody tr:hover td{background:#fdf4ff;}
 
     
     <h2>How to Use the Domain Weightings in Your Study Plan</h2>
-    <p>Security Operations at 28% is the most important domain by far — nearly a third of your exam score. If you have limited study time, investing heavily in incident response (its seven steps, IR procedures, digital forensics order of volatility), identity and access management, endpoint security, and SIEM/monitoring concepts will generate the highest return. Domain 2 (Threats at 22%) is the second priority — malware types, social engineering, and vulnerability concepts are tested heavily in scenario format throughout the exam, not just within Domain 2 questions.</p>
+    <p>Security Operations at 28% is the most important domain by far — nearly a third of your exam score. If you have limited study time, investing heavily in incident response (its seven steps, IR procedures, digital forensics order of volatility), identity and access management, endpoint security, and SIEM/monitoring concepts will generate the highest return. Domain 2 (Threats at 22%) is the second priority — malware types, social engineering, and vulnerability concepts connect to objectives across the exam, not just Domain 2.</p>
     <p>Domain 5 (Security Program Management at 20%) is the most under-studied domain and a significant source of exam failures. Risk management, compliance frameworks, and data governance feel less technical but represent roughly 18 questions. Don't skip GRC content — candidates who focus entirely on technical security topics and neglect governance consistently report unexpected difficulty in this area on exam day.</p>
 
     <h2>Domain 1 — General Security Concepts Deep Dive</h2>

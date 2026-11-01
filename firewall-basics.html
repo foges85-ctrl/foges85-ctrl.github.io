@@ -501,8 +501,8 @@ a:hover { text-decoration: underline; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.footer-email { color:rgba(255,255,255,0.4); }
-.footer-pp { color:rgba(255,255,255,0.4); }
+.footer-email { color:rgba(255,255,255,0.55); }
+.footer-pp { color:rgba(255,255,255,0.55); }
 
 /* ── CERTFLASH APP BANNER ── */
 .app-banner {
@@ -792,6 +792,9 @@ a:hover { text-decoration: underline; }
 
 /* ── BODY TEXT LINKS ── */
 .article-body p > a:not([class]), .guide-wrap p > a:not([class]) { color:#155bd9; text-decoration:underline; }
+
+/* ── Round 3 link contrast (Oct 2026) ── */
+.article-body p a:not([class]), .article-body li a:not([class]), .article-body td a:not([class]) { color:#155bd9; text-decoration:underline; }
 </style>
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -860,7 +863,7 @@ a:hover { text-decoration: underline; }
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-10-18",
+  "dateModified": "2026-10-31",
   "url": "https://itstudyhub.org/firewall-basics.html",
   "inLanguage": "en"
 }
@@ -1030,7 +1033,7 @@ a:hover { text-decoration: underline; }
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ A+ Exam — Implicit Deny</div>
-      <p><strong>Implicit deny</strong> means traffic is blocked by default unless a rule specifically allows it. This is the standard approach for firewalls and is a heavily tested concept. If traffic hits the bottom of the ruleset with no match, it is denied — even if there's no explicit deny rule written for it.</p>
+      <p><strong>Implicit deny</strong> means traffic is blocked by default unless a rule specifically allows it. This is the standard approach for firewalls. If traffic hits the bottom of the ruleset with no match, it is denied — even if there's no explicit deny rule written for it.</p>
       <p>The opposite approach — <strong>implicit allow</strong> — would permit everything not specifically blocked. This is generally considered insecure and is rarely used.</p>
     </div>
 
@@ -1038,7 +1041,7 @@ a:hover { text-decoration: underline; }
 
     <h2>Stateless vs stateful firewalls</h2>
 
-    <p>This is one of the most commonly tested distinctions on the A+ exam. The difference comes down to whether the firewall understands the <em>context</em> of a connection or just evaluates each packet in isolation.</p>
+    <p>The difference comes down to whether the firewall understands the <em>context</em> of a connection or just evaluates each packet in isolation.</p>
 
     <div class="state-compare">
       <div class="state-card stateless">
@@ -1098,7 +1101,7 @@ a:hover { text-decoration: underline; }
 
     <h2>Ports, protocols, and firewall rules</h2>
 
-    <p>Firewalls block and allow traffic by port number and protocol. Knowing which services run on which ports is essential for understanding firewall rules — and it's high-yield exam content. Here are the most important port-based rules to recognize:</p>
+    <p>Firewalls block and allow traffic by port number and protocol. Knowing which services run on which ports is essential for understanding firewall rules. Here are the most important port-based rules to recognize:</p>
 
     <div class="port-rules">
       <div class="port-rules-header">🔒 Common Port-Based Firewall Rules</div>
@@ -1254,7 +1257,7 @@ a:hover { text-decoration: underline; }
       <div class="exam-tip-label">⚡ IDS vs IPS — the one-line distinction</div>
       <p><strong>IDS = passive.</strong> It watches and alerts — like a security camera. Traffic still flows through. Generates logs and alerts for a security team to investigate.</p>
       <p><strong>IPS = active.</strong> It sits inline and can drop packets in real time — like a security guard who can physically stop someone. The tradeoff: a misconfigured IPS can block legitimate traffic (false positives).</p>
-      <p>The exam loves asking: "Which device monitors traffic and generates alerts but cannot block?" → <strong>IDS</strong>. "Which device can actively drop malicious packets?" → <strong>IPS</strong>.</p>
+      <p>Know the difference: "Which device monitors traffic and generates alerts but cannot block?" → <strong>IDS</strong>. "Which device can actively drop malicious packets?" → <strong>IPS</strong>.</p>
     </div>
 
     <hr class="divider">
@@ -1291,7 +1294,7 @@ a:hover { text-decoration: underline; }
 
     <h2>ACLs — Access Control Lists</h2>
 
-    <p>An ACL is a stateless packet filter configured on a router interface. It's not a true firewall — it evaluates each packet independently with no awareness of connection state — but it's the primary traffic control mechanism on routers and is heavily tested on Network+.</p>
+    <p>An ACL is a stateless packet filter configured on a router interface. It's not a true firewall — it evaluates each packet independently with no awareness of connection state — but it's the primary traffic control mechanism on routers.</p>
 
     <div class="fw-code-block">
       <div class="fw-code-label">ACL vs firewall — key differences</div>

@@ -140,7 +140,7 @@ tbody tr:hover td{background:#f0fdf9;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
 .footer-links a:hover{color:var(--teal);}
 .footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.footer-pp{color:rgba(255,255,255,.4);}
+.footer-pp{color:rgba(255,255,255,.55);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── CERTFLASH APP BANNER ── */
@@ -428,6 +428,9 @@ tbody tr:hover td{background:#f0fdf9;}
   }
 }
 /* ---- end mobile nav ---- */
+
+/* ── Round 3 link contrast (Oct 2026) ── */
+.article-body p a:not([class]), .article-body li a:not([class]), .article-body td a:not([class]) { color:#155bd9; text-decoration:underline; }
 </style>
 
 
@@ -686,7 +689,7 @@ tbody tr:hover td{background:#f0fdf9;}
     </div>
 
     <div class="exam-tip">
-      <div class="exam-tip-label">🎯 FAT32's 4 GB Limit — A Frequent Exam Trap</div>
+      <div class="exam-tip-label">🎯 FAT32's 4 GB Limit</div>
       <p><strong>FAT32 cannot store any single file larger than 4 GB.</strong> This is a hard limitation of the file system, not the drive size. A common A+ scenario: a user tries to copy a 6 GB video file to a USB drive and gets an error — the cause is FAT32 formatting. The fix is to reformat the drive as exFAT (cross-platform, no 4 GB limit) or NTFS (Windows/Linux only). The drive itself is not broken.</p>
     </div>
 

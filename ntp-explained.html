@@ -360,8 +360,8 @@ tbody tr:hover td { background: #f4f8ff; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.footer-email { color:rgba(255,255,255,0.4); }
-.footer-pp { color:rgba(255,255,255,0.4); }
+.footer-email { color:rgba(255,255,255,0.55); }
+.footer-pp { color:rgba(255,255,255,0.55); }
 
 /* ── CERTFLASH APP BANNER ── */
 .app-banner {
@@ -790,7 +790,7 @@ tbody tr:hover td { background: #f4f8ff; }
         <tbody>
           <tr>
             <td class="td-term">Kerberos authentication</td>
-            <td>Kerberos tickets are time-stamped and expire — if a device's clock is more than 5 minutes off from the domain controller, authentication fails entirely. This is the most tested NTP consequence on Security+.</td>
+            <td>Kerberos tickets are time-stamped and expire — if a device's clock is more than 5 minutes off from the domain controller, authentication fails entirely.</td>
           </tr>
           <tr>
             <td class="td-term">SSL / TLS certificates</td>
@@ -942,7 +942,7 @@ tbody tr:hover td { background: #f4f8ff; }
 <span class="code-hl">Stratum 2:</span>   Syncs from Stratum 1 — typical enterprise NTP server
 <span class="code-hl">Lower = more accurate</span>  |  <span class="code-hl">Max usable stratum = 15</span>
 
-<span class="code-teal">Kerberos:</span>   Fails if clock skew &gt; 5 minutes — most tested consequence
+<span class="code-teal">Kerberos:</span>   Fails if clock skew &gt; 5 minutes
 <span class="code-teal">TOTP/MFA:</span>   Time-based codes fail if clock is wrong
 <span class="code-teal">Logs:</span>       Cannot correlate events across devices with different times
 

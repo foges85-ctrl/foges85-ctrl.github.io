@@ -119,7 +119,7 @@ a{color:inherit;text-decoration:none;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
 .footer-links a:hover{color:var(--teal);}
 .footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.footer-pp{color:rgba(255,255,255,.4);}
+.footer-pp{color:rgba(255,255,255,.55);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── CERTFLASH APP BANNER ── */
@@ -462,6 +462,9 @@ a{color:inherit;text-decoration:none;}
 /* ── AFFILIATE BOX FIXES ── */
 @media (max-width:600px){ .aff-btn { white-space:normal; } }
 .affiliate-box h2 { margin-top:0; }
+
+/* ── Round 3 link contrast (Oct 2026) ── */
+a[style*="color:#1a6cff"] { color:#6ea8ff !important; }  /* 'Or compare paid … →' link sits on the navy .cta-box */
 </style>
 
 <script type="application/ld+json">
@@ -911,7 +914,7 @@ a{color:inherit;text-decoration:none;}
 
   <div class="exam-tip">
     <div class="exam-tip-label">🎯 The Three Highest-ROI Security+ Study Topics</div>
-    <p><strong>Incident Response</strong> — Domain 4 is 28% of the exam and IR scenarios appear constantly. Know the seven steps in order (Preparation, Detection, Analysis, Containment, Eradication, Recovery, Lessons learned), know which action belongs in which phase (containment before eradication, legal counsel before public notification), and know the order of volatility for forensics.</p>
+    <p><strong>Incident Response</strong> — Domain 4 is 28% of the exam. Know the seven steps in order (Preparation, Detection, Analysis, Containment, Eradication, Recovery, Lessons learned), know which action belongs in which phase (containment before eradication, legal counsel before public notification), and know the order of volatility for forensics.</p>
     <p><strong>Cryptography</strong> — Symmetric vs asymmetric, when to use each, which algorithms (AES, RSA, ECC, SHA), and how TLS uses both (asymmetric for key exchange, symmetric for data). Questions appear across all domains — a secure protocol question is really a cryptography question.</p>
     <p><strong>Scenario reading</strong> — Security+ questions are long. Practice reading scenario questions efficiently: identify what the question is actually asking (often in the last sentence), eliminate obviously wrong answers, then apply your knowledge. Time management on PBQs is the #1 reason candidates run out of time.</p>
   </div>
@@ -937,6 +940,7 @@ a{color:inherit;text-decoration:none;}
   </div>
 
   <h2>All Security+ topic guides</h2>
+  <p>For every acronym on CompTIA&rsquo;s official list, see the <a href="security-plus-acronyms.html">Security+ SY0-701 acronym list</a>.</p>
   <p>Every IT Study Hub topic guide that covers a Security+ exam objective, grouped by exam domain. Each guide is listed once, under one domain it covers, even if it also touches objectives in other domains.</p>
   <p><strong>1.0 General Security Concepts:</strong> <a href="risk-management.html">risk management</a>, <a href="zero-trust-security.html">Zero Trust</a>, <a href="identity-and-access-management.html">identity and access management</a>, <a href="physical-security.html">physical security controls</a>, <a href="deception-technologies.html">deception technologies</a>, <a href="honeypot-explained.html">honeypots</a>, <a href="cryptography.html">cryptography</a>, <a href="encryption-types.html">encryption types</a>, <a href="pki-and-certificates.html">PKI and digital certificates</a>, <a href="symmetric-vs-asymmetric-encryption.html">symmetric vs asymmetric encryption</a>.</p>
   <p><strong>2.0 Threats, Vulnerabilities, and Mitigations:</strong> <a href="threat-intelligence.html">threat intelligence</a>, <a href="social-engineering-attacks.html">social engineering attacks</a>, <a href="application-security.html">application security</a>, <a href="vulnerability-scanning.html">vulnerability scanning</a>, <a href="malware-types.html">malware types</a>, <a href="network-attacks.html">network attacks</a>.</p>
@@ -1141,7 +1145,7 @@ a{color:inherit;text-decoration:none;}
     <h2 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#0a1628;letter-spacing:-.3px;margin:52px 0 16px;">What should you expect on the Security+ exam?</h2>
     <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">SY0-701 is 90 questions in 90 minutes with a passing score of 750 out of 900. Like Network+, PBQs appear at the start of the exam. Security+ PBQ formats include log file analysis (identify an attack type from a SIEM or firewall log excerpt), network diagram analysis (identify the security flaw in a described topology), incident response ordering (sequence the incident response steps in the correct order), and access control configuration (select the correct policy for a described user scenario).</p>
     <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">Security+ scenario questions are longer and more complex than A+ or Network+ questions. A question might describe a company's entire security posture across three paragraphs before asking which single control would most effectively address the described risk. Practicing reading and extracting the key question from long scenarios is a skill that must be developed through practice, not just content study.</p>
-    <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">The most commonly cited exam day surprise from candidates: Domain 5 (Security Program Management) questions are more frequent and more detailed than expected. Risk calculations (SLE × ARO = ALE), data roles (data owner vs data custodian vs data processor), and regulatory frameworks (GDPR 72-hour notification, HIPAA, PCI-DSS scope) appear in scenario form. Know these — they're not background knowledge, they're exam questions.</p>
+    <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">Don't treat Domain 5 (Security Program Management) as background reading; it is 20% of the exam. Know risk calculations (SLE × ARO = ALE), data roles (data owner vs data custodian vs data processor), and regulatory frameworks (GDPR 72-hour notification, HIPAA, PCI-DSS scope).</p>
 
     <h2 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#0a1628;letter-spacing:-.3px;margin:52px 0 16px;">How can you prepare for Security+ in 8 weeks?</h2>
     <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">Candidates with Network+ spend roughly 8 weeks preparing for Security+ at 1–2 hours per day. A practical 4-phase approach: <strong>Weeks 1–2</strong> — cover Domain 1 (cryptography, security controls taxonomy, authentication concepts) and Domain 2 (all malware types, social engineering attacks, vulnerability types). These form the vocabulary for the rest of the exam. <strong>Weeks 3–4</strong> — cover Domain 3 (cloud security, Zero Trust, network security architecture, secure design) and Domain 4 Part 1 (incident response steps, digital forensics, identity and access management). <strong>Weeks 5–6</strong> — cover Domain 4 Part 2 (endpoint security, SIEM/SOAR, monitoring) and Domain 5 (risk management, compliance frameworks, data governance, security awareness). <strong>Weeks 7–8</strong> — full practice exams (<a href="https://www.diontraining.com?sca_ref=10655873.Dd2aexbSGx&amp;sca_crp=MjMzMDIz" target="_blank" rel="nofollow sponsored">Dion Training</a>), domain-level analysis of weak areas, PBQ-specific drilling, and scenario question reading practice.</p>

@@ -121,7 +121,7 @@ a{color:inherit;text-decoration:none;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
 .footer-links a:hover{color:var(--teal);}
 .footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.footer-pp{color:rgba(255,255,255,.4);}
+.footer-pp{color:rgba(255,255,255,.55);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── CERTFLASH APP BANNER ── */
@@ -464,6 +464,10 @@ a{color:inherit;text-decoration:none;}
 /* ── AFFILIATE BOX FIXES ── */
 @media (max-width:600px){ .aff-btn { white-space:normal; } }
 .affiliate-box h2 { margin-top:0; }
+
+/* ── Round 3 link contrast (Oct 2026) ── */
+a[style*="color:#1a6cff"] { color:#6ea8ff !important; }  /* 'Or compare paid … →' link sits on the navy .cta-box */
+p > a[style*="color:#1a6cff;font-weight:600"] { color:#155bd9 !important; text-decoration:underline; }
 </style>
 
 
@@ -744,7 +748,7 @@ a{color:inherit;text-decoration:none;}
       <div class="tsh-title">Network Operations</div>
       <div class="tsh-pct">19%</div>
     </div>
-    <p>Network services (DHCP and DNS), monitoring, documentation, high availability, and remote access. Often underestimated — but 19% is ~17 questions. <strong>SNMP, syslog, VPN types, and high availability terms (HSRP, LACP) are the most consistently tested topics here.</strong></p>
+    <p>Network services (DHCP and DNS), monitoring, documentation, high availability, and remote access. Often underestimated — but 19% is ~17 questions. <strong>Key topics here include SNMP, syslog, VPN types, and high availability terms (HSRP, LACP).</strong></p>
     <div class="article-link-grid">
       <a href="dhcp.html" class="article-link">
         <span class="al-arrow">→</span>
@@ -900,7 +904,7 @@ a{color:inherit;text-decoration:none;}
     <div class="exam-tip-label">🎯 The Three Highest-ROI Network+ Study Topics</div>
     <p><strong>Subnetting</strong> — appears in multiple question formats including performance-based questions. You cannot pass Network+ without being comfortable with subnetting. Practice until you can do it in your head, not just with a formula sheet.</p>
     <p><strong>Port numbers</strong> — memorize the full port table. Not just HTTP/HTTPS — <a href="snmp-explained.html">SNMP</a> (161/162), LDAP (389/636), RADIUS (1812/1813), Kerberos (88), Syslog (514). These appear in firewall rule scenarios, troubleshooting questions, and security questions.</p>
-    <p><strong>OSI layer identification</strong> — given a description of a protocol, device, or problem, you must identify the OSI layer. Switches operate at Layer 2. Routers at Layer 3. Firewalls typically at Layer 3–4 (stateful) or Layer 7 (NGFW). ARP is Layer 2/3. TLS is Layer 5–6. This question type appears on almost every exam.</p>
+    <p><strong>OSI layer identification</strong> — given a description of a protocol, device, or problem, you must identify the OSI layer. Switches operate at Layer 2. Routers at Layer 3. Firewalls typically at Layer 3–4 (stateful) or Layer 7 (NGFW). ARP is Layer 2/3. TLS is Layer 5–6.</p>
   </div>
 
   <h2>What are Network+ performance-based questions (PBQs)?</h2>
@@ -965,7 +969,7 @@ a{color:inherit;text-decoration:none;}
     <h2 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#0a1628;letter-spacing:-.3px;margin:52px 0 16px;">What should you expect on the Network+ exam?</h2>
     <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">The N10-009 exam is 90 questions in 90 minutes — a tight pace that rewards candidates who can read scenarios efficiently and recognize what's being tested quickly. Roughly 75–80 questions are multiple choice; the remainder are performance-based questions (PBQs) that appear at the start of the exam. PBQ formats include drag-and-drop topology labeling, IP configuration tasks, cable type matching, and command output interpretation.</p>
     <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">The most important tactical preparation: don't spend more than 90 seconds on any multiple-choice question and cap PBQ time at 5 minutes each. Flag questions you're unsure about and return to them. Running out of time is a common failure mode — candidates who get stuck on difficult PBQs at the start often don't complete all the multiple-choice questions.</p>
-    <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">Passing score is <strong>720 out of 900</strong>. The exam is scored on a scaled scoring system, so question difficulty affects point values. Exam questions are not published, but consistently tested areas across candidate reports include: subnetting calculations, VLAN and trunk configuration concepts, <a href="wifi-standards.html" style="color:#1a6cff;font-weight:600;">wireless standards</a> (802.11ax/Wi-Fi 6 vs predecessors), network troubleshooting command output interpretation, and routing protocol characteristics (OSPF vs EIGRP vs BGP use cases).</p>
+    <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">Passing score is <strong>720 out of 900</strong>. The exam is scored on a scaled scoring system, so question difficulty affects point values. Exam questions are not published. Areas worth practicing include: subnetting calculations, VLAN and trunk configuration concepts, <a href="wifi-standards.html" style="color:#1a6cff;font-weight:600;">wireless standards</a> (802.11ax/Wi-Fi 6 vs predecessors), network troubleshooting command output interpretation, and routing protocol characteristics (OSPF vs EIGRP vs BGP use cases).</p>
 
     <h2 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:#0a1628;letter-spacing:-.3px;margin:52px 0 16px;">How can you prepare for Network+ in 4 weeks?</h2>
     <p style="font-size:15px;color:#1c2a3e;line-height:1.75;margin-bottom:16px;">Candidates with A+ or equivalent background can be ready for Network+ in 6–8 weeks studying 1–2 hours daily. A practical 4-phase approach: <strong>Weeks 1–2</strong> — cover Networking Concepts (Domain 1) deeply, focusing on OSI/TCP-IP models, subnetting, and ports/protocols. These are the foundation for all other domains and are directly tested at 23% of the exam. <strong>Weeks 3–4</strong> — cover Network Implementation (Domain 2) and Network Operations (Domain 3): routing protocols, VLANs, wireless, and network monitoring tools. <strong>Weeks 5–6</strong> — cover Network Security (Domain 4) and Network Troubleshooting (Domain 5): attack types, firewall types, and systematic troubleshooting using the OSI model as a guide. <strong>Weeks 7–8</strong> — full practice exams, domain-by-domain analysis of weak areas, targeted review, and PBQ-specific drilling.</p>

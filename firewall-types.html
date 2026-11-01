@@ -109,7 +109,7 @@ tbody tr:hover td{background:var(--light);}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
 .footer-links a:hover{color:var(--teal);}
 .footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.footer-pp{color:rgba(255,255,255,.4);}
+.footer-pp{color:rgba(255,255,255,.55);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── CERTFLASH APP BANNER ── */
@@ -546,7 +546,7 @@ tbody tr:hover td{background:var(--light);}
     
     <h2>Implicit Deny — The Foundation of Firewall Rules</h2>
     <p>A core firewall concept tested on both Network+ and Security+ is <strong>implicit deny</strong>: any traffic not explicitly permitted by a firewall rule is denied by default. Most firewalls are configured with a final rule of "deny all" at the bottom of the rule set — traffic that doesn't match any permit rule is dropped. This is the correct security posture: the default is to block, and specific traffic is explicitly allowed. The opposite — implicit permit — would allow all traffic by default unless specifically blocked, which is far too permissive for a security boundary.</p>
-    <p>Firewall rules are evaluated in order — the first matching rule is applied and evaluation stops. This creates the critical concept of <strong>rule ordering</strong>: more specific rules must appear before more general rules. A specific deny rule placed after a broad permit rule will never be reached — the broad permit matches first. This is a classic exam trap: "why is the more specific deny rule not working?" — because a broader permit rule appears before it in the list.</p>
+    <p>Firewall rules are evaluated in order — the first matching rule is applied and evaluation stops. This creates the critical concept of <strong>rule ordering</strong>: more specific rules must appear before more general rules. A specific deny rule placed after a broad permit rule will never be reached — the broad permit matches first. Watch for this: "why is the more specific deny rule not working?" — because a broader permit rule appears before it in the list.</p>
 
     <h2>Stateful Firewall and NAT — Why They Work Together</h2>
     <p>Network Address Translation (NAT) is commonly implemented on the same device as a stateful firewall. NAT translates private IP addresses to a public IP address for outbound traffic, and the state table maintains the mapping of which internal host made which outbound connection — so when the response comes back, it knows which internal host to forward it to. This state tracking is fundamentally the same mechanism as stateful firewall connection tracking: both track the source, destination, port, and state of each connection. NAT on a home router provides a degree of firewall-like protection simply because inbound packets that don't match an existing NAT state table entry have no internal address to be forwarded to — they're dropped by default. This "NAT as firewall" effect is not true firewall protection but is why home routers provide some protection even without explicit firewall rules.</p>

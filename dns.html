@@ -545,8 +545,8 @@ a:hover { text-decoration: underline; }
 }
 .page-hero-inner { animation: fadeUp 0.6s ease both; }
 
-.footer-email { color:rgba(255,255,255,0.4); }
-.footer-pp { color:rgba(255,255,255,0.4); }
+.footer-email { color:rgba(255,255,255,0.55); }
+.footer-pp { color:rgba(255,255,255,0.55); }
 
 /* ── CERTFLASH APP BANNER ── */
 .app-banner {
@@ -908,7 +908,7 @@ a:hover { text-decoration: underline; }
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-04-21",
+  "dateModified": "2026-10-31",
   "url": "https://itstudyhub.org/dns.html",
   "inLanguage": "en"
 }
@@ -977,7 +977,7 @@ a:hover { text-decoration: underline; }
       <span class="author-name">Sean Fogarty</span>
       <span class="author-creds">CompTIA A+ Certified &middot; Network+ in progress</span>
     </div>
-    <div class="author-date">Updated May 2026</div>
+    <div class="author-date">Updated October 2026</div>
   </div>
 </div>
 <!-- ARTICLE -->
@@ -1125,7 +1125,7 @@ a:hover { text-decoration: underline; }
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ CompTIA A+ Exam Tip — The Classic DNS Test</div>
       <p><strong>If you can ping <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(90,64,0,0.1);padding:2px 6px;border-radius:4px;">8.8.8.8</code> but NOT <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(90,64,0,0.1);padding:2px 6px;border-radius:4px;">google.com</code> — it's a DNS problem.</strong></p>
-      <p>The internet connection itself works (you can reach an IP), but name resolution is broken. This specific scenario appears frequently in A+ troubleshooting questions.</p>
+      <p>The internet connection itself works (you can reach an IP), but name resolution is broken.</p>
     </div>
 
     <hr class="divider">
@@ -1166,7 +1166,7 @@ a:hover { text-decoration: underline; }
     <hr class="divider">
 
     <h2>DNS and DHCP — How They Work Together</h2>
-    <p>These two protocols are closely linked and are often tested together on the A+ exam:</p>
+    <p>These two protocols are closely linked, so study them together for the A+ exam:</p>
 
     <div class="together-grid">
       <div class="together-card dhcp">
@@ -1186,7 +1186,7 @@ a:hover { text-decoration: underline; }
     <hr class="divider">
 
     <h2>DNS Record Types</h2>
-    <p>DNS record types are heavily tested on Network+. Each record type stores a different kind of information about a domain. Know every type below — the exam will describe a scenario and ask which record type is needed.</p>
+    <p>DNS record types are part of Network+. Each record type stores a different kind of information about a domain. Know every type below and which record type a given scenario needs.</p>
 
     <div class="table-wrap" style="overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:28px;">
       <table style="width:100%;border-collapse:collapse;background:var(--white);min-width:400px;">
@@ -1251,14 +1251,14 @@ a:hover { text-decoration: underline; }
             <td style="padding:13px 18px;font-size:14px;vertical-align:top;"><span class="record-tag">SRV</span></td>
             <td style="padding:13px 18px;font-size:14px;vertical-align:top;font-weight:700;color:var(--navy);">Service</td>
             <td style="padding:13px 18px;font-size:14px;vertical-align:top;">Specifies hostname and port for specific services (SIP, XMPP, etc.)</td>
-            <td style="padding:13px 18px;font-size:14px;vertical-align:top;color:var(--muted);">Less commonly tested — know it exists and what it does</td>
+            <td style="padding:13px 18px;font-size:14px;vertical-align:top;color:var(--muted);">Know it exists and what it does</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="exam-tip">
-      <div class="exam-tip-label">⚡ The most tested record type question</div>
+      <div class="exam-tip-label">⚡ Record types to know cold</div>
       <p><strong>A record</strong> = hostname to IPv4. <strong>AAAA record</strong> = hostname to IPv6. <strong>PTR record</strong> = IP to hostname (reverse — the opposite of A/AAAA). <strong>CNAME</strong> = alias to another name, never directly to an IP.</p>
       <p>The <strong>MX record</strong> is the one to check whenever an email delivery scenario appears. The <strong>TXT record</strong> is what SPF, DKIM, and DMARC <a href="email-security.html">email security</a> policies use.</p>
     </div>
