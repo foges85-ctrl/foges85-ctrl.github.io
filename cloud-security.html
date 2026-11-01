@@ -541,9 +541,9 @@ tbody tr:hover td{background:var(--light);}
   <div class="article-body">
 
     <div class="quick-answer">
-      <div class="quick-answer-label">⚡ What Security+ Tests on Cloud Security</div>
+      <div class="quick-answer-label">⚡ What to Know About Cloud Security for Security+</div>
       <div class="quick-answer-text">
-        Security+ SY0-701 expanded cloud security significantly from SY0-601. The key concepts: <strong>shared responsibility model</strong> (who owns what in IaaS/PaaS/SaaS), <strong>CASB</strong> (cloud access security broker — visibility and control over SaaS usage), <strong>CSPM</strong> (cloud security posture management — detecting misconfigurations), <strong>serverless and container security</strong>, and the top <strong>cloud misconfigurations</strong> that lead to breaches. Scenarios ask you to select the right tool or identify the vulnerability in a described cloud architecture.
+        Key cloud security concepts for Security+ SY0-701: <strong>shared responsibility model</strong> (who owns what in IaaS/PaaS/SaaS), <strong>CASB</strong> (cloud access security broker — visibility and control over SaaS usage), <strong>CSPM</strong> (cloud security posture management — detecting misconfigurations), <strong>serverless and container security</strong>, and the top <strong>cloud misconfigurations</strong> that lead to breaches. Practice selecting the right tool or identifying the vulnerability in a described cloud architecture.
       </div>
     </div>
 
@@ -583,7 +583,7 @@ tbody tr:hover td{background:var(--light);}
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 The Shared Responsibility Exam Trap</div>
       <p><strong>Data is always the customer's responsibility</strong> — regardless of service model. Even in SaaS, you are responsible for what data you put in the application, who has access to it, and how it's classified. The provider secures the platform; you secure your data on it.</p>
-      <p><strong>IaaS = most customer responsibility.</strong> You own the OS up. The provider owns the physical layer and hypervisor. On A+ and Security+, IaaS scenarios where a VM is compromised due to an unpatched OS — that's the customer's fault, not the provider's.</p>
+      <p><strong>IaaS = most customer responsibility.</strong> You own the OS up. The provider owns the physical layer and hypervisor. In IaaS scenarios where a VM is compromised due to an unpatched OS, that's the customer's fault, not the provider's.</p>
     </div>
 
     <h2>Cloud Security Tools — What They Do and When to Use Them</h2>
@@ -672,7 +672,7 @@ tbody tr:hover td{background:var(--light);}
 
     <h2>Container Security</h2>
 
-    <p>Containers (Docker, Kubernetes) package applications and their dependencies into isolated units. Security+ SY0-701 tests containers primarily in the context of <strong>image security, container escape, and Kubernetes misconfigurations</strong>.</p>
+    <p>Containers (Docker, Kubernetes) package applications and their dependencies into isolated units. For Security+ SY0-701, focus on containers in the context of <strong>image security, container escape, and Kubernetes misconfigurations</strong>.</p>
 
     <div class="callout blue">
       <div class="callout-label">Container Security — Key Exam Points</div>
@@ -691,16 +691,16 @@ tbody tr:hover td{background:var(--light);}
     <p>Cloud providers offer virtual firewalls as security groups (AWS) or network security groups (Azure). Unlike traditional firewalls, these are <strong>stateful and attached to individual resources</strong> rather than network segments. Each resource should have its own security group with minimum required rules — the principle of least privilege applied to network access.</p>
 
     <h3>Secrets Management</h3>
-    <p>Cloud Key Management Services (KMS) store and manage cryptographic keys and secrets. Applications retrieve secrets at runtime via API rather than storing them in config files or environment variables. Rotation policies ensure secrets are automatically cycled. On the exam: <strong>AWS Secrets Manager, Azure Key Vault, and HashiCorp Vault</strong> are the tools associated with secrets management in cloud environments.</p>
+    <p>Cloud Key Management Services (KMS) store and manage cryptographic keys and secrets. Applications retrieve secrets at runtime via API rather than storing them in config files or environment variables. Rotation policies ensure secrets are automatically cycled. <strong>AWS Secrets Manager, Azure Key Vault, and HashiCorp Vault</strong> are common tools for secrets management in cloud environments.</p>
 
     <div class="exam-tip">
       <div class="exam-tip-label">🎯 Three Exam Shortcuts for Cloud Security Questions</div>
       <p><strong>"Shadow IT" → CASB.</strong> Any scenario describing employees using unapproved cloud apps, or a company wanting visibility into what SaaS services are in use, points to a CASB solution.</p>
       <p><strong>"Misconfiguration detected" → CSPM.</strong> Continuous monitoring and detection of cloud configuration drift or policy violations is the CSPM use case. If the scenario involves a tool finding security gaps across cloud accounts automatically, that's CSPM.</p>
-      <p><strong>Data breaches from public S3 buckets → customer's responsibility.</strong> Provider secures the platform; customer secures configuration and data. Exposed cloud storage is always the customer's misconfiguration, regardless of how the question is framed.</p>
+      <p><strong>Data breaches from public S3 buckets → customer's responsibility.</strong> Provider secures the platform; customer secures configuration and data. Exposed cloud storage is always the customer's misconfiguration.</p>
     </div>
 
-    <h2>Exam Scenarios</h2>
+    <h2>Practice Scenarios</h2>
     <div class="scenario-list">
       <div class="scenario-item">A security analyst discovers that employees are uploading sensitive company documents to personal Dropbox accounts. The company wants to prevent this without blocking all cloud storage access. What technology should they implement? <strong>CASB — a Cloud Access Security Broker can enforce DLP policies on cloud uploads, blocking sensitive data from leaving via unapproved services while allowing access to sanctioned platforms.</strong></div>
       <div class="scenario-item">A company's AWS environment is scanned and the report shows an S3 bucket with public read access containing employee records, IAM users without MFA, and security groups allowing SSH from 0.0.0.0/0. What type of tool generated this report? <strong>CSPM (Cloud Security Posture Management) — it continuously scans cloud configurations against security baselines and compliance standards, identifying exactly these types of misconfigurations.</strong></div>
@@ -727,7 +727,7 @@ tbody tr:hover td{background:var(--light);}
       <a href="identity-and-access-management.html" class="related-link">Identity &amp; Access Management</a>
       <a href="encryption-types.html" class="related-link">Encryption Types</a>
       <a href="incident-response-playbook.html" class="related-link">Incident Response Playbooks</a>
-      <a href="comptia-security-plus-study-guide.html" class="related-link">Security+ Complete Study Guide</a>
+      <a href="comptia-security-plus-study-guide.html" class="related-link">Security+ Study Guide</a>
       <a href="security-plus-cheat-sheet.html" class="related-link">Security+ Cheat Sheet</a>
     </div>
   </div>
@@ -742,7 +742,7 @@ tbody tr:hover td{background:var(--light);}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

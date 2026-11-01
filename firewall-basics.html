@@ -795,6 +795,10 @@ a:hover { text-decoration: underline; }
 
 /* ── Round 3 link contrast (Oct 2026) ── */
 .article-body p a:not([class]), .article-body li a:not([class]), .article-body td a:not([class]) { color:#155bd9; text-decoration:underline; }
+
+/* Round 5 follow-up: let summary text wrap as one line of text (was split into flex columns) */
+.summary-item{display:block;position:relative;padding-left:48px;}
+.summary-item::before{position:absolute;left:16px;top:14px;margin-top:0;}
 </style>
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -918,7 +922,7 @@ a:hover { text-decoration: underline; }
     </nav>
     <div class="page-hero-badge">CompTIA A+ · Network+ · Security+</div>
     <h1>Firewall <span>Basics</span> Explained</h1>
-    <p class="page-hero-sub">What a firewall is, how rules work, stateful vs stateless, NGFW, IDS vs IPS, DMZ, WAF, and every firewall concept tested on CompTIA A+, Network+, and Security+.</p>
+    <p class="page-hero-sub">What a firewall is, how rules work, stateful vs stateless, NGFW, IDS vs IPS, DMZ, WAF, and the core firewall concepts for CompTIA A+, Network+, and Security+.</p>
   </div>
 </section>
 
@@ -1159,14 +1163,14 @@ a:hover { text-decoration: underline; }
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ A+ Scenario — "Users can browse but can't use remote desktop"</div>
-      <p>This is a classic firewall scenario on the exam. If users can reach websites (port 80/443 open) but RDP connections fail (port 3389 blocked), the firewall ruleset is doing exactly what a secure configuration should do. The fix — if RDP is needed — is to add an explicit allow rule for port 3389, ideally restricted to specific IP addresses rather than open to everyone.</p>
+      <p>This is a classic firewall scenario. If users can reach websites (port 80/443 open) but RDP connections fail (port 3389 blocked), the firewall ruleset is doing exactly what a secure configuration should do. The fix — if RDP is needed — is to add an explicit allow rule for port 3389, ideally restricted to specific IP addresses rather than open to everyone.</p>
     </div>
 
     <hr class="divider">
 
     <h2>Windows Defender Firewall — what to know for the exam</h2>
 
-    <p>The A+ exam specifically tests your knowledge of <strong>Windows Defender Firewall</strong>, the built-in host-based firewall in Windows. Key things to know:</p>
+    <p>For A+, know <strong>Windows Defender Firewall</strong>, the built-in host-based firewall in Windows. Key things to know:</p>
 
     <p>It has three profiles — <strong>Domain</strong> (when connected to a corporate domain), <strong>Private</strong> (home or trusted networks), and <strong>Public</strong> (coffee shops, airports, unknown networks). The Public profile is the most restrictive by default, blocking most inbound connections.</p>
 
@@ -1218,7 +1222,7 @@ a:hover { text-decoration: underline; }
 
     <h2>IDS vs IPS vs Firewall</h2>
 
-    <p>These three are the most commonly confused security devices on Network+ and Security+. They are related but do fundamentally different things.</p>
+    <p>These three security devices are easy to confuse when studying for Network+ and Security+. They are related but do fundamentally different things.</p>
 
     <div style="overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:28px;">
       <table style="width:100%;border-collapse:collapse;background:var(--white);min-width:480px;">
@@ -1347,7 +1351,7 @@ a:hover { text-decoration: underline; }
 
     <hr class="divider">
 
-    <h2>Exam scenarios</h2>
+    <h2>Practice scenarios</h2>
 
     <div class="fw-scenario-list">
       <div class="fw-scenario-item">💬 "A security device monitors a copy of network traffic and generates alerts but does not block anything. What is it?" → <strong>IDS (Intrusion Detection System)</strong></div>
@@ -1413,7 +1417,7 @@ a:hover { text-decoration: underline; }
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

@@ -21,8 +21,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="https://itstudyhub.org/osi-model.html">
 
-<title>OSI Model Explained — All 7 Layers Simply (With Exam Scenarios)</title>
-<meta name="description" content="The OSI model trips up more A+ candidates than any other topic. Learn all 7 layers in plain English — what happens at each one, which devices live there, and how to use it to troubleshoot real network problems.">
+<title>OSI Model Explained — All 7 Layers Simply (With Practice Scenarios)</title>
+<meta name="description" content="Learn all 7 layers of the OSI model in plain English — what happens at each one, which devices live there, and how to use it to troubleshoot real network problems.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -980,6 +980,12 @@ tbody tr:hover td { background: #f6f9ff; }
 
 /* ── Round 3 link contrast (Oct 2026) ── */
 .article-body p a:not([class]), .article-body li a:not([class]), .article-body td a:not([class]) { color:#155bd9; text-decoration:underline; }
+
+/* Round 5 follow-up: keep wide tables and long code inside the 390px viewport */
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;}
+.table-scroll>table{margin-bottom:0;}
+pre{max-width:100%;overflow-x:auto;}
+:not(pre)>code{overflow-wrap:anywhere;}
 </style>
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -1024,7 +1030,7 @@ tbody tr:hover td { background: #f6f9ff; }
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "OSI Model Explained — All 7 Layers Simply (With Exam Scenarios)",
+      "name": "OSI Model Explained — All 7 Layers Simply (With Practice Scenarios)",
       "item": "https://itstudyhub.org/osi-model.html"
     }
   ]
@@ -1033,14 +1039,14 @@ tbody tr:hover td { background: #f6f9ff; }
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="IT Study Hub">
   <meta property="og:url" content="https://itstudyhub.org/osi-model.html">
-  <meta property="og:title" content="OSI Model Explained — All 7 Layers Simply (With Exam Scenarios)">
-  <meta property="og:description" content="The OSI model trips up more A+ candidates than any other topic. Learn all 7 layers in plain English — what happens at each one, which devices live there,…">
+  <meta property="og:title" content="OSI Model Explained — All 7 Layers Simply (With Practice Scenarios)">
+  <meta property="og:description" content="Learn all 7 layers of the OSI model in plain English — what happens at each one, which devices live there,…">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "OSI Model Explained — All 7 Layers Simply (With Exam Scenarios)",
+  "headline": "OSI Model Explained — All 7 Layers Simply (With Practice Scenarios)",
   "author": {
     "@type": "Person",
     "name": "Sean Fogarty",
@@ -1112,7 +1118,7 @@ tbody tr:hover td { background: #f6f9ff; }
     <div class="page-hero-badge">CompTIA A+ · Network+ · Security+</div>
     <h1>OSI Model <span>Explained Simply</span></h1>
     <p class="page-hero-sub">
-      The OSI model is a 7-layer framework that describes how data moves across a network — from physical cables at Layer 1 up to user-facing applications at Layer 7. CompTIA A+, Network+, and Security+ all test whether you can map a concept, protocol, device, or attack to the correct layer.
+      The OSI model is a 7-layer framework that describes how data moves across a network — from physical cables at Layer 1 up to user-facing applications at Layer 7. For CompTIA A+, Network+, and Security+, be able to map a concept, protocol, device, or attack to the correct layer.
     </p>
   </div>
 </section>
@@ -1134,10 +1140,10 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <div class="quick-answer">
       <div class="quick-answer-label">Quick Answer</div>
-      <div class="quick-answer-text">The <strong>OSI model</strong> has 7 layers, from bottom to top: <strong>1 Physical</strong> (cables, signals), <strong>2 Data Link</strong> (MAC addresses, switches), <strong>3 Network</strong> (IP addresses, routers), <strong>4 Transport</strong> (TCP and UDP, port numbers), <strong>5 Session</strong>, <strong>6 Presentation</strong> (encryption, TLS), and <strong>7 Application</strong> (HTTP, DNS, SMTP). The mnemonic is <em>All People Seem To Need Data Processing</em> (top → bottom). It's used to map protocols, devices, and troubleshooting symptoms to a specific layer on CompTIA A+, Network+, and Security+ exams.</div>
+      <div class="quick-answer-text">The <strong>OSI model</strong> has 7 layers, from bottom to top: <strong>1 Physical</strong> (cables, signals), <strong>2 Data Link</strong> (MAC addresses, switches), <strong>3 Network</strong> (IP addresses, routers), <strong>4 Transport</strong> (TCP and UDP, port numbers), <strong>5 Session</strong>, <strong>6 Presentation</strong> (encryption, TLS), and <strong>7 Application</strong> (HTTP, DNS, SMTP). The mnemonic is <em>All People Seem To Need Data Processing</em> (top → bottom). It's used to map protocols, devices, and troubleshooting symptoms to a specific layer.</div>
     </div>
 
-    <p>The OSI Model is one of the most important networking concepts on the CompTIA A+ exam. It breaks networking into 7 layers so we can understand how data moves from one device to another — and how to diagnose what went wrong when it doesn't.</p>
+    <p>The OSI Model is one of the most important networking concepts for CompTIA A+. It breaks networking into 7 layers so we can understand how data moves from one device to another — and how to diagnose what went wrong when it doesn't.</p>
 
     <hr class="divider">
 
@@ -1219,7 +1225,7 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <hr class="divider">
 
-    <h2>How is the OSI model tested on the CompTIA A+ exam?</h2>
+    <h2>How does the OSI model apply to CompTIA A+?</h2>
 
     <div class="table-wrap">
       <table>
@@ -1287,9 +1293,9 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <h2>Which protocols and devices live at each OSI layer? (Network+)</h2>
 
-    <p>The Network+ exam maps specific protocols, devices, and technologies to OSI layers; the <a href="osi-model-cheat-sheet.html">OSI model cheat sheet</a> puts that mapping on one page. You need to know not just what each layer does, but <em>which protocols live there</em> and <em>what devices operate at each layer</em>.</p>
+    <p>For Network+, know how specific protocols, devices, and technologies map to OSI layers; the <a href="osi-model-cheat-sheet.html">OSI model cheat sheet</a> puts that mapping on one page. You need to know not just what each layer does, but <em>which protocols live there</em> and <em>what devices operate at each layer</em>.</p>
 
-    <table class="info-table">
+    <div class="table-scroll"><table class="info-table">
       <thead><tr><th>Layer</th><th>Name</th><th>Protocols</th><th>Devices</th><th>PDU</th></tr></thead>
       <tbody>
         <tr><td><strong>7</strong></td><td>Application</td><td>HTTP, HTTPS, FTP, SMTP, DNS, DHCP, SNMP, SSH, Telnet, LDAP</td><td>Proxy, Load balancer, NGFW</td><td>Data</td></tr>
@@ -1300,7 +1306,7 @@ tbody tr:hover td { background: #f6f9ff; }
         <tr><td><strong>2</strong></td><td>Data Link</td><td>Ethernet, Wi-Fi (802.11), ARP, PPP, STP, VLANs (802.1Q)</td><td>Switch, Bridge, WAP</td><td>Frame</td></tr>
         <tr><td><strong>1</strong></td><td>Physical</td><td>Ethernet (physical), USB, Bluetooth (physical), DSL</td><td>Hub, Repeater, Cable, NIC</td><td>Bit</td></tr>
       </tbody>
-    </table>
+    </table></div>
 
     <div class="callout callout-amber">
       <strong>⚡ Network+ exam tip — Layer 2 vs Layer 3 switches:</strong> A standard switch operates at Layer 2 using MAC addresses. A Layer 3 (multilayer) switch can also route between VLANs using IP addresses — it's a switch with routing capability. Know which device operates at which layer.
@@ -1321,7 +1327,7 @@ tbody tr:hover td { background: #f6f9ff; }
 
     <p>Security+ maps attacks to the OSI layer where they occur. Understanding which layer an attack targets tells you which layer the defense needs to operate at.</p>
 
-    <table class="info-table">
+    <div class="table-scroll"><table class="info-table">
       <thead><tr><th>Layer</th><th>Attack</th><th>How It Targets This Layer</th><th>Defense Layer</th></tr></thead>
       <tbody>
         <tr><td><strong>7 — Application</strong></td><td>SQL injection, XSS, CSRF</td><td>Exploits application logic and input handling</td><td>WAF, input validation, secure coding</td></tr>
@@ -1333,13 +1339,13 @@ tbody tr:hover td { background: #f6f9ff; }
         <tr><td><strong>2 — Data Link</strong></td><td>ARP spoofing, MAC flooding, VLAN hopping</td><td>Poisons ARP cache or floods switch CAM table</td><td>DAI, port security, private VLANs</td></tr>
         <tr><td><strong>1 — Physical</strong></td><td>Wiretapping, jamming, hardware keylogger</td><td>Intercepts or disrupts physical medium</td><td>Physical security, fiber (harder to tap), TEMPEST shielding</td></tr>
       </tbody>
-    </table>
+    </table></div>
 
     <div class="callout callout-amber">
-      <strong>⚡ Security+ exam tip:</strong> When a scenario describes an attack, identify the layer first — then match the defense. A WAF operates at Layer 7. A firewall filtering ports operates at Layer 4. A switch with port security operates at Layer 2. The exam tests whether you can match controls to the correct layer.
+      <strong>⚡ Security+ exam tip:</strong> When a scenario describes an attack, identify the layer first — then match the defense. A WAF operates at Layer 7. A firewall filtering ports operates at Layer 4. A switch with port security operates at Layer 2. Be able to match controls to the correct layer.
     </div>
 
-    <h2>What are real exam scenarios for the OSI model?</h2>
+    <h2>What are practice scenarios for the OSI model?</h2>
 
     <div class="exam-scenarios">
       <div class="scenario-card">
@@ -1400,7 +1406,7 @@ tbody tr:hover td { background: #f6f9ff; }
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

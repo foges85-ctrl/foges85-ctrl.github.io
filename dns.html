@@ -840,6 +840,16 @@ a:hover { text-decoration: underline; }
 
 /* ── BODY TEXT LINKS ── */
 .article-body p > a:not([class]), .guide-wrap p > a:not([class]) { color:#155bd9; text-decoration:underline; }
+
+/* Round 5 follow-up: let summary text wrap as one line of text (was split into flex columns) */
+.summary-item{display:block;position:relative;padding-left:48px;}
+.summary-item::before{position:absolute;left:16px;top:14px;margin-top:0;}
+
+/* Round 5 follow-up: keep wide tables and long code inside the 390px viewport */
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;}
+.table-scroll>table{margin-bottom:0;}
+pre{max-width:100%;overflow-x:auto;}
+:not(pre)>code{overflow-wrap:anywhere;}
 </style>
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -855,7 +865,7 @@ a:hover { text-decoration: underline; }
       "name": "What Is a DNS Server?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A DNS server is a system that stores and provides domain name → IP address mappings. Most home routers automatically assign a DNS server via DHCP. Common public DNS servers you'll see on the A+ exam:"
+        "text": "A DNS server is a system that stores and provides domain name → IP address mappings. Most home routers automatically assign a DNS server via DHCP. Common public DNS servers to know:"
       }
     }
   ]
@@ -964,7 +974,7 @@ a:hover { text-decoration: underline; }
     <div class="page-hero-badge">CompTIA A+ · Network+ · Core Concept</div>
     <h1>What Is <span>DNS?</span></h1>
     <p class="page-hero-sub">
-      You type google.com — your computer connects in milliseconds. DNS is the invisible system that makes that happen. Here's how it works, every record type, and every DNS concept tested on CompTIA A+ and Network+.
+      You type google.com — your computer connects in milliseconds. DNS is the invisible system that makes that happen. Here's how it works, every record type, and the DNS concepts to know for CompTIA A+ and Network+.
     </p>
   </div>
 </section>
@@ -1054,7 +1064,7 @@ a:hover { text-decoration: underline; }
     <hr class="divider">
 
     <h2>What Is a DNS Server?</h2>
-    <p>A DNS server is a system that stores and provides domain name → IP address mappings. Most home routers automatically assign a DNS server via DHCP. Common public DNS servers you'll see on the A+ exam:</p>
+    <p>A DNS server is a system that stores and provides domain name → IP address mappings. Most home routers automatically assign a DNS server via DHCP. Common public DNS servers to know:</p>
 
     <div class="dns-servers">
       <div class="dns-server-card">
@@ -1107,7 +1117,7 @@ a:hover { text-decoration: underline; }
     </div>
 
 
-    <h2>Common DNS Problems (A+ Exam Clues)</h2>
+    <h2>Common DNS Problems (A+ Troubleshooting Clues)</h2>
     <p>DNS failures produce a specific, recognizable pattern — websites fail even though the connection itself works:</p>
 
     <div class="symptom-list">
@@ -1195,7 +1205,7 @@ a:hover { text-decoration: underline; }
             <th style="background:var(--navy);color:var(--white);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;">Record</th>
             <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;">Full name</th>
             <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;">What it maps / stores</th>
-            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;">Exam scenario</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;">Example scenario</th>
           </tr>
         </thead>
         <tbody>
@@ -1315,7 +1325,7 @@ a:hover { text-decoration: underline; }
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ Zone transfers — TCP port 53</div>
-      <p>When a secondary DNS server requests an updated copy of records from a primary, this is called a <strong>zone transfer</strong>. Zone transfers use <strong>TCP port 53</strong> (not UDP). Regular DNS queries use UDP port 53 — this distinction is tested.</p>
+      <p>When a secondary DNS server requests an updated copy of records from a primary, this is called a <strong>zone transfer</strong>. Zone transfers use <strong>TCP port 53</strong> (not UDP). Regular DNS queries use UDP port 53 — know this distinction.</p>
       <p>Zone transfers should be restricted to authorized secondary servers only — unrestricted zone transfers are a security vulnerability that can expose your entire DNS record set.</p>
     </div>
 
@@ -1336,7 +1346,7 @@ a:hover { text-decoration: underline; }
     <hr class="divider">
 
     <h2>nslookup — The DNS Troubleshooting Tool</h2>
-    <p>nslookup is the primary tool for DNS diagnostics and is tested on both A+ and Network+. It queries DNS servers directly and shows what records are returned — letting you pinpoint exactly where DNS resolution is failing.</p>
+    <p>nslookup is the primary tool for DNS diagnostics; know it for both A+ and Network+. It queries DNS servers directly and shows what records are returned — letting you pinpoint exactly where DNS resolution is failing.</p>
 
     <div class="dns-code-block">
       <div class="dns-code-label">nslookup — common uses</div>
@@ -1356,7 +1366,7 @@ a:hover { text-decoration: underline; }
     </div>
 
     <div class="exam-tip">
-      <div class="exam-tip-label">⚡ nslookup exam scenario</div>
+      <div class="exam-tip-label">⚡ nslookup practice scenario</div>
       <p>"A technician can ping 8.8.8.8 successfully but websites will not load. Which tool should they use to verify DNS resolution is working?" → <strong>nslookup</strong></p>
       <p>"An administrator runs nslookup and gets a response from 192.168.1.1 but the IP returned for google.com is incorrect. What does this indicate?" → <strong>The local DNS server (192.168.1.1) has a corrupted or poisoned cache — try querying a known-good server like 8.8.8.8 directly.</strong></p>
     </div>
@@ -1417,7 +1427,7 @@ a:hover { text-decoration: underline; }
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

@@ -480,7 +480,7 @@ tbody tr:hover td{background:#eff6ff;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ Quick Answer</div>
       <div class="quick-answer-text">
-        As of Q2 2026 (Synergy Research), <strong>AWS</strong> is the market leader (~28% share) with the widest service catalog and the largest job market. <strong>Azure</strong> is #2 (~20%) and dominates enterprises already using Microsoft products (Office 365, Active Directory, Windows Server). <strong>GCP</strong> is #3 (~15%) and leads in data/ML and Kubernetes (Google invented it). For most beginners, <strong>start with AWS</strong> for maximum job opportunities, or <strong>Azure</strong> if your employer is Microsoft-heavy. All three are viable — the cloud skills are transferable.
+        As of Q2 2026 (Synergy Research), <strong>AWS</strong> is the market leader (~28% share) with the widest service catalog and the largest job market. <strong>Azure</strong> is #2 (~20%) and dominates enterprises already using Microsoft products (Office 365, Active Directory, Windows Server). <strong>GCP</strong> is #3 (~15%) and leads in data/ML and Kubernetes (Google invented it). As a beginner, <strong>start with AWS</strong> for maximum job opportunities, or <strong>Azure</strong> if your employer is Microsoft-heavy. All three are viable — the cloud skills are transferable.
       </div>
     </div>
 
@@ -665,7 +665,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="cert-card">
         <div class="cert-provider">Azure — Entry Level</div>
         <div class="cert-name">AZ-900: Microsoft Azure Fundamentals</div>
-        <div class="cert-desc">Microsoft's foundational Azure exam. Covers cloud concepts, core Azure services, pricing, SLAs, and compliance. No prerequisites. Widely considered the easiest entry-level cloud exam — a good starting point for non-technical roles.</div>
+        <div class="cert-desc">Microsoft's foundational Azure exam. Covers cloud concepts, core Azure services, pricing, SLAs, and compliance. No prerequisites. An entry-level cloud exam and a good starting point for non-technical roles.</div>
       </div>
       <div class="cert-card">
         <div class="cert-provider">GCP — Entry Level</div>
@@ -675,7 +675,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="cert-card">
         <div class="cert-provider">AWS — Associate Level</div>
         <div class="cert-name">AWS Certified Solutions Architect – Associate</div>
-        <div class="cert-desc">The most popular AWS cert for IT professionals. Covers designing cost-effective, resilient, high-performance architectures on AWS. Recommended after the Cloud Practitioner. Strong ROI in terms of job market demand.</div>
+        <div class="cert-desc">An associate-level AWS cert for IT professionals. Covers designing cost-effective, resilient, high-performance architectures on AWS. Recommended after the Cloud Practitioner. Strong ROI in terms of job market demand.</div>
       </div>
       <div class="cert-card">
         <div class="cert-provider">Azure — Associate Level</div>
@@ -726,9 +726,9 @@ tbody tr:hover td{background:#eff6ff;}
 
     <p>A <strong>VPC (Virtual Private Cloud)</strong> is the fundamental networking construct in AWS and GCP — a logically isolated network within the cloud provider's infrastructure where you deploy your resources. Azure calls the equivalent a <strong>Virtual Network (VNet)</strong>. A VPC/VNet is your private network in the cloud: you define the IP address range (CIDR block), create subnets, configure route tables, and control traffic with security groups (firewall rules). Resources within a VPC communicate privately; traffic to the internet requires an internet gateway or NAT gateway.</p>
 
-    <p><strong>Security Groups</strong> (AWS) and <strong>Network Security Groups (NSG)</strong> (Azure) are stateful virtual firewalls applied at the resource or subnet level. They control inbound and outbound traffic based on protocol, port, and source/destination IP. Because they're stateful, return traffic for allowed connections is automatically permitted — you only need to write rules for the initial direction. For exam scenarios: security groups are the cloud equivalent of ACLs or host firewalls — if a cloud instance can't be reached on a specific port, checking the security group is always step one.</p>
+    <p><strong>Security Groups</strong> (AWS) and <strong>Network Security Groups (NSG)</strong> (Azure) are stateful virtual firewalls applied at the resource or subnet level. They control inbound and outbound traffic based on protocol, port, and source/destination IP. Because they're stateful, return traffic for allowed connections is automatically permitted — you only need to write rules for the initial direction. In practice: security groups are the cloud equivalent of ACLs or host firewalls — if a cloud instance can't be reached on a specific port, checking the security group is always step one.</p>
 
-    <p><strong>VPC Peering</strong> connects two VPCs so resources in each can communicate using private IP addresses — without traffic traversing the internet. Peering is non-transitive: if VPC A is peered with VPC B and VPC B is peered with VPC C, A cannot communicate with C through B without a direct peering. <strong>VPN Gateway</strong> and <strong>Direct Connect/ExpressRoute/Cloud Interconnect</strong> provide private connectivity from on-premises networks to cloud VPCs, essential for hybrid cloud architectures. Understanding these connectivity options is part of cloud networking fundamentals tested on cloud certifications.</p>
+    <p><strong>VPC Peering</strong> connects two VPCs so resources in each can communicate using private IP addresses — without traffic traversing the internet. Peering is non-transitive: if VPC A is peered with VPC B and VPC B is peered with VPC C, A cannot communicate with C through B without a direct peering. <strong>VPN Gateway</strong> and <strong>Direct Connect/ExpressRoute/Cloud Interconnect</strong> provide private connectivity from on-premises networks to cloud VPCs, essential for hybrid cloud architectures. Understanding these connectivity options is part of cloud networking fundamentals.</p>
 
 <h2>Cloud Shared Responsibility Model</h2>
 
@@ -742,7 +742,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <h2>Cloud Deployment Models</h2>
 
-    <p>Cloud services can be deployed in three fundamental models, and the distinction is tested on CompTIA Cloud+, Security+, and cloud vendor certifications.</p>
+    <p>Cloud services can be deployed in three fundamental models, and the distinction matters for CompTIA Cloud+, Security+, and cloud vendor certifications.</p>
 
     <p><strong>Public cloud</strong> is the standard model — compute, storage, and services are hosted by the cloud provider on their infrastructure and shared (in a multi-tenant, isolated manner) across many customers. AWS, Azure, and GCP are all public clouds. Public cloud offers the highest scalability, lowest upfront cost, and maximum managed service availability. Data is hosted on the provider's infrastructure, which some highly regulated industries (certain government agencies, defense contractors) are restricted from using for sensitive data without additional controls.</p>
 
@@ -760,7 +760,7 @@ tbody tr:hover td{background:#eff6ff;}
 
     <h2>Cloud Storage Concepts</h2>
 
-    <p>Cloud storage comes in several types that map to different use cases. Understanding these distinctions is important for both cloud certifications and for Security+ scenarios about data at rest protection.</p>
+    <p>Cloud storage comes in several types that map to different use cases. Understanding these distinctions is important for both cloud certifications and for protecting data at rest.</p>
 
     <p><strong>Object storage</strong> (AWS S3, Azure Blob, GCP Cloud Storage) is for unstructured data — files, images, videos, backups, logs. It's accessed via HTTP APIs, not mounted like a traditional file system. Ideal for large-scale storage because it scales limitlessly without management. Encryption at rest and access policies are critical security controls — the most common misconfiguration is making objects public unintentionally.</p>
 
@@ -800,7 +800,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

@@ -21,7 +21,7 @@
 <link rel="canonical" href="https://itstudyhub.org/default-gateway.html">
 
 <title>What Is a Default Gateway and Why Does It Matter?</title>
-<meta name="description" content="No default gateway means no internet — but do you know why? Learn what a default gateway actually does, how to find and fix it, and how it appears in…">
+<meta name="description" content="No default gateway means no internet — but do you know why? Learn what a default gateway actually does, how to find and fix it, and why it matters for…">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -763,6 +763,10 @@ a:hover { text-decoration: underline; }
 
 /* ── BODY TEXT LINKS ── */
 .article-body p > a:not([class]), .guide-wrap p > a:not([class]) { color:#155bd9; text-decoration:underline; }
+
+/* Round 5 follow-up: let summary text wrap as one line of text (was split into flex columns) */
+.summary-item{display:block;position:relative;padding-left:48px;}
+.summary-item::before{position:absolute;left:16px;top:14px;margin-top:0;}
 </style>
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -793,7 +797,7 @@ a:hover { text-decoration: underline; }
   <meta property="og:site_name" content="IT Study Hub">
   <meta property="og:url" content="https://itstudyhub.org/default-gateway.html">
   <meta property="og:title" content="What Is a Default Gateway and Why Does It Matter?">
-  <meta property="og:description" content="No default gateway means no internet — but do you know why? Learn what a default gateway actually does, how to find and fix it, and how it appears in…">
+  <meta property="og:description" content="No default gateway means no internet — but do you know why? Learn what a default gateway actually does, how to find and fix it, and why it matters for…">
 
 <script type="application/ld+json">
 {
@@ -815,7 +819,7 @@ a:hover { text-decoration: underline; }
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-10-18",
+  "dateModified": "2026-10-31",
   "url": "https://itstudyhub.org/default-gateway.html",
   "inLanguage": "en"
 }
@@ -871,7 +875,7 @@ a:hover { text-decoration: underline; }
     <div class="page-hero-badge">CompTIA A+ · Network+</div>
     <h1>What Is a <span>Default Gateway?</span></h1>
     <p class="page-hero-sub">
-      The default gateway is one of the most important networking concepts on the CompTIA A+ exam — it's the device that allows your computer to communicate outside its local network.
+      The default gateway is one of the most important networking concepts for CompTIA A+ — it's the device that allows your computer to communicate outside its local network.
     </p>
   </div>
 </section>
@@ -970,8 +974,8 @@ a:hover { text-decoration: underline; }
     </div>
 
 
-    <h2>How It Appears on the A+ Exam</h2>
-    <p>Gateway-related questions almost always involve a device that can reach local machines but not the internet. Look for these scenario types:</p>
+    <h2>How Gateway Problems Show Up</h2>
+    <p>Gateway problems usually show up as a device that can reach local machines but not the internet. Practice with scenarios like these:</p>
 
     <div class="scenario-list">
       <div class="scenario-item">"Why can a device reach local computers but not the internet?"</div>
@@ -981,8 +985,8 @@ a:hover { text-decoration: underline; }
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ CompTIA A+ Exam Tip</div>
-      <p><strong>The answer to all of the above is almost always: incorrect or missing default gateway.</strong></p>
-      <p>Local works + internet fails = gateway problem. This is one of the most reliable diagnostic patterns on the A+ exam. Memorize it.</p>
+      <p><strong>The cause in all of the above is almost always: incorrect or missing default gateway.</strong></p>
+      <p>Local works + internet fails = gateway problem. This is one of the most reliable diagnostic patterns. Memorize it.</p>
     </div>
 
     <hr class="divider">
@@ -1013,7 +1017,7 @@ Default Gateway: <span class="blank">(blank)</span></pre>
 
     <h2>How Routers Use the Gateway — Layer 3 Routing</h2>
 
-    <p>Understanding what the default gateway actually does helps with Network+ routing questions. When your device sends a packet to a destination outside the local subnet, it hands it to the gateway. The router then examines its <strong>routing table</strong> — a list of known networks and which interface or next-hop router to use to reach them.</p>
+    <p>Understanding what the default gateway actually does helps with Network+ routing topics. When your device sends a packet to a destination outside the local subnet, it hands it to the gateway. The router then examines its <strong>routing table</strong> — a list of known networks and which interface or next-hop router to use to reach them.</p>
 
     <div class="code-block" style="background:var(--navy);border-radius:12px;overflow:hidden;margin-bottom:28px;border:1px solid rgba(255,255,255,0.08);">
       <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.7px;text-transform:uppercase;color:var(--teal);padding:10px 18px 8px;border-bottom:1px solid rgba(255,255,255,0.08);">Example routing table (simplified)</div>
@@ -1027,7 +1031,7 @@ Default Gateway: <span class="blank">(blank)</span></pre>
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ Network+ — gateway of last resort</div>
-      <p><strong>Gateway of last resort</strong> = the default route = 0.0.0.0/0. On Cisco routers you'd configure it with <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;">ip route 0.0.0.0 0.0.0.0 [next-hop IP]</code>. This appears in Network+ routing troubleshooting scenarios — if a router has no default route, packets to unknown networks are dropped.</p>
+      <p><strong>Gateway of last resort</strong> = the default route = 0.0.0.0/0. On Cisco routers you'd configure it with <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;">ip route 0.0.0.0 0.0.0.0 [next-hop IP]</code>. Know it for Network+ routing troubleshooting — if a router has no default route, packets to unknown networks are dropped.</p>
       <p>On Cisco, <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;">show ip route</code> displays the routing table. A line beginning with <strong>S*</strong> is a static default route.</p>
     </div>
 
@@ -1084,7 +1088,7 @@ Default Gateway: <span class="blank">(blank)</span></pre>
       <p><strong>SLAAC</strong> (Stateless Address Autoconfiguration) — devices generate their own IPv6 address from the router-advertised prefix + their <a href="mac-address.html">MAC address</a> (EUI-64). No DHCP server needed for basic IPv6 connectivity.</p>
     </div>
 
-    <h2>Exam scenarios</h2>
+    <h2>Practice scenarios</h2>
 
     <div class="scenario-list">
       <div class="scenario-item">💬 "A user can access local file shares and printers but cannot browse any websites. What is the most likely cause?" → <strong>Incorrect or missing default gateway — local traffic works without the gateway, internet traffic requires it</strong></div>
@@ -1101,7 +1105,7 @@ Default Gateway: <span class="blank">(blank)</span></pre>
       <div class="summary-item">The default gateway is the router that forwards traffic <strong>outside your local network</strong></div>
       <div class="summary-item">On home networks it's usually <strong>192.168.1.1</strong> or <strong>192.168.0.1</strong></div>
       <div class="summary-item">Local traffic (same subnet) doesn't need the gateway — only external traffic does</div>
-      <div class="summary-item"><strong>Local works, internet fails</strong> = almost always a gateway problem on the A+ exam</div>
+      <div class="summary-item"><strong>Local works, internet fails</strong> = almost always a gateway problem</div>
       <div class="summary-item">A blank gateway in ipconfig means DHCP failed or static config is wrong</div>
     </div>
 
@@ -1146,7 +1150,7 @@ Default Gateway: <span class="blank">(blank)</span></pre>
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

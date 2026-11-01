@@ -21,7 +21,7 @@
 <link rel="canonical" href="https://itstudyhub.org/nat-explained.html">
 
 <title>How NAT Works — Why Your Home Network Shares One Public IP</title>
-<meta name="description" content="How NAT maps private IPs to public IPs, static vs dynamic vs PAT (overloading), NAT traversal, and every NAT scenario tested on CompTIA Network+ and Security+.">
+<meta name="description" content="How NAT maps private IPs to public IPs, static vs dynamic vs PAT (overloading), NAT traversal, and NAT practice scenarios for CompTIA Network+ and Security+.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -726,6 +726,10 @@ a:hover { text-decoration: underline; }
 
 /* ── BODY TEXT LINKS ── */
 .article-body p > a:not([class]), .guide-wrap p > a:not([class]) { color:#155bd9; text-decoration:underline; }
+
+/* Round 5 follow-up: let summary text wrap as one line of text (was split into flex columns) */
+.summary-item{display:block;position:relative;padding-left:48px;}
+.summary-item::before{position:absolute;left:16px;top:14px;margin-top:0;}
 </style>
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -834,7 +838,7 @@ a:hover { text-decoration: underline; }
     <div class="page-hero-badge">CompTIA A+ · Network+ · Security+</div>
     <h1>What Is <span>NAT?</span></h1>
     <p class="page-hero-sub">
-      Network Address Translation allows every device in your home to share a single public IP address. It's one of the most important concepts in modern networking — and on the CompTIA A+ exam.
+      Network Address Translation allows every device in your home to share a single public IP address. It's one of the most important concepts in modern networking — and one to know well for the CompTIA A+.
     </p>
   </div>
 </section>
@@ -1031,7 +1035,7 @@ Router translates to: <span style="color:#7eb3ff;font-weight:700;">192.168.1.100
 
     <h2>NAT and security — the Security+ angle</h2>
 
-    <p>NAT has security implications that appear on Security+. Understanding both the protection it provides and its limitations is important:</p>
+    <p>NAT has security implications worth knowing for Security+. Understanding both the protection it provides and its limitations is important:</p>
 
     <div style="background:rgba(26,108,255,0.04);border:1px solid rgba(26,108,255,0.2);border-left:4px solid #1a6cff;border-radius:12px;padding:16px 20px;margin-bottom:20px;">
       <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#1a6cff;margin-bottom:8px;">Security benefit</div>
@@ -1043,8 +1047,8 @@ Router translates to: <span style="color:#7eb3ff;font-weight:700;">192.168.1.100
       <p style="font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;">NAT does <strong>not</strong> inspect traffic content — it only translates addresses. Malware on an internal device can still make outbound connections through NAT freely. NAT also complicates some security protocols (like IPsec in transport mode) because it modifies the packet headers that the cryptographic signature protects. <strong>NAT traversal</strong> techniques (like UDP hole-punching used by VoIP and VPNs) are needed to work around this.</p>
     </div>
 
-    <h2>How NAT Appears on the A+ Exam</h2>
-    <p>Exam questions may ask:</p>
+    <h2>NAT Practice Questions for the A+</h2>
+    <p>Practice answering questions like these:</p>
 
     <div class="scenario-list">
       <div class="scenario-item">"Why can multiple devices in a home use one public IP address?"</div>
@@ -1054,7 +1058,7 @@ Router translates to: <span style="color:#7eb3ff;font-weight:700;">192.168.1.100
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ CompTIA A+ Exam Tip</div>
-      <p><strong>The router performs NAT.</strong> That's the answer the A+ exam is looking for every time.</p>
+      <p><strong>The router performs NAT.</strong></p>
       <p>Also know: <strong>PAT</strong> (Port Address Translation) is the specific type most home routers use — multiple devices share one public IP via different port numbers.</p>
     </div>
 
@@ -1085,7 +1089,7 @@ Router translates to: <span style="color:#7eb3ff;font-weight:700;">192.168.1.100
       <div class="summary-item">NAT stands for <strong>Network Address Translation</strong></div>
       <div class="summary-item">It lets multiple devices share <strong>one public IP address</strong></div>
       <div class="summary-item"><strong>PAT</strong> (Port Address Translation) is the most common type — used by home routers</div>
-      <div class="summary-item">The <strong>router</strong> performs NAT — this is the key exam answer</div>
+      <div class="summary-item">The <strong>router</strong> performs NAT — this is the key fact to remember</div>
       <div class="summary-item">Private IPs (192.168.x.x) are invisible on the internet — NAT translates them to the public IP</div>
       <div class="summary-item">If IP, mask, and gateway are all valid but internet fails — suspect <strong>NAT misconfiguration</strong> on the router</div>
     </div>
@@ -1134,7 +1138,7 @@ Router translates to: <span style="color:#7eb3ff;font-weight:700;">192.168.1.100
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

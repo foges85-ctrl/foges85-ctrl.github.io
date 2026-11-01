@@ -393,6 +393,12 @@ tbody tr:hover td{background:var(--light);}
 
 /* ── Round 3 link contrast (Oct 2026) ── */
 .article-body p a:not([class]), .article-body li a:not([class]), .article-body td a:not([class]) { color:#155bd9; text-decoration:underline; }
+
+/* Round 5 follow-up: keep wide tables and long code inside the 390px viewport */
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;}
+.table-scroll>table{margin-bottom:0;}
+pre{max-width:100%;overflow-x:auto;}
+:not(pre)>code{overflow-wrap:anywhere;}
 </style>
 
 
@@ -470,7 +476,7 @@ tbody tr:hover td{background:var(--light);}
 <nav class="breadcrumb"><a href="/">Home</a><span>›</span><span>EDR Explained</span></nav>
 <div class="page-hero-badge">🖥️ Security+</div>
 <h1>EDR Explained — <span>Endpoint Detection &amp; Response vs Antivirus</span></h1>
-<p class="page-hero-sub">How EDR goes beyond antivirus — continuous telemetry collection, behavioral detection, response actions, and how XDR and MDR extend the model. All tested on Security+ SY0-701.</p>
+<p class="page-hero-sub">How EDR goes beyond antivirus — continuous telemetry collection, behavioral detection, response actions, and how XDR and MDR extend the model. All key topics for Security+ SY0-701.</p>
 <div class="cert-badges"><span class="cert-badge cb-purple">Security+ SY0-701</span></div>
 </div></section>
 
@@ -574,10 +580,10 @@ tbody tr:hover td{background:var(--light);}
 </div>
 
 <h2>Next-Gen Antivirus (NGAV)</h2>
-<p>You'll also see the term <strong>NGAV (Next-Generation Antivirus)</strong> on the exam and in vendor marketing. NGAV replaces signature-based scanning with machine learning and behavioral detection — it detects malicious behavior rather than matching known signatures. Many vendors bundle NGAV and EDR together in a single agent, which is why the terms are sometimes used interchangeably, but they're distinct:</p>
+<p>Also know the term <strong>NGAV (Next-Generation Antivirus)</strong>, which is common in vendor marketing. NGAV replaces signature-based scanning with machine learning and behavioral detection — it detects malicious behavior rather than matching known signatures. Many vendors bundle NGAV and EDR together in a single agent, which is why the terms are sometimes used interchangeably, but they're distinct:</p>
 <p>NGAV = detection capability (is this bad?). EDR = detection + investigation telemetry + response actions. An endpoint with NGAV but no EDR can block threats but can't help you understand the full scope of a compromise or hunt for threats that slipped through.</p>
 
-<h2>Exam Scenarios</h2>
+<h2>Practice Scenarios</h2>
 <div class="exam-scenarios">
 <div class="scenario">
 <div class="scenario-q">An attacker compromises a workstation using a PowerShell script that runs entirely in memory and never writes any files to disk. Traditional antivirus generates no alert. What type of attack is this, and what tool is designed to detect it?</div>
@@ -600,11 +606,11 @@ tbody tr:hover td{background:var(--light);}
 
 <h2>The EDR Market and Common Platforms</h2>
 
-<p>While the exam doesn't test specific vendor products, understanding the landscape of EDR solutions helps contextualize the concepts and prepares candidates for real-world conversations where these terms appear.</p>
+<p>Understanding the landscape of EDR solutions helps contextualize the concepts and prepares candidates for real-world conversations where these terms appear.</p>
 
 <p>The EDR market has consolidated significantly. <strong>CrowdStrike Falcon</strong> pioneered cloud-native EDR and remains a market leader — its agent is lightweight, and all telemetry processing and threat intelligence runs in the cloud. <strong>Microsoft Defender for Endpoint</strong> is built into Windows 10/11 and is included with Microsoft 365 E5 licensing, making it the default choice for many Microsoft-centric organizations. It integrates natively with Microsoft Entra ID (formerly Azure AD), Intune, and Microsoft Sentinel (SIEM). <strong>SentinelOne</strong> emphasizes autonomous response — its AI can autonomously detect, contain, and remediate threats without human intervention. <strong>Palo Alto Networks Cortex XDR</strong> combines endpoint telemetry with network and cloud telemetry in a single analysis platform, exemplifying the XDR trend.</p>
 
-<p>For exam relevance: you may encounter scenario questions referencing "EDR telemetry," "EDR isolation," "managed EDR service," or "EDR with automated response." The specific vendor doesn't matter for the exam, but understanding what EDR can do (continuous telemetry, behavioral detection, interactive response, host isolation) versus what it cannot do (prevent all attacks, replace network security, operate without skilled analysts for complex investigations) helps with scenario analysis.</p>
+<p>Know terms such as "EDR telemetry," "EDR isolation," "managed EDR service," and "EDR with automated response." Understanding what EDR can do (continuous telemetry, behavioral detection, interactive response, host isolation) versus what it cannot do (prevent all attacks, replace network security, operate without skilled analysts for complex investigations) helps with scenario analysis.</p>
 
 <h2>EDR vs HIDS vs Traditional Antivirus</h2>
 
@@ -640,7 +646,7 @@ tbody tr:hover td{background:var(--light);}
 
 <p>The <strong>MITRE ATT&amp;CK framework</strong> is a knowledge base of adversary tactics, techniques, and procedures (TTPs) based on real-world observations of attacker behavior. It's organized into a matrix of 14 tactic categories (Initial Access, Execution, Persistence, Privilege Escalation, Defense Evasion, Credential Access, Discovery, Lateral Movement, Collection, Command and Control, Exfiltration, Impact, etc.) with hundreds of specific techniques and sub-techniques under each.</p>
 
-<p>Modern EDR platforms map their detections to MITRE ATT&amp;CK technique IDs, giving analysts a common language to describe what they're seeing and look up known adversary groups that use the same techniques. When an EDR alert says "T1059.001 PowerShell," the analyst immediately knows this is a PowerShell execution technique, can look up which threat groups commonly use it, and understands what defenses are applicable. For the Security+ exam, you don't need to memorize individual ATT&amp;CK technique numbers, but you should know that MITRE ATT&amp;CK is a framework describing adversary tactics and techniques, and that it is used to categorize and improve detection capabilities.</p>
+<p>Modern EDR platforms map their detections to MITRE ATT&amp;CK technique IDs, giving analysts a common language to describe what they're seeing and look up known adversary groups that use the same techniques. When an EDR alert says "T1059.001 PowerShell," the analyst immediately knows this is a PowerShell execution technique, can look up which threat groups commonly use it, and understands what defenses are applicable. Know that MITRE ATT&amp;CK is a framework describing adversary tactics and techniques, and that it is used to categorize and improve detection capabilities.</p>
 
 <h2>EDR Deployment Considerations</h2>
 
@@ -671,7 +677,7 @@ tbody tr:hover td{background:var(--light);}
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

@@ -736,6 +736,10 @@ a:hover { text-decoration: underline; }
 
 /* ── BODY TEXT LINKS ── */
 .article-body p > a:not([class]), .guide-wrap p > a:not([class]) { color:#155bd9; text-decoration:underline; }
+
+/* Round 5 follow-up: let summary text wrap as one line of text (was split into flex columns) */
+.summary-item{display:block;position:relative;padding-left:48px;}
+.summary-item::before{position:absolute;left:16px;top:14px;margin-top:0;}
 </style>
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -909,12 +913,12 @@ a:hover { text-decoration: underline; }
       </div>
     </div>
 
-    <p>Hexadecimal uses digits 0–9 and letters A–F, so each pair can represent values from 00 to FF. You don't need to memorize the math — just recognize the format on the exam.</p>
+    <p>Hexadecimal uses digits 0–9 and letters A–F, so each pair can represent values from 00 to FF. You don't need to memorize the math — just recognize the format.</p>
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ A+ Exam Format Notes</div>
-      <p>MAC addresses appear on the exam written with <strong>colons</strong> (A4:C3:F0:7B:2D:91) or <strong>hyphens</strong> (A4-C3-F0-7B-2D-91). Both are the same address — Windows tends to use hyphens, Linux and Mac use colons. Either format is valid.</p>
-      <p>The exam may also call the first half the <strong>OUI (Organizationally Unique Identifier)</strong> — this identifies the manufacturer and is worth knowing by name.</p>
+      <p>MAC addresses are written with <strong>colons</strong> (A4:C3:F0:7B:2D:91) or <strong>hyphens</strong> (A4-C3-F0-7B-2D-91). Both are the same address — Windows tends to use hyphens, Linux and Mac use colons. Either format is valid.</p>
+      <p>The first half is called the <strong>OUI (Organizationally Unique Identifier)</strong> — this identifies the manufacturer and is worth knowing by name.</p>
     </div>
 
     <hr class="divider">
@@ -1066,7 +1070,7 @@ a:hover { text-decoration: underline; }
 
     <hr class="divider">
 
-    <h2>What the A+ exam tests on MAC addresses</h2>
+    <h2>What to know about MAC addresses for A+</h2>
 
     <div class="key-facts">
       <div class="key-fact">
@@ -1094,15 +1098,15 @@ a:hover { text-decoration: underline; }
         <div class="key-fact-icon">🔍</div>
         <div>
           <div class="key-fact-title">Physical Address in ipconfig /all</div>
-          <div class="key-fact-desc">Windows shows the MAC address as "Physical Address" in the output of ipconfig /all. Knowing how to find it is a tested skill.</div>
+          <div class="key-fact-desc">Windows shows the MAC address as "Physical Address" in the output of ipconfig /all. Know how to find it.</div>
         </div>
       </div>
     </div>
 
     <div class="exam-tip">
-      <div class="exam-tip-label">⚡ DHCP Reservations — a common A+ scenario</div>
+      <div class="exam-tip-label">⚡ DHCP Reservations — a common setup</div>
       <p>DHCP servers can be configured to always assign the same IP address to a specific device by matching its MAC address. This is called a <strong>DHCP reservation</strong> (or static DHCP assignment). The server says: "Whenever I see MAC address A4:C3:F0:7B:2D:91, always give it 192.168.1.50."</p>
-      <p>This is how network printers and servers get consistent IP addresses without being manually configured with a static IP. It comes up on both A+ and Network+ exams.</p>
+      <p>This is how network printers and servers get consistent IP addresses without being manually configured with a static IP. Know it for both A+ and Network+.</p>
     </div>
 
     <hr class="divider">
@@ -1152,7 +1156,7 @@ Attacker receives a copy of every frame → <span style="color:#ef4444;font-weig
       <pre style="font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,0.85);line-height:1.8;padding:14px 18px;overflow-x:auto;margin:0;"><span style="color:var(--teal);font-weight:700;">Protect</span>   Drop frames from unknown MACs. No alert, port stays up.
 <span style="color:#fcd34d;font-weight:700;">Restrict</span>  Drop frames + increment violation counter + send <a href="snmp-explained.html">SNMP</a> trap.
 <span style="color:#ef4444;font-weight:700;">Shutdown</span>  Put port into err-disabled state immediately. Requires manual re-enable.
-           ← Default and most secure. The exam answer when asked "most restrictive mode".</pre>
+           ← Default and most secure. This is the most restrictive mode.</pre>
     </div>
 
     <div class="exam-tip">
@@ -1164,7 +1168,7 @@ Attacker receives a copy of every frame → <span style="color:#ef4444;font-weig
 
     <h2>Broadcast vs unicast vs multicast — MAC addressing modes</h2>
 
-    <p>Not all frames are addressed to a single device. Understanding the three MAC addressing modes is tested on both A+ and Network+:</p>
+    <p>Not all frames are addressed to a single device. Know the three MAC addressing modes for both A+ and Network+:</p>
 
     <div style="overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:28px;">
       <table style="width:100%;border-collapse:collapse;background:var(--white);min-width:360px;">
@@ -1248,7 +1252,7 @@ Attacker receives a copy of every frame → <span style="color:#ef4444;font-weig
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

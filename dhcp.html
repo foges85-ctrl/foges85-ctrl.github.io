@@ -950,6 +950,16 @@ a:hover { text-decoration: underline; }
 
 /* ── BODY TEXT LINKS ── */
 .article-body p > a:not([class]), .guide-wrap p > a:not([class]) { color:#155bd9; text-decoration:underline; }
+
+/* Round 5 follow-up: let summary text wrap as one line of text (was split into flex columns) */
+.summary-item{display:block;position:relative;padding-left:48px;}
+.summary-item::before{position:absolute;left:16px;top:14px;margin-top:0;}
+
+/* Round 5 follow-up: keep wide tables and long code inside the 390px viewport */
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;}
+.table-scroll>table{margin-bottom:0;}
+pre{max-width:100%;overflow-x:auto;}
+:not(pre)>code{overflow-wrap:anywhere;}
 </style>
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -1170,7 +1180,7 @@ a:hover { text-decoration: underline; }
       </div>
     </div>
 
-    <p>You don't need to memorize every packet detail for A+, but understanding the overall idea — DHCP is an automated "handshake" that assigns network settings — is exactly what the exam tests.</p>
+    <p>Focus on the overall idea — DHCP is an automated "handshake" that assigns network settings — rather than memorizing every packet detail.</p>
 
     <hr class="divider">
 
@@ -1235,7 +1245,7 @@ a:hover { text-decoration: underline; }
 
     <hr class="divider">
 
-    <h2>Common DHCP Problems (A+ Exam Clues)</h2>
+    <h2>Common DHCP Problems (Troubleshooting Clues)</h2>
     <p>If DHCP fails, watch for these symptoms:</p>
 
     <div class="symptoms-grid">
@@ -1419,8 +1429,8 @@ Client          <span class="dhcp-teal">◄──unicast──</span> Router</pr
     <div class="dhcp-warning">
       <div class="dhcp-warning-label">⚠️ Rogue DHCP — a common attack vector</div>
       <p><strong>What the attacker controls:</strong> Default gateway (enabling <a href="network-attacks.html">man-in-the-middle</a>), DNS server (enabling <a href="social-engineering-attacks.html">phishing</a> via DNS hijacking), or simply an incorrect subnet — causing a denial of service.</p>
-      <p><strong>Defense — DHCP snooping:</strong> A managed switch feature that designates only certain ports as "trusted" DHCP sources. Any DHCP Offer or Acknowledge arriving on an untrusted port is dropped. This is the primary mitigation and is tested on Network+.</p>
-      <p><strong>Also tested:</strong> On Windows Server networks, the DHCP server must be <strong>authorized in Active Directory</strong> before it can respond to clients — a built-in rogue server prevention mechanism.</p>
+      <p><strong>Defense — DHCP snooping:</strong> A managed switch feature that designates only certain ports as "trusted" DHCP sources. Any DHCP Offer or Acknowledge arriving on an untrusted port is dropped. This is the primary mitigation.</p>
+      <p><strong>Also know:</strong> On Windows Server networks, the DHCP server must be <strong>authorized in Active Directory</strong> before it can respond to clients — a built-in rogue server prevention mechanism.</p>
     </div>
 
     <hr class="divider">
@@ -1476,7 +1486,7 @@ Client          <span class="dhcp-teal">◄──unicast──</span> Router</pr
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

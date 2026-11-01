@@ -1120,6 +1120,10 @@ a:hover { text-decoration: underline; }
 
 /* ── Round 3 link contrast (Oct 2026) ── */
 .article-body p a:not([class]), .article-body li a:not([class]), .article-body td a:not([class]) { color:#155bd9; text-decoration:underline; }
+
+/* Round 5 follow-up: let summary text wrap as one line of text (was split into flex columns) */
+.summary-item{display:block;position:relative;padding-left:48px;}
+.summary-item::before{position:absolute;left:16px;top:14px;margin-top:0;}
 </style>
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -1135,7 +1139,7 @@ a:hover { text-decoration: underline; }
       "name": "What Does APIPA Stand For?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "APIPA stands for Automatic Private IP Addressing . It is a Windows feature that automatically assigns a temporary IP address when a DHCP server cannot be reached — rather than leaving the device with no IP address at all."
+        "text": "APIPA stands for Automatic Private IP Addressing. It is a Windows feature that automatically assigns a temporary IP address when a DHCP server cannot be reached — rather than leaving the device with no IP address at all."
       }
     },
     {
@@ -1151,7 +1155,7 @@ a:hover { text-decoration: underline; }
       "name": "Why Is This Important for the A+ Exam?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "On the A+ exam, seeing a 169.254 address in a scenario question signals one of these causes:"
+        "text": "In a troubleshooting scenario, a 169.254 address signals one of these causes:"
       }
     },
     {
@@ -1371,7 +1375,7 @@ Gateway:      (blank)</pre>
 
     <h2>Why Is This Important for the A+ Exam?</h2>
 
-    <p>On the A+ exam, seeing a 169.254 address in a scenario question signals one of these causes:</p>
+    <p>In a troubleshooting scenario, a 169.254 address signals one of these causes:</p>
 
     <div class="causes-grid">
       <div class="cause-card">
@@ -1507,14 +1511,14 @@ Gateway:     (blank)</pre>
       </div>
 
       <div class="scenario-result">
-        <strong>What you now know:</strong> The router isn't assigning IP addresses — the DHCP service has likely failed or the connection to the DHCP server is broken. That's real troubleshooting — and exactly the kind of thinking the A+ exam tests.
+        <strong>What you now know:</strong> The router isn't assigning IP addresses — the DHCP service has likely failed or the connection to the DHCP server is broken. That's real troubleshooting — and exactly the kind of thinking to practice for A+.
       </div>
     </div>
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ CompTIA A+ Exam Tip</div>
-      <p><strong>169.254 = DHCP failed.</strong> This is one of the most reliable "instant diagnosis" facts on the exam.</p>
-      <p>The fix sequence the exam expects: check physical connection → restart router → <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(90,64,0,0.1);padding:2px 6px;border-radius:4px;">ipconfig /release</code> → <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(90,64,0,0.1);padding:2px 6px;border-radius:4px;">ipconfig /renew</code></p>
+      <p><strong>169.254 = DHCP failed.</strong> This is one of the most reliable "instant diagnosis" facts to know.</p>
+      <p>The fix sequence to follow: check physical connection → restart router → <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(90,64,0,0.1);padding:2px 6px;border-radius:4px;">ipconfig /release</code> → <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(90,64,0,0.1);padding:2px 6px;border-radius:4px;">ipconfig /renew</code></p>
     </div>
 
     <hr class="divider">
@@ -1568,7 +1572,7 @@ Gateway:     (blank)</pre>
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>

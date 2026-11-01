@@ -21,7 +21,7 @@
 <link rel="canonical" href="https://itstudyhub.org/network-troubleshooting-commands.html">
 
 <title>Network Troubleshooting Commands That Actually Get Used</title>
-<meta name="description" content="These are the commands that show up on CompTIA exams and in real IT jobs. Learn ipconfig, ping, tracert, netstat, nslookup, and their Linux equivalents —…">
+<meta name="description" content="These are the commands to know for CompTIA exams and real IT jobs. Learn ipconfig, ping, tracert, netstat, nslookup, and their Linux equivalents —…">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -754,6 +754,10 @@ a:hover { text-decoration: underline; }
 
 /* ── BODY TEXT LINKS ── */
 .article-body p > a:not([class]), .guide-wrap p > a:not([class]) { color:#155bd9; text-decoration:underline; }
+
+/* Round 5 follow-up: let summary text wrap as one line of text (was split into flex columns) */
+.summary-item{display:block;position:relative;padding-left:48px;}
+.summary-item::before{position:absolute;left:16px;top:14px;margin-top:0;}
 </style>
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -784,7 +788,7 @@ a:hover { text-decoration: underline; }
   <meta property="og:site_name" content="IT Study Hub">
   <meta property="og:url" content="https://itstudyhub.org/network-troubleshooting-commands.html">
   <meta property="og:title" content="Network Troubleshooting Commands That Actually Get Used">
-  <meta property="og:description" content="These are the commands that show up on CompTIA exams and in real IT jobs. Learn ipconfig, ping, tracert, netstat, nslookup, and their Linux equivalents —…">
+  <meta property="og:description" content="These are the commands to know for CompTIA exams and real IT jobs. Learn ipconfig, ping, tracert, netstat, nslookup, and their Linux equivalents —…">
 
 <script type="application/ld+json">
 {
@@ -862,7 +866,7 @@ a:hover { text-decoration: underline; }
     <div class="page-hero-badge">CompTIA A+ · Troubleshooting</div>
     <h1>Network Troubleshooting <span>Commands</span></h1>
     <p class="page-hero-sub">
-      The core Windows network commands — ipconfig, ping, tracert, nslookup, netstat, pathping, hostname, and net use from the A+ 220-1202 objectives, plus the legacy nbtstat. What each one does, when to use it, and how it appears on the A+ exam.
+      The core Windows network commands — ipconfig, ping, tracert, nslookup, netstat, pathping, hostname, and net use from the A+ 220-1202 objectives, plus the legacy nbtstat. What each one does, when to use it, and how to apply it in troubleshooting scenarios.
     </p>
     <nav class="cmd-nav">
       <a href="#ipconfig">ipconfig</a>
@@ -896,7 +900,7 @@ a:hover { text-decoration: underline; }
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ How to study this page</div>
-      <p>Don't just read — open a Command Prompt and run each command as you go. The output will look exactly like the exam scenarios. Type <strong>cmd</strong> in the Windows search bar to open it.</p>
+      <p>Don't just read — open a Command Prompt and run each command as you go. Seeing real output makes troubleshooting scenarios much easier to read. Type <strong>cmd</strong> in the Windows search bar to open it.</p>
     </div>
 
     <hr class="divider">
@@ -968,7 +972,7 @@ a:hover { text-decoration: underline; }
     </div>
 
     <div class="exam-tip">
-      <div class="exam-tip-label">⚡ The Most Important Ping Test on the A+ Exam</div>
+      <div class="exam-tip-label">⚡ The Most Important Ping Test</div>
       <p><strong>ping 8.8.8.8 works → ping google.com fails = DNS problem.</strong></p>
       <p>If an IP address works but a domain name doesn't, the internet connection is fine — DNS resolution is broken. Fix: try <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:4px">ipconfig /flushdns</code> or change the DNS server to 8.8.8.8.</p>
     </div>
@@ -1167,7 +1171,7 @@ a:hover { text-decoration: underline; }
     <!-- TROUBLESHOOTING FLOW -->
     <h2>The Diagnostic Workflow — What Order to Run Them</h2>
 
-    <p>On the exam (and in real life), commands are most useful when run in a logical order. Each step confirms one layer is working before moving to the next:</p>
+    <p>Commands are most useful when run in a logical order. Each step confirms one layer is working before moving to the next:</p>
 
     <div class="flow-box">
       <div class="flow-header">🔧 Standard Network Troubleshooting Sequence</div>
@@ -1395,7 +1399,7 @@ a:hover { text-decoration: underline; }
     <p>nmap runs on a desktop or laptop and it's the most capable scanner there is — but depending on whether you're sitting at a computer or working from your phone on a client site, a friendlier desktop GUI or a mobile scanner might fit the moment better. Our guide to network scanning tools for IT techs breaks down <a href="network-scanning-tools.html">how the desktop and mobile scanners compare</a>, from nmap and Angry IP Scanner to the mobile apps.</p>
 
     <!-- NETWORK+ / SECURITY+ SCENARIOS -->
-    <h2>Network+ and Security+ Exam Scenarios</h2>
+    <h2>Network+ and Security+ Practice Scenarios</h2>
 
     <div class="exam-scenarios" style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px;">
       <div class="scenario-card" style="background:#fff;border:1px solid #e2e8f4;border-radius:10px;padding:18px 20px;">
@@ -1589,7 +1593,7 @@ a:hover { text-decoration: underline; }
       <div class="author-bio-label">Written by</div>
       <div class="author-bio-name">Sean Fogarty</div>
       <div class="author-bio-creds">CompTIA A+ Certified &middot; Network+ in progress</div>
-      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and how will it show up on the exam?&rdquo;</p>
+      <p class="author-bio-text">I built IT Study Hub while studying for the CompTIA A+, because most free resources either gave you bullet points with no context or were clearly written to rank on Google rather than to help anyone actually learn. Every article here is written to answer the question a studying candidate actually has &mdash; not just &ldquo;what is this term?&rdquo; but &ldquo;how does this work, when does it matter, and where does it fit in the exam objectives?&rdquo;</p>
       <a href="about.html" class="author-bio-link">More about this site &rarr;</a>
     </div>
   </div>
