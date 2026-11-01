@@ -368,13 +368,6 @@ tbody tr:hover td{background:#eff6ff;}
 /* ---- end mobile nav ---- */
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"What is the difference between a forward proxy and a reverse proxy?","acceptedAnswer":{"@type":"Answer","text":"A forward proxy sits between internal clients and the internet — clients send requests to the proxy, which fetches the content on their behalf. The destination server sees the proxy's IP, not the client's. Used for web filtering, caching, and anonymization. A reverse proxy sits in front of servers and intercepts requests coming from the internet before they reach backend servers. Clients see the reverse proxy's IP. Used for load balancing, SSL termination, caching, and WAF protection. The key distinction: a forward proxy serves clients; a reverse proxy serves servers."}},
-{"@type":"Question","name":"What is a transparent proxy?","acceptedAnswer":{"@type":"Answer","text":"A transparent proxy intercepts traffic without the client's knowledge or configuration — traffic is redirected to the proxy automatically, typically by a firewall or router rule. No browser or client settings need to be changed. Often used for corporate web filtering. A non-transparent (explicit) proxy requires clients to manually configure proxy settings (IP address and port) in their browser or OS settings."}},
-{"@type":"Question","name":"What is SSL inspection on a proxy?","acceptedAnswer":{"@type":"Answer","text":"SSL inspection (also called SSL interception or HTTPS inspection) allows a proxy to decrypt, inspect, and re-encrypt HTTPS traffic. The proxy presents its own certificate to the client (signed by a corporate CA that clients trust) and establishes a separate TLS session to the destination server. This allows the proxy to scan HTTPS traffic for malware, enforce content policies, and prevent data exfiltration. Users may see a different certificate than they expect — the proxy's re-signed certificate rather than the original server certificate."}}
-]}
-</script>
-<script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"IT Study Hub","item":"https://itstudyhub.org/"},{"@type":"ListItem","position":2,"name":"Proxy Servers Explained","item":"https://itstudyhub.org/proxy-server-explained.html"}]}
 </script>
   <meta property="og:type" content="article">

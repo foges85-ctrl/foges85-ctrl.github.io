@@ -360,13 +360,6 @@ tbody tr:hover td{background:#eff6ff;}
 /* ---- end mobile nav ---- */
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"What is Quality of Service (QoS)?","acceptedAnswer":{"@type":"Answer","text":"Quality of Service (QoS) is a set of techniques used to manage network traffic and ensure that critical or latency-sensitive traffic (like voice and video) receives preferential treatment over less time-sensitive traffic (like email or file downloads). QoS works by classifying and marking traffic, then managing bandwidth, delay, jitter, and packet loss through mechanisms like queuing, traffic shaping, and traffic policing."}},
-{"@type":"Question","name":"What is the difference between traffic shaping and traffic policing?","acceptedAnswer":{"@type":"Answer","text":"Traffic shaping smooths out bursts by buffering excess traffic in a queue and releasing it at a controlled rate. Traffic that exceeds the configured rate is delayed, not dropped — so shaping causes delay but not packet loss. Traffic policing enforces a hard rate limit: traffic that exceeds the limit is immediately dropped (or re-marked to a lower priority class). Shaping is gentler and preferred for TCP applications; policing is harsher but provides stricter enforcement."}},
-{"@type":"Question","name":"What is DSCP?","acceptedAnswer":{"@type":"Answer","text":"DSCP (Differentiated Services Code Point) is a 6-bit field in the IP header's ToS (Type of Service) byte used to mark packets with a QoS priority class. Routers and switches read the DSCP value to determine how to handle each packet — which queue it goes into and whether it gets preferential forwarding. Key values: EF (Expedited Forwarding, DSCP 46) for voice; AF41 (DSCP 34) for video; CS0 (DSCP 0) for best-effort traffic."}}
-]}
-</script>
-<script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"IT Study Hub","item":"https://itstudyhub.org/"},{"@type":"ListItem","position":2,"name":"Quality of Service (QoS) Explained","item":"https://itstudyhub.org/quality-of-service.html"}]}
 </script>
   <meta property="og:type" content="article">

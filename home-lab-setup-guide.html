@@ -699,6 +699,15 @@ a:hover { text-decoration: underline; }
 
 /* ── BODY TEXT LINKS ── */
 .article-body p > a:not([class]), .guide-wrap p > a:not([class]) { color:#155bd9; text-decoration:underline; }
+/* Tables: copied from ip-address-classes.html (this page had no table styles) */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:400px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#f0fdf9;}
+.td-term{font-weight:700;color:var(--navy);}
 </style>
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -714,31 +723,7 @@ a:hover { text-decoration: underline; }
       "name": "What is a home lab — and do you actually need one?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A home lab is just a personal environment where you can practice IT skills without breaking anything important. It can be a spare laptop, a virtual machine on your existing computer, or eventually a small rack of physical hardware. There's no minimum spec. For CompTIA A+ students, a home lab isn't required to pass the exam — but it makes the material stick in a way that flashcards simply can't. When you've actually configured a Windows Server, created a user account, and watched a machine join a domain, those exam questions stop feeling abstract. I'm a newcomer to IT, not an expert. My lab …"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Option 1: Start with what you have — Virtual Machines",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "If you have a laptop that's less than 8 years old, you can start a home lab today for free. Virtual machines (VMs) let you run a completely separate operating system inside a window on your existing computer — no extra hardware needed. This is my actual current setup: The two most popular free VM options are VMware Fusion Pro (Mac) or VMware Workstation Pro (Windows/Linux), both now free. VirtualBox is another completely free cross-platform option."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What you can practice with just VMs",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Don't underestimate how much you can learn without any physical gear. Here's what's genuinely available to you from day one:"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Budget tiers — what to build toward",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "VMs are the starting point, but as you progress you'll want to add physical hardware for the hands-on skills VMs can't replicate — like opening a case, crimping a cable, or configuring a real switch port."
+        "text": "A home lab is just a personal environment where you can practice IT skills without breaking anything important. It can be a spare laptop, a virtual machine on your existing computer, or eventually a small rack of physical hardware. There's no minimum spec. For CompTIA A+ students, a home lab isn't required to pass the exam — but it makes the material stick in a way that flashcards simply can't. When you've actually configured a Windows Server, created a user account, and watched a machine join a domain, those exam questions stop feeling abstract."
       }
     },
     {
@@ -799,7 +784,7 @@ a:hover { text-decoration: underline; }
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-10-18",
+  "dateModified": "2026-10-31",
   "url": "https://itstudyhub.org/home-lab-setup-guide.html",
   "inLanguage": "en"
 }
@@ -938,6 +923,73 @@ a:hover { text-decoration: underline; }
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ Why Windows Server + Windows 11 is the right combo</div>
       <p>This pairing directly mirrors real-world IT environments. <strong>Windows Server handles <a href="active-directory-basics.html">Active Directory</a>, DHCP, and DNS</strong> — all A+ and Network+ exam topics. The Windows 11 client machine joins the domain and lets you practice user management, <a href="active-directory-group-policy.html">group policy</a>, and network configuration from both sides.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>How to set up a home lab</h2>
+
+    <p>The order below takes you from an empty computer to a working lab network. Facts about each product come from the vendor&rsquo;s own documentation, linked in each step.</p>
+
+    <div class="practice-list">
+      <div class="practice-item">
+        <div class="practice-item-icon">1</div>
+        <div>
+          <div class="practice-item-title">Choose the host computer</div>
+          <div class="practice-item-desc">Check that its processor supports hardware virtualization. Hyper-V on Windows 10 or 11 needs Pro or Enterprise, a 64-bit processor with Second Level Address Translation (SLAT) and at least 4 GB of memory (<a href="https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/get-started/install-hyper-v" target="_blank" rel="noopener">Microsoft Learn</a>). VMware Workstation needs a 64-bit x86 CPU launched in 2011 or later with Intel VT-x or AMD-V, and 2 GB of RAM minimum with 4 GB or more recommended (<a href="https://knowledge.broadcom.com/external/article/315616/vmware-workstation-17x-pro-sales-licensi.html" target="_blank" rel="noopener">Broadcom</a>). My lab spans three machines: a Dell OptiPlex Micro that runs Windows 11 as an always-on RDP target, and two MacBooks that run VMware Fusion VMs.</div>
+        </div>
+      </div>
+      <div class="practice-item">
+        <div class="practice-item-icon">2</div>
+        <div>
+          <div class="practice-item-title">Pick one hypervisor</div>
+          <div class="practice-item-desc">Use the comparison below. Install more than one if you like, but don&rsquo;t run VMs from competing hypervisors at the same time: the VirtualBox manual warns against it (<a href="https://www.virtualbox.org/manual/topics/Introduction.html" target="_blank" rel="noopener">VirtualBox manual</a>), and Microsoft notes that VMware Workstation and VirtualBox VMs might not start or might run unreliably while the Hyper-V hypervisor is running (<a href="https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/get-started/install-hyper-v" target="_blank" rel="noopener">Microsoft Learn</a>).</div>
+        </div>
+      </div>
+      <div class="practice-item">
+        <div class="practice-item-icon">3</div>
+        <div>
+          <div class="practice-item-title">Download the installation media</div>
+          <div class="practice-item-desc">Get each operating system&rsquo;s ISO from its vendor. For Windows Server, Microsoft points to an evaluation copy on its <a href="https://www.microsoft.com/evalcenter/evaluate-windows-server-2025" target="_blank" rel="noopener">Evaluation Center</a>.</div>
+        </div>
+      </div>
+      <div class="practice-item">
+        <div class="practice-item-icon">4</div>
+        <div>
+          <div class="practice-item-title">Create an isolated lab network</div>
+          <div class="practice-item-desc">Keep lab traffic, such as your own DHCP server, off your home network. In VirtualBox, an <strong>internal network</strong> connects VMs on the same host only to each other, and a <strong>host-only network</strong> connects the VMs and the host but nothing outside it (<a href="https://www.virtualbox.org/manual/topics/networkingdetails.html" target="_blank" rel="noopener">VirtualBox manual</a>). Hyper-V offers <strong>Internal</strong> and <strong>Private</strong> virtual switch types alongside <strong>External</strong> (<a href="https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/get-started/create-a-virtual-switch-for-hyper-v-virtual-machines" target="_blank" rel="noopener">Microsoft Learn</a>).</div>
+        </div>
+      </div>
+      <div class="practice-item">
+        <div class="practice-item-icon">5</div>
+        <div>
+          <div class="practice-item-title">Build your first VMs</div>
+          <div class="practice-item-desc">Start with a server and a client. In my lab, one MacBook runs Windows 11 and Ubuntu Server 24.04 LTS VMs side by side, and the other runs a Windows Server 2022 VM with the AD DS, DNS, IIS, File and Storage Services, and Print Services roles installed.</div>
+        </div>
+      </div>
+      <div class="practice-item">
+        <div class="practice-item-icon">6</div>
+        <div>
+          <div class="practice-item-title">Snapshot before every change</div>
+          <div class="practice-item-desc">A VirtualBox snapshot makes a copy of the VM&rsquo;s current state that you can go back to later (<a href="https://www.virtualbox.org/manual/topics/working-with-vms.html" target="_blank" rel="noopener">VirtualBox manual</a>). Hyper-V calls these checkpoints and suggests taking one before configuration changes, updates or new software (<a href="https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/checkpoints" target="_blank" rel="noopener">Microsoft Learn</a>).</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Hyper-V vs VirtualBox vs VMware vs Proxmox</h2>
+
+    <p>Four common hypervisors for a home lab, compared from each vendor&rsquo;s documentation:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Hypervisor</th><th>How it runs</th><th>Host it runs on</th><th>Cost and license</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">Hyper-V</td><td>Type 1: runs directly on the hardware (<a href="https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/overview" target="_blank" rel="noopener">Microsoft Learn</a>)</td><td>Built into Windows 10/11 Pro or Enterprise as an optional feature, and installed on Windows Server as a role; can&rsquo;t be installed on Windows Home (<a href="https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/get-started/install-hyper-v" target="_blank" rel="noopener">Microsoft Learn</a>)</td><td>No separate download; included with those Windows editions</td></tr>
+          <tr><td class="td-term">VirtualBox</td><td>Type 2 (hosted): needs an existing OS (<a href="https://www.virtualbox.org/manual/topics/Introduction.html" target="_blank" rel="noopener">VirtualBox manual</a>)</td><td>Windows, macOS (Intel and Apple silicon), Linux and Solaris hosts (<a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener">VirtualBox downloads</a>)</td><td>Free; the base package is open source under GPL version 3. The Extension Pack has a separate Personal Use and Educational License</td></tr>
+          <tr><td class="td-term">VMware Workstation / Fusion</td><td>Installs onto the host operating system (<a href="https://knowledge.broadcom.com/external/article/315616/vmware-workstation-17x-pro-sales-licensi.html" target="_blank" rel="noopener">Broadcom</a>)</td><td>Workstation: 64-bit Windows or Linux, not macOS (<a href="https://knowledge.broadcom.com/external/article/315616/vmware-workstation-17x-pro-sales-licensi.html" target="_blank" rel="noopener">Broadcom</a>). Fusion 13.0: Intel and Apple silicon Macs that support macOS 12 Monterey or macOS 13 Ventura (<a href="https://knowledge.broadcom.com/external/article/315608/system-requirements-for-vmware-fusion-13.html" target="_blank" rel="noopener">Broadcom</a>)</td><td>Free for commercial, educational and personal users since November 11, 2024 (<a href="https://blogs.vmware.com/cloud-foundation/2024/11/11/vmware-fusion-and-workstation-are-now-free-for-all-users/" target="_blank" rel="noopener">VMware</a>)</td></tr>
+          <tr><td class="td-term">Proxmox VE</td><td>Installs on bare metal from its own ISO, which includes a complete Debian-based OS with KVM for VMs and LXC for containers (<a href="https://pve.proxmox.com/pve-docs/pve-admin-guide.html" target="_blank" rel="noopener">Proxmox VE docs</a>)</td><td>Its own machine: the installer partitions the local disks and installs the OS. You then manage it from a web interface on port 8006</td><td>Open source under the GNU AGPL v3; optional paid subscriptions add the Enterprise Repository and support</td></tr>
+        </tbody>
+      </table>
     </div>
 
     <hr class="divider">

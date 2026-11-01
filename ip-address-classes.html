@@ -421,72 +421,12 @@ tbody tr:hover td{background:#f0fdf9;}
   }
 }
 /* ---- end mobile nav ---- */
+/* ── BODY TEXT LINKS ── */
+.article-body p > a:not([class]), .guide-wrap p > a:not([class]) { color:#155bd9; text-decoration:underline; }
+/* ── TABLE CELL LINKS (added Oct 31 2026, same style as body text links) ── */
+.article-body td > a:not([class]) { color:#155bd9; text-decoration:underline; }
 </style>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "The Five IP Address Classes",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "You'll notice Class A goes from 1–126, not 1–127. 127 is reserved for loopback (127.0.0.1 = localhost). The exam commonly asks \"which address tests the local TCP/IP stack?\" — the answer is always 127.0.0.1. The entire 127.0.0.0/8 range is loopback, but 127.0.0.1 is the specific address you need to know."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Private IP Address Ranges (RFC 1918)",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Private addresses are not routable on the public internet. They are used inside LANs and translated to a public IP by NAT when accessing the internet. Knowing the three private ranges cold is non-negotiable for both A+ and Network+. The Class B private range doesn't cover all of 172.x.x.x — it only covers 172.16.x.x through 172.31.x.x . A common exam trick is to present 172.15.x.x or 172.32.x.x as a private address — both are public. If you see a 172.x address, check the second octet: it must be 16–31 to be private."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Public vs Private — How NAT Bridges Them",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Private addresses can't be routed on the internet — routers drop packets with RFC 1918 source addresses. When your device (192.168.1.50) sends traffic to google.com, your router performs Network Address Translation (NAT) : it replaces the private source IP with its own public IP before forwarding the packet. When the response comes back, it reverses the translation and delivers it to your device. IPv4 has approximately 4.3 billion addresses — far too few for every device on earth to have a unique public IP. Private ranges + NAT allow millions of devices to share a small pool of public IPs. …"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Classful vs Classless Addressing — Why Classes Are Now Legacy",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "IP address classes (A, B, C, D, E) were the original system for allocating IP address space, defined in RFC 791 in 1981. The system assigned blocks based on the first octet: Class A for large organizations needing millions of hosts, Class B for medium networks, Class C for small networks. In practice, this was extremely wasteful — a company needing 300 hosts had to receive a full Class B block (65,534 hosts) because Class C only provided 254. The resulting address exhaustion drove the shift to CIDR (Classless Inter-Domain Routing) in 1993. CIDR replaced classful addressing by allowing any p…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "APIPA — Automatic Private IP Addressing",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "When a device cannot reach a DHCP server, Windows automatically assigns itself an address in the 169.254.0.0/16 range (169.254.1.0 through 169.254.254.255, within the 169.254.0.0/16 block). This is APIPA (Automatic Private IP Addressing). A device with an APIPA address can communicate with other APIPA devices on the same segment but cannot reach the internet or default gateway because 169.254.x.x is not routable. On the exam: if a user reports they cannot access the internet and you run ipconfig and see a 169.254.x.x address, the problem is that the device failed to get a DHCP lease. Troubleshoot the DHCP server, network c…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Loopback and Localhost",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The 127.0.0.0/8 range is reserved for loopback — testing the local TCP/IP stack without sending traffic to the network. ping 127.0.0.1 (or ping localhost ) is always the first step in network troubleshooting — if this fails, the TCP/IP stack on the local machine is broken. If it succeeds, the stack works and the problem is elsewhere (physical cable, switch, router, DNS, or remote server). The address 0.0.0.0 has a special meaning: in routing tables it represents the default route (send traffic here if no specific route matches). In a server binding context it means \"listen on all available …"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "IPv4 Exhaustion and the Transition to IPv6",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The IPv4 address space (approximately 4.3 billion addresses) was officially exhausted at the IANA level in 2011. Regional internet registries have since allocated their remaining pools. NAT (Network Address Translation) has extended the life of IPv4 by allowing thousands of private IP addresses to share a single public IP, but IPv6 is the long-term solution. IPv6 uses 128-bit addresses (compared to IPv4's 32-bit), providing approximately 3.4 × 10^38 addresses — enough that every device on Earth can have a globally unique address. For exam purposes: know that IPv4 uses 32-bit dotted decimal …"
-      }
-    }
-  ]
-}
-</script>
 
 <script type="application/ld+json">
 {
@@ -603,13 +543,21 @@ tbody tr:hover td{background:#f0fdf9;}
     <div class="quick-answer">
       <div class="quick-answer-label">⚡ Quick Answer</div>
       <div class="quick-answer-text">
-        IPv4 addresses are divided into five classes (A–E) based on the first octet. <strong>Classes A, B, and C are used for unicast hosts.</strong> Class D is multicast. Class E is reserved for research. For the exam, the critical numbers are: <strong>Class A starts with 1–126, Class B with 128–191, Class C with 192–223.</strong> Private ranges (RFC 1918) are 10.x.x.x, 172.16–31.x.x, and 192.168.x.x. Loopback is 127.0.0.1. APIPA is 169.254.x.x.
+        IPv4 addresses are divided into five classes (A–E) based on the first octet. <strong>Classes A, B, and C are used for unicast hosts.</strong> Class D is multicast. Class E is reserved. For the exam, the critical numbers are: <strong>Class A starts with 1–126, Class B with 128–191, Class C with 192–223.</strong> Private ranges (<a href="https://www.rfc-editor.org/rfc/rfc1918" target="_blank" rel="noopener">RFC 1918</a>) are 10.x.x.x, 172.16–31.x.x, and 192.168.x.x. Loopback is 127.0.0.1. APIPA is 169.254.x.x.
       </div>
     </div>
 
     <h2>The Five IP Address Classes</h2>
 
-    <div class="class-grid">
+    <p><a href="https://www.rfc-editor.org/rfc/rfc791" target="_blank" rel="noopener">RFC 791</a> defined the original three formats of IPv4 address by their high-order bits: Class A, Class B and Class C. <a href="https://www.rfc-editor.org/rfc/rfc1112" target="_blank" rel="noopener">RFC 1112</a> defines Class D for multicast host groups and reserves Class E. Each class is broken down below.</p>
+
+    <h2>What is a Class A IP address?</h2>
+    <p><strong>A Class A IP address is an IPv4 address whose first bit is 0, so its first octet falls between 0 and 127.</strong></p>
+    <p><strong>Range:</strong> 0.0.0.0 to 127.255.255.255. Two blocks inside it are reserved, 0.0.0.0/8 (&ldquo;this host on this network&rdquo;) and 127.0.0.0/8 (loopback), which is why usable Class A networks start with 1&ndash;126 (<a href="https://www.rfc-editor.org/rfc/rfc6890" target="_blank" rel="noopener">RFC 6890</a>). <strong>Default mask:</strong> 255.0.0.0 (/8) (<a href="https://learn.microsoft.com/en-us/troubleshoot/windows-client/networking/tcpip-addressing-and-subnetting" target="_blank" rel="noopener">Microsoft Learn</a>). <strong>Purpose:</strong> <a href="https://www.rfc-editor.org/rfc/rfc791" target="_blank" rel="noopener">RFC 791</a> splits a Class A address into a 7-bit network number and a 24-bit local address, the fewest networks and the most hosts per network of any class. The private block 10.0.0.0/8 (<a href="https://www.rfc-editor.org/rfc/rfc1918" target="_blank" rel="noopener">RFC 1918</a>) is inside Class A.</p>
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Exam Tip — The Missing 127</div>
+      <p>You'll notice Class A goes from 1–126, not 1–127. <strong>127 is reserved for loopback</strong> (127.0.0.1 = localhost). The exam commonly asks "which address tests the local TCP/IP stack?" — the answer is always 127.0.0.1. The entire 127.0.0.0/8 range is loopback, but 127.0.0.1 is the specific address you need to know.</p>
+    </div>
       <div class="class-card ca">
         <div class="class-card-header">
           <span class="class-label">Class A</span>
@@ -626,6 +574,9 @@ tbody tr:hover td{background:#f0fdf9;}
         </div>
       </div>
 
+    <h2>What is a Class B IP address?</h2>
+    <p><strong>A Class B IP address is an IPv4 address whose first two bits are 10, so its first octet falls between 128 and 191.</strong></p>
+    <p><strong>Range:</strong> 128.0.0.0 to 191.255.255.255. <strong>Default mask:</strong> 255.255.0.0 (/16) (<a href="https://learn.microsoft.com/en-us/troubleshoot/windows-client/networking/tcpip-addressing-and-subnetting" target="_blank" rel="noopener">Microsoft Learn</a>). <strong>Purpose:</strong> <a href="https://www.rfc-editor.org/rfc/rfc791" target="_blank" rel="noopener">RFC 791</a> gives Class B a 14-bit network number and a 16-bit local address, the middle ground between Class A and Class C. The private block 172.16.0.0/12 (<a href="https://www.rfc-editor.org/rfc/rfc1918" target="_blank" rel="noopener">RFC 1918</a>) is inside Class B.</p>
       <div class="class-card cb">
         <div class="class-card-header">
           <span class="class-label">Class B</span>
@@ -642,6 +593,9 @@ tbody tr:hover td{background:#f0fdf9;}
         </div>
       </div>
 
+    <h2>What is a Class C IP address?</h2>
+    <p><strong>A Class C IP address is an IPv4 address whose first three bits are 110, so its first octet falls between 192 and 223.</strong></p>
+    <p><strong>Range:</strong> 192.0.0.0 to 223.255.255.255. <strong>Default mask:</strong> 255.255.255.0 (/24) (<a href="https://learn.microsoft.com/en-us/troubleshoot/windows-client/networking/tcpip-addressing-and-subnetting" target="_blank" rel="noopener">Microsoft Learn</a>). <strong>Purpose:</strong> <a href="https://www.rfc-editor.org/rfc/rfc791" target="_blank" rel="noopener">RFC 791</a> gives Class C a 21-bit network number and an 8-bit local address, the most networks and the fewest hosts per network. The private block 192.168.0.0/16 (<a href="https://www.rfc-editor.org/rfc/rfc1918" target="_blank" rel="noopener">RFC 1918</a>) is inside Class C.</p>
       <div class="class-card cc">
         <div class="class-card-header">
           <span class="class-label">Class C</span>
@@ -658,6 +612,9 @@ tbody tr:hover td{background:#f0fdf9;}
         </div>
       </div>
 
+    <h2>What is a Class D IP address?</h2>
+    <p><strong>A Class D IP address is an IPv4 multicast address: its first four bits are 1110, so it falls between 224.0.0.0 and 239.255.255.255.</strong></p>
+    <p><strong>Range:</strong> 224.0.0.0 to 239.255.255.255 (<a href="https://www.rfc-editor.org/rfc/rfc1112" target="_blank" rel="noopener">RFC 1112</a>). <strong>Default mask:</strong> none. Microsoft&rsquo;s addressing guide gives default subnet masks only for Classes A, B and C, and notes that Classes D and E aren&rsquo;t used by end users (<a href="https://learn.microsoft.com/en-us/troubleshoot/windows-client/networking/tcpip-addressing-and-subnetting" target="_blank" rel="noopener">Microsoft Learn</a>). <strong>Purpose:</strong> a Class D address identifies a multicast &ldquo;host group,&rdquo; and a datagram sent to it is delivered to every member of that group on a best-effort basis. 224.0.0.1 is permanently assigned to the group of all IP hosts (<a href="https://www.rfc-editor.org/rfc/rfc1112" target="_blank" rel="noopener">RFC 1112</a>).</p>
       <div class="class-card cd">
         <div class="class-card-header">
           <span class="class-label">Class D</span>
@@ -673,29 +630,27 @@ tbody tr:hover td{background:#f0fdf9;}
         </div>
       </div>
 
+    <h2>What is a Class E IP address?</h2>
+    <p><strong>A Class E IP address is an IPv4 address whose first four bits are 1111, the block from 240.0.0.0 to 255.255.255.255, which is reserved and not assigned to hosts.</strong></p>
+    <p><strong>Range:</strong> 240.0.0.0 to 255.255.255.255 (240.0.0.0/4). <strong>Default mask:</strong> none (<a href="https://learn.microsoft.com/en-us/troubleshoot/windows-client/networking/tcpip-addressing-and-subnetting" target="_blank" rel="noopener">Microsoft Learn</a>). <strong>Purpose:</strong> <a href="https://www.rfc-editor.org/rfc/rfc1112" target="_blank" rel="noopener">RFC 1112</a> reserved Class E &ldquo;for future addressing modes,&rdquo; and <a href="https://www.rfc-editor.org/rfc/rfc6890" target="_blank" rel="noopener">RFC 6890</a>, which set up the IANA special-purpose address registry, lists 240.0.0.0/4 as Reserved. The limited broadcast address, 255.255.255.255, sits at the top of this block.</p>
       <div class="class-card ce">
         <div class="class-card-header">
           <span class="class-label">Class E</span>
-          <span class="class-use">Reserved / Research</span>
+          <span class="class-use">Reserved</span>
         </div>
         <div class="class-card-body">
           <div class="class-row"><span class="class-row-key">First octet range</span><span class="class-row-val">240 – 255</span></div>
-          <div class="class-row"><span class="class-row-key">Purpose</span><span class="class-row-val">Experimental / reserved</span></div>
+          <div class="class-row"><span class="class-row-key">Purpose</span><span class="class-row-val">Reserved for future use</span></div>
           <div class="class-row"><span class="class-row-key">Assignable to hosts?</span><span class="class-row-val">No</span></div>
           <div class="class-row"><span class="class-row-key">Used in practice?</span><span class="class-row-val">Never (limited broadcast: 255.255.255.255)</span></div>
           <div class="class-row"><span class="class-row-key">First bit pattern</span><span class="class-row-val">1111xxxx</span></div>
         </div>
       </div>
-    </div>
 
-    <div class="exam-tip">
-      <div class="exam-tip-label">🎯 Exam Tip — The Missing 127</div>
-      <p>You'll notice Class A goes from 1–126, not 1–127. <strong>127 is reserved for loopback</strong> (127.0.0.1 = localhost). The exam commonly asks "which address tests the local TCP/IP stack?" — the answer is always 127.0.0.1. The entire 127.0.0.0/8 range is loopback, but 127.0.0.1 is the specific address you need to know.</p>
-    </div>
 
     <h2>Private IP Address Ranges (RFC 1918)</h2>
 
-    <p>Private addresses are not routable on the public internet. They are used inside LANs and translated to a public IP by NAT when accessing the internet. Knowing the three private ranges cold is non-negotiable for both A+ and Network+.</p>
+    <p><a href="https://www.rfc-editor.org/rfc/rfc1918" target="_blank" rel="noopener">RFC 1918</a> sets aside three blocks of address space for private networks. Private addresses are not routable on the public internet. They are used inside LANs and translated to a public IP by NAT when accessing the internet. Knowing the three private ranges cold is non-negotiable for both A+ and Network+.</p>
 
     <div class="table-wrap">
       <table>
@@ -754,7 +709,7 @@ tbody tr:hover td{background:#f0fdf9;}
       <div class="special-card">
         <div class="special-card-label">Link-Local (IPv4)</div>
         <div class="special-card-range">169.254.0.0/16</div>
-        <div class="special-card-desc">Same as APIPA range. RFC 3927. Not routable beyond the local link. Also used for AWS instance metadata (169.254.169.254).</div>
+        <div class="special-card-desc">Same as APIPA range. <a href="https://www.rfc-editor.org/rfc/rfc3927" target="_blank" rel="noopener">RFC 3927</a>. Not routable beyond the local link. Also used for AWS instance metadata (169.254.169.254).</div>
       </div>
       <div class="special-card">
         <div class="special-card-label">Multicast</div>
@@ -765,7 +720,7 @@ tbody tr:hover td{background:#f0fdf9;}
 
     <h2>Public vs Private — How NAT Bridges Them</h2>
 
-    <p>Private addresses can't be routed on the internet — routers drop packets with RFC 1918 source addresses. When your device (192.168.1.50) sends traffic to google.com, your router performs <strong>Network Address Translation (NAT)</strong>: it replaces the private source IP with its own public IP before forwarding the packet. When the response comes back, it reverses the translation and delivers it to your device.</p>
+    <p>Private addresses can't be routed on the internet — routers drop packets with <a href="https://www.rfc-editor.org/rfc/rfc1918" target="_blank" rel="noopener">RFC 1918</a> source addresses. When your device (192.168.1.50) sends traffic to google.com, your router performs <strong>Network Address Translation (NAT)</strong>: it replaces the private source IP with its own public IP before forwarding the packet. When the response comes back, it reverses the translation and delivers it to your device.</p>
 
     <div class="callout">
       <div class="callout-label">Why Private Addresses Exist</div>
@@ -815,12 +770,11 @@ tbody tr:hover td{background:#f0fdf9;}
 
     
     <h2>Classful vs Classless Addressing — Why Classes Are Now Legacy</h2>
-    <p>IP address classes (A, B, C, D, E) were the original system for allocating IP address space, defined in RFC 791 in 1981. The system assigned blocks based on the first octet: Class A for large organizations needing millions of hosts, Class B for medium networks, Class C for small networks. In practice, this was extremely wasteful — a company needing 300 hosts had to receive a full Class B block (65,534 hosts) because Class C only provided 254. The resulting address exhaustion drove the shift to <strong>CIDR (Classless Inter-Domain Routing)</strong> in 1993.</p>
+    <p>IP address classes were the original system for allocating IP address space. Classes A, B and C were defined in <a href="https://www.rfc-editor.org/rfc/rfc791" target="_blank" rel="noopener">RFC 791</a> in 1981, and Class D and the reserved Class E are described in <a href="https://www.rfc-editor.org/rfc/rfc1112" target="_blank" rel="noopener">RFC 1112</a>. The system assigned blocks based on the first octet: Class A for large organizations needing millions of hosts, Class B for medium networks, Class C for small networks. In practice, this was extremely wasteful — a company needing 300 hosts had to receive a full Class B block (65,534 hosts) because Class C only provided 254. The resulting address exhaustion drove the shift to <strong>CIDR (Classless Inter-Domain Routing)</strong> in 1993.</p>
     <p>CIDR replaced classful addressing by allowing any prefix length (e.g. /22, /26, /29) rather than forcing /8, /16, or /24 boundaries. A company needing 300 hosts can now be assigned a /23 (510 usable hosts) rather than a /16. This is why classful addressing is considered legacy — real networks use CIDR — but CompTIA A+ and Network+ still test classful knowledge because it underlies the private IP ranges, default gateway behavior, and APIPA concepts that appear on every exam.</p>
 
     <h2>APIPA — Automatic Private IP Addressing</h2>
-    <p>When a device cannot reach a DHCP server, Windows automatically assigns itself an address in the <strong>169.254.0.0/16</strong> range (169.254.1.0 through 169.254.254.255, within the 169.254.0.0/16 block). This is APIPA (Automatic Private IP Addressing). A device with an APIPA address can communicate with other APIPA devices on the same segment but cannot reach the internet or default gateway because 169.254.x.x is not routable.</p>
-    <p>On the exam: if a user reports they cannot access the internet and you run <span style="font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 5px;border-radius:4px;">ipconfig</span> and see a 169.254.x.x address, the problem is that the device failed to get a DHCP lease. Troubleshoot the DHCP server, network connectivity to the DHCP server, or the DHCP client service on the device itself. The 169.254.x.x address is a symptom, not the root cause.</p>
+    <p>When a Windows computer that uses DHCP can&rsquo;t reach a DHCP server, it assigns itself an address from <strong>169.254.0.0/16</strong>, a feature called APIPA (Automatic Private IP Addressing). A device with a 169.254.x.x address can reach only other hosts on the same local segment, so the address is a symptom of a DHCP problem, not the root cause. For the full range rules, RFC 3927 and the fix sequence, see <a href="apipa.html">What Is APIPA?</a></p>
 
     <h2>Loopback and Localhost</h2>
     <p>The <strong>127.0.0.0/8</strong> range is reserved for loopback — testing the local TCP/IP stack without sending traffic to the network. <span style="font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 5px;border-radius:4px;">ping 127.0.0.1</span> (or <span style="font-family:'DM Mono',monospace;background:#f0f4fa;padding:1px 5px;border-radius:4px;">ping localhost</span>) is always the first step in network troubleshooting — if this fails, the TCP/IP stack on the local machine is broken. If it succeeds, the stack works and the problem is elsewhere (physical cable, switch, router, DNS, or remote server).</p>

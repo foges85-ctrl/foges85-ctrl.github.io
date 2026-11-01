@@ -370,13 +370,6 @@ tbody tr:hover td{background:#eff6ff;}
 /* ---- end mobile nav ---- */
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"What is load balancing?","acceptedAnswer":{"@type":"Answer","text":"Load balancing distributes incoming network traffic across multiple servers to prevent any single server from becoming a bottleneck. A load balancer sits in front of a server pool and forwards each new request to a server based on an algorithm (round-robin, least connections, IP hash, etc.). This improves application availability, scalability, and performance. If a server fails, the load balancer stops sending traffic to it — providing high availability."}},
-{"@type":"Question","name":"What is the difference between Layer 4 and Layer 7 load balancing?","acceptedAnswer":{"@type":"Answer","text":"Layer 4 load balancing operates at the transport layer and makes routing decisions based on IP address and TCP/UDP port only — it cannot inspect the content of requests. It is fast and efficient but less intelligent. Layer 7 load balancing operates at the application layer and can inspect the actual HTTP content — URL paths, headers, cookies, hostnames — to make smarter routing decisions, such as sending /api requests to API servers and /static requests to a CDN origin. L7 load balancers can also terminate SSL, perform content-based routing, and act as an application firewall."}},
-{"@type":"Question","name":"What is session persistence in load balancing?","acceptedAnswer":{"@type":"Answer","text":"Session persistence (also called sticky sessions or session affinity) ensures that all requests from the same client are always sent to the same server during a session. This is important for stateful applications that store session data locally on the server (shopping carts, login sessions). It is typically implemented using a cookie inserted by the load balancer, or by hashing the client's source IP address. The downside is that if the target server fails, that client's session data is lost."}}
-]}
-</script>
-<script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"IT Study Hub","item":"https://itstudyhub.org/"},{"@type":"ListItem","position":2,"name":"Load Balancing Explained","item":"https://itstudyhub.org/load-balancing-explained.html"}]}
 </script>
   <meta property="og:type" content="article">

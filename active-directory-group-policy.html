@@ -429,46 +429,6 @@ tbody tr:hover td{background:#eff6ff;}
 /* ---- end mobile nav ---- */
 </style>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What Group Policy Does",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Group Policy lets an administrator define a setting once and have it automatically apply to every machine or user in scope — without touching each machine individually. Common uses include enforcing password complexity, mapping network drives, restricting USB access, deploying software, configuring Windows Firewall, and setting the desktop wallpaper. Group Policy settings are split into two categories: Computer Configuration (applies to the computer regardless of who logs in) and User Configuration (applies to the user account regardless of which computer they log into)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "GPO Processing Order — LSDOU",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "When a machine boots or a user logs on, Windows applies GPOs in a specific order. Each level can override the previous one — so the last policy applied wins (unless enforcement is used). Local → Site → Domain → OU — memorize this order. The A+ and Security+ both test it directly. Remember: later = higher priority. An OU policy overrides a Domain policy on the same setting. If two GPOs at the same level conflict, the one with the lower link order number (higher priority in GPMC) wins. The exam may also ask: which GPO wins when there's a conflict? The answer is always the one that applies las…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Inheritance, Blocking, and Enforcement",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Block Inheritance is set on an OU — it prevents GPOs from parent levels flowing in. Enforcement is set on a GPO link — it forces the GPO through even if an OU has Block Inheritance enabled. Enforcement always wins. A domain admin using Enforcement can guarantee a policy applies everywhere, regardless of OU-level blocking."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "GPO Commands — gpupdate and gpresult",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "GPOs are normally applied at startup (Computer Configuration) and logon (User Configuration), then refreshed in the background every 90 minutes plus a random offset of up to 30 minutes (domain controllers every 5 minutes). To force an immediate refresh without rebooting or logging off: When multiple GPOs apply to a user or computer, the final merged result is the Resultant Set of Policy (RSoP) . This is what the machine actually enforces after all inheritance, filtering, and conflicts are resolved. You can view the RSoP using gpresult /r , the RSoP snap-in ( rsop.msc ), or the Group Policy Results wizard in GPMC. RSoP is the primary troub…"
-      }
-    }
-  ]
-}
-</script>
 
 <script type="application/ld+json">
 {

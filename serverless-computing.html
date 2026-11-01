@@ -363,46 +363,6 @@ tbody tr:hover td{background:#eff6ff;}
 /* ---- end mobile nav ---- */
 </style>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is serverless computing?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Serverless computing is a cloud execution model where the cloud provider dynamically manages the allocation and provisioning of servers. You write and deploy code (functions), and the provider handles all the infrastructure — servers, OS, scaling, and availability. You are billed only for the compute time your code actually uses, measured in milliseconds. The name is slightly misleading: there are still servers, but you don't see, manage, or pay for them when they're idle."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is FaaS?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "FaaS (Function as a Service) is the core execution model of serverless computing. You deploy individual functions — small, single-purpose pieces of code — that are invoked in response to events. AWS Lambda is the most widely used FaaS platform. Azure Functions and Google Cloud Functions are the Azure and GCP equivalents. Each function invocation is independent, stateless, and runs in its own isolated environment."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is a cold start in serverless?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A cold start occurs when a serverless function is invoked after being idle — the provider needs to provision a new execution environment (download the code, initialize the runtime) before running the function. This adds latency, typically 100ms to a few seconds depending on the runtime and function size. Cold starts are the primary performance trade-off of serverless compared to always-on containers or VMs. Mitigation techniques include provisioned concurrency (AWS Lambda), keeping functions warm with scheduled pings, and choosing faster runtimes like Node.js or Python over Java."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is event-driven architecture?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Event-driven architecture is a design pattern where components communicate by producing and consuming events rather than making direct API calls. An event is a record of something that happened — a file was uploaded, a payment was processed, a sensor sent a reading. When an event occurs, it triggers one or more functions or services that process it. This decouples producers from consumers: the service that creates the event doesn't need to know what happens next. Serverless functions are a natural fit for event-driven architecture because they're designed to be triggered by events and scale automatically."
-      }
-    }
-  ]
-}
-</script>
 
 <script type="application/ld+json">
 {

@@ -370,13 +370,6 @@ tbody tr:hover td{background:#eff6ff;}
 /* ---- end mobile nav ---- */
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"What is DNSSEC?","acceptedAnswer":{"@type":"Answer","text":"DNSSEC (DNS Security Extensions) adds digital signatures to DNS records to verify their authenticity. When a DNS resolver receives a response, it verifies the cryptographic signature using the zone's public key — if the signature doesn't validate, the response is rejected. This prevents DNS cache poisoning attacks where an attacker injects false DNS records. DNSSEC creates a chain of trust from the DNS root down through TLDs to individual domain zones."}},
-{"@type":"Question","name":"What is the difference between DNS over HTTPS and DNS over TLS?","acceptedAnswer":{"@type":"Answer","text":"Both DNS over HTTPS (DoH) and DNS over TLS (DoT) encrypt DNS queries to prevent eavesdropping and tampering. DoH sends encrypted DNS queries inside standard HTTPS traffic on port 443 — this makes DNS traffic indistinguishable from regular web traffic, preventing interception but also making it harder for network administrators to monitor or filter DNS. DoT uses TLS on a dedicated port 853 — DNS traffic is encrypted but identifiable as DNS, allowing network administrators to monitor and apply policies while still protecting against eavesdropping."}},
-{"@type":"Question","name":"What is DNS cache poisoning?","acceptedAnswer":{"@type":"Answer","text":"DNS cache poisoning (also called DNS spoofing) is an attack where an attacker injects malicious DNS records into a resolver's cache. When a victim queries the resolver for a domain, the resolver returns the attacker's fake IP address instead of the legitimate one, redirecting the victim to a malicious server — often a phishing site. Historically exploited using the Kaminsky attack (race condition in resolvers). DNSSEC cryptographic signatures and source port randomization are the primary defenses."}}
-]}
-</script>
-<script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"IT Study Hub","item":"https://itstudyhub.org/"},{"@type":"ListItem","position":2,"name":"DNS Security Explained","item":"https://itstudyhub.org/dns-security.html"}]}
 </script>
   <meta property="og:type" content="article">

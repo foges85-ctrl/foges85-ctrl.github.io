@@ -399,70 +399,6 @@ tbody tr:hover td{background:var(--light);}
 /* ---- end mobile nav ---- */
 </style>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What Honeypots Do and Why They Work",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A honeypot is a deliberately vulnerable or attractive-looking system placed in a network to lure attackers. It appears to be a legitimate target — a database server, a file share, a domain controller — but contains no real data and serves no production function. Because legitimate users have no reason to interact with a honeypot, any connection attempt, login, or access is almost certainly malicious activity. This makes honeypots remarkably low-noise detection systems — unlike SIEM alerts that generate thousands of events daily, a honeypot alert is nearly always genuine. Honeypots serve thr…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Honeynet — A Network of Honeypots",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A honeynet is a network of interconnected honeypots that creates a realistic-looking environment — multiple servers with different roles (web server, database, file server, domain controller) that an attacker can move between laterally. Honeynets are used primarily for threat intelligence research. By observing how attackers move through the honeynet, what tools they use, and what they're ultimately after, security researchers gain detailed insight into current attack campaigns and techniques. The Honeynet Project is the leading open-source honeypot research organization and publishes threa…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Canary Tokens and Honeyfiles",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A honeyfile (or canary file) is a file placed in a file share or database that looks valuable — a file named passwords.xlsx or customer_data.csv — but contains no real data. When anyone opens or downloads the file, an alert is triggered. Any access to a honeyfile is almost certainly unauthorized — a legitimate user doesn't need to open a file called passwords.xlsx that isn't in any documented workflow. Honeyfiles are highly effective for detecting insider threats and attackers who have already established a foothold and are searching for data to exfiltrate. Canary tokens extend this concept…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Honeypot Types by Purpose",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Beyond the low/high interaction distinction, honeypots are categorized by what they're designed to detect. Research honeypots are deployed by security researchers and threat intelligence teams to study attacker behavior, capture malware samples, and understand current attack campaigns. They're typically high-interaction, heavily monitored, and isolated from production networks. The data they collect — attack tools, techniques, command-and-control infrastructure — feeds threat intelligence reports that help the broader security community. Production honeypots are deployed within or alongsid…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Deception Technology at Scale",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Modern deception technology platforms (such as Thinkst Canary, or the deception tools SentinelOne and Proofpoint acquired from Attivo Networks and Illusive) automate honeypot deployment at scale across the entire network. Rather than a few manually configured honeypots, these platforms deploy decoy systems, accounts, credentials, and files across every subnet — making deception pervasive. An attacker performing lateral movement in such an environment has a high probability of interacting with a decoy before reaching real assets. The decoy interaction triggers an immediate, high-confidence alert — far more actionable than SIEM correlations that might have dozens…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Honeypot Legal and Ethical Considerations",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Honeypots operate in a legal gray area that the Security+ exam occasionally touches. Deploying a honeypot on your own network to detect intruders is legal and unambiguous. The concern arises with entrapment — can an organization be held liable for luring attackers into committing crimes against the honeypot? In practice, honeypots are considered legal as long as they don't actively solicit attacks (they're passive — attackers discover them through their own scanning) and the organization doesn't manufacture the criminal intent. The attacker chose to probe and attack the honeypot; the organi…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Honeypot Placement Strategy",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Honeypot placement determines what activity they detect. A honeypot on the DMZ detects inbound attacks from the internet. A honeypot on the internal network detects lateral movement from an already-compromised internal host or a malicious insider — any internal system that connects to an internal honeypot is exhibiting suspicious behavior. Placing honeypots in each VLAN segment provides early detection of lateral movement as attackers hop between segments. The key principle: legitimate traffic never touches a honeypot, so any interaction is an alert worth investigating immediately."
-      }
-    }
-  ]
-}
-</script>
 
 <script type="application/ld+json">
 {
@@ -606,7 +542,7 @@ tbody tr:hover td{background:var(--light);}
     <p><strong>Database honeypots</strong> are fake database servers containing fabricated but realistic-looking data — customer records, financial data, user credentials — placed on the internal network. An attacker who compromises the network and searches for databases will find the honeypot first. Any connection to the honeypot database is an immediate high-fidelity alert. <strong>Credential honeypots</strong> are fake user accounts (often named something like "admin-backup" or "svc-backup") with realistic-looking credentials. If anyone uses these credentials — they appear in legitimate places like fake IT documentation — it means someone has accessed those documents and extracted the credentials, indicating a breach.</p>
 
     <h2>Deception Technology at Scale</h2>
-    <p>Modern deception technology platforms (such as Thinkst Canary, or the deception tools SentinelOne and Proofpoint acquired from Attivo Networks and Illusive) automate honeypot deployment at scale across the entire network. Rather than a few manually configured honeypots, these platforms deploy decoy systems, accounts, credentials, and files across every subnet — making deception pervasive. An attacker performing lateral movement in such an environment has a high probability of interacting with a decoy before reaching real assets. The decoy interaction triggers an immediate, high-confidence alert — far more actionable than SIEM correlations that might have dozens of legitimate-looking events mixed in. Deception technology represents an evolution of the honeypot concept from individual systems to an organization-wide detection layer.</p>
+    <p>Modern <a href="deception-technologies.html">deception technology</a> platforms (such as Thinkst Canary, or the deception tools SentinelOne and Proofpoint acquired from Attivo Networks and Illusive) automate honeypot deployment at scale across the entire network. Rather than a few manually configured honeypots, these platforms deploy decoy systems, accounts, credentials, and files across every subnet — making deception pervasive. An attacker performing lateral movement in such an environment has a high probability of interacting with a decoy before reaching real assets. The decoy interaction triggers an immediate, high-confidence alert — far more actionable than SIEM correlations that might have dozens of legitimate-looking events mixed in. Deception technology represents an evolution of the honeypot concept from individual systems to an organization-wide detection layer.</p>
     <h2>Honeypot Legal and Ethical Considerations</h2>
     <p>Honeypots operate in a legal gray area that the Security+ exam occasionally touches. Deploying a honeypot on your own network to detect intruders is legal and unambiguous. The concern arises with <strong>entrapment</strong> — can an organization be held liable for luring attackers into committing crimes against the honeypot? In practice, honeypots are considered legal as long as they don't actively solicit attacks (they're passive — attackers discover them through their own scanning) and the organization doesn't manufacture the criminal intent. The attacker chose to probe and attack the honeypot; the organization merely made a target available. Always consult legal counsel before deploying high-interaction honeypots that might be used as evidence in prosecution.</p>
 

@@ -393,54 +393,6 @@ tbody tr:hover td{background:var(--light);}
 /* ---- end mobile nav ---- */
 </style>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "The Core Difference — Detection vs Prevention",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The fundamental distinction between IDS and IPS is what they do when they identify a threat. An IDS (Intrusion Detection System) passively monitors network traffic or host activity, compares it against known threat signatures or behavioral baselines, and generates alerts when suspicious activity is detected. It does not interfere with traffic — it only observes and reports. A security analyst reviews the alerts and decides whether and how to respond. An IPS (Intrusion Prevention System) sits inline with traffic — all traffic flows through it — and can actively drop packets, terminate conne…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Network-Based vs Host-Based",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Both IDS and IPS come in two deployment variants that the exam tests separately: NIDS/NIPS (Network-based) monitors traffic flowing across a network segment — either by connecting to a span/mirror port on a switch (NIDS) or by sitting inline between network segments (NIPS). Network-based systems provide visibility into all traffic traversing that network segment, regardless of which hosts are communicating. They're blind to encrypted traffic (unless combined with TLS inspection) and cannot see traffic that doesn't cross the monitored segment. HIDS/HIPS (Host-based) runs as software on an in…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Detection Methods — Signature vs Anomaly vs Policy",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Signature-based detection compares observed traffic or activity against a database of known attack signatures. If traffic matches a signature (a known SQL injection pattern, a specific malware command-and-control beacon, a recognizable exploit attempt), an alert is triggered or the traffic is blocked. Signature-based detection is highly accurate for known threats and generates few false positives — but it cannot detect novel (zero-day) attacks for which no signature exists yet. Signatures must be updated regularly to remain effective. Anomaly-based detection (also called behavior-based or …"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Where IDS and IPS Sit in the Network",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Network placement determines what traffic each system sees. A common enterprise architecture: an NIPS at the internet perimeter , inline between the firewall and the DMZ, inspects all inbound and outbound internet traffic for known attack patterns. A NIDS on a span port of the core switch monitors internal east-west traffic for lateral movement and insider threats — it's out-of-band to avoid affecting production traffic. HIPS on servers (especially domain controllers and database servers) provides host-level protection and can detect attacks that arrive via encrypted channels or originate f…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Fail-Open vs Fail-Closed",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "When an inline IPS device fails (hardware failure, software crash, power loss), it must decide what to do with the traffic it can no longer inspect. Fail-open means the device passes all traffic uninspected — network connectivity is maintained but threat detection stops. Fail-closed means the device drops all traffic — the network goes down but no uninspected traffic passes. The right choice depends on context. A hospital network might choose fail-open to maintain life-critical network connectivity even at the cost of security. A financial institution with extreme security requirements migh…"
-      }
-    }
-  ]
-}
-</script>
 
 <script type="application/ld+json">
 {
@@ -620,7 +572,7 @@ tbody tr:hover td{background:var(--light);}
 
 <p>Honeypots serve several security purposes. <strong>Early warning</strong>: a honeypot in a network segment where only attackers should be (e.g., a dormant server IP space) will alert the moment a scanner touches it, often indicating an attacker is already inside the network performing reconnaissance. <strong>Intelligence gathering</strong>: because honeypot traffic is almost entirely malicious, it can be captured and analyzed to understand attacker techniques, tools, and objectives in detail — including zero-day exploits and novel attack patterns that haven't been seen elsewhere. <strong>Slowing attackers</strong>: a honeynet (network of honeypots) can waste significant attacker time as they explore systems that appear real but contain no valuable data.</p>
 
-<p><strong>Honeytokens</strong> extend the deception concept to data items rather than systems. A honeytoken might be a fake database credential embedded in a configuration file, a fake credit card number in a database, or a fake document with a unique identifier. If that credential is used in a login attempt, or that document is accessed from an unusual location, it's a reliable indicator of compromise — the data has no legitimate use, so any activity around it must be malicious. Honeytokens can be deployed at scale across a file system to create a fine-grained trip-wire detection system.</p>
+<p><strong>Honeytokens</strong> extend the <a href="deception-technologies.html">deception concept</a> to data items rather than systems. A honeytoken might be a fake database credential embedded in a configuration file, a fake credit card number in a database, or a fake document with a unique identifier. If that credential is used in a login attempt, or that document is accessed from an unusual location, it's a reliable indicator of compromise — the data has no legitimate use, so any activity around it must be malicious. Honeytokens can be deployed at scale across a file system to create a fine-grained trip-wire detection system.</p>
 
 <h2>IDS/IPS Tuning and Managing Alerts</h2>
 

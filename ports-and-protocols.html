@@ -423,62 +423,6 @@ a{color:inherit;text-decoration:none;}
 /* ---- end mobile nav ---- */
 </style>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What's the difference between TCP and UDP?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "TCP (Transmission Control Protocol) is connection-oriented and reliable: it establishes a connection with a 3-way handshake (SYN, SYN-ACK, ACK) and guarantees delivery, ordering, and error checking — used by HTTP, HTTPS, FTP, SSH, Telnet, SMTP, POP3, IMAP, RDP, SMB, and LDAP. UDP (User Datagram Protocol) is connectionless and fast: it sends data without a handshake, with no guaranteed delivery, ordering, or error recovery — used by DNS, DHCP, SNMP, TFTP, NTP, Syslog, VoIP (RTP), and RADIUS. TCP is used when data integrity matters; UDP is used when speed matters more than reliability."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Which ports are most commonly tested on CompTIA exams?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Core ports to know (most appear on the A+ or Network+ port lists; see the tags below): 20/21 FTP (TCP), 22 SSH/SFTP/SCP (TCP), 23 Telnet (TCP), 25 SMTP (TCP), 53 DNS (TCP/UDP), 67/68 DHCP (UDP), 80 HTTP (TCP), 110 POP3 (TCP), 143 IMAP (TCP), 161/162 SNMP (UDP), 389 LDAP (TCP/UDP), 443 HTTPS (TCP), 445 SMB (TCP), 636 LDAPS (TCP), and 3389 RDP (TCP/UDP). For each, know the port number, the protocol name, whether it's TCP or UDP, and any encrypted alternative."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the full list of CompTIA port numbers?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Common CompTIA ports: 20/21 FTP, 22 SSH/SFTP/SCP, 23 Telnet, 25 SMTP, 53 DNS, 67/68 DHCP, 69 TFTP, 80 HTTP, 110 POP3, 119 NNTP, 123 NTP, 137–139 NetBIOS, 143 IMAP, 161/162 SNMP, 389 LDAP, 443 HTTPS, 445 SMB, 465/587 SMTPS, 514 Syslog, 636 LDAPS, 993 IMAPS, 995 POP3S, 1433 MS SQL, 1723 PPTP VPN, 3306 MySQL, 3389 RDP, and 5060/5061 SIP/VoIP."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What are the encrypted alternatives to insecure protocols?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The most-tested upgrade pairs on Security+: Telnet (23) → SSH (22) for remote terminal access; FTP (20/21) → SFTP (port 22, runs over SSH) or FTPS (TLS, port 990/21); HTTP (80) → HTTPS (443, uses TLS); SMTP (25) → SMTPS (465 or 587 with STARTTLS); IMAP (143) → IMAPS (993); POP3 (110) → POP3S (995); LDAP (389) → LDAPS (636); and SNMP v1/v2c → SNMPv3 (same port 161 but adds authentication and encryption)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does DNS use TCP or UDP?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "DNS uses both. UDP port 53 handles standard DNS queries — fast, low overhead, fits in one packet. TCP port 53 handles zone transfers (replicating the full DNS database between servers) and responses larger than 512 bytes. On the exam: UDP for lookups, TCP for zone transfers."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What are the most common port-number exam traps?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Three traps appear repeatedly. FTP uses two ports — 20 for data and 21 for control — and both must be open for active-mode FTP. RDP listens on TCP 3389 (and also UDP 3389 for its faster transport); know 3389 as RDP. DHCP uses UDP (67 server, 68 client) because the client has no IP yet and cannot establish a TCP connection — DHCP discovery is a broadcast."
-      }
-    }
-  ]
-}
-</script>
 
 <script type="application/ld+json">
 {

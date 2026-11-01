@@ -492,64 +492,10 @@ tbody tr:hover td { background: #f4f8ff; }
 
 /* ── BODY TEXT LINKS ── */
 .article-body p > a:not([class]), .guide-wrap p > a:not([class]) { color:#155bd9; text-decoration:underline; }
+/* ── TABLE CELL LINKS (added Oct 31 2026, same style as body text links) ── */
+.article-body td > a:not([class]) { color:#155bd9; text-decoration:underline; }
 </style>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "AAA — the three functions RADIUS provides",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "RADIUS is described as an AAA protocol. Before diving into the mechanics, it helps to understand what each A stands for — these are tested individually on both Network+ and Security+:"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How RADIUS works",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "RADIUS introduces a three-party model: the supplicant (the user or device trying to connect), the NAS/authenticator (the network device — VPN gateway, wireless AP, switch), and the RADIUS server (the central authority that makes the access decision). Supplicant NAS / Authenticator RADIUS Server (User / Device) (VPN gateway / AP / Switch) (Central auth) │ │ │ │──── Connect request ──▶│ │ │ │──── Access-Request ───▶│ │ │ (credentials, │ │ │ NAS IP, port) │ │ │ │ Checks credentials │ │ │ against directory │ │◀─── Access-Accept ─────│ │ │ (+ VLAN, policies) │ │◀─── Network access ────│ │ │ │ │ …"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "RADIUS vs TACACS+",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "RADIUS and TACACS+ are both AAA protocols but serve different primary use cases. This comparison is one of the most commonly tested distinctions on Network+ and Security+: RADIUS = network access control (who can connect to the network — VPN users, Wi-Fi clients). UDP. Encrypts password only. TACACS+ = device administration (which commands can an admin run on a router or switch). TCP 49. Fully encrypted. Cisco environments."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "802.1X — RADIUS for wired and wireless access control",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "802.1X is the IEEE standard for port-based network access control. It uses RADIUS as its backend authentication server. When a device plugs into a switch port or connects to a Wi-Fi network, 802.1X holds them in an unauthenticated state — a kind of quarantine — until RADIUS verifies their identity. Without 802.1X, anyone who physically plugs into a switch port gets network access. With 802.1X, every device must authenticate before any traffic is allowed — unauthenticated devices are placed in a quarantine VLAN or blocked entirely. This is the standard defense against rogue device attacks — …"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "EAP methods — what the exam tests",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "If the exam asks which EAP method provides the highest security, the answer is EAP-TLS — it uses certificates on both sides (mutual authentication), eliminates passwords entirely, and provides the strongest protection against MITM attacks. The tradeoff is infrastructure cost — you need a PKI to issue client certificates. PEAP is the practical middle ground: strong security without requiring client certificates."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "RADIUS in enterprise deployments",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "In production environments, RADIUS doesn't work in isolation. It connects to backend systems to check credentials and retrieve authorization policies: User connects to Wi-Fi / VPN / switch port │ ▼ Authenticator (AP / VPN gateway / switch) │ EAP over RADIUS (UDP 1812) ▼ RADIUS Server (e.g. Microsoft NPS, FreeRADIUS, Cisco ISE) │ ├──▶ Active Directory / LDAP (verify credentials) │ ├──▶ Certificate Authority (validate client certs for EAP-TLS) │ └──▶ Policy engine (assign VLAN, ACL, time restrictions) │ └─▶ Access-Accept (+ VLAN tag, ACL) → user gets network access Access-Reject → user blocke…"
-      }
-    }
-  ]
-}
-</script>
 
 <script type="application/ld+json">
 {
@@ -733,10 +679,14 @@ tbody tr:hover td { background: #f4f8ff; }
 
     <div class="exam-tip">
       <div class="exam-tip-label">⚡ RADIUS ports — cold recall</div>
-      <p><strong>UDP 1812</strong> — RADIUS authentication and authorization (Access-Request, Access-Accept, Access-Reject).</p>
-      <p><strong>UDP 1813</strong> — RADIUS accounting (session start, stop, and interim updates).</p>
-      <p>Older implementations used UDP 1645 and 1646 respectively — the exam may reference these legacy ports. Know both pairs. RADIUS uses UDP (not TCP) because it handles its own retransmission logic.</p>
+      <p><strong>UDP 1812</strong> — RADIUS authentication and authorization (Access-Request, Access-Accept, Access-Reject). Defined in <a href="https://www.rfc-editor.org/rfc/rfc2865" target="_blank" rel="noopener">RFC 2865</a>.</p>
+      <p><strong>UDP 1813</strong> — RADIUS accounting (session start, stop, and interim updates). Defined in <a href="https://www.rfc-editor.org/rfc/rfc2866" target="_blank" rel="noopener">RFC 2866</a>.</p>
+      <p>Older implementations used UDP 1645 and 1646 respectively. Both RFCs note that those early ports conflict with other registered services and that 1812 and 1813 are the officially assigned ports. The exam may reference these legacy ports. Know both pairs. RADIUS uses UDP (not TCP) because it handles its own retransmission logic.</p>
     </div>
+
+    <h2>RadSec — RADIUS over TLS</h2>
+
+    <p>Classic RADIUS runs over UDP and relies on MD5 with a shared secret, which leaves large parts of the packet unprotected. <a href="https://www.rfc-editor.org/rfc/rfc6614" target="_blank" rel="noopener">RFC 6614</a> defines <strong>RADIUS over TLS</strong>, which carries RADIUS over TCP inside a TLS session and wraps the entire RADIUS packet payload in the TLS stream. The default port is <strong>TCP 2083</strong>, a port IANA had already assigned to &ldquo;RadSec,&rdquo; the name of the first implementation of RADIUS over TLS. RFC 6614 is an Experimental RFC rather than a Standards Track one, and its main use case is roaming environments where RADIUS traffic crosses different administrative domains, such as eduroam.</p>
 
     <h2>RADIUS vs TACACS+</h2>
 
@@ -750,7 +700,7 @@ tbody tr:hover td { background: #f4f8ff; }
         <tbody>
           <tr>
             <td class="td-term">Developed by</td>
-            <td>Open standard (RFC 2865)</td>
+            <td>Open standard (<a href="https://www.rfc-editor.org/rfc/rfc2865" target="_blank" rel="noopener">RFC 2865</a>)</td>
             <td>Cisco proprietary</td>
           </tr>
           <tr>
@@ -797,6 +747,8 @@ tbody tr:hover td { background: #f4f8ff; }
     <h2>802.1X — RADIUS for wired and wireless access control</h2>
 
     <p><strong>802.1X</strong> is the IEEE standard for port-based network access control. It uses RADIUS as its backend authentication server. When a device plugs into a switch port or connects to a Wi-Fi network, 802.1X holds them in an unauthenticated state — a kind of quarantine — until RADIUS verifies their identity.</p>
+
+    <p>On Wi-Fi, 802.1X is the basis of the Enterprise security modes. <strong>WPA2-Enterprise</strong> and <strong>WPA3-Enterprise</strong> are the 802.1X-based modes, and in WPA3-Enterprise each user is authenticated through 802.1X against a RADIUS server (<a href="https://www.cisco.com/c/en/us/products/collateral/wireless/catalyst-9100ax-access-points/wpa3-dep-guide-og.html" target="_blank" rel="noopener">Cisco WPA3 Deployment Guide</a>). For how the Personal and Enterprise modes of WPA2 and WPA3 compare, see <a href="wireless-security-protocols.html">wireless security protocols</a>.</p>
 
     <div class="concept-grid">
       <div class="concept-card">

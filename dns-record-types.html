@@ -407,38 +407,6 @@ tbody tr:hover td{background:#eff6ff;}
 /* ---- end mobile nav ---- */
 </style>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Core DNS Record Types",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A vs AAAA: A = IPv4. AAAA = IPv6. That's the entire difference. CNAME vs A: CNAME points to another hostname (alias). A record points to an IP. CNAME cannot be used at the zone apex (example.com itself — only subdomains like www.example.com). MX priority: Lower number = higher priority. If MX 10 is unreachable, senders try MX 20. Easy to get backwards on the exam."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "DNS Security — SPF, DKIM, DMARC in Depth",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "These three TXT records work together to prevent email spoofing and phishing — a heavily tested Security+ topic:"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "DNS Attacks Targeting Records",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "DNS Spoofing / Cache Poisoning: Attacker injects malicious A records into a DNS resolver's cache — victims querying that resolver get a fake IP and are redirected to an attacker-controlled server. Defense: DNSSEC (cryptographically signs DNS records). DNS Hijacking: Attacker modifies legitimate DNS records (by compromising the registrar account or DNS provider) — everyone resolving the domain gets the attacker's IP. Defense: registrar account MFA, registry lock. DNS Zone Transfer Attack: Unauthorized zone transfer (AXFR) reveals all DNS records for a domain — a complete map of the organizat…"
-      }
-    }
-  ]
-}
-</script>
 
 <script type="application/ld+json">
 {

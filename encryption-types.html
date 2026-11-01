@@ -433,38 +433,6 @@ tbody tr:hover td{background:#fdf4ff;}
 /* ---- end mobile nav ---- */
 </style>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "The Four Types at a Glance",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Symmetric = one key, fast, key distribution problem. Asymmetric = two keys, slow, solves key distribution. The exam loves to give a scenario and ask which type is appropriate. Rule of thumb: if the question involves securely sharing a key with someone you've never met — asymmetric. If it involves encrypting large amounts of data after a secure connection is established — symmetric."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Hashing Algorithms",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Hashing is not encryption — it's a one-way process that produces a fixed-length output (digest/hash) from any input. The same input always produces the same hash. Different inputs should produce different hashes (collision resistance). You cannot reverse a hash to get the original data."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Quick Reference — All Algorithms",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "When your browser connects to an HTTPS site, the TLS handshake uses asymmetric cryptography to agree on a session key: TLS 1.3 uses ECDHE key exchange, with RSA or ECDSA used only to sign the handshake. Once both sides have the session key, all data is encrypted with symmetric AES because it's much faster. In TLS 1.3, AES-GCM both encrypts and authenticates each record; SHA-256/384 is used for key derivation (HKDF) and the handshake transcript hash. This is why hybrid encryption exists: RSA is too slow to encrypt your entire Netflix stream. In TLS 1.2 and earlier, RSA key transport could instead encrypt the pre-master secret from which the AES session keys are derived (TLS 1.3 removed RSA key transport). Either way, once both sides share the AES key securely, speed wins. A digital signature uses asymmetric encryption in reverse : you encrypt …"
-      }
-    }
-  ]
-}
-</script>
 
 <script type="application/ld+json">
 {

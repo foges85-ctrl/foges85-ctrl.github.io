@@ -410,72 +410,12 @@ tbody tr:hover td{background:#eff6ff;}
   }
 }
 /* ---- end mobile nav ---- */
+/* ── BODY TEXT LINKS ── */
+.article-body p > a:not([class]), .guide-wrap p > a:not([class]) { color:#155bd9; text-decoration:underline; }
+/* ── TABLE CELL LINKS (added Oct 31 2026, same style as body text links) ── */
+.article-body td > a:not([class]) { color:#155bd9; text-decoration:underline; }
 </style>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How to Allocate Your Study Time",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Network+ includes performance-based questions — interactive simulations where you configure a router, read a packet capture, or interpret a network diagram. They typically appear at the start of the exam and count for more marks than multiple choice. Don't skip PBQs — a common mistake is to flag them and come back later, then run out of time. Attempt them first. If you're stuck after 3 minutes, flag and move on, but always return. PBQs heavily test Domains 1, 2, and 5."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Exam Facts — N10-009",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "See the best study guides, video courses, and practice exams for N10-009."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How to Use the Domain Weightings in Your Study Plan",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The domain percentages tell you where to invest time proportionally. With Networking Concepts at 23%, nearly a quarter of your exam score comes from IP addressing, subnetting, ports and protocols, and OSI/TCP-IP model knowledge. If you're weak on subnetting, fixing that weakness has a bigger expected payoff than spending the same time on a domain weighted at 14%. A practical approach: score yourself on a practice exam domain-by-domain, then invest extra time proportional to both the domain's weight and your deficit in it. Network Troubleshooting at 24% — the single largest domain on N10-009 — is particularly important because …"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Domain 1 — Networking Concepts Deep Dive",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Networking Concepts is the second-largest domain at 23% and the foundation for everything else. The key sub-topics: OSI and TCP/IP models (which protocols operate at which layers, what devices operate at which layers, using the model as a troubleshooting framework), IP addressing and subnetting (IPv4 classes, CIDR, subnet mask calculation, VLSM, IPv6 basics), ports and protocols (memorize the 20+ ports that appear on every exam), network topologies (mesh, star/hub-and-spoke, spine-and-leaf, three-tier, collapsed core — know the failure modes of each), and wireless standards (802.11a/b/g/n/ac/ax, 2.4 vs 5 GHz trade-offs, channels). The subn…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Domain 2 — Network Implementation Deep Dive",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Network Implementation (20%) covers the hardware and protocols used to build networks: routing protocols (OSPF, EIGRP, BGP — understand distance-vector vs link-state, when each is used, and key characteristics), switching concepts (VLANs, spanning tree protocol, link aggregation, port mirroring), wireless infrastructure (access points, wireless controllers, site surveys, SSID design), and physical installation (cable categories, patch panels, structured cabling standards, power over Ethernet). VLANs are heavily tested because they're the primary network segmentation tool in enterprise enviro…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Domain 4 — Network Security Deep Dive",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Network Security at 14% — the smallest domain on N10-009 — covers attacks, defenses, and access controls. Common network attacks : DoS/DDoS (volumetric, protocol, and application layer), man-in-the-middle (ARP poisoning, SSL stripping), DNS attacks (spoofing, cache poisoning, DNS hijacking), VLAN hopping (switch spoofing and double tagging attacks). Firewall types : packet filtering (stateless, simple rules), stateful inspection (tracks connection state), application-layer (Layer 7, deep packet inspection), and next-generation firewalls (NGFW, which combine stateful + application awareness + IPS + user identity). Network acc…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Domain 5 — Network Troubleshooting Deep Dive",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Network Troubleshooting (24%) is almost entirely scenario-based — symptoms, diagnostic steps, and resolutions. The key framework is OSI bottom-up: always start by verifying Layer 1 (physical — is the cable connected, is the link light on?) before checking Layer 2 (switch config, VLAN), Layer 3 (IP addressing, routing), and higher layers (DNS, application). Jumping to DNS before confirming physical connectivity exists is a common real-world mistake that the exam tests by placing Layer 3 and DNS issues in scenarios where the actual cause is Layer 1 or 2. Essential troubleshooting commands: pi…"
-      }
-    }
-  ]
-}
-</script>
 
 <script type="application/ld+json">
 {
@@ -523,7 +463,7 @@ tbody tr:hover td{background:#eff6ff;}
     }
   },
   "datePublished": "2026-04-21",
-  "dateModified": "2026-10-18",
+  "dateModified": "2026-10-31",
   "url": "https://itstudyhub.org/comptia-network-plus-domains.html",
   "inLanguage": "en"
 }
@@ -756,6 +696,43 @@ tbody tr:hover td{background:#eff6ff;}
       </div>
     </div>
 
+    <h2>All 25 N10-009 Objectives</h2>
+
+    <p>Every objective in the official <a href="https://lecbyo.files.cmp.optimizely.com/download/35a7403ab73211ef9dcda6f347fbf652" target="_blank" rel="noopener">CompTIA Network+ N10-009 exam objectives</a> (document version 6.0), by number and official title, with the IT Study Hub guide that covers it. Objectives 1.8, 2.4 and 3.1 don&rsquo;t have a dedicated guide yet.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Objective</th><th>Official title</th><th>Topic guide</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">1.1</td><td>Explain concepts related to the Open Systems Interconnection (OSI) reference model.</td><td><a href="osi-model.html">The OSI model</a>, <a href="osi-model-cheat-sheet.html">OSI model cheat sheet</a></td></tr>
+          <tr><td class="td-term">1.2</td><td>Compare and contrast networking appliances, applications, and functions.</td><td><a href="hub-vs-switch-vs-router.html">Hub vs switch vs router</a>, <a href="firewall-types.html">firewall types</a>, <a href="ids-vs-ips.html">IDS vs IPS</a>, <a href="load-balancing-explained.html">load balancing</a>, <a href="proxy-server-explained.html">proxy servers</a></td></tr>
+          <tr><td class="td-term">1.3</td><td>Summarize cloud concepts and connectivity options.</td><td><a href="cloud-concepts.html">Cloud computing concepts</a>, <a href="cloud-deployment-models.html">cloud deployment models</a></td></tr>
+          <tr><td class="td-term">1.4</td><td>Explain common networking ports, protocols, services, and traffic types.</td><td><a href="ports-and-protocols.html">Port numbers reference</a>, <a href="ports.html">port numbers by exam</a>, <a href="tcp-vs-udp.html">TCP vs UDP</a></td></tr>
+          <tr><td class="td-term">1.5</td><td>Compare and contrast transmission media and transceivers.</td><td><a href="network-cable-types.html">Network cable types</a>, <a href="wifi-standards.html">Wi-Fi standards (802.11)</a></td></tr>
+          <tr><td class="td-term">1.6</td><td>Compare and contrast network topologies, architectures, and types.</td><td><a href="network-topologies.html">Network topologies</a></td></tr>
+          <tr><td class="td-term">1.7</td><td>Given a scenario, use appropriate IPv4 network addressing.</td><td><a href="ip-address-classes.html">IP address classes</a>, <a href="subnetting-guide.html">subnetting</a>, <a href="subnet-mask.html">subnet masks</a>, <a href="apipa.html">APIPA (169.254.x.x addresses)</a></td></tr>
+          <tr><td class="td-term">1.8</td><td>Summarize evolving use cases for modern network environments.</td><td>—</td></tr>
+          <tr><td class="td-term">2.1</td><td>Explain characteristics of routing technologies.</td><td><a href="routing-protocols.html">Routing protocols</a>, <a href="what-is-a-router.html">routers</a>, <a href="nat-explained.html">NAT</a></td></tr>
+          <tr><td class="td-term">2.2</td><td>Given a scenario, configure switching technologies and features.</td><td><a href="vlan-explained.html">VLANs</a>, <a href="spanning-tree-protocol.html">Spanning Tree Protocol (STP)</a>, <a href="what-is-a-switch.html">network switches</a></td></tr>
+          <tr><td class="td-term">2.3</td><td>Given a scenario, select and configure wireless devices and technologies.</td><td><a href="wireless-networking.html">Wireless networking</a>, <a href="wifi-standards.html">Wi-Fi standards (802.11)</a>, <a href="wireless-security-protocols.html">wireless security protocols</a></td></tr>
+          <tr><td class="td-term">2.4</td><td>Explain important factors of physical installations.</td><td>—</td></tr>
+          <tr><td class="td-term">3.1</td><td>Explain the purpose of organizational processes and procedures.</td><td>—</td></tr>
+          <tr><td class="td-term">3.2</td><td>Given a scenario, use network monitoring technologies.</td><td><a href="snmp-explained.html">SNMP</a>, <a href="siem-explained.html">SIEM</a></td></tr>
+          <tr><td class="td-term">3.3</td><td>Explain disaster recovery (DR) concepts.</td><td><a href="business-continuity.html">Business continuity and disaster recovery</a></td></tr>
+          <tr><td class="td-term">3.4</td><td>Given a scenario, implement IPv4 and IPv6 network services.</td><td><a href="dhcp.html">DHCP</a>, <a href="dns.html">DNS</a>, <a href="dns-security.html">DNS security (DNSSEC, DoH, DoT)</a>, <a href="ntp-explained.html">NTP</a>, <a href="ipv4-vs-ipv6.html">IPv4 vs IPv6</a></td></tr>
+          <tr><td class="td-term">3.5</td><td>Compare and contrast network access and management methods.</td><td><a href="vpn.html">VPNs</a>, <a href="ssh-explained.html">SSH</a></td></tr>
+          <tr><td class="td-term">4.1</td><td>Explain the importance of basic network security concepts.</td><td><a href="identity-and-access-management.html">Identity and access management</a>, <a href="pki-and-certificates.html">PKI and digital certificates</a>, <a href="cryptography.html">cryptography</a>, <a href="radius-explained.html">RADIUS</a>, <a href="ldap-explained.html">LDAP</a>, <a href="deception-technologies.html">deception technologies</a>, <a href="physical-security.html">physical security controls</a>, <a href="risk-management.html">risk management</a>, <a href="mfa-explained.html">multi-factor authentication (MFA)</a></td></tr>
+          <tr><td class="td-term">4.2</td><td>Summarize various types of attacks and their impact to the network.</td><td><a href="network-attacks.html">Network attacks</a>, <a href="social-engineering-attacks.html">social engineering attacks</a>, <a href="malware-types.html">malware types</a></td></tr>
+          <tr><td class="td-term">4.3</td><td>Given a scenario, apply network security features, defense techniques, and solutions.</td><td><a href="network-segmentation.html">Network segmentation</a>, <a href="firewall-basics.html">firewall basics</a>, <a href="what-is-a-switch.html">network switches</a></td></tr>
+          <tr><td class="td-term">5.1</td><td>Explain the troubleshooting methodology.</td><td><a href="troubleshooting-methodology.html">The troubleshooting methodology</a></td></tr>
+          <tr><td class="td-term">5.2</td><td>Given a scenario, troubleshoot common cabling and physical interface issues.</td><td><a href="network-cable-types.html">Network cable types</a></td></tr>
+          <tr><td class="td-term">5.3</td><td>Given a scenario, troubleshoot common issues with network services.</td><td><a href="spanning-tree-protocol.html">Spanning Tree Protocol (STP)</a>, <a href="vlan-explained.html">VLANs</a>, <a href="default-gateway.html">default gateways</a>, <a href="dhcp.html">DHCP</a>, <a href="subnet-mask.html">subnet masks</a></td></tr>
+          <tr><td class="td-term">5.4</td><td>Given a scenario, troubleshoot common performance issues.</td><td><a href="quality-of-service.html">Quality of service (QoS)</a>, <a href="wireless-networking.html">wireless networking</a></td></tr>
+          <tr><td class="td-term">5.5</td><td>Given a scenario, use the appropriate tool or protocol to solve networking issues.</td><td><a href="network-troubleshooting-commands.html">Network troubleshooting commands</a>, <a href="network-cable-types.html">network cable types</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <h2>How to Allocate Your Study Time</h2>
 
     <div class="table-wrap">
@@ -808,12 +785,16 @@ tbody tr:hover td{background:#eff6ff;}
     <p>Network Troubleshooting at 24% — the single largest domain on N10-009 — is particularly important because it tests applied knowledge — scenarios where you must select the right diagnostic tool or step, interpret command output, or identify the correct resolution for a described network problem. These questions can't be studied passively. You need to practice troubleshooting scenarios until the diagnostic process (OSI bottom-up, ping sequence, command tool selection) is automatic.</p>
 
     <h2>Domain 1 — Networking Concepts Deep Dive</h2>
-    <p>Networking Concepts is the second-largest domain at 23% and the foundation for everything else. The key sub-topics: <strong>OSI and TCP/IP models</strong> (which protocols operate at which layers, what devices operate at which layers, using the model as a troubleshooting framework), <strong>IP addressing and subnetting</strong> (IPv4 classes, CIDR, subnet mask calculation, VLSM, IPv6 basics), <strong>ports and protocols</strong> (memorize the 20+ ports that appear on every exam), <strong>network topologies</strong> (mesh, star/hub-and-spoke, spine-and-leaf, three-tier, collapsed core — know the failure modes of each), and <strong>wireless standards</strong> (802.11a/b/g/n/ac/ax, 2.4 vs 5 GHz trade-offs, channels).</p>
+    <p>Networking Concepts is the second-largest domain at 23% and the foundation for everything else. The key sub-topics: <strong>OSI and TCP/IP models</strong> (which protocols operate at which layers, what devices operate at which layers, using the model as a troubleshooting framework), <strong>IP addressing and subnetting</strong> (IPv4 classes, CIDR, subnet mask calculation, VLSM, IPv6 basics), <strong>ports and protocols</strong> (memorize the 20+ ports that appear on every exam), <strong>network topologies</strong> (mesh, star/hub-and-spoke, spine-and-leaf, three-tier, collapsed core — know the failure modes of each), and <strong>wireless standards</strong> (<a href="wifi-standards.html">802.11a/b/g/n/ac/ax</a>, 2.4 vs 5 GHz trade-offs, channels).</p>
     <p>The subnetting requirement is what separates candidates who pass on their first attempt from those who need to retake. A significant number of Domain 1 questions require subnetting calculations or conceptual subnetting knowledge — identifying which subnet a host belongs to, determining whether two hosts are on the same subnet, or selecting the right prefix length for a given host requirement. Practice until you can subnet /24 through /30 in under 60 seconds without reference materials.</p>
 
     <h2>Domain 2 — Network Implementation Deep Dive</h2>
-    <p>Network Implementation (20%) covers the hardware and protocols used to build networks: <strong>routing protocols</strong> (OSPF, EIGRP, BGP — understand distance-vector vs link-state, when each is used, and key characteristics), <strong>switching concepts</strong> (VLANs, spanning tree protocol, link aggregation, port mirroring), <strong>wireless infrastructure</strong> (access points, wireless controllers, site surveys, SSID design), and <strong>physical installation</strong> (cable categories, patch panels, structured cabling standards, power over Ethernet).</p>
+    <p>Network Implementation (20%) covers the hardware and protocols used to build networks: <strong>routing protocols</strong> (OSPF, EIGRP, BGP — understand distance-vector vs link-state, when each is used, and key characteristics), <strong>switching concepts</strong> (VLANs, <a href="spanning-tree-protocol.html">spanning tree protocol</a>, link aggregation, port mirroring), <strong>wireless infrastructure</strong> (access points, wireless controllers, site surveys, SSID design), and <strong>physical installation</strong> (cable categories, patch panels, structured cabling standards, power over Ethernet).</p>
     <p>VLANs are heavily tested because they're the primary network segmentation tool in enterprise environments and intersect with both routing (inter-VLAN routing via a router-on-a-stick or Layer 3 switch) and security (isolating traffic types). Know that VLANs are configured on switches, that a trunk port carries multiple VLANs using 802.1Q tagging, that an access port carries a single VLAN, and that inter-VLAN communication requires Layer 3 routing.</p>
+
+    <h2>Domain 3 — Network Operations Deep Dive</h2>
+    <p>Network Operations (19%) has five objectives, numbered 3.1 through 3.5 in the official <a href="https://lecbyo.files.cmp.optimizely.com/download/35a7403ab73211ef9dcda6f347fbf652" target="_blank" rel="noopener">N10-009 objectives</a>. <strong>Organizational processes and procedures</strong> (3.1) covers documentation (physical vs. logical diagrams, rack diagrams, cable maps, Layer 1, 2 and 3 network diagrams, asset inventory, IP address management, service-level agreements and wireless surveys/heat maps), life-cycle management (end-of-life, end-of-support, software management and decommissioning), change management and configuration management (production, backup and baseline/golden configurations). <strong>Network monitoring</strong> (3.2) covers SNMP (traps, MIB, v2c and v3, community strings and authentication), flow data, packet capture, baseline metrics with anomaly alerting, log aggregation through a syslog collector or SIEM, API integration and port mirroring, plus the solutions network discovery (ad hoc and scheduled), traffic analysis, and performance, availability and configuration monitoring; see <a href="snmp-explained.html">SNMP</a> and <a href="siem-explained.html">SIEM</a>. <strong>Disaster recovery</strong> (3.3) covers RPO, RTO, MTTR and MTBF, cold, warm and hot sites, active-active vs. active-passive high availability, and tabletop exercises and validation tests; see <a href="business-continuity.html">business continuity and disaster recovery</a>.</p>
+    <p><strong>IPv4 and IPv6 network services</strong> (3.4) covers DHCP (reservations, scope, lease time, options, relay/IP helper and exclusions), stateless address autoconfiguration (SLAAC), DNS (DNSSEC, DNS over HTTPS and DNS over TLS, record types, forward and reverse zones, authoritative vs. non-authoritative, primary vs. secondary, and recursive lookups), the hosts file, and the time protocols NTP, PTP and NTS; see <a href="dhcp.html">DHCP</a>, <a href="dns.html">DNS</a>, <a href="dns-record-types.html">DNS record types</a>, <a href="dns-security.html">DNS security</a> and <a href="ntp-explained.html">NTP</a>. <strong>Network access and management methods</strong> (3.5) covers site-to-site and client-to-site VPNs (clientless, split tunnel vs. full tunnel), connection methods (SSH, GUI, API and console), jump boxes/hosts, and in-band vs. out-of-band management; see <a href="vpn.html">VPNs</a> and <a href="ssh-explained.html">SSH</a>.</p>
 
     <h2>Domain 4 — Network Security Deep Dive</h2>
     <p>Network Security at 14% — the smallest domain on N10-009 — covers attacks, defenses, and access controls. <strong>Common network attacks</strong>: DoS/DDoS (volumetric, protocol, and application layer), man-in-the-middle (ARP poisoning, SSL stripping), DNS attacks (spoofing, cache poisoning, DNS hijacking), VLAN hopping (switch spoofing and double tagging attacks). <strong>Firewall types</strong>: packet filtering (stateless, simple rules), stateful inspection (tracks connection state), application-layer (Layer 7, deep packet inspection), and next-generation firewalls (NGFW, which combine stateful + application awareness + IPS + user identity).</p>

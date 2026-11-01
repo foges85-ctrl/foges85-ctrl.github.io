@@ -659,72 +659,10 @@ tbody tr:hover td { background: #f4f8ff; }
 
 /* ── BODY TEXT LINKS ── */
 .article-body p > a:not([class]), .guide-wrap p > a:not([class]) { color:#155bd9; text-decoration:underline; }
+/* ── TABLE CELL LINKS (added Oct 31 2026, same style as body text links) ── */
+.article-body td > a:not([class]) { color:#155bd9; text-decoration:underline; }
 </style>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Why SNMP exists",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Managing a network with hundreds of routers, switches, and servers individually would be impossible at scale. SNMP solves this by giving a central network management station (NMS) a standardized way to query any managed device for its current status and statistics — without logging into each device separately. Think of it as a health-monitoring system for your entire network infrastructure. The NMS can poll every device every few minutes, collect data, graph trends, and send alerts when something goes wrong — all automatically."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How SNMP communication works",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "SNMP communication happens in two directions — the manager polling agents, and agents sending unsolicited traps. Both use UDP, which makes SNMP lightweight but also connectionless. GetRequest Manager → Agent (UDP 161) Ask for the value of a specific OID e.g. \"What is the current CPU utilization?\" GetNextRequest Manager → Agent (UDP 161) Walk through the MIB tree sequentially GetBulkRequest Manager → Agent (UDP 161) — SNMPv2c+ Retrieve large amounts of data efficiently SetRequest Manager → Agent (UDP 161) Change a value on the device e.g. \"Change the interface description\" GetResponse Agent …"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "OIDs and MIBs",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Every piece of information an SNMP agent can report is identified by an OID (Object Identifier) — a dotted numeric string that uniquely identifies a variable in the global SNMP namespace. The collection of all OIDs a device supports is defined in its MIB (Management Information Base) . 1.3.6.1.2.1.1.1.0 → sysDescr — system description string 1.3.6.1.2.1.1.3.0 → sysUpTime — how long since last reboot 1.3.6.1.2.1.2.2.1.10.1 → ifInOctets — bytes received on interface 1 1.3.6.1.2.1.2.2.1.16.1 → ifOutOctets — bytes sent on interface 1 Structure: iso.org.dod.internet.mgmt.mib-2.interfaces... Each…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "SNMPv1 vs SNMPv2c vs SNMPv3",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The version of SNMP in use determines the security level of your network monitoring. This is one of the most heavily tested SNMP topics — the exam will ask you to identify which version to use and why the older versions are security risks."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Community strings — the SNMPv1/v2c security problem",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "SNMPv1 and SNMPv2c use community strings as a basic form of authentication — essentially a shared password included in every SNMP message. There are two types: Community strings are sent in plaintext. Anyone capturing network traffic with a packet analyzer can read them directly — no decryption needed. With the read-write community string, an attacker can reconfigure network devices remotely. Default community strings (\"public\" and \"private\") are well-known and are actively scanned for by attackers. Devices left with defaults are trivially exploitable."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "SNMPv3 security model",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "SNMPv3 replaces community strings with a proper security framework using three configurable security levels: noAuthNoPriv No authentication, no encryption Username only — still weak, not recommended authNoPriv Authentication (MD5 or SHA), no encryption Verifies identity but traffic still readable authPriv Authentication + Encryption (AES or 3DES) Full security — use this in production Credentials verified, traffic encrypted end-to-end 📌 SNMPv3 terminology the exam uses USM (User-based Security Model) — handles authentication and encryption using named users and credentials rather than commu…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "SNMP in network monitoring — real-world context",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "In practice, SNMP is what powers most enterprise network monitoring platforms. Tools like SolarWinds NPM, PRTG, Nagios, Zabbix, and LibreNMS all use SNMP to collect metrics from managed devices. A typical deployment polls every managed device every 5 minutes, collects interface traffic counters, CPU and memory utilization, and interface error rates, then graphs the data over time. SNMP traps provide near-real-time alerting — a switch sending a trap the moment a port goes down is far faster than waiting for the next polling cycle. Port 161 UDP — SNMP queries (manager to agent). Port 162 UDP …"
-      }
-    }
-  ]
-}
-</script>
 
 <script type="application/ld+json">
 {
@@ -852,6 +790,16 @@ tbody tr:hover td { background: #f4f8ff; }
         SNMP (Simple Network Management Protocol) is a protocol used to <strong>monitor and manage network devices</strong> — routers, switches, firewalls, servers, printers — from a central location. It lets a network management system collect performance data (CPU usage, bandwidth, error rates), check device status, and make configuration changes remotely. SNMP uses <strong>UDP port 161</strong> for queries and <strong>UDP port 162</strong> for traps (alerts sent by devices). Three versions exist — SNMPv3 is the only one considered secure.
       </div>
     </div>
+
+    <h2>Which CompTIA exam objectives cover SNMP?</h2>
+
+    <p>SNMP appears by name in three objectives across Network+ and Security+, quoted here by number and official wording:</p>
+
+    <p><strong>Network+ N10-009, objective 1.4</strong> — &ldquo;Explain common networking ports, protocols, services, and traffic types.&rdquo; The objective&rsquo;s port list includes Simple Network Management Protocol (SNMP) with ports 161/162 (<a href="https://lecbyo.files.cmp.optimizely.com/download/35a7403ab73211ef9dcda6f347fbf652" target="_blank" rel="noopener">CompTIA Network+ N10-009 exam objectives</a>).</p>
+
+    <p><strong>Network+ N10-009, objective 3.2</strong> — &ldquo;Given a scenario, use network monitoring technologies.&rdquo; Under Methods it lists SNMP with traps, management information base (MIB), versions (v2c and v3), community strings and authentication.</p>
+
+    <p><strong>Security+ SY0-701, objective 4.4</strong> — &ldquo;Explain security alerting and monitoring concepts and tools.&rdquo; Under Tools it lists Simple Network Management Protocol (SNMP) traps, alongside NetFlow (<a href="https://lecbyo.files.cmp.optimizely.com/download/cf25ec24b8a511ef9ecbb69c0f9687be" target="_blank" rel="noopener">CompTIA Security+ SY0-701 exam objectives</a>).</p>
 
     <h2>Why SNMP exists</h2>
 
@@ -982,6 +930,12 @@ tbody tr:hover td { background: #f4f8ff; }
       </table>
     </div>
 
+    <p><strong>Where each version is defined:</strong> SNMPv1 is defined in <a href="https://www.rfc-editor.org/rfc/rfc1157" target="_blank" rel="noopener">RFC 1157</a>. SNMPv2c is defined in <a href="https://www.rfc-editor.org/rfc/rfc1901" target="_blank" rel="noopener">RFC 1901</a>, published as an Experimental RFC (now classified Historic) that adds a community-based message format to the SNMPv2 framework; the SNMPv2 protocol operations themselves are in <a href="https://www.rfc-editor.org/rfc/rfc3416" target="_blank" rel="noopener">RFC 3416</a>. SNMPv3 is defined in RFCs 3411 through 3418, published together as Internet Standard STD 62, with the User-based Security Model in <a href="https://www.rfc-editor.org/rfc/rfc3414" target="_blank" rel="noopener">RFC 3414</a> and the View-based Access Control Model in <a href="https://www.rfc-editor.org/rfc/rfc3415" target="_blank" rel="noopener">RFC 3415</a>. The standard ports, UDP 161 for command responders (agents) and UDP 162 for notification receivers, are given in <a href="https://www.rfc-editor.org/rfc/rfc3417" target="_blank" rel="noopener">RFC 3417</a>.</p>
+
+    <h2>SNMP over TLS and DTLS — ports 10161 and 10162</h2>
+
+    <p><a href="https://www.rfc-editor.org/rfc/rfc6353" target="_blank" rel="noopener">RFC 6353</a> (Standards Track) defines the Transport Layer Security Transport Model for SNMP, which sends SNMP messages over TLS on TCP or over DTLS on UDP so that TLS or DTLS provides authentication and privacy. It registers <strong>port 10161</strong> for SNMP over TLS (TCP) and DTLS (UDP), and <strong>port 10162</strong> for SNMP traps over TLS and DTLS.</p>
+
     <h2>Community strings — the SNMPv1/v2c security problem</h2>
 
     <p>SNMPv1 and SNMPv2c use <strong>community strings</strong> as a basic form of authentication — essentially a shared password included in every SNMP message. There are two types:</p>
@@ -1029,6 +983,43 @@ tbody tr:hover td { background: #f4f8ff; }
       <div class="callout-label">📌 SNMPv3 terminology the exam uses</div>
       <p><strong>USM (User-based Security Model)</strong> — handles authentication and encryption using named users and credentials rather than community strings.</p>
       <p><strong>VACM (View-based Access Control Model)</strong> — controls which OIDs a user can access, providing granular read/write permissions per user.</p>
+    </div>
+
+    <h2>SNMP command examples with Net-SNMP</h2>
+
+    <p>Net-SNMP&rsquo;s command-line tools are a common way to query an agent by hand. <a href="https://www.net-snmp.org/docs/man/snmpget.html" target="_blank" rel="noopener">snmpget</a> sends a GET request for one or more OIDs. <a href="https://www.net-snmp.org/docs/man/snmpwalk.html" target="_blank" rel="noopener">snmpwalk</a> uses GETNEXT requests to retrieve every value in a subtree; with no OID it walks the mib-2 subtree. The options below come from the <a href="https://www.net-snmp.org/docs/man/snmpcmd.html" target="_blank" rel="noopener">snmpcmd</a> manual page. Replace <em>router1</em> with the agent&rsquo;s hostname or IP address.</p>
+
+    <div class="code-block">
+      <div class="code-label">Net-SNMP syntax</div>
+      <pre><span class="code-comment"># SNMPv2c: read one value (the device description)</span>
+<span class="code-hl">snmpget</span> -v 2c -c public router1 system.sysDescr.0
+
+<span class="code-comment"># SNMPv2c: walk the whole "system" subtree</span>
+<span class="code-hl">snmpwalk</span> -v 2c -c public router1 system
+
+<span class="code-comment"># SNMPv3 with authentication and encryption (authPriv)</span>
+<span class="code-teal">snmpget</span> -v 3 -l authPriv -u monitor -a SHA -A 'auth-passphrase' \
+        -x AES -X 'priv-passphrase' router1 system.sysUpTime.0</pre>
+    </div>
+
+    <p><strong>-v</strong> sets the SNMP version (1, 2c or 3). <strong>-c</strong> sets the community string for SNMPv1/v2c. For SNMPv3, <strong>-l</strong> sets the security level (noAuthNoPriv, authNoPriv or authPriv), <strong>-u</strong> the user name, <strong>-a</strong> and <strong>-A</strong> the authentication protocol (MD5 or SHA) and pass phrase, and <strong>-x</strong> and <strong>-X</strong> the privacy protocol (DES or AES) and pass phrase. The manual page warns that putting pass phrases on the command line is insecure and points to the snmp.conf file instead.</p>
+
+    <h2>SNMP vs NetFlow vs syslog</h2>
+
+    <p>All three feed network monitoring, and N10-009 objective 3.2 lists SNMP, flow data and log aggregation (syslog collector, SIEM) side by side. They answer different questions:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th></th><th>SNMP</th><th>NetFlow</th><th>Syslog</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-term">What it carries</td><td>Values from the agent&rsquo;s MIB (status, counters), plus traps when an event occurs (<a href="https://www.rfc-editor.org/rfc/rfc3416" target="_blank" rel="noopener">RFC 3416</a>)</td><td>Flow records: a flow is a one-way sequence of packets with common properties, recorded with IP addresses, packet and byte counts, timestamps, ports and interfaces (<a href="https://www.rfc-editor.org/rfc/rfc3954" target="_blank" rel="noopener">RFC 3954</a>)</td><td>Event notification messages, each with a facility and a severity from 0 (Emergency) to 7 (Debug) (<a href="https://www.rfc-editor.org/rfc/rfc5424" target="_blank" rel="noopener">RFC 5424</a>)</td></tr>
+          <tr><td class="td-term">Direction</td><td>Manager polls the agent; the agent pushes traps to the manager (<a href="https://www.rfc-editor.org/rfc/rfc3416" target="_blank" rel="noopener">RFC 3416</a>)</td><td>Device exports records to a NetFlow collector</td><td>Device sends messages to a syslog collector</td></tr>
+          <tr><td class="td-term">Transport</td><td>UDP 161 (agent), UDP 162 (traps) (<a href="https://www.rfc-editor.org/rfc/rfc3417" target="_blank" rel="noopener">RFC 3417</a>); TLS/DTLS on 10161/10162 (<a href="https://www.rfc-editor.org/rfc/rfc6353" target="_blank" rel="noopener">RFC 6353</a>)</td><td>UDP; NetFlow v9 is designed to be transport-independent and can also run over SCTP (<a href="https://www.rfc-editor.org/rfc/rfc3954" target="_blank" rel="noopener">RFC 3954</a>)</td><td>UDP 514 (<a href="https://www.rfc-editor.org/rfc/rfc5426" target="_blank" rel="noopener">RFC 5426</a>)</td></tr>
+          <tr><td class="td-term">Standard</td><td>STD 62 (RFCs 3411&ndash;3418)</td><td>RFC 3954 documents Cisco NetFlow v9 (Informational). The IETF standard for flow export is IPFIX, <a href="https://www.rfc-editor.org/rfc/rfc7011" target="_blank" rel="noopener">RFC 7011</a></td><td>RFC 5424 (Standards Track)</td></tr>
+        </tbody>
+      </table>
     </div>
 
     <h2>SNMP in network monitoring — real-world context</h2>

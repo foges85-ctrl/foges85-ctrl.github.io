@@ -672,54 +672,6 @@ tbody tr:hover td { background: #f6f9ff; }
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
      crossorigin="anonymous"></script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "The two types of encryption — symmetric and asymmetric",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Every encryption algorithm falls into one of two categories. Understanding the difference between them — and when each is used — is the foundation of everything else in cryptography. Speed question: \"Which encryption type is faster?\" → Symmetric. Always. Key exchange question: \"Which solves the key distribution problem?\" → Asymmetric."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How HTTPS uses both types together",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "HTTPS is the clearest real-world example of asymmetric and symmetric encryption working together. Understanding this flow is directly tested on Security+: From this point on, all traffic is encrypted with the fast symmetric session key. Asymmetric cryptography was only used to authenticate the server and agree on that key. (In TLS 1.2 and earlier, the browser could instead encrypt a session key with the server's RSA public key — RSA key transport, which TLS 1.3 removed.)"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Hashing — proving integrity, not confidentiality",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Hashing is fundamentally different from encryption. Encryption is a two-way process — you encrypt data, then decrypt it later. Hashing is one-way — you put data in, get a fixed-length output (called a hash or digest), and you cannot reverse it to get the original data back. Hashing is used to verify integrity — that data hasn't been altered. Password storage, file verification, and digital signatures all rely on hashing. \"hello\" → SHA-256 → 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 \"Hello\" → SHA-256 → 185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969 Ch…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Digital signatures — proving authenticity and non-repudiation",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A digital signature uses asymmetric cryptography in reverse. Instead of the sender encrypting with the recipient's public key, the sender encrypts a hash of the message with their own private key . Anyone with the sender's public key can decrypt it and verify the hash matches — proving the message came from that sender and hasn't been altered. Signing (sender): Message → Hash → Digest → Encrypt with private key → Signature Verifying (recipient): Signature → Decrypt with sender's public key → Digest Message → Hash → Digest If both digests match → message is authentic and unaltered Digital si…"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "PKI — the trust system behind certificates",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Public Key Infrastructure (PKI) is the framework of policies, roles, and technology that manages digital certificates and public keys. It answers the question that asymmetric encryption creates: \"How do I know this public key actually belongs to who they say they are?\""
-      }
-    }
-  ]
-}
-</script>
 
 <script type="application/ld+json">
 {
