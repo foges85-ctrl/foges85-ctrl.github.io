@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow">
   <title>CertFlash Privacy Policy</title>
+  <meta name="description" content="How the CertFlash app handles your information, including the optional CertFlash Coach subscription." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -89,17 +90,36 @@
       margin: 36px 0 12px;
     }
 
+    main h3 {
+      font-size: 1rem;
+      margin: 28px 0 10px;
+    }
+
     main p {
       color: #374151;
       margin-bottom: 14px;
     }
 
-    main ul {
+    main ul, main ol {
       margin: 10px 0 14px 22px;
       color: #374151;
     }
 
-    main ul li { margin-bottom: 6px; }
+    main ul li, main ol li { margin-bottom: 6px; }
+
+    main table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 18px;
+      color: #374151;
+    }
+
+    main th, main td {
+      border: 1px solid #e5e7eb;
+      padding: 8px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
 
     hr {
       border: none;
@@ -246,54 +266,109 @@
 
   <main>
     <h1>CertFlash Privacy Policy</h1>
-    <p class="meta">Effective date: April 6, 2026</p>
+    <p class="meta">Operator: Fogarty Holdings LLC ("we", "us")<br />Effective date: November 12, 2026</p>
 
-    <p>This privacy policy applies to the <strong>CertFlash: CompTIA Study Cards</strong> app (hereby referred to as "Application") for mobile devices, created by Sean Fogarty (hereby referred to as "Service Provider") as a Freemium service. This service is intended for use "AS IS".</p>
+    <p>CertFlash is a flashcard app for IT certification exams. This policy explains what the app does with your information. In short: CertFlash has no accounts, no ads, no analytics and no tracking. Your study data stays on your devices and in your own iCloud. The only time anything is sent to us is when you use the optional CertFlash Coach subscription and have agreed to it on that device.</p>
 
-    <h2>Information Collection and Use</h2>
-    <p>The Application collects information when you download and use it. This information may include:</p>
+    <h2>What CertFlash does not do</h2>
     <ul>
-      <li>Your device's Internet Protocol address (e.g. IP address)</li>
-      <li>The pages of the Application that you visit, the time and date of your visit, and the time spent on those pages</li>
-      <li>The time spent on the Application</li>
-      <li>The operating system you use on your mobile device</li>
-    </ul>
-    <p>The Application does not gather precise information about the location of your mobile device.</p>
-    <p>The Application does not use Artificial Intelligence (AI) technologies to process your data or provide features.</p>
-    <p>The Service Provider may use the information you provided to contact you from time to time to provide you with important information, required notices, and marketing promotions.</p>
-    <p>For a better experience, while using the Application, the Service Provider may require you to provide certain personally identifiable information. The information that the Service Provider requests will be retained by them and used as described in this privacy policy.</p>
-
-    <h2>Third Party Access</h2>
-    <p>Only aggregated, anonymized data is periodically transmitted to external services to aid the Service Provider in improving the Application and their service.</p>
-    <p>The Service Provider may disclose User Provided and Automatically Collected Information:</p>
-    <ul>
-      <li>As required by law, such as to comply with a subpoena or similar legal process</li>
-      <li>When they believe in good faith that disclosure is necessary to protect their rights, protect your safety or the safety of others, investigate fraud, or respond to a government request</li>
-      <li>With trusted service providers who work on their behalf, do not have an independent use of the information disclosed to them, and have agreed to adhere to the rules set forth in this privacy statement</li>
+      <li>No account. You never sign up, and we never ask for your name or email address.</li>
+      <li>No ads, no analytics, no tracking. The app contains no advertising, analytics or tracking software. It uses only Apple's own frameworks. It does not track you across apps or websites.</li>
     </ul>
 
-    <h2>Opt-Out Rights</h2>
-    <p>You can stop all collection of information by the Application by uninstalling it. You may use the standard uninstall processes available as part of your mobile device or via the mobile application marketplace or network.</p>
+    <h2>Your study data</h2>
+    <p>Your study progress, favorites, study streak and exam dates are stored on your device. If you are signed in to iCloud, they are also synced between your devices through your own iCloud account, using Apple's iCloud key-value storage.</p>
+    <p>That data goes to Apple, not to us. We do not run a server that receives it, and we cannot see it.</p>
+    <p>Study reminders are scheduled on your device by iOS. Nothing is sent to us to deliver them.</p>
 
-    <h2>Data Retention Policy</h2>
-    <p>The Service Provider will retain User Provided data for as long as you use the Application and for a reasonable time thereafter. If you'd like them to delete User Provided Data that you have provided via the Application, please contact them at <a href="mailto:contact@itstudyhub.org">contact@itstudyhub.org</a> and they will respond in a reasonable time.</p>
+    <h2>Purchases</h2>
+    <p>The CertFlash Pro unlock and the CertFlash Coach subscription are sold and processed by Apple through the App Store. We never receive your payment details.</p>
+
+    <h2>CertFlash Coach (optional subscription)</h2>
+    <p>CertFlash Coach adds a daily study plan, plain-language explanations of a card's answer, and answers to questions you ask about a card. The explanations, answers and plan notes are written by an AI model and can be wrong. Each subscriber can make up to 300 Coach requests a month.</p>
+
+    <h3>When anything is sent</h3>
+    <p>Nothing is sent until you tap Allow on the "Send to Anthropic?" prompt. That prompt tells you what is sent, including the Daily Plan numbers described below. Your choice is stored on that device only, so agreeing on one device does not agree for another. If we widen what Coach sends, we ask again.</p>
+    <p>After you have agreed, a request is sent:</p>
+    <ul>
+      <li>when you tap to have a card explained;</li>
+      <li>when you ask a question about a card;</li>
+      <li>at most once a day, when you open the Daily Plan, to fetch a short note about that day's plan.</li>
+    </ul>
+
+    <h3>What is sent</h3>
+    <table>
+      <thead>
+        <tr><th>Request</th><th>What is sent</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Explain a card</td><td>The card's deck name, question and answer.</td></tr>
+        <tr><td>Ask about a card</td><td>The same, plus the question you typed (up to 500 characters).</td></tr>
+        <tr><td>Daily plan note</td><td>For each deck in today's plan: the deck name, the days left until your exam, and how many cards are due, weak and new. No card text and no dates.</td></tr>
+      </tbody>
+    </table>
+    <p>Every request also includes Apple's signed record of your Coach subscription purchase. We use it only to check with Apple that your subscription is active and to count your requests. No name, email address, device identifier or account is sent.</p>
+
+    <h3>Who receives it</h3>
+    <ol>
+      <li>Our server, run on Cloudflare. Requests go to our server, which runs on Cloudflare Workers. It checks your subscription, counts the request against the monthly limit, and passes the request on.</li>
+      <li>Apple. Our server sends your subscription's original transaction ID to Apple's App Store Server API to confirm the subscription is active.</li>
+      <li>Anthropic. Our server sends the card text, your question or the plan numbers to Anthropic, which runs the Claude AI model and writes the reply. Your subscription record and transaction ID are not sent to Anthropic.</li>
+    </ol>
+
+    <h3>What our server stores</h3>
+    <p>Our server stores two small records. Neither contains your transaction ID itself. Each is filed under a one-way keyed hash of that ID, so the record cannot be traced back to your purchase without our secret key.</p>
+    <table>
+      <thead>
+        <tr><th>Record</th><th>What it holds</th><th>Deleted automatically after</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Subscription status</td><td>Whether the subscription was active at the last check</td><td>1 hour if active; 5 minutes if not</td></tr>
+        <tr><td>Monthly request count</td><td>The number of Coach requests this month</td><td>40 days after the month's last request</td></tr>
+      </tbody>
+    </table>
+    <p>These records expire and are deleted by Cloudflare's storage on their own.</p>
+
+    <h3>What our server never stores or logs</h3>
+    <p>Our server does not store or log the card text, your questions, the AI's replies, the plan numbers, your subscription record or your transaction ID. For each request it produces one log line: the request type, a result code, and how long the request took. That line is not stored. We can see it only live, while we are actively watching the server's output.</p>
+
+    <h3>What Cloudflare handles</h3>
+    <p>To deliver requests to our server, Cloudflare processes network information such as your IP address, as described in Cloudflare's privacy policy (<a href="https://www.cloudflare.com/privacypolicy/">https://www.cloudflare.com/privacypolicy/</a>). We have turned off Cloudflare's stored request logs for our server, so Cloudflare keeps no per-request log for us, and we do not keep your IP address.</p>
+
+    <h3>What Anthropic does with requests</h3>
+    <p>Anthropic receives Coach requests under its commercial terms for API customers.</p>
+    <ul>
+      <li>Training. Anthropic's commercial terms say: "Anthropic may not train models on Customer Content from Services." (<a href="https://www.anthropic.com/legal/commercial-terms">https://www.anthropic.com/legal/commercial-terms</a>)</li>
+      <li>Retention. Anthropic says: "For Anthropic API users, we automatically delete inputs and outputs on our backend within 30 days of receipt or generation," with exceptions. Among them: if a request is flagged by Anthropic's automated trust and safety systems as violating its Usage Policy, Anthropic may keep the inputs and outputs for up to 2 years, and it may keep data where the law requires it. (<a href="https://privacy.claude.com/en/articles/7996866">https://privacy.claude.com/en/articles/7996866</a>)</li>
+    </ul>
+
+    <h3>The Report button</h3>
+    <p>If an AI answer looks wrong, Report opens a draft email in your mail app to <a href="mailto:contact@fogartyholdings.com">contact@fogartyholdings.com</a>. The draft contains the card's question, the AI's answer and the app version. Nothing is sent unless you send that email yourself.</p>
+
+    <h2>Deleting your data</h2>
+    <p>On your device. Deleting CertFlash from your device removes the app's data from that device, including your Coach consent and any saved plan note.</p>
+    <p>In the app. You can remove a favorite or clear an exam date in the app, and the change syncs to your other devices. CertFlash does not currently have a way to erase your study progress or streak, or to delete everything at once.</p>
+    <p>In iCloud. If you use iCloud, a copy of your study progress, favorites, streak and exam dates is kept in your iCloud account. The app never deletes that copy. Deleting the app does not delete it: if you install CertFlash again while signed in to the same iCloud account, the app restores your data from it. Turning off iCloud for CertFlash stops that device from syncing, and CertFlash keeps working with the data on the device, but it does not delete the copy already in iCloud.</p>
+    <p>On our server. We hold nothing about your study data. The Coach records described above delete themselves on the schedule shown.</p>
+    <p>For help deleting your data, contact <a href="mailto:contact@fogartyholdings.com">contact@fogartyholdings.com</a>.</p>
+
+    <h2>Withdrawing consent</h2>
+    <p>Go to the Progress tab and turn off Send to Anthropic. From then on, nothing is sent from that device. The next Coach request asks for your permission again.</p>
+
+    <h2>Canceling the Coach subscription</h2>
+    <p>Subscriptions are managed by Apple. In CertFlash, open the Progress tab and tap the CertFlash Coach row to open your subscription settings. You can also open Settings, tap your name, tap Subscriptions, tap CertFlash Coach, and tap Cancel Subscription (<a href="https://support.apple.com/en-us/118428">https://support.apple.com/en-us/118428</a>). Canceling stops future charges. Our server's records about your subscription expire on the schedule above.</p>
 
     <h2>Children</h2>
-    <p>The Service Provider does not use the Application to knowingly solicit data from or market to children under the age of 13.</p>
-    <p>The Service Provider does not knowingly collect personally identifiable information from children. Parents and legal guardians are encouraged to monitor their children's Internet usage and help enforce this Policy by instructing their children never to provide personally identifiable information through the Application without their permission.</p>
-    <p>If you have reason to believe that a child has provided personally identifiable information through the Application, please contact the Service Provider at <a href="mailto:contact@itstudyhub.org">contact@itstudyhub.org</a>. You must also be at least 16 years of age to consent to the processing of your personally identifiable information in your country.</p>
+    <p>CertFlash is not directed to children under 13, and we do not knowingly collect personal information from children under 13.</p>
 
-    <h2>Security</h2>
-    <p>The Service Provider is concerned about safeguarding the confidentiality of your information and provides physical, electronic, and procedural safeguards to protect information the Service Provider processes and maintains.</p>
+    <h2>Your privacy rights</h2>
+    <p>Depending on where you live, you may have the right to ask about or delete personal information held about you. We hold no name, email address or account information for CertFlash users; the only records on our server are the short-lived Coach records described above. To ask a question or make a request, contact <a href="mailto:contact@fogartyholdings.com">contact@fogartyholdings.com</a>.</p>
 
-    <h2>Changes</h2>
-    <p>This Privacy Policy may be updated from time to time for any reason. The Service Provider will notify you of any changes by updating this page with the new Privacy Policy. You are advised to consult this Privacy Policy regularly for any changes, as continued use is deemed approval of all changes.</p>
+    <h2>Changes to this policy</h2>
+    <p>If we change this policy, we will update the effective date above. If a change widens what CertFlash Coach sends, the app will ask for your permission again before sending anything.</p>
 
-    <h2>Your Consent</h2>
-    <p>By using the Application, you are consenting to the processing of your information as set forth in this Privacy Policy now and as amended by us.</p>
-
-    <h2>Contact Us</h2>
-    <p>If you have any questions regarding privacy while using the Application, or have questions about our practices, please contact the Service Provider via email at <a href="mailto:contact@itstudyhub.org">contact@itstudyhub.org</a>.</p>
+    <h2>Contact</h2>
+    <p>Fogarty Holdings LLC: <a href="mailto:contact@fogartyholdings.com">contact@fogartyholdings.com</a></p>
 
     <hr />
     <p style="font-size:0.85rem; color:#6b7280;">This privacy policy covers the CertFlash iOS app only. For the IT Study Hub website privacy policy, <a href="https://itstudyhub.org/privacy-policy.html">click here</a>.</p>
