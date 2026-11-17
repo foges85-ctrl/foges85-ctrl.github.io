@@ -711,6 +711,16 @@ tbody tr:hover td { background: #f6f9ff; }
 
 /* ── BODY TEXT LINKS (main layout) ── */
 main.main > p a:not([class]), main.main > div:not([class]) > p a:not([class]) { color:#155bd9; text-decoration:underline; }
+
+/* ExpertEdge promo code: one-click copy button (shown only when JS runs) */
+.copy-code-btn { display: inline-block; margin: 0 0 0 6px; padding: 1px 9px; font-family: inherit; font-size: 12px; font-weight: 600; line-height: 1.5; color: #155bd9; background: #ffffff; border: 1px solid #155bd9; border-radius: 6px; cursor: pointer; vertical-align: baseline; white-space: nowrap; transition: background .15s, color .15s; }
+.copy-code-btn[hidden] { display: none; }
+.copy-code-btn:hover { background: #155bd9; color: #ffffff; }
+.copy-code-btn:focus-visible { outline: 2px solid #155bd9; outline-offset: 2px; }
+.copy-code-btn.is-copied, .copy-code-btn.is-copied:hover { color: #00786a; border-color: #00786a; background: #ffffff; }
+.copy-code-status { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+/* ExpertEdge card only: paragraph spacing, same margin-bottom as best-security-plus .resource-card-body p */
+.resource-card:has(.copy-code-btn) .resource-card-body > p { margin-bottom: 18px; }
 </style>
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
@@ -981,7 +991,7 @@ main.main > p a:not([class]), main.main > div:not([class]) > p a:not([class]) { 
       </ul>
       <p>The study guide is the same Lammle &amp; Buhagiar book I rank as my top pick above.</p>
       <p><strong>Who it&rsquo;s for:</strong> the subscription makes the most sense if you&rsquo;re working through more than one exam &mdash; say, Network+ and then Security+ &mdash; since the same library also has Security+ and A+ material. If Network+ is your only exam, a single study guide may be cheaper.</p>
-      <p>Code <strong>ITSTUDYHUB50</strong> gives 50% off your first year on the <strong>yearly plan only</strong> &mdash; it doesn&rsquo;t apply to the monthly plan.</p>
+      <p>Code <strong>ITSTUDYHUB50</strong><button type="button" class="copy-code-btn" data-code="ITSTUDYHUB50" aria-label="Copy code ITSTUDYHUB50" hidden>Copy code</button><span class="copy-code-status" role="status" aria-live="polite"></span> gives 50% off your first year on the <strong>yearly plan only</strong> &mdash; it doesn&rsquo;t apply to the monthly plan.</p>
       <div class="exam-tip-inline">
         <div class="exam-tip-inline-label">&#128161; How to get 50% off your first year</div>
         <p>1. Go to expertedge.org and sign up.<br>
@@ -992,7 +1002,7 @@ main.main > p a:not([class]), main.main > div:not([class]) > p a:not([class]) { 
       </div>
     </div>
     <div class="resource-card-footer">
-      <a href="https://expertedge.org?utm_source=itstudyhub&utm_medium=website" class="btn btn-primary" target="_blank" rel="nofollow sponsored">
+      <a href="https://www.expertedge.org/?utm_source=itstudyhub&utm_medium=website&utm_content=network-plus" class="btn btn-primary" target="_blank" rel="nofollow sponsored">
         View ExpertEdge &rarr;
       </a>
       <p style="font-size:12px;color:var(--muted);margin-top:10px;">Affiliate partner &mdash; I earn a commission on yearly signups with this code.</p>
@@ -1394,5 +1404,50 @@ main.main > p a:not([class]), main.main > div:not([class]) > p a:not([class]) { 
   </div>
 </footer>
 
+<script>
+/* ExpertEdge promo code copy button */
+(function () {
+  var btns = document.querySelectorAll('.copy-code-btn');
+  function reset(b) { b.textContent = 'Copy code'; b.classList.remove('is-copied'); announce(b, ''); }
+  function announce(b, text) {
+    var s = b.nextElementSibling;
+    if (!s || !s.classList.contains('copy-code-status')) { return; }
+    s.textContent = '';
+    if (text) { setTimeout(function () { s.textContent = text; }, 50); }
+  }
+  function flash(b, label, ok) {
+    b.textContent = label;
+    announce(b, label);
+    if (ok) { b.classList.add('is-copied'); } else { b.classList.remove('is-copied'); }
+    clearTimeout(b._copyTimer);
+    b._copyTimer = setTimeout(function () { reset(b); }, 2000);
+  }
+  function selectCode(b) {
+    var el = b.previousElementSibling;
+    if (!el || !window.getSelection || !document.createRange) { return false; }
+    var range = document.createRange();
+    range.selectNodeContents(el);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { return document.execCommand('copy'); } catch (e) { return false; }
+  }
+  function fallback(b) {
+    if (selectCode(b)) { flash(b, 'Copied', true); } else { flash(b, 'Selected', false); }
+  }
+  function onClick() {
+    var b = this, code = b.getAttribute('data-code');
+    if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+      navigator.clipboard.writeText(code).then(function () { flash(b, 'Copied', true); }, function () { fallback(b); });
+    } else {
+      fallback(b);
+    }
+  }
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].hidden = false;
+    btns[i].addEventListener('click', onClick);
+  }
+})();
+</script>
 </body>
 </html>
